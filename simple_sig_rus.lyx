@@ -8,6 +8,8 @@
 \DeclareMathOperator{\HM}{HM}
 \DeclareMathOperator{\LCM}{LCM}
 \DeclareMathOperator{\SIG}{\mathcal{S}}
+\newcommand{\GVWl}{<_{\text{gvw}}}
+\newcommand{\GVWg}{>_{\text{gvw}}}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -136,7 +138,7 @@ figs-within-sections
 \begin_inset Formula $I_{0}=\left\langle g_{1},\dots,g_{m}\right\rangle $
 \end_inset
 
-, полученный на предыдущем шаге алгоритма.
+, полученный на пр4едыдущем шаге алгоритма.
  Дополнительно предполагается, что 
 \begin_inset Formula $g_{i}\not\in k$
 \end_inset
@@ -222,7 +224,7 @@ figs-within-sections
 
 \begin_layout Standard
 На отмеченном многочлене заданы 
-\begin_inset Formula $\HM(h)=\HM(p),\,\HC(h)=\HC(p),\,\SIG(h)=\sigma$
+\begin_inset Formula $\HM(h)=\HM(p),\HC(h)=\HC(p),\SIG(h)=\sigma$
 \end_inset
 
 .
@@ -238,7 +240,7 @@ figs-within-sections
 \end_inset
 
  даёт отмеченный многочлен 
-\begin_inset Formula $th=(t\sigma,\, tp)$
+\begin_inset Formula $th=(t\sigma,tp)$
 \end_inset
 
 .
@@ -291,11 +293,11 @@ h{}_{1}=K_{1}(h'_{1}+K_{2}th_{2}),K_{i}\in k,t\in\mathbb{T}
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $<_{gwv}$
+\begin_inset Formula $\GVWl$
 \end_inset
 
  - частичный порядок на отмеченных многочленах, определяемый как 
-\begin_inset Formula $h_{1}=(\sigma_{1},\, p_{1})<_{gwv}h_{2}=(\sigma_{2},\, p_{2})$
+\begin_inset Formula $h_{1}=(\sigma_{1},\, p_{1})\GVWl h_{2}=(\sigma_{2},\, p_{2})$
 \end_inset
 
 , если и только если 
@@ -304,7 +306,7 @@ h{}_{1}=K_{1}(h'_{1}+K_{2}th_{2}),K_{i}\in k,t\in\mathbb{T}
 
 .
  Условно (хотя и не строго) это можно интерпретировать как 
-\begin_inset Formula $h_{1}<_{gvw}h_{2}\Longleftrightarrow\frac{\HM(h_{1})}{\SIG(h_{1})}\prec\frac{\HM(h_{2})}{\SIG(h_{2})}$
+\begin_inset Formula $h_{1}\GVWl h_{2}\Longleftrightarrow\frac{\HM(h_{1})}{\SIG(h_{1})}\prec\frac{\HM(h_{2})}{\SIG(h_{2})}$
 \end_inset
 
 .
@@ -347,11 +349,11 @@ h{}_{1}=K_{1}(h'_{1}+K_{2}th_{2}),K_{i}\in k,t\in\mathbb{T}
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $(\sigma,\, p')$
+\begin_inset Formula $(\sigma,p')$
 \end_inset
 
  - отмеченный многочлен, редуцируемый на текущем шаге, 
-\begin_inset Formula $(\sigma,\, p)$
+\begin_inset Formula $(\sigma,p)$
 \end_inset
 
  -- он же после редукции 
@@ -475,7 +477,7 @@ if
 
 \series bold
 for 
-\begin_inset Formula $\{r\in R|r<_{gwv}\left(\sigma,p\right),\HM(r)\neq0\}$
+\begin_inset Formula $\{r\in R|r\GVWl\left(\sigma,p\right),\HM(r)\neq0\}$
 \end_inset
 
 
@@ -494,7 +496,7 @@ for
 
 \series bold
 for 
-\begin_inset Formula $\{r\in R|r>_{gwv}\left(\sigma,p\right)\}$
+\begin_inset Formula $\{r\in R|r\GVWg\left(\sigma,p\right)\}$
 \end_inset
 
 
@@ -520,7 +522,7 @@ name "enu:-remove-from-B"
 \end_inset
 
 
-\begin_inset Formula $B\leftarrow B\setminus\{b\in B|\exists r\in R,\, r<_{gwv}b\wedge\SIG(r)|\SIG(b)\}$
+\begin_inset Formula $B\leftarrow B\setminus\{b\in B|\exists r\in R,\, r\GVWl b\wedge\SIG(r)|\SIG(b)\}$
 \end_inset
 
 
@@ -590,7 +592,7 @@ Function
 
 \series bold
 while 
-\begin_inset Formula $\exists r\in R|r>_{gwv}(p,\sigma)\wedge\HM(r)|\HM(p)$
+\begin_inset Formula $\exists r\in R|r\GVWg(p,\sigma)\wedge\HM(r)|\HM(p)$
 \end_inset
 
 
@@ -606,7 +608,7 @@ while
 \end_inset
 
  с сохранением сигнатуры по 
-\begin_inset Formula $>_{gvw}$
+\begin_inset Formula $\GVWg$
 \end_inset
 
 -максимальному элементу 
@@ -648,7 +650,7 @@ return
 
 .
  Тогда 
-\begin_inset Formula $h_{1}>_{gvw}h_{2}\Longleftrightarrow h_{1}>_{gvw}th_{2}$
+\begin_inset Formula $h_{1}\GVWg h_{2}\Longleftrightarrow h_{1}\GVWg th_{2}$
 \end_inset
 
 .
@@ -665,7 +667,7 @@ return
 \end_inset
 
  обоих частей в определении 
-\begin_inset Formula $>_{gvw}$
+\begin_inset Formula $\GVWg$
 \end_inset
 
 .
@@ -687,7 +689,7 @@ return
 .
  Тогда редукция второго по первому сохраняет сигнатуру если и только если
  
-\begin_inset Formula $h_{1}>_{gvw}h_{2}$
+\begin_inset Formula $h_{1}\GVWg h_{2}$
 \end_inset
 
 .
@@ -712,7 +714,7 @@ return
 
  редукцией с сохранением сигнатур.
  Тогда 
-\begin_inset Formula $h_{1}>_{gvw}h_{2}$
+\begin_inset Formula $h_{1}\GVWg h_{2}$
 \end_inset
 
 .
@@ -818,7 +820,7 @@ return
 
 \begin_layout Lemma
 Пусть 
-\begin_inset Formula $h_{1}<_{gvw}h_{2}$
+\begin_inset Formula $h_{1}\GVWl h_{2}$
 \end_inset
 
  отмеченные многочлены.
@@ -828,11 +830,11 @@ return
 
  с ненулевой сигнатурой выполняется по крайней мере одно из двух неравенств
  
-\begin_inset Formula $h_{1}<_{gvw}h_{3}$
+\begin_inset Formula $h_{1}\GVWl h_{3}$
 \end_inset
 
  и 
-\begin_inset Formula $h_{3}<_{gvw}h_{2}$
+\begin_inset Formula $h_{3}\GVWl h_{2}$
 \end_inset
 
 .
@@ -857,7 +859,7 @@ return
 \end_inset
 
 , имеем 
-\begin_inset Formula $h_{3}<_{gvw}h_{2}$
+\begin_inset Formula $h_{3}\GVWl h_{2}$
 \end_inset
 
 .
@@ -988,7 +990,7 @@ reference "enu:-before-reduce"
 \end_inset
 
  любой итерации алгоритма, сигнатуры элементов 
-\begin_inset Formula $\left\{ r\in R|r<_{gvw}(\sigma,p')\right\} $
+\begin_inset Formula $\left\{ r\in R|r\GVWl(\sigma,p')\right\} $
 \end_inset
 
  не делят 
@@ -1054,7 +1056,7 @@ reference "enu:-after-reduce"
 \end_inset
 
  любой итерации алгоритма, старшие мономы элементов 
-\begin_inset Formula $\left\{ r\in R|r>_{gvw}(\sigma,p)\right\} $
+\begin_inset Formula $\left\{ r\in R|r\GVWg(\sigma,p)\right\} $
 \end_inset
 
  не делят 
@@ -1128,7 +1130,7 @@ reference "lem:exist-reductor"
 \end_inset
 
 , поэтому 
-\begin_inset Formula $(\sigma,p')>_{gvw}(\sigma,p)$
+\begin_inset Formula $(\sigma,p')\GVWg(\sigma,p)$
 \end_inset
 
 .
@@ -1137,11 +1139,11 @@ reference "lem:exist-reductor"
 \end_inset
 
  имеем 
-\begin_inset Formula $r>_{gvw}(\sigma,p)$
+\begin_inset Formula $r\GVWg(\sigma,p)$
 \end_inset
 
  или 
-\begin_inset Formula $r<_{gvw}(\sigma,p')$
+\begin_inset Formula $r\GVWl(\sigma,p')$
 \end_inset
 
 .
@@ -1150,7 +1152,7 @@ reference "lem:exist-reductor"
 \end_inset
 
  имеем 
-\begin_inset Formula $r>_{gvw}(\sigma,p)$
+\begin_inset Formula $r\GVWg(\sigma,p)$
 \end_inset
 
 , поскольку 
@@ -1267,20 +1269,52 @@ S-представлением
 .
 \end_layout
 
+\begin_layout Standard
+Следующее определение расширяет понятие S-базиса из работы 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Arri:2011:FCR:2007509.2007761"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Definition
+Множество отмеченных многочленов называется
+\emph on
+ 
+\begin_inset Formula $\SIG_{\sigma}$
+\end_inset
+
+-базисом
+\emph default
+, если относительно него любой допустимый отмеченный многочлен сигнатуры
+ 
+\begin_inset Formula $\prec\sigma$
+\end_inset
+
+ имеет S-представление.
+ Если S-представление имеет допустимый многочлен любой сигнатуры, то множество
+ называется просто 
+\emph on
+
+\begin_inset Formula $\SIG$
+\end_inset
+
+-базисом.
+\end_layout
+
 \begin_layout Lemma
-Если S-представление относительно множества 
+Если 
 \begin_inset Formula $R=\left\{ r_{i}\right\} $
 \end_inset
 
- имеет любой допустимый отмеченный многочлен 
-\begin_inset Formula $h$
-\end_inset
-
-, то 
+ -- S-базис, то 
 \begin_inset Formula $R$
 \end_inset
 
- -- базис Грёбнера идеала 
+ является базисом Грёбнера идеала 
 \begin_inset Formula $I$
 \end_inset
 
@@ -1421,7 +1455,7 @@ reference "enu:-remove-from-B"
 \begin_inset Formula $\sigma_{0}\neq0$
 \end_inset
 
- оно содержит добавленный на первой итерации элемент 
+, оно содержит добавленный на первой итерации элемент 
 \begin_inset Formula $r$
 \end_inset
 
@@ -1429,9 +1463,9 @@ reference "enu:-remove-from-B"
 \begin_inset Formula $\SIG(r)=1$
 \end_inset
 
- и значит непусто.
- Рассмотрим его
-\begin_inset Formula $<{}_{gvw}$
+ и, значит, непусто.
+ Рассмотрим его 
+\begin_inset Formula $\GVWl$
 \end_inset
 
 -минимальный элемент 
@@ -1448,12 +1482,13 @@ reference "enu:-remove-from-B"
 \end_inset
 
  может быть редуцирован с сохранением сигнатуры относительно некоторого
+ 
 \begin_inset Formula $r_{1}\in R$
 \end_inset
 
 .
  Отсюда следует, что 
-\begin_inset Formula $r_{1}>_{gvw}r_{0}$
+\begin_inset Formula $r_{1}\GVWg r_{0}$
 \end_inset
 
 , а также что они не нулевые.
@@ -1515,16 +1550,16 @@ reference "enu:-remove-from-B"
 \end_inset
 
  одной из итераций, что влечёт существование 
-\begin_inset Formula $r_{2}\in R,r_{2}<_{gvw}t'r_{0},\SIG(r_{2})|\SIG(t'r_{0})$
+\begin_inset Formula $r_{2}\in R,r_{2}\GVWl t'r_{0},\SIG(r_{2})|\SIG(t'r_{0})$
 \end_inset
 
 .
  Это невозможно, поскольку влечёт 
-\begin_inset Formula $r_{2}<_{gvw}r_{0},\SIG(r_{2})|\SIG(t_{0}r_{0})=\sigma_{0}$
+\begin_inset Formula $r_{2}\GVWl r_{0},\SIG(r_{2})|\SIG(t_{0}r_{0})=\sigma_{0}$
 \end_inset
 
 , что противоречит 
-\begin_inset Formula $<{}_{gvw}$
+\begin_inset Formula $\GVWl$
 \end_inset
 
 -минимальности 
@@ -1621,7 +1656,7 @@ key "Gao:2010:NIA:1837934.1837944"
 
 \end_inset
 
-и версию F5, опубликованную в работе 
+ и версию F5, опубликованную в работе 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Arri:2011:FCR:2007509.2007761"
@@ -1729,16 +1764,7 @@ reference "enu:-remove-from-B"
  попадающих в результирующее множество.
  Результирующее множество не является минимальным базисом Грёбнера, но при
  этом в определённом смысле минимально.
- Это минимальное множество, удовлетворяющее следующему определению:
-\end_layout
-
-\begin_layout Definition
-Множество отмеченных многочленов называется 
-\emph on
-базисом S-представлений
-\emph default
-, если относительно него любой допустимый отмеченный многочлен имеет S-представл
-ение.
+ Это минимальное множество, удовлетворяющее определению S-базиса.
 \end_layout
 
 \begin_layout Standard
@@ -1760,7 +1786,7 @@ reference "enu:-remove-from-B"
  К примеру, вопрос наиболее эффективного способа выбора редуктора в процедуре
  Редуцировать_с_учётом_сигнатур является открытым.
  Представленный способ выбора, основанный на 
-\begin_inset Formula $\text{<}_{gvw}$
+\begin_inset Formula $\GVWl$
 \end_inset
 
 -сравнении наиболее близок к способу выбора, применявшегося в оригинальном
@@ -1773,10 +1799,13 @@ reference "enu:-remove-from-B"
  F5-подобных алгоритмов на этом ядре.
  Исходный код реализации содержится в функции ssg файла, доступного по адресу
  
-\begin_inset Newline newline
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/galkinvv/Singular-f5-like/blob/ssg/kernel/kstd2.cc"
+
 \end_inset
 
-https://github.com/galkinvv/Singular-f5-like/blob/ssg/kernel/kstd2.cc
+
 \end_layout
 
 \begin_layout Standard
