@@ -1,0 +1,1814 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\DeclareMathOperator{\HC}{HC}
+\DeclareMathOperator{\HM}{HM}
+\DeclareMathOperator{\LCM}{LCM}
+\DeclareMathOperator{\SIG}{\mathcal{S}}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language russian
+\language_package babel
+\inputencoding utf8
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine natbib_numerical
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 4cm
+\topmargin 4cm
+\rightmargin 4cm
+\bottommargin 4cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language french
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Простой итеративный алгоритм вычисления базисов Грёбнера, основанный на
+ сигнатурах.
+\end_layout
+
+\begin_layout Section
+Обозначения
+\end_layout
+
+\begin_layout Standard
+Будем придерживаться следующих обозначений, соответствующих большинству
+ статей по алгоритмам, использующим отмеченные полиномы.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $k$
+\end_inset
+
+ - поле, над которым рассматривается кольцо многочленов 
+\begin_inset Formula $P=k[x_{1},\dots,x_{n}]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\mathbb{T}$
+\end_inset
+
+ - множество мономов
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\prec$
+\end_inset
+
+ - произвольный мономиальный порядок на 
+\begin_inset Formula $\mathbb{T}$
+\end_inset
+
+, используемый как для определения старшего монома многочлена, так и для
+ упорядочивания сигнатур.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\{g_{1},\dots,g_{m}\}$
+\end_inset
+
+ - базис Грёбнера идеала 
+\begin_inset Formula $I_{0}=\left\langle g_{1},\dots,g_{m}\right\rangle $
+\end_inset
+
+, полученный на предыдущем шаге алгоритма.
+ Дополнительно предполагается, что 
+\begin_inset Formula $g_{i}\not\in k$
+\end_inset
+
+, т.e.
+ 
+\begin_inset Formula $I_{0}\neq P$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $f$
+\end_inset
+
+ - многочлен, добавляемый на новой итерации, 
+\begin_inset Formula $I=\left\langle f,g_{1},\dots,g_{m}\right\rangle $
+\end_inset
+
+ - идеал, для которого требуется найти базис.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\HM(p)\in\mathbb{T}$
+\end_inset
+
+ - старший моном многочлена 
+\begin_inset Formula $p$
+\end_inset
+
+.
+ Ненулевой для всех многочленов кроме нулевого.
+ 
+\begin_inset Formula $\HM(0)=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\HC(p)\in P$
+\end_inset
+
+ - старший коэффициент многочлена 
+\begin_inset Formula $p$
+\end_inset
+
+.
+ Ненулевой для всех многочленов кроме нулевого.
+ 
+\begin_inset Formula $\HC(0)=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\LCM(t_{1},t_{2})$
+\end_inset
+
+ - наименьшее общее кратное мономов 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $h=(\sigma,\, p)$
+\end_inset
+
+ - отмеченный многочлен.
+ Сигнатура это просто моном 
+\begin_inset Formula $\sigma\in\mathbb{T}$
+\end_inset
+
+ или 0.
+ Она не имеет индекса, поскольку рассматривается итеративный алгоритм.
+ 
+\end_layout
+
+\begin_layout Standard
+На отмеченном многочлене заданы 
+\begin_inset Formula $\HM(h)=\HM(p),\,\HC(h)=\HC(p),\,\SIG(h)=\sigma$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Умножение отмеченного многочлена 
+\begin_inset Formula $h$
+\end_inset
+
+ на моном 
+\begin_inset Formula $t$
+\end_inset
+
+ даёт отмеченный многочлен 
+\begin_inset Formula $th=(t\sigma,\, tp)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Будем говорить, что 
+\begin_inset Formula $h_{1}$
+\end_inset
+
+ есть результат редукции 
+\begin_inset Formula $h'_{1}$
+\end_inset
+
+ по 
+\begin_inset Formula $h_{2}$
+\end_inset
+
+ с сохранением сигнатуры, если: 
+\begin_inset Formula 
+\[
+h{}_{1}=K_{1}(h'_{1}+K_{2}th_{2}),K_{i}\in k,t\in\mathbb{T}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\SIG(th_{2})\prec\SIG(h'_{1}),\HM(h{}_{1})\prec\HM(h'{}_{1})=\HM(th{}_{2})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\HC(h{}_{1})=1\vee h{}_{1}=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $<_{gwv}$
+\end_inset
+
+ - частичный порядок на отмеченных многочленах, определяемый как 
+\begin_inset Formula $h_{1}=(\sigma_{1},\, p_{1})<_{gwv}h_{2}=(\sigma_{2},\, p_{2})$
+\end_inset
+
+, если и только если 
+\begin_inset Formula $\HM(p_{1})\sigma_{2}\prec\HM(p_{2})\sigma_{1}$
+\end_inset
+
+.
+ Условно (хотя и не строго) это можно интерпретировать как 
+\begin_inset Formula $h_{1}<_{gvw}h_{2}\Longleftrightarrow\frac{\HM(h_{1})}{\SIG(h_{1})}\prec\frac{\HM(h_{2})}{\SIG(h_{2})}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Алгоритм
+\end_layout
+
+\begin_layout Standard
+Описание типов переменных:
+\end_layout
+
+\begin_layout Itemize
+Входные данные: базис Грёбнера, представленный многочленами 
+\begin_inset Formula $\{g_{1},\dots,g_{m}\}$
+\end_inset
+
+, многочлен 
+\begin_inset Formula $f$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Внутренние переменные:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $R$
+\end_inset
+
+ и 
+\begin_inset Formula $B$
+\end_inset
+
+ - множества отмеченных многочленов
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $(\sigma,\, p')$
+\end_inset
+
+ - отмеченный многочлен, редуцируемый на текущем шаге, 
+\begin_inset Formula $(\sigma,\, p)$
+\end_inset
+
+ -- он же после редукции 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $r$
+\end_inset
+
+ - отмеченный многочлен при переборе множества 
+\begin_inset Formula $R$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $b$
+\end_inset
+
+ - отмеченный многочлен при переборе множества 
+\begin_inset Formula $B$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Результат: по завершении алгоритма 
+\begin_inset Formula $R$
+\end_inset
+
+ содержит базис Грёбнера.
+\end_layout
+
+\begin_layout Standard
+Алгоритм SimpleSignatureGroebner:
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $R\leftarrow\{(0,g_{1}),(0,g_{2}),...,(0,g_{n})\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $B\leftarrow\{\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+\begin_inset Formula $(\sigma,p')\leftarrow(1,f)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:-before-reduce"
+
+\end_inset
+
+
+\begin_inset Formula $p\leftarrow$
+\end_inset
+
+Редуцировать_с_учётом_сигнатур(
+\begin_inset Formula $p',\sigma,R$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:-after-reduce"
+
+\end_inset
+
+
+\begin_inset Formula $R\leftarrow R\cup\left\{ \left(\sigma,p\right)\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+if
+\series default
+ 
+\begin_inset Formula $p\not=0$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+for 
+\begin_inset Formula $\{r\in R|r<_{gwv}\left(\sigma,p\right),\HM(r)\neq0\}$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(r)}r\}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+for 
+\begin_inset Formula $\{r\in R|r>_{gwv}\left(\sigma,p\right)\}$
+\end_inset
+
+
+\series default
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(p)}\left(\sigma,p\right)\}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:-remove-from-B"
+
+\end_inset
+
+
+\begin_inset Formula $B\leftarrow B\setminus\{b\in B|\exists r\in R,\, r<_{gwv}b\wedge\SIG(r)|\SIG(b)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+if 
+\begin_inset Formula $B=\emptyset$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+return 
+\begin_inset Formula $R$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset Formula $(\sigma,p')\leftarrow$
+\end_inset
+
+ элемент 
+\begin_inset Formula $B$
+\end_inset
+
+ с минимальной сигнатурой
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+goto
+\series default
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-before-reduce"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Function
+\series default
+ Редуцировать_с_учётом_сигнатур(
+\begin_inset Formula $p,\sigma,R$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+while 
+\begin_inset Formula $\exists r\in R|r>_{gwv}(p,\sigma)\wedge\HM(r)|\HM(p)$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $p\leftarrow$
+\end_inset
+
+редуцировать 
+\begin_inset Formula $p$
+\end_inset
+
+ с сохранением сигнатуры по 
+\begin_inset Formula $>_{gvw}$
+\end_inset
+
+-максимальному элементу 
+\begin_inset Formula $r$
+\end_inset
+
+ среди указанных в условии цикла
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+return
+\series default
+ 
+\begin_inset Formula $p$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Теория
+\end_layout
+
+\begin_layout Lemma
+Пусть 
+\begin_inset Formula $h_{1}$
+\end_inset
+
+ и 
+\begin_inset Formula $h_{2}$
+\end_inset
+
+ -- отмеченные многочлены,
+\begin_inset Formula $t\in\mathbb{T}$
+\end_inset
+
+.
+ Тогда 
+\begin_inset Formula $h_{1}>_{gvw}h_{2}\Longleftrightarrow h_{1}>_{gvw}th_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Выводится из того, что домножение на 
+\begin_inset Formula $t$
+\end_inset
+
+ одного из сравниваемых отмеченных многочленов приводит к домножению на
+ 
+\begin_inset Formula $t$
+\end_inset
+
+ обоих частей в определении 
+\begin_inset Formula $>_{gvw}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Lemma
+Пусть 
+\begin_inset Formula $h_{1}$
+\end_inset
+
+ и 
+\begin_inset Formula $h_{2}$
+\end_inset
+
+ -- отмеченные многочлены, 
+\begin_inset Formula $\HM(h_{1})|\HM(h_{2})$
+\end_inset
+
+.
+ Тогда редукция второго по первому сохраняет сигнатуру если и только если
+ 
+\begin_inset Formula $h_{1}>_{gvw}h_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Следует из того что оба утверждения равносильны 
+\begin_inset Formula $\SIG(h_{2})\succ\SIG(h_{1})\frac{\HM(h_{2})}{\HM(h_{1})}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Lemma
+Пусть 
+\begin_inset Formula $h_{2}$
+\end_inset
+
+ -- отмеченный многочлен, полученный из 
+\begin_inset Formula $h_{1}$
+\end_inset
+
+ редукцией с сохранением сигнатур.
+ Тогда 
+\begin_inset Formula $h_{1}>_{gvw}h_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Следует из того что их сигнатуры равны, а 
+\begin_inset Formula $HM$
+\end_inset
+
+ уменьшается при редукции: 
+\begin_inset Formula $\HM(h_{2})\prec\HM(h_{1}).$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+При фиксированных 
+\begin_inset Formula $f$
+\end_inset
+
+ и 
+\begin_inset Formula $\{g_{1},\dots,g_{m}\}$
+\end_inset
+
+ отмеченный многочлен 
+\begin_inset Formula $h=(\sigma,p)$
+\end_inset
+
+ называется 
+\emph on
+допустимым
+\emph default
+, если он удовлетворяют соотношению 
+\begin_inset Formula $p=uf\mod I_{0}$
+\end_inset
+
+ для некоторого многочлена 
+\begin_inset Formula $u$
+\end_inset
+
+, такого что 
+\begin_inset Formula $\HM(u)=\sigma$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Далее многочлены 
+\begin_inset Formula $f$
+\end_inset
+
+ и 
+\begin_inset Formula $\{g_{1},\dots,g_{m}\}$
+\end_inset
+
+ предполагаются фиксированными, поэтому понятие допустимости используется
+ без их явного указания.
+\end_layout
+
+\begin_layout Lemma
+Все отмеченные многочлены, порождаемые алгоритмом допустимы.
+\end_layout
+
+\begin_layout Standard
+Если 
+\begin_inset Formula $p_{0}\in I_{0}$
+\end_inset
+
+, то, поскольку 
+\begin_inset Formula $p_{0}=0f\mod I_{0}$
+\end_inset
+
+, отмеченный многочлен 
+\begin_inset Formula $(0,p_{0})$
+\end_inset
+
+ допустим.
+ Поэтому допустимы многочлены, изначально добавляемые в 
+\begin_inset Formula $R$
+\end_inset
+
+.
+ Поскольку 
+\begin_inset Formula $f=1f\mod I_{0}$
+\end_inset
+
+ допустимым является отмеченный многочлен 
+\begin_inset Formula $(1,f)$
+\end_inset
+
+.
+ Все остальные многочлены, присутствующие в алгоритме порождаются или домножение
+м на моном допустимого многочлена, присутствующего в 
+\begin_inset Formula $R$
+\end_inset
+
+ или редукцией с сохранением сигнатуры.
+ Обе эти операции сохраняют свойство допустимости.
+\end_layout
+
+\begin_layout Lemma
+Пусть 
+\begin_inset Formula $h_{1}<_{gvw}h_{2}$
+\end_inset
+
+ отмеченные многочлены.
+ Тогда для любого отмеченного многочлена 
+\begin_inset Formula $h_{3}$
+\end_inset
+
+ с ненулевой сигнатурой выполняется по крайней мере одно из двух неравенств
+ 
+\begin_inset Formula $h_{1}<_{gvw}h_{3}$
+\end_inset
+
+ и 
+\begin_inset Formula $h_{3}<_{gvw}h_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Из условия леммы известно, что
+\begin_inset Formula 
+\begin{equation}
+\HM(h_{1})\SIG(h_{2})\prec\HM(h_{2})\SIG(h_{1})\label{eq:gvw-order-3}
+\end{equation}
+
+\end_inset
+
+откуда 
+\begin_inset Formula $\HM(h_{2})\neq0$
+\end_inset
+
+.
+ Поэтому, если 
+\begin_inset Formula $\HM(h_{3})=0$
+\end_inset
+
+, имеем 
+\begin_inset Formula $h_{3}<_{gvw}h_{2}$
+\end_inset
+
+.
+ Иначе 
+\begin_inset Formula $\HM(h_{3})\neq0$
+\end_inset
+
+ и можно домножить неравенство 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:gvw-order-3"
+
+\end_inset
+
+ на ненулевой элемент 
+\begin_inset Formula $\HM(h_{3})\SIG(h_{3})$
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+\HM(h_{3})\SIG(h_{3})\HM(h_{1})\SIG(h_{2})\prec\HM(h_{3})\SIG(h_{3})\HM(h_{2})\SIG(h_{1}).
+\]
+
+\end_inset
+
+Поэтому моном 
+\begin_inset Formula $\HM(h_{3})^{2}\SIG(h_{2})\SIG(h_{1})$
+\end_inset
+
+ окажется или 
+\begin_inset Formula $\succ$
+\end_inset
+
+ левого или 
+\begin_inset Formula $\prec$
+\end_inset
+
+ правого монома последнего неравенства, что после сокращения даст неравенство,
+ эквивалентное утверждению леммы.
+\end_layout
+
+\begin_layout Subsection
+Остановка алгоритма
+\end_layout
+
+\begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:exist-reductor"
+
+\end_inset
+
+В любой момент работы алгоритма любой отмеченный многочлен из 
+\begin_inset Formula $B$
+\end_inset
+
+ может быть редуцирован с сохранением сигнатуры по некоторому элементу 
+\begin_inset Formula $R.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Отмеченные многочлены добавляются в 
+\begin_inset Formula $B$
+\end_inset
+
+ таким образом, чтоб иметь хотя бы один подходящий редуктор.
+ При добавлении в первом 
+\series bold
+for
+\series default
+ цикле этим редуктором является 
+\begin_inset Formula $(\sigma,p)\in R$
+\end_inset
+
+, во втором -- 
+\begin_inset Formula $r\in R$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+В последующих утверждениях понятие делимости мономов расширяется на случай
+ нулевых -- будем полагать что нулевой моном делит нулевой моном и только
+ его.
+ Отметим также, что нулевыми сигнатурами в 
+\begin_inset Formula $R$
+\end_inset
+
+ обладают лишь элементы 
+\begin_inset Formula $(0,g_{1}),(0,g_{2}),...,(0,g_{n}),$
+\end_inset
+
+ нулевым старшим мономом могут обладать многочлены добавляемые в 
+\begin_inset Formula $R$
+\end_inset
+
+ после редукции.
+ При этом нулевые многочлены с одновременно нулевой сигнатурой не встречаются.
+ В множестве 
+\begin_inset Formula $B$
+\end_inset
+
+ нет многочленов ни с нулевой сигнатурой, ни с нулевым старшим мономом.
+\end_layout
+
+\begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:r-gvw-small"
+
+\end_inset
+
+До редукции многочлена 
+\begin_inset Formula $p'$
+\end_inset
+
+, т.е.
+ на этапе 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-before-reduce"
+
+\end_inset
+
+ любой итерации алгоритма, сигнатуры элементов 
+\begin_inset Formula $\left\{ r\in R|r<_{gvw}(\sigma,p')\right\} $
+\end_inset
+
+ не делят 
+\begin_inset Formula $\sigma$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+На первой итерации алгоритма это выполняется, поскольку
+\begin_inset Formula $\sigma=1$
+\end_inset
+
+ и 
+\begin_inset Formula $R$
+\end_inset
+
+ не содержит элементы с сигнатурами, делящими 1.
+ На последующих итерациях это выполнено, поскольку если бы в 
+\begin_inset Formula $R$
+\end_inset
+
+ существовали такие элементы, то 
+\begin_inset Formula $\left(\sigma,p'\right)$
+\end_inset
+
+ был бы убран из 
+\begin_inset Formula $B$
+\end_inset
+
+ в предыдущей итерации на шаге 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-remove-from-B"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:r-gvw-big"
+
+\end_inset
+
+После редукции многочлена 
+\begin_inset Formula $p'$
+\end_inset
+
+ до 
+\begin_inset Formula $p$
+\end_inset
+
+, т.е.
+ на этапе 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-after-reduce"
+
+\end_inset
+
+ любой итерации алгоритма, старшие мономы элементов 
+\begin_inset Formula $\left\{ r\in R|r>_{gvw}(\sigma,p)\right\} $
+\end_inset
+
+ не делят 
+\begin_inset Formula $\HM(p)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Утверждение леммы вытекает из того, что цикл редукций в функции Редуцировать_с_у
+чётом_сигнатур останавливается только тогда, когда достигается 
+\begin_inset Formula $p$
+\end_inset
+
+, для которого такие элементы в 
+\begin_inset Formula $R$
+\end_inset
+
+ не существуют.
+\end_layout
+
+\begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:adds-really-new"
+
+\end_inset
+
+После редукции многочлена 
+\begin_inset Formula $p'$
+\end_inset
+
+ до 
+\begin_inset Formula $p$
+\end_inset
+
+, т.е.
+ на этапе 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-after-reduce"
+
+\end_inset
+
+ любой итерации алгоритма, элементы 
+\begin_inset Formula $R$
+\end_inset
+
+ не могут одновременно иметь старшие мономы, делящие 
+\begin_inset Formula $\HM(p)$
+\end_inset
+
+ и сигнатуры, делящие 
+\begin_inset Formula $\sigma$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+В силу леммы 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:exist-reductor"
+
+\end_inset
+
+ будет произведена хотя бы одна редукция 
+\begin_inset Formula $p'$
+\end_inset
+
+, поэтому 
+\begin_inset Formula $(\sigma,p')>_{gvw}(\sigma,p)$
+\end_inset
+
+.
+ Отсюда, для элементов 
+\begin_inset Formula $\{r\in R|\SIG(r)\neq0\}$
+\end_inset
+
+ имеем 
+\begin_inset Formula $r>_{gvw}(\sigma,p)$
+\end_inset
+
+ или 
+\begin_inset Formula $r<_{gvw}(\sigma,p')$
+\end_inset
+
+.
+ Для 
+\begin_inset Formula $\{r\in R|\SIG(r)=0\}$
+\end_inset
+
+ имеем 
+\begin_inset Formula $r>_{gvw}(\sigma,p)$
+\end_inset
+
+, поскольку 
+\begin_inset Formula $\sigma\neq0$
+\end_inset
+
+ и 
+\begin_inset Formula $\HM(r)\neq0$
+\end_inset
+
+.
+ Выполнение одного из неравенств позволяет применить одну из лемм 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:r-gvw-small"
+
+\end_inset
+
+ и 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:r-gvw-big"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Theorem
+Описанный алгоритм останавливается на любых входных данных
+\end_layout
+
+\begin_layout Standard
+Для доказательства остановки нужно показать что оба цикла, присутствующие
+ в алгоритме могут выполняться лишь конечное число раз.
+ Цикл, находящийся в процедуре редукции выполняется конечное число раз,
+ поскольку на каждой итерации уменьшается старший моном многочлена 
+\begin_inset Formula $p$
+\end_inset
+
+, а бесконечной убывающей последовательности мономов не существует.
+\end_layout
+
+\begin_layout Standard
+Для основного цикла алгоритма рассмотрим два множества: 
+\begin_inset Formula $L=\left\{ \sigma|(\sigma,0)\in R\right\} \subset\mathbb{T}$
+\end_inset
+
+ и 
+\begin_inset Formula $N=\left\{ (\sigma,t)|\exists(\sigma,p)\in R,t=\HM(p)\right\} \subset\mathbb{T}\times\mathbb{T}$
+\end_inset
+
+.
+ Основной цикл алгоритма на шаге 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-after-reduce"
+
+\end_inset
+
+ добавляет элемент в 
+\begin_inset Formula $R$
+\end_inset
+
+, чему соответствует добавление элемента в одно из этих множеств.
+ В силу леммы 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:adds-really-new"
+
+\end_inset
+
+ добавляемые в эти множества элементы расширяют на каждом шаге конусы-идеалы
+ 
+\begin_inset Formula $\left\langle L\right\rangle $
+\end_inset
+
+ и 
+\begin_inset Formula $\left\langle N\right\rangle $
+\end_inset
+
+, что по лемме Диксона может происходить лишь конечное число раз.
+\end_layout
+
+\begin_layout Subsection
+Корректность
+\end_layout
+
+\begin_layout Definition
+
+\emph on
+S-представлением
+\emph default
+ отмеченного многочлена 
+\begin_inset Formula $h$
+\end_inset
+
+ относительно множества отмеченных многочленов 
+\begin_inset Formula $R=\left\{ r_{i}\right\} $
+\end_inset
+
+ будем называть выражение 
+\begin_inset Formula $h=\sum_{j}K_{j}t_{j}r_{i_{j}},$
+\end_inset
+
+ 
+\begin_inset Formula $K_{j}\in k,t_{j}\in\mathbb{T},i_{j}\in\mathbb{N}$
+\end_inset
+
+, такое что 
+\begin_inset Formula $\forall j\HM(h)\succcurlyeq\HM(t_{j}r_{j}),\SIG(h)\succcurlyeq\SIG(t_{j}r_{j})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Lemma
+Если S-представление относительно множества 
+\begin_inset Formula $R=\left\{ r_{i}\right\} $
+\end_inset
+
+ имеет любой допустимый отмеченный многочлен 
+\begin_inset Formula $h$
+\end_inset
+
+, то 
+\begin_inset Formula $R$
+\end_inset
+
+ -- базис Грёбнера идеала 
+\begin_inset Formula $I$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Вытекает из того что для 
+\begin_inset Formula $p\in I$
+\end_inset
+
+ можно взять некоторый допустимый 
+\begin_inset Formula $h=\left(\sigma,p\right)$
+\end_inset
+
+ в S-представлении которого найдётся 
+\begin_inset Formula $r_{i_{j}}$
+\end_inset
+
+, такой что 
+\begin_inset Formula $\HM(p)=t_{j}\HM(r_{i_{j}})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Для доказательства корректности алгоритма будем доказывать следующую теорему,
+ из которой будет следовать корректность ответа в момент остановки алгоритма,
+ поскольку при 
+\begin_inset Formula $B=\emptyset$
+\end_inset
+
+ её инвариант станет выполняться для всех многочленов.
+\end_layout
+
+\begin_layout Theorem
+На каждой итерации алгоритма после шага 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-remove-from-B"
+
+\end_inset
+
+ выполнен следующий инвариант: любой допустимый отмеченный многочлен, сигнатура
+ которого 
+\begin_inset Formula $\prec$
+\end_inset
+
+ чем сигнатуры всех элементов 
+\begin_inset Formula $B$
+\end_inset
+
+ имеет S-представление относительно 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Предположим, что утверждение теоремы неверно на определённой итерации алгоритма.
+ Зафиксируем множества 
+\begin_inset Formula $R$
+\end_inset
+
+ и 
+\begin_inset Formula $B$
+\end_inset
+
+ на момент после шага 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-remove-from-B"
+
+\end_inset
+
+ этой итерации, и все S-представления будем рассматривать относительно этого
+ 
+\begin_inset Formula $R$
+\end_inset
+
+.
+ Пусть 
+\begin_inset Formula $V$
+\end_inset
+
+ -- множество допустимых многочленов, для которых не выполняется инвариант,
+ а 
+\begin_inset Formula $V_{0}=\left\{ v\in V|\SIG(v)=\sigma_{0}\right\} $
+\end_inset
+
+ -- подмножество с минимальной сигнатурой.
+ Все элементы 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ имеют S-представления относительно 
+\begin_inset Formula $\{(0,g_{1}),(0,g_{2}),...,(0,g_{n})\}\subset R$
+\end_inset
+
+, поэтому 
+\begin_inset Formula $\sigma_{0}\neq0$
+\end_inset
+
+.
+ Выберем 
+\begin_inset Formula $v_{0}=(\sigma_{0},q_{0})\in V_{0}$
+\end_inset
+
+ -- многочлен с наименьшим старшим мономом.
+ Он не может быть редуцирован с сохранением сигнатуры относительно 
+\begin_inset Formula $R$
+\end_inset
+
+, поскольку иначе результат его редукции 
+\begin_inset Formula $v_{1}$
+\end_inset
+
+ являлся бы элементом 
+\begin_inset Formula $V_{0}$
+\end_inset
+
+ с 
+\begin_inset Formula $\HM(v_{1})\prec\HM(v_{0})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Рассмотрим множество 
+\begin_inset Formula $\left\{ r\in R|\SIG(r)|\sigma_{0}\right\} $
+\end_inset
+
+.
+ Поскольку 
+\begin_inset Formula $\sigma_{0}\neq0$
+\end_inset
+
+ оно содержит добавленный на первой итерации элемент 
+\begin_inset Formula $r$
+\end_inset
+
+ с 
+\begin_inset Formula $\SIG(r)=1$
+\end_inset
+
+ и значит непусто.
+ Рассмотрим его
+\begin_inset Formula $<{}_{gvw}$
+\end_inset
+
+-минимальный элемент 
+\begin_inset Formula $r_{0}$
+\end_inset
+
+ и обозначим 
+\begin_inset Formula $t_{0}=\frac{\sigma_{0}}{\SIG(r_{0})}$
+\end_inset
+
+.
+ Предположим, что отмеченный многочлен 
+\begin_inset Formula $t_{0}r_{0}=\left(\sigma_{0},t_{0}p_{0}\right)$
+\end_inset
+
+ может быть редуцирован с сохранением сигнатуры относительно некоторого
+\begin_inset Formula $r_{1}\in R$
+\end_inset
+
+.
+ Отсюда следует, что 
+\begin_inset Formula $r_{1}>_{gvw}r_{0}$
+\end_inset
+
+, а также что они не нулевые.
+ Значит на той же итерации, когда в 
+\begin_inset Formula $R$
+\end_inset
+
+ был добавлен последний из 
+\begin_inset Formula $\{r_{0},r_{1}\}$
+\end_inset
+
+, в множество 
+\begin_inset Formula $B$
+\end_inset
+
+ был добавлен многочлен 
+\begin_inset Formula $t'r_{0}$
+\end_inset
+
+, где 
+\begin_inset Formula $t'=\frac{\LCM(\HM(r_{1}),\HM(r_{0}))}{\HM(r_{0})}$
+\end_inset
+
+, причём 
+\begin_inset Formula $t'|t_{0}$
+\end_inset
+
+.
+ Отсюда 
+\begin_inset Formula $\SIG(t'r_{0})|\SIG(t_{0}r_{0})=\sigma_{0}\Rightarrow\SIG(t'r_{0})\preccurlyeq\sigma_{0}$
+\end_inset
+
+.
+ Поскольку 
+\begin_inset Formula $\sigma_{0}$
+\end_inset
+
+ -- сигнатура 
+\begin_inset Formula $v_{0}$
+\end_inset
+
+, для которого не выполняется инвариант, она 
+\begin_inset Formula $\prec$
+\end_inset
+
+ чем сигнатуры элементов 
+\begin_inset Formula $B$
+\end_inset
+
+ -- то есть 
+\begin_inset Formula $t'r_{0}$
+\end_inset
+
+ был выкинут на шаге 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-remove-from-B"
+
+\end_inset
+
+ одной из итераций, что влечёт существование 
+\begin_inset Formula $r_{2}\in R,r_{2}<_{gvw}t'r_{0},\SIG(r_{2})|\SIG(t'r_{0})$
+\end_inset
+
+.
+ Это невозможно, поскольку влечёт 
+\begin_inset Formula $r_{2}<_{gvw}r_{0},\SIG(r_{2})|\SIG(t_{0}r_{0})=\sigma_{0}$
+\end_inset
+
+, что противоречит 
+\begin_inset Formula $<{}_{gvw}$
+\end_inset
+
+-минимальности 
+\begin_inset Formula $r_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Таким образом показано, что 
+\begin_inset Formula $t_{0}r_{0}=\left(\sigma_{0},t_{0}p_{0}\right)$
+\end_inset
+
+ и 
+\begin_inset Formula $v_{0}=(\sigma_{0},q_{0})$
+\end_inset
+
+ не могут быть редуцированы относительно 
+\begin_inset Formula $R$
+\end_inset
+
+ с сохранением сигнатуры, при этом первый из них имеет тривиальное S-представлен
+ие 
+\begin_inset Formula $t_{0}r_{0}$
+\end_inset
+
+, а второй не имеет S-представления.
+ Из допустимости следует, что их разность 
+\begin_inset Formula $w=\left(\sigma_{1},q_{0}-Kt_{0}p_{0}\right)$
+\end_inset
+
+ с некоторым коэффициентом 
+\begin_inset Formula $K\in k$
+\end_inset
+
+ есть допустимый многочлен сигнатуры 
+\begin_inset Formula $\sigma_{1}\prec\sigma_{0}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $w\not\in V$
+\end_inset
+
+ в силу малости сигнатуры и имеет S-представление 
+\begin_inset Formula $w=\sum_{j}K_{j}t_{j}r_{i_{j}}.$
+\end_inset
+
+ Значит 
+\begin_inset Formula $\exists j|\HM(t_{j}r_{i_{j}})=\HM(w),\SIG(t_{j}r_{i_{j}})\preccurlyeq\SIG(w)=\sigma_{1}\prec\sigma_{0}$
+\end_inset
+
+.
+ Если бы 
+\begin_inset Formula $\HM(w)\in\{\HM(v_{0}),\HM(t_{0}r_{0})\}$
+\end_inset
+
+, то 
+\begin_inset Formula $r_{i_{j}}$
+\end_inset
+
+ был бы сохраняющим сигнатуру редуктором для 
+\begin_inset Formula $v_{0}$
+\end_inset
+
+ или 
+\begin_inset Formula $t_{0}r_{0}$
+\end_inset
+
+, что невозможно.
+ Значит старшие мономы сокращаются при вычитании, то есть 
+\begin_inset Formula $\HM(v_{0})=\HM(t_{0}r_{0})$
+\end_inset
+
+.
+ Отсюда выводим S-представление: 
+\begin_inset Formula $v_{0}=Kt_{0}r_{0}+\sum_{j}K_{j}Kt_{j}r_{i_{j}}.$
+\end_inset
+
+ Противоречие.
+\end_layout
+
+\begin_layout Subsection
+Связь с аналогами
+\end_layout
+
+\begin_layout Standard
+Представленный алгоритм связан с двумя уже известными алгоритмами, основанных
+ на сигнатурах -- алгоритм G2V из работы 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Gao:2010:NIA:1837934.1837944"
+
+\end_inset
+
+и версию F5, опубликованную в работе 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Arri:2011:FCR:2007509.2007761"
+
+\end_inset
+
+.
+ Оба они в определённом смысле являются модификациями простого F5, впервые
+ представленного в работе 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Faugere:2002:NEA:780506.780516"
+
+\end_inset
+
+, причём модификации направлены на сокращение числа редукций многочленов,
+ занимающих большую часть времени в процессе вычисления базисов Грёбнера.
+ Первый из них отличается от немодифицированной версии тем, что не использует
+ явного вычисления S-полиномов до проведения редукции и вводит специальный
+ критерий 
+\begin_inset Quotes fld
+\end_inset
+
+super-topreducible
+\begin_inset Quotes frd
+\end_inset
+
+ для отбрасывания некоторых многочленов после их редукции.
+ Второй применяет расширенный критерий, отбрасывая до редукции те из посчитанных
+ S-полиномов, которые не смогут удовлетворять критерию 
+\begin_inset Quotes fld
+\end_inset
+
+primitve S-irreducble
+\begin_inset Quotes frd
+\end_inset
+
+ после редукции.
+ Эти методики позволяют ускорить работу алгоритма, однако в обоих случаях
+ в определённый момент отбрасывается многочлен, полученный в процессе предыдущих
+ вычислений путём редукции или создания S-полинома.
+\end_layout
+
+\begin_layout Standard
+Практически во всех алгоритмах, основанных на сигнатурах, в том числе в
+ исходном алгоритме F5 применяется и более эффективный тип критериев: критерии
+ отбрасывания S-пар, не требующие вычислений с многочленами для своей проверки
+ -- их отличия в различных алгоритмах подробно разобраны в работе 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Eder:2011:SAC:1993886.1993906"
+
+\end_inset
+
+.
+ Однако вопрос об их сравнительной эффективности остаётся неясным как с
+ теоретической, так и с эмпирической точек зрения -- на различных примерах
+ большее или меньшее преимущество могут иметь различные подходы.
+\end_layout
+
+\begin_layout Standard
+В алгоритме SimpleSignatureGroebner используется подход, который можно интерпрет
+ировать как объединение всего вышеуказанного: S-полиномы не вычисляются
+ явно и их отбрасывание осуществляется на основе критерия, записываемого
+ в точности как критерий второго алгоритма.
+ При этом для проверки на шаге 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-remove-from-B"
+
+\end_inset
+
+ элемента 
+\begin_inset Formula $B$
+\end_inset
+
+ достаточно знать лишь его сигнатуру и старший моном.
+ Поскольку каждый элемент 
+\begin_inset Formula $B$
+\end_inset
+
+ получается как домноженный на моном 
+\begin_inset Formula $m$
+\end_inset
+
+ элемент 
+\begin_inset Formula $r\in R$
+\end_inset
+
+ их можно хранить в виде пары 
+\begin_inset Formula $\left(m,r\right)$
+\end_inset
+
+, не выполняя без необходимости операции домножения всего многочлена на
+ моном.Таким образом, для отброшенных элементов 
+\begin_inset Formula $B$
+\end_inset
+
+ не производится никаких операций, сложность которых пропорциональна длине
+ многочлена.
+ Заметим, что применяемое во втором алгоритме вычисление старшего монома
+ S-пары в общем случае напротив имеет именно такую сложность.
+ Таким образом, возможна реализация алгоритма SimpleSignatureGroebner, в
+ которой все операции над многолченами производятся лишь для многочленов,
+ попадающих в результирующее множество.
+ Результирующее множество не является минимальным базисом Грёбнера, но при
+ этом в определённом смысле минимально.
+ Это минимальное множество, удовлетворяющее следующему определению:
+\end_layout
+
+\begin_layout Definition
+Множество отмеченных многочленов называется 
+\emph on
+базисом S-представлений
+\emph default
+, если относительно него любой допустимый отмеченный многочлен имеет S-представл
+ение.
+\end_layout
+
+\begin_layout Standard
+Отсюда можно сделать вывод о некоторой полноте критериев отбрасывания: не
+ может существовать критерия, который бы позволил убрать какие-либо операции
+ редукции многочленов из алгоритма не добавив новых редукций и не лишив
+ результат свойства быть базисом S-представлений.
+ Из доказательств корректности многих алгоритмов, основанных на сигнатурах
+ следует что их результат содержит такое множество, поэтому представленный
+ алгоритм является в указанном смысле оптимальным алгоритмом, находящим
+ минимальный базис S-представлений для последовательности идеалов, расширяемых
+ одним многочленом на каждом шаге.
+\end_layout
+
+\begin_layout Standard
+Эта оптимальность не глобальна -- могут существовать более эффективные модификац
+ии алгоритма, которые не просто убирают вычисления, а заменяют одни вычисления
+ над полиномами другими.
+ К примеру, вопрос наиболее эффективного способа выбора редуктора в процедуре
+ Редуцировать_с_учётом_сигнатур является открытым.
+ Представленный способ выбора, основанный на 
+\begin_inset Formula $\text{<}_{gvw}$
+\end_inset
+
+-сравнении наиболее близок к способу выбора, применявшегося в оригинальном
+ алгоритме F5.
+\end_layout
+
+\begin_layout Standard
+Алгоритм был реализован на С++ с использованием функций ядра программного
+ комплекса Singular 3-1-4 и открытых наработок Christian Eder по реализации
+ F5-подобных алгоритмов на этом ядре.
+ Исходный код реализации содержится в функции ssg файла, доступного по адресу
+ 
+\begin_inset Newline newline
+\end_inset
+
+https://github.com/galkinvv/Singular-f5-like/blob/ssg/kernel/kstd2.cc
+\end_layout
+
+\begin_layout Standard
+Сравнение реализации с другими алгоритмами вычисления базисов Грёбнера,
+ реализованных Christian Eder подтвердили следующие теоретические соображения:
+\end_layout
+
+\begin_layout Itemize
+Алгоритм SimpleSignatureGroebner корректно вычисляет базис Грёбнера
+\end_layout
+
+\begin_layout Itemize
+Возвращаемое множество содержит не большее число многочленов, чем множество
+ возвращаемое другими инкрементальными алгоритмами, про которые известно,
+ что они возвращают S-представление
+\end_layout
+
+\begin_layout Itemize
+Время работы алгоритма оказывается несколько меньше, чем у других инкрементальны
+х алгоритмов, основанных на сигнатурах.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "f5_references"
+options "plainnat"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
