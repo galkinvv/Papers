@@ -7,9 +7,12 @@
 \DeclareMathOperator{\HC}{HC}
 \DeclareMathOperator{\HM}{HM}
 \DeclareMathOperator{\LCM}{LCM}
+\DeclareMathOperator{\poly}{poly}
 \DeclareMathOperator{\SIG}{\mathcal{S}}
 \newcommand{\GVWl}{<_{\text{gvw}}}
 \newcommand{\GVWg}{>_{\text{gvw}}}
+\newcommand{\eqdef}{\overset{\mathrm{def}}{=\joinrel=}}
+\newcommand{\equivdef}{\overset{\mathrm{def}}{\Longleftrightarrow}}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -88,224 +91,301 @@ figs-within-sections
 
 \begin_layout Title
 Простой итеративный алгоритм вычисления базисов Грёбнера, основанный на
- сигнатурах.
+ сигнатурах
+\end_layout
+
+\begin_layout Abstract
+Данная работа описывает алгоритм вычисления базисов Грёбнера, основанный
+ на использовании отмеченных многочленов и идеях из алгоритма F5.
+ Отличительными особенностями рассматриваемого алгоритма являются простота
+ реализации и доказательств корректной работы.
 \end_layout
 
 \begin_layout Section
-Обозначения
+Определения
 \end_layout
 
 \begin_layout Standard
-Будем придерживаться следующих обозначений, соответствующих большинству
- статей по алгоритмам, использующим отмеченные полиномы.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $k$
-\end_inset
-
- - поле, над которым рассматривается кольцо многочленов 
+Рассмотрим кольцо многочленов 
 \begin_inset Formula $P=k[x_{1},\dots,x_{n}]$
 \end_inset
 
+ над полем 
+\begin_inset Formula $k$
+\end_inset
 
-\end_layout
-
-\begin_layout Standard
+.
+ Будем предполагать что на моноиде его мономов 
 \begin_inset Formula $\mathbb{T}$
 \end_inset
 
- - множество мономов
-\end_layout
-
-\begin_layout Standard
+ задан допустимый мономиальный порядок 
 \begin_inset Formula $\prec$
 \end_inset
 
- - произвольный мономиальный порядок на 
-\begin_inset Formula $\mathbb{T}$
-\end_inset
-
-, используемый как для определения старшего монома многочлена, так и для
- упорядочивания сигнатур.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $\{g_{1},\dots,g_{m}\}$
-\end_inset
-
- - базис Грёбнера идеала 
-\begin_inset Formula $I_{0}=\left\langle g_{1},\dots,g_{m}\right\rangle $
-\end_inset
-
-, полученный на пр4едыдущем шаге алгоритма.
- Дополнительно предполагается, что 
-\begin_inset Formula $g_{i}\not\in k$
-\end_inset
-
-, т.e.
- 
-\begin_inset Formula $I_{0}\neq P$
+.
+ В этом кольце может быть может быть поставлена задача вычисления базиса
+ Грёбнера для произвольного идеала 
+\begin_inset Formula $\left(f_{1},\dots,f_{l}\right)$
 \end_inset
 
 .
- 
-\end_layout
+ Она может быть решена инкрементальным образом: для этого необходимо последовате
+льно вычислять базисы идеалов 
+\begin_inset Formula $\left(f_{1},\dots,f_{i}\right),i=2\dots l$
+\end_inset
 
-\begin_layout Standard
+ на основе уже вычисленного для идеала 
+\begin_inset Formula $\left(f_{1},\dots,f_{i-1}\right)$
+\end_inset
+
+ базиса 
+\begin_inset Formula $R_{i-1}$
+\end_inset
+
+ и многочлена 
+\begin_inset Formula $f_{i}$
+\end_inset
+
+.
+ Представляемый алгоритм позволяет выполнить шаг такого вычисления.
+ Таким образом, входные данные для алгоритма -- это некоторый многочлен
+ 
 \begin_inset Formula $f$
 \end_inset
 
- - многочлен, добавляемый на новой итерации, 
-\begin_inset Formula $I=\left\langle f,g_{1},\dots,g_{m}\right\rangle $
+ и множество многочленов, обозначаемое 
+\begin_inset Formula $\left\{ g_{1},\dots,g_{m}\right\} $
 \end_inset
 
- - идеал, для которого требуется найти базис.
+, являющееся базисом Грёбнера идеала 
+\begin_inset Formula $I_{0}=\left(g_{1},\dots,g_{m}\right)$
+\end_inset
+
+.
+ В качестве результата своей работы алгоритм должен построить множество
+ многочленов 
+\begin_inset Formula $R$
+\end_inset
+
+, являющееся базисом Грёбнера идеала 
+\begin_inset Formula $I=\left(g_{1},\dots,g_{m},f\right)$
+\end_inset
+
+.
+ Дополнительно предполагается, что 
+\begin_inset Formula $g_{i}\not\in k\left(\Leftrightarrow I_{0}\neq P\right)$
+\end_inset
+
+, такой случай может быть легко рассмотрен отдельно.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\HM(p)\in\mathbb{T}$
+Введём обозначения: 
+\begin_inset Formula $\mathbb{T}_{0}=\mathbb{T}\cup\left\{ 0\right\} $
 \end_inset
 
- - старший моном многочлена 
+ -- моноид мономов, расширенный нулём.
+ Порядок 
+\begin_inset Formula $\prec$
+\end_inset
+
+ корректно расширяется на 
+\begin_inset Formula $\mathbb{T}_{0}$
+\end_inset
+
+ с сохранением вполне упорядоченности и свойства 
+\begin_inset Formula $t_{1}t'\prec t_{2}t'\Rightarrow t_{1}\prec t_{2}$
+\end_inset
+
+.
+ Для ненулевого многочлена 
 \begin_inset Formula $p$
 \end_inset
 
+ старшие по 
+\begin_inset Formula $\prec$
+\end_inset
+
+ моном и коэффициент обозначим 
+\begin_inset Formula $\HM(p)\in\mathbb{T}_{0}$
+\end_inset
+
+ и 
+\begin_inset Formula $\HC(p)\in k$
+\end_inset
+
 .
- Ненулевой для всех многочленов кроме нулевого.
+ Для нуля -- 
+\begin_inset Formula $\HM(0)\eqdef0$
+\end_inset
+
+, 
+\begin_inset Formula $\HC(0)\eqdef0$
+\end_inset
+
+.
+ Наименьшее общее кратное мономов 
+\begin_inset Formula $t_{i}\in\mathbb{T}$
+\end_inset
+
+ обозначим 
+\begin_inset Formula $\LCM(t_{1},t_{2})\in\mathbb{T}$
+\end_inset
+
+.
+ Дальнейшие определения вводятся для фиксированных 
+\begin_inset Formula $I_{0}$
+\end_inset
+
+ и 
+\begin_inset Formula $f$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Definition
+
+\emph on
+Отмеченным многочленом
+\emph default
+ называется пара 
+\begin_inset Formula $h=(\sigma,p),\sigma\in\mathbb{T}_{0},p\in P$
+\end_inset
+
+, такая что 
+\begin_inset Formula $\exists u\in P:\HM(u)=\sigma,uf=p\mod I_{0}.$
+\end_inset
+
+ На отмеченные многочлены распространяются определения старшего моном 
+\begin_inset Formula $\HM(h)\eqdef\HM(p)$
+\end_inset
+
+ и коэффициента 
+\begin_inset Formula $\HC(h)\eqdef\HC(p)$
+\end_inset
+
+.
+ Также определяются 
+\emph on
+сигнатура
+\emph default
  
-\begin_inset Formula $\HM(0)=0$
+\begin_inset Formula $\SIG(h)\eqdef\sigma$
 \end_inset
 
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $\HC(p)\in P$
-\end_inset
-
- - старший коэффициент многочлена 
-\begin_inset Formula $p$
-\end_inset
-
-.
- Ненулевой для всех многочленов кроме нулевого.
+, 
+\emph on
+обычный связанный многочлен
+\emph default
  
-\begin_inset Formula $\HC(0)=0$
+\begin_inset Formula $\poly(h)\eqdef p$
+\end_inset
+
+.
+ Множество отмеченных многочленов будем обозначать за 
+\begin_inset Formula $H$
 \end_inset
 
 .
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\LCM(t_{1},t_{2})$
+Для 
+\begin_inset Formula $h\in H$
 \end_inset
 
- - наименьшее общее кратное мономов 
-\begin_inset Formula $t_{i}$
+ может быть корректно задано умножение на моном 
+\begin_inset Formula $th\eqdef(t\sigma,tp)\in H$
+\end_inset
+
+ и на коэффициент 
+\begin_inset Formula $Kh\eqdef(\sigma,Kp)\in H$
 \end_inset
 
 .
 \end_layout
 
-\begin_layout Standard
-\begin_inset Formula $h=(\sigma,\, p)$
-\end_inset
-
- - отмеченный многочлен.
- Сигнатура это просто моном 
-\begin_inset Formula $\sigma\in\mathbb{T}$
-\end_inset
-
- или 0.
- Она не имеет индекса, поскольку рассматривается итеративный алгоритм.
+\begin_layout Definition
+Если для некоторых
+\emph on
  
-\end_layout
-
-\begin_layout Standard
-На отмеченном многочлене заданы 
-\begin_inset Formula $\HM(h)=\HM(p),\HC(h)=\HC(p),\SIG(h)=\sigma$
+\begin_inset Formula $h'_{1},h_{2}\in H,t\in\mathbb{T}$
 \end_inset
 
-.
-\end_layout
 
-\begin_layout Standard
-Умножение отмеченного многочлена 
-\begin_inset Formula $h$
+\emph default
+ выполняется 
+\begin_inset Formula $\SIG(h'_{1})\succ\SIG(th_{2}),\HM(h'{}_{1})=\HM(th{}_{2})\neq0,$
 \end_inset
 
- на моном 
-\begin_inset Formula $t$
-\end_inset
-
- даёт отмеченный многочлен 
-\begin_inset Formula $th=(t\sigma,tp)$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-Будем говорить, что 
-\begin_inset Formula $h_{1}$
-\end_inset
-
- есть результат редукции 
-\begin_inset Formula $h'_{1}$
+ то возможна 
+\emph on
+редукция 
+\begin_inset Formula $h'_{1}\in H$
 \end_inset
 
  по 
-\begin_inset Formula $h_{2}$
+\begin_inset Formula $h_{2}\in H$
 \end_inset
 
- с сохранением сигнатуры, если: 
+ с сохранением сигнатуры
+\emph default
+, дающая в результате многочлен 
+\begin_inset Formula $h_{1}\in H$
+\end_inset
+
+, равный: 
 \begin_inset Formula 
 \[
-h{}_{1}=K_{1}(h'_{1}+K_{2}th_{2}),K_{i}\in k,t\in\mathbb{T}
+h_{1}=\left(\SIG(h'_{1}),\poly(h'_{1})+Kt\poly(h_{2})\right),
 \]
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\SIG(th_{2})\prec\SIG(h'_{1}),\HM(h{}_{1})\prec\HM(h'{}_{1})=\HM(th{}_{2})
-\]
-
+где коэффициент 
+\begin_inset Formula $K\in k$
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\HC(h{}_{1})=1\vee h{}_{1}=0
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $\GVWl$
-\end_inset
-
- - частичный порядок на отмеченных многочленах, определяемый как 
-\begin_inset Formula $h_{1}=(\sigma_{1},\, p_{1})\GVWl h_{2}=(\sigma_{2},\, p_{2})$
-\end_inset
-
-, если и только если 
-\begin_inset Formula $\HM(p_{1})\sigma_{2}\prec\HM(p_{2})\sigma_{1}$
+ выбран так, чтоб при сложении сократились старшие мономы и выполнилось
+ 
+\begin_inset Formula $\HM(h{}_{1})\prec\HM(h'{}_{1})$
 \end_inset
 
 .
- Условно (хотя и не строго) это можно интерпретировать как 
+ По сути такая редукция представляет из себя обычную top-редукцию многочлена,
+ дополненную требованием того, что сигнатура редуктора меньше сигнатуры
+ редуцируемого.
+ Корректность определения проверяется явным нахождением 
+\begin_inset Formula $u$
+\end_inset
+
+ для 
+\begin_inset Formula $h_{1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Введём частичный порядок 
+\begin_inset Formula $\GVWl$
+\end_inset
+
+ на 
+\begin_inset Formula $H$
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_{2}\prec\HM(p_{2})\sigma_{1}.
+\]
+
+\end_inset
+
+Условно (хотя и не строго) это можно интерпретировать как 
 \begin_inset Formula $h_{1}\GVWl h_{2}\Longleftrightarrow\frac{\HM(h_{1})}{\SIG(h_{1})}\prec\frac{\HM(h_{2})}{\SIG(h_{2})}$
 \end_inset
 
@@ -778,44 +858,11 @@ return
 \end_layout
 
 \begin_layout Lemma
-Все отмеченные многочлены, порождаемые алгоритмом допустимы.
+Все пары, порождаемые алгоритмом являются отмеченными многочленами.
 \end_layout
 
 \begin_layout Standard
-Если 
-\begin_inset Formula $p_{0}\in I_{0}$
-\end_inset
-
-, то, поскольку 
-\begin_inset Formula $p_{0}=0f\mod I_{0}$
-\end_inset
-
-, отмеченный многочлен 
-\begin_inset Formula $(0,p_{0})$
-\end_inset
-
- допустим.
- Поэтому допустимы многочлены, изначально добавляемые в 
-\begin_inset Formula $R$
-\end_inset
-
-.
- Поскольку 
-\begin_inset Formula $f=1f\mod I_{0}$
-\end_inset
-
- допустимым является отмеченный многочлен 
-\begin_inset Formula $(1,f)$
-\end_inset
-
-.
- Все остальные многочлены, присутствующие в алгоритме порождаются или домножение
-м на моном допустимого многочлена, присутствующего в 
-\begin_inset Formula $R$
-\end_inset
-
- или редукцией с сохранением сигнатуры.
- Обе эти операции сохраняют свойство допустимости.
+TODO
 \end_layout
 
 \begin_layout Lemma
