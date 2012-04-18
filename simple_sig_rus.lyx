@@ -124,14 +124,14 @@ figs-within-sections
 \end_inset
 
 .
- В этом кольце может быть может быть поставлена задача вычисления базиса
- Грёбнера для произвольного идеала 
+ В этом кольце может быть поставлена задача вычисления базиса Грёбнера для
+ произвольного идеала 
 \begin_inset Formula $\left(f_{1},\dots,f_{l}\right)$
 \end_inset
 
 .
- Она может быть решена инкрементальным образом: для этого необходимо последовате
-льно вычислять базисы идеалов 
+ Один из способов её решения -- инкрементальный: последовательно вычисляются
+ базисы идеалов 
 \begin_inset Formula $\left(f_{1},\dots,f_{i}\right),i=2\dots l$
 \end_inset
 
@@ -173,11 +173,15 @@ figs-within-sections
 \end_inset
 
 .
- Дополнительно предполагается, что 
-\begin_inset Formula $g_{i}\not\in k\left(\Leftrightarrow I_{0}\neq P\right)$
+ Поскольку случай 
+\begin_inset Formula $\exists i\, g_{i}\in k\left(\Leftrightarrow I_{0}=P\right)$
 \end_inset
 
-, такой случай может быть легко рассмотрен отдельно.
+ не представляет интереса, далее предполагается что 
+\begin_inset Formula $\forall i\, g_{i}\notin k$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -190,12 +194,16 @@ figs-within-sections
 \begin_inset Formula $\prec$
 \end_inset
 
- корректно расширяется на 
+ корректно расширяется до порядка 
+\begin_inset Formula $\prec_{0}$
+\end_inset
+
+ на 
 \begin_inset Formula $\mathbb{T}_{0}$
 \end_inset
 
  с сохранением вполне упорядоченности и свойства 
-\begin_inset Formula $t_{1}t'\prec t_{2}t'\Rightarrow t_{1}\prec t_{2}$
+\begin_inset Formula $t_{1}t'\prec_{0}t_{2}t'\Rightarrow t_{1}\prec_{0}t_{2}$
 \end_inset
 
 .
@@ -275,36 +283,42 @@ figs-within-sections
 \begin_inset Formula $\SIG(h)\eqdef\sigma$
 \end_inset
 
-, 
-\emph on
-обычный связанный многочлен
-\emph default
- 
+ и вводится обозначение многочлена -- второго элемента пары: 
 \begin_inset Formula $\poly(h)\eqdef p$
 \end_inset
 
 .
- Множество отмеченных многочленов будем обозначать за 
+ Множество отмеченных многочленов обозначается за 
 \begin_inset Formula $H$
+\end_inset
+
+.
+ Тривиальными примерами отмеченных многочленов являются 
+\begin_inset Formula $\left(1,f\right)$
+\end_inset
+
+ и 
+\begin_inset Formula $\left(0,g\right)$
+\end_inset
+
+ для 
+\begin_inset Formula $g\in I_{0}$
 \end_inset
 
 .
 \end_layout
 
 \begin_layout Standard
-Для 
-\begin_inset Formula $h\in H$
-\end_inset
-
- может быть корректно задано умножение на моном 
-\begin_inset Formula $th\eqdef(t\sigma,tp)\in H$
-\end_inset
-
- и на коэффициент 
-\begin_inset Formula $Kh\eqdef(\sigma,Kp)\in H$
+Пусть 
+\begin_inset Formula $h\in H,t\in\mathbb{T}$
 \end_inset
 
 .
+ Тогда может быть корректно задано умножение 
+\begin_inset Formula $th\eqdef(t\sigma,tp)\in H.$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Definition
@@ -317,17 +331,17 @@ figs-within-sections
 
 \emph default
  выполняется 
-\begin_inset Formula $\SIG(h'_{1})\succ\SIG(th_{2}),\HM(h'{}_{1})=\HM(th{}_{2})\neq0,$
+\begin_inset Formula $\SIG(h'_{1})\succ_{0}\SIG(th_{2}),\HM(h'{}_{1})=\HM(th{}_{2})\neq0,$
 \end_inset
 
  то возможна 
 \emph on
 редукция 
-\begin_inset Formula $h'_{1}\in H$
+\begin_inset Formula $h'_{1}$
 \end_inset
 
  по 
-\begin_inset Formula $h_{2}\in H$
+\begin_inset Formula $h_{2}$
 \end_inset
 
  с сохранением сигнатуры
@@ -350,7 +364,7 @@ h_{1}=\left(\SIG(h'_{1}),\poly(h'_{1})+Kt\poly(h_{2})\right),
 
  выбран так, чтоб при сложении сократились старшие мономы и выполнилось
  
-\begin_inset Formula $\HM(h{}_{1})\prec\HM(h'{}_{1})$
+\begin_inset Formula $\HM(h{}_{1})\prec_{0}\HM(h'{}_{1})$
 \end_inset
 
 .
@@ -380,352 +394,22 @@ h_{1}=\left(\SIG(h'_{1}),\poly(h'_{1})+Kt\poly(h_{2})\right),
 : 
 \begin_inset Formula 
 \[
-h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_{2}\prec\HM(p_{2})\sigma_{1}.
+h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_{2}\prec_{0}\HM(p_{2})\sigma_{1}.
 \]
 
 \end_inset
 
-Условно (хотя и не строго) это можно интерпретировать как 
-\begin_inset Formula $h_{1}\GVWl h_{2}\Longleftrightarrow\frac{\HM(h_{1})}{\SIG(h_{1})}\prec\frac{\HM(h_{2})}{\SIG(h_{2})}$
+Условно (хотя и не строго) это можно интерпретировать как отношение в поле
+ частных: 
+\begin_inset Formula $h_{1}\GVWl h_{2}\Longleftrightarrow\frac{\HM(h_{1})}{\SIG(h_{1})}\prec_{0}\frac{\HM(h_{2})}{\SIG(h_{2})}$
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Section
-Алгоритм
-\end_layout
-
-\begin_layout Standard
-Описание типов переменных:
-\end_layout
-
-\begin_layout Itemize
-Входные данные: базис Грёбнера, представленный многочленами 
-\begin_inset Formula $\{g_{1},\dots,g_{m}\}$
-\end_inset
-
-, многочлен 
-\begin_inset Formula $f$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Itemize
-Внутренние переменные:
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-\begin_inset Formula $R$
-\end_inset
-
- и 
-\begin_inset Formula $B$
-\end_inset
-
- - множества отмеченных многочленов
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $(\sigma,p')$
-\end_inset
-
- - отмеченный многочлен, редуцируемый на текущем шаге, 
-\begin_inset Formula $(\sigma,p)$
-\end_inset
-
- -- он же после редукции 
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $r$
-\end_inset
-
- - отмеченный многочлен при переборе множества 
-\begin_inset Formula $R$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $b$
-\end_inset
-
- - отмеченный многочлен при переборе множества 
-\begin_inset Formula $B$
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Результат: по завершении алгоритма 
-\begin_inset Formula $R$
-\end_inset
-
- содержит базис Грёбнера.
-\end_layout
-
-\begin_layout Standard
-Алгоритм SimpleSignatureGroebner:
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $R\leftarrow\{(0,g_{1}),(0,g_{2}),...,(0,g_{n})\}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $B\leftarrow\{\}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-\lang english
-\begin_inset Formula $(\sigma,p')\leftarrow(1,f)$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset CommandInset label
-LatexCommand label
-name "enu:-before-reduce"
-
-\end_inset
-
-
-\begin_inset Formula $p\leftarrow$
-\end_inset
-
-Редуцировать_с_учётом_сигнатур(
-\begin_inset Formula $p',\sigma,R$
-\end_inset
-
-)
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset CommandInset label
-LatexCommand label
-name "enu:-after-reduce"
-
-\end_inset
-
-
-\begin_inset Formula $R\leftarrow R\cup\left\{ \left(\sigma,p\right)\right\} $
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-
-\series bold
-if
-\series default
- 
-\begin_inset Formula $p\not=0$
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-
-\series bold
-for 
-\begin_inset Formula $\{r\in R|r\GVWl\left(\sigma,p\right),\HM(r)\neq0\}$
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-\begin_inset Formula $B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(r)}r\}$
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-
-\series bold
-for 
-\begin_inset Formula $\{r\in R|r\GVWg\left(\sigma,p\right)\}$
-\end_inset
-
-
-\series default
- 
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-\begin_inset Formula $B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(p)}\left(\sigma,p\right)\}$
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\end_deeper
-\begin_layout Enumerate
-\begin_inset CommandInset label
-LatexCommand label
-name "enu:-remove-from-B"
-
-\end_inset
-
-
-\begin_inset Formula $B\leftarrow B\setminus\{b\in B|\exists r\in R,\, r\GVWl b\wedge\SIG(r)|\SIG(b)\}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-
-\series bold
-if 
-\begin_inset Formula $B=\emptyset$
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-
-\series bold
-return 
-\begin_inset Formula $R$
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-\begin_inset Formula $(\sigma,p')\leftarrow$
-\end_inset
-
- элемент 
-\begin_inset Formula $B$
-\end_inset
-
- с минимальной сигнатурой
-\end_layout
-
-\begin_layout Enumerate
-
-\series bold
-goto
-\series default
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "enu:-before-reduce"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Function
-\series default
- Редуцировать_с_учётом_сигнатур(
-\begin_inset Formula $p,\sigma,R$
-\end_inset
-
-)
-\end_layout
-
-\begin_layout Enumerate
-
-\series bold
-while 
-\begin_inset Formula $\exists r\in R|r\GVWg(p,\sigma)\wedge\HM(r)|\HM(p)$
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-\begin_inset Formula $p\leftarrow$
-\end_inset
-
-редуцировать 
-\begin_inset Formula $p$
-\end_inset
-
- с сохранением сигнатуры по 
-\begin_inset Formula $\GVWg$
-\end_inset
-
--максимальному элементу 
-\begin_inset Formula $r$
-\end_inset
-
- среди указанных в условии цикла
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-
-\series bold
-return
-\series default
- 
-\begin_inset Formula $p$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Теория
 \end_layout
 
 \begin_layout Lemma
 Пусть 
-\begin_inset Formula $h_{1}$
-\end_inset
-
- и 
-\begin_inset Formula $h_{2}$
-\end_inset
-
- -- отмеченные многочлены,
-\begin_inset Formula $t\in\mathbb{T}$
+\begin_inset Formula $h_{1},h_{2}\in H,t\in\mathbb{T}$
 \end_inset
 
 .
@@ -737,12 +421,11 @@ return
 \end_layout
 
 \begin_layout Standard
-Выводится из того, что домножение на 
+Выводится из того, что умножение на 
 \begin_inset Formula $t$
 \end_inset
 
- одного из сравниваемых отмеченных многочленов приводит к домножению на
- 
+ одного из сравниваемых отмеченных многочленов приводит к умножению на 
 \begin_inset Formula $t$
 \end_inset
 
@@ -755,20 +438,19 @@ return
 
 \begin_layout Lemma
 Пусть 
-\begin_inset Formula $h_{1}$
-\end_inset
-
- и 
-\begin_inset Formula $h_{2}$
-\end_inset
-
- -- отмеченные многочлены, 
-\begin_inset Formula $\HM(h_{1})|\HM(h_{2})$
+\begin_inset Formula $h_{1},h_{2}\in H,\HM(h_{1})|\HM(h_{2})$
 \end_inset
 
 .
- Тогда редукция второго по первому сохраняет сигнатуру если и только если
- 
+ Тогда редукция 
+\begin_inset Formula $h_{2}$
+\end_inset
+
+ по 
+\begin_inset Formula $h_{1}$
+\end_inset
+
+ с сохранением сигнатуры возможна если и только если 
 \begin_inset Formula $h_{1}\GVWg h_{2}$
 \end_inset
 
@@ -777,7 +459,7 @@ return
 
 \begin_layout Standard
 Следует из того что оба утверждения равносильны 
-\begin_inset Formula $\SIG(h_{2})\succ\SIG(h_{1})\frac{\HM(h_{2})}{\HM(h_{1})}$
+\begin_inset Formula $\SIG(h_{2})\succ_{0}\SIG(h_{1})\frac{\HM(h_{2})}{\HM(h_{1})}$
 \end_inset
 
 .
@@ -785,16 +467,16 @@ return
 
 \begin_layout Lemma
 Пусть 
-\begin_inset Formula $h_{2}$
+\begin_inset Formula $h_{1}\in H$
 \end_inset
 
- -- отмеченный многочлен, полученный из 
-\begin_inset Formula $h_{1}$
+ -- результат редукции 
+\begin_inset Formula $h_{1}'$
 \end_inset
 
- редукцией с сохранением сигнатур.
+ с сохранением сигнатур по некоторому многочлену.
  Тогда 
-\begin_inset Formula $h_{1}\GVWg h_{2}$
+\begin_inset Formula $h_{1}\GVWl h_{1}'$
 \end_inset
 
 .
@@ -802,67 +484,14 @@ return
 
 \begin_layout Standard
 Следует из того что их сигнатуры равны, а 
-\begin_inset Formula $HM$
+\begin_inset Formula $\HM$
 \end_inset
 
  уменьшается при редукции: 
-\begin_inset Formula $\HM(h_{2})\prec\HM(h_{1}).$
+\begin_inset Formula $\HM(h_{1})\prec_{0}\HM(h_{1}').$
 \end_inset
 
 
-\end_layout
-
-\begin_layout Definition
-При фиксированных 
-\begin_inset Formula $f$
-\end_inset
-
- и 
-\begin_inset Formula $\{g_{1},\dots,g_{m}\}$
-\end_inset
-
- отмеченный многочлен 
-\begin_inset Formula $h=(\sigma,p)$
-\end_inset
-
- называется 
-\emph on
-допустимым
-\emph default
-, если он удовлетворяют соотношению 
-\begin_inset Formula $p=uf\mod I_{0}$
-\end_inset
-
- для некоторого многочлена 
-\begin_inset Formula $u$
-\end_inset
-
-, такого что 
-\begin_inset Formula $\HM(u)=\sigma$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-Далее многочлены 
-\begin_inset Formula $f$
-\end_inset
-
- и 
-\begin_inset Formula $\{g_{1},\dots,g_{m}\}$
-\end_inset
-
- предполагаются фиксированными, поэтому понятие допустимости используется
- без их явного указания.
-\end_layout
-
-\begin_layout Lemma
-Все пары, порождаемые алгоритмом являются отмеченными многочленами.
-\end_layout
-
-\begin_layout Standard
-TODO
 \end_layout
 
 \begin_layout Lemma
@@ -875,8 +504,11 @@ TODO
 \begin_inset Formula $h_{3}$
 \end_inset
 
- с ненулевой сигнатурой выполняется по крайней мере одно из двух неравенств
- 
+ с 
+\begin_inset Formula $\SIG(h_{3})\neq0$
+\end_inset
+
+ выполняется по крайней мере одно из двух неравенств 
 \begin_inset Formula $h_{1}\GVWl h_{3}$
 \end_inset
 
@@ -947,9 +579,412 @@ reference "eq:gvw-order-3"
 
  правого монома последнего неравенства, что после сокращения даст неравенство,
  эквивалентное утверждению леммы.
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
+Алгоритм
+\end_layout
+
+\begin_layout Standard
+Описание переменных, используемых в алгоритме:
+\end_layout
+
+\begin_layout Itemize
+Вход: многочлены 
+\begin_inset Formula $\{g_{1},\dots,g_{m}\}$
+\end_inset
+
+, образующие базис Грёбнера; многочлен 
+\begin_inset Formula $f$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Внутренние переменные:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $R$
+\end_inset
+
+ и 
+\begin_inset Formula $B$
+\end_inset
+
+ - множества отмеченных многочленов
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $(\sigma,p')$
+\end_inset
+
+ - отмеченный многочлен, редуцируемый на текущем шаге, 
+\begin_inset Formula $(\sigma,p)$
+\end_inset
+
+ -- он же после редукции 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $r$
+\end_inset
+
+ - отмеченный многочлен при переборе множества 
+\begin_inset Formula $R$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $b$
+\end_inset
+
+ - отмеченный многочлен при переборе множества 
+\begin_inset Formula $B$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Результат: базис Грёбнера идеала 
+\begin_inset Formula $I=\left(g_{1},\dots,g_{m},f\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Function
+\series default
+ SimpleSignatureGroebner
+\begin_inset Formula $\left(\left\{ g_{1},\dots,g_{n}\right\} ,f\right)$
+\end_inset
+
+
+\series bold
+:
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $R\leftarrow\{(0,g_{1}),(0,g_{2}),...,(0,g_{n})\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $B\leftarrow\{\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $(\sigma,p')\leftarrow(1,f)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+while
+\series default
+ 
+\begin_inset Formula $p'\not=0$
+\end_inset
+
+
+\series bold
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:-before-reduce"
+
+\end_inset
+
+
+\begin_inset Formula $p\leftarrow$
+\end_inset
+
+ReduceCheckingSignatures(
+\begin_inset Formula $p',\sigma,R$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:-after-reduce"
+
+\end_inset
+
+
+\begin_inset Formula $R\leftarrow R\cup\left\{ \left(\sigma,p\right)\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+if
+\series default
+ 
+\begin_inset Formula $p\not=0$
+\end_inset
+
+
+\series bold
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+for 
+\series default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+makebox[145pt][l]{$
+\backslash
+{r
+\backslash
+in R|r
+\backslash
+GVWl
+\backslash
+left(
+\backslash
+sigma,p
+\backslash
+right),
+\backslash
+HM(r)
+\backslash
+neq0
+\backslash
+}$}
+\end_layout
+
+\end_inset
+
+
+\series bold
+:
+\series default
+
+\begin_inset Formula $B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(r)}r\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+for 
+\series default
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+makebox[145pt][l]{$
+\backslash
+{r
+\backslash
+in R|r
+\backslash
+GVWg
+\backslash
+left(
+\backslash
+sigma,p
+\backslash
+right)
+\backslash
+}$}
+\end_layout
+
+\end_inset
+
+
+\series bold
+:
+\series default
+
+\begin_inset Formula $B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(p)}\left(\sigma,p\right)\}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:-remove-from-B"
+
+\end_inset
+
+
+\begin_inset Formula $B\leftarrow B\setminus\{b\in B|\exists r\in R,\, r\GVWl b\wedge\SIG(r)|\SIG(b)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+if 
+\begin_inset Formula $B\neq\emptyset$
+\end_inset
+
+: 
+\series default
+
+\begin_inset Formula $(\sigma,p')\leftarrow$
+\end_inset
+
+ элемент 
+\begin_inset Formula $B$
+\end_inset
+
+ с 
+\begin_inset Formula $\prec$
+\end_inset
+
+-минимальной сигнатурой
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+else: 
+\begin_inset Formula $(\sigma,p')\leftarrow(0,0)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+return
+\series default
+ 
+\begin_inset Formula $\{\poly(r)|r\in R\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Function
+\series default
+ ReduceCheckingSignatures
+\begin_inset Formula $\left(p,\sigma,R\right)$
+\end_inset
+
+
+\series bold
+:
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+while 
+\begin_inset Formula $\exists r\in R|r\GVWg(p,\sigma)\wedge\HM(r)|\HM(p)$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $p\leftarrow$
+\end_inset
+
+редуцировать 
+\begin_inset Formula $p$
+\end_inset
+
+ с сохранением сигнатуры по 
+\begin_inset Formula $\GVWg$
+\end_inset
+
+-максимальному элементу 
+\begin_inset Formula $r$
+\end_inset
+
+ среди указанных в условии цикла
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+return
+\series default
+ 
+\begin_inset Formula $p$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Все пары, порождаемые алгоритмом являются корректными отмеченными многочленами.
+\end_layout
+
+\begin_layout Standard
+Элементы, формируемые до начала главного цикла являются рассмотренными выше
+ примерами тривиальных отмеченных многочленов.
+ Все остальные отмеченные многочлены в алгоритме формируются или умножением
+ на 
+\begin_inset Formula $t\in\mathbb{T}$
+\end_inset
+
+ или редукцией с сохранением сигнатуры.
+\end_layout
+
+\begin_layout Section
 Остановка алгоритма
 \end_layout
 
@@ -1284,7 +1319,7 @@ reference "lem:adds-really-new"
 , что по лемме Диксона может происходить лишь конечное число раз.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Корректность
 \end_layout
 
@@ -1293,12 +1328,12 @@ reference "lem:adds-really-new"
 \emph on
 S-представлением
 \emph default
- отмеченного многочлена 
-\begin_inset Formula $h$
+ 
+\begin_inset Formula $h\in H$
 \end_inset
 
- относительно множества отмеченных многочленов 
-\begin_inset Formula $R=\left\{ r_{i}\right\} $
+ относительно множества 
+\begin_inset Formula $\left\{ r_{i}\right\} \subset H$
 \end_inset
 
  будем называть выражение 
@@ -1310,7 +1345,7 @@ S-представлением
 \end_inset
 
 , такое что 
-\begin_inset Formula $\forall j\HM(h)\succcurlyeq\HM(t_{j}r_{j}),\SIG(h)\succcurlyeq\SIG(t_{j}r_{j})$
+\begin_inset Formula $\forall j\HM(h)\succcurlyeq_{0}\HM(t_{j}r_{j}),\SIG(h)\succcurlyeq_{0}\SIG(t_{j}r_{j})$
 \end_inset
 
 .
@@ -1338,7 +1373,7 @@ key "Arri:2011:FCR:2007509.2007761"
 \emph default
 , если относительно него любой допустимый отмеченный многочлен сигнатуры
  
-\begin_inset Formula $\prec\sigma$
+\begin_inset Formula $\prec_{0}\sigma$
 \end_inset
 
  имеет S-представление.
