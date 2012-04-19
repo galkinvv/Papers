@@ -303,19 +303,11 @@ figs-within-sections
 \begin_inset Formula $h=(\sigma,p)\in\mathbb{T}_{0}\times P$
 \end_inset
 
-, такая что 
+, удовлетворяющая условию корректности: 
 \begin_inset Formula $\exists u\in P:\HM(u)=\sigma,uf=p\mod I_{0}.$
 \end_inset
 
- Под корректностью пары из 
-\begin_inset Formula $ $
-\end_inset
-
- 
-\begin_inset Formula $\mbox{}$
-\end_inset
-
-На отмеченные многочлены распространяются определения старшего монома 
+ На отмеченные многочлены распространяются определения старшего монома 
 \begin_inset Formula $\HM(h)\eqdef\HM(p)$
 \end_inset
 
@@ -338,7 +330,7 @@ figs-within-sections
 
 .
  Множество отмеченных многочленов обозначается за 
-\begin_inset Formula $H$
+\begin_inset Formula $H\subset\mathbb{T}_{0}\times P$
 \end_inset
 
 .
@@ -367,6 +359,18 @@ figs-within-sections
 \end_inset
 
  корректно.
+\end_layout
+
+\begin_layout Standard
+Корректность определения проверяется явным нахождением 
+\begin_inset Formula $u$
+\end_inset
+
+ для 
+\begin_inset Formula $h$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Definition
@@ -410,8 +414,7 @@ h_{1}=\left(\SIG(h'_{1}),\poly(h'_{1})+Kt\poly(h_{2})\right),
 \begin_inset Formula $K\in k$
 \end_inset
 
- выбран так, чтоб при сложении сократились старшие мономы и выполнилось
- 
+ взят так, чтоб при сложении сократились старшие мономы и выполнилось 
 \begin_inset Formula $\HM(h{}_{1})\prec_{0}\HM(h'{}_{1})$
 \end_inset
 
@@ -419,15 +422,7 @@ h_{1}=\left(\SIG(h'_{1}),\poly(h'_{1})+Kt\poly(h_{2})\right),
  По сути такая редукция представляет из себя обычную top-редукцию многочлена,
  дополненную требованием того, что сигнатура редуктора меньше сигнатуры
  редуцируемого.
- Корректность определения проверяется явным нахождением 
-\begin_inset Formula $u$
-\end_inset
-
- для 
-\begin_inset Formula $h_{1}$
-\end_inset
-
-.
+ Корректность проверяется как и выше.
 \end_layout
 
 \begin_layout Standard
@@ -756,7 +751,7 @@ name "enu:-before-reduce"
 \end_inset
 
 ReduceCheckingSignatures(
-\begin_inset Formula $p',\sigma,R$
+\begin_inset Formula $\sigma,p',R$
 \end_inset
 
 )
@@ -900,7 +895,7 @@ name "ReduceCheckingSignatures:"
 \end_inset
 
 ReduceCheckingSignatures
-\begin_inset Formula $\left(p,\sigma,R\right)$
+\begin_inset Formula $\left(\sigma,p,R\right)$
 \end_inset
 
 
@@ -910,7 +905,7 @@ ReduceCheckingSignatures
 
 \series bold
 do while 
-\begin_inset Formula $\exists r\in R|r\GVWg(p,\sigma)\wedge\HM(r)|\HM(p)$
+\begin_inset Formula $\exists r\in R|r\GVWg(\sigma,p)\wedge\HM(r)|\HM(p)$
 \end_inset
 
 :
@@ -950,7 +945,15 @@ return
 \end_layout
 
 \begin_layout Lemma
-В алгоритме не нарушается корректность отмеченных многочленов.
+Все пары из 
+\begin_inset Formula $\mathbb{T}_{0}\times P$
+\end_inset
+
+ в алгоритме -- элементы 
+\begin_inset Formula $H\setminus\left\{ \left(0,0\right)\right\} $
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -961,7 +964,12 @@ return
 \begin_inset Formula $t\in\mathbb{T}$
 \end_inset
 
- или редукцией с сохранением сигнатуры.
+ или редукцией с сохранением сигнатуры, поэтому они корректны и лежат в
+ 
+\begin_inset Formula $H$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1029,15 +1037,15 @@ name "lem:exist-reductor"
 \end_inset
 
  таким образом, чтоб иметь хотя бы один подходящий редуктор.
- При добавлении в первом 
+ При добавлении в первом цикле 
 \series bold
 for
 \series default
- цикле этим редуктором является 
+ редуктором является 
 \begin_inset Formula $(\sigma,p)\in R$
 \end_inset
 
-, во втором -- 
+, во втором 
 \begin_inset Formula $r\in R$
 \end_inset
 
@@ -1055,8 +1063,7 @@ name "lem:r-gvw-small"
 \begin_inset Formula $p'$
 \end_inset
 
-, т.е.
- на этапе 
+, то есть на шаге 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:-before-reduce"
@@ -1121,8 +1128,7 @@ name "lem:r-gvw-big"
 \begin_inset Formula $p$
 \end_inset
 
-, т.е.
- на этапе 
+, на шаге 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:-after-reduce"
@@ -1174,8 +1180,7 @@ name "lem:adds-really-new"
 \begin_inset Formula $p$
 \end_inset
 
-, т.е.
- на этапе 
+, на шаге 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:-after-reduce"
@@ -1256,8 +1261,7 @@ reference "lem:r-gvw-big"
 \end_layout
 
 \begin_layout Standard
-Для доказательства остановки нужно показать, что присутствующие в алгоритме
- циклы 
+Для доказательства остановки нужно показать, что все циклы 
 \series bold
 do
 \series default
@@ -1269,36 +1273,68 @@ reference "ReduceCheckingSignatures:"
 
 \end_inset
 
- цикл завершится, поскольку на каждой итерации уменьшает старший моном многочлен
-а 
+ при ненулевых 
 \begin_inset Formula $p$
 \end_inset
 
-, а бесконечной убывающей последовательности мономов не существует.
-\end_layout
-
-\begin_layout Standard
-Для основного цикла алгоритма рассмотрим два идеала моноида: 
-\begin_inset Formula $L=\left(\left\{ \sigma|(\sigma,0)\in R\right\} \right)\subset\mathbb{T}$
+ на каждой итерации 
+\begin_inset Formula $\HM(p)$
 \end_inset
 
- и 
-\begin_inset Formula $N=\left(\left\{ (\sigma,t)|\exists(\sigma,p)\in R,t=\HM(p)\right\} \right)\subset\mathbb{T}\times\mathbb{T}$
+ уменьшается относительно 
+\begin_inset Formula $\prec_{0}$
+\end_inset
+
+, что возможно лишь конечное число раз.
+ При обнулении 
+\begin_inset Formula $p$
+\end_inset
+
+ он завершится в силу 
+\begin_inset Formula $\GVWl$
+\end_inset
+
+-минимальности 
+\begin_inset Formula $(\sigma,0)$
 \end_inset
 
 .
- Основной цикл алгоритма на шаге 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "enu:-after-reduce"
+\end_layout
 
+\begin_layout Standard
+На каждом шаге основного цикла пополняется множество 
+\begin_inset Formula $R\subset\mathbb{T}_{0}\times P$
 \end_inset
 
- добавляет элемент в 
-\begin_inset Formula $R$
+.
+ Оно может быть разбито как 
+\begin_inset Formula $R_{*0}\cup R_{0*}\cup R_{**},$
 \end_inset
 
-, при этом в силу леммы 
+ где 
+\begin_inset Formula $R_{*0}\subset\mathbb{T}\times\left\{ 0\right\} ,R_{0*}\subset\left\{ 0\right\} \times P\setminus\left\{ 0\right\} ,R_{**}\subset\mathbb{T}\times P\setminus\left\{ 0\right\} $
+\end_inset
+
+.
+ 
+\begin_inset Formula $R_{0*}$
+\end_inset
+
+ не пополняется в силу 
+\begin_inset Formula $\sigma\neq0$
+\end_inset
+
+.
+ Для остальных рассмотрим идеалы моноидов: 
+\begin_inset Formula $L_{*0}=\left(\left\{ \sigma|(\sigma,0)\in R_{*0}\right\} \right)\subset\mathbb{T}$
+\end_inset
+
+ и 
+\begin_inset Formula $L_{**}=\left(\left\{ (\sigma,t)|\exists(\sigma,p)\in R_{**},t=\HM(p)\right\} \right)\subset\mathbb{T}\times\mathbb{T}$
+\end_inset
+
+.
+ В силу леммы 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lem:adds-really-new"
@@ -1306,11 +1342,11 @@ reference "lem:adds-really-new"
 \end_inset
 
  добавляемые элементы расширяют на каждом шаге 
-\begin_inset Formula $L$
+\begin_inset Formula $L_{*0}$
 \end_inset
 
  или 
-\begin_inset Formula $N$
+\begin_inset Formula $L_{**}$
 \end_inset
 
 , что по лемме Диксона может происходить лишь конечное число раз.
@@ -1342,7 +1378,7 @@ S-представлением
 \end_inset
 
 , такое что 
-\begin_inset Formula $\forall j\HM(h)\succcurlyeq_{0}\HM(t_{j}r_{j}),\SIG(h)\succcurlyeq_{0}\SIG(t_{j}r_{j})$
+\begin_inset Formula $\forall j\HM(h)\succcurlyeq_{0}\HM(t_{j}r_{i_{j}}),\SIG(h)\succcurlyeq_{0}\SIG(t_{j}r_{i_{j}})$
 \end_inset
 
 .
