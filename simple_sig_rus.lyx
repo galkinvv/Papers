@@ -9,10 +9,6 @@
 \DeclareMathOperator{\LCM}{LCM}
 \DeclareMathOperator{\poly}{poly}
 \DeclareMathOperator{\SIG}{\mathcal{S}}
-\newcommand{\GVWl}{<_{\text{gvw}}}
-\newcommand{\GVWg}{>_{\text{gvw}}}
-\newcommand{\eqdef}{\overset{\mathrm{def}}{=\joinrel=}}
-\newcommand{\equivdef}{\overset{\mathrm{def}}{\Longleftrightarrow}}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -48,7 +44,7 @@ figs-within-sections
 \pdf_bookmarksopen false
 \pdf_bookmarksopenlevel 1
 \pdf_breaklinks false
-\pdf_pdfborder false
+\pdf_pdfborder true
 \pdf_colorlinks false
 \pdf_backref false
 \pdf_pdfusetitle true
@@ -89,6 +85,38 @@ figs-within-sections
 
 \begin_body
 
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\GVWl}{<_{\text{\textnormal{gvw}}}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\GVWg}{>_{\text{\textnormal{gvw}}}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\eqdef}{\overset{\mathrm{def}}{=}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\equivdef}{\overset{\mathrm{def}}{\Leftrightarrow}}
+\end_inset
+
+
+\end_layout
+
 \begin_layout Title
 Простой итеративный алгоритм вычисления базисов Грёбнера, основанный на
  сигнатурах
@@ -115,7 +143,7 @@ figs-within-sections
 \end_inset
 
 .
- Будем предполагать что на моноиде его мономов 
+ Будем предполагать, что на моноиде его мономов 
 \begin_inset Formula $\mathbb{T}$
 \end_inset
 
@@ -130,7 +158,7 @@ figs-within-sections
 \end_inset
 
 .
- Один из способов её решения -- инкрементальный: последовательно вычисляются
+ Один из способов её решения инкрементальный: последовательно вычисляются
  базисы идеалов 
 \begin_inset Formula $\left(f_{1},\dots,f_{i}\right),i=2\dots l$
 \end_inset
@@ -173,15 +201,19 @@ figs-within-sections
 \end_inset
 
 .
- Поскольку случай 
-\begin_inset Formula $\exists i\, g_{i}\in k\left(\Leftrightarrow I_{0}=P\right)$
+ Поскольку случаи 
+\begin_inset Formula $f=0\Rightarrow I=I_{0}$
+\end_inset
+
+ и 
+\begin_inset Formula $\exists i\, g_{i}\in k\Rightarrow I=P$
 \end_inset
 
  не представляет интереса, далее предполагается что 
-\begin_inset Formula $\forall i\, g_{i}\notin k$
+\begin_inset Formula $f\neq0,\forall i\, g_{i}\notin k.$
 \end_inset
 
-.
+
 \end_layout
 
 \begin_layout Standard
@@ -194,21 +226,30 @@ figs-within-sections
 \begin_inset Formula $\prec$
 \end_inset
 
- корректно расширяется до порядка 
-\begin_inset Formula $\prec_{0}$
-\end_inset
-
- на 
+ продолжается с сохранением вполне упорядоченности на 
 \begin_inset Formula $\mathbb{T}_{0}$
 \end_inset
 
- с сохранением вполне упорядоченности и свойства 
-\begin_inset Formula $t_{1}t'\prec_{0}t_{2}t'\Rightarrow t_{1}\prec_{0}t_{2}$
+ как 
+\begin_inset Formula $\prec_{0}$
+\end_inset
+
+ определением 
+\begin_inset Formula $\forall t\in\mathbb{T}\, t\succ_{0}0$
 \end_inset
 
 .
- Для ненулевого многочлена 
-\begin_inset Formula $p$
+ Понятие делимости мономов также расширяется на 
+\begin_inset Formula $\mathbb{T}_{0}$
+\end_inset
+
+: 
+\begin_inset Formula $t_{1}|t_{2}\eqdef\exists t_{3}:t_{1}t_{3}=t_{2}$
+\end_inset
+
+.
+ Для 
+\begin_inset Formula $p\in P,p\neq0$
 \end_inset
 
  старшие по 
@@ -216,7 +257,7 @@ figs-within-sections
 \end_inset
 
  моном и коэффициент обозначим 
-\begin_inset Formula $\HM(p)\in\mathbb{T}_{0}$
+\begin_inset Formula $\HM(p)\in\mathbb{T}$
 \end_inset
 
  и 
@@ -225,24 +266,24 @@ figs-within-sections
 
 .
  Для нуля -- 
-\begin_inset Formula $\HM(0)\eqdef0$
+\begin_inset Formula $\HM(0)\eqdef0\in\mathbb{T}_{0}$
 \end_inset
 
 , 
-\begin_inset Formula $\HC(0)\eqdef0$
+\begin_inset Formula $\HC(0)\eqdef0\in k$
 \end_inset
 
 .
- Наименьшее общее кратное мономов 
-\begin_inset Formula $t_{i}\in\mathbb{T}$
-\end_inset
-
- обозначим 
+ За 
 \begin_inset Formula $\LCM(t_{1},t_{2})\in\mathbb{T}$
 \end_inset
 
+ обозначим наименьшее общее кратное 
+\begin_inset Formula $t_{1},t_{2}\in\mathbb{T}$
+\end_inset
+
 .
- Дальнейшие определения вводятся для фиксированных 
+ Далее все определения даются для фиксированных 
 \begin_inset Formula $I_{0}$
 \end_inset
 
@@ -259,14 +300,22 @@ figs-within-sections
 Отмеченным многочленом
 \emph default
  называется пара 
-\begin_inset Formula $h=(\sigma,p),\sigma\in\mathbb{T}_{0},p\in P$
+\begin_inset Formula $h=(\sigma,p)\in\mathbb{T}_{0}\times P$
 \end_inset
 
 , такая что 
 \begin_inset Formula $\exists u\in P:\HM(u)=\sigma,uf=p\mod I_{0}.$
 \end_inset
 
- На отмеченные многочлены распространяются определения старшего моном 
+ Под корректностью пары из 
+\begin_inset Formula $ $
+\end_inset
+
+ 
+\begin_inset Formula $\mbox{}$
+\end_inset
+
+На отмеченные многочлены распространяются определения старшего монома 
 \begin_inset Formula $\HM(h)\eqdef\HM(p)$
 \end_inset
 
@@ -308,17 +357,16 @@ figs-within-sections
 .
 \end_layout
 
-\begin_layout Standard
-Пусть 
+\begin_layout Lemma
+Умножение для 
 \begin_inset Formula $h\in H,t\in\mathbb{T}$
 \end_inset
 
-.
- Тогда может быть корректно задано умножение 
-\begin_inset Formula $th\eqdef(t\sigma,tp)\in H.$
+, заданное как 
+\begin_inset Formula $th\eqdef(t\sigma,tp)\in H,$
 \end_inset
 
-
+ корректно.
 \end_layout
 
 \begin_layout Definition
@@ -399,9 +447,9 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 
 \end_inset
 
-Условно (хотя и не строго) это можно интерпретировать как отношение в поле
- частных: 
-\begin_inset Formula $h_{1}\GVWl h_{2}\Longleftrightarrow\frac{\HM(h_{1})}{\SIG(h_{1})}\prec_{0}\frac{\HM(h_{2})}{\SIG(h_{2})}$
+Элементы с нулевой сигнатурой и старшим мономом оказываются экстремумами:
+ 
+\begin_inset Formula $\forall\sigma_{1},\sigma_{2},p_{1},p_{2}\,\left(0,p_{1}\right)\not\GVWl\left(\sigma_{2},p_{2}\right),\,\left(\sigma_{1},0\right)\not\GVWg\left(\sigma_{2},p_{2}\right)$
 \end_inset
 
 .
@@ -438,7 +486,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 
 \begin_layout Lemma
 Пусть 
-\begin_inset Formula $h_{1},h_{2}\in H,\HM(h_{1})|\HM(h_{2})$
+\begin_inset Formula $h_{1},h_{2}\in H,\HM(h_{1})|\HM(h_{2}),\HM(h_{2})\neq0$
 \end_inset
 
 .
@@ -483,11 +531,15 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \end_layout
 
 \begin_layout Standard
-Следует из того что их сигнатуры равны, а 
+Следует из 
+\begin_inset Formula $\SIG(h_{1})=\SIG(h_{1}')$
+\end_inset
+
+ и уменьшения 
 \begin_inset Formula $\HM$
 \end_inset
 
- уменьшается при редукции: 
+ при редукции: 
 \begin_inset Formula $\HM(h_{1})\prec_{0}\HM(h_{1}').$
 \end_inset
 
@@ -495,17 +547,19 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \end_layout
 
 \begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:greater-or-smaller"
+
+\end_inset
+
 Пусть 
 \begin_inset Formula $h_{1}\GVWl h_{2}$
 \end_inset
 
  отмеченные многочлены.
  Тогда для любого отмеченного многочлена 
-\begin_inset Formula $h_{3}$
-\end_inset
-
- с 
-\begin_inset Formula $\SIG(h_{3})\neq0$
+\begin_inset Formula $h_{3}\neq(0,0)$
 \end_inset
 
  выполняется по крайней мере одно из двух неравенств 
@@ -523,13 +577,13 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 Из условия леммы известно, что
 \begin_inset Formula 
 \begin{equation}
-\HM(h_{1})\SIG(h_{2})\prec\HM(h_{2})\SIG(h_{1})\label{eq:gvw-order-3}
+\HM(h_{1})\SIG(h_{2})\prec_{0}\HM(h_{2})\SIG(h_{1})\label{eq:gvw-order-3}
 \end{equation}
 
 \end_inset
 
 откуда 
-\begin_inset Formula $\HM(h_{2})\neq0$
+\begin_inset Formula $\HM(h_{2})\neq0,\SIG(h_{1})\neq0$
 \end_inset
 
 .
@@ -541,14 +595,18 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \begin_inset Formula $h_{3}\GVWl h_{2}$
 \end_inset
 
-.
- Иначе 
-\begin_inset Formula $\HM(h_{3})\neq0$
+, а если 
+\begin_inset Formula $\SIG(h_{3})=0$
 \end_inset
 
- и можно домножить неравенство 
+ -- то 
+\begin_inset Formula $h_{1}\GVWl h_{3}$
+\end_inset
+
+.
+ Иначе можно домножить неравенство 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand eqref
 reference "eq:gvw-order-3"
 
 \end_inset
@@ -559,41 +617,40 @@ reference "eq:gvw-order-3"
 
 : 
 \begin_inset Formula 
-\[
-\HM(h_{3})\SIG(h_{3})\HM(h_{1})\SIG(h_{2})\prec\HM(h_{3})\SIG(h_{3})\HM(h_{2})\SIG(h_{1}).
-\]
+\begin{equation}
+\HM(h_{3})\SIG(h_{3})\HM(h_{1})\SIG(h_{2})\prec_{0}\HM(h_{3})\SIG(h_{3})\HM(h_{2})\SIG(h_{1}).\label{eq:left-or-right-monom}
+\end{equation}
 
 \end_inset
 
-Поэтому моном 
-\begin_inset Formula $\HM(h_{3})^{2}\SIG(h_{2})\SIG(h_{1})$
+Поэтому 
+\begin_inset Formula $\HM(h_{3})^{2}\SIG(h_{2})\SIG(h_{1})\in\mathbb{T}_{0}$
 \end_inset
 
- окажется или 
-\begin_inset Formula $\succ$
+ будет или 
+\begin_inset Formula $\succ_{0}$
 \end_inset
 
- левого или 
-\begin_inset Formula $\prec$
+ левой или 
+\begin_inset Formula $\prec_{0}$
 \end_inset
 
- правого монома последнего неравенства, что после сокращения даст неравенство,
- эквивалентное утверждению леммы.
-\begin_inset Newpage newpage
+ правой части неравенства 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:left-or-right-monom"
+
 \end_inset
 
-
+, и после сокращения даст эквивалентное утверждению леммы неравенство.
 \end_layout
 
 \begin_layout Section
 Алгоритм
 \end_layout
 
-\begin_layout Standard
-Описание переменных, используемых в алгоритме:
-\end_layout
-
-\begin_layout Itemize
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 Вход: многочлены 
 \begin_inset Formula $\{g_{1},\dots,g_{m}\}$
 \end_inset
@@ -605,12 +662,9 @@ reference "eq:gvw-order-3"
 .
 \end_layout
 
-\begin_layout Itemize
-Внутренние переменные:
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Переменные: 
 \begin_inset Formula $R$
 \end_inset
 
@@ -618,44 +672,35 @@ reference "eq:gvw-order-3"
 \begin_inset Formula $B$
 \end_inset
 
- - множества отмеченных многочленов
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $(\sigma,p')$
+ -- подмножества 
+\begin_inset Formula $H$
 \end_inset
 
- - отмеченный многочлен, редуцируемый на текущем шаге, 
+; 
+\begin_inset Formula $(\sigma,p')\in H$
+\end_inset
+
+ -- отмеченный многочлен текущего шага до редукции; 
 \begin_inset Formula $(\sigma,p)$
 \end_inset
 
- -- он же после редукции 
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $r$
+ -- он же после редукции; 
+\begin_inset Formula $r,b$
 \end_inset
 
- - отмеченный многочлен при переборе множества 
+ -- элементы 
 \begin_inset Formula $R$
 \end_inset
 
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $b$
-\end_inset
-
- - отмеченный многочлен при переборе множества 
+ и 
 \begin_inset Formula $B$
 \end_inset
 
 
 \end_layout
 
-\end_deeper
-\begin_layout Itemize
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 Результат: базис Грёбнера идеала 
 \begin_inset Formula $I=\left(g_{1},\dots,g_{m},f\right)$
 \end_inset
@@ -663,22 +708,16 @@ reference "eq:gvw-order-3"
 
 \end_layout
 
-\begin_layout Standard
-
-\series bold
-Function
-\series default
- SimpleSignatureGroebner
+\begin_layout Paragraph*
+SimpleSignatureGroebner
 \begin_inset Formula $\left(\left\{ g_{1},\dots,g_{n}\right\} ,f\right)$
 \end_inset
 
 
-\series bold
-:
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $R\leftarrow\{(0,g_{1}),(0,g_{2}),...,(0,g_{n})\}$
+\begin_inset Formula $R\leftarrow\{(0,g_{1}),(0,g_{2}),\dots,(0,g_{n})\}$
 \end_inset
 
 
@@ -701,15 +740,7 @@ Function
 \begin_layout Enumerate
 
 \series bold
-while
-\series default
- 
-\begin_inset Formula $p'\not=0$
-\end_inset
-
-
-\series bold
-:
+do forever:
 \end_layout
 
 \begin_deeper
@@ -764,92 +795,45 @@ if
 
 \series bold
 for 
-\series default
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-makebox[145pt][l]{$
-\backslash
-{r
-\backslash
-in R|r
-\backslash
-GVWl
-\backslash
-left(
-\backslash
-sigma,p
-\backslash
-right),
-\backslash
-HM(r)
-\backslash
-neq0
-\backslash
-}$}
-\end_layout
-
+\begin_inset Formula $\{r\in R|r\GVWl\left(\sigma,p\right),\HM(r)\neq0\}$
 \end_inset
 
-
-\series bold
 :
-\series default
+\end_layout
 
+\begin_deeper
+\begin_layout Enumerate
 \begin_inset Formula $B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(r)}r\}$
 \end_inset
 
 
 \end_layout
 
+\end_deeper
 \begin_layout Enumerate
 
 \series bold
 for 
 \series default
 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-makebox[145pt][l]{$
-\backslash
-{r
-\backslash
-in R|r
-\backslash
-GVWg
-\backslash
-left(
-\backslash
-sigma,p
-\backslash
-right)
-\backslash
-}$}
-\end_layout
-
+\begin_inset Formula $\{r\in R|r\GVWg\left(\sigma,p\right)\}$
 \end_inset
 
 
 \series bold
+\lang russian
 :
-\series default
+\end_layout
 
+\begin_deeper
+\begin_layout Enumerate
 \begin_inset Formula $B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(p)}\left(\sigma,p\right)\}$
 \end_inset
 
 
 \end_layout
 
+\end_deeper
 \end_deeper
 \begin_layout Enumerate
 \begin_inset CommandInset label
@@ -892,11 +876,7 @@ if
 \begin_layout Enumerate
 
 \series bold
-else: 
-\begin_inset Formula $(\sigma,p')\leftarrow(0,0)$
-\end_inset
-
-
+else: break
 \end_layout
 
 \end_deeper
@@ -912,24 +892,24 @@ return
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Paragraph*
+\begin_inset CommandInset label
+LatexCommand label
+name "ReduceCheckingSignatures:"
 
-\series bold
-Function
-\series default
- ReduceCheckingSignatures
+\end_inset
+
+ReduceCheckingSignatures
 \begin_inset Formula $\left(p,\sigma,R\right)$
 \end_inset
 
 
-\series bold
-:
 \end_layout
 
 \begin_layout Enumerate
 
 \series bold
-while 
+do while 
 \begin_inset Formula $\exists r\in R|r\GVWg(p,\sigma)\wedge\HM(r)|\HM(p)$
 \end_inset
 
@@ -970,7 +950,7 @@ return
 \end_layout
 
 \begin_layout Lemma
-Все пары, порождаемые алгоритмом являются корректными отмеченными многочленами.
+В алгоритме не нарушается корректность отмеченных многочленов.
 \end_layout
 
 \begin_layout Standard
@@ -982,6 +962,43 @@ return
 \end_inset
 
  или редукцией с сохранением сигнатуры.
+\end_layout
+
+\begin_layout Standard
+Условия циклов, расширяющих 
+\begin_inset Formula $B$
+\end_inset
+
+, таковы, что в
+\series bold
+ 
+\series default
+
+\begin_inset Formula $B$
+\end_inset
+
+ нет ни нулевых сигнатур, ни нулевых старших мономов.
+ Поэтому 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ никогда не обращается в 0 и нулевые сигнатуры в 
+\begin_inset Formula $R$
+\end_inset
+
+ лишь у элементов 
+\begin_inset Formula $(0,g_{1}),(0,g_{2}),...,(0,g_{n}).$
+\end_inset
+
+ Нулевой старший моном может быть у любого многочлена, добавляемого в 
+\begin_inset Formula $R$
+\end_inset
+
+, а нулевых многочленов с одновременно нулевой сигнатурой в 
+\begin_inset Formula $R$
+\end_inset
+
+ нет.
 \end_layout
 
 \begin_layout Section
@@ -1027,31 +1044,6 @@ for
 .
 \end_layout
 
-\begin_layout Standard
-В последующих утверждениях понятие делимости мономов расширяется на случай
- нулевых -- будем полагать что нулевой моном делит нулевой моном и только
- его.
- Отметим также, что нулевыми сигнатурами в 
-\begin_inset Formula $R$
-\end_inset
-
- обладают лишь элементы 
-\begin_inset Formula $(0,g_{1}),(0,g_{2}),...,(0,g_{n}),$
-\end_inset
-
- нулевым старшим мономом могут обладать многочлены добавляемые в 
-\begin_inset Formula $R$
-\end_inset
-
- после редукции.
- При этом нулевые многочлены с одновременно нулевой сигнатурой не встречаются.
- В множестве 
-\begin_inset Formula $B$
-\end_inset
-
- нет многочленов ни с нулевой сигнатурой, ни с нулевым старшим мономом.
-\end_layout
-
 \begin_layout Lemma
 \begin_inset CommandInset label
 LatexCommand label
@@ -1083,7 +1075,7 @@ reference "enu:-before-reduce"
 \end_layout
 
 \begin_layout Standard
-На первой итерации алгоритма это выполняется, поскольку
+На первой итерации алгоритма это выполняется, поскольку 
 \begin_inset Formula $\sigma=1$
 \end_inset
 
@@ -1149,8 +1141,14 @@ reference "enu:-after-reduce"
 \end_layout
 
 \begin_layout Standard
-Утверждение леммы вытекает из того, что цикл редукций в функции Редуцировать_с_у
-чётом_сигнатур останавливается только тогда, когда достигается 
+Вытекает из того, что цикл в 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "ReduceCheckingSignatures:"
+
+\end_inset
+
+ останавливается по достижении 
 \begin_inset Formula $p$
 \end_inset
 
@@ -1216,8 +1214,15 @@ reference "lem:exist-reductor"
 \end_inset
 
 .
- Отсюда, для элементов 
-\begin_inset Formula $\{r\in R|\SIG(r)\neq0\}$
+ Отсюда по лемме 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:greater-or-smaller"
+
+\end_inset
+
+ для 
+\begin_inset Formula $\forall r\in R$
 \end_inset
 
  имеем 
@@ -1226,23 +1231,6 @@ reference "lem:exist-reductor"
 
  или 
 \begin_inset Formula $r\GVWl(\sigma,p')$
-\end_inset
-
-.
- Для 
-\begin_inset Formula $\{r\in R|\SIG(r)=0\}$
-\end_inset
-
- имеем 
-\begin_inset Formula $r\GVWg(\sigma,p)$
-\end_inset
-
-, поскольку 
-\begin_inset Formula $\sigma\neq0$
-\end_inset
-
- и 
-\begin_inset Formula $\HM(r)\neq0$
 \end_inset
 
 .
@@ -1268,10 +1256,21 @@ reference "lem:r-gvw-big"
 \end_layout
 
 \begin_layout Standard
-Для доказательства остановки нужно показать что оба цикла, присутствующие
- в алгоритме могут выполняться лишь конечное число раз.
- Цикл, находящийся в процедуре редукции выполняется конечное число раз,
- поскольку на каждой итерации уменьшается старший моном многочлена 
+Для доказательства остановки нужно показать, что присутствующие в алгоритме
+ циклы 
+\series bold
+do
+\series default
+ выполняются лишь конечное число раз.
+ В 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "ReduceCheckingSignatures:"
+
+\end_inset
+
+ цикл завершится, поскольку на каждой итерации уменьшает старший моном многочлен
+а 
 \begin_inset Formula $p$
 \end_inset
 
@@ -1279,12 +1278,12 @@ reference "lem:r-gvw-big"
 \end_layout
 
 \begin_layout Standard
-Для основного цикла алгоритма рассмотрим два множества: 
-\begin_inset Formula $L=\left\{ \sigma|(\sigma,0)\in R\right\} \subset\mathbb{T}$
+Для основного цикла алгоритма рассмотрим два идеала моноида: 
+\begin_inset Formula $L=\left(\left\{ \sigma|(\sigma,0)\in R\right\} \right)\subset\mathbb{T}$
 \end_inset
 
  и 
-\begin_inset Formula $N=\left\{ (\sigma,t)|\exists(\sigma,p)\in R,t=\HM(p)\right\} \subset\mathbb{T}\times\mathbb{T}$
+\begin_inset Formula $N=\left(\left\{ (\sigma,t)|\exists(\sigma,p)\in R,t=\HM(p)\right\} \right)\subset\mathbb{T}\times\mathbb{T}$
 \end_inset
 
 .
@@ -1299,21 +1298,19 @@ reference "enu:-after-reduce"
 \begin_inset Formula $R$
 \end_inset
 
-, чему соответствует добавление элемента в одно из этих множеств.
- В силу леммы 
+, при этом в силу леммы 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lem:adds-really-new"
 
 \end_inset
 
- добавляемые в эти множества элементы расширяют на каждом шаге конусы-идеалы
- 
-\begin_inset Formula $\left\langle L\right\rangle $
+ добавляемые элементы расширяют на каждом шаге 
+\begin_inset Formula $L$
 \end_inset
 
- и 
-\begin_inset Formula $\left\langle N\right\rangle $
+ или 
+\begin_inset Formula $N$
 \end_inset
 
 , что по лемме Диксона может происходить лишь конечное число раз.
