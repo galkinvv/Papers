@@ -103,7 +103,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\eqdef}{\overset{\mathrm{def}}{=}}
+\newcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
 \end_inset
 
 
@@ -111,7 +111,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\equivdef}{\overset{\mathrm{def}}{\Leftrightarrow}}
+\newcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
 \end_inset
 
 
@@ -347,6 +347,24 @@ figs-within-sections
 \end_inset
 
 .
+ Другим примером отмеченного многочлена является 
+\begin_inset Formula $\left(\HM(g),0\right)$
+\end_inset
+
+ для 
+\begin_inset Formula $g\in I_{0}$
+\end_inset
+
+.
+ Он корректен, поскольку в качестве 
+\begin_inset Formula $u$
+\end_inset
+
+ можно взять 
+\begin_inset Formula $g$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Lemma
@@ -553,11 +571,11 @@ name "lem:greater-or-smaller"
 \end_inset
 
  отмеченные многочлены.
- Тогда для любого отмеченного многочлена 
-\begin_inset Formula $h_{3}\neq(0,0)$
+ Тогда 
+\begin_inset Formula $\forall h_{3}\in H,h_{3}\neq(0,0)$
 \end_inset
 
- выполняется по крайней мере одно из двух неравенств 
+ выполняется хотя бы одно из двух неравенств: 
 \begin_inset Formula $h_{1}\GVWl h_{3}$
 \end_inset
 
@@ -704,15 +722,21 @@ reference "eq:left-or-right-monom"
 \end_layout
 
 \begin_layout Paragraph*
+\begin_inset CommandInset label
+LatexCommand label
+name "par:SimpleSignatureGroebner"
+
+\end_inset
+
 SimpleSignatureGroebner
-\begin_inset Formula $\left(\left\{ g_{1},\dots,g_{n}\right\} ,f\right)$
+\begin_inset Formula $\left(\left\{ g_{1},\dots,g_{m}\right\} ,f\right)$
 \end_inset
 
 
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $R\leftarrow\{(0,g_{1}),(0,g_{2}),\dots,(0,g_{n})\}$
+\begin_inset Formula $R\leftarrow\{(0,g_{1}),(0,g_{2}),\dots,(0,g_{m})\}$
 \end_inset
 
 
@@ -847,7 +871,7 @@ name "enu:-remove-from-B"
 
 \series bold
 if 
-\begin_inset Formula $B\neq\emptyset$
+\begin_inset Formula $B\neq\varnothing$
 \end_inset
 
 : 
@@ -889,7 +913,7 @@ return
 \begin_layout Paragraph*
 \begin_inset CommandInset label
 LatexCommand label
-name "ReduceCheckingSignatures:"
+name "par:ReduceCheckingSignatures:"
 
 \end_inset
 
@@ -994,7 +1018,7 @@ return
 \end_inset
 
  лишь у элементов 
-\begin_inset Formula $(0,g_{1}),(0,g_{2}),...,(0,g_{n}).$
+\begin_inset Formula $(0,g_{1}),(0,g_{2}),...,(0,g_{m}).$
 \end_inset
 
  Нулевой старший моном может быть у любого многочлена, добавляемого в 
@@ -1149,7 +1173,7 @@ reference "enu:-after-reduce"
 Вытекает из того, что цикл в 
 \begin_inset CommandInset ref
 LatexCommand nameref
-reference "ReduceCheckingSignatures:"
+reference "par:ReduceCheckingSignatures:"
 
 \end_inset
 
@@ -1256,7 +1280,14 @@ reference "lem:r-gvw-big"
 \end_layout
 
 \begin_layout Theorem
-Описанный алгоритм останавливается на любых входных данных
+Алгоритм 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:SimpleSignatureGroebner"
+
+\end_inset
+
+ останавливается
 \end_layout
 
 \begin_layout Standard
@@ -1268,7 +1299,7 @@ do
  В 
 \begin_inset CommandInset ref
 LatexCommand nameref
-reference "ReduceCheckingSignatures:"
+reference "par:ReduceCheckingSignatures:"
 
 \end_inset
 
@@ -1280,7 +1311,7 @@ reference "ReduceCheckingSignatures:"
 \begin_inset Formula $\HM(p)$
 \end_inset
 
- уменьшается относительно 
+ уменьшается по 
 \begin_inset Formula $\prec_{0}$
 \end_inset
 
@@ -1352,7 +1383,7 @@ reference "lem:adds-really-new"
 \end_layout
 
 \begin_layout Section
-Корректность
+Корректность результата
 \end_layout
 
 \begin_layout Definition
@@ -1448,41 +1479,12 @@ S
 \end_layout
 
 \begin_layout Lemma
-Если 
-\begin_inset Formula $R=\left\{ r_{i}\right\} $
-\end_inset
-
- -- S-базис, то 
-\begin_inset Formula $R$
-\end_inset
-
- является базисом Грёбнера идеала 
-\begin_inset Formula $I$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-Для 
-\begin_inset Formula $\forall p\in I$
-\end_inset
-
- можно взять некоторый 
-\begin_inset Formula $h=\left(\sigma,p\right)\in H$
-\end_inset
-
- и применить лемму 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "lem:one-j-exact"
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:s-basis-and-no-reductions"
 
 \end_inset
 
-.
-\end_layout
-
-\begin_layout Lemma
 Пусть 
 \begin_inset Formula $\sigma\succ_{0}0,R=\left\{ r_{i}\right\} $
 \end_inset
@@ -1499,7 +1501,7 @@ reference "lem:one-j-exact"
 \begin_inset Formula $h_{1},h_{2}\in H,\SIG(h_{i})=\sigma$
 \end_inset
 
-, которые не могут быть редуцированы относительно 
+, которые не редуцируются по 
 \begin_inset Formula $R$
 \end_inset
 
@@ -1525,11 +1527,7 @@ reference "lem:one-j-exact"
 \end_inset
 
  имеем 
-\begin_inset Formula 
-\[
-\exists u_{i}\in P:\HM(u_{i})=\sigma,u_{i}f=\poly(h_{i})\pmod{I_{0}},i=1,2.
-\]
-
+\begin_inset Formula $\exists u_{i}\in P:\HM(u_{i})=\sigma,u_{i}f=\poly(h_{i})\pmod{I_{0}},i=1,2.$
 \end_inset
 
  Значит некоторой линейной комбинации 
@@ -1611,17 +1609,13 @@ reference "lem:one-j-exact"
 .
 \end_layout
 
-\begin_layout Standard
-Для доказательства корректности алгоритма будем доказывать следующую теорему,
- из которой будет следовать корректность ответа в момент остановки алгоритма,
- поскольку при 
-\begin_inset Formula $B=\emptyset$
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:exist-r-sigma"
+
 \end_inset
 
- её инвариант станет выполняться для всех многочленов.
-\end_layout
-
-\begin_layout Theorem
 На каждой итерации алгоритма после шага 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1629,126 +1623,58 @@ reference "enu:-remove-from-B"
 
 \end_inset
 
- выполнен следующий инвариант: любой допустимый отмеченный многочлен, сигнатура
- которого 
-\begin_inset Formula $\prec$
+ выполнен инвариант: для 
+\begin_inset Formula $\forall\sigma\in\mathbb{T},\sigma\prec$
 \end_inset
 
- чем сигнатуры всех элементов 
+ сигнатур элементов 
 \begin_inset Formula $B$
 \end_inset
 
- имеет S-представление относительно 
-\begin_inset Formula $R$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-Предположим, что утверждение теоремы неверно на определённой итерации алгоритма.
- Зафиксируем множества 
-\begin_inset Formula $R$
+, найдутся 
+\begin_inset Formula $r_{\sigma}\in R,t_{\sigma}\in\mathbb{T}:\SIG(t_{\sigma}r_{\sigma})=\sigma$
 \end_inset
 
  и 
-\begin_inset Formula $B$
+\begin_inset Formula $t_{\sigma}r_{\sigma}$
 \end_inset
 
- на момент после шага 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "enu:-remove-from-B"
-
-\end_inset
-
- этой итерации, и все S-представления будем рассматривать относительно этого
- 
+ не редуцируется по 
 \begin_inset Formula $R$
 \end_inset
 
-.
- Пусть 
-\begin_inset Formula $V$
-\end_inset
-
- -- множество допустимых многочленов, для которых не выполняется инвариант,
- а 
-\begin_inset Formula $V_{0}=\left\{ v\in V|\SIG(v)=\sigma_{0}\right\} $
-\end_inset
-
- -- подмножество с минимальной сигнатурой.
- Все элементы 
-\begin_inset Formula $I_{0}$
-\end_inset
-
- имеют S-представления относительно 
-\begin_inset Formula $\{(0,g_{1}),(0,g_{2}),...,(0,g_{n})\}\subset R$
-\end_inset
-
-, поэтому 
-\begin_inset Formula $\sigma_{0}\neq0$
-\end_inset
-
-.
- Выберем 
-\begin_inset Formula $v_{0}=(\sigma_{0},q_{0})\in V_{0}$
-\end_inset
-
- -- многочлен с наименьшим старшим мономом.
- Он не может быть редуцирован с сохранением сигнатуры относительно 
-\begin_inset Formula $R$
-\end_inset
-
-, поскольку иначе результат его редукции 
-\begin_inset Formula $v_{1}$
-\end_inset
-
- являлся бы элементом 
-\begin_inset Formula $V_{0}$
-\end_inset
-
- с 
-\begin_inset Formula $\HM(v_{1})\prec\HM(v_{0})$
-\end_inset
-
-.
+ с сохранением сигнатуры.
 \end_layout
 
 \begin_layout Standard
-Рассмотрим множество 
-\begin_inset Formula $\left\{ r\in R|\SIG(r)|\sigma_{0}\right\} $
+Множество 
+\begin_inset Formula $R_{\sigma}=\left\{ r\in R|\SIG(r)|\sigma\right\} $
 \end_inset
 
-.
- Поскольку 
-\begin_inset Formula $\sigma_{0}\neq0$
-\end_inset
-
-, оно содержит добавленный на первой итерации элемент 
-\begin_inset Formula $r$
-\end_inset
-
- с 
-\begin_inset Formula $\SIG(r)=1$
-\end_inset
-
- и, значит, непусто.
- Рассмотрим его 
-\begin_inset Formula $\GVWl$
-\end_inset
-
--минимальный элемент 
+ непусто, так как содержит добавленный на первой итерации элемент 
 \begin_inset Formula $r_{0}$
 \end_inset
 
- и обозначим 
-\begin_inset Formula $t_{0}=\frac{\sigma_{0}}{\SIG(r_{0})}$
+ с 
+\begin_inset Formula $\SIG(r_{0})=1$
 \end_inset
 
 .
- Предположим, что отмеченный многочлен 
-\begin_inset Formula $t_{0}r_{0}=\left(\sigma_{0},t_{0}p_{0}\right)$
+ Обозначим за 
+\begin_inset Formula $r_{\sigma}$
+\end_inset
+
+ его 
+\begin_inset Formula $\GVWl$
+\end_inset
+
+-минимальный элемент; положим 
+\begin_inset Formula $t_{\sigma}=\frac{\sigma}{\SIG(r_{\sigma})}$
+\end_inset
+
+.
+ Предположим, что 
+\begin_inset Formula $t_{\sigma}r_{\sigma}$
 \end_inset
 
  может быть редуцирован с сохранением сигнатуры относительно некоторого
@@ -1758,7 +1684,7 @@ reference "enu:-remove-from-B"
 
 .
  Отсюда следует, что 
-\begin_inset Formula $r_{1}\GVWg r_{0}$
+\begin_inset Formula $r_{1}\GVWg r_{\sigma}$
 \end_inset
 
 , а также что они не нулевые.
@@ -1767,7 +1693,7 @@ reference "enu:-remove-from-B"
 \end_inset
 
  был добавлен последний из 
-\begin_inset Formula $\{r_{0},r_{1}\}$
+\begin_inset Formula $\{r_{\sigma},r_{1}\}$
 \end_inset
 
 , в множество 
@@ -1775,41 +1701,29 @@ reference "enu:-remove-from-B"
 \end_inset
 
  был добавлен многочлен 
-\begin_inset Formula $t'r_{0}$
+\begin_inset Formula $t'r_{\sigma}$
 \end_inset
 
 , где 
-\begin_inset Formula $t'=\frac{\LCM(\HM(r_{1}),\HM(r_{0}))}{\HM(r_{0})}$
+\begin_inset Formula $t'=\frac{\LCM(\HM(r_{1}),\HM(r_{\sigma}))}{\HM(r_{\sigma})}$
 \end_inset
 
 , причём 
-\begin_inset Formula $t'|t_{0}$
+\begin_inset Formula $t'|t_{\sigma}$
 \end_inset
 
 .
  Отсюда 
-\begin_inset Formula $\SIG(t'r_{0})|\SIG(t_{0}r_{0})=\sigma_{0}\Rightarrow\SIG(t'r_{0})\preccurlyeq\sigma_{0}$
+\begin_inset Formula $\SIG(t'r_{\sigma})|\SIG(t_{\sigma}r_{\sigma})=\sigma\Rightarrow\SIG(t'r_{\sigma})\preccurlyeq\sigma\prec$
 \end_inset
 
-.
- Поскольку 
-\begin_inset Formula $\sigma_{0}$
-\end_inset
-
- -- сигнатура 
-\begin_inset Formula $v_{0}$
-\end_inset
-
-, для которого не выполняется инвариант, она 
-\begin_inset Formula $\prec$
-\end_inset
-
- чем сигнатуры элементов 
+ сигнатур элементов 
 \begin_inset Formula $B$
 \end_inset
 
- -- то есть 
-\begin_inset Formula $t'r_{0}$
+.
+ Значит 
+\begin_inset Formula $t'r_{\sigma}$
 \end_inset
 
  был выкинут на шаге 
@@ -1819,13 +1733,13 @@ reference "enu:-remove-from-B"
 
 \end_inset
 
- одной из итераций, что влечёт существование 
-\begin_inset Formula $r_{2}\in R,r_{2}\GVWl t'r_{0},\SIG(r_{2})|\SIG(t'r_{0})$
+ одной из прошедших итераций, то есть 
+\begin_inset Formula $\exists r_{2}\in R,r_{2}\GVWl t'r_{\sigma},\SIG(r_{2})|\SIG(t'r_{\sigma})$
 \end_inset
 
 .
  Это невозможно, поскольку влечёт 
-\begin_inset Formula $r_{2}\GVWl r_{0},\SIG(r_{2})|\SIG(t_{0}r_{0})=\sigma_{0}$
+\begin_inset Formula $r_{2}\GVWl r_{\sigma},r_{2}\in R_{\sigma}$
 \end_inset
 
 , что противоречит 
@@ -1833,84 +1747,239 @@ reference "enu:-remove-from-B"
 \end_inset
 
 -минимальности 
-\begin_inset Formula $r_{0}$
+\begin_inset Formula $r_{\sigma}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:has-s-repr"
+
+\end_inset
+
+На каждой итерации алгоритма после шага 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-remove-from-B"
+
+\end_inset
+
+ выполнен инвариант: 
+\begin_inset Formula $\forall h\in H,\SIG(h)\prec$
+\end_inset
+
+ сигнатур элементов 
+\begin_inset Formula $B$
+\end_inset
+
+, имеет S-представление над 
+\begin_inset Formula $R$
 \end_inset
 
 .
 \end_layout
 
 \begin_layout Standard
-Таким образом показано, что 
-\begin_inset Formula $t_{0}r_{0}=\left(\sigma_{0},t_{0}p_{0}\right)$
+Предположим нарушение инварианта на какой-то итерации и рассмотрим 
+\begin_inset Formula $\prec_{0}$
 \end_inset
 
- и 
-\begin_inset Formula $v_{0}=(\sigma_{0},q_{0})$
+-минимальную 
+\begin_inset Formula $\sigma$
 \end_inset
 
- не могут быть редуцированы относительно 
+, для которой 
+\begin_inset Formula $V_{\sigma}\eqdef\{h\in H\text{ нарушает инвариант}|\SIG(h)=\sigma\}\neq\varnothing$
+\end_inset
+
+.
+ Тогда 
 \begin_inset Formula $R$
 \end_inset
 
- с сохранением сигнатуры, при этом первый из них имеет тривиальное S-представлен
-ие 
-\begin_inset Formula $t_{0}r_{0}$
+ -- S
+\emph on
+
+\begin_inset Formula $_{\sigma}$
 \end_inset
 
-, а второй не имеет S-представления.
- Из допустимости следует, что их разность 
-\begin_inset Formula $w=\left(\sigma_{1},q_{0}-Kt_{0}p_{0}\right)$
+
+\emph default
+-базис.
+ 
+\begin_inset Formula $\forall g\in I_{0}\,\left(0,g\right)$
 \end_inset
 
- с некоторым коэффициентом 
-\begin_inset Formula $K\in k$
+ имеют S-представления над 
+\begin_inset Formula $\{(0,g_{1}),...,(0,g_{m})\}\subset R$
 \end_inset
 
- есть допустимый многочлен сигнатуры 
-\begin_inset Formula $\sigma_{1}\prec\sigma_{0}$
+, поэтому 
+\begin_inset Formula $\sigma\succ_{0}0$
 \end_inset
 
 .
  
-\begin_inset Formula $w\not\in V$
+\begin_inset Formula $ $
 \end_inset
 
- в силу малости сигнатуры и имеет S-представление 
-\begin_inset Formula $w=\sum_{j}K_{j}t_{j}r_{i_{j}}.$
+Выберем 
+\begin_inset Formula $v_{\sigma}$
 \end_inset
 
- Значит 
-\begin_inset Formula $\exists j|\HM(t_{j}r_{i_{j}})=\HM(w),\SIG(t_{j}r_{i_{j}})\preccurlyeq\SIG(w)=\sigma_{1}\prec\sigma_{0}$
+ -- один из элементов 
+\begin_inset Formula $V_{\sigma}$
 \end_inset
 
-.
- Если бы 
-\begin_inset Formula $\HM(w)\in\{\HM(v_{0}),\HM(t_{0}r_{0})\}$
+ с 
+\begin_inset Formula $\prec_{0}$
 \end_inset
 
-, то 
-\begin_inset Formula $r_{i_{j}}$
-\end_inset
-
- был бы сохраняющим сигнатуру редуктором для 
-\begin_inset Formula $v_{0}$
-\end_inset
-
- или 
-\begin_inset Formula $t_{0}r_{0}$
-\end_inset
-
-, что невозможно.
- Значит старшие мономы сокращаются при вычитании, то есть 
-\begin_inset Formula $\HM(v_{0})=\HM(t_{0}r_{0})$
+-наименьшим 
+\begin_inset Formula $\HM$
 \end_inset
 
 .
- Отсюда выводим S-представление: 
-\begin_inset Formula $v_{0}=Kt_{0}r_{0}+\sum_{j}K_{j}Kt_{j}r_{i_{j}}.$
+ Он не может быть редуцирован с сохранением сигнатуры по 
+\begin_inset Formula $R$
 \end_inset
 
- Противоречие.
+, поскольку результат редукции 
+\begin_inset Formula $v_{1}$
+\end_inset
+
+ был бы элементом 
+\begin_inset Formula $V_{\sigma}$
+\end_inset
+
+ с 
+\begin_inset Formula $\HM(v_{1})\prec_{0}\HM(v_{\sigma})$
+\end_inset
+
+.
+ Возьмём 
+\begin_inset Formula $w_{\sigma}\eqdef t_{\sigma}r_{\sigma}$
+\end_inset
+
+ из инварианта теоремы 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:exist-r-sigma"
+
+\end_inset
+
+ и применив лемму 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:s-basis-and-no-reductions"
+
+\end_inset
+
+ к 
+\begin_inset Formula $v_{\sigma},w_{\sigma}$
+\end_inset
+
+ и 
+\begin_inset Formula $R$
+\end_inset
+
+ получим что 
+\begin_inset Formula $v_{\sigma}$
+\end_inset
+
+ имеет S-представление над 
+\begin_inset Formula $R\cup\{w_{\sigma}\}$
+\end_inset
+
+.
+ Вхождения 
+\begin_inset Formula $w_{\sigma}$
+\end_inset
+
+ в нём можно заменить на 
+\begin_inset Formula $t_{\sigma}r_{\sigma}$
+\end_inset
+
+, получив представление 
+\begin_inset Formula $v_{\sigma}$
+\end_inset
+
+ над 
+\begin_inset Formula $R$
+\end_inset
+
+, что приводит к противоречию.
+\end_layout
+
+\begin_layout Lemma
+Если 
+\begin_inset Formula $R$
+\end_inset
+
+ -- S-базис, то 
+\begin_inset Formula $R$
+\end_inset
+
+ является базисом Грёбнера идеала 
+\begin_inset Formula $I$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Для 
+\begin_inset Formula $\forall p\in I$
+\end_inset
+
+ можно взять некоторый 
+\begin_inset Formula $h=\left(\sigma,p\right)\in H$
+\end_inset
+
+ и применить лемму 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:one-j-exact"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:SimpleSignatureGroebner"
+
+\end_inset
+
+ возвращает базис Грёбнера
+\end_layout
+
+\begin_layout Standard
+К моменту остановки 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $B=\varnothing$
+\end_inset
+
+, значит по теореме 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:has-s-repr"
+
+\end_inset
+
+ 
+\begin_inset Formula $R$
+\end_inset
+
+ -- S-базис.
 \end_layout
 
 \begin_layout Subsection
