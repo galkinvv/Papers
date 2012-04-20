@@ -736,7 +736,7 @@ SimpleSignatureGroebner
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $R\leftarrow\{(0,g_{1}),(0,g_{2}),\dots,(0,g_{m})\}$
+\begin_inset Formula $R\leftarrow\{\left(\HM(g_{1}),0\right),\left(\HM(g_{2}),0\right),\dots,\left(\HM(g_{m}),0\right),(0,g_{1}),(0,g_{2}),\dots,(0,g_{m})\}$
 \end_inset
 
 
@@ -981,7 +981,7 @@ return
 
 \begin_layout Standard
 Элементы, формируемые до начала главного цикла являются рассмотренными выше
- примерами тривиальных отмеченных многочленов.
+ примерами отмеченных многочленов.
  Все остальные отмеченные многочлены в алгоритме формируются или умножением
  на 
 \begin_inset Formula $t\in\mathbb{T}$
@@ -1961,10 +1961,6 @@ reference "par:SimpleSignatureGroebner"
 
 \begin_layout Standard
 К моменту остановки 
-\begin_inset Formula $ $
-\end_inset
-
-
 \begin_inset Formula $B=\varnothing$
 \end_inset
 
