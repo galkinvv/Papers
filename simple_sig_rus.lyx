@@ -304,7 +304,7 @@ figs-within-sections
 \end_inset
 
 , удовлетворяющая условию корректности: 
-\begin_inset Formula $\exists u\in P:\HM(u)=\sigma,uf=p\mod I_{0}.$
+\begin_inset Formula $\exists u\in P:\HM(u)=\sigma,uf=p\pmod{I_{0}}.$
 \end_inset
 
  На отмеченные многочлены распространяются определения старшего монома 
@@ -816,7 +816,6 @@ for
 
 
 \series bold
-\lang russian
 :
 \end_layout
 
@@ -1365,12 +1364,12 @@ S-представлением
 \begin_inset Formula $h\in H$
 \end_inset
 
- относительно множества 
+ над множеством 
 \begin_inset Formula $\left\{ r_{i}\right\} \subset H$
 \end_inset
 
  будем называть выражение 
-\begin_inset Formula $h=\sum_{j}K_{j}t_{j}r_{i_{j}},$
+\begin_inset Formula $\poly(h)=\sum_{j}K_{j}t_{j}\poly(r_{i_{j}}),$
 \end_inset
 
  
@@ -1384,40 +1383,68 @@ S-представлением
 .
 \end_layout
 
-\begin_layout Standard
-Следующее определение расширяет понятие S-базиса из работы 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "Arri:2011:FCR:2007509.2007761"
+\begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:one-j-exact"
 
 \end_inset
 
-:
+При этом для хотя бы одного 
+\begin_inset Formula $j$
+\end_inset
+
+ достигается 
+\begin_inset Formula $\HM(h)=\HM(t_{j}r_{i_{j}})$
+\end_inset
+
+.
+\begin_inset Formula $\square$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Definition
-Множество отмеченных многочленов называется
+Назовём 
+\begin_inset Formula $R\subset H$
+\end_inset
+
+
 \emph on
- 
-\begin_inset Formula $\SIG_{\sigma}$
+ S-базисом
+\emph default
+ (соответственно 
+\emph on
+S
+\begin_inset Formula $_{\sigma}$
 \end_inset
 
 -базисом
 \emph default
-, если относительно него любой допустимый отмеченный многочлен сигнатуры
- 
-\begin_inset Formula $\prec_{0}\sigma$
+), если 
+\begin_inset Formula $\forall h\in H$
 \end_inset
 
- имеет S-представление.
- Если S-представление имеет допустимый многочлен любой сигнатуры, то множество
- называется просто 
+ (соответственно 
+\begin_inset Formula $\forall h\in H,\SIG(h)\prec_{0}\sigma$
+\end_inset
+
+)
 \emph on
-
-\begin_inset Formula $\SIG$
+ 
+\emph default
+имеет S-представление
+\emph on
+ 
+\emph default
+над 
+\begin_inset Formula $R$
 \end_inset
 
--базисом.
+
+\emph on
+.
 \end_layout
 
 \begin_layout Lemma
@@ -1437,20 +1464,148 @@ key "Arri:2011:FCR:2007509.2007761"
 \end_layout
 
 \begin_layout Standard
-Вытекает из того что для 
-\begin_inset Formula $p\in I$
+Для 
+\begin_inset Formula $\forall p\in I$
 \end_inset
 
- можно взять некоторый допустимый 
-\begin_inset Formula $h=\left(\sigma,p\right)$
+ можно взять некоторый 
+\begin_inset Formula $h=\left(\sigma,p\right)\in H$
 \end_inset
 
- в S-представлении которого найдётся 
-\begin_inset Formula $r_{i_{j}}$
+ и применить лемму 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:one-j-exact"
+
 \end_inset
 
-, такой что 
-\begin_inset Formula $\HM(p)=t_{j}\HM(r_{i_{j}})$
+.
+\end_layout
+
+\begin_layout Lemma
+Пусть 
+\begin_inset Formula $\sigma\succ_{0}0,R=\left\{ r_{i}\right\} $
+\end_inset
+
+ -- S
+\emph on
+
+\begin_inset Formula $_{\sigma}$
+\end_inset
+
+
+\emph default
+-базис и выбраны 
+\begin_inset Formula $h_{1},h_{2}\in H,\SIG(h_{i})=\sigma$
+\end_inset
+
+, которые не могут быть редуцированы относительно 
+\begin_inset Formula $R$
+\end_inset
+
+ с сохранением сигнатуры.
+ Тогда 
+\begin_inset Formula $\HM(h_{1})=\HM(h_{2})$
+\end_inset
+
+ и у 
+\begin_inset Formula $h_{1}$
+\end_inset
+
+ есть S-представление над 
+\begin_inset Formula $R\cup\left\{ h_{2}\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Из определения 
+\begin_inset Formula $H$
+\end_inset
+
+ имеем 
+\begin_inset Formula 
+\[
+\exists u_{i}\in P:\HM(u_{i})=\sigma,u_{i}f=\poly(h_{i})\pmod{I_{0}},i=1,2.
+\]
+
+\end_inset
+
+ Значит некоторой линейной комбинации 
+\begin_inset Formula $\poly(h_{i})$
+\end_inset
+
+ сопоставляется 
+\begin_inset Formula $\prec_{0}\sigma$
+\end_inset
+
+ сигнатура: 
+\begin_inset Formula 
+\[
+\exists K\in k\exists v\in P:\HM(v)=\sigma'\prec_{0}\sigma,vf=\poly(h_{1})-K\poly(h_{2})\pmod{I_{0}},
+\]
+
+\end_inset
+
+то есть 
+\begin_inset Formula $\left(\sigma',p'\right)=\left(\sigma',\poly(h_{1})-K\poly(h_{2})\right)\in H$
+\end_inset
+
+.
+ Из определения S
+\emph on
+
+\begin_inset Formula $_{\sigma}$
+\end_inset
+
+
+\emph default
+-базиса и 
+\begin_inset Formula $\sigma'\prec_{0}\sigma$
+\end_inset
+
+ вытекает 
+\begin_inset Formula $\exists r_{j}\in R,t\in\mathbb{T}:\SIG(tr_{j})\preccurlyeq_{0}\sigma',\HM(tr_{j})=\HM(p')$
+\end_inset
+
+.
+ Отсюда 
+\begin_inset Formula $\HM(h_{i})\neq\HM(p'),i=1,2$
+\end_inset
+
+, иначе 
+\begin_inset Formula $r_{j}$
+\end_inset
+
+ редуцировало бы 
+\begin_inset Formula $h_{i}$
+\end_inset
+
+ с сохранением сигнатуры.
+ Значит 
+\begin_inset Formula $\HM(h_{i})$
+\end_inset
+
+ сокращаются при вычитании с 
+\begin_inset Formula $k$
+\end_inset
+
+-коэффициентом, что даёт 
+\begin_inset Formula $\HM(h_{1})=\HM(h_{2})$
+\end_inset
+
+.
+ S-представление 
+\begin_inset Formula $h_{1}$
+\end_inset
+
+ получается добавлением 
+\begin_inset Formula $K\poly(h_{2})$
+\end_inset
+
+ к S-представлению 
+\begin_inset Formula $\left(\sigma',p'\right)$
 \end_inset
 
 .
