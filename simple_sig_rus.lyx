@@ -4,22 +4,43 @@
 \begin_header
 \textclass article
 \begin_preamble
+\def\wdeb{0}
+\usepackage{nameref}
+\usepackage{url}
+\newcommand{\href}[2]{\url{#1}}
+\usepackage{allerree}
+
+\newcounter{countergvtheorems}
+
+\renewenvironment{lem}
+{\refstepcounter{countergvtheorems}\begin{theorem}{Лемма  \arabic{countergvtheorems}.}}
+{\end{theorem}\par{\bf Доказательство.}}
+
+\renewenvironment{thm}
+{\refstepcounter{countergvtheorems}\begin{theorem}{Теорема \arabic{countergvtheorems}.}}
+{\end{theorem}\par{\bf Доказательство.}}
+
+\renewenvironment{defn}
+{\par \refstepcounter{countergvtheorems} {\bf Определение \arabic{countergvtheorems}.}}
+{}
+
+
+
 \DeclareMathOperator{\HC}{HC}
 \DeclareMathOperator{\HM}{HM}
 \DeclareMathOperator{\LCM}{LCM}
 \DeclareMathOperator{\poly}{poly}
 \DeclareMathOperator{\SIG}{\mathcal{S}}
 \end_preamble
+\options 11pt,twoside
 \use_default_options true
 \begin_modules
-theorems-ams
-eqs-within-sections
-figs-within-sections
+theorems-std
 \end_modules
 \maintain_unincluded_children false
 \language russian
-\language_package babel
-\inputencoding utf8
+\language_package default
+\inputencoding cp1251
 \fontencoding global
 \font_roman default
 \font_sans default
@@ -38,7 +59,7 @@ figs-within-sections
 \index_command default
 \paperfontsize default
 \spacing single
-\use_hyperref true
+\use_hyperref false
 \pdf_bookmarks true
 \pdf_bookmarksnumbered false
 \pdf_bookmarksopen false
@@ -49,17 +70,17 @@ figs-within-sections
 \pdf_backref false
 \pdf_pdfusetitle true
 \papersize default
-\use_geometry true
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
-\cite_engine natbib_numerical
+\use_geometry false
+\use_amsmath 2
+\use_esint 0
+\use_mhchem 0
+\use_mathdots 0
+\cite_engine basic
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
-\use_refstyle 1
+\use_refstyle 0
 \index Index
 \shortcut idx
 \color #008000
@@ -68,7 +89,7 @@ figs-within-sections
 \topmargin 4cm
 \rightmargin 4cm
 \bottommargin 4cm
-\secnumdepth 3
+\secnumdepth -1
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
@@ -117,16 +138,88 @@ figs-within-sections
 
 \end_layout
 
-\begin_layout Title
-Простой итеративный алгоритм вычисления базисов Грёбнера, основанный на
- сигнатурах
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cleanbegin 
 \end_layout
 
-\begin_layout Abstract
-Данная работа описывает алгоритм вычисления базисов Грёбнера, основанный
+\begin_layout Plain Layout
+
+
+\backslash
+def
+\backslash
+udk{512}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+ltitle{ПРОСТОЙ ИТЕРАТИВНЫЙ АЛГОРИТМ ВЫЧИСЛЕНИЯ БАЗИСОВ ГРЁБНЕРА, ОСНОВАННЫЙ
+ НА СИГНАТУРАХ} {В.
+\backslash
+,В.~Галкин
+\backslash
+footnote[1]{{
+\backslash
+it Галкин Василий Витальевич} --- асп.
+ каф.
+ алгебры мех.-мат.
+ ф-та МГУ, e-mail: galkin-vv@yandex.ru.}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+iabstract
+\end_layout
+
+\begin_layout Plain Layout
+
+{Данная работа описывает алгоритм вычисления базисов Грёбнера, основанный
  на использовании отмеченных многочленов и идеях из алгоритма F5.
- Отличительными особенностями рассматриваемого алгоритма являются простота
- реализации и доказательств корректной работы.
+ Отличительными особенностями алгоритма по сравнению с аналогами являются
+ простота самого алгоритма и доказательства его корректности, достигнутые
+ без потери эффективности.
+ Это позволяет создать простую реализацию, не уступающую более сложным аналогам
+ по производительности}
+\end_layout
+
+\begin_layout Plain Layout
+
+{базис Грёбнера, алгоритм F5, отмеченные многочлены}
+\end_layout
+
+\begin_layout Plain Layout
+
+{This paper presents an algorithm for computing Groebner bases based on
+ labeled polynomials and ideas from the algorithm F5.
+ The main highlights of this algorithm compared with analogues are simplicity
+ both of the algorithm and of the its correctness proof achieved without
+ loss of the efficiency.
+ This leads to simple implementation which performance is in par with more
+ complex analogues} {Groebner basis, F5 algorithm, labeled polynomials}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -437,9 +530,9 @@ h_{1}=\left(\SIG(h'_{1}),\poly(h'_{1})+Kt\poly(h_{2})\right),
 \end_inset
 
 .
- По сути такая редукция представляет из себя обычную top-редукцию многочлена,
- дополненную требованием того, что сигнатура редуктора меньше сигнатуры
- редуцируемого.
+ По сути такая редукция представляет из себя обычную редукцию многочлена
+ с сокращением старшего монома, дополненную требованием того, что сигнатура
+ редуктора меньше сигнатуры редуцируемого.
  Корректность проверяется как и выше.
 \end_layout
 
@@ -1430,10 +1523,22 @@ name "lem:one-j-exact"
 \end_inset
 
 .
-\begin_inset Formula $\square$
+\end_layout
+
+\begin_layout Standard
+В качестве такого 
+\begin_inset Formula $j$
 \end_inset
 
+ можно взять то, на котором достигается 
+\begin_inset Formula $\succ$
+\end_inset
 
+-максимум 
+\begin_inset Formula $\HM(t_{j}r_{i_{j}})$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Definition
@@ -2086,7 +2191,8 @@ reference "enu:-remove-from-B"
 \end_inset
 
 , не выполняя без необходимости операции домножения всего многочлена на
- моном.Таким образом, для отброшенных элементов 
+ моном.
+ Таким образом, для отброшенных элементов 
 \begin_inset Formula $B$
 \end_inset
 
@@ -2119,7 +2225,14 @@ reference "enu:-remove-from-B"
 ии алгоритма, которые не просто убирают вычисления, а заменяют одни вычисления
  над полиномами другими.
  К примеру, вопрос наиболее эффективного способа выбора редуктора в процедуре
- Редуцировать_с_учётом_сигнатур является открытым.
+ 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:ReduceCheckingSignatures:"
+
+\end_inset
+
+ является открытым.
  Представленный способ выбора, основанный на 
 \begin_inset Formula $\GVWl$
 \end_inset
@@ -2164,10 +2277,51 @@ target "https://github.com/galkinvv/Singular-f5-like/blob/ssg/kernel/kstd2.cc"
 \end_layout
 
 \begin_layout Standard
-\begin_inset CommandInset bibtex
-LatexCommand bibtex
-bibfiles "f5_references"
-options "plainnat"
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+spisoklit
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\backslash
+small
+\backslash
+wrefdef{7}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+wref{1}{Arri A., Perry J.} The F5 criterion revised // Journal of Symbolic
+ Computation.
+ 2011.
+ {
+\backslash
+bf46}, 
+\backslash
+No~9.
+ 1017--1029.
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+lend
+\end_layout
 
 \end_inset
 

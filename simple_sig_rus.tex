@@ -1,0 +1,499 @@
+%% LyX 2.0.2 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[russian,11pt,twoside]{article}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\setcounter{secnumdepth}{-1}
+\usepackage{babel}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[unicode=true]
+ {hyperref}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+\DeclareRobustCommand{\cyrtext}{%
+  \fontencoding{T2A}\selectfont\def\encodingdefault{T2A}}
+\DeclareRobustCommand{\textcyr}[1]{\leavevmode{\cyrtext #1}}
+\AtBeginDocument{\DeclareFontEncoding{T2A}{}{}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{\protect\definitionname}
+\theoremstyle{plain}
+\newtheorem{lem}[thm]{\protect\lemmaname}
+\newenvironment{lyxlist}[1]
+{\begin{list}{}
+{\settowidth{\labelwidth}{#1}
+ \setlength{\leftmargin}{\labelwidth}
+ \addtolength{\leftmargin}{\labelsep}
+ \renewcommand{\makelabel}[1]{##1\hfil}}}
+{\end{list}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\def\wdeb{0}
+\usepackage{nameref}
+\usepackage{url}
+\newcommand{\href}[2]{\url{#1}}
+\usepackage{allerree}
+
+\newcounter{countergvtheorems}
+
+\renewenvironment{lem}
+{\refstepcounter{countergvtheorems}\begin{theorem}{Лемма  \arabic{countergvtheorems}.}}
+{\end{theorem}\par{\bf Доказательство.}}
+
+\renewenvironment{thm}
+{\refstepcounter{countergvtheorems}\begin{theorem}{Теорема \arabic{countergvtheorems}.}}
+{\end{theorem}\par{\bf Доказательство.}}
+
+\renewenvironment{defn}
+{\par \refstepcounter{countergvtheorems} {\bf Определение \arabic{countergvtheorems}.}}
+{}
+
+
+
+\DeclareMathOperator{\HC}{HC}
+\DeclareMathOperator{\HM}{HM}
+\DeclareMathOperator{\LCM}{LCM}
+\DeclareMathOperator{\poly}{poly}
+\DeclareMathOperator{\SIG}{\mathcal{S}}
+
+\makeatother
+
+\providecommand{\definitionname}{\inputencoding{koi8-r}пРТЕДЕМЕОЙЕ}
+\providecommand{\lemmaname}{\inputencoding{koi8-r}мЕННБ}
+\providecommand{\theoremname}{\inputencoding{koi8-r}фЕПТЕНБ}
+
+\begin{document}
+\global\long\def\GVWl{<_{\text{\textnormal{gvw}}}}
+
+
+\global\long\def\GVWg{>_{\text{\textnormal{gvw}}}}
+
+
+\global\long\def\eqdef{\overset{\mathrm{_{def}}}{=}}
+
+
+\global\long\def\equivdef{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
+
+
+\cleanbegin 
+\def\udk{512}
+\ltitle{ПРОСТОЙ ИТЕРАТИВНЫЙ АЛГОРИТМ ВЫЧИСЛЕНИЯ БАЗИСОВ ГРЁБНЕРА, ОСНОВАННЫЙ НА СИГНАТУРАХ} {В.\,В.~Галкин\footnote[1]{{\it Галкин Василий Витальевич} --- асп. каф. алгебры мех.-мат. ф-та МГУ, e-mail: galkin-vv@yandex.ru.}}
+\iabstract
+{Данная работа описывает алгоритм вычисления базисов Грёбнера, основанный на использовании отмеченных многочленов и идеях из алгоритма F5. Отличительными особенностями алгоритма по сравнению с аналогами являются простота самого алгоритма и доказательства его корректности, достигнутые без потери эффективности. Это позволяет создать простую реализацию, не уступающую более сложным аналогам по производительности}
+{базис Грёбнера, алгоритм F5, отмеченные многочлены}
+{This paper presents an algorithm for computing Groebner bases based on labeled polynomials and ideas from the algorithm F5. The main highlights of this algorithm compared with analogues are simplicity both of the algorithm and of the its correctness proof achieved without loss of the efficiency. This leads to simple implementation which performance is in par with more complex analogues} {Groebner basis, F5 algorithm, labeled polynomials}
+
+
+
+
+\section{Определения}
+
+Рассмотрим кольцо многочленов $P=k[x_{1},\dots,x_{n}]$ над полем
+$k$. Будем предполагать, что на моноиде его мономов $\mathbb{T}$
+задан допустимый мономиальный порядок $\prec$. В этом кольце может
+быть поставлена задача вычисления базиса Грёбнера для произвольного
+идеала $\left(f_{1},\dots,f_{l}\right)$. Один из способов её решения
+инкрементальный: последовательно вычисляются базисы идеалов $\left(f_{1},\dots,f_{i}\right),i=2\dots l$
+на основе уже вычисленного для идеала $\left(f_{1},\dots,f_{i-1}\right)$
+базиса $R_{i-1}$ и многочлена $f_{i}$. Представляемый алгоритм позволяет
+выполнить шаг такого вычисления. Таким образом, входные данные для
+алгоритма -- это некоторый многочлен $f$ и множество многочленов,
+обозначаемое $\left\{ g_{1},\dots,g_{m}\right\} $, являющееся базисом
+Грёбнера идеала $I_{0}=\left(g_{1},\dots,g_{m}\right)$. В качестве
+результата своей работы алгоритм должен построить множество многочленов
+$R$, являющееся базисом Грёбнера идеала $I=\left(g_{1},\dots,g_{m},f\right)$.
+Поскольку случаи $f=0\Rightarrow I=I_{0}$ и $\exists i\, g_{i}\in k\Rightarrow I=P$
+не представляет интереса, далее предполагается что $f\neq0,\forall i\, g_{i}\notin k.$
+
+Введём обозначения: $\mathbb{T}_{0}=\mathbb{T}\cup\left\{ 0\right\} $
+-- моноид мономов, расширенный нулём. Порядок $\prec$ продолжается
+с сохранением вполне упорядоченности на $\mathbb{T}_{0}$ как $\prec_{0}$
+определением $\forall t\in\mathbb{T}\, t\succ_{0}0$. Понятие делимости
+мономов также расширяется на $\mathbb{T}_{0}$: $t_{1}|t_{2}\eqdef\exists t_{3}:t_{1}t_{3}=t_{2}$.
+Для $p\in P,p\neq0$ старшие по $\prec$ моном и коэффициент обозначим
+$\HM(p)\in\mathbb{T}$ и $\HC(p)\in k$. Для нуля -- $\HM(0)\eqdef0\in\mathbb{T}_{0}$,
+$\HC(0)\eqdef0\in k$. За $\LCM(t_{1},t_{2})\in\mathbb{T}$ обозначим
+наименьшее общее кратное $t_{1},t_{2}\in\mathbb{T}$. Далее все определения
+даются для фиксированных $I_{0}$ и $f$:
+\begin{defn}
+\emph{Отмеченным многочленом} называется пара $h=(\sigma,p)\in\mathbb{T}_{0}\times P$,
+удовлетворяющая условию корректности: $\exists u\in P:\HM(u)=\sigma,uf=p\pmod{I_{0}}.$
+На отмеченные многочлены распространяются определения старшего монома
+$\HM(h)\eqdef\HM(p)$ и коэффициента $\HC(h)\eqdef\HC(p)$. Также
+определяются \emph{сигнатура} $\SIG(h)\eqdef\sigma$ и вводится обозначение
+многочлена -- второго элемента пары: $\poly(h)\eqdef p$. Множество
+отмеченных многочленов обозначается за $H\subset\mathbb{T}_{0}\times P$.
+Тривиальными примерами отмеченных многочленов являются $\left(1,f\right)$
+и $\left(0,g\right)$ для $g\in I_{0}$. Другим примером отмеченного
+многочлена является $\left(\HM(g),0\right)$ для $g\in I_{0}$. Он
+корректен, поскольку в качестве $u$ можно взять $g$.\end{defn}
+\begin{lem}
+Умножение для $h\in H,t\in\mathbb{T}$, заданное как $th\eqdef(t\sigma,tp)\in H,$
+корректно.
+\end{lem}
+Корректность определения проверяется явным нахождением $u$ для $h$.
+\begin{defn}
+Если для некоторых\emph{ $h'_{1},h_{2}\in H,t\in\mathbb{T}$} выполняется
+$\SIG(h'_{1})\succ_{0}\SIG(th_{2}),\HM(h'{}_{1})=\HM(th{}_{2})\neq0,$
+то возможна \emph{редукция $h'_{1}$ по $h_{2}$ с сохранением сигнатуры},
+дающая в результате многочлен $h_{1}\in H$, равный: 
+\[
+h_{1}=\left(\SIG(h'_{1}),\poly(h'_{1})+Kt\poly(h_{2})\right),
+\]
+где коэффициент $K\in k$ взят так, чтоб при сложении сократились
+старшие мономы и выполнилось $\HM(h{}_{1})\prec_{0}\HM(h'{}_{1})$.
+По сути такая редукция представляет из себя обычную редукцию многочлена
+с сокращением старшего монома, дополненную требованием того, что сигнатура
+редуктора меньше сигнатуры редуцируемого. Корректность проверяется
+как и выше.
+\end{defn}
+Введём частичный порядок $\GVWl$ на $H$: 
+\[
+h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_{2}\prec_{0}\HM(p_{2})\sigma_{1}.
+\]
+Элементы с нулевой сигнатурой и старшим мономом оказываются экстремумами:
+$\forall\sigma_{1},\sigma_{2},p_{1},p_{2}\,\left(0,p_{1}\right)\not\GVWl\left(\sigma_{2},p_{2}\right),\,\left(\sigma_{1},0\right)\not\GVWg\left(\sigma_{2},p_{2}\right)$.
+\begin{lem}
+Пусть $h_{1},h_{2}\in H,t\in\mathbb{T}$. Тогда $h_{1}\GVWg h_{2}\Longleftrightarrow h_{1}\GVWg th_{2}$.
+\end{lem}
+Выводится из того, что умножение на $t$ одного из сравниваемых отмеченных
+многочленов приводит к умножению на $t$ обоих частей в определении
+$\GVWg$.
+\begin{lem}
+Пусть $h_{1},h_{2}\in H,\HM(h_{1})|\HM(h_{2}),\HM(h_{2})\neq0$. Тогда
+редукция $h_{2}$ по $h_{1}$ с сохранением сигнатуры возможна если
+и только если $h_{1}\GVWg h_{2}$.
+\end{lem}
+Следует из того что оба утверждения равносильны $\SIG(h_{2})\succ_{0}\SIG(h_{1})\frac{\HM(h_{2})}{\HM(h_{1})}$.
+\begin{lem}
+Пусть $h_{1}\in H$ -- результат редукции $h_{1}'$ с сохранением
+сигнатур по некоторому многочлену. Тогда $h_{1}\GVWl h_{1}'$.
+\end{lem}
+Следует из $\SIG(h_{1})=\SIG(h_{1}')$ и уменьшения $\HM$ при редукции:
+$\HM(h_{1})\prec_{0}\HM(h_{1}').$
+\begin{lem}
+\label{lem:greater-or-smaller}Пусть $h_{1}\GVWl h_{2}$ отмеченные
+многочлены. Тогда $\forall h_{3}\in H,h_{3}\neq(0,0)$ выполняется
+хотя бы одно из двух неравенств: $h_{1}\GVWl h_{3}$ и $h_{3}\GVWl h_{2}$.
+\end{lem}
+Из условия леммы известно, что
+\begin{equation}
+\HM(h_{1})\SIG(h_{2})\prec_{0}\HM(h_{2})\SIG(h_{1})\label{eq:gvw-order-3}
+\end{equation}
+откуда $\HM(h_{2})\neq0,\SIG(h_{1})\neq0$. Поэтому, если $\HM(h_{3})=0$,
+имеем $h_{3}\GVWl h_{2}$, а если $\SIG(h_{3})=0$ -- то $h_{1}\GVWl h_{3}$.
+Иначе можно домножить неравенство \eqref{eq:gvw-order-3} на ненулевой
+элемент $\HM(h_{3})\SIG(h_{3})$: 
+\begin{equation}
+\HM(h_{3})\SIG(h_{3})\HM(h_{1})\SIG(h_{2})\prec_{0}\HM(h_{3})\SIG(h_{3})\HM(h_{2})\SIG(h_{1}).\label{eq:left-or-right-monom}
+\end{equation}
+Поэтому $\HM(h_{3})^{2}\SIG(h_{2})\SIG(h_{1})\in\mathbb{T}_{0}$ будет
+или $\succ_{0}$ левой или $\prec_{0}$ правой части неравенства \eqref{eq:left-or-right-monom},
+и после сокращения даст эквивалентное утверждению леммы неравенство.
+
+
+\section{Алгоритм}
+\begin{lyxlist}{00.00.0000}
+\item [{Вход:}] многочлены $\{g_{1},\dots,g_{m}\}$, образующие базис Грёбнера;
+многочлен $f$.
+\item [{Переменные:}] $R$ и $B$ -- подмножества $H$; $(\sigma,p')\in H$
+-- отмеченный многочлен текущего шага до редукции; $(\sigma,p)$ --
+он же после редукции; $r,b$ -- элементы $R$ и $B$
+\item [{Результат:}] базис Грёбнера идеала $I=\left(g_{1},\dots,g_{m},f\right)$
+\end{lyxlist}
+
+\paragraph*{\label{par:SimpleSignatureGroebner}SimpleSignatureGroebner$\left(\left\{ g_{1},\dots,g_{m}\right\} ,f\right)$}
+\begin{enumerate}
+\item $R\leftarrow\{\left(\HM(g_{1}),0\right),\left(\HM(g_{2}),0\right),\dots,\left(\HM(g_{m}),0\right),(0,g_{1}),(0,g_{2}),\dots,(0,g_{m})\}$
+\item $B\leftarrow\{\}$
+\item $(\sigma,p')\leftarrow(1,f)$
+\item \textbf{do forever:}
+
+\begin{enumerate}
+\item \label{enu:-before-reduce}$p\leftarrow$ReduceCheckingSignatures($\sigma,p',R$)
+\item \label{enu:-after-reduce}$R\leftarrow R\cup\left\{ \left(\sigma,p\right)\right\} $
+\item \textbf{if} $p\not=0$\textbf{:}
+
+\begin{enumerate}
+\item \textbf{for $\{r\in R|r\GVWl\left(\sigma,p\right),\HM(r)\neq0\}$:}
+
+\begin{enumerate}
+\item $B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(r)}r\}$
+\end{enumerate}
+\item \textbf{for }$\{r\in R|r\GVWg\left(\sigma,p\right)\}$\textbf{:}
+
+\begin{enumerate}
+\item $B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(p)}\left(\sigma,p\right)\}$
+\end{enumerate}
+\end{enumerate}
+\item \label{enu:-remove-from-B}$B\leftarrow B\setminus\{b\in B|\exists r\in R,\, r\GVWl b\wedge\SIG(r)|\SIG(b)\}$
+\item \textbf{if $B\neq\varnothing$: }$(\sigma,p')\leftarrow$ элемент
+$B$ с $\prec$-минимальной сигнатурой
+\item \textbf{else: break}
+\end{enumerate}
+\item \textbf{return} $\{\poly(r)|r\in R\}$
+\end{enumerate}
+
+\paragraph*{\label{par:ReduceCheckingSignatures:}ReduceCheckingSignatures$\left(\sigma,p,R\right)$}
+\begin{enumerate}
+\item \textbf{do while $\exists r\in R|r\GVWg(\sigma,p)\wedge\HM(r)|\HM(p)$:}
+
+\begin{enumerate}
+\item $p\leftarrow$редуцировать $p$ с сохранением сигнатуры по $\GVWg$-максимальному
+элементу $r$ среди указанных в условии цикла
+\end{enumerate}
+\item \textbf{return} $p$\end{enumerate}
+\begin{lem}
+Все пары из $\mathbb{T}_{0}\times P$ в алгоритме -- элементы $H\setminus\left\{ \left(0,0\right)\right\} $.
+\end{lem}
+Элементы, формируемые до начала главного цикла являются рассмотренными
+выше примерами отмеченных многочленов. Все остальные отмеченные многочлены
+в алгоритме формируются или умножением на $t\in\mathbb{T}$ или редукцией
+с сохранением сигнатуры, поэтому они корректны и лежат в $H$.
+
+Условия циклов, расширяющих $B$, таковы, что в\textbf{ }$B$ нет
+ни нулевых сигнатур, ни нулевых старших мономов. Поэтому $\sigma$
+никогда не обращается в 0 и нулевые сигнатуры в $R$ лишь у элементов
+$(0,g_{1}),(0,g_{2}),...,(0,g_{m}).$ Нулевой старший моном может
+быть у любого многочлена, добавляемого в $R$, а нулевых многочленов
+с одновременно нулевой сигнатурой в $R$ нет.
+
+
+\section{Остановка алгоритма}
+\begin{lem}
+\label{lem:exist-reductor}В любой момент работы алгоритма любой отмеченный
+многочлен из $B$ может быть редуцирован с сохранением сигнатуры по
+некоторому элементу $R.$
+\end{lem}
+Отмеченные многочлены добавляются в $B$ таким образом, чтоб иметь
+хотя бы один подходящий редуктор. При добавлении в первом цикле \textbf{for}
+редуктором является $(\sigma,p)\in R$, во втором $r\in R$.
+\begin{lem}
+\label{lem:r-gvw-small}До редукции многочлена $p'$, то есть на шаге
+\ref{enu:-before-reduce} любой итерации алгоритма, сигнатуры элементов
+$\left\{ r\in R|r\GVWl(\sigma,p')\right\} $ не делят $\sigma$.
+\end{lem}
+На первой итерации алгоритма это выполняется, поскольку $\sigma=1$
+и $R$ не содержит элементы с сигнатурами, делящими 1. На последующих
+итерациях это выполнено, поскольку если бы в $R$ существовали такие
+элементы, то $\left(\sigma,p'\right)$ был бы убран из $B$ в предыдущей
+итерации на шаге \ref{enu:-remove-from-B}.
+\begin{lem}
+\label{lem:r-gvw-big}После редукции многочлена $p'$ до $p$, на
+шаге \ref{enu:-after-reduce} любой итерации алгоритма, старшие мономы
+элементов $\left\{ r\in R|r\GVWg(\sigma,p)\right\} $ не делят $\HM(p)$.
+\end{lem}
+Вытекает из того, что цикл в \nameref{par:ReduceCheckingSignatures:}
+останавливается по достижении $p$, для которого такие элементы в
+$R$ не существуют.
+\begin{lem}
+\label{lem:adds-really-new}После редукции многочлена $p'$ до $p$,
+на шаге \ref{enu:-after-reduce} любой итерации алгоритма, элементы
+$R$ не могут одновременно иметь старшие мономы, делящие $\HM(p)$
+и сигнатуры, делящие $\sigma$.
+\end{lem}
+В силу леммы \ref{lem:exist-reductor} будет произведена хотя бы одна
+редукция $p'$, поэтому $(\sigma,p')\GVWg(\sigma,p)$. Отсюда по лемме
+\ref{lem:greater-or-smaller} для $\forall r\in R$ имеем $r\GVWg(\sigma,p)$
+или $r\GVWl(\sigma,p')$. Выполнение одного из неравенств позволяет
+применить одну из лемм \ref{lem:r-gvw-small} и \ref{lem:r-gvw-big}.
+\begin{thm}
+Алгоритм \nameref{par:SimpleSignatureGroebner} останавливается
+\end{thm}
+Для доказательства остановки нужно показать, что все циклы \textbf{do}
+выполняются лишь конечное число раз. В \nameref{par:ReduceCheckingSignatures:}
+при ненулевых $p$ на каждой итерации $\HM(p)$ уменьшается по $\prec_{0}$,
+что возможно лишь конечное число раз. При обнулении $p$ он завершится
+в силу $\GVWl$-минимальности $(\sigma,0)$.
+
+На каждом шаге основного цикла пополняется множество $R\subset\mathbb{T}_{0}\times P$.
+Оно может быть разбито как $R_{*0}\cup R_{0*}\cup R_{**},$ где $R_{*0}\subset\mathbb{T}\times\left\{ 0\right\} ,R_{0*}\subset\left\{ 0\right\} \times P\setminus\left\{ 0\right\} ,R_{**}\subset\mathbb{T}\times P\setminus\left\{ 0\right\} $.
+$R_{0*}$ не пополняется в силу $\sigma\neq0$. Для остальных рассмотрим
+идеалы моноидов: $L_{*0}=\left(\left\{ \sigma|(\sigma,0)\in R_{*0}\right\} \right)\subset\mathbb{T}$
+и $L_{**}=\left(\left\{ (\sigma,t)|\exists(\sigma,p)\in R_{**},t=\HM(p)\right\} \right)\subset\mathbb{T}\times\mathbb{T}$.
+В силу леммы \ref{lem:adds-really-new} добавляемые элементы расширяют
+на каждом шаге $L_{*0}$ или $L_{**}$, что по лемме Диксона может
+происходить лишь конечное число раз.
+
+
+\section{Корректность результата}
+\begin{defn}
+\emph{S-представлением} $h\in H$ над множеством $\left\{ r_{i}\right\} \subset H$
+будем называть выражение $\poly(h)=\sum_{j}K_{j}t_{j}\poly(r_{i_{j}}),$
+$K_{j}\in k,t_{j}\in\mathbb{T},i_{j}\in\mathbb{N}$, такое что $\forall j\HM(h)\succcurlyeq_{0}\HM(t_{j}r_{i_{j}}),\SIG(h)\succcurlyeq_{0}\SIG(t_{j}r_{i_{j}})$.\end{defn}
+\begin{lem}
+\label{lem:one-j-exact}При этом для хотя бы одного $j$ достигается
+$\HM(h)=\HM(t_{j}r_{i_{j}})$.\end{lem}
+\begin{defn}
+Назовём $R\subset H$\emph{ S-базисом} (соответственно \emph{S$_{\sigma}$-базисом}),
+если $\forall h\in H$ (соответственно $\forall h\in H,\SIG(h)\prec_{0}\sigma$)\emph{
+}имеет S-представление\emph{ }над $R$\emph{.}
+\end{defn}
+В качестве такого $j$ можно взять то, на котором достигается $\succ$-максимум
+$\HM(t_{j}r_{i_{j}})$.
+\begin{lem}
+\label{lem:s-basis-and-no-reductions}Пусть $\sigma\succ_{0}0,R=\left\{ r_{i}\right\} $
+-- S\emph{$_{\sigma}$}-базис и выбраны $h_{1},h_{2}\in H,\SIG(h_{i})=\sigma$,
+которые не редуцируются по $R$ с сохранением сигнатуры. Тогда $\HM(h_{1})=\HM(h_{2})$
+и у $h_{1}$ есть S-представление над $R\cup\left\{ h_{2}\right\} $.
+\end{lem}
+Из определения $H$ имеем $\exists u_{i}\in P:\HM(u_{i})=\sigma,u_{i}f=\poly(h_{i})\pmod{I_{0}},i=1,2.$
+Значит некоторой линейной комбинации $\poly(h_{i})$ сопоставляется
+$\prec_{0}\sigma$ сигнатура: 
+\[
+\exists K\in k\exists v\in P:\HM(v)=\sigma'\prec_{0}\sigma,vf=\poly(h_{1})-K\poly(h_{2})\pmod{I_{0}},
+\]
+то есть $\left(\sigma',p'\right)=\left(\sigma',\poly(h_{1})-K\poly(h_{2})\right)\in H$.
+Из определения S\emph{$_{\sigma}$}-базиса и $\sigma'\prec_{0}\sigma$
+вытекает $\exists r_{j}\in R,t\in\mathbb{T}:\SIG(tr_{j})\preccurlyeq_{0}\sigma',\HM(tr_{j})=\HM(p')$.
+Отсюда $\HM(h_{i})\neq\HM(p'),i=1,2$, иначе $r_{j}$ редуцировало
+бы $h_{i}$ с сохранением сигнатуры. Значит $\HM(h_{i})$ сокращаются
+при вычитании с $k$-коэффициентом, что даёт $\HM(h_{1})=\HM(h_{2})$.
+S-представление $h_{1}$ получается добавлением $K\poly(h_{2})$ к
+S-представлению $\left(\sigma',p'\right)$.
+\begin{thm}
+\label{thm:exist-r-sigma}На каждой итерации алгоритма после шага
+\ref{enu:-remove-from-B} выполнен инвариант: для $\forall\sigma\in\mathbb{T},\sigma\prec$
+сигнатур элементов $B$, найдутся $r_{\sigma}\in R,t_{\sigma}\in\mathbb{T}:\SIG(t_{\sigma}r_{\sigma})=\sigma$
+и $t_{\sigma}r_{\sigma}$ не редуцируется по $R$ с сохранением сигнатуры.
+\end{thm}
+Множество $R_{\sigma}=\left\{ r\in R|\SIG(r)|\sigma\right\} $ непусто,
+так как содержит добавленный на первой итерации элемент $r_{0}$ с
+$\SIG(r_{0})=1$. Обозначим за $r_{\sigma}$ его $\GVWl$-минимальный
+элемент; положим $t_{\sigma}=\frac{\sigma}{\SIG(r_{\sigma})}$. Предположим,
+что $t_{\sigma}r_{\sigma}$ может быть редуцирован с сохранением сигнатуры
+относительно некоторого $r_{1}\in R$. Отсюда следует, что $r_{1}\GVWg r_{\sigma}$,
+а также что они не нулевые. Значит на той же итерации, когда в $R$
+был добавлен последний из $\{r_{\sigma},r_{1}\}$, в множество $B$
+был добавлен многочлен $t'r_{\sigma}$, где $t'=\frac{\LCM(\HM(r_{1}),\HM(r_{\sigma}))}{\HM(r_{\sigma})}$,
+причём $t'|t_{\sigma}$. Отсюда $\SIG(t'r_{\sigma})|\SIG(t_{\sigma}r_{\sigma})=\sigma\Rightarrow\SIG(t'r_{\sigma})\preccurlyeq\sigma\prec$
+сигнатур элементов $B$. Значит $t'r_{\sigma}$ был выкинут на шаге
+\ref{enu:-remove-from-B} одной из прошедших итераций, то есть $\exists r_{2}\in R,r_{2}\GVWl t'r_{\sigma},\SIG(r_{2})|\SIG(t'r_{\sigma})$.
+Это невозможно, поскольку влечёт $r_{2}\GVWl r_{\sigma},r_{2}\in R_{\sigma}$,
+что противоречит $\GVWl$-минимальности $r_{\sigma}$.
+\begin{thm}
+\label{thm:has-s-repr}На каждой итерации алгоритма после шага \ref{enu:-remove-from-B}
+выполнен инвариант: $\forall h\in H,\SIG(h)\prec$ сигнатур элементов
+$B$, имеет S-представление над $R$.
+\end{thm}
+Предположим нарушение инварианта на какой-то итерации и рассмотрим
+$\prec_{0}$-минимальную $\sigma$, для которой $V_{\sigma}\eqdef\{h\in H\text{ нарушает инвариант}|\SIG(h)=\sigma\}\neq\varnothing$.
+Тогда $R$ -- S\emph{$_{\sigma}$}-базис. $\forall g\in I_{0}\,\left(0,g\right)$
+имеют S-представления над $\{(0,g_{1}),...,(0,g_{m})\}\subset R$,
+поэтому $\sigma\succ_{0}0$. $ $Выберем $v_{\sigma}$ -- один из
+элементов $V_{\sigma}$ с $\prec_{0}$-наименьшим $\HM$. Он не может
+быть редуцирован с сохранением сигнатуры по $R$, поскольку результат
+редукции $v_{1}$ был бы элементом $V_{\sigma}$ с $\HM(v_{1})\prec_{0}\HM(v_{\sigma})$.
+Возьмём $w_{\sigma}\eqdef t_{\sigma}r_{\sigma}$ из инварианта теоремы
+\ref{thm:exist-r-sigma} и применив лемму \ref{lem:s-basis-and-no-reductions}
+к $v_{\sigma},w_{\sigma}$ и $R$ получим что $v_{\sigma}$ имеет
+S-представление над $R\cup\{w_{\sigma}\}$. Вхождения $w_{\sigma}$
+в нём можно заменить на $t_{\sigma}r_{\sigma}$, получив представление
+$v_{\sigma}$ над $R$, что приводит к противоречию.
+\begin{lem}
+Если $R$ -- S-базис, то $R$ является базисом Грёбнера идеала $I$.
+\end{lem}
+Для $\forall p\in I$ можно взять некоторый $h=\left(\sigma,p\right)\in H$
+и применить лемму \ref{lem:one-j-exact}.
+\begin{thm}
+\nameref{par:SimpleSignatureGroebner} возвращает базис Грёбнера
+\end{thm}
+К моменту остановки $B=\varnothing$, значит по теореме \ref{thm:has-s-repr}
+$R$ -- S-базис.
+
+
+\subsection{Связь с аналогами}
+
+Представленный алгоритм связан с двумя уже известными алгоритмами,
+основанных на сигнатурах -- алгоритм G2V из работы \cite{Gao:2010:NIA:1837934.1837944}
+и версию F5, опубликованную в работе \cite{Arri:2011:FCR:2007509.2007761}.
+Оба они в определённом смысле являются модификациями простого F5,
+впервые представленного в работе \cite{Faugere:2002:NEA:780506.780516},
+причём модификации направлены на сокращение числа редукций многочленов,
+занимающих большую часть времени в процессе вычисления базисов Грёбнера.
+Первый из них отличается от немодифицированной версии тем, что не
+использует явного вычисления S-полиномов до проведения редукции и
+вводит специальный критерий \flqq{}super-topreducible\frqq{} для
+отбрасывания некоторых многочленов после их редукции. Второй применяет
+расширенный критерий, отбрасывая до редукции те из посчитанных S-полиномов,
+которые не смогут удовлетворять критерию \flqq{}primitve S-irreducble\frqq{}
+после редукции. Эти методики позволяют ускорить работу алгоритма,
+однако в обоих случаях в определённый момент отбрасывается многочлен,
+полученный в процессе предыдущих вычислений путём редукции или создания
+S-полинома.
+
+Практически во всех алгоритмах, основанных на сигнатурах, в том числе
+в исходном алгоритме F5 применяется и более эффективный тип критериев:
+критерии отбрасывания S-пар, не требующие вычислений с многочленами
+для своей проверки -- их отличия в различных алгоритмах подробно разобраны
+в работе \cite{Eder:2011:SAC:1993886.1993906}. Однако вопрос об их
+сравнительной эффективности остаётся неясным как с теоретической,
+так и с эмпирической точек зрения -- на различных примерах большее
+или меньшее преимущество могут иметь различные подходы.
+
+В алгоритме SimpleSignatureGroebner используется подход, который можно
+интерпретировать как объединение всего вышеуказанного: S-полиномы
+не вычисляются явно и их отбрасывание осуществляется на основе критерия,
+записываемого в точности как критерий второго алгоритма. При этом
+для проверки на шаге \ref{enu:-remove-from-B} элемента $B$ достаточно
+знать лишь его сигнатуру и старший моном. Поскольку каждый элемент
+$B$ получается как домноженный на моном $m$ элемент $r\in R$ их
+можно хранить в виде пары $\left(m,r\right)$, не выполняя без необходимости
+операции домножения всего многочлена на моном. Таким образом, для
+отброшенных элементов $B$ не производится никаких операций, сложность
+которых пропорциональна длине многочлена. Заметим, что применяемое
+во втором алгоритме вычисление старшего монома S-пары в общем случае
+напротив имеет именно такую сложность. Таким образом, возможна реализация
+алгоритма SimpleSignatureGroebner, в которой все операции над многолченами
+производятся лишь для многочленов, попадающих в результирующее множество.
+Результирующее множество не является минимальным базисом Грёбнера,
+но при этом в определённом смысле минимально. Это минимальное множество,
+удовлетворяющее определению S-базиса.
+
+Отсюда можно сделать вывод о некоторой полноте критериев отбрасывания:
+не может существовать критерия, который бы позволил убрать какие-либо
+операции редукции многочленов из алгоритма не добавив новых редукций
+и не лишив результат свойства быть базисом S-представлений. Из доказательств
+корректности многих алгоритмов, основанных на сигнатурах следует что
+их результат содержит такое множество, поэтому представленный алгоритм
+является в указанном смысле оптимальным алгоритмом, находящим минимальный
+базис S-представлений для последовательности идеалов, расширяемых
+одним многочленом на каждом шаге.
+
+Эта оптимальность не глобальна -- могут существовать более эффективные
+модификации алгоритма, которые не просто убирают вычисления, а заменяют
+одни вычисления над полиномами другими. К примеру, вопрос наиболее
+эффективного способа выбора редуктора в процедуре \nameref{par:ReduceCheckingSignatures:}
+является открытым. Представленный способ выбора, основанный на $\GVWl$-сравнении
+наиболее близок к способу выбора, применявшегося в оригинальном алгоритме
+F5.
+
+Алгоритм был реализован на С++ с использованием функций ядра программного
+комплекса Singular 3-1-4 и открытых наработок Christian Eder по реализации
+F5-подобных алгоритмов на этом ядре. Исходный код реализации содержится
+в функции ssg файла, доступного по адресу \href{https://github.com/galkinvv/Singular-f5-like/blob/ssg/kernel/kstd2.cc}{https://github.com/galkinvv/Singular-f5-like/blob/ssg/kernel/kstd2.cc}
+
+Сравнение реализации с другими алгоритмами вычисления базисов Грёбнера,
+реализованных Christian Eder подтвердили следующие теоретические соображения:
+\begin{itemize}
+\item Алгоритм SimpleSignatureGroebner корректно вычисляет базис Грёбнера
+\item Возвращаемое множество содержит не большее число многочленов, чем
+множество возвращаемое другими инкрементальными алгоритмами, про которые
+известно, что они возвращают S-представление
+\item Время работы алгоритма оказывается несколько меньше, чем у других
+инкрементальных алгоритмов, основанных на сигнатурах.
+\end{itemize}
+\spisoklit
+{\small\wrefdef{7}
+\wref{1}{Arri A., Perry J.} The F5 criterion revised // Journal of Symbolic Computation. 2011. {\bf46}, \No~9. 1017--1029.
+}
+\lend
+\end{document}
