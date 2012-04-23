@@ -1,0 +1,41 @@
+%------------------------------------------------------------------
+% FILE vestnik.sty
+%------------------
+\topmargin=-1cm \oddsidemargin=-1cm \textheight = 24.5cm \textwidth
+18.0cm \columnsep 10pt \columnseprule 0pt
+%=== Заголовок: \ltitle{НАЗВАНИЕ СТАТЬИ}{Инициалы и Фамилии авторов}
+\def\ltitle#1#2{ %\pagebreak
+\begin{center}\bf
+#1
+\end{center}
+\begin{center}\bf
+#2
+\end{center}
+}
+%=== Абстракт
+\def\oabstract#1{{\narrower{#1}}\bigskip\par}
+%=== Среда для задания теорем, лемм, утверждений, следствий и т.д.:
+%     \begin{theorem}{Теормема n.} ...\end{theorem}
+\newenvironment{theorem}[1]{\endgraf  {\bf #1}\em}{ \endgraf  }
+\def\proof{{\bf Доказательство. }}
+%=== Список литературы:
+%=    \begin{refdf}{число названий} ссылки\end{refdf}
+\newbox\boxno%
+\newenvironment{refdf}[2]{\endgraf
+\par\bigskip\par
+{\footnotesize СПИСОК \ ЛИТЕРАТУРЫ} \setbox\boxno=\hbox{#1.~\null}
+\bigskip\par
+#2 }{ \endgraf  }
+%= название одной статьи:
+% \wref{порядковый номер названия}{автор} название
+\def\wref#1#2{\par\hangindent=\wd\boxno \noindent
+\hbox to \wd\boxno{#1.~}{\it #2}}
+%------------------------------------------------------------------
+\ProvidesPackage{russian}[1999/12/18 v1.0 compatibility with 2.09]
+%\RequirePackage{mathtext}
+\RequirePackage[cp1251]{inputenc} \RequirePackage{amssymb}
+%\RequirePackage[koi8-r]{inputenc}
+%\RequirePackage{literat}
+\RequirePackage[T2A]{fontenc} \RequirePackage[russian]{babel}
+% you may put your additional customization stuff here
+\endinput
