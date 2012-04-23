@@ -200,7 +200,7 @@ iabstract
 
 \begin_layout Plain Layout
 
-{This paper presents an algorithm for computing Groebner bases based on
+{This paper presents an algorithm for computing Groebner bases based upon
  labeled polynomials and ideas from the algorithm F5.
  The main highlights of this algorithm compared with analogues are simplicity
  both of the algorithm and of the its correctness proof achieved without
@@ -1111,7 +1111,7 @@ return
 \end_inset
 
  лишь у элементов 
-\begin_inset Formula $(0,g_{1}),(0,g_{2}),...,(0,g_{m}).$
+\begin_inset Formula $(0,g_{1}),...,(0,g_{m}).$
 \end_inset
 
  Нулевой старший моном может быть у любого многочлена, добавляемого в 
@@ -1539,6 +1539,26 @@ name "lem:one-j-exact"
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Standard
+Следующее определение расширяет понятие S-базиса из работы 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Arri:2011:FCR:2007509.2007761"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+[1]:
 \end_layout
 
 \begin_layout Definition
@@ -2084,35 +2104,77 @@ reference "thm:has-s-repr"
 \end_layout
 
 \begin_layout Subsection
-Связь с аналогами
+Сравнение с аналогами
 \end_layout
 
 \begin_layout Standard
 Представленный алгоритм связан с двумя уже известными алгоритмами, основанных
- на сигнатурах -- алгоритм G2V из работы 
+ на сигнатурах -- алгоритмом G2V из работы 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Gao:2010:NIA:1837934.1837944"
 
 \end_inset
 
- и версию F5, опубликованную в работе 
+ 
+\end_layout
+
+\end_inset
+
+[2], версией F5, опубликованную в работе 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Arri:2011:FCR:2007509.2007761"
 
 \end_inset
 
+
+\end_layout
+
+\end_inset
+
+[1] и схеме алгоритма TRB-MJ, предложенной Lei Huang в статье 
+\begin_inset Quotes fld
+\end_inset
+
+A new conception for computing gröbner basis and its applications
+\begin_inset Quotes frd
+\end_inset
+
+, депонированной на 
+\begin_inset CommandInset href
+LatexCommand href
+target "http://arxiv.org/abs/1012.5425v2"
+
+\end_inset
+
 .
- Оба они в определённом смысле являются модификациями простого F5, впервые
+ Все они в определённом смысле являются модификациями простого F5, впервые
  представленного в работе 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Faugere:2002:NEA:780506.780516"
 
 \end_inset
 
-, причём модификации направлены на сокращение числа редукций многочленов,
+
+\end_layout
+
+\end_inset
+
+[3], причём модификации направлены на сокращение числа редукций многочленов,
  занимающих большую часть времени в процессе вычисления базисов Грёбнера.
  Первый из них отличается от немодифицированной версии тем, что не использует
  явного вычисления S-полиномов до проведения редукции и вводит специальный
@@ -2126,7 +2188,8 @@ super-topreducible
 
  для отбрасывания некоторых многочленов после их редукции.
  Второй применяет расширенный критерий, отбрасывая до редукции те из посчитанных
- S-полиномов, которые не смогут удовлетворять критерию 
+ S-полиномов, которые не смогут удовлетворять определённому в работе критерию
+ 
 \begin_inset Quotes fld
 \end_inset
 
@@ -2141,27 +2204,9 @@ primitve S-irreducble
 \end_layout
 
 \begin_layout Standard
-Практически во всех алгоритмах, основанных на сигнатурах, в том числе в
- исходном алгоритме F5 применяется и более эффективный тип критериев: критерии
- отбрасывания S-пар, не требующие вычислений с многочленами для своей проверки
- -- их отличия в различных алгоритмах подробно разобраны в работе 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "Eder:2011:SAC:1993886.1993906"
-
-\end_inset
-
-.
- Однако вопрос об их сравнительной эффективности остаётся неясным как с
- теоретической, так и с эмпирической точек зрения -- на различных примерах
- большее или меньшее преимущество могут иметь различные подходы.
-\end_layout
-
-\begin_layout Standard
-В алгоритме SimpleSignatureGroebner используется подход, который можно интерпрет
-ировать как объединение всего вышеуказанного: S-полиномы не вычисляются
- явно и их отбрасывание осуществляется на основе критерия, записываемого
- в точности как критерий второго алгоритма.
+В алгоритме SimpleSignatureGroebner S-полиномы не вычисляются явно и их
+ отбрасывание осуществляется на основе критерия, записываемого в точности
+ как критерий алгоритма из [1].
  При этом для проверки на шаге 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2198,34 +2243,52 @@ reference "enu:-remove-from-B"
 
  не производится никаких операций, сложность которых пропорциональна длине
  многочлена.
- Заметим, что применяемое во втором алгоритме вычисление старшего монома
+ Заметим, что применяемое в алгоритме из [1] вычисление старшего монома
  S-пары в общем случае напротив имеет именно такую сложность.
- Таким образом, возможна реализация алгоритма SimpleSignatureGroebner, в
- которой все операции над многолченами производятся лишь для многочленов,
+ Это делает возможной реализацию алгоритма SimpleSignatureGroebner, в которой
+ все длительные операции над многочленами производятся лишь для многочленов,
  попадающих в результирующее множество.
- Результирующее множество не является минимальным базисом Грёбнера, но при
- этом в определённом смысле минимально.
- Это минимальное множество, удовлетворяющее определению S-базиса.
+ Хотя результирующее множество не является минимальным базисом Грёбнера,
+ оно является минимальным S-базисом идеала, дополненным сигнатурами некоторых
+ нулевых многочленов.
+ Отсюда можно сделать вывод о некоторой оптимальности критериев отбрасывания
+ в случае регулярной входной последовательности: не может существовать критерия,
+ который бы позволил убрать какие-либо операции редукции многочленов из
+ алгоритма не добавив новых редукций и не лишив результат свойства быть
+ S-базисом.
 \end_layout
 
 \begin_layout Standard
-Отсюда можно сделать вывод о некоторой полноте критериев отбрасывания: не
- может существовать критерия, который бы позволил убрать какие-либо операции
- редукции многочленов из алгоритма не добавив новых редукций и не лишив
- результат свойства быть базисом S-представлений.
- Из доказательств корректности многих алгоритмов, основанных на сигнатурах
- следует что их результат содержит такое множество, поэтому представленный
- алгоритм является в указанном смысле оптимальным алгоритмом, находящим
- минимальный базис S-представлений для последовательности идеалов, расширяемых
- одним многочленом на каждом шаге.
+Другим отличием алгоритма SimpleSignatureGroebner от двух рассмотренных
+ выше и от TRB-MJ является отсутствие явной проверки критериев, связанных
+ с 
+\emph on
+сизигиями
+\emph default
+ -- нулевыми многочленами ненулевой сигнатуры.
+ Это вызвано тем, что сизигии являются 
+\begin_inset Formula $\GVWl$
+\end_inset
+
+-меньшими элементами 
+\begin_inset Formula $R$
+\end_inset
+
+ и участвуют в отбрасывании элементов 
+\begin_inset Formula $B$
+\end_inset
+
+ наравне с другими многочленами, реализуя критерии отбрасывания эквивалентные
+ алгоритму G2V, являющиеся оптимальными в смысле содержания минимального
+ базиса идеала сигнатур сизигий в моноиде 
+\begin_inset Formula $\mathbb{T}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-Эта оптимальность не глобальна -- могут существовать более эффективные модификац
-ии алгоритма, которые не просто убирают вычисления, а заменяют одни вычисления
- над полиномами другими.
- К примеру, вопрос наиболее эффективного способа выбора редуктора в процедуре
- 
+Вопрос наиболее эффективного способа выбора редуктора в 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "par:ReduceCheckingSignatures:"
@@ -2233,12 +2296,32 @@ reference "par:ReduceCheckingSignatures:"
 \end_inset
 
  является открытым.
- Представленный способ выбора, основанный на 
+ Представленный в этой работе способ выбора, основанный на 
 \begin_inset Formula $\GVWl$
 \end_inset
 
--сравнении наиболее близок к способу выбора, применявшегося в оригинальном
- алгоритме F5.
+-сравнении совпадает со способом выбора, применявшегося в оригинальном алгоритме
+ F5 для случая однородных многочленов позволяет осуществить этот выбор на
+ основе всё того же упорядочения множества 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Таким образом алгоритм SimpleSignatureGroebner реализует все критерии отбрасыван
+ия и выбора редуктора на основе одного и того же простого порядка 
+\begin_inset Formula $\GVWl$
+\end_inset
+
+ на 
+\begin_inset Formula $R$
+\end_inset
+
+, что и позволяет сформулировать и создать его простую реализацию без дополнител
+ьных списков многочленов (как в G2V и TRB-MJ) или правил (как в F5), которая
+ оказывается не менее эффективной чем указанные алгоритмы.
 \end_layout
 
 \begin_layout Standard
@@ -2257,8 +2340,9 @@ target "https://github.com/galkinvv/Singular-f5-like/blob/ssg/kernel/kstd2.cc"
 \end_layout
 
 \begin_layout Standard
-Сравнение реализации с другими алгоритмами вычисления базисов Грёбнера,
- реализованных Christian Eder подтвердили следующие теоретические соображения:
+Сравнение реализации SimpleSignatureGroebner с другими алгоритмами вычисления
+ базисов Грёбнера, реализованных Christian Eder подтвердили следующие соображени
+я:
 \end_layout
 
 \begin_layout Itemize
@@ -2266,14 +2350,34 @@ target "https://github.com/galkinvv/Singular-f5-like/blob/ssg/kernel/kstd2.cc"
 \end_layout
 
 \begin_layout Itemize
-Возвращаемое множество содержит не большее число многочленов, чем множество
- возвращаемое другими инкрементальными алгоритмами, про которые известно,
- что они возвращают S-представление
+Результат содержит не большее число многочленов, чем результат других инкремента
+льных алгоритмов, возвращающих S-базис
 \end_layout
 
 \begin_layout Itemize
-Время работы алгоритма оказывается несколько меньше, чем у других инкрементальны
-х алгоритмов, основанных на сигнатурах.
+Время работы алгоритма оказывается не больше, чем у других инкрементальных
+ алгоритмов, основанных на сигнатурах
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Выбор 
+\begin_inset Formula $\GVWl$
+\end_inset
+
+-максимального редуктора оказывается эффективней произвольного выбора.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2293,7 +2397,7 @@ spisoklit
 \backslash
 small
 \backslash
-wrefdef{7}
+wrefdef{4}
 \end_layout
 
 \begin_layout Plain Layout
@@ -2313,7 +2417,58 @@ No~9.
 
 \begin_layout Plain Layout
 
-}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+wref{2}{Gao S., Guan Y., Volny F.} A new incremental algorithm for computing
+ Groebner bases // Proceedings of the 2010 International Symposium on Symbolic
+ and Algebraic Computation.
+ ACM.
+ New York.
+ 2010.
+ 13--19.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+wref{3}{Faug
+\backslash
+`{e}re J.-C.} {A new efficient algorithm for computing Gr
+\backslash
+"{o}bner bases without reduction to zero (F5) // Proceedings of the 2002
+ International Symposium on Symbolic and Algebraic Computation.
+ ACM.
+ New York.
+ 2002.
+ 75--83.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+wref{4}{Eder C., Perry J.} {Signature-based algorithms to compute Gr
+\backslash
+"{o}bner bases // Proceedings of the 36th International Symposium on Symbolic
+ and Algebraic Computation.
+ ACM.
+ New York.
+ 2011.
+ 99--106.
+ }
 \end_layout
 
 \begin_layout Plain Layout
