@@ -117,7 +117,7 @@ $R$, являющееся базисом Грёбнера идеала $I=\left(g_{1},\dots,g_{m},f\right)$.
 -- моноид мономов, расширенный нулём. Порядок $\prec$ продолжается
 с сохранением вполне упорядоченности на $\mathbb{T}_{0}$ как $\prec_{0}$
 определением $\forall t\in\mathbb{T}\, t\succ_{0}0$. Понятие делимости
-мономов также расширяется на $\mathbb{T}_{0}$: $t_{1}|t_{2}\eqdef\exists t_{3}:t_{1}t_{3}=t_{2}$.
+мономов также расширяется на $\mathbb{T}_{0}$: $t_{1}|t_{2}\eqdef\exists t_{3}\, t_{1}t_{3}=t_{2}$.
 Для $p\in P,p\neq0$ старшие по $\prec$ моном и коэффициент обозначим
 $\HM(p)\in\mathbb{T}$ и $\HC(p)\in k$. Для нуля -- $\HM(0)\eqdef0\in\mathbb{T}_{0}$,
 $\HC(0)\eqdef0\in k$. За $\LCM(t_{1},t_{2})\in\mathbb{T}$ обозначим
@@ -125,7 +125,7 @@ $\HC(0)\eqdef0\in k$. За $\LCM(t_{1},t_{2})\in\mathbb{T}$ обозначим
 даются для фиксированных $I_{0}$ и $f$:
 \begin{defn}
 \emph{Отмеченным многочленом} называется пара $h=(\sigma,p)\in\mathbb{T}_{0}\times P$,
-удовлетворяющая условию корректности: $\exists u\in P:\HM(u)=\sigma,uf\equiv p\pmod{I_{0}}.$
+удовлетворяющая условию корректности: $\exists u\in P\,\HM(u)=\sigma,uf\equiv p\pmod{I_{0}}.$
 На отмеченные многочлены распространяются определения старшего монома
 $\HM(h)\eqdef\HM(p)$ и коэффициента $\HC(h)\eqdef\HC(p)$. Также
 определяются \emph{сигнатура} $\SIG(h)\eqdef\sigma$ и вводится обозначение
@@ -181,8 +181,9 @@ $\GVWg$.
 $\HM(h_{1})\prec_{0}\HM(h_{1}').$
 \begin{lem}
 \label{lem:greater-or-smaller}Пусть $h_{1}\GVWl h_{2}$ отмеченные
-многочлены. Тогда $\forall h_{3}\in H,h_{3}\neq(0,0)$ выполняется
-хотя бы одно из двух неравенств: $h_{1}\GVWl h_{3}$ или $h_{3}\GVWl h_{2}$.
+многочлены. Тогда $\forall h_{3}\in H\setminus\left\{ \left(0,0\right)\right\} $
+выполняется хотя бы одно из двух неравенств: $h_{1}\GVWl h_{3}$ или
+$h_{3}\GVWl h_{2}$.
 \end{lem}
 Из условия леммы известно, что
 \begin{equation}
@@ -223,28 +224,28 @@ $\HM(h_{1})\prec_{0}\HM(h_{1}').$
 \item \textbf{if} $p\not=0$\textbf{:}
 
 \begin{enumerate}
-\item \textbf{for $\{r\in R|r\GVWl\left(\sigma,p\right),\HM(r)\neq0\}$:}
+\item \textbf{for $\{r\in R\,|\, r\GVWl\left(\sigma,p\right),\HM(r)\neq0\}$:}
 
 \begin{enumerate}
 \item $B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(r)}r\}$
 \end{enumerate}
-\item \textbf{for }$\{r\in R|r\GVWg\left(\sigma,p\right)\}$\textbf{:}
+\item \textbf{for }$\{r\in R\,|\, r\GVWg\left(\sigma,p\right)\}$\textbf{:}
 
 \begin{enumerate}
 \item $B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(p)}\left(\sigma,p\right)\}$
 \end{enumerate}
 \end{enumerate}
-\item \label{enu:-remove-from-B}$B\leftarrow B\setminus\{b\in B|\exists r\in R,\, r\GVWl b\wedge\SIG(r)|\SIG(b)\}$
+\item \label{enu:-remove-from-B}$B\leftarrow B\setminus\{b\in B\,|\,\exists r\in R\, r\GVWl b\wedge\SIG(r)|\SIG(b)\}$
 \item \textbf{if $B\neq\varnothing$: }$(\sigma,p')\leftarrow$ элемент
 $B$ с $\prec$-минимальной сигнатурой
 \item \textbf{else: break}
 \end{enumerate}
-\item \textbf{return} $\{\poly(r)|r\in R\}$
+\item \textbf{return} $\{\poly(r)\,|\, r\in R\}$
 \end{enumerate}
 
 \paragraph*{\label{par:ReduceCheckingSignatures:}ReduceCheckingSignatures$\left(\sigma,p,R\right)$}
 \begin{enumerate}
-\item \textbf{do while $\exists r\in R|r\GVWg(\sigma,p)\wedge\HM(r)|\HM(p)$:}
+\item \textbf{do while $\exists r\in R\, r\GVWg(\sigma,p)\wedge\HM(r)|\HM(p)$:}
 
 \begin{enumerate}
 \item $p\leftarrow$редуцировать $p$ с сохранением сигнатуры по $\GVWg$-максимальному
@@ -280,7 +281,7 @@ $(0,g_{1}),...,(0,g_{m}).$ Нулевой старший моном может быть у любого
 \begin{lem}
 \label{lem:r-gvw-small}До редукции многочлена $p'$, то есть на шаге
 \ref{enu:-before-reduce} любой итерации алгоритма, сигнатуры элементов
-$\left\{ r\in R|r\GVWl(\sigma,p')\right\} $ не делят $\sigma$.
+$\left\{ r\in R\,|\, r\GVWl(\sigma,p')\right\} $ не делят $\sigma$.
 \end{lem}
 На первой итерации алгоритма это выполняется, поскольку $\sigma=1$
 и $R$ не содержит элементы с сигнатурами, делящими 1. На последующих
@@ -290,7 +291,8 @@ $\left\{ r\in R|r\GVWl(\sigma,p')\right\} $ не делят $\sigma$.
 \begin{lem}
 \label{lem:r-gvw-big}После редукции многочлена $p'$ до $p$, на
 шаге \ref{enu:-after-reduce} любой итерации алгоритма, старшие мономы
-элементов $\left\{ r\in R|r\GVWg(\sigma,p)\right\} $ не делят $\HM(p)$.
+элементов $\left\{ r\in R\,|\, r\GVWg(\sigma,p)\right\} $ не делят
+$\HM(p)$.
 \end{lem}
 Вытекает из того, что цикл в \nameref{par:ReduceCheckingSignatures:}
 останавливается по достижении $p$, для которого такие элементы в
@@ -318,8 +320,8 @@ $R$ не могут одновременно иметь старшие мономы, делящие $\HM(p)$,
 На каждом шаге основного цикла пополняется множество $R\subset\mathbb{T}_{0}\times P$.
 Оно может быть разбито как $R_{*0}\cup R_{0*}\cup R_{**},$ где $R_{*0}\subset\mathbb{T}\times\left\{ 0\right\} ,R_{0*}\subset\left\{ 0\right\} \times P\setminus\left\{ 0\right\} ,R_{**}\subset\mathbb{T}\times P\setminus\left\{ 0\right\} $.
 $R_{0*}$ не пополняется в силу $\sigma\neq0$. Для остальных рассмотрим
-идеалы моноидов: $L_{*0}=\left(\left\{ \sigma|(\sigma,0)\in R_{*0}\right\} \right)\subset\mathbb{T}$
-и $L_{**}=\left(\left\{ (\sigma,t)|\exists(\sigma,p)\in R_{**},t=\HM(p)\right\} \right)\subset\mathbb{T}\times\mathbb{T}$.
+идеалы моноидов: $L_{*0}=\left(\left\{ \sigma\,|\,(\sigma,0)\in R_{*0}\right\} \right)\subset\mathbb{T}$
+и $L_{**}=\left(\left\{ (\sigma,t)\,|\,\exists(\sigma,p)\in R_{**}\, t=\HM(p)\right\} \right)\subset\mathbb{T}\times\mathbb{T}$.
 В силу леммы \ref{lem:adds-really-new} добавляемые элементы расширяют
 на каждом шаге $L_{*0}$ или $L_{**}$, что по лемме Диксона может
 происходить лишь конечное число раз.
@@ -329,7 +331,7 @@ $R_{0*}$ не пополняется в силу $\sigma\neq0$. Для остальных рассмотрим
 \begin{defn}
 \emph{S-представлением} $h\in H$ над множеством $\left\{ r_{i}\right\} \subset H$
 будем называть выражение $\poly(h)=\sum_{j}K_{j}t_{j}\poly(r_{i_{j}}),$
-$K_{j}\in k,t_{j}\in\mathbb{T},i_{j}\in\mathbb{N}$, такое что $\forall j\HM(h)\succcurlyeq_{0}\HM(t_{j}r_{i_{j}}),\SIG(h)\succcurlyeq_{0}\SIG(t_{j}r_{i_{j}})$.\end{defn}
+$K_{j}\in k,t_{j}\in\mathbb{T},i_{j}\in\mathbb{N}$, такое что $\forall j\,\HM(h)\succcurlyeq_{0}\HM(t_{j}r_{i_{j}}),\SIG(h)\succcurlyeq_{0}\SIG(t_{j}r_{i_{j}})$.\end{defn}
 \begin{lem}
 \label{lem:one-j-exact}Пусть $\poly(h)=\sum_{j}K_{j}t_{j}\poly(r_{i_{j}})$
 -- S-представление для $h$. Тогда для хотя бы одного $j$ достигается
@@ -341,23 +343,23 @@ $\HM(t_{j}r_{i_{j}})$.
 Следующее определение расширяет понятие S-базиса из работы {[}1{]}:
 \begin{defn}
 Назовём $R\subset H$\emph{ S-базисом} (соответственно \emph{S$_{\sigma}$-базисом}),
-если $\forall h\in H$ (соответственно $\forall h\in H,\SIG(h)\prec_{0}\sigma$)\emph{
-}имеет S-представление\emph{ }над $R$\emph{.}\end{defn}
+если все элементы$H$ (соответственно $\left\{ h\in H\,|\,\SIG(h)\prec_{0}\sigma\right\} $)\emph{
+}имеют S-представление\emph{ }над $R$\emph{.}\end{defn}
 \begin{lem}
 \label{lem:s-basis-and-no-reductions}Пусть $\sigma\succ_{0}0,R=\left\{ r_{i}\right\} $
 -- S\emph{$_{\sigma}$}-базис и выбраны $h_{1},h_{2}\in H,\SIG(h_{i})=\sigma$,
 которые не редуцируются по $R$ с сохранением сигнатуры. Тогда $\HM(h_{1})=\HM(h_{2})$
 и у $h_{1}$ есть S-представление над $R\cup\left\{ h_{2}\right\} $.
 \end{lem}
-Из определения $H$ имеем $\exists u_{i}\in P:\HM(u_{i})=\sigma,u_{i}f\equiv\poly(h_{i})\pmod{I_{0}},i=1,2.$
+Из определения $H$ имеем $\exists u_{i}\in P\,\HM(u_{i})=\sigma,u_{i}f\equiv\poly(h_{i})\pmod{I_{0}},i=1,2.$
 Значит некоторой линейной комбинации $\poly(h_{i})$ сопоставляется
 $\prec_{0}\sigma$ сигнатура: 
 \[
-\exists K\in k\exists v\in P:\HM(v)=\sigma'\prec_{0}\sigma,vf\equiv\poly(h_{1})-K\poly(h_{2})\pmod{I_{0}},
+\exists K\in k,v\in P\,\HM(v)=\sigma'\prec_{0}\sigma,vf\equiv\poly(h_{1})-K\poly(h_{2})\pmod{I_{0}},
 \]
 то есть $\left(\sigma',p'\right)=\left(\sigma',\poly(h_{1})-K\poly(h_{2})\right)\in H$.
 Из определения S\emph{$_{\sigma}$}-базиса и $\sigma'\prec_{0}\sigma$
-вытекает $\exists r_{j}\in R,t\in\mathbb{T}:\SIG(tr_{j})\preccurlyeq_{0}\sigma',\HM(tr_{j})=\HM(p')$.
+вытекает $\exists r_{j}\in R,t\in\mathbb{T}\,\SIG(tr_{j})\preccurlyeq_{0}\sigma',\HM(tr_{j})=\HM(p')$.
 Отсюда $\HM(h_{i})\neq\HM(p'),i=1,2$, иначе $r_{j}$ редуцировало
 бы $h_{i}$ с сохранением сигнатуры. Значит, $\HM(h_{i})$ сокращаются
 при вычитании с $k$-коэффициентом, что даёт $\HM(h_{1})=\HM(h_{2})$.
@@ -369,9 +371,9 @@ S-представлению $\left(\sigma',p'\right)$.
 сигнатур элементов $B$, найдутся $r_{\sigma}\in R,t_{\sigma}\in\mathbb{T}:\SIG(t_{\sigma}r_{\sigma})=\sigma$
 и $t_{\sigma}r_{\sigma}$ не редуцируется по $R$ с сохранением сигнатуры.
 \end{thm}
-Множество $R_{\sigma}=\left\{ r\in R|\SIG(r)|\sigma\right\} $ непусто,
-так как содержит добавленный на первой итерации элемент $r_{0}$ с
-$\SIG(r_{0})=1$. Обозначим за $r_{\sigma}$ его $\GVWl$-минимальный
+Множество $R_{\sigma}=\left\{ r\in R\,|\,\SIG(r)|\sigma\right\} $
+непусто, так как содержит добавленный на первой итерации элемент $r_{0}$
+с $\SIG(r_{0})=1$. Обозначим за $r_{\sigma}$ его $\GVWl$-минимальный
 элемент; положим $t_{\sigma}=\frac{\sigma}{\SIG(r_{\sigma})}$. Предположим,
 что $t_{\sigma}r_{\sigma}$ может быть редуцирован с сохранением сигнатуры
 относительно некоторого $r_{1}\in R$. Отсюда следует, что $r_{1}\GVWg r_{\sigma}$,
@@ -382,7 +384,7 @@ $\SIG(r_{0})=1$. Обозначим за $r_{\sigma}$ его $\GVWl$-минимальный
 сигнатур элементов $B$. В силу этого неравенства на сигнатуры получается,
 что $t'r_{\sigma}$ уже не может быть элементом $B$, а значит был
 выкинут на шаге \ref{enu:-remove-from-B} одной из итераций, то есть
-$\exists r_{2}\in R,r_{2}\GVWl t'r_{\sigma},\SIG(r_{2})|\SIG(t'r_{\sigma})$.
+$\exists r_{2}\in R\, r_{2}\GVWl t'r_{\sigma},\SIG(r_{2})|\SIG(t'r_{\sigma})$.
 Это невозможно, поскольку влечёт $r_{2}\GVWl r_{\sigma},r_{2}\in R_{\sigma}$,
 что противоречит $\GVWl$-минимальности $r_{\sigma}$.
 \begin{thm}
@@ -391,16 +393,16 @@ $\exists r_{2}\in R,r_{2}\GVWl t'r_{\sigma},\SIG(r_{2})|\SIG(t'r_{\sigma})$.
 $B$, имеет S-представление над $R$.
 \end{thm}
 Предположим нарушение инварианта на какой-то итерации и рассмотрим
-$\prec_{0}$-минимальную $\sigma$, для которой $V_{\sigma}\eqdef\{h\in H\text{ нарушает инвариант}|\SIG(h)=\sigma\}\neq\varnothing$.
+$\prec_{0}$-минимальную $\sigma$, для которой непусто $V_{\sigma}\eqdef\{h\in H\,|\, h\mbox{ нарушает инвариант},\SIG(h)=\sigma\}$.
 Тогда $R$ -- S\emph{$_{\sigma}$}-базис. $\forall g\in I_{0}\,\left(0,g\right)$
 имеют S-представления над $\{(0,g_{1}),...,(0,g_{m})\}\subset R$,
-поэтому $\sigma\succ_{0}0$. $ $Выберем $v_{\sigma}$ -- один из
-элементов $V_{\sigma}$ с $\prec_{0}$-наименьшим $\HM$. Он не может
-быть редуцирован с сохранением сигнатуры по $R$, поскольку результат
-редукции $v_{1}$ был бы элементом $V_{\sigma}$ с $\HM(v_{1})\prec_{0}\HM(v_{\sigma})$.
+поэтому $\sigma\succ_{0}0$. Выберем $v_{\sigma}$ -- один из элементов
+$V_{\sigma}$ с $\prec_{0}$-наименьшим $\HM$. Он не может быть редуцирован
+с сохранением сигнатуры по $R$, поскольку результат редукции $v_{1}$
+был бы элементом $V_{\sigma}$ с $\HM(v_{1})\prec_{0}\HM(v_{\sigma})$.
 Возьмём $w_{\sigma}\eqdef t_{\sigma}r_{\sigma}$ из инварианта теоремы
-\ref{thm:exist-r-sigma} и применив лемму \ref{lem:s-basis-and-no-reductions}
-к $v_{\sigma},w_{\sigma}$ и $R$ получим что $v_{\sigma}$ имеет
+\ref{thm:exist-r-sigma} и применим лемму \ref{lem:s-basis-and-no-reductions}
+к $v_{\sigma},w_{\sigma}$ и $R$. Получим что $v_{\sigma}$ имеет
 S-представление над $R\cup\{w_{\sigma}\}$. Вхождения $w_{\sigma}$
 в нём можно заменить на $t_{\sigma}r_{\sigma}$, получив представление
 $v_{\sigma}$ над $R$, что приводит к противоречию.
