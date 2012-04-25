@@ -302,7 +302,7 @@ iabstract
 \begin_inset Formula $\exists i\, g_{i}\in k\Rightarrow I=P$
 \end_inset
 
- не представляет интереса, далее предполагается что 
+ не представляют интереса, далее предполагается что 
 \begin_inset Formula $f\neq0,\forall i\, g_{i}\notin k.$
 \end_inset
 
@@ -397,7 +397,7 @@ iabstract
 \end_inset
 
 , удовлетворяющая условию корректности: 
-\begin_inset Formula $\exists u\in P:\HM(u)=\sigma,uf=p\pmod{I_{0}}.$
+\begin_inset Formula $\exists u\in P:\HM(u)=\sigma,uf\equiv p\pmod{I_{0}}.$
 \end_inset
 
  На отмеченные многочлены распространяются определения старшего монома 
@@ -672,7 +672,7 @@ name "lem:greater-or-smaller"
 \begin_inset Formula $h_{1}\GVWl h_{3}$
 \end_inset
 
- и 
+ или 
 \begin_inset Formula $h_{3}\GVWl h_{2}$
 \end_inset
 
@@ -1073,8 +1073,8 @@ return
 \end_layout
 
 \begin_layout Standard
-Элементы, формируемые до начала главного цикла являются рассмотренными выше
- примерами отмеченных многочленов.
+Элементы, формируемые до начала главного цикла, являются рассмотренными
+ выше примерами отмеченных многочленов.
  Все остальные отмеченные многочлены в алгоритме формируются или умножением
  на 
 \begin_inset Formula $t\in\mathbb{T}$
@@ -1153,19 +1153,19 @@ name "lem:exist-reductor"
 \end_inset
 
  таким образом, чтоб иметь хотя бы один подходящий редуктор.
- При добавлении в первом цикле 
-\series bold
-for
-\series default
- редуктором является 
+ 
 \begin_inset Formula $(\sigma,p)\in R$
 \end_inset
 
-, во втором 
+ является таким редуктором при добавлении в первом цикле 
+\series bold
+for
+\series default
+, 
 \begin_inset Formula $r\in R$
 \end_inset
 
-.
+ -- во втором.
 \end_layout
 
 \begin_layout Lemma
@@ -1311,7 +1311,7 @@ reference "enu:-after-reduce"
 \begin_inset Formula $\HM(p)$
 \end_inset
 
- и сигнатуры, делящие 
+, и сигнатуры, делящие 
 \begin_inset Formula $\sigma$
 \end_inset
 
@@ -1514,7 +1514,16 @@ name "lem:one-j-exact"
 
 \end_inset
 
-При этом для хотя бы одного 
+Пусть 
+\begin_inset Formula $\poly(h)=\sum_{j}K_{j}t_{j}\poly(r_{i_{j}})$
+\end_inset
+
+ -- S-представление для 
+\begin_inset Formula $h$
+\end_inset
+
+.
+ Тогда для хотя бы одного 
 \begin_inset Formula $j$
 \end_inset
 
@@ -1652,7 +1661,7 @@ name "lem:s-basis-and-no-reductions"
 \end_inset
 
  имеем 
-\begin_inset Formula $\exists u_{i}\in P:\HM(u_{i})=\sigma,u_{i}f=\poly(h_{i})\pmod{I_{0}},i=1,2.$
+\begin_inset Formula $\exists u_{i}\in P:\HM(u_{i})=\sigma,u_{i}f\equiv\poly(h_{i})\pmod{I_{0}},i=1,2.$
 \end_inset
 
  Значит некоторой линейной комбинации 
@@ -1666,7 +1675,7 @@ name "lem:s-basis-and-no-reductions"
  сигнатура: 
 \begin_inset Formula 
 \[
-\exists K\in k\exists v\in P:\HM(v)=\sigma'\prec_{0}\sigma,vf=\poly(h_{1})-K\poly(h_{2})\pmod{I_{0}},
+\exists K\in k\exists v\in P:\HM(v)=\sigma'\prec_{0}\sigma,vf\equiv\poly(h_{1})-K\poly(h_{2})\pmod{I_{0}},
 \]
 
 \end_inset
@@ -1706,7 +1715,7 @@ name "lem:s-basis-and-no-reductions"
 \end_inset
 
  с сохранением сигнатуры.
- Значит 
+ Значит, 
 \begin_inset Formula $\HM(h_{i})$
 \end_inset
 
@@ -1847,18 +1856,22 @@ reference "enu:-remove-from-B"
 \end_inset
 
 .
- Значит 
+ В силу этого неравенства на сигнатуры получается, что 
 \begin_inset Formula $t'r_{\sigma}$
 \end_inset
 
- был выкинут на шаге 
+ уже не может быть элементом 
+\begin_inset Formula $B$
+\end_inset
+
+, а значит был выкинут на шаге 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:-remove-from-B"
 
 \end_inset
 
- одной из прошедших итераций, то есть 
+ одной из итераций, то есть 
 \begin_inset Formula $\exists r_{2}\in R,r_{2}\GVWl t'r_{\sigma},\SIG(r_{2})|\SIG(t'r_{\sigma})$
 \end_inset
 
@@ -2141,15 +2154,8 @@ key "Arri:2011:FCR:2007509.2007761"
 
 \end_inset
 
-[1] и схеме алгоритма TRB-MJ, предложенной Lei Huang в статье 
-\begin_inset Quotes fld
-\end_inset
-
-A new conception for computing gröbner basis and its applications
-\begin_inset Quotes frd
-\end_inset
-
-, депонированной на 
+[1] и схеме алгоритма TRB-MJ, предложенной Lei Huang в статье "A new conception
+ for computing Gröbner basis and its applications", депонированной на 
 \begin_inset CommandInset href
 LatexCommand href
 target "http://arxiv.org/abs/1012.5425v2"
@@ -2178,26 +2184,11 @@ key "Faugere:2002:NEA:780506.780516"
  занимающих большую часть времени в процессе вычисления базисов Грёбнера.
  Первый из них отличается от немодифицированной версии тем, что не использует
  явного вычисления S-полиномов до проведения редукции и вводит специальный
- критерий 
-\begin_inset Quotes fld
-\end_inset
-
-super-topreducible
-\begin_inset Quotes frd
-\end_inset
-
- для отбрасывания некоторых многочленов после их редукции.
+ критерий "super-topreducible" для отбрасывания некоторых многочленов после
+ их редукции.
  Второй применяет расширенный критерий, отбрасывая до редукции те из посчитанных
  S-полиномов, которые не смогут удовлетворять определённому в работе критерию
- 
-\begin_inset Quotes fld
-\end_inset
-
-primitve S-irreducble
-\begin_inset Quotes frd
-\end_inset
-
- после редукции.
+ "primitve S-irreducble" после редукции.
  Эти методики позволяют ускорить работу алгоритма, однако в обоих случаях
  в определённый момент отбрасывается многочлен, полученный в процессе предыдущих
  вычислений путём редукции или создания S-полинома.
@@ -2235,8 +2226,7 @@ reference "enu:-remove-from-B"
 \begin_inset Formula $\left(m,r\right)$
 \end_inset
 
-, не выполняя без необходимости операции домножения всего многочлена на
- моном.
+, не выполняя без необходимости операции умножения всего многочлена на моном.
  Таким образом, для отброшенных элементов 
 \begin_inset Formula $B$
 \end_inset
@@ -2326,8 +2316,8 @@ reference "par:ReduceCheckingSignatures:"
 
 \begin_layout Standard
 Алгоритм был реализован на С++ с использованием функций ядра программного
- комплекса Singular 3-1-4 и открытых наработок Christian Eder по реализации
- F5-подобных алгоритмов на этом ядре.
+ комплекса Singular 3-1-4 и открытых наработок Кристиана Эдера (одного из
+ авторов [4]) по реализации F5-подобных алгоритмов на этом ядре.
  Исходный код реализации содержится в функции ssg файла, доступного по адресу
  
 \begin_inset CommandInset href
