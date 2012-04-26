@@ -560,12 +560,12 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 Элементы с нулевой сигнатурой и старшим мономом оказываются экстремумами:
 \begin_inset Formula 
 \[
-\forall\sigma_{1},\sigma_{2},p_{1},p_{2}\,\left(0,p_{1}\right)\not\GVWl\left(\sigma_{2},p_{2}\right),\,\left(\sigma_{1},0\right)\not\GVWg\left(\sigma_{2},p_{2}\right)
+\forall\sigma_{1},\sigma_{2},p_{1},p_{2}\,\left(0,p_{1}\right)\not\GVWl\left(\sigma_{2},p_{2}\right),\,\left(\sigma_{1},0\right)\not\GVWg\left(\sigma_{2},p_{2}\right).
 \]
 
 \end_inset
 
-.
+
 \end_layout
 
 \begin_layout Lemma
@@ -2062,7 +2062,7 @@ reference "lem:s-basis-and-no-reductions"
 \end_inset
 
  -- S-базис, то 
-\begin_inset Formula $R$
+\begin_inset Formula $\{\poly(r)\,|\, r\in R\}$
 \end_inset
 
  является базисом Грёбнера идеала 
@@ -2159,14 +2159,7 @@ key "Arri:2011:FCR:2007509.2007761"
 \end_inset
 
 [1] и схеме алгоритма TRB-MJ, предложенной Lei Huang в статье "A new conception
- for computing Gröbner basis and its applications", депонированной на 
-\begin_inset CommandInset href
-LatexCommand href
-target "http://arxiv.org/abs/1012.5425v2"
-
-\end_inset
-
-.
+ for computing Gröbner basis and its applications", депонированной на .
  Все они в определённом смысле являются модификациями простого F5, впервые
  представленного в работе 
 \begin_inset Note Note
@@ -2188,11 +2181,11 @@ key "Faugere:2002:NEA:780506.780516"
  занимающих большую часть времени в процессе вычисления базисов Грёбнера.
  Первый из них отличается от немодифицированной версии тем, что не использует
  явного вычисления S-полиномов до проведения редукции и вводит специальный
- критерий "super-topreducible" для отбрасывания некоторых многочленов после
- их редукции.
+ критерий ``super-topreducible'' для отбрасывания некоторых многочленов
+ после их редукции.
  Второй применяет расширенный критерий, отбрасывая до редукции те из посчитанных
  S-полиномов, которые не смогут удовлетворять определённому в работе критерию
- "primitve S-irreducble" после редукции.
+ ``primitive S-irreducible'' после редукции.
  Эти методики позволяют ускорить работу алгоритма, однако в обоих случаях
  в определённый момент отбрасывается многочлен, полученный в процессе предыдущих
  вычислений путём редукции или создания S-полинома.
@@ -2372,9 +2365,6 @@ status open
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -2411,6 +2401,7 @@ No~9.
 
 \begin_layout Plain Layout
 
+f
 \end_layout
 
 \begin_layout Plain Layout
@@ -2418,7 +2409,9 @@ No~9.
 
 \backslash
 wref{2}{Gao S., Guan Y., Volny F.} A new incremental algorithm for computing
- Groebner bases // Proceedings of the 2010 International Symposium on Symbolic
+ Gr
+\backslash
+"{o}bner bases // Proceedings of the 2010 International Symposium on Symbolic
  and Algebraic Computation.
  ACM.
  New York.
@@ -2436,7 +2429,7 @@ wref{2}{Gao S., Guan Y., Volny F.} A new incremental algorithm for computing
 \backslash
 wref{3}{Faug
 \backslash
-`{e}re J.-C.} {A new efficient algorithm for computing Gr
+`{e}re J.-C.} A new efficient algorithm for computing Gr
 \backslash
 "{o}bner bases without reduction to zero (F5) // Proceedings of the 2002
  International Symposium on Symbolic and Algebraic Computation.
@@ -2454,7 +2447,7 @@ wref{3}{Faug
 
 
 \backslash
-wref{4}{Eder C., Perry J.} {Signature-based algorithms to compute Gr
+wref{4}{Eder C., Perry J.} Signature-based algorithms to compute Gr
 \backslash
 "{o}bner bases // Proceedings of the 36th International Symposium on Symbolic
  and Algebraic Computation.
@@ -2462,7 +2455,101 @@ wref{4}{Eder C., Perry J.} {Signature-based algorithms to compute Gr
  New York.
  2011.
  99--106.
- }
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+wref{5}{Huang L.}A new conception for computing Gr
+\backslash
+"{o}bner basis and its applications // депонировано: 
+\backslash
+href{http://arxiv.org/abs/1012.5425v2}{}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+wref{6}{Roune B., Stillman M.} Practical Gr
+\backslash
+"{o}bner basis computation // Proceedings of the 2012 International Symposium
+ on Symbolic and Algebraic Computation.
+ ACM.
+ New York.
+ 2012.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+wref{7}{Eder C., Perry J.} F5C: A variant of Faug
+\backslash
+`{e}re's F5 algorithm with reduced Gr
+\backslash
+"{o}bner bases // Journal of Symbolic Computation.
+ 2010.
+ {
+\backslash
+bf45}, 
+\backslash
+No~12.
+ 1442­-1458.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+wref{8}{Зобнин А.} Обобщение алгоритма F5 вычисления базиса гребнера полиномиальн
+ых идеалов // Программирование.
+ 2009.
+ 
+\backslash
+No~2.
+ 21--30
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+wref{9}{Sun, Y., Wang, D.} The F5 algorithm in Buchberger’s style // Journal
+ of Systems Science and Complexity.
+ 2011.
+ {
+\backslash
+bf24}, 
+\backslash
+No~6.
+ 1218--1231.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
