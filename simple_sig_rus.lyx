@@ -4,12 +4,16 @@
 \begin_header
 \textclass article
 \begin_preamble
+\newcommand{\vestnikonly}[1]{}
+\newcommand{\novestnikonly}[1]{#1}
+\vestnikonly{
+\usepackage{allerree}
+
 \def\wdeb{0}
 \usepackage{nameref}
 \usepackage{url}
 \let\href\undefined
 \newcommand{\href}[2]{\url{#1}}
-\usepackage{allerree}
 
 \newcounter{countergvtheorems}
 
@@ -24,7 +28,15 @@
 \renewenvironment{defn}
 {\par \refstepcounter{countergvtheorems} {\bf Определение \arabic{countergvtheorems}.}}
 {\par}
-
+}%\vestnikonly
+\novestnikonly{
+\newcommand{\iabstract}[4]{
+\begin{abstract}
+#3
+\footnote{\emph{Keywords:} #4}
+\end{abstract}
+}
+}%\novestnikonly
 
 
 \DeclareMathOperator{\HC}{HC}
@@ -33,7 +45,6 @@
 \DeclareMathOperator{\poly}{poly}
 \DeclareMathOperator{\SIG}{\mathcal{S}}
 \end_preamble
-\options 11pt,twoside
 \use_default_options true
 \begin_modules
 theorems-std
@@ -86,10 +97,6 @@ theorems-std
 \shortcut idx
 \color #008000
 \end_index
-\leftmargin 4cm
-\topmargin 4cm
-\rightmargin 4cm
-\bottommargin 4cm
 \secnumdepth -1
 \tocdepth 3
 \paragraph_separation indent
@@ -110,7 +117,7 @@ theorems-std
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\GVWl}{<_{\text{H}}}
+\renewcommand{\GVWl}{<_{\text{H}}}
 \end_inset
 
 
@@ -118,7 +125,7 @@ theorems-std
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\GVWg}{>_{\text{\textnormal{H}}}}
+\renewcommand{\GVWg}{>_{\text{\textnormal{H}}}}
 \end_inset
 
 
@@ -126,7 +133,7 @@ theorems-std
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
+\renewcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
 \end_inset
 
 
@@ -134,7 +141,7 @@ theorems-std
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
+\renewcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
 \end_inset
 
 
@@ -143,6 +150,87 @@ theorems-std
 \begin_layout Standard
 \begin_inset ERT
 status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+novestnikonly{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Simple signature-based Groebner basis algorithm
+\end_layout
+
+\begin_layout Author
+Galkin Vasily
+\begin_inset Newline newline
+\end_inset
+
+Moscow State University
+\begin_inset Newline newline
+\end_inset
+
+email:
+\begin_inset CommandInset href
+LatexCommand href
+target " galkin-vv@yandex.ru"
+type "mailto:"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+providecommand{
+\backslash
+definitionname}{Definition}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+providecommand{
+\backslash
+lemmaname}{Lemma}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+providecommand{
+\backslash
+theoremname}{Theorem} 
+\end_layout
+
+\begin_layout Plain Layout
+
+}%
+\backslash
+novestnikonly
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+vestnikonly{
+\end_layout
 
 \begin_layout Plain Layout
 
@@ -179,6 +267,13 @@ it Галкин Василий Витальевич} --- асп.
 
 \begin_layout Plain Layout
 
+}%
+\backslash
+vestnikonly
+\end_layout
+
+\begin_layout Plain Layout
+
 
 \backslash
 iabstract
@@ -211,21 +306,9 @@ iabstract
  complex analogues} {Groebner basis, F5 algorithm, labeled polynomials}
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
-\end_layout
-
-\begin_layout Section
-Определения
 \end_layout
 
 \begin_layout Standard
@@ -311,6 +394,10 @@ iabstract
  Заметим, что в отличии от алгоритма F5, описанного в [1], однородность
  многочленов не требуется.
  
+\end_layout
+
+\begin_layout Section
+Определения
 \end_layout
 
 \begin_layout Standard
@@ -2307,12 +2394,19 @@ status open
 
 
 \backslash
+vestnikonly{
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
 spisoklit
 \end_layout
 
 \begin_layout Plain Layout
 
-{
+
 \backslash
 small
 \backslash
@@ -2524,6 +2618,13 @@ wref{11}{Roune B., Stillman M.} Practical Gr
 
 \backslash
 lend
+\end_layout
+
+\begin_layout Plain Layout
+
+}%
+\backslash
+vestnikonly
 \end_layout
 
 \end_inset

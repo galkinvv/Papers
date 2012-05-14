@@ -8,8 +8,8 @@
 \usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage[unicode=true]
- {hyperref}
+% \usepackage[unicode=true]
+ % {hyperref}
 
 \makeatletter
 
@@ -36,8 +36,8 @@
 {\end{list}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
-\newcommand{\vestnikonly}[1]{}
-\newcommand{\novestnikonly}[1]{#1}
+\newcommand{\vestnikonly}[1]{#1}
+\newcommand{\novestnikonly}[1]{}
 \vestnikonly{
 \usepackage{allerree}
 
@@ -226,17 +226,17 @@ $h_{3}\GVWl h_{2}$.
 \end{lem}
 Из условия леммы известно, что
 \begin{equation}
-\HM(h_{1})\SIG(h_{2})\prec_{0}\HM(h_{2})\SIG(h_{1})\label{eq:gvw-order-3}
+\HM(h_{1})\SIG(h_{2})\prec_{0}\HM(h_{2})\SIG(h_{1})\tag{1}
 \end{equation}
 откуда $\HM(h_{2})\neq0,\SIG(h_{1})\neq0$. Поэтому, если $\HM(h_{3})=0$,
 имеем $h_{3}\GVWl h_{2}$, а если $\SIG(h_{3})=0$ -- то $h_{1}\GVWl h_{3}$.
-Иначе можно домножить неравенство \eqref{eq:gvw-order-3} на ненулевой
+Иначе можно домножить неравенство (1) на ненулевой
 элемент $\HM(h_{3})\SIG(h_{3})$: 
 \begin{equation}
-\HM(h_{3})\SIG(h_{3})\HM(h_{1})\SIG(h_{2})\prec_{0}\HM(h_{3})\SIG(h_{3})\HM(h_{2})\SIG(h_{1}).\label{eq:left-or-right-monom}
+\HM(h_{3})\SIG(h_{3})\HM(h_{1})\SIG(h_{2})\prec_{0}\HM(h_{3})\SIG(h_{3})\HM(h_{2})\SIG(h_{1}).\tag{2}
 \end{equation}
 Поэтому $\HM(h_{3})^{2}\SIG(h_{2})\SIG(h_{1})\in\mathbb{T}_{0}$ будет
-или $\succ_{0}$ левой или $\prec_{0}$ правой части неравенства \eqref{eq:left-or-right-monom},
+или $\succ_{0}$ левой или $\prec_{0}$ правой части неравенства (2),
 и после сокращения даст эквивалентное утверждению леммы неравенство.
 
 
