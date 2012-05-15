@@ -1,0 +1,66 @@
+\begin{thebibliography}{10}
+
+\bibitem{TheF5Revised}
+A.~{Arri} and J.~{Perry}.
+\newblock The f5 criterion revised.
+\newblock {\em ArXiv e-prints}, December 2010.
+
+\bibitem{F5C}
+C.~{Eder} and J.~{Perry}.
+\newblock F5c: a variant of faug\`{e}re's f5 algorithm with reduced gr\"{o}bner
+  bases.
+\newblock {\em ArXiv e-prints}, June 2009.
+
+\bibitem{SignatureBasedGBs}
+C.~{Eder} and J.~{Perry}.
+\newblock Signature-based algorithms to compute gr\"{o}bner bases.
+\newblock {\em ArXiv e-prints}, January 2011.
+
+\bibitem{FaugereF5}
+Jean~Charles Faug\`{e}re.
+\newblock A new efficient algorithm for computing gr\"{o}bner bases without
+  reduction to zero (f5).
+\newblock In {\em Proceedings of the 2002 international symposium on Symbolic
+  and algebraic computation}, ISSAC '02, pages 75--83, New York, NY, USA, 2002.
+  ACM.
+
+\bibitem{G2V}
+Shuhong Gao, Yinhua Guan, and Frank Volny, IV.
+\newblock A new incremental algorithm for computing gr\"{o}bner bases.
+\newblock In {\em Proceedings of the 2010 International Symposium on Symbolic
+  and Algebraic Computation}, ISSAC '10, pages 13--19, New York, NY, USA, 2010.
+  ACM.
+
+\bibitem{GermanF5Proof}
+O.~{German}.
+\newblock Proof of the faug\`{e}re criterion for the f5 algorithm.
+\newblock {\em Mathematical Notes}, 88(4):502--510, 2010.
+
+\bibitem{HuangConception}
+L.~{Huang}.
+\newblock A new conception for computing gr\"{o}bner basis and its
+  applications.
+\newblock {\em ArXiv e-prints}, December 2010.
+
+\bibitem{KreuzerRobbianoBook1}
+Martin {Kreuzer} and Lorenzo {Robbiano}.
+\newblock {\em Computational commutative algebra. 1}.
+\newblock Springer-Verlag, Berlin, 2000.
+
+\bibitem{PracticalGB}
+B.~{Roune} and M.~{Stillman}.
+\newblock Practical gr\"{o}bner basis computation.
+\newblock 2012.
+
+\bibitem{F5InBBStyle}
+Y.~{Sun} and D.~{Wang}.
+\newblock The f5 algorithm in buchberger's style.
+\newblock {\em ArXiv e-prints}, June 2010.
+
+\bibitem{ZobninGeneralization}
+A.~I. Zobnin.
+\newblock Generalization of the f5 algorithm for calculating gr\"{o}bner bases
+  for polynomial ideals.
+\newblock {\em Program. Comput. Softw.}, 36(2):75--82, March 2010.
+
+\end{thebibliography}

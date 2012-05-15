@@ -18,9 +18,11 @@ simple_sig_rus.vestnik.pdf: simple_sig_rus.vestnik.tex
 	pdflatex $^
 simple_sig_rus.pdf: simple_sig_rus.tex
 	pdflatex $^
+	bibtex simple_sig_rus.aux
 	pdflatex $^
 simple_sig.pdf: simple_sig.tex
 	pdflatex $^
+	bibtex simple_sig.aux
 	pdflatex $^
 clean-logs:
 	rm -f *.aux *.log *.out

@@ -67,7 +67,7 @@ theorems-std
 \graphics default
 \default_output_format default
 \output_sync 0
-\bibtex_command default
+\bibtex_command bibtex
 \index_command default
 \paperfontsize default
 \spacing single
@@ -117,7 +117,7 @@ theorems-std
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\GVWl}{<_{\text{H}}}
+\newcommand{\GVWl}{<_{\text{H}}}
 \end_inset
 
 
@@ -125,7 +125,7 @@ theorems-std
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\GVWg}{>_{\text{\textnormal{H}}}}
+\newcommand{\GVWg}{>_{\text{\textnormal{H}}}}
 \end_inset
 
 
@@ -133,7 +133,7 @@ theorems-std
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
+\newcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
 \end_inset
 
 
@@ -141,7 +141,7 @@ theorems-std
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
+\newcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
 \end_inset
 
 
@@ -391,9 +391,14 @@ iabstract
 \begin_inset Formula $f\neq0,\forall i\, g_{i}\notin k.$
 \end_inset
 
- Заметим, что в отличии от алгоритма F5, описанного в [1], однородность
- многочленов не требуется.
- 
+ Заметим, что в отличии от алгоритма F5, описанного в 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5"
+
+\end_inset
+
+, однородность многочленов не требуется.
 \end_layout
 
 \begin_layout Section
@@ -1555,7 +1560,14 @@ reference "par:ReduceCheckingSignatures:"
 \end_inset
 
  применим подход, основанный на понятии идеалов моноидов, предложенном в
- [2] как ``monoid ideal''.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "KreuzerRobbianoBook1"
+
+\end_inset
+
+ как ``monoid ideal''.
  Рассмотрим следующие множества, являющиеся идеалами моноидов: 
 \begin_inset Formula $L_{*0}=\left(\left\{ \sigma\,|\,(\sigma,0)\in R_{*0}\right\} \right)\subset\mathbb{T}$
 \end_inset
@@ -1682,22 +1694,13 @@ name "lem:one-j-exact"
 
 \begin_layout Standard
 Следующее определение расширяет понятие S-базиса из работы 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
 \begin_inset CommandInset citation
-LatexCommand citet
-key "Arri:2011:FCR:2007509.2007761"
+LatexCommand cite
+key "TheF5Revised"
 
 \end_inset
 
-
-\end_layout
-
-\end_inset
-
-[3]:
+:
 \end_layout
 
 \begin_layout Definition
@@ -2250,24 +2253,51 @@ reference "thm:has-s-repr"
 \begin_layout Standard
 Представленный алгоритм принадлежит к семейству алгоритмов вычисления базисов
  Грёбнера, использующих сигнатуры, которые вычисляют S-базис и в той или
- иной степени являются модификациями алгоритма F5 из [1].
+ иной степени являются модификациями алгоритма F5 из 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5"
+
+\end_inset
+
+.
  Одно из основных направлений его модификации -- упрощение теоретических
- обоснований и расширение области применимости -- представлено в [4,5,6].
+ обоснований и расширение области применимости -- представлено в 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GermanF5Proof,ZobninGeneralization,F5InBBStyle"
+
+\end_inset
+
+.
  Другое -- повышение эффективности путём ввода дополнительных критериев
- отбрасывания некоторых вычислений -- описывается в [7,8,9] и позволяет
- проводить вычисления так, чтобы до конца редуцировались лишь многочлены,
- являющиеся новыми элементами S-базиса или дающие новую сигнатуру нулевого
- многочлена, расширяющую идеал моноида, содержащий такие сигнатуры, называемые
- также 
+ отбрасывания некоторых вычислений -- описывается в 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5C,G2V,SignatureBasedGBs"
+
+\end_inset
+
+ и позволяет проводить вычисления так, чтобы до конца редуцировались лишь
+ многочлены, являющиеся новыми элементами S-базиса или дающие новую сигнатуру
+ нулевого многочлена, расширяющую идеал моноида, содержащий такие сигнатуры,
+ называемые также 
 \emph on
 сигнатурами сизигий.
 
 \emph default
  Обобщение с одновременным применением всех критериев в алгоритмах TRB-MJ
- и SB [10,11] позволяет добиться большей эффективности благодаря тому, что
- все отбрасывания применяются до проведения таких вычислительно трудоёмких
- операций, как редукция многочлена или подсчёт старшего монома S-пары, --
- в результате не оказывается, что результаты каких-то вычислений были отброшены.
+ и SB 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HuangConception,PracticalGB"
+
+\end_inset
+
+ позволяет добиться большей эффективности благодаря тому, что все отбрасывания
+ применяются до проведения таких вычислительно трудоёмких операций, как
+ редукция многочлена или подсчёт старшего монома S-пары, -- в результате
+ не оказывается, что результаты каких-то вычислений были отброшены.
 \end_layout
 
 \begin_layout Standard
@@ -2313,7 +2343,14 @@ reference "par:ReduceCheckingSignatures:"
  и совпадает для случая однородных многочленов со способом выбора, применявшемся
  в алгоритме F5.
  Теоретическое обоснование сформулировано без S-полиномов и позволяет применять
- к нему простую алгебраическую интерпретацию из [5].
+ к нему простую алгебраическую интерпретацию из 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ZobninGeneralization"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -2336,7 +2373,14 @@ reference "par:ReduceCheckingSignatures:"
 \begin_layout Standard
 Алгоритм был реализован на С++ с использованием функций ядра программного
  комплекса Singular 3-1-4 и открытых наработок Кристиана Эдера (одного из
- авторов [8]) по реализации F5-подобных алгоритмов на этом ядре.
+ авторов 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SignatureBasedGBs"
+
+\end_inset
+
+) по реализации F5-подобных алгоритмов на этом ядре.
  Исходный код реализации содержится в функции ssg файла, доступного по адресу
  
 \begin_inset CommandInset href
@@ -2369,20 +2413,6 @@ target "https://github.com/galkinvv/Singular-f5-like/blob/ssg/kernel/kstd2.cc"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Выбор 
-\begin_inset Formula $\GVWl$
-\end_inset
-
--максимального редуктора оказывается эффективней произвольного выбора.
-\end_layout
-
-\end_inset
-
-
 \begin_inset Newpage newpage
 \end_inset
 
@@ -2625,6 +2655,40 @@ lend
 }%
 \backslash
 vestnikonly
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+novestnikonly{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "f5_references"
+options "plain"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}%
+\backslash
+novestnikonly
 \end_layout
 
 \end_inset
