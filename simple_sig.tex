@@ -126,13 +126,13 @@ email:\href{mailto: galkin-vv@yandex.ru}{ galkin-vv@yandex.ru}}
 {This paper presents an algorithm for computing Groebner bases based upon labeled polynomials and ideas from the algorithm F5. The main highlights of this algorithm compared with analogues are simplicity both of the algorithm and of the its correctness proof achieved without loss of the efficiency. This leads to simple implementation which performance is in par with more complex analogues} {Groebner basis, F5 algorithm, labeled polynomials}
 
 Consider polynomial ring $P=k[x_{1},\dots,x_{n}]$ over field $k$.
-Будем предполагать, что на моноиде его мономов $\mathbb{T}$ задан
-допустимый мономиальный порядок $\prec$. В этом кольце может быть
-поставлена задача вычисления базиса Грёбнера для произвольного идеала
-$\left(f_{1},\dots,f_{l}\right)$. Один из способов её решения инкрементальный:
-последовательно вычисляются базисы идеалов $\left(f_{1},\dots,f_{i}\right),i=2\dots l$
-на основе уже вычисленного для идеала $\left(f_{1},\dots,f_{i-1}\right)$
-базиса $R_{i-1}$ и многочлена $f_{i}$. Представляемый алгоритм позволяет
+Also assume that monoid of its monomials $\mathbb{T}$ has a monomial
+order$\prec$. В этом кольце может быть поставлена задача вычисления
+базиса Грёбнера для произвольного идеала $\left(f_{1},\dots,f_{l}\right)$.
+Один из способов её решения инкрементальный: последовательно вычисляются
+базисы идеалов $\left(f_{1},\dots,f_{i}\right),i=2\dots l$ на основе
+уже вычисленного для идеала $\left(f_{1},\dots,f_{i-1}\right)$ базиса
+$R_{i-1}$ и многочлена $f_{i}$. Представляемый алгоритм позволяет
 выполнить шаг такого вычисления. Таким образом, входные данные для
 алгоритма -- это некоторый многочлен $f$ и множество многочленов,
 обозначаемое $\left\{ g_{1},\dots,g_{m}\right\} $, являющееся базисом

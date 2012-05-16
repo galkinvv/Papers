@@ -321,11 +321,11 @@ Consider polynomial ring
 \end_inset
 
 .
- Будем предполагать, что на моноиде его мономов 
+ Also assume that monoid of its monomials 
 \begin_inset Formula $\mathbb{T}$
 \end_inset
 
- задан допустимый мономиальный порядок 
+ has a monomial order
 \begin_inset Formula $\prec$
 \end_inset
 

@@ -1,3 +1,9 @@
+simple_sig_rus.tex: simple_sig_rus.lyx
+	rm -f $@
+	lyx -e pdflatex $^
+simple_sig.tex: simple_sig.lyx
+	rm -f $@
+	lyx -e pdflatex $^
 define PYREPLACE
 import sys,re
 cites=(
@@ -49,4 +55,5 @@ view-rus: simple_sig_rus.pdf
 view: simple_sig.pdf
 	make clean-logs
 	xdg-open $^
-
+clean: clean-logs
+	rm -f *.tex *.bbl *.pdf *~
