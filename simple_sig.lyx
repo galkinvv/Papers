@@ -50,9 +50,9 @@
 theorems-std
 \end_modules
 \maintain_unincluded_children false
-\language russian
+\language english
 \language_package default
-\inputencoding cp1251
+\inputencoding utf8
 \fontencoding global
 \font_roman default
 \font_sans default
@@ -101,7 +101,7 @@ theorems-std
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language french
+\quotes_language english
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -312,11 +312,11 @@ iabstract
 \end_layout
 
 \begin_layout Standard
-Рассмотрим кольцо многочленов 
+Consider polynomial ring 
 \begin_inset Formula $P=k[x_{1},\dots,x_{n}]$
 \end_inset
 
- над полем 
+ over field 
 \begin_inset Formula $k$
 \end_inset
 

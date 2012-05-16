@@ -27,11 +27,6 @@ simple_sig_rus.vestnik.tex: simple_sig_rus.tex
 		-e 's/\\novestnikonly}\[1\]{#1}/\\novestnikonly}[1]{}/'\
 		-e 's/\(\\usepackage\[unicode=true\]\|{hyperref}\)/% \0/'\
 		> $@
-simple_sig.tex: simple_sig_rus.tex
-	sed\
-		-e 's/documentclass\[russian\]/documentclass\[english\]/'\
-		-e 's/\\providecommand{\\[[:alpha:]]*}{\\inputencoding{koi8-r}/% \0/'\
-		$^ > $@
 simple_sig_rus.vestnik.pdf: simple_sig_rus.vestnik.tex
 	pdflatex $^
 	pdflatex $^
