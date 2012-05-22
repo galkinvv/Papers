@@ -165,6 +165,8 @@ novestnikonly{
 
 \begin_layout Title
 Simple signature-based Groebner basis algorithm
+\series bold
+DO_CHECK_SPELLING
 \end_layout
 
 \begin_layout Author
@@ -330,105 +332,106 @@ Consider polynomial ring
 \end_inset
 
 .
- В этом кольце может быть поставлена задача вычисления базиса Грёбнера для
- произвольного идеала 
+ A problem asking for a Gröbner basis can be stated for any ideal
 \begin_inset Formula $\left(f_{1},\dots,f_{l}\right)$
 \end_inset
 
-.
- Один из способов её решения инкрементальный: последовательно вычисляются
- базисы идеалов 
+ in this ring.
+ One of the approaches to the problem is using iterative method which computes
+ every step a basis for ideal 
 \begin_inset Formula $\left(f_{1},\dots,f_{i}\right),i=2\dots l$
 \end_inset
 
- на основе уже вычисленного для идеала 
+ based on the already computed for 
 \begin_inset Formula $\left(f_{1},\dots,f_{i-1}\right)$
 \end_inset
 
- базиса 
+ basis 
 \begin_inset Formula $R_{i-1}$
 \end_inset
 
- и многочлена 
+ and polynomial 
 \begin_inset Formula $f_{i}$
 \end_inset
 
 .
- Представляемый алгоритм позволяет выполнить шаг такого вычисления.
- Таким образом, входные данные для алгоритма -- это некоторый многочлен
- 
+ The alrgorithm described in this paper is designed to perform one step
+ of such computation.
+ So, the algorthm's input data consist of a some polynomial 
 \begin_inset Formula $f$
 \end_inset
 
- и множество многочленов, обозначаемое 
+ and a polynomial set referred as 
 \begin_inset Formula $\left\{ g_{1},\dots,g_{m}\right\} $
 \end_inset
 
-, являющееся базисом Грёбнера идеала 
+ which is Gröbner basis of ideal 
 \begin_inset Formula $I_{0}=\left(g_{1},\dots,g_{m}\right)$
 \end_inset
 
 .
- В качестве результата своей работы алгоритм должен построить множество
- многочленов 
+ After finishing the algorithm should give the resulting polynomial set
+ 
 \begin_inset Formula $R$
 \end_inset
 
-, являющееся базисом Грёбнера идеала 
+ being a Gröbner basis of ideal 
 \begin_inset Formula $I=\left(g_{1},\dots,g_{m},f\right)$
 \end_inset
 
 .
- Поскольку случаи 
+ The special cases 
 \begin_inset Formula $f=0\Rightarrow I=I_{0}$
 \end_inset
 
- и 
+ and 
 \begin_inset Formula $\exists i\, g_{i}\in k\Rightarrow I=P$
 \end_inset
 
- не представляют интереса, далее предполагается что 
+ are not interesting from the computational point of view, so the further
+ chapters assume that 
 \begin_inset Formula $f\neq0,\forall i\, g_{i}\notin k.$
 \end_inset
 
- Заметим, что в отличии от алгоритма F5, описанного в 
+ The homogeniety of input polynomials is not required unlike the F5 algorithm
+ described in 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "FaugereF5"
 
 \end_inset
 
-, однородность многочленов не требуется.
+.
 \end_layout
 
 \begin_layout Section
-Определения
+Definitions
 \end_layout
 
 \begin_layout Standard
-Введём обозначения: 
+Consider the set
 \begin_inset Formula $\mathbb{T}_{0}=\mathbb{T}\cup\left\{ 0\right\} $
 \end_inset
 
- -- расширенный нулём моноид мономов.
- Порядок 
+ -- the monomial monoid extended by zero.
+ The order 
 \begin_inset Formula $\prec$
 \end_inset
 
- продолжается с сохранением вполне упорядоченности на 
+ can be extended to 
 \begin_inset Formula $\mathbb{T}_{0}$
 \end_inset
 
- как 
+ as 
 \begin_inset Formula $\prec_{0}$
 \end_inset
 
- определением 
+ with defintion 
 \begin_inset Formula $\forall t\in\mathbb{T}\, t\succ_{0}0$
 \end_inset
 
-.
- Понятие делимости также расширяется на 
+ which keeps the well-orderness property.
+ The notion of division also can be extended to 
 \begin_inset Formula $\mathbb{T}_{0}$
 \end_inset
 
@@ -437,24 +440,24 @@ key "FaugereF5"
 \end_inset
 
 .
- Для 
+ For polynomial 
 \begin_inset Formula $p\in P,p\neq0$
 \end_inset
 
- старшие по 
+ the highest by 
 \begin_inset Formula $\prec$
 \end_inset
 
- моном и коэффициент обозначим 
+ monom and coefficient are written as 
 \begin_inset Formula $\HM(p)\in\mathbb{T}$
 \end_inset
 
- и 
+ and 
 \begin_inset Formula $\HC(p)\in k$
 \end_inset
 
 .
- Для нуля -- 
+ For zero we define -- 
 \begin_inset Formula $\HM(0)\eqdef0\in\mathbb{T}_{0}$
 \end_inset
 
@@ -463,20 +466,20 @@ key "FaugereF5"
 \end_inset
 
 .
- Наименьшее общее кратное 
+ The least common multiple of 
 \begin_inset Formula $t_{1},t_{2}\in\mathbb{T}$
 \end_inset
 
- обозначим 
+ is written as 
 \begin_inset Formula $\LCM(t_{1},t_{2})\in\mathbb{T}$
 \end_inset
 
 .
- Далее все определения даются для фиксированных 
+ In the following all definitions are given for fixed 
 \begin_inset Formula $I_{0}$
 \end_inset
 
- и 
+ and 
 \begin_inset Formula $f$
 \end_inset
 
@@ -484,72 +487,74 @@ key "FaugereF5"
 \end_layout
 
 \begin_layout Definition
-
+The 
 \emph on
-Отмеченным многочленом
+labeled polynomial
 \emph default
- называется пара 
+ is a pair 
 \begin_inset Formula $h=(\sigma,p)\in\mathbb{T}_{0}\times P$
 \end_inset
 
-, удовлетворяющая условию корректности: 
+, that satisfies the correctness property: 
 \begin_inset Formula $\exists u\in P\,\HM(u)=\sigma,uf\equiv p\pmod{I_{0}}.$
 \end_inset
 
- На отмеченные многочлены распространяются определения старшего монома 
+ Some terminology is extended to labeled polynomials.
+ The highest monomial is 
 \begin_inset Formula $\HM(h)\eqdef\HM(p)$
 \end_inset
 
- и коэффициента 
+ and coefficient is 
 \begin_inset Formula $\HC(h)\eqdef\HC(p)$
 \end_inset
 
 .
- Также определяются 
+ Additionally the 
 \emph on
-сигнатура
+signature
 \emph default
- 
+ is defined 
 \begin_inset Formula $\SIG(h)\eqdef\sigma$
 \end_inset
 
- и вводится обозначение многочлена -- второго элемента пары: 
+ and a notation is introduced for the polynomial -- secand element of pair:
+ 
 \begin_inset Formula $\poly(h)\eqdef p$
 \end_inset
 
 .
- Множество отмеченных многочленов обозначается за 
+ The set of all labeled polynomials is written as 
 \begin_inset Formula $H\subset\mathbb{T}_{0}\times P$
 \end_inset
 
 .
- Тривиальными примерами отмеченных многочленов являются 
+ The trivial examples of labeled polynomials are 
 \begin_inset Formula $\left(1,f\right)$
 \end_inset
 
- и 
+ and 
 \begin_inset Formula $\left(0,g\right)$
 \end_inset
 
- для 
+ for 
 \begin_inset Formula $g\in I_{0}$
 \end_inset
 
 .
- Другим примером отмеченного многочлена является 
+ Another labeled polynomial example is 
 \begin_inset Formula $\left(\HM(g),0\right)$
 \end_inset
 
- для 
+ for 
 \begin_inset Formula $g\in I_{0}$
 \end_inset
 
 .
- Он корректен, поскольку в качестве 
+ It satisfies correctness property because we can take 
 \begin_inset Formula $u$
 \end_inset
 
- можно взять 
+ equal to 
 \begin_inset Formula $g$
 \end_inset
 
@@ -557,31 +562,31 @@ key "FaugereF5"
 \end_layout
 
 \begin_layout Lemma
-Умножение для 
+The product of 
 \begin_inset Formula $h\in H,t\in\mathbb{T}$
 \end_inset
 
-, заданное как 
+ defined as 
 \begin_inset Formula $th\eqdef(t\sigma,tp)\in H,$
 \end_inset
 
- корректно.
+ is correct.
 \end_layout
 
 \begin_layout Standard
-Корректность определения проверяется явным нахождением 
+The correctness property is checked by directly finding 
 \begin_inset Formula $u$
 \end_inset
 
- для 
-\begin_inset Formula $h$
+ for 
+\begin_inset Formula $th$
 \end_inset
 
 .
 \end_layout
 
 \begin_layout Definition
-Если для некоторых
+If the polynomials and monomial
 \emph on
  
 \begin_inset Formula $h'_{1},h_{2}\in H,t\in\mathbb{T}$
@@ -589,27 +594,27 @@ key "FaugereF5"
 
 
 \emph default
- выполняется 
+ satisfy 
 \begin_inset Formula $\SIG(h'_{1})\succ_{0}\SIG(th_{2}),\HM(h'{}_{1})=\HM(th{}_{2})\neq0,$
 \end_inset
 
- то возможна 
+ then exists a 
 \emph on
-редукция 
+signature-safe reduction 
 \begin_inset Formula $h'_{1}$
 \end_inset
 
- по 
+ by 
 \begin_inset Formula $h_{2}$
 \end_inset
 
- с сохранением сигнатуры
+
 \emph default
-, дающая в результате многочлен 
+, resulting in labeled polynomial 
 \begin_inset Formula $h_{1}\in H$
 \end_inset
 
-, равный: 
+, equal to: 
 \begin_inset Formula 
 \[
 h_{1}=\left(\SIG(h'_{1}),\poly(h'_{1})+Kt\poly(h_{2})\right),
@@ -617,27 +622,28 @@ h_{1}=\left(\SIG(h'_{1}),\poly(h'_{1})+Kt\poly(h_{2})\right),
 
 \end_inset
 
-где коэффициент 
+where the 
 \begin_inset Formula $K\in k$
 \end_inset
 
- взят так, чтобы при сложении сократились старшие мономы и выполнилось 
+ is selected in a way to perform cancellation of high coefficients, so we
+ have 
 \begin_inset Formula $\HM(h{}_{1})\prec_{0}\HM(h'{}_{1})$
 \end_inset
 
 .
- По сути такая редукция представляет из себя обычную редукцию многочлена
- с сокращением старшего монома, дополненную требованием того, что сигнатура
- редуктора меньше сигнатуры редуцируемого.
- Корректность проверяется как и выше.
+ Such reduction is equivalent to plain reduction with high term cancellation
+ extended with requirement for reductor's signature being smaller than the
+ signature of labeled polynomial being reduced.
+ Like in previous case the correctness check is performed directly.
 \end_layout
 
 \begin_layout Standard
-Введём частичный порядок 
+Let's introduce a partial order 
 \begin_inset Formula $\GVWl$
 \end_inset
 
- на 
+ on 
 \begin_inset Formula $H$
 \end_inset
 
@@ -653,7 +659,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \end_layout
 
 \begin_layout Standard
-Элементы с нулевой сигнатурой и старшим мономом оказываются экстремумами:
+The elements with zero signature or high monomial are extremums:
 \begin_inset Formula 
 \[
 \forall\sigma_{1},\sigma_{2},p_{1},p_{2}\,\left(0,p_{1}\right)\not\GVWl\left(\sigma_{2},p_{2}\right),\,\left(\sigma_{1},0\right)\not\GVWg\left(\sigma_{2},p_{2}\right).
@@ -665,12 +671,12 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \end_layout
 
 \begin_layout Lemma
-Пусть 
+Let 
 \begin_inset Formula $h_{1},h_{2}\in H,t\in\mathbb{T}$
 \end_inset
 
 .
- Тогда 
+ Then 
 \begin_inset Formula $h_{1}\GVWg h_{2}\Leftrightarrow h_{1}\GVWg th_{2}$
 \end_inset
 
@@ -678,15 +684,16 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \end_layout
 
 \begin_layout Standard
-Выводится из того, что умножение на 
+Deduced from the fact that multiplying one of the compared labeled polynomials
+ by 
 \begin_inset Formula $t$
 \end_inset
 
- одного из сравниваемых отмеченных многочленов приводит к умножению на 
+ leads to multiplying by 
 \begin_inset Formula $t$
 \end_inset
 
- обоих частей в определении 
+ both sides in the definition of
 \begin_inset Formula $\GVWg$
 \end_inset
 
@@ -694,20 +701,20 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \end_layout
 
 \begin_layout Lemma
-Пусть 
+Let 
 \begin_inset Formula $h_{1},h_{2}\in H,\HM(h_{1})|\HM(h_{2}),\HM(h_{2})\neq0$
 \end_inset
 
 .
- Тогда редукция 
+ Then signature-safe reduction 
 \begin_inset Formula $h_{2}$
 \end_inset
 
- по 
+ by 
 \begin_inset Formula $h_{1}$
 \end_inset
 
- с сохранением сигнатуры возможна если и только если 
+ is possible iff
 \begin_inset Formula $h_{1}\GVWg h_{2}$
 \end_inset
 
@@ -715,7 +722,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \end_layout
 
 \begin_layout Standard
-Следует из того что оба утверждения равносильны 
+Deduced from the fact that claims of both sides are equivalent 
 \begin_inset Formula $\SIG(h_{2})\succ_{0}\SIG(h_{1})\frac{\HM(h_{2})}{\HM(h_{1})}$
 \end_inset
 
@@ -723,16 +730,16 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \end_layout
 
 \begin_layout Lemma
-Пусть 
+Let 
 \begin_inset Formula $h_{1}\in H$
 \end_inset
 
- -- результат редукции 
+ be a result of signature-safe reduction of 
 \begin_inset Formula $h_{1}'$
 \end_inset
 
- с сохранением сигнатур по некоторому многочлену.
- Тогда 
+ by some other polynomial.
+ Then 
 \begin_inset Formula $h_{1}\GVWl h_{1}'$
 \end_inset
 
@@ -740,15 +747,15 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \end_layout
 
 \begin_layout Standard
-Следует из 
+Deduced from equality 
 \begin_inset Formula $\SIG(h_{1})=\SIG(h_{1}')$
 \end_inset
 
- и уменьшения 
+ and decreasing 
 \begin_inset Formula $\HM$
 \end_inset
 
- при редукции: 
+ during reduction: 
 \begin_inset Formula $\HM(h_{1})\prec_{0}\HM(h_{1}').$
 \end_inset
 
@@ -762,20 +769,20 @@ name "lem:greater-or-smaller"
 
 \end_inset
 
-Пусть 
+Let 
 \begin_inset Formula $h_{1}\GVWl h_{2}$
 \end_inset
 
- отмеченные многочлены.
- Тогда 
+ be labeled polynomials.
+ Then 
 \begin_inset Formula $\forall h_{3}\in H\setminus\left\{ \left(0,0\right)\right\} $
 \end_inset
 
- выполняется хотя бы одно из двух неравенств: 
+ at least one of the following two inequalities is hold: 
 \begin_inset Formula $h_{1}\GVWl h_{3}$
 \end_inset
 
- или 
+ or 
 \begin_inset Formula $h_{3}\GVWl h_{2}$
 \end_inset
 
@@ -783,7 +790,7 @@ name "lem:greater-or-smaller"
 \end_layout
 
 \begin_layout Standard
-Из условия леммы известно, что
+The lemma clause gives inequality
 \begin_inset Formula 
 \begin{equation}
 \HM(h_{1})\SIG(h_{2})\prec_{0}\HM(h_{2})\SIG(h_{1})\label{eq:gvw-order-3}
@@ -791,36 +798,36 @@ name "lem:greater-or-smaller"
 
 \end_inset
 
-откуда 
+which shows 
 \begin_inset Formula $\HM(h_{2})\neq0,\SIG(h_{1})\neq0$
 \end_inset
 
 .
- Поэтому, если 
+ Therefore for the special case 
 \begin_inset Formula $\HM(h_{3})=0$
 \end_inset
 
-, имеем 
+ we get 
 \begin_inset Formula $h_{3}\GVWl h_{2}$
 \end_inset
 
-, а если 
+and for the case 
 \begin_inset Formula $\SIG(h_{3})=0$
 \end_inset
 
- -- то 
+ we get 
 \begin_inset Formula $h_{1}\GVWl h_{3}$
 \end_inset
 
 .
- Иначе можно домножить неравенство 
+ For remaining generic non-zero case the inequality 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:gvw-order-3"
 
 \end_inset
 
- на ненулевой элемент 
+ can be multipled by non-zero monomial 
 \begin_inset Formula $\HM(h_{3})\SIG(h_{3})$
 \end_inset
 
@@ -832,30 +839,30 @@ reference "eq:gvw-order-3"
 
 \end_inset
 
-Поэтому 
+So, the element 
 \begin_inset Formula $\HM(h_{3})^{2}\SIG(h_{2})\SIG(h_{1})\in\mathbb{T}_{0}$
 \end_inset
 
- будет или 
+ need to be 
 \begin_inset Formula $\succ_{0}$
 \end_inset
 
- левой или 
+ than left side or 
 \begin_inset Formula $\prec_{0}$
 \end_inset
 
- правой части неравенства 
+ than right side of inequality 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:left-or-right-monom"
 
 \end_inset
 
-, и после сокращения даст эквивалентное утверждению леммы неравенство.
+, and gives after cancellation one of the inequalities from lemma statement.
 \end_layout
 
 \begin_layout Section
-Алгоритм
+Algorithm
 \end_layout
 
 \begin_layout Labeling

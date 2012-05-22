@@ -103,7 +103,7 @@
 \novestnikonly{
 
 
-\title{Simple signature-based Groebner basis algorithm}
+\title{Simple signature-based Groebner basis algorithm\textbf{DO\_CHECK\_SPELLING}}
 
 
 \author{Galkin Vasily\\
@@ -127,120 +127,124 @@ email:\href{mailto: galkin-vv@yandex.ru}{ galkin-vv@yandex.ru}}
 
 Consider polynomial ring $P=k[x_{1},\dots,x_{n}]$ over field $k$.
 Also assume that monoid of its monomials $\mathbb{T}$ has a monomial
-order$\prec$. В этом кольце может быть поставлена задача вычисления
-базиса Грёбнера для произвольного идеала $\left(f_{1},\dots,f_{l}\right)$.
-Один из способов её решения инкрементальный: последовательно вычисляются
-базисы идеалов $\left(f_{1},\dots,f_{i}\right),i=2\dots l$ на основе
-уже вычисленного для идеала $\left(f_{1},\dots,f_{i-1}\right)$ базиса
-$R_{i-1}$ и многочлена $f_{i}$. Представляемый алгоритм позволяет
-выполнить шаг такого вычисления. Таким образом, входные данные для
-алгоритма -- это некоторый многочлен $f$ и множество многочленов,
-обозначаемое $\left\{ g_{1},\dots,g_{m}\right\} $, являющееся базисом
-Грёбнера идеала $I_{0}=\left(g_{1},\dots,g_{m}\right)$. В качестве
-результата своей работы алгоритм должен построить множество многочленов
-$R$, являющееся базисом Грёбнера идеала $I=\left(g_{1},\dots,g_{m},f\right)$.
-Поскольку случаи $f=0\Rightarrow I=I_{0}$ и $\exists i\, g_{i}\in k\Rightarrow I=P$
-не представляют интереса, далее предполагается что $f\neq0,\forall i\, g_{i}\notin k.$
-Заметим, что в отличии от алгоритма F5, описанного в \cite{FaugereF5},
-однородность многочленов не требуется.
+order$\prec$. A problem asking for a Gröbner basis can be stated
+for any ideal$\left(f_{1},\dots,f_{l}\right)$ in this ring. One of
+the approaches to the problem is using iterative method which computes
+every step a basis for ideal $\left(f_{1},\dots,f_{i}\right),i=2\dots l$
+based on the already computed for $\left(f_{1},\dots,f_{i-1}\right)$
+basis $R_{i-1}$ and polynomial $f_{i}$. The alrgorithm described
+in this paper is designed to perform one step of such computation.
+So, the algorthm's input data consist of a some polynomial $f$ and
+a polynomial set referred as $\left\{ g_{1},\dots,g_{m}\right\} $
+which is Gröbner basis of ideal $I_{0}=\left(g_{1},\dots,g_{m}\right)$.
+After finishing the algorithm should give the resulting polynomial
+set $R$ being a Gröbner basis of ideal $I=\left(g_{1},\dots,g_{m},f\right)$.
+The special cases $f=0\Rightarrow I=I_{0}$ and $\exists i\, g_{i}\in k\Rightarrow I=P$
+are not interesting from the computational point of view, so the further
+chapters assume that $f\neq0,\forall i\, g_{i}\notin k.$ The homogeniety
+of input polynomials is not required unlike the F5 algorithm described
+in \cite{FaugereF5}.
 
 
-\section{Определения}
+\section{Definitions}
 
-Введём обозначения: $\mathbb{T}_{0}=\mathbb{T}\cup\left\{ 0\right\} $
--- расширенный нулём моноид мономов. Порядок $\prec$ продолжается
-с сохранением вполне упорядоченности на $\mathbb{T}_{0}$ как $\prec_{0}$
-определением $\forall t\in\mathbb{T}\, t\succ_{0}0$. Понятие делимости
-также расширяется на $\mathbb{T}_{0}$: $t_{1}|t_{2}\eqdef\exists t_{3}\, t_{1}t_{3}=t_{2}$.
-Для $p\in P,p\neq0$ старшие по $\prec$ моном и коэффициент обозначим
-$\HM(p)\in\mathbb{T}$ и $\HC(p)\in k$. Для нуля -- $\HM(0)\eqdef0\in\mathbb{T}_{0}$,
-$\HC(0)\eqdef0\in k$. Наименьшее общее кратное $t_{1},t_{2}\in\mathbb{T}$
-обозначим $\LCM(t_{1},t_{2})\in\mathbb{T}$. Далее все определения
-даются для фиксированных $I_{0}$ и $f$:
+Consider the set$\mathbb{T}_{0}=\mathbb{T}\cup\left\{ 0\right\} $
+-- the monomial monoid extended by zero. The order $\prec$ can be
+extended to $\mathbb{T}_{0}$ as $\prec_{0}$ with defintion $\forall t\in\mathbb{T}\, t\succ_{0}0$
+which keeps the well-orderness property. The notion of division also
+can be extended to $\mathbb{T}_{0}$: $t_{1}|t_{2}\eqdef\exists t_{3}\, t_{1}t_{3}=t_{2}$.
+For polynomial $p\in P,p\neq0$ the highest by $\prec$ monom and
+coefficient are written as $\HM(p)\in\mathbb{T}$ and $\HC(p)\in k$.
+For zero we define -- $\HM(0)\eqdef0\in\mathbb{T}_{0}$, $\HC(0)\eqdef0\in k$.
+The least common multiple of $t_{1},t_{2}\in\mathbb{T}$ is written
+as $\LCM(t_{1},t_{2})\in\mathbb{T}$. In the following all definitions
+are given for fixed $I_{0}$ and $f$:
 \begin{defn}
-\emph{Отмеченным многочленом} называется пара $h=(\sigma,p)\in\mathbb{T}_{0}\times P$,
-удовлетворяющая условию корректности: $\exists u\in P\,\HM(u)=\sigma,uf\equiv p\pmod{I_{0}}.$
-На отмеченные многочлены распространяются определения старшего монома
-$\HM(h)\eqdef\HM(p)$ и коэффициента $\HC(h)\eqdef\HC(p)$. Также
-определяются \emph{сигнатура} $\SIG(h)\eqdef\sigma$ и вводится обозначение
-многочлена -- второго элемента пары: $\poly(h)\eqdef p$. Множество
-отмеченных многочленов обозначается за $H\subset\mathbb{T}_{0}\times P$.
-Тривиальными примерами отмеченных многочленов являются $\left(1,f\right)$
-и $\left(0,g\right)$ для $g\in I_{0}$. Другим примером отмеченного
-многочлена является $\left(\HM(g),0\right)$ для $g\in I_{0}$. Он
-корректен, поскольку в качестве $u$ можно взять $g$.\end{defn}
+The \emph{labeled polynomial} is a pair $h=(\sigma,p)\in\mathbb{T}_{0}\times P$,
+that satisfies the correctness property: $\exists u\in P\,\HM(u)=\sigma,uf\equiv p\pmod{I_{0}}.$
+Some terminology is extended to labeled polynomials. The highest monomial
+is $\HM(h)\eqdef\HM(p)$ and coefficient is $\HC(h)\eqdef\HC(p)$.
+Additionally the \emph{signature} is defined $\SIG(h)\eqdef\sigma$
+and a notation is introduced for the polynomial -- secand element
+of pair: $\poly(h)\eqdef p$. The set of all labeled polynomials is
+written as $H\subset\mathbb{T}_{0}\times P$. The trivial examples
+of labeled polynomials are $\left(1,f\right)$ and $\left(0,g\right)$
+for $g\in I_{0}$. Another labeled polynomial example is $\left(\HM(g),0\right)$
+for $g\in I_{0}$. It satisfies correctness property because we can
+take $u$ equal to $g$.\end{defn}
 \begin{lem}
-Умножение для $h\in H,t\in\mathbb{T}$, заданное как $th\eqdef(t\sigma,tp)\in H,$
-корректно.
+The product of $h\in H,t\in\mathbb{T}$ defined as $th\eqdef(t\sigma,tp)\in H,$
+is correct.
 \end{lem}
-Корректность определения проверяется явным нахождением $u$ для $h$.
+The correctness property is checked by directly finding $u$ for $th$.
 \begin{defn}
-Если для некоторых\emph{ $h'_{1},h_{2}\in H,t\in\mathbb{T}$} выполняется
-$\SIG(h'_{1})\succ_{0}\SIG(th_{2}),\HM(h'{}_{1})=\HM(th{}_{2})\neq0,$
-то возможна \emph{редукция $h'_{1}$ по $h_{2}$ с сохранением сигнатуры},
-дающая в результате многочлен $h_{1}\in H$, равный: 
+If the polynomials and monomial\emph{ $h'_{1},h_{2}\in H,t\in\mathbb{T}$}
+satisfy $\SIG(h'_{1})\succ_{0}\SIG(th_{2}),\HM(h'{}_{1})=\HM(th{}_{2})\neq0,$
+then exists a \emph{signature-safe reduction $h'_{1}$ by $h_{2}$},
+resulting in labeled polynomial $h_{1}\in H$, equal to: 
 \[
 h_{1}=\left(\SIG(h'_{1}),\poly(h'_{1})+Kt\poly(h_{2})\right),
 \]
-где коэффициент $K\in k$ взят так, чтобы при сложении сократились
-старшие мономы и выполнилось $\HM(h{}_{1})\prec_{0}\HM(h'{}_{1})$.
-По сути такая редукция представляет из себя обычную редукцию многочлена
-с сокращением старшего монома, дополненную требованием того, что сигнатура
-редуктора меньше сигнатуры редуцируемого. Корректность проверяется
-как и выше.
+where the $K\in k$ is selected in a way to perform cancellation of
+high coefficients, so we have $\HM(h{}_{1})\prec_{0}\HM(h'{}_{1})$.
+Such reduction is equivalent to plain reduction with high term cancellation
+extended with requirement for reductor's signature being smaller than
+the signature of labeled polynomial being reduced. Like in previous
+case the correctness check is performed directly.
 \end{defn}
-Введём частичный порядок $\GVWl$ на $H$: 
+Let's introduce a partial order $\GVWl$ on $H$: 
 \[
 h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_{2}\prec_{0}\HM(p_{2})\sigma_{1}.
 \]
 
 
-Элементы с нулевой сигнатурой и старшим мономом оказываются экстремумами:
+The elements with zero signature or high monomial are extremums:
 \[
 \forall\sigma_{1},\sigma_{2},p_{1},p_{2}\,\left(0,p_{1}\right)\not\GVWl\left(\sigma_{2},p_{2}\right),\,\left(\sigma_{1},0\right)\not\GVWg\left(\sigma_{2},p_{2}\right).
 \]
 
 \begin{lem}
-Пусть $h_{1},h_{2}\in H,t\in\mathbb{T}$. Тогда $h_{1}\GVWg h_{2}\Leftrightarrow h_{1}\GVWg th_{2}$.
+Let $h_{1},h_{2}\in H,t\in\mathbb{T}$. Then $h_{1}\GVWg h_{2}\Leftrightarrow h_{1}\GVWg th_{2}$.
 \end{lem}
-Выводится из того, что умножение на $t$ одного из сравниваемых отмеченных
-многочленов приводит к умножению на $t$ обоих частей в определении
-$\GVWg$.
+Deduced from the fact that multiplying one of the compared labeled
+polynomials by $t$ leads to multiplying by $t$ both sides in the
+definition of$\GVWg$.
 \begin{lem}
-Пусть $h_{1},h_{2}\in H,\HM(h_{1})|\HM(h_{2}),\HM(h_{2})\neq0$. Тогда
-редукция $h_{2}$ по $h_{1}$ с сохранением сигнатуры возможна если
-и только если $h_{1}\GVWg h_{2}$.
+Let $h_{1},h_{2}\in H,\HM(h_{1})|\HM(h_{2}),\HM(h_{2})\neq0$. Then
+signature-safe reduction $h_{2}$ by $h_{1}$ is possible iff$h_{1}\GVWg h_{2}$.
 \end{lem}
-Следует из того что оба утверждения равносильны $\SIG(h_{2})\succ_{0}\SIG(h_{1})\frac{\HM(h_{2})}{\HM(h_{1})}$.
+Deduced from the fact that claims of both sides are equivalent $\SIG(h_{2})\succ_{0}\SIG(h_{1})\frac{\HM(h_{2})}{\HM(h_{1})}$.
 \begin{lem}
-Пусть $h_{1}\in H$ -- результат редукции $h_{1}'$ с сохранением
-сигнатур по некоторому многочлену. Тогда $h_{1}\GVWl h_{1}'$.
+Let $h_{1}\in H$ be a result of signature-safe reduction of $h_{1}'$
+by some other polynomial. Then $h_{1}\GVWl h_{1}'$.
 \end{lem}
-Следует из $\SIG(h_{1})=\SIG(h_{1}')$ и уменьшения $\HM$ при редукции:
-$\HM(h_{1})\prec_{0}\HM(h_{1}').$
+Deduced from equality $\SIG(h_{1})=\SIG(h_{1}')$ and decreasing $\HM$
+during reduction: $\HM(h_{1})\prec_{0}\HM(h_{1}').$
 \begin{lem}
-\label{lem:greater-or-smaller}Пусть $h_{1}\GVWl h_{2}$ отмеченные
-многочлены. Тогда $\forall h_{3}\in H\setminus\left\{ \left(0,0\right)\right\} $
-выполняется хотя бы одно из двух неравенств: $h_{1}\GVWl h_{3}$ или
-$h_{3}\GVWl h_{2}$.
+\label{lem:greater-or-smaller}Let $h_{1}\GVWl h_{2}$ be labeled
+polynomials. Then $\forall h_{3}\in H\setminus\left\{ \left(0,0\right)\right\} $
+at least one of the following two inequalities is hold: $h_{1}\GVWl h_{3}$
+or $h_{3}\GVWl h_{2}$.
 \end{lem}
-Из условия леммы известно, что
+The lemma clause gives inequality
 \begin{equation}
 \HM(h_{1})\SIG(h_{2})\prec_{0}\HM(h_{2})\SIG(h_{1})\label{eq:gvw-order-3}
 \end{equation}
-откуда $\HM(h_{2})\neq0,\SIG(h_{1})\neq0$. Поэтому, если $\HM(h_{3})=0$,
-имеем $h_{3}\GVWl h_{2}$, а если $\SIG(h_{3})=0$ -- то $h_{1}\GVWl h_{3}$.
-Иначе можно домножить неравенство \eqref{eq:gvw-order-3} на ненулевой
-элемент $\HM(h_{3})\SIG(h_{3})$: 
+which shows $\HM(h_{2})\neq0,\SIG(h_{1})\neq0$. Therefore for the
+special case $\HM(h_{3})=0$ we get $h_{3}\GVWl h_{2}$and for the
+case $\SIG(h_{3})=0$ we get $h_{1}\GVWl h_{3}$. For remaining generic
+non-zero case the inequality \eqref{eq:gvw-order-3} can be multipled
+by non-zero monomial $\HM(h_{3})\SIG(h_{3})$: 
 \begin{equation}
 \HM(h_{3})\SIG(h_{3})\HM(h_{1})\SIG(h_{2})\prec_{0}\HM(h_{3})\SIG(h_{3})\HM(h_{2})\SIG(h_{1}).\label{eq:left-or-right-monom}
 \end{equation}
-Поэтому $\HM(h_{3})^{2}\SIG(h_{2})\SIG(h_{1})\in\mathbb{T}_{0}$ будет
-или $\succ_{0}$ левой или $\prec_{0}$ правой части неравенства \eqref{eq:left-or-right-monom},
-и после сокращения даст эквивалентное утверждению леммы неравенство.
+So, the element $\HM(h_{3})^{2}\SIG(h_{2})\SIG(h_{1})\in\mathbb{T}_{0}$
+need to be $\succ_{0}$ than left side or $\prec_{0}$ than right
+side of inequality \eqref{eq:left-or-right-monom}, and gives after
+cancellation one of the inequalities from lemma statement.
 
 
-\section{Алгоритм}
+\section{Algorithm}
 \begin{lyxlist}{00.00.0000}
 \item [{Вход:}] многочлены $\{g_{1},\dots,g_{m}\}$, образующие базис Грёбнера;
 многочлен $f$.

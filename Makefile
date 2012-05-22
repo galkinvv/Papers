@@ -45,7 +45,7 @@ simple_sig.pdf: simple_sig.tex
 	bibtex simple_sig.aux
 	pdflatex $^
 clean-logs:
-	rm -f *.aux *.log *.out *.blg
+	rm -f *.aux *.log *.out *.blg *~
 view-vestnik: simple_sig_rus.vestnik.pdf
 	make clean-logs
 	xdg-open $^
@@ -56,4 +56,4 @@ view: simple_sig.pdf
 	make clean-logs
 	xdg-open $^
 clean: clean-logs
-	rm -f *.tex *.bbl *.pdf *~
+	rm -f *.tex *.bbl *.pdf
