@@ -1720,7 +1720,7 @@ S
 
 -базисом
 \emph default
-), если все элементы
+), если все элементы 
 \begin_inset Formula $H$
 \end_inset
 
@@ -2246,7 +2246,7 @@ reference "thm:has-s-repr"
  -- S-базис.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Сравнение с аналогами
 \end_layout
 

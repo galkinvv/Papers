@@ -382,97 +382,100 @@ can be applied to thier monoideals. It states exactly the needed fact
 
 \section{Correctness of output}
 \begin{defn}
-\emph{S-представлением} $h\in H$ над множеством $\left\{ r_{i}\right\} \subset H$
-будем называть выражение $\poly(h)=\sum_{j}K_{j}t_{j}\poly(r_{i_{j}}),$
-$K_{j}\in k,t_{j}\in\mathbb{T},i_{j}\in\mathbb{N}$, такое что $\forall j\,\HM(h)\succcurlyeq_{0}\HM(t_{j}r_{i_{j}}),\SIG(h)\succcurlyeq_{0}\SIG(t_{j}r_{i_{j}})$.\end{defn}
+\emph{S-representation of} $h\in H$ over set $\left\{ r_{i}\right\} \subset H$
+is an expression $\poly(h)=\sum_{j}K_{j}t_{j}\poly(r_{i_{j}}),$ $K_{j}\in k,t_{j}\in\mathbb{T},i_{j}\in\mathbb{N}$,
+such that $\forall j\,\HM(h)\succcurlyeq_{0}\HM(t_{j}r_{i_{j}}),\SIG(h)\succcurlyeq_{0}\SIG(t_{j}r_{i_{j}})$.\end{defn}
 \begin{lem}
-\label{lem:one-j-exact}Пусть $\poly(h)=\sum_{j}K_{j}t_{j}\poly(r_{i_{j}})$
--- S-представление для $h$. Тогда для хотя бы одного $j$ достигается
-$\HM(h)=\HM(t_{j}r_{i_{j}})$.
+\label{lem:one-j-exact}Let $\poly(h)=\sum_{j}K_{j}t_{j}\poly(r_{i_{j}})$
+-- S-representation of $h$. Then at least one $j$ satisfies $\HM(h)=\HM(t_{j}r_{i_{j}})$.
 \end{lem}
-В качестве такого $j$ можно взять то, на котором достигается $\succ$-максимум
-$\HM(t_{j}r_{i_{j}})$.
+To get a $j$ satisfying the equality we can take a value which gives
+the $\succ$-maximum of $\HM(t_{j}r_{i_{j}})$.
 
-Следующее определение расширяет понятие S-базиса из работы \cite{TheF5Revised}:
+The next definition extends the notation of S-basis from \cite{TheF5Revised}:
 \begin{defn}
-Назовём $R\subset H$\emph{ S-базисом} (соответственно \emph{S$_{\sigma}$-базисом}),
-если все элементы$H$ (соответственно $\left\{ h\in H\,|\,\SIG(h)\prec_{0}\sigma\right\} $)\emph{
-}имеют S-представление\emph{ }над $R$\emph{.}\end{defn}
+The labeled polynomial set $R\subset H$\emph{ is called S-basis}
+(correspondingly \emph{S$_{\sigma}$-basis}), if all elements of $H$
+(correspondingly $\left\{ h\in H\,|\,\SIG(h)\prec_{0}\sigma\right\} $)\emph{
+}have S-representation over $R$\emph{.}\end{defn}
 \begin{lem}
-\label{lem:s-basis-and-no-reductions}Пусть $\sigma\succ_{0}0,R=\left\{ r_{i}\right\} $
--- S\emph{$_{\sigma}$}-базис и выбраны $h_{1},h_{2}\in H,\SIG(h_{i})=\sigma$,
-которые не редуцируются по $R$ с сохранением сигнатуры. Тогда $\HM(h_{1})=\HM(h_{2})$
-и у $h_{1}$ есть S-представление над $R\cup\left\{ h_{2}\right\} $.
+\label{lem:s-basis-and-no-reductions}Let $\sigma\succ_{0}0,R=\left\{ r_{i}\right\} $
+-- S\emph{$_{\sigma}$}-basis and $h_{1},h_{2}\in H,\SIG(h_{i})=\sigma$
+are labeled polynomials, that can't be signature-safe reduced by $R$
+elements. Then $\HM(h_{1})=\HM(h_{2})$ and $h_{1}$ has an S-representation
+over $R\cup\left\{ h_{2}\right\} $.
 \end{lem}
-Из определения $H$ имеем $\exists u_{i}\in P\,\HM(u_{i})=\sigma,u_{i}f\equiv\poly(h_{i})\pmod{I_{0}},i=1,2.$
-Значит некоторой линейной комбинации $\poly(h_{i})$ сопоставляется
-$\prec_{0}\sigma$ сигнатура: 
+We have from the definition of $H$ that $\exists u_{i}\in P\,\HM(u_{i})=\sigma,u_{i}f\equiv\poly(h_{i})\pmod{I_{0}},i=1,2.$
+It means that there exists a linear combination of $\poly(h_{i})$
+having signature $\prec_{0}\sigma$. Ths can be wrtten as: 
 \[
 \exists K\in k,v\in P\,\HM(v)=\sigma'\prec_{0}\sigma,vf\equiv\poly(h_{1})-K\poly(h_{2})\pmod{I_{0}},
 \]
-то есть $\left(\sigma',p'\right)=\left(\sigma',\poly(h_{1})-K\poly(h_{2})\right)\in H$.
-Из определения S\emph{$_{\sigma}$}-базиса и $\sigma'\prec_{0}\sigma$
-вытекает $\exists r_{j}\in R,t\in\mathbb{T}\,\SIG(tr_{j})\preccurlyeq_{0}\sigma',\HM(tr_{j})=\HM(p')$.
-Отсюда $\HM(h_{i})\neq\HM(p'),i=1,2$, иначе $r_{j}$ редуцировало
-бы $h_{i}$ с сохранением сигнатуры. Значит, $\HM(h_{i})$ сокращаются
-при вычитании с $k$-коэффициентом, что даёт $\HM(h_{1})=\HM(h_{2})$.
-S-представление $h_{1}$ получается добавлением $K\poly(h_{2})$ к
-S-представлению $\left(\sigma',p'\right)$.
+or in the terminology of labeled polynomials: $\left(\sigma',p'\right)=\left(\sigma',\poly(h_{1})-K\poly(h_{2})\right)\in H$.
+From the definition of S\emph{$_{\sigma}$}-basis and the property
+$\sigma'\prec_{0}\sigma$ we conclude: $\exists r_{j}\in R,t\in\mathbb{T}\,\SIG(tr_{j})\preccurlyeq_{0}\sigma',\HM(tr_{j})=\HM(p')$.
+So $\HM(h_{i})\neq\HM(p'),i=1,2$, because in the case of equality
+$r_{j}$ would be signature-safe reductor for $h_{i}$. It is possible
+only if $\HM(h_{i})$ are canceled while subtraction with $k$-coefficient,
+what means that $\HM(h_{1})=\HM(h_{2})$. S-representation of $h_{1}$
+is constructed by adding $K\poly(h_{2})$ to S-representation of $\left(\sigma',p'\right)$.
 \begin{thm}
-\label{thm:exist-r-sigma}На каждой итерации алгоритма после шага
-\ref{enu:-remove-from-B} выполнен инвариант: для $\forall\sigma\in\mathbb{T},\sigma\prec$
-сигнатур элементов $B$, найдутся $r_{\sigma}\in R,t_{\sigma}\in\mathbb{T}:\SIG(t_{\sigma}r_{\sigma})=\sigma$
-и $t_{\sigma}r_{\sigma}$ не редуцируется по $R$ с сохранением сигнатуры.
+\label{thm:exist-r-sigma}Every iteration of the algorithm after step
+\ref{enu:-remove-from-B} the followong invariant holds: for $\forall\sigma\in\mathbb{T},\sigma\prec$
+signatures of elements of $B$, exists $r_{\sigma}\in R,t_{\sigma}\in\mathbb{T}:\SIG(t_{\sigma}r_{\sigma})=\sigma$
+such that $t_{\sigma}r_{\sigma}$ can't be signature-safe reduced
+by $R$.
 \end{thm}
-Множество $R_{\sigma}=\left\{ r\in R\,|\,\SIG(r)|\sigma\right\} $
-непусто, так как содержит добавленный на первой итерации элемент $r_{0}$
-с $\SIG(r_{0})=1$. Обозначим за $r_{\sigma}$ его $\GVWl$-минимальный
-элемент; положим $t_{\sigma}=\frac{\sigma}{\SIG(r_{\sigma})}$. Предположим,
-что $t_{\sigma}r_{\sigma}$ может быть редуцирован с сохранением сигнатуры
-относительно некоторого $r_{1}\in R$. Отсюда следует, что $r_{1}\GVWg r_{\sigma}$,
-а также что они не нулевые. Значит на той же итерации, когда в $R$
-был добавлен последний из $\{r_{\sigma},r_{1}\}$, в множество $B$
-был добавлен многочлен $t'r_{\sigma}$, где $t'=\frac{\LCM(\HM(r_{1}),\HM(r_{\sigma}))}{\HM(r_{\sigma})}$,
-причём $t'|t_{\sigma}$. Отсюда $\SIG(t'r_{\sigma})|\SIG(t_{\sigma}r_{\sigma})=\sigma\Rightarrow\SIG(t'r_{\sigma})\preccurlyeq\sigma\prec$
-сигнатур элементов $B$. В силу этого неравенства на сигнатуры получается,
-что $t'r_{\sigma}$ уже не может быть элементом $B$, а значит был
-выкинут на шаге \ref{enu:-remove-from-B} одной из итераций, то есть
-$\exists r_{2}\in R\, r_{2}\GVWl t'r_{\sigma},\SIG(r_{2})|\SIG(t'r_{\sigma})$.
-Это невозможно, поскольку влечёт $r_{2}\GVWl r_{\sigma},r_{2}\in R_{\sigma}$,
-что противоречит $\GVWl$-минимальности $r_{\sigma}$.
+The set $R_{\sigma}=\left\{ r\in R\,|\,\SIG(r)|\sigma\right\} $ is
+not empty, because contains the element $r_{0}$ added during the
+first algorthm iteration with $\SIG(r_{0})=1$. Let $r_{\sigma}$
+be $\GVWl$-minimal element of the set; take $t_{\sigma}=\frac{\sigma}{\SIG(r_{\sigma})}$.
+Suppose that $t_{\sigma}r_{\sigma}$ can be signature-safe reduced
+by some $r_{1}\in R$. This gives that $r_{1}\GVWg r_{\sigma}$ and
+both sides of inequality are non-zero. It means that during the iteration
+which inserts in $R$ the last of $\{r_{\sigma},r_{1}\}$ the set
+$B$ was extended by labeled polynomial $t'r_{\sigma}$, where $t'=\frac{\LCM(\HM(r_{1}),\HM(r_{\sigma}))}{\HM(r_{\sigma})}$
+and $t'|t_{\sigma}$. So we have $\SIG(t'r_{\sigma})|\SIG(t_{\sigma}r_{\sigma})=\sigma\Rightarrow\SIG(t'r_{\sigma})\preccurlyeq\sigma\prec$
+signatures of elements of $B$. This signatures inequality implies
+that $t'r_{\sigma}$ can't be element of $B$ during the current iteration
+and was removed at the step \ref{enu:-remove-from-B} of some previous
+iteration, so $\exists r_{2}\in R\, r_{2}\GVWl t'r_{\sigma},\SIG(r_{2})|\SIG(t'r_{\sigma})$.
+This is impossible, because the existence of $r_{2}\GVWl r_{\sigma},r_{2}\in R_{\sigma}$
+contradicts $\GVWl$-minimality of $r_{\sigma}$.
 \begin{thm}
-\label{thm:has-s-repr}На каждой итерации алгоритма после шага \ref{enu:-remove-from-B}
-выполнен инвариант: $\forall h\in H,\SIG(h)\prec$ сигнатур элементов
-$B$, имеет S-представление над $R$.
+\label{thm:has-s-repr}Every iteration of the algorithm after step
+\ref{enu:-remove-from-B} the followong invariant holds: $\forall h\in H,\SIG(h)\prec$
+signatures of elements of $B$ has S-representation over $R$.
 \end{thm}
-Предположим нарушение инварианта на какой-то итерации и рассмотрим
-$\prec_{0}$-минимальную $\sigma$, для которой непусто $V_{\sigma}\eqdef\{h\in H\,|\, h\mbox{ нарушает инвариант},\SIG(h)=\sigma\}$.
-Тогда $R$ -- S\emph{$_{\sigma}$}-базис. $\forall g\in I_{0}\,\left(0,g\right)$
-имеют S-представления над $\{(0,g_{1}),...,(0,g_{m})\}\subset R$,
-поэтому $\sigma\succ_{0}0$. Выберем $v_{\sigma}$ -- один из элементов
-$V_{\sigma}$ с $\prec_{0}$-наименьшим $\HM$. Он не может быть редуцирован
-с сохранением сигнатуры по $R$, поскольку результат редукции $v_{1}$
-был бы элементом $V_{\sigma}$ с $\HM(v_{1})\prec_{0}\HM(v_{\sigma})$.
-Возьмём $w_{\sigma}\eqdef t_{\sigma}r_{\sigma}$ из инварианта теоремы
-\ref{thm:exist-r-sigma} и применим лемму \ref{lem:s-basis-and-no-reductions}
-к $v_{\sigma},w_{\sigma}$ и $R$. Получим что $v_{\sigma}$ имеет
-S-представление над $R\cup\{w_{\sigma}\}$. Вхождения $w_{\sigma}$
-в нём можно заменить на $t_{\sigma}r_{\sigma}$, получив представление
-$v_{\sigma}$ над $R$, что приводит к противоречию.
+Suppose that invariant breaks during some algorithm iteration and
+take the $\prec_{0}$-minimal $\sigma$ that has non-empty corresponding
+set $V_{\sigma}\eqdef\{h\in H\,|\, h\mbox{ breaks invariant},\SIG(h)=\sigma\}$.
+Then $R$ -- S\emph{$_{\sigma}$}-basis. $\forall g\in I_{0}\,\left(0,g\right)$
+has S-representation over $\{(0,g_{1}),...,(0,g_{m})\}\subset R$,
+so $\sigma\succ_{0}0$. Select $v_{\sigma}$ -- one of the $V_{\sigma}$
+elements with $\prec_{0}$-minimal $\HM$. It can't be signature-safe
+reduced by $R$ because the reduction result $v_{1}$ would be element
+of$V_{\sigma}$ with $\HM(v_{1})\prec_{0}\HM(v_{\sigma})$. Take $w_{\sigma}\eqdef t_{\sigma}r_{\sigma}$
+from the invariant of theorem \ref{thm:exist-r-sigma} and apply lemma
+\ref{lem:s-basis-and-no-reductions} to $v_{\sigma},w_{\sigma}$ and
+$R$. The lemma says that $v_{\sigma}$ has S-representation over
+$R\cup\{w_{\sigma}\}$. All entries of $w_{\sigma}$ in the representation
+can be replaced by $t_{\sigma}r_{\sigma}$ to acquire representation
+of$v_{\sigma}$ over $R$ only. It's existance leads to contradiction.
 \begin{lem}
-Если $R$ -- S-базис, то $\{\poly(r)\,|\, r\in R\}$ является базисом
-Грёбнера идеала $I$.
+If $R$ is S-basis, then $\{\poly(r)\,|\, r\in R\}$ is a Gröbner
+basis of ideal $I$.
 \end{lem}
-Для $\forall p\in I$ можно взять некоторый $h=\left(\sigma,p\right)\in H$
-и применить лемму \ref{lem:one-j-exact}.
+For $\forall p\in I$ we can take some $h=\left(\sigma,p\right)\in H$
+and apply lemma \ref{lem:one-j-exact} to it.
 \begin{thm}
-\nameref{par:SimpleSignatureGroebner} возвращает базис Грёбнера
+\nameref{par:SimpleSignatureGroebner} returns Gröbner basis
 \end{thm}
-К моменту остановки $B=\varnothing$, значит по теореме \ref{thm:has-s-repr}
-$R$ -- S-базис.
+At the moment of algorithm termination $B=\varnothing$ so by theorem
+\ref{thm:has-s-repr} $R$ -- S-basis.
 
 
-\subsection{Сравнение с аналогами}
+\section{Comparison with other algorithms}
 
 Представленный алгоритм принадлежит к семейству алгоритмов вычисления
 базисов Грёбнера, использующих сигнатуры, которые вычисляют S-базис

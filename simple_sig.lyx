@@ -1633,17 +1633,17 @@ Correctness of output
 \begin_layout Definition
 
 \emph on
-S-представлением
+S-representation of
 \emph default
  
 \begin_inset Formula $h\in H$
 \end_inset
 
- над множеством 
+ over set 
 \begin_inset Formula $\left\{ r_{i}\right\} \subset H$
 \end_inset
 
- будем называть выражение 
+ is an expression 
 \begin_inset Formula $\poly(h)=\sum_{j}K_{j}t_{j}\poly(r_{i_{j}}),$
 \end_inset
 
@@ -1651,7 +1651,7 @@ S-представлением
 \begin_inset Formula $K_{j}\in k,t_{j}\in\mathbb{T},i_{j}\in\mathbb{N}$
 \end_inset
 
-, такое что 
+, such that 
 \begin_inset Formula $\forall j\,\HM(h)\succcurlyeq_{0}\HM(t_{j}r_{i_{j}}),\SIG(h)\succcurlyeq_{0}\SIG(t_{j}r_{i_{j}})$
 \end_inset
 
@@ -1665,20 +1665,20 @@ name "lem:one-j-exact"
 
 \end_inset
 
-Пусть 
+Let 
 \begin_inset Formula $\poly(h)=\sum_{j}K_{j}t_{j}\poly(r_{i_{j}})$
 \end_inset
 
- -- S-представление для 
+ -- S-representation of 
 \begin_inset Formula $h$
 \end_inset
 
 .
- Тогда для хотя бы одного 
+ Then at least one 
 \begin_inset Formula $j$
 \end_inset
 
- достигается 
+ satisfies 
 \begin_inset Formula $\HM(h)=\HM(t_{j}r_{i_{j}})$
 \end_inset
 
@@ -1686,15 +1686,15 @@ name "lem:one-j-exact"
 \end_layout
 
 \begin_layout Standard
-В качестве такого 
+To get a 
 \begin_inset Formula $j$
 \end_inset
 
- можно взять то, на котором достигается 
+ satisfying the equality we can take a value which gives the 
 \begin_inset Formula $\succ$
 \end_inset
 
--максимум 
+-maximum of 
 \begin_inset Formula $\HM(t_{j}r_{i_{j}})$
 \end_inset
 
@@ -1702,7 +1702,7 @@ name "lem:one-j-exact"
 \end_layout
 
 \begin_layout Standard
-Следующее определение расширяет понятие S-базиса из работы 
+The next definition extends the notation of S-basis from 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "TheF5Revised"
@@ -1713,27 +1713,27 @@ key "TheF5Revised"
 \end_layout
 
 \begin_layout Definition
-Назовём 
+The labeled polynomial set 
 \begin_inset Formula $R\subset H$
 \end_inset
 
 
 \emph on
- S-базисом
+ is called S-basis
 \emph default
- (соответственно 
+ (correspondingly 
 \emph on
 S
 \begin_inset Formula $_{\sigma}$
 \end_inset
 
--базисом
+-basis
 \emph default
-), если все элементы
+), if all elements of 
 \begin_inset Formula $H$
 \end_inset
 
- (соответственно 
+ (correspondingly 
 \begin_inset Formula $\left\{ h\in H\,|\,\SIG(h)\prec_{0}\sigma\right\} $
 \end_inset
 
@@ -1741,11 +1741,7 @@ S
 \emph on
  
 \emph default
-имеют S-представление
-\emph on
- 
-\emph default
-над 
+have S-representation over 
 \begin_inset Formula $R$
 \end_inset
 
@@ -1761,7 +1757,7 @@ name "lem:s-basis-and-no-reductions"
 
 \end_inset
 
-Пусть 
+Let 
 \begin_inset Formula $\sigma\succ_{0}0,R=\left\{ r_{i}\right\} $
 \end_inset
 
@@ -1773,24 +1769,24 @@ name "lem:s-basis-and-no-reductions"
 
 
 \emph default
--базис и выбраны 
+-basis and 
 \begin_inset Formula $h_{1},h_{2}\in H,\SIG(h_{i})=\sigma$
 \end_inset
 
-, которые не редуцируются по 
+ are labeled polynomials, that can't be signature-safe reduced by 
 \begin_inset Formula $R$
 \end_inset
 
- с сохранением сигнатуры.
- Тогда 
+ elements.
+ Then 
 \begin_inset Formula $\HM(h_{1})=\HM(h_{2})$
 \end_inset
 
- и у 
+ and 
 \begin_inset Formula $h_{1}$
 \end_inset
 
- есть S-представление над 
+ has an S-representation over 
 \begin_inset Formula $R\cup\left\{ h_{2}\right\} $
 \end_inset
 
@@ -1798,23 +1794,24 @@ name "lem:s-basis-and-no-reductions"
 \end_layout
 
 \begin_layout Standard
-Из определения 
+We have from the definition of 
 \begin_inset Formula $H$
 \end_inset
 
- имеем 
+ that 
 \begin_inset Formula $\exists u_{i}\in P\,\HM(u_{i})=\sigma,u_{i}f\equiv\poly(h_{i})\pmod{I_{0}},i=1,2.$
 \end_inset
 
- Значит некоторой линейной комбинации 
+ It means that there exists a linear combination of 
 \begin_inset Formula $\poly(h_{i})$
 \end_inset
 
- сопоставляется 
+ having signature 
 \begin_inset Formula $\prec_{0}\sigma$
 \end_inset
 
- сигнатура: 
+.
+ Ths can be wrtten as: 
 \begin_inset Formula 
 \[
 \exists K\in k,v\in P\,\HM(v)=\sigma'\prec_{0}\sigma,vf\equiv\poly(h_{1})-K\poly(h_{2})\pmod{I_{0}},
@@ -1822,12 +1819,12 @@ name "lem:s-basis-and-no-reductions"
 
 \end_inset
 
-то есть 
+or in the terminology of labeled polynomials: 
 \begin_inset Formula $\left(\sigma',p'\right)=\left(\sigma',\poly(h_{1})-K\poly(h_{2})\right)\in H$
 \end_inset
 
 .
- Из определения S
+ From the definition of S
 \emph on
 
 \begin_inset Formula $_{\sigma}$
@@ -1835,50 +1832,50 @@ name "lem:s-basis-and-no-reductions"
 
 
 \emph default
--базиса и 
+-basis and the property 
 \begin_inset Formula $\sigma'\prec_{0}\sigma$
 \end_inset
 
- вытекает 
+ we conclude: 
 \begin_inset Formula $\exists r_{j}\in R,t\in\mathbb{T}\,\SIG(tr_{j})\preccurlyeq_{0}\sigma',\HM(tr_{j})=\HM(p')$
 \end_inset
 
 .
- Отсюда 
+ So 
 \begin_inset Formula $\HM(h_{i})\neq\HM(p'),i=1,2$
 \end_inset
 
-, иначе 
+, because in the case of equality 
 \begin_inset Formula $r_{j}$
 \end_inset
 
- редуцировало бы 
+ would be signature-safe reductor for 
 \begin_inset Formula $h_{i}$
 \end_inset
 
- с сохранением сигнатуры.
- Значит, 
+.
+ It is possible only if 
 \begin_inset Formula $\HM(h_{i})$
 \end_inset
 
- сокращаются при вычитании с 
+ are canceled while subtraction with 
 \begin_inset Formula $k$
 \end_inset
 
--коэффициентом, что даёт 
+-coefficient, what means that 
 \begin_inset Formula $\HM(h_{1})=\HM(h_{2})$
 \end_inset
 
 .
- S-представление 
+ S-representation of 
 \begin_inset Formula $h_{1}$
 \end_inset
 
- получается добавлением 
+ is constructed by adding 
 \begin_inset Formula $K\poly(h_{2})$
 \end_inset
 
- к S-представлению 
+ to S-representation of 
 \begin_inset Formula $\left(\sigma',p'\right)$
 \end_inset
 
@@ -1892,141 +1889,140 @@ name "thm:exist-r-sigma"
 
 \end_inset
 
-На каждой итерации алгоритма после шага 
+Every iteration of the algorithm after step 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:-remove-from-B"
 
 \end_inset
 
- выполнен инвариант: для 
+ the followong invariant holds: for 
 \begin_inset Formula $\forall\sigma\in\mathbb{T},\sigma\prec$
 \end_inset
 
- сигнатур элементов 
+ signatures of elements of 
 \begin_inset Formula $B$
 \end_inset
 
-, найдутся 
+, exists 
 \begin_inset Formula $r_{\sigma}\in R,t_{\sigma}\in\mathbb{T}:\SIG(t_{\sigma}r_{\sigma})=\sigma$
 \end_inset
 
- и 
+ such that 
 \begin_inset Formula $t_{\sigma}r_{\sigma}$
 \end_inset
 
- не редуцируется по 
+ can't be signature-safe reduced by 
 \begin_inset Formula $R$
 \end_inset
 
- с сохранением сигнатуры.
+.
 \end_layout
 
 \begin_layout Standard
-Множество 
+The set 
 \begin_inset Formula $R_{\sigma}=\left\{ r\in R\,|\,\SIG(r)|\sigma\right\} $
 \end_inset
 
- непусто, так как содержит добавленный на первой итерации элемент 
+ is not empty, because contains the element 
 \begin_inset Formula $r_{0}$
 \end_inset
 
- с 
+ added during the first algorthm iteration with 
 \begin_inset Formula $\SIG(r_{0})=1$
 \end_inset
 
 .
- Обозначим за 
+ Let 
 \begin_inset Formula $r_{\sigma}$
 \end_inset
 
- его 
+ be 
 \begin_inset Formula $\GVWl$
 \end_inset
 
--минимальный элемент; положим 
+-minimal element of the set; take 
 \begin_inset Formula $t_{\sigma}=\frac{\sigma}{\SIG(r_{\sigma})}$
 \end_inset
 
 .
- Предположим, что 
+ Suppose that 
 \begin_inset Formula $t_{\sigma}r_{\sigma}$
 \end_inset
 
- может быть редуцирован с сохранением сигнатуры относительно некоторого
- 
+ can be signature-safe reduced by some 
 \begin_inset Formula $r_{1}\in R$
 \end_inset
 
 .
- Отсюда следует, что 
+ This gives that 
 \begin_inset Formula $r_{1}\GVWg r_{\sigma}$
 \end_inset
 
-, а также что они не нулевые.
- Значит на той же итерации, когда в 
+ and both sides of inequality are non-zero.
+ It means that during the iteration which inserts in 
 \begin_inset Formula $R$
 \end_inset
 
- был добавлен последний из 
+ the last of 
 \begin_inset Formula $\{r_{\sigma},r_{1}\}$
 \end_inset
 
-, в множество 
+ the set 
 \begin_inset Formula $B$
 \end_inset
 
- был добавлен многочлен 
+ was extended by labeled polynomial 
 \begin_inset Formula $t'r_{\sigma}$
 \end_inset
 
-, где 
+, where 
 \begin_inset Formula $t'=\frac{\LCM(\HM(r_{1}),\HM(r_{\sigma}))}{\HM(r_{\sigma})}$
 \end_inset
 
-, причём 
+ and 
 \begin_inset Formula $t'|t_{\sigma}$
 \end_inset
 
 .
- Отсюда 
+ So we have 
 \begin_inset Formula $\SIG(t'r_{\sigma})|\SIG(t_{\sigma}r_{\sigma})=\sigma\Rightarrow\SIG(t'r_{\sigma})\preccurlyeq\sigma\prec$
 \end_inset
 
- сигнатур элементов 
+ signatures of elements of 
 \begin_inset Formula $B$
 \end_inset
 
 .
- В силу этого неравенства на сигнатуры получается, что 
+ This signatures inequality implies that 
 \begin_inset Formula $t'r_{\sigma}$
 \end_inset
 
- уже не может быть элементом 
+ can't be element of 
 \begin_inset Formula $B$
 \end_inset
 
-, а значит был выкинут на шаге 
+ during the current iteration and was removed at the step 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:-remove-from-B"
 
 \end_inset
 
- одной из итераций, то есть 
+ of some previous iteration, so 
 \begin_inset Formula $\exists r_{2}\in R\, r_{2}\GVWl t'r_{\sigma},\SIG(r_{2})|\SIG(t'r_{\sigma})$
 \end_inset
 
 .
- Это невозможно, поскольку влечёт 
+ This is impossible, because the existence of 
 \begin_inset Formula $r_{2}\GVWl r_{\sigma},r_{2}\in R_{\sigma}$
 \end_inset
 
-, что противоречит 
+ contradicts 
 \begin_inset Formula $\GVWl$
 \end_inset
 
--минимальности 
+-minimality of 
 \begin_inset Formula $r_{\sigma}$
 \end_inset
 
@@ -2040,22 +2036,22 @@ name "thm:has-s-repr"
 
 \end_inset
 
-На каждой итерации алгоритма после шага 
+Every iteration of the algorithm after step 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:-remove-from-B"
 
 \end_inset
 
- выполнен инвариант: 
+ the followong invariant holds: 
 \begin_inset Formula $\forall h\in H,\SIG(h)\prec$
 \end_inset
 
- сигнатур элементов 
+ signatures of elements of 
 \begin_inset Formula $B$
 \end_inset
 
-, имеет S-представление над 
+ has S-representation over 
 \begin_inset Formula $R$
 \end_inset
 
@@ -2063,20 +2059,21 @@ reference "enu:-remove-from-B"
 \end_layout
 
 \begin_layout Standard
-Предположим нарушение инварианта на какой-то итерации и рассмотрим 
+Suppose that invariant breaks during some algorithm iteration and take the
+ 
 \begin_inset Formula $\prec_{0}$
 \end_inset
 
--минимальную 
+-minimal 
 \begin_inset Formula $\sigma$
 \end_inset
 
-, для которой непусто 
-\begin_inset Formula $V_{\sigma}\eqdef\{h\in H\,|\, h\mbox{ нарушает инвариант},\SIG(h)=\sigma\}$
+ that has non-empty corresponding set 
+\begin_inset Formula $V_{\sigma}\eqdef\{h\in H\,|\, h\mbox{ breaks invariant},\SIG(h)=\sigma\}$
 \end_inset
 
 .
- Тогда 
+ Then 
 \begin_inset Formula $R$
 \end_inset
 
@@ -2088,119 +2085,120 @@ reference "enu:-remove-from-B"
 
 
 \emph default
--базис.
+-basis.
  
 \begin_inset Formula $\forall g\in I_{0}\,\left(0,g\right)$
 \end_inset
 
- имеют S-представления над 
+ has S-representation over 
 \begin_inset Formula $\{(0,g_{1}),...,(0,g_{m})\}\subset R$
 \end_inset
 
-, поэтому 
+, so 
 \begin_inset Formula $\sigma\succ_{0}0$
 \end_inset
 
 .
- Выберем 
+ Select 
 \begin_inset Formula $v_{\sigma}$
 \end_inset
 
- -- один из элементов 
+ -- one of the 
 \begin_inset Formula $V_{\sigma}$
 \end_inset
 
- с 
+ elements with 
 \begin_inset Formula $\prec_{0}$
 \end_inset
 
--наименьшим 
+-minimal 
 \begin_inset Formula $\HM$
 \end_inset
 
 .
- Он не может быть редуцирован с сохранением сигнатуры по 
+ It can't be signature-safe reduced by 
 \begin_inset Formula $R$
 \end_inset
 
-, поскольку результат редукции 
+ because the reduction result 
 \begin_inset Formula $v_{1}$
 \end_inset
 
- был бы элементом 
+ would be element of
 \begin_inset Formula $V_{\sigma}$
 \end_inset
 
- с 
+ with 
 \begin_inset Formula $\HM(v_{1})\prec_{0}\HM(v_{\sigma})$
 \end_inset
 
 .
- Возьмём 
+ Take 
 \begin_inset Formula $w_{\sigma}\eqdef t_{\sigma}r_{\sigma}$
 \end_inset
 
- из инварианта теоремы 
+ from the invariant of theorem 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:exist-r-sigma"
 
 \end_inset
 
- и применим лемму 
+ and apply lemma 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lem:s-basis-and-no-reductions"
 
 \end_inset
 
- к 
+ to 
 \begin_inset Formula $v_{\sigma},w_{\sigma}$
 \end_inset
 
- и 
+ and 
 \begin_inset Formula $R$
 \end_inset
 
 .
- Получим что 
+ The lemma says that 
 \begin_inset Formula $v_{\sigma}$
 \end_inset
 
- имеет S-представление над 
+ has S-representation over 
 \begin_inset Formula $R\cup\{w_{\sigma}\}$
 \end_inset
 
 .
- Вхождения 
+ All entries of 
 \begin_inset Formula $w_{\sigma}$
 \end_inset
 
- в нём можно заменить на 
+ in the representation can be replaced by 
 \begin_inset Formula $t_{\sigma}r_{\sigma}$
 \end_inset
 
-, получив представление 
+ to acquire representation of
 \begin_inset Formula $v_{\sigma}$
 \end_inset
 
- над 
+ over 
 \begin_inset Formula $R$
 \end_inset
 
-, что приводит к противоречию.
+ only.
+ It's existance leads to contradiction.
 \end_layout
 
 \begin_layout Lemma
-Если 
+If 
 \begin_inset Formula $R$
 \end_inset
 
- -- S-базис, то 
+ is S-basis, then 
 \begin_inset Formula $\{\poly(r)\,|\, r\in R\}$
 \end_inset
 
- является базисом Грёбнера идеала 
+ is a Gröbner basis of ideal 
 \begin_inset Formula $I$
 \end_inset
 
@@ -2208,22 +2206,22 @@ reference "lem:s-basis-and-no-reductions"
 \end_layout
 
 \begin_layout Standard
-Для 
+For 
 \begin_inset Formula $\forall p\in I$
 \end_inset
 
- можно взять некоторый 
+ we can take some 
 \begin_inset Formula $h=\left(\sigma,p\right)\in H$
 \end_inset
 
- и применить лемму 
+ and apply lemma 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lem:one-j-exact"
 
 \end_inset
 
-.
+ to it.
 \end_layout
 
 \begin_layout Theorem
@@ -2233,15 +2231,15 @@ reference "par:SimpleSignatureGroebner"
 
 \end_inset
 
- возвращает базис Грёбнера
+ returns Gröbner basis
 \end_layout
 
 \begin_layout Standard
-К моменту остановки 
+At the moment of algorithm termination 
 \begin_inset Formula $B=\varnothing$
 \end_inset
 
-, значит по теореме 
+ so by theorem 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:has-s-repr"
@@ -2252,11 +2250,11 @@ reference "thm:has-s-repr"
 \begin_inset Formula $R$
 \end_inset
 
- -- S-базис.
+ -- S-basis.
 \end_layout
 
-\begin_layout Subsection
-Сравнение с аналогами
+\begin_layout Section
+Comparison with other algorithms
 \end_layout
 
 \begin_layout Standard
