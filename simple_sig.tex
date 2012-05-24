@@ -246,12 +246,12 @@ cancellation one of the inequalities from lemma statement.
 
 \section{Algorithm}
 \begin{lyxlist}{00.00.0000}
-\item [{Вход:}] многочлены $\{g_{1},\dots,g_{m}\}$, образующие базис Грёбнера;
-многочлен $f$.
-\item [{Переменные:}] $R$ и $B$ -- подмножества $H$; $(\sigma,p')\in H$
--- отмеченный многочлен текущего шага до редукции; $(\sigma,p)$ --
-он же после редукции; $r,b$ -- элементы $R$ и $B$
-\item [{Результат:}] базис Грёбнера идеала $I=\left(g_{1},\dots,g_{m},f\right)$
+\item [{Input:}] polynomial set $\{g_{1},\dots,g_{m}\}$ being a Gröbner
+basis; polynomial $f$.
+\item [{Variables:}] $R$ and $B$ -- subsets of $H$; $(\sigma,p')\in H$
+-- current step's labeled polynomial before reduction; $(\sigma,p)$
+-- the same after reduction; $r,b$ -- elements of $R$ and $B$
+\item [{Result:}] Gröbner basis of ideal$I=\left(g_{1},\dots,g_{m},f\right)$
 \end{lyxlist}
 
 \paragraph*{\label{par:SimpleSignatureGroebner}SimpleSignatureGroebner$\left(\left\{ g_{1},\dots,g_{m}\right\} ,f\right)$}
@@ -279,8 +279,8 @@ cancellation one of the inequalities from lemma statement.
 \end{enumerate}
 \end{enumerate}
 \item \label{enu:-remove-from-B}$B\leftarrow B\setminus\{b\in B\,|\,\exists r\in R\, r\GVWl b\wedge\SIG(r)|\SIG(b)\}$
-\item \textbf{if $B\neq\varnothing$: }$(\sigma,p')\leftarrow$ элемент
-$B$ с $\prec$-минимальной сигнатурой
+\item \textbf{if $B\neq\varnothing$: }$(\sigma,p')\leftarrow$ element
+of $B$ с $\prec$-minimal signature
 \item \textbf{else: break}
 \end{enumerate}
 \item \textbf{return} $\{\poly(r)\,|\, r\in R\}$
@@ -291,91 +291,96 @@ $B$ с $\prec$-минимальной сигнатурой
 \item \textbf{do while $\exists r\in R\, r\GVWg(\sigma,p)\wedge\HM(r)|\HM(p)$:}
 
 \begin{enumerate}
-\item $p\leftarrow$редуцировать $p$ с сохранением сигнатуры по $\GVWg$-максимальному
-элементу $r$ среди указанных в условии цикла
+\item $p\leftarrow$signature-safe reduce $p$ by $\GVWg$-maximal element
+$r$ from the set in cycle clause
 \end{enumerate}
 \item \textbf{return} $p$\end{enumerate}
 \begin{lem}
-Все пары из $\mathbb{T}_{0}\times P$ в алгоритме -- элементы $H\setminus\left\{ \left(0,0\right)\right\} $.
+All pairs from $\mathbb{T}_{0}\times P$ appeared in the algorithm
+are labeled polynomials from$H\setminus\left\{ \left(0,0\right)\right\} $.
 \end{lem}
-Элементы, формируемые до начала главного цикла, являются рассмотренными
-выше примерами отмеченных многочленов. Все остальные отмеченные многочлены
-в алгоритме формируются или умножением на $t\in\mathbb{T}$ или редукцией
-с сохранением сигнатуры, поэтому они корректны и лежат в $H$.
+The elements created before entering main cycle are labeled polynomials
+mentioned above as examples. All other labeled polynomials in the
+algorithm are created either with multiplication by $t\in\mathbb{T}$
+or with signature-safe reduction, so they satisfy the correctness
+property and belongs to $H$.
 
-Условия циклов, расширяющих $B$, таковы, что в\textbf{ }$B$ нет
-ни нулевых сигнатур, ни нулевых старших мономов. Поэтому $\sigma$
-никогда не обращается в 0 и нулевые сигнатуры в $R$ лишь у элементов
-$(0,g_{1}),...,(0,g_{m}).$ Нулевой старший моном может быть у любого
-многочлена, добавляемого в $R$, а нулевых многочленов с одновременно
-нулевой сигнатурой в $R$ нет.
+The clauses of cycles extending $B$ enforces the absence in\textbf{
+}$B$ elements with zero signature or zero highest monomial. So, $\sigma$
+never can be 0 and the only $R$ elements with zero signatures are
+$(0,g_{1}),...,(0,g_{m}).$ Any labeled polynomial added to $R$ can
+have zero highest monomial but $R$ does not contain zero polynomial
+with zero sgnature.
 
 
-\section{Остановка алгоритма}
+\section{Algorithm termination}
 \begin{lem}
-\label{lem:exist-reductor}В любой момент работы алгоритма любой отмеченный
-многочлен из $B$ может быть редуцирован с сохранением сигнатуры по
-некоторому элементу $R.$
+\label{lem:exist-reductor}At the any moment during the algorithm
+execution any labeled polynomial from $B$ can be signature-safe reduced
+by some element of $R.$
 \end{lem}
-Отмеченные многочлены добавляются в $B$ таким образом, чтобы иметь
-хотя бы один подходящий редуктор. $(\sigma,p)\in R$ является таким
-редуктором при добавлении в первом цикле \textbf{for}, $r\in R$ --
-во втором.
+Labeled polynomials are added to $B$ in a way ensuring existence
+at least one possible signature-safe reductor. The pair $(\sigma,p)\in R$
+is such reductor for polynomials added in first \textbf{for} cycle,
+and $r\in R$ -- for the polynomials added in the second cycle.
 \begin{lem}
-\label{lem:r-gvw-small}До редукции многочлена $p'$, то есть на шаге
-\ref{enu:-before-reduce} любой итерации алгоритма, сигнатуры элементов
-$\left\{ r\in R\,|\, r\GVWl(\sigma,p')\right\} $ не делят $\sigma$.
+\label{lem:r-gvw-small}Before reduction of polynomial $p'$ -- at
+the step\ref{enu:-before-reduce} of any algorthm iteration -- the
+signatures of elements$\left\{ r\in R\,|\, r\GVWl(\sigma,p')\right\} $
+does not divide $\sigma$.
 \end{lem}
-На первой итерации алгоритма это выполняется, поскольку $\sigma=1$
-и $R$ не содержит элементы с сигнатурами, делящими 1. На последующих
-итерациях это выполнено, поскольку если бы в $R$ существовали такие
-элементы, то $\left(\sigma,p'\right)$ был бы убран из $B$ в предыдущей
-итерации на шаге \ref{enu:-remove-from-B}.
+This holds at the first algorithm iteration because $\sigma=1$ and
+$R$ does not contain elements with signatures dividing 1. This holds
+during next iterations because the existence such elements in $R$
+would lead to removal $\left(\sigma,p'\right)$ from $B$ during previous
+iterations at the step \ref{enu:-remove-from-B}.
 \begin{lem}
-\label{lem:r-gvw-big}После редукции многочлена $p'$ до $p$, на
-шаге \ref{enu:-after-reduce} любой итерации алгоритма, старшие мономы
-элементов $\left\{ r\in R\,|\, r\GVWg(\sigma,p)\right\} $ не делят
-$\HM(p)$.
+\label{lem:r-gvw-big}After reduction of $p'$ to $p$ -- at the step
+\ref{enu:-after-reduce} of any algorthm iteration -- the highest
+monomials of elements $\left\{ r\in R\,|\, r\GVWg(\sigma,p)\right\} $
+does not divide $\HM(p)$.
 \end{lem}
-Вытекает из того, что цикл в \nameref{par:ReduceCheckingSignatures:}
-останавливается по достижении $p$, для которого такие элементы в
-$R$ не существуют.
+The cycle in the \nameref{par:ReduceCheckingSignatures:} stops only
+when it achieves $p$, for which there is no such elements in $R$
+.
 \begin{lem}
-\label{lem:adds-really-new}После редукции многочлена $p'$ до $p$,
-на шаге \ref{enu:-after-reduce} любой итерации алгоритма, элементы
-$R$ не могут одновременно иметь старшие мономы, делящие $\HM(p)$,
-и сигнатуры, делящие $\sigma$.
+\label{lem:adds-really-new}After reduction of $p'$ to $p$ -- at
+the step \ref{enu:-after-reduce} of any algorthm iteration -- no
+one from $R$ elements has simultaneousely a highest monomial dividing
+$\HM(p)$ and a signature dividing $\sigma$.
 \end{lem}
-В силу леммы \ref{lem:exist-reductor} будет произведена хотя бы одна
-редукция $p'$, поэтому $(\sigma,p')\GVWg(\sigma,p)$. Отсюда по лемме
-\ref{lem:greater-or-smaller} для $\forall r\in R$ имеем $r\GVWg(\sigma,p)$
-или $r\GVWl(\sigma,p')$. Выполнение одного из неравенств позволяет
-применить одну из лемм \ref{lem:r-gvw-small} и \ref{lem:r-gvw-big}.
+The lemma \ref{lem:exist-reductor} ensures that $p'$is reduced at
+least once, so $(\sigma,p')\GVWg(\sigma,p)$. Now, by lemma\ref{lem:greater-or-smaller}
+for $\forall r\in R$ we have $r\GVWg(\sigma,p)$ or $r\GVWl(\sigma,p')$.
+These inequalities allow to apply either lemma \ref{lem:r-gvw-small}
+or lemma \ref{lem:r-gvw-big}.
 \begin{thm}
-Алгоритм \nameref{par:SimpleSignatureGroebner} останавливается
+The algorithm\nameref{par:SimpleSignatureGroebner} terminates
 \end{thm}
-Для доказательства остановки нужно показать, что все циклы \textbf{do}
-выполняются лишь конечное число раз. В \nameref{par:ReduceCheckingSignatures:}
-при ненулевых $p$ на каждой итерации $\HM(p)$ уменьшается по $\prec_{0}$,
-что возможно лишь конечное число раз. При обнулении $p$ он завершится
-в силу $\GVWl$-минимальности $(\sigma,0)$.
+To prove the termination we need to show that all \textbf{do} cycles
+stops after finite number of executions. In the cycle inside \nameref{par:ReduceCheckingSignatures:}
+with non-zero $p$ during every iteraton we have $\HM(p)$ decrease
+according to $\prec_{0}$, which is possible only finite number of
+times. When $p$ becomes zero it stops immediately because of $\GVWl$-minmality
+of $(\sigma,0)$.
 
-На каждом шаге основного цикла пополняется множество $R\subset\mathbb{T}_{0}\times P$.
-Оно может быть разбито как $R_{*0}\cup R_{0*}\cup R_{**},$ где $R_{*0}\subset\mathbb{T}\times\left\{ 0\right\} ,R_{0*}\subset\left\{ 0\right\} \times P\setminus\left\{ 0\right\} ,R_{**}\subset\mathbb{T}\times P\setminus\left\{ 0\right\} $.
-$R_{0*}$ не пополняется в силу $\sigma\neq0$. Для $R_{*0}$ и $R_{**}$
-применим подход, основанный на понятии идеалов моноидов, предложенном
-в \cite{KreuzerRobbianoBook1} как ``monoid ideal''. Рассмотрим следующие
-множества, являющиеся идеалами моноидов: $L_{*0}=\left(\left\{ \sigma\,|\,(\sigma,0)\in R_{*0}\right\} \right)\subset\mathbb{T}$
-и $L_{**}=\left(\left\{ (\sigma,t)\,|\,\exists(\sigma,p)\in R_{**}\, t=\HM(p)\right\} \right)\subset\mathbb{T}\times\mathbb{T}$.
-В силу леммы \ref{lem:adds-really-new} добавляемые в $R$ элементы
-расширяют на каждом шаге $L_{*0}$ или $L_{**}$. Поскольку моноиды
-$\mathbb{T}$ и $\mathbb{T}\times\mathbb{T}$ изоморфны $\mathbb{N}^{n}$
-и $\mathbb{N}^{2n}$, к их идеалам может быть применена лемма Диксона,
-которая и утверждает, что расширение может происходить лишь конечное
-число раз.
+The set $R\subset\mathbb{T}_{0}\times P$ is extended n every step
+of the main algorthm cycle. It can be splitted to $R_{*0}\cup R_{0*}\cup R_{**},$
+where $R_{*0}\subset\mathbb{T}\times\left\{ 0\right\} ,R_{0*}\subset\left\{ 0\right\} \times P\setminus\left\{ 0\right\} ,R_{**}\subset\mathbb{T}\times P\setminus\left\{ 0\right\} $.
+$R_{0*}$ does never extend because $\sigma\neq0$. For sets $R_{*0}$
+and $R_{**}$ we apply a method based on idea of monoid ideals introduced
+in \cite{KreuzerRobbianoBook1} as ``monideal''. Consider the following
+two sets which are monoideals: $L_{*0}=\left(\left\{ \sigma\,|\,(\sigma,0)\in R_{*0}\right\} \right)\subset\mathbb{T}$
+and $L_{**}=\left(\left\{ (\sigma,t)\,|\,\exists(\sigma,p)\in R_{**}\, t=\HM(p)\right\} \right)\subset\mathbb{T}\times\mathbb{T}$.
+Lemma \ref{lem:adds-really-new} shows that elements being added to
+$R$ expand either $L_{*0}$ or $L_{**}$ in every cycle iteration.
+The monoids $\mathbb{T}$ and $\mathbb{T}\times\mathbb{T}$ are isomorphic
+to $\mathbb{N}^{n}$ and $\mathbb{N}^{2n}$, so the Dickson's lemma
+can be applied to thier monoideals. It states exactly the needed fact
+-- only finite number of expansions is possible for such monoideals.
 
 
-\section{Корректность результата}
+\section{Correctness of output}
 \begin{defn}
 \emph{S-представлением} $h\in H$ над множеством $\left\{ r_{i}\right\} \subset H$
 будем называть выражение $\poly(h)=\sum_{j}K_{j}t_{j}\poly(r_{i_{j}}),$

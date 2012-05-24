@@ -867,11 +867,11 @@ Algorithm
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-Вход: многочлены 
+Input: polynomial set 
 \begin_inset Formula $\{g_{1},\dots,g_{m}\}$
 \end_inset
 
-, образующие базис Грёбнера; многочлен 
+ being a Gröbner basis; polynomial 
 \begin_inset Formula $f$
 \end_inset
 
@@ -880,15 +880,15 @@ Algorithm
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-Переменные: 
+Variables: 
 \begin_inset Formula $R$
 \end_inset
 
- и 
+ and 
 \begin_inset Formula $B$
 \end_inset
 
- -- подмножества 
+ -- subsets of 
 \begin_inset Formula $H$
 \end_inset
 
@@ -896,19 +896,19 @@ Algorithm
 \begin_inset Formula $(\sigma,p')\in H$
 \end_inset
 
- -- отмеченный многочлен текущего шага до редукции; 
+ -- current step's labeled polynomial before reduction; 
 \begin_inset Formula $(\sigma,p)$
 \end_inset
 
- -- он же после редукции; 
+ -- the same after reduction; 
 \begin_inset Formula $r,b$
 \end_inset
 
- -- элементы 
+ -- elements of 
 \begin_inset Formula $R$
 \end_inset
 
- и 
+ and 
 \begin_inset Formula $B$
 \end_inset
 
@@ -917,7 +917,7 @@ Algorithm
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-Результат: базис Грёбнера идеала 
+Result: Gröbner basis of ideal
 \begin_inset Formula $I=\left(g_{1},\dots,g_{m},f\right)$
 \end_inset
 
@@ -1083,7 +1083,7 @@ if
 \begin_inset Formula $(\sigma,p')\leftarrow$
 \end_inset
 
- элемент 
+ element of 
 \begin_inset Formula $B$
 \end_inset
 
@@ -1091,7 +1091,7 @@ if
 \begin_inset Formula $\prec$
 \end_inset
 
--минимальной сигнатурой
+-minimal signature
 \end_layout
 
 \begin_layout Enumerate
@@ -1142,19 +1142,19 @@ do while
 \begin_inset Formula $p\leftarrow$
 \end_inset
 
-редуцировать 
+signature-safe reduce 
 \begin_inset Formula $p$
 \end_inset
 
- с сохранением сигнатуры по 
+ by 
 \begin_inset Formula $\GVWg$
 \end_inset
 
--максимальному элементу 
+-maximal element 
 \begin_inset Formula $r$
 \end_inset
 
- среди указанных в условии цикла
+ from the set in cycle clause
 \end_layout
 
 \end_deeper
@@ -1171,11 +1171,11 @@ return
 \end_layout
 
 \begin_layout Lemma
-Все пары из 
+All pairs from 
 \begin_inset Formula $\mathbb{T}_{0}\times P$
 \end_inset
 
- в алгоритме -- элементы 
+ appeared in the algorithm are labeled polynomials from
 \begin_inset Formula $H\setminus\left\{ \left(0,0\right)\right\} $
 \end_inset
 
@@ -1183,15 +1183,15 @@ return
 \end_layout
 
 \begin_layout Standard
-Элементы, формируемые до начала главного цикла, являются рассмотренными
- выше примерами отмеченных многочленов.
- Все остальные отмеченные многочлены в алгоритме формируются или умножением
- на 
+The elements created before entering main cycle are labeled polynomials
+ mentioned above as examples.
+ All other labeled polynomials in the algorithm are created either with
+ multiplication by 
 \begin_inset Formula $t\in\mathbb{T}$
 \end_inset
 
- или редукцией с сохранением сигнатуры, поэтому они корректны и лежат в
- 
+ or with signature-safe reduction, so they satisfy the correctness property
+ and belongs to 
 \begin_inset Formula $H$
 \end_inset
 
@@ -1199,11 +1199,11 @@ return
 \end_layout
 
 \begin_layout Standard
-Условия циклов, расширяющих 
+The clauses of cycles extending 
 \begin_inset Formula $B$
 \end_inset
 
-, таковы, что в
+ enforces the absence in
 \series bold
  
 \series default
@@ -1211,32 +1211,32 @@ return
 \begin_inset Formula $B$
 \end_inset
 
- нет ни нулевых сигнатур, ни нулевых старших мономов.
- Поэтому 
+ elements with zero signature or zero highest monomial.
+ So, 
 \begin_inset Formula $\sigma$
 \end_inset
 
- никогда не обращается в 0 и нулевые сигнатуры в 
+ never can be 0 and the only 
 \begin_inset Formula $R$
 \end_inset
 
- лишь у элементов 
+ elements with zero signatures are 
 \begin_inset Formula $(0,g_{1}),...,(0,g_{m}).$
 \end_inset
 
- Нулевой старший моном может быть у любого многочлена, добавляемого в 
+ Any labeled polynomial added to 
 \begin_inset Formula $R$
 \end_inset
 
-, а нулевых многочленов с одновременно нулевой сигнатурой в 
+ can have zero highest monomial but 
 \begin_inset Formula $R$
 \end_inset
 
- нет.
+ does not contain zero polynomial with zero sgnature.
 \end_layout
 
 \begin_layout Section
-Остановка алгоритма
+Algorithm termination
 \end_layout
 
 \begin_layout Lemma
@@ -1246,11 +1246,12 @@ name "lem:exist-reductor"
 
 \end_inset
 
-В любой момент работы алгоритма любой отмеченный многочлен из 
+At the any moment during the algorithm execution any labeled polynomial
+ from 
 \begin_inset Formula $B$
 \end_inset
 
- может быть редуцирован с сохранением сигнатуры по некоторому элементу 
+ can be signature-safe reduced by some element of 
 \begin_inset Formula $R.$
 \end_inset
 
@@ -1258,24 +1259,24 @@ name "lem:exist-reductor"
 \end_layout
 
 \begin_layout Standard
-Отмеченные многочлены добавляются в 
+Labeled polynomials are added to 
 \begin_inset Formula $B$
 \end_inset
 
- таким образом, чтобы иметь хотя бы один подходящий редуктор.
- 
+ in a way ensuring existence at least one possible signature-safe reductor.
+ The pair 
 \begin_inset Formula $(\sigma,p)\in R$
 \end_inset
 
- является таким редуктором при добавлении в первом цикле 
+ is such reductor for polynomials added in first 
 \series bold
 for
 \series default
-, 
+ cycle, and 
 \begin_inset Formula $r\in R$
 \end_inset
 
- -- во втором.
+ -- for the polynomials added in the second cycle.
 \end_layout
 
 \begin_layout Lemma
@@ -1285,22 +1286,22 @@ name "lem:r-gvw-small"
 
 \end_inset
 
-До редукции многочлена 
+Before reduction of polynomial 
 \begin_inset Formula $p'$
 \end_inset
 
-, то есть на шаге 
+ -- at the step
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:-before-reduce"
 
 \end_inset
 
- любой итерации алгоритма, сигнатуры элементов 
+ of any algorthm iteration -- the signatures of elements
 \begin_inset Formula $\left\{ r\in R\,|\, r\GVWl(\sigma,p')\right\} $
 \end_inset
 
- не делят 
+ does not divide 
 \begin_inset Formula $\sigma$
 \end_inset
 
@@ -1308,28 +1309,29 @@ reference "enu:-before-reduce"
 \end_layout
 
 \begin_layout Standard
-На первой итерации алгоритма это выполняется, поскольку 
+This holds at the first algorithm iteration because 
 \begin_inset Formula $\sigma=1$
 \end_inset
 
- и 
+ and 
 \begin_inset Formula $R$
 \end_inset
 
- не содержит элементы с сигнатурами, делящими 1.
- На последующих итерациях это выполнено, поскольку если бы в 
+ does not contain elements with signatures dividing 1.
+ This holds during next iterations because the existence such elements in
+ 
 \begin_inset Formula $R$
 \end_inset
 
- существовали такие элементы, то 
+ would lead to removal 
 \begin_inset Formula $\left(\sigma,p'\right)$
 \end_inset
 
- был бы убран из 
+ from 
 \begin_inset Formula $B$
 \end_inset
 
- в предыдущей итерации на шаге 
+ during previous iterations at the step 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:-remove-from-B"
@@ -1346,26 +1348,26 @@ name "lem:r-gvw-big"
 
 \end_inset
 
-После редукции многочлена 
+After reduction of 
 \begin_inset Formula $p'$
 \end_inset
 
- до 
+ to 
 \begin_inset Formula $p$
 \end_inset
 
-, на шаге 
+ -- at the step 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:-after-reduce"
 
 \end_inset
 
- любой итерации алгоритма, старшие мономы элементов 
+ of any algorthm iteration -- the highest monomials of elements 
 \begin_inset Formula $\left\{ r\in R\,|\, r\GVWg(\sigma,p)\right\} $
 \end_inset
 
- не делят 
+ does not divide 
 \begin_inset Formula $\HM(p)$
 \end_inset
 
@@ -1373,22 +1375,22 @@ reference "enu:-after-reduce"
 \end_layout
 
 \begin_layout Standard
-Вытекает из того, что цикл в 
+The cycle in the 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "par:ReduceCheckingSignatures:"
 
 \end_inset
 
- останавливается по достижении 
+ stops only when it achieves 
 \begin_inset Formula $p$
 \end_inset
 
-, для которого такие элементы в 
+, for which there is no such elements in 
 \begin_inset Formula $R$
 \end_inset
 
- не существуют.
+ .
 \end_layout
 
 \begin_layout Lemma
@@ -1398,30 +1400,30 @@ name "lem:adds-really-new"
 
 \end_inset
 
-После редукции многочлена 
+After reduction of 
 \begin_inset Formula $p'$
 \end_inset
 
- до 
+ to 
 \begin_inset Formula $p$
 \end_inset
 
-, на шаге 
+ -- at the step 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:-after-reduce"
 
 \end_inset
 
- любой итерации алгоритма, элементы 
+ of any algorthm iteration -- no one from 
 \begin_inset Formula $R$
 \end_inset
 
- не могут одновременно иметь старшие мономы, делящие 
+ elements has simultaneousely a highest monomial dividing 
 \begin_inset Formula $\HM(p)$
 \end_inset
 
-, и сигнатуры, делящие 
+ and a signature dividing 
 \begin_inset Formula $\sigma$
 \end_inset
 
@@ -1429,50 +1431,50 @@ reference "enu:-after-reduce"
 \end_layout
 
 \begin_layout Standard
-В силу леммы 
+The lemma 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lem:exist-reductor"
 
 \end_inset
 
- будет произведена хотя бы одна редукция 
+ ensures that 
 \begin_inset Formula $p'$
 \end_inset
 
-, поэтому 
+is reduced at least once, so 
 \begin_inset Formula $(\sigma,p')\GVWg(\sigma,p)$
 \end_inset
 
 .
- Отсюда по лемме 
+ Now, by lemma
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lem:greater-or-smaller"
 
 \end_inset
 
- для 
+ for 
 \begin_inset Formula $\forall r\in R$
 \end_inset
 
- имеем 
+ we have 
 \begin_inset Formula $r\GVWg(\sigma,p)$
 \end_inset
 
- или 
+ or 
 \begin_inset Formula $r\GVWl(\sigma,p')$
 \end_inset
 
 .
- Выполнение одного из неравенств позволяет применить одну из лемм 
+ These inequalities allow to apply either lemma 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lem:r-gvw-small"
 
 \end_inset
 
- и 
+ or lemma 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lem:r-gvw-big"
@@ -1483,51 +1485,51 @@ reference "lem:r-gvw-big"
 \end_layout
 
 \begin_layout Theorem
-Алгоритм 
+The algorithm
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "par:SimpleSignatureGroebner"
 
 \end_inset
 
- останавливается
+ terminates
 \end_layout
 
 \begin_layout Standard
-Для доказательства остановки нужно показать, что все циклы 
+To prove the termination we need to show that all 
 \series bold
 do
 \series default
- выполняются лишь конечное число раз.
- В 
+ cycles stops after finite number of executions.
+ In the cycle inside 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "par:ReduceCheckingSignatures:"
 
 \end_inset
 
- при ненулевых 
+ with non-zero 
 \begin_inset Formula $p$
 \end_inset
 
- на каждой итерации 
+ during every iteraton we have 
 \begin_inset Formula $\HM(p)$
 \end_inset
 
- уменьшается по 
+ decrease according to 
 \begin_inset Formula $\prec_{0}$
 \end_inset
 
-, что возможно лишь конечное число раз.
- При обнулении 
+, which is possible only finite number of times.
+ When 
 \begin_inset Formula $p$
 \end_inset
 
- он завершится в силу 
+ becomes zero it stops immediately because of 
 \begin_inset Formula $\GVWl$
 \end_inset
 
--минимальности 
+-minmality of 
 \begin_inset Formula $(\sigma,0)$
 \end_inset
 
@@ -1535,16 +1537,16 @@ reference "par:ReduceCheckingSignatures:"
 \end_layout
 
 \begin_layout Standard
-На каждом шаге основного цикла пополняется множество 
+The set 
 \begin_inset Formula $R\subset\mathbb{T}_{0}\times P$
 \end_inset
 
-.
- Оно может быть разбито как 
+ is extended n every step of the main algorthm cycle.
+ It can be splitted to 
 \begin_inset Formula $R_{*0}\cup R_{0*}\cup R_{**},$
 \end_inset
 
- где 
+ where 
 \begin_inset Formula $R_{*0}\subset\mathbb{T}\times\left\{ 0\right\} ,R_{0*}\subset\left\{ 0\right\} \times P\setminus\left\{ 0\right\} ,R_{**}\subset\mathbb{T}\times P\setminus\left\{ 0\right\} $
 \end_inset
 
@@ -1553,79 +1555,79 @@ reference "par:ReduceCheckingSignatures:"
 \begin_inset Formula $R_{0*}$
 \end_inset
 
- не пополняется в силу 
+ does never extend because 
 \begin_inset Formula $\sigma\neq0$
 \end_inset
 
 .
- Для 
+ For sets 
 \begin_inset Formula $R_{*0}$
 \end_inset
 
- и 
+ and 
 \begin_inset Formula $R_{**}$
 \end_inset
 
- применим подход, основанный на понятии идеалов моноидов, предложенном в
- 
+ we apply a method based on idea of monoid ideals introduced in 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "KreuzerRobbianoBook1"
 
 \end_inset
 
- как ``monoid ideal''.
- Рассмотрим следующие множества, являющиеся идеалами моноидов: 
+ as ``monideal''.
+ Consider the following two sets which are monoideals: 
 \begin_inset Formula $L_{*0}=\left(\left\{ \sigma\,|\,(\sigma,0)\in R_{*0}\right\} \right)\subset\mathbb{T}$
 \end_inset
 
- и 
+ and 
 \begin_inset Formula $L_{**}=\left(\left\{ (\sigma,t)\,|\,\exists(\sigma,p)\in R_{**}\, t=\HM(p)\right\} \right)\subset\mathbb{T}\times\mathbb{T}$
 \end_inset
 
 .
- В силу леммы 
+ Lemma 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lem:adds-really-new"
 
 \end_inset
 
- добавляемые в 
+ shows that elements being added to 
 \begin_inset Formula $R$
 \end_inset
 
- элементы расширяют на каждом шаге 
+ expand either 
 \begin_inset Formula $L_{*0}$
 \end_inset
 
- или 
+ or 
 \begin_inset Formula $L_{**}$
 \end_inset
 
-.
- Поскольку моноиды 
+ in every cycle iteration.
+ The monoids 
 \begin_inset Formula $\mathbb{T}$
 \end_inset
 
- и 
+ and 
 \begin_inset Formula $\mathbb{T}\times\mathbb{T}$
 \end_inset
 
- изоморфны 
+ are isomorphic to 
 \begin_inset Formula $\mathbb{N}^{n}$
 \end_inset
 
- и 
+ and 
 \begin_inset Formula $\mathbb{N}^{2n}$
 \end_inset
 
-, к их идеалам может быть применена лемма Диксона, которая и утверждает,
- что расширение может происходить лишь конечное число раз.
+, so the Dickson's lemma can be applied to thier monoideals.
+ It states exactly the needed fact -- only finite number of expansions is
+ possible for such monoideals.
 \end_layout
 
 \begin_layout Section
-Корректность результата
+Correctness of output
 \end_layout
 
 \begin_layout Definition
