@@ -2258,9 +2258,9 @@ Comparison with other algorithms
 \end_layout
 
 \begin_layout Standard
-Представленный алгоритм принадлежит к семейству алгоритмов вычисления базисов
- Грёбнера, использующих сигнатуры, которые вычисляют S-базис и в той или
- иной степени являются модификациями алгоритма F5 из 
+The presented algorthm belongs to the family of the Gröbner basis algorithms
+ using signatures and being at some degree a modification of F5 algorthm
+ from 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "FaugereF5"
@@ -2268,8 +2268,10 @@ key "FaugereF5"
 \end_inset
 
 .
- Одно из основных направлений его модификации -- упрощение теоретических
- обоснований и расширение области применимости -- представлено в 
+ One of the main modification directions of F5 is simplifying and clarfying
+ the connected theory usually bound with some thoughts about extending the
+ area of inputs the algorithm can be applied to.
+ Investigations in this direction can be found in 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "GermanF5Proof,ZobninGeneralization,F5InBBStyle"
@@ -2277,119 +2279,129 @@ key "GermanF5Proof,ZobninGeneralization,F5InBBStyle"
 \end_inset
 
 .
- Другое -- повышение эффективности путём ввода дополнительных критериев
- отбрасывания некоторых вычислений -- описывается в 
+ The other direction is improving efficiency of computations by introducing
+ criteria to detect and dont't perform some unnecessary computations.
+ It is studied in 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "F5C,G2V,SignatureBasedGBs"
 
 \end_inset
 
- и позволяет проводить вычисления так, чтобы до конца редуцировались лишь
- многочлены, являющиеся новыми элементами S-базиса или дающие новую сигнатуру
- нулевого многочлена, расширяющую идеал моноида, содержащий такие сигнатуры,
- называемые также 
+ and allows to perform coputations in a way that reduces to the end only
+ polynomials that are either new S-basis entries or corresponds to new signature
+ of zero polynomial -- called 
 \emph on
-сигнатурами сизигий.
+syzygy signature
+\emph default
+ -- that extend the monoideal of such signatures
+\emph on
+.
 
 \emph default
- Обобщение с одновременным применением всех критериев в алгоритмах TRB-MJ
- и SB 
+ Generalisation simultaneousely using all criteria idescribed in algorithms
+ TRB-MJ and SB 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "HuangConception,PracticalGB"
 
 \end_inset
 
- позволяет добиться большей эффективности благодаря тому, что все отбрасывания
- применяются до проведения таких вычислительно трудоёмких операций, как
- редукция многочлена или подсчёт старшего монома S-пары, -- в результате
- не оказывается, что результаты каких-то вычислений были отброшены.
+ achieve even more efficiency because all discardings are performed before
+ any computational heavy operations like polynomial reduction or computation
+ highest monomial of S-polynomial -- so the non-trivial computations are
+ never become unnecessary because their results are never discarded.
 \end_layout
 
 \begin_layout Standard
-Во всех упомянутых алгоритмах, включая немодифицированный F5, формулируется
- два типа критериев отброса: критерии, связанные с сизигиями, и критерии
- перезаписи, корректность каждого из которых доказывается независимо.
- Также, даже в алгоритмах, не вычисляющих S-полиномы явно, теоретическое
- обоснование корректности алгоритма на них опирается.
+All mentioned algorithms including original F5 use discarding criteria of
+ two types: syzygy-based criteria and rewrite-like criteria, with separate
+ proof of correctness for each type.
+ The other common idea used in the algorithms are S-polynomials: even the
+ algorithms that does not deal with S-polynomials directly make heavy usage
+ of them in the corretness proof.
 \end_layout
 
 \begin_layout Standard
-Данная работа описывает алгоритм вычисляющий минимальный S-базис и осуществляющи
-й отброс вычислений не менее эффективно, чем в TRB-MJ, но использующий лишь
- единственный критерий отброса на шаге 
+This paper describes an algorithm computing minimal S-basis and discarding
+ computations with efficiency identical to TRB-MJ, but using the only one
+ discarding criteria in step 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:-remove-from-B"
 
 \end_inset
 
-, основанный на 
+, which is based on 
 \begin_inset Formula $\GVWl$
 \end_inset
 
--упорядочивании множества 
+-ordering of 
 \begin_inset Formula $R$
 \end_inset
 
 .
- Вопрос наиболее эффективного способа выбора редуктора в 
+ The efficiency of different reductor selection strategies in 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "par:ReduceCheckingSignatures:"
 
 \end_inset
 
- является открытым.
- Представленный в этой работе способ выбора основан на всё том же упорядочении
- 
+ is open question.
+ The method presented in this paper is based on the same orderng of 
 \begin_inset Formula $R$
 \end_inset
 
- и совпадает для случая однородных многочленов со способом выбора, применявшемся
- в алгоритме F5.
- Теоретическое обоснование сформулировано без S-полиномов и позволяет применять
- к нему простую алгебраическую интерпретацию из 
+ and is identical for homogeneous case with the methos used in original
+ F5.
+ The correctnes proof is given without the use of S-polynomials and is formulate
+d in a way that allows to apply the clear algebraic interpretation of signature-
+based algorithms from 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ZobninGeneralization"
 
 \end_inset
 
-.
+ to the presented algorithm.
 \end_layout
 
 \begin_layout Standard
-Упрощение формулировки алгоритма повлекло значительное уменьшение времени
- на его реализацию и отладку на компьютере по сравнению с аналогами, как
- за счёт меньшего количества множеств, так и за счёт общего для критериев
- отбрасывания и процедуры редукции порядка.
- Простота реализации и нетребовательность к структурам данных позволяет
- за небольшое время внедрять эффективную версию алгоритма в любую систему
- компьютерной алгебры.
- Реализация, упоминаемая ниже, была создана автором за 8 часов, что на порядок
- меньше, чем время, затраченное автором на экспериментальные реализации
- других алгоритмов в подобных условиях.
- Доказательство, основанное на инвариантах в терминах S-представлений, позволило
- сделать работу алгоритма более прозрачной с алгебраической точки зрения
- и потенциально расширяемым на объекты, обобщающие кольцо многочленов над
- полем.
+Algorithm simplification lead to decreasing the time needed for its programming
+ implementation and debugging.
+ It is achieved by the smaller number of variables and using the same order
+ for discarding criteria and reductor selection.
+ Simplicity of implementation and the absence of complex data structures
+ allows quick algorithm integration with any computer algebra system.
+ The author's implementation linked below was written from scratch in a
+ 8 hours what is a lot smaller than the time author spent implementing other
+ algorithms with a similar tools.
+ The proof based on S-represenation invariants make algorithm flow more
+ clear from the algebraic point of view and allows for algorithm extension
+ to other algrebraic objects similar to polynomial ring over field.
 \end_layout
 
 \begin_layout Standard
-Алгоритм был реализован на С++ с использованием функций ядра программного
- комплекса Singular 3-1-4 и открытых наработок Кристиана Эдера (одного из
- авторов 
+The algorithm was implemented in С++ using low-level functions from computer
+ algebra system Singular 3-1-4 and open source codes of C.
+ Eder (one of the authors of 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "SignatureBasedGBs"
 
 \end_inset
 
-) по реализации F5-подобных алгоритмов на этом ядре.
- Исходный код реализации содержится в функции ssg файла, доступного по адресу
- 
+) for implementing F5-like algorithms in this system.
+ The source is contained in 
+\begin_inset Quotes eld
+\end_inset
+
+ssg
+\begin_inset Quotes erd
+\end_inset
+
+ functon in a file available at 
 \begin_inset CommandInset href
 LatexCommand href
 target "https://github.com/galkinvv/Singular-f5-like/blob/ssg/kernel/kstd2.cc"
@@ -2400,23 +2412,24 @@ target "https://github.com/galkinvv/Singular-f5-like/blob/ssg/kernel/kstd2.cc"
 \end_layout
 
 \begin_layout Standard
-Сравнение реализации SimpleSignatureGroebner с другими алгоритмами вычисления
- базисов Грёбнера, реализованных Кристианом Эдером подтвердили следующие
- соображения:
+Comparison of SimpleSignatureGroebner implementation with other Gröbner
+ basis algorithms implemented by C.
+ Eder gives practical checks for the following theoretical facts:
 \end_layout
 
 \begin_layout Itemize
-алгоритм SimpleSignatureGroebner корректно вычисляет базис Грёбнера;
+algorithm SimpleSignatureGroebner correctly computes Gröbner basis;
 \end_layout
 
 \begin_layout Itemize
-результат содержит не большее число многочленов, чем результат других инкремента
-льных алгоритмов, возвращающих S-базис;
+the number of polynomials in the result set is not greater than the number
+ of polynomials in a result of other incremental algorithms that compute
+ S-basis;
 \end_layout
 
 \begin_layout Itemize
-время работы алгоритма оказывается не больше, чем у других инкрементальных
- алгоритмов, основанных на сигнатурах.
+the execution time is not greater than execution time of other signature-based
+ incremental algorithms.
 \end_layout
 
 \begin_layout Standard
