@@ -81,8 +81,8 @@ theorems-std
 \pdf_colorlinks false
 \pdf_backref false
 \pdf_pdfusetitle true
-\papersize default
-\use_geometry false
+\papersize a4paper
+\use_geometry true
 \use_amsmath 2
 \use_esint 0
 \use_mhchem 0
@@ -97,6 +97,10 @@ theorems-std
 \shortcut idx
 \color #008000
 \end_index
+\leftmargin 3cm
+\topmargin 3cm
+\rightmargin 3cm
+\bottommargin 3cm
 \secnumdepth -1
 \tocdepth 3
 \paragraph_separation indent
@@ -165,8 +169,6 @@ novestnikonly{
 
 \begin_layout Title
 Simple signature-based Groebner basis algorithm
-\series bold
-DO_CHECK_SPELLING
 \end_layout
 
 \begin_layout Author
@@ -355,9 +357,9 @@ Consider polynomial ring
 \end_inset
 
 .
- The alrgorithm described in this paper is designed to perform one step
- of such computation.
- So, the algorthm's input data consist of a some polynomial 
+ The algorithm described in this paper is designed to perform one step of
+ such computation.
+ So, the algorithm's input data consist of a some polynomial 
 \begin_inset Formula $f$
 \end_inset
 
@@ -393,7 +395,7 @@ Consider polynomial ring
 \begin_inset Formula $f\neq0,\forall i\, g_{i}\notin k.$
 \end_inset
 
- The homogeniety of input polynomials is not required unlike the F5 algorithm
+ The homogeneity of input polynomials is not required unlike the F5 algorithm
  described in 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -426,7 +428,7 @@ Consider the set
 \begin_inset Formula $\prec_{0}$
 \end_inset
 
- with defintion 
+ with definition 
 \begin_inset Formula $\forall t\in\mathbb{T}\, t\succ_{0}0$
 \end_inset
 
@@ -457,7 +459,7 @@ Consider the set
 \end_inset
 
 .
- For zero we define -- 
+ For zero we define: 
 \begin_inset Formula $\HM(0)\eqdef0\in\mathbb{T}_{0}$
 \end_inset
 
@@ -517,7 +519,7 @@ signature
 \begin_inset Formula $\SIG(h)\eqdef\sigma$
 \end_inset
 
- and a notation is introduced for the polynomial -- secand element of pair:
+ and a notation is introduced for the polynomial -- second element of pair:
  
 \begin_inset Formula $\poly(h)\eqdef p$
 \end_inset
@@ -659,7 +661,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \end_layout
 
 \begin_layout Standard
-The elements with zero signature or high monomial are extremums:
+The elements with zero signature or zero high monomial are extremums:
 \begin_inset Formula 
 \[
 \forall\sigma_{1},\sigma_{2},p_{1},p_{2}\,\left(0,p_{1}\right)\not\GVWl\left(\sigma_{2},p_{2}\right),\,\left(\sigma_{1},0\right)\not\GVWg\left(\sigma_{2},p_{2}\right).
@@ -722,7 +724,7 @@ Let
 \end_layout
 
 \begin_layout Standard
-Deduced from the fact that claims of both sides are equivalent 
+Deduced from the fact that claims of both sides are equivalent to 
 \begin_inset Formula $\SIG(h_{2})\succ_{0}\SIG(h_{1})\frac{\HM(h_{2})}{\HM(h_{1})}$
 \end_inset
 
@@ -774,11 +776,11 @@ Let
 \end_inset
 
  be labeled polynomials.
- Then 
+ Then for 
 \begin_inset Formula $\forall h_{3}\in H\setminus\left\{ \left(0,0\right)\right\} $
 \end_inset
 
- at least one of the following two inequalities is hold: 
+ at least one of the following two inequalities holds: 
 \begin_inset Formula $h_{1}\GVWl h_{3}$
 \end_inset
 
@@ -827,7 +829,7 @@ reference "eq:gvw-order-3"
 
 \end_inset
 
- can be multipled by non-zero monomial 
+ can be multiplied by non-zero monomial 
 \begin_inset Formula $\HM(h_{3})\SIG(h_{3})$
 \end_inset
 
@@ -858,7 +860,7 @@ reference "eq:left-or-right-monom"
 
 \end_inset
 
-, and gives after cancellation one of the inequalities from lemma statement.
+, and gives after cancellation one of the inequalities from the lemma statement.
 \end_layout
 
 \begin_layout Section
@@ -1087,7 +1089,7 @@ if
 \begin_inset Formula $B$
 \end_inset
 
- с 
+ with 
 \begin_inset Formula $\prec$
 \end_inset
 
@@ -1232,7 +1234,7 @@ The clauses of cycles extending
 \begin_inset Formula $R$
 \end_inset
 
- does not contain zero polynomial with zero sgnature.
+ does not contain zero polynomial with zero signature.
 \end_layout
 
 \begin_layout Section
@@ -1297,7 +1299,7 @@ reference "enu:-before-reduce"
 
 \end_inset
 
- of any algorthm iteration -- the signatures of elements
+ of any algorithm iteration -- the signatures of elements
 \begin_inset Formula $\left\{ r\in R\,|\, r\GVWl(\sigma,p')\right\} $
 \end_inset
 
@@ -1363,7 +1365,7 @@ reference "enu:-after-reduce"
 
 \end_inset
 
- of any algorthm iteration -- the highest monomials of elements 
+ of any algorithm iteration -- the highest monomials of elements 
 \begin_inset Formula $\left\{ r\in R\,|\, r\GVWg(\sigma,p)\right\} $
 \end_inset
 
@@ -1386,7 +1388,7 @@ reference "par:ReduceCheckingSignatures:"
 \begin_inset Formula $p$
 \end_inset
 
-, for which there is no such elements in 
+ for which there is no such elements in 
 \begin_inset Formula $R$
 \end_inset
 
@@ -1415,11 +1417,11 @@ reference "enu:-after-reduce"
 
 \end_inset
 
- of any algorthm iteration -- no one from 
+ of any algorithm iteration -- no one from 
 \begin_inset Formula $R$
 \end_inset
 
- elements has simultaneousely a highest monomial dividing 
+ elements has simultaneously a highest monomial dividing 
 \begin_inset Formula $\HM(p)$
 \end_inset
 
@@ -1512,7 +1514,7 @@ reference "par:ReduceCheckingSignatures:"
 \begin_inset Formula $p$
 \end_inset
 
- during every iteraton we have 
+ during every iteration we have 
 \begin_inset Formula $\HM(p)$
 \end_inset
 
@@ -1529,7 +1531,7 @@ reference "par:ReduceCheckingSignatures:"
 \begin_inset Formula $\GVWl$
 \end_inset
 
--minmality of 
+-minimality of 
 \begin_inset Formula $(\sigma,0)$
 \end_inset
 
@@ -1541,7 +1543,7 @@ The set
 \begin_inset Formula $R\subset\mathbb{T}_{0}\times P$
 \end_inset
 
- is extended n every step of the main algorthm cycle.
+ is extended every step of the main algorithm cycle.
  It can be splitted to 
 \begin_inset Formula $R_{*0}\cup R_{0*}\cup R_{**},$
 \end_inset
@@ -1568,14 +1570,14 @@ The set
 \begin_inset Formula $R_{**}$
 \end_inset
 
- we apply a method based on idea of monoid ideals introduced in 
+ we apply a method based on idea of monoid ideal introduced in 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "KreuzerRobbianoBook1"
 
 \end_inset
 
- as ``monideal''.
+ as ``monoideal''.
  Consider the following two sets which are monoideals: 
 \begin_inset Formula $L_{*0}=\left(\left\{ \sigma\,|\,(\sigma,0)\in R_{*0}\right\} \right)\subset\mathbb{T}$
 \end_inset
@@ -1621,7 +1623,7 @@ reference "lem:adds-really-new"
 \begin_inset Formula $\mathbb{N}^{2n}$
 \end_inset
 
-, so the Dickson's lemma can be applied to thier monoideals.
+, so the Dickson's lemma can be applied to their monoideals.
  It states exactly the needed fact -- only finite number of expansions is
  possible for such monoideals.
 \end_layout
@@ -1669,7 +1671,7 @@ Let
 \begin_inset Formula $\poly(h)=\sum_{j}K_{j}t_{j}\poly(r_{i_{j}})$
 \end_inset
 
- -- S-representation of 
+ be S-representation of 
 \begin_inset Formula $h$
 \end_inset
 
@@ -1713,13 +1715,13 @@ key "TheF5Revised"
 \end_layout
 
 \begin_layout Definition
-The labeled polynomial set 
+We call a labeled polynomial set 
 \begin_inset Formula $R\subset H$
 \end_inset
 
 
 \emph on
- is called S-basis
+ S-basis
 \emph default
  (correspondingly 
 \emph on
@@ -1761,7 +1763,7 @@ Let
 \begin_inset Formula $\sigma\succ_{0}0,R=\left\{ r_{i}\right\} $
 \end_inset
 
- -- S
+ be S
 \emph on
 
 \begin_inset Formula $_{\sigma}$
@@ -1773,7 +1775,7 @@ Let
 \begin_inset Formula $h_{1},h_{2}\in H,\SIG(h_{i})=\sigma$
 \end_inset
 
- are labeled polynomials, that can't be signature-safe reduced by 
+ be labeled polynomials, that can't be signature-safe reduced by 
 \begin_inset Formula $R$
 \end_inset
 
@@ -1811,7 +1813,7 @@ We have from the definition of
 \end_inset
 
 .
- Ths can be wrtten as: 
+ This can be written as: 
 \begin_inset Formula 
 \[
 \exists K\in k,v\in P\,\HM(v)=\sigma'\prec_{0}\sigma,vf\equiv\poly(h_{1})-K\poly(h_{2})\pmod{I_{0}},
@@ -1896,7 +1898,7 @@ reference "enu:-remove-from-B"
 
 \end_inset
 
- the followong invariant holds: for 
+ the following invariant holds: for 
 \begin_inset Formula $\forall\sigma\in\mathbb{T},\sigma\prec$
 \end_inset
 
@@ -1928,7 +1930,7 @@ The set
 \begin_inset Formula $r_{0}$
 \end_inset
 
- added during the first algorthm iteration with 
+ added during the first algorithm iteration with 
 \begin_inset Formula $\SIG(r_{0})=1$
 \end_inset
 
@@ -2043,7 +2045,7 @@ reference "enu:-remove-from-B"
 
 \end_inset
 
- the followong invariant holds: 
+ the following invariant holds: 
 \begin_inset Formula $\forall h\in H,\SIG(h)\prec$
 \end_inset
 
@@ -2077,7 +2079,7 @@ Suppose that invariant breaks during some algorithm iteration and take the
 \begin_inset Formula $R$
 \end_inset
 
- -- S
+ is S
 \emph on
 
 \begin_inset Formula $_{\sigma}$
@@ -2177,7 +2179,7 @@ reference "lem:s-basis-and-no-reductions"
 \begin_inset Formula $t_{\sigma}r_{\sigma}$
 \end_inset
 
- to acquire representation of
+ to acquire S-representation of
 \begin_inset Formula $v_{\sigma}$
 \end_inset
 
@@ -2186,7 +2188,7 @@ reference "lem:s-basis-and-no-reductions"
 \end_inset
 
  only.
- It's existance leads to contradiction.
+ It's existence leads to contradiction.
 \end_layout
 
 \begin_layout Lemma
@@ -2250,7 +2252,7 @@ reference "thm:has-s-repr"
 \begin_inset Formula $R$
 \end_inset
 
- -- S-basis.
+ is S-basis.
 \end_layout
 
 \begin_layout Section
@@ -2258,8 +2260,8 @@ Comparison with other algorithms
 \end_layout
 
 \begin_layout Standard
-The presented algorthm belongs to the family of the Gröbner basis algorithms
- using signatures and being at some degree a modification of F5 algorthm
+The presented algorithm belongs to the family of the Gröbner basis algorithms
+ using signatures and being at some degree a modification of F5 algorithm
  from 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -2268,7 +2270,7 @@ key "FaugereF5"
 \end_inset
 
 .
- One of the main modification directions of F5 is simplifying and clarfying
+ One of the main modification directions of F5 is simplifying and clarifying
  the connected theory usually bound with some thoughts about extending the
  area of inputs the algorithm can be applied to.
  Investigations in this direction can be found in 
@@ -2280,7 +2282,7 @@ key "GermanF5Proof,ZobninGeneralization,F5InBBStyle"
 
 .
  The other direction is improving efficiency of computations by introducing
- criteria to detect and dont't perform some unnecessary computations.
+ criteria to detect and don't perform some unnecessary computations.
  It is studied in 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -2288,18 +2290,15 @@ key "F5C,G2V,SignatureBasedGBs"
 
 \end_inset
 
- and allows to perform coputations in a way that reduces to the end only
- polynomials that are either new S-basis entries or corresponds to new signature
- of zero polynomial -- called 
+ and allows to perform computations in a way that reduces to the end only
+ polynomials that are either new S-basis entries or corresponds to extending
+ monoideal of signatures known to be zero polynomial signatures -- called
+ 
 \emph on
-syzygy signature
-\emph default
- -- that extend the monoideal of such signatures
-\emph on
-.
+syzygy signatures.
 
 \emph default
- Generalisation simultaneousely using all criteria idescribed in algorithms
+ Generalization simultaneously using all criteria described in algorithms
  TRB-MJ and SB 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -2319,7 +2318,7 @@ All mentioned algorithms including original F5 use discarding criteria of
  proof of correctness for each type.
  The other common idea used in the algorithms are S-polynomials: even the
  algorithms that does not deal with S-polynomials directly make heavy usage
- of them in the corretness proof.
+ of them in the correctness proof.
 \end_layout
 
 \begin_layout Standard
@@ -2349,15 +2348,15 @@ reference "par:ReduceCheckingSignatures:"
 \end_inset
 
  is open question.
- The method presented in this paper is based on the same orderng of 
+ The method presented in this paper is based on the same ordering of 
 \begin_inset Formula $R$
 \end_inset
 
- and is identical for homogeneous case with the methos used in original
+ and is identical for homogeneous case with the methods used in original
  F5.
- The correctnes proof is given without the use of S-polynomials and is formulate
-d in a way that allows to apply the clear algebraic interpretation of signature-
-based algorithms from 
+ The correctness proof is given without the use of S-polynomials and is
+ formulated in a way that allows to apply the clear algebraic interpretation
+ of signature-based algorithms from 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ZobninGeneralization"
@@ -2368,22 +2367,20 @@ key "ZobninGeneralization"
 \end_layout
 
 \begin_layout Standard
-Algorithm simplification lead to decreasing the time needed for its programming
- implementation and debugging.
- It is achieved by the smaller number of variables and using the same order
- for discarding criteria and reductor selection.
+Algorithm simplification lead to simplification of programming its implementatio
+n and debugging.
+ It is achieved by the smaller number of objects involved in computation
+ and use of the same order for discarding criteria and reductor selection.
  Simplicity of implementation and the absence of complex data structures
- allows quick algorithm integration with any computer algebra system.
+ allows quick algorithm integration with any computer algebra system that
+ can work with polynomials.
  The author's implementation linked below was written from scratch in a
  8 hours what is a lot smaller than the time author spent implementing other
  algorithms with a similar tools.
- The proof based on S-represenation invariants make algorithm flow more
- clear from the algebraic point of view and allows for algorithm extension
- to other algrebraic objects similar to polynomial ring over field.
 \end_layout
 
 \begin_layout Standard
-The algorithm was implemented in С++ using low-level functions from computer
+The algorithm was implemented in C++ using low-level functions from computer
  algebra system Singular 3-1-4 and open source codes of C.
  Eder (one of the authors of 
 \begin_inset CommandInset citation
@@ -2401,7 +2398,7 @@ ssg
 \begin_inset Quotes erd
 \end_inset
 
- functon in a file available at 
+ function in a file available at 
 \begin_inset CommandInset href
 LatexCommand href
 target "https://github.com/galkinvv/Singular-f5-like/blob/ssg/kernel/kstd2.cc"
@@ -2433,10 +2430,6 @@ the execution time is not greater than execution time of other signature-based
 \end_layout
 
 \begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
 \begin_inset ERT
 status open
 
@@ -2445,6 +2438,13 @@ status open
 
 \backslash
 vestnikonly{
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
 \end_layout
 
 \begin_layout Plain Layout

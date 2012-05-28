@@ -2413,10 +2413,6 @@ target "https://github.com/galkinvv/Singular-f5-like/blob/ssg/kernel/kstd2.cc"
 \end_layout
 
 \begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
 \begin_inset ERT
 status open
 
@@ -2425,6 +2421,13 @@ status open
 
 \backslash
 vestnikonly{
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
 \end_layout
 
 \begin_layout Plain Layout

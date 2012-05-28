@@ -3,6 +3,8 @@
 \documentclass[english]{article}
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=3cm,bmargin=3cm,lmargin=3cm,rmargin=3cm}
 \setcounter{secnumdepth}{-1}
 \usepackage{babel}
 \usepackage{amsthm}
@@ -12,14 +14,6 @@
  {hyperref}
 
 \makeatletter
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
-\DeclareRobustCommand{\cyrtext}{%
-  \fontencoding{T2A}\selectfont\def\encodingdefault{T2A}}
-\DeclareRobustCommand{\textcyr}[1]{\leavevmode{\cyrtext #1}}
-\AtBeginDocument{\DeclareFontEncoding{T2A}{}{}}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
 \theoremstyle{plain}
 \newtheorem{thm}{\protect\theoremname}
@@ -103,7 +97,7 @@
 \novestnikonly{
 
 
-\title{Simple signature-based Groebner basis algorithm\textbf{DO\_CHECK\_SPELLING}}
+\title{Simple signature-based Groebner basis algorithm}
 
 
 \author{Galkin Vasily\\
@@ -132,16 +126,16 @@ for any ideal$\left(f_{1},\dots,f_{l}\right)$ in this ring. One of
 the approaches to the problem is using iterative method which computes
 every step a basis for ideal $\left(f_{1},\dots,f_{i}\right),i=2\dots l$
 based on the already computed for $\left(f_{1},\dots,f_{i-1}\right)$
-basis $R_{i-1}$ and polynomial $f_{i}$. The alrgorithm described
+basis $R_{i-1}$ and polynomial $f_{i}$. The algorithm described
 in this paper is designed to perform one step of such computation.
-So, the algorthm's input data consist of a some polynomial $f$ and
+So, the algorithm's input data consist of a some polynomial $f$ and
 a polynomial set referred as $\left\{ g_{1},\dots,g_{m}\right\} $
 which is Gröbner basis of ideal $I_{0}=\left(g_{1},\dots,g_{m}\right)$.
 After finishing the algorithm should give the resulting polynomial
 set $R$ being a Gröbner basis of ideal $I=\left(g_{1},\dots,g_{m},f\right)$.
 The special cases $f=0\Rightarrow I=I_{0}$ and $\exists i\, g_{i}\in k\Rightarrow I=P$
 are not interesting from the computational point of view, so the further
-chapters assume that $f\neq0,\forall i\, g_{i}\notin k.$ The homogeniety
+chapters assume that $f\neq0,\forall i\, g_{i}\notin k.$ The homogeneity
 of input polynomials is not required unlike the F5 algorithm described
 in \cite{FaugereF5}.
 
@@ -150,12 +144,12 @@ in \cite{FaugereF5}.
 
 Consider the set$\mathbb{T}_{0}=\mathbb{T}\cup\left\{ 0\right\} $
 -- the monomial monoid extended by zero. The order $\prec$ can be
-extended to $\mathbb{T}_{0}$ as $\prec_{0}$ with defintion $\forall t\in\mathbb{T}\, t\succ_{0}0$
+extended to $\mathbb{T}_{0}$ as $\prec_{0}$ with definition $\forall t\in\mathbb{T}\, t\succ_{0}0$
 which keeps the well-orderness property. The notion of division also
 can be extended to $\mathbb{T}_{0}$: $t_{1}|t_{2}\eqdef\exists t_{3}\, t_{1}t_{3}=t_{2}$.
 For polynomial $p\in P,p\neq0$ the highest by $\prec$ monom and
 coefficient are written as $\HM(p)\in\mathbb{T}$ and $\HC(p)\in k$.
-For zero we define -- $\HM(0)\eqdef0\in\mathbb{T}_{0}$, $\HC(0)\eqdef0\in k$.
+For zero we define: $\HM(0)\eqdef0\in\mathbb{T}_{0}$, $\HC(0)\eqdef0\in k$.
 The least common multiple of $t_{1},t_{2}\in\mathbb{T}$ is written
 as $\LCM(t_{1},t_{2})\in\mathbb{T}$. In the following all definitions
 are given for fixed $I_{0}$ and $f$:
@@ -165,7 +159,7 @@ that satisfies the correctness property: $\exists u\in P\,\HM(u)=\sigma,uf\equiv
 Some terminology is extended to labeled polynomials. The highest monomial
 is $\HM(h)\eqdef\HM(p)$ and coefficient is $\HC(h)\eqdef\HC(p)$.
 Additionally the \emph{signature} is defined $\SIG(h)\eqdef\sigma$
-and a notation is introduced for the polynomial -- secand element
+and a notation is introduced for the polynomial -- second element
 of pair: $\poly(h)\eqdef p$. The set of all labeled polynomials is
 written as $H\subset\mathbb{T}_{0}\times P$. The trivial examples
 of labeled polynomials are $\left(1,f\right)$ and $\left(0,g\right)$
@@ -198,7 +192,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \]
 
 
-The elements with zero signature or high monomial are extremums:
+The elements with zero signature or zero high monomial are extremums:
 \[
 \forall\sigma_{1},\sigma_{2},p_{1},p_{2}\,\left(0,p_{1}\right)\not\GVWl\left(\sigma_{2},p_{2}\right),\,\left(\sigma_{1},0\right)\not\GVWg\left(\sigma_{2},p_{2}\right).
 \]
@@ -213,7 +207,8 @@ definition of$\GVWg$.
 Let $h_{1},h_{2}\in H,\HM(h_{1})|\HM(h_{2}),\HM(h_{2})\neq0$. Then
 signature-safe reduction $h_{2}$ by $h_{1}$ is possible iff$h_{1}\GVWg h_{2}$.
 \end{lem}
-Deduced from the fact that claims of both sides are equivalent $\SIG(h_{2})\succ_{0}\SIG(h_{1})\frac{\HM(h_{2})}{\HM(h_{1})}$.
+Deduced from the fact that claims of both sides are equivalent to
+$\SIG(h_{2})\succ_{0}\SIG(h_{1})\frac{\HM(h_{2})}{\HM(h_{1})}$.
 \begin{lem}
 Let $h_{1}\in H$ be a result of signature-safe reduction of $h_{1}'$
 by some other polynomial. Then $h_{1}\GVWl h_{1}'$.
@@ -222,8 +217,8 @@ Deduced from equality $\SIG(h_{1})=\SIG(h_{1}')$ and decreasing $\HM$
 during reduction: $\HM(h_{1})\prec_{0}\HM(h_{1}').$
 \begin{lem}
 \label{lem:greater-or-smaller}Let $h_{1}\GVWl h_{2}$ be labeled
-polynomials. Then $\forall h_{3}\in H\setminus\left\{ \left(0,0\right)\right\} $
-at least one of the following two inequalities is hold: $h_{1}\GVWl h_{3}$
+polynomials. Then for $\forall h_{3}\in H\setminus\left\{ \left(0,0\right)\right\} $
+at least one of the following two inequalities holds: $h_{1}\GVWl h_{3}$
 or $h_{3}\GVWl h_{2}$.
 \end{lem}
 The lemma clause gives inequality
@@ -233,7 +228,7 @@ The lemma clause gives inequality
 which shows $\HM(h_{2})\neq0,\SIG(h_{1})\neq0$. Therefore for the
 special case $\HM(h_{3})=0$ we get $h_{3}\GVWl h_{2}$and for the
 case $\SIG(h_{3})=0$ we get $h_{1}\GVWl h_{3}$. For remaining generic
-non-zero case the inequality \eqref{eq:gvw-order-3} can be multipled
+non-zero case the inequality \eqref{eq:gvw-order-3} can be multiplied
 by non-zero monomial $\HM(h_{3})\SIG(h_{3})$: 
 \begin{equation}
 \HM(h_{3})\SIG(h_{3})\HM(h_{1})\SIG(h_{2})\prec_{0}\HM(h_{3})\SIG(h_{3})\HM(h_{2})\SIG(h_{1}).\label{eq:left-or-right-monom}
@@ -241,7 +236,7 @@ by non-zero monomial $\HM(h_{3})\SIG(h_{3})$:
 So, the element $\HM(h_{3})^{2}\SIG(h_{2})\SIG(h_{1})\in\mathbb{T}_{0}$
 need to be $\succ_{0}$ than left side or $\prec_{0}$ than right
 side of inequality \eqref{eq:left-or-right-monom}, and gives after
-cancellation one of the inequalities from lemma statement.
+cancellation one of the inequalities from the lemma statement.
 
 
 \section{Algorithm}
@@ -280,7 +275,7 @@ basis; polynomial $f$.
 \end{enumerate}
 \item \label{enu:-remove-from-B}$B\leftarrow B\setminus\{b\in B\,|\,\exists r\in R\, r\GVWl b\wedge\SIG(r)|\SIG(b)\}$
 \item \textbf{if $B\neq\varnothing$: }$(\sigma,p')\leftarrow$ element
-of $B$ с $\prec$-minimal signature
+of $B$ with $\prec$-minimal signature
 \item \textbf{else: break}
 \end{enumerate}
 \item \textbf{return} $\{\poly(r)\,|\, r\in R\}$
@@ -310,7 +305,7 @@ The clauses of cycles extending $B$ enforces the absence in\textbf{
 never can be 0 and the only $R$ elements with zero signatures are
 $(0,g_{1}),...,(0,g_{m}).$ Any labeled polynomial added to $R$ can
 have zero highest monomial but $R$ does not contain zero polynomial
-with zero sgnature.
+with zero signature.
 
 
 \section{Algorithm termination}
@@ -325,7 +320,7 @@ is such reductor for polynomials added in first \textbf{for} cycle,
 and $r\in R$ -- for the polynomials added in the second cycle.
 \begin{lem}
 \label{lem:r-gvw-small}Before reduction of polynomial $p'$ -- at
-the step\ref{enu:-before-reduce} of any algorthm iteration -- the
+the step\ref{enu:-before-reduce} of any algorithm iteration -- the
 signatures of elements$\left\{ r\in R\,|\, r\GVWl(\sigma,p')\right\} $
 does not divide $\sigma$.
 \end{lem}
@@ -336,17 +331,17 @@ would lead to removal $\left(\sigma,p'\right)$ from $B$ during previous
 iterations at the step \ref{enu:-remove-from-B}.
 \begin{lem}
 \label{lem:r-gvw-big}After reduction of $p'$ to $p$ -- at the step
-\ref{enu:-after-reduce} of any algorthm iteration -- the highest
+\ref{enu:-after-reduce} of any algorithm iteration -- the highest
 monomials of elements $\left\{ r\in R\,|\, r\GVWg(\sigma,p)\right\} $
 does not divide $\HM(p)$.
 \end{lem}
 The cycle in the \nameref{par:ReduceCheckingSignatures:} stops only
-when it achieves $p$, for which there is no such elements in $R$
+when it achieves $p$ for which there is no such elements in $R$
 .
 \begin{lem}
 \label{lem:adds-really-new}After reduction of $p'$ to $p$ -- at
-the step \ref{enu:-after-reduce} of any algorthm iteration -- no
-one from $R$ elements has simultaneousely a highest monomial dividing
+the step \ref{enu:-after-reduce} of any algorithm iteration -- no
+one from $R$ elements has simultaneously a highest monomial dividing
 $\HM(p)$ and a signature dividing $\sigma$.
 \end{lem}
 The lemma \ref{lem:exist-reductor} ensures that $p'$is reduced at
@@ -359,24 +354,24 @@ The algorithm\nameref{par:SimpleSignatureGroebner} terminates
 \end{thm}
 To prove the termination we need to show that all \textbf{do} cycles
 stops after finite number of executions. In the cycle inside \nameref{par:ReduceCheckingSignatures:}
-with non-zero $p$ during every iteraton we have $\HM(p)$ decrease
+with non-zero $p$ during every iteration we have $\HM(p)$ decrease
 according to $\prec_{0}$, which is possible only finite number of
-times. When $p$ becomes zero it stops immediately because of $\GVWl$-minmality
+times. When $p$ becomes zero it stops immediately because of $\GVWl$-minimality
 of $(\sigma,0)$.
 
-The set $R\subset\mathbb{T}_{0}\times P$ is extended n every step
-of the main algorthm cycle. It can be splitted to $R_{*0}\cup R_{0*}\cup R_{**},$
+The set $R\subset\mathbb{T}_{0}\times P$ is extended every step of
+the main algorithm cycle. It can be splitted to $R_{*0}\cup R_{0*}\cup R_{**},$
 where $R_{*0}\subset\mathbb{T}\times\left\{ 0\right\} ,R_{0*}\subset\left\{ 0\right\} \times P\setminus\left\{ 0\right\} ,R_{**}\subset\mathbb{T}\times P\setminus\left\{ 0\right\} $.
 $R_{0*}$ does never extend because $\sigma\neq0$. For sets $R_{*0}$
-and $R_{**}$ we apply a method based on idea of monoid ideals introduced
-in \cite{KreuzerRobbianoBook1} as ``monideal''. Consider the following
+and $R_{**}$ we apply a method based on idea of monoid ideal introduced
+in \cite{KreuzerRobbianoBook1} as ``monoideal''. Consider the following
 two sets which are monoideals: $L_{*0}=\left(\left\{ \sigma\,|\,(\sigma,0)\in R_{*0}\right\} \right)\subset\mathbb{T}$
 and $L_{**}=\left(\left\{ (\sigma,t)\,|\,\exists(\sigma,p)\in R_{**}\, t=\HM(p)\right\} \right)\subset\mathbb{T}\times\mathbb{T}$.
 Lemma \ref{lem:adds-really-new} shows that elements being added to
 $R$ expand either $L_{*0}$ or $L_{**}$ in every cycle iteration.
 The monoids $\mathbb{T}$ and $\mathbb{T}\times\mathbb{T}$ are isomorphic
 to $\mathbb{N}^{n}$ and $\mathbb{N}^{2n}$, so the Dickson's lemma
-can be applied to thier monoideals. It states exactly the needed fact
+can be applied to their monoideals. It states exactly the needed fact
 -- only finite number of expansions is possible for such monoideals.
 
 
@@ -387,27 +382,27 @@ is an expression $\poly(h)=\sum_{j}K_{j}t_{j}\poly(r_{i_{j}}),$ $K_{j}\in k,t_{j
 such that $\forall j\,\HM(h)\succcurlyeq_{0}\HM(t_{j}r_{i_{j}}),\SIG(h)\succcurlyeq_{0}\SIG(t_{j}r_{i_{j}})$.\end{defn}
 \begin{lem}
 \label{lem:one-j-exact}Let $\poly(h)=\sum_{j}K_{j}t_{j}\poly(r_{i_{j}})$
--- S-representation of $h$. Then at least one $j$ satisfies $\HM(h)=\HM(t_{j}r_{i_{j}})$.
+be S-representation of $h$. Then at least one $j$ satisfies $\HM(h)=\HM(t_{j}r_{i_{j}})$.
 \end{lem}
 To get a $j$ satisfying the equality we can take a value which gives
 the $\succ$-maximum of $\HM(t_{j}r_{i_{j}})$.
 
 The next definition extends the notation of S-basis from \cite{TheF5Revised}:
 \begin{defn}
-The labeled polynomial set $R\subset H$\emph{ is called S-basis}
-(correspondingly \emph{S$_{\sigma}$-basis}), if all elements of $H$
-(correspondingly $\left\{ h\in H\,|\,\SIG(h)\prec_{0}\sigma\right\} $)\emph{
-}have S-representation over $R$\emph{.}\end{defn}
+We call a labeled polynomial set $R\subset H$\emph{ S-basis} (correspondingly
+\emph{S$_{\sigma}$-basis}), if all elements of $H$ (correspondingly
+$\left\{ h\in H\,|\,\SIG(h)\prec_{0}\sigma\right\} $)\emph{ }have
+S-representation over $R$\emph{.}\end{defn}
 \begin{lem}
 \label{lem:s-basis-and-no-reductions}Let $\sigma\succ_{0}0,R=\left\{ r_{i}\right\} $
--- S\emph{$_{\sigma}$}-basis and $h_{1},h_{2}\in H,\SIG(h_{i})=\sigma$
-are labeled polynomials, that can't be signature-safe reduced by $R$
+be S\emph{$_{\sigma}$}-basis and $h_{1},h_{2}\in H,\SIG(h_{i})=\sigma$
+be labeled polynomials, that can't be signature-safe reduced by $R$
 elements. Then $\HM(h_{1})=\HM(h_{2})$ and $h_{1}$ has an S-representation
 over $R\cup\left\{ h_{2}\right\} $.
 \end{lem}
 We have from the definition of $H$ that $\exists u_{i}\in P\,\HM(u_{i})=\sigma,u_{i}f\equiv\poly(h_{i})\pmod{I_{0}},i=1,2.$
 It means that there exists a linear combination of $\poly(h_{i})$
-having signature $\prec_{0}\sigma$. Ths can be wrtten as: 
+having signature $\prec_{0}\sigma$. This can be written as: 
 \[
 \exists K\in k,v\in P\,\HM(v)=\sigma'\prec_{0}\sigma,vf\equiv\poly(h_{1})-K\poly(h_{2})\pmod{I_{0}},
 \]
@@ -421,14 +416,14 @@ what means that $\HM(h_{1})=\HM(h_{2})$. S-representation of $h_{1}$
 is constructed by adding $K\poly(h_{2})$ to S-representation of $\left(\sigma',p'\right)$.
 \begin{thm}
 \label{thm:exist-r-sigma}Every iteration of the algorithm after step
-\ref{enu:-remove-from-B} the followong invariant holds: for $\forall\sigma\in\mathbb{T},\sigma\prec$
+\ref{enu:-remove-from-B} the following invariant holds: for $\forall\sigma\in\mathbb{T},\sigma\prec$
 signatures of elements of $B$, exists $r_{\sigma}\in R,t_{\sigma}\in\mathbb{T}:\SIG(t_{\sigma}r_{\sigma})=\sigma$
 such that $t_{\sigma}r_{\sigma}$ can't be signature-safe reduced
 by $R$.
 \end{thm}
 The set $R_{\sigma}=\left\{ r\in R\,|\,\SIG(r)|\sigma\right\} $ is
 not empty, because contains the element $r_{0}$ added during the
-first algorthm iteration with $\SIG(r_{0})=1$. Let $r_{\sigma}$
+first algorithm iteration with $\SIG(r_{0})=1$. Let $r_{\sigma}$
 be $\GVWl$-minimal element of the set; take $t_{\sigma}=\frac{\sigma}{\SIG(r_{\sigma})}$.
 Suppose that $t_{\sigma}r_{\sigma}$ can be signature-safe reduced
 by some $r_{1}\in R$. This gives that $r_{1}\GVWg r_{\sigma}$ and
@@ -444,13 +439,13 @@ This is impossible, because the existence of $r_{2}\GVWl r_{\sigma},r_{2}\in R_{
 contradicts $\GVWl$-minimality of $r_{\sigma}$.
 \begin{thm}
 \label{thm:has-s-repr}Every iteration of the algorithm after step
-\ref{enu:-remove-from-B} the followong invariant holds: $\forall h\in H,\SIG(h)\prec$
+\ref{enu:-remove-from-B} the following invariant holds: $\forall h\in H,\SIG(h)\prec$
 signatures of elements of $B$ has S-representation over $R$.
 \end{thm}
 Suppose that invariant breaks during some algorithm iteration and
 take the $\prec_{0}$-minimal $\sigma$ that has non-empty corresponding
 set $V_{\sigma}\eqdef\{h\in H\,|\, h\mbox{ breaks invariant},\SIG(h)=\sigma\}$.
-Then $R$ -- S\emph{$_{\sigma}$}-basis. $\forall g\in I_{0}\,\left(0,g\right)$
+Then $R$ is S\emph{$_{\sigma}$}-basis. $\forall g\in I_{0}\,\left(0,g\right)$
 has S-representation over $\{(0,g_{1}),...,(0,g_{m})\}\subset R$,
 so $\sigma\succ_{0}0$. Select $v_{\sigma}$ -- one of the $V_{\sigma}$
 elements with $\prec_{0}$-minimal $\HM$. It can't be signature-safe
@@ -460,8 +455,8 @@ from the invariant of theorem \ref{thm:exist-r-sigma} and apply lemma
 \ref{lem:s-basis-and-no-reductions} to $v_{\sigma},w_{\sigma}$ and
 $R$. The lemma says that $v_{\sigma}$ has S-representation over
 $R\cup\{w_{\sigma}\}$. All entries of $w_{\sigma}$ in the representation
-can be replaced by $t_{\sigma}r_{\sigma}$ to acquire representation
-of$v_{\sigma}$ over $R$ only. It's existance leads to contradiction.
+can be replaced by $t_{\sigma}r_{\sigma}$ to acquire S-representation
+of$v_{\sigma}$ over $R$ only. It's existence leads to contradiction.
 \begin{lem}
 If $R$ is S-basis, then $\{\poly(r)\,|\, r\in R\}$ is a Gröbner
 basis of ideal $I$.
@@ -472,38 +467,37 @@ and apply lemma \ref{lem:one-j-exact} to it.
 \nameref{par:SimpleSignatureGroebner} returns Gröbner basis
 \end{thm}
 At the moment of algorithm termination $B=\varnothing$ so by theorem
-\ref{thm:has-s-repr} $R$ -- S-basis.
+\ref{thm:has-s-repr} $R$ is S-basis.
 
 
 \section{Comparison with other algorithms}
 
-The presented algorthm belongs to the family of the Gröbner basis
+The presented algorithm belongs to the family of the Gröbner basis
 algorithms using signatures and being at some degree a modification
-of F5 algorthm from \cite{FaugereF5}. One of the main modification
-directions of F5 is simplifying and clarfying the connected theory
+of F5 algorithm from \cite{FaugereF5}. One of the main modification
+directions of F5 is simplifying and clarifying the connected theory
 usually bound with some thoughts about extending the area of inputs
 the algorithm can be applied to. Investigations in this direction
 can be found in \cite{GermanF5Proof,ZobninGeneralization,F5InBBStyle}.
 The other direction is improving efficiency of computations by introducing
-criteria to detect and dont't perform some unnecessary computations.
+criteria to detect and don't perform some unnecessary computations.
 It is studied in \cite{F5C,G2V,SignatureBasedGBs} and allows to perform
-coputations in a way that reduces to the end only polynomials that
-are either new S-basis entries or corresponds to new signature of
-zero polynomial -- called \emph{syzygy signature} -- that extend the
-monoideal of such signatures\emph{.} Generalisation simultaneousely
-using all criteria idescribed in algorithms TRB-MJ and SB \cite{HuangConception,PracticalGB}
-achieve even more efficiency because all discardings are performed
-before any computational heavy operations like polynomial reduction
-or computation highest monomial of S-polynomial -- so the non-trivial
-computations are never become unnecessary because their results are
-never discarded.
+computations in a way that reduces to the end only polynomials that
+are either new S-basis entries or corresponds to extending monoideal
+of signatures known to be zero polynomial signatures -- called \emph{syzygy
+signatures.} Generalization simultaneously using all criteria described
+in algorithms TRB-MJ and SB \cite{HuangConception,PracticalGB} achieve
+even more efficiency because all discardings are performed before
+any computational heavy operations like polynomial reduction or computation
+highest monomial of S-polynomial -- so the non-trivial computations
+are never become unnecessary because their results are never discarded.
 
 All mentioned algorithms including original F5 use discarding criteria
 of two types: syzygy-based criteria and rewrite-like criteria, with
 separate proof of correctness for each type. The other common idea
 used in the algorithms are S-polynomials: even the algorithms that
 does not deal with S-polynomials directly make heavy usage of them
-in the corretness proof.
+in the correctness proof.
 
 This paper describes an algorithm computing minimal S-basis and discarding
 computations with efficiency identical to TRB-MJ, but using the only
@@ -511,30 +505,27 @@ one discarding criteria in step \ref{enu:-remove-from-B}, which is
 based on $\GVWl$-ordering of $R$. The efficiency of different reductor
 selection strategies in \nameref{par:ReduceCheckingSignatures:} is
 open question. The method presented in this paper is based on the
-same orderng of $R$ and is identical for homogeneous case with the
-methos used in original F5. The correctnes proof is given without
+same ordering of $R$ and is identical for homogeneous case with the
+methods used in original F5. The correctness proof is given without
 the use of S-polynomials and is formulated in a way that allows to
 apply the clear algebraic interpretation of signature-based algorithms
 from \cite{ZobninGeneralization} to the presented algorithm.
 
-Algorithm simplification lead to decreasing the time needed for its
-programming implementation and debugging. It is achieved by the smaller
-number of variables and using the same order for discarding criteria
-and reductor selection. Simplicity of implementation and the absence
-of complex data structures allows quick algorithm integration with
-any computer algebra system. The author's implementation linked below
-was written from scratch in a 8 hours what is a lot smaller than the
-time author spent implementing other algorithms with a similar tools.
-The proof based on S-represenation invariants make algorithm flow
-more clear from the algebraic point of view and allows for algorithm
-extension to other algrebraic objects similar to polynomial ring over
-field.
+Algorithm simplification lead to simplification of programming its
+implementation and debugging. It is achieved by the smaller number
+of objects involved in computation and use of the same order for discarding
+criteria and reductor selection. Simplicity of implementation and
+the absence of complex data structures allows quick algorithm integration
+with any computer algebra system that can work with polynomials. The
+author's implementation linked below was written from scratch in a
+8 hours what is a lot smaller than the time author spent implementing
+other algorithms with a similar tools.
 
-The algorithm was implemented in С++ using low-level functions from
+The algorithm was implemented in C++ using low-level functions from
 computer algebra system Singular 3-1-4 and open source codes of C.
 Eder (one of the authors of \cite{SignatureBasedGBs}) for implementing
 F5-like algorithms in this system. The source is contained in ``ssg''
-functon in a file available at \href{https://github.com/galkinvv/Singular-f5-like/blob/ssg/kernel/kstd2.cc}{https://github.com/galkinvv/Singular-f5-like/blob/ssg/kernel/kstd2.cc}
+function in a file available at \href{https://github.com/galkinvv/Singular-f5-like/blob/ssg/kernel/kstd2.cc}{https://github.com/galkinvv/Singular-f5-like/blob/ssg/kernel/kstd2.cc}
 
 Comparison of SimpleSignatureGroebner implementation with other Gröbner
 basis algorithms implemented by C. Eder gives practical checks for
@@ -547,7 +538,8 @@ that compute S-basis;
 \item the execution time is not greater than execution time of other signature-based
 incremental algorithms.
 \end{itemize}
-\newpage{}\vestnikonly{
+\vestnikonly{
+\newpage
 \spisoklit
 \small\wrefdef{11}
 \wref{1}{Faug\`{e}re J.-C.} A new efficient algorithm for computing Gr\"{o}bner bases without reduction to zero (F5) // Proceedings of the 2002 International Symposium on Symbolic and Algebraic Computation. ACM. New York. 2002. 75--83.
