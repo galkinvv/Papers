@@ -172,8 +172,7 @@ is correct.
 \end{lem}
 The correctness property is checked by directly finding $u$ for $th$.
 \begin{defn}
-If the polynomials and monomial\emph{ $h'_{1},h_{2}\in H,t\in\mathbb{T}$}
-satisfy $\SIG(h'_{1})\succ_{0}\SIG(th_{2}),\HM(h'{}_{1})=\HM(th{}_{2})\neq0,$
+If\emph{ $h'_{1},h_{2}\in H,t\in\mathbb{T}$} satisfy $\SIG(h'_{1})\succ_{0}\SIG(th_{2}),\HM(h'{}_{1})=\HM(th{}_{2})\neq0,$
 then exists a \emph{signature-safe reduction $h'_{1}$ by $h_{2}$},
 resulting in labeled polynomial $h_{1}\in H$, equal to: 
 \[
@@ -502,9 +501,9 @@ in the correctness proof.
 This paper describes an algorithm computing minimal S-basis and discarding
 computations with efficiency identical to TRB-MJ, but using the only
 one discarding criteria in step \ref{enu:-remove-from-B}, which is
-based on $\GVWl$-ordering of $R$. The efficiency of different reductor
-selection strategies in \nameref{par:ReduceCheckingSignatures:} is
-open question. The method presented in this paper is based on the
+based on $\GVWl$-ordering of $R$. The routine \nameref{par:ReduceCheckingSignatures:}
+can use different reductor selection strategies and their efficiency
+is open question. The method proposed in this paper is based on the
 same ordering of $R$ and is identical for homogeneous case with the
 methods used in original F5. The correctness proof is given without
 the use of S-polynomials and is formulated in a way that allows to

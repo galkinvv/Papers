@@ -588,7 +588,7 @@ The correctness property is checked by directly finding
 \end_layout
 
 \begin_layout Definition
-If the polynomials and monomial
+If
 \emph on
  
 \begin_inset Formula $h'_{1},h_{2}\in H,t\in\mathbb{T}$
@@ -2340,15 +2340,16 @@ reference "enu:-remove-from-B"
 \end_inset
 
 .
- The efficiency of different reductor selection strategies in 
+ The routine 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "par:ReduceCheckingSignatures:"
 
 \end_inset
 
- is open question.
- The method presented in this paper is based on the same ordering of 
+ can use different reductor selection strategies and their efficiency is
+ open question.
+ The method proposed in this paper is based on the same ordering of 
 \begin_inset Formula $R$
 \end_inset
 
