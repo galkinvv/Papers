@@ -40,9 +40,11 @@ simple_sig_rus.pdf: simple_sig_rus.tex
 	pdflatex $^
 	bibtex simple_sig_rus.aux
 	pdflatex $^
+	pdflatex $^
 simple_sig.pdf: simple_sig.tex
 	pdflatex $^
 	bibtex simple_sig.aux
+	pdflatex $^
 	pdflatex $^
 clean-logs:
 	rm -f *.aux *.log *.out *.blg *~
@@ -53,6 +55,17 @@ view-rus: simple_sig_rus.pdf
 	make clean-logs
 	xdg-open $^
 view: simple_sig.pdf
+	make clean-logs
+	xdg-open $^
+origf5_termination.tex: origf5_termination.lyx
+	rm -f $@
+	lyx -e pdflatex $^
+origf5_termination.pdf: origf5_termination.tex
+	pdflatex $^
+	#bibtex origf5_termination.aux
+	pdflatex $^
+	pdflatex $^
+view-origf5_termination: origf5_termination.pdf
 	make clean-logs
 	xdg-open $^
 clean: clean-logs

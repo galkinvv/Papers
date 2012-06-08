@@ -919,7 +919,7 @@ Variables:
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-Result: Gröbner basis of ideal
+Result: Gröbner basis of ideal 
 \begin_inset Formula $I=\left(g_{1},\dots,g_{m},f\right)$
 \end_inset
 
@@ -1019,9 +1019,13 @@ if
 
 \series bold
 for 
+\series default
+
 \begin_inset Formula $\{r\in R\,|\, r\GVWl\left(\sigma,p\right),\HM(r)\neq0\}$
 \end_inset
 
+
+\series bold
 :
 \end_layout
 
@@ -1177,7 +1181,7 @@ All pairs from
 \begin_inset Formula $\mathbb{T}_{0}\times P$
 \end_inset
 
- appeared in the algorithm are labeled polynomials from
+ appeared in the algorithm are labeled polynomials from 
 \begin_inset Formula $H\setminus\left\{ \left(0,0\right)\right\} $
 \end_inset
 

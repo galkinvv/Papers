@@ -1,0 +1,1262 @@
+%% LyX 2.0.2 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[oneside,english]{amsart}
+\usepackage[T2A]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{listings}
+\usepackage[a4paper]{geometry}
+\geometry{verbose}
+\usepackage{color}
+\usepackage{babel}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=true,bookmarksopenlevel=1,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=true]
+ {hyperref}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\newcommand{\lyxrightaddress}[1]{
+\par {\raggedleft \begin{tabular}{l}\ignorespaces
+#1
+\end{tabular}
+\vspace{1.4em}
+\par}
+}
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}
+  \theoremstyle{remark}
+  \newtheorem{claim}[thm]{\protect\claimname}
+  \theoremstyle{definition}
+  \newtheorem{defn}[thm]{\protect\definitionname}
+  \theoremstyle{plain}
+  \newtheorem{fact}[thm]{\protect\factname}
+  \theoremstyle{definition}
+  \newtheorem{example}[thm]{\protect\examplename}
+  \theoremstyle{plain}
+  \newtheorem{lem}[thm]{\protect\lemmaname}
+  \theoremstyle{plain}
+  \newtheorem{cor}[thm]{\protect\corollaryname}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+
+\newcommand{\Sig}{\mathcal{S}}
+\newcommand{\HM}{\mathrm{HM}}
+\newcommand{\totaldeg}{\mathrm{deg}}
+
+\makeatother
+
+  \providecommand{\claimname}{Claim}
+  \providecommand{\corollaryname}{Corollary}
+  \providecommand{\definitionname}{Definition}
+  \providecommand{\examplename}{Example}
+  \providecommand{\factname}{Fact}
+  \providecommand{\lemmaname}{Lemma}
+\providecommand{\theoremname}{Theorem}
+
+\begin{document}
+
+\title{Termination of original F5}
+
+
+\author{Vasily Galkin}
+
+\maketitle
+
+\lyxrightaddress{Moscow State University}
+\begin{abstract}
+The original F$_{5}$ algorithm described in \cite{F5-Orig} is formulated
+for any homogeneous polynomial set input. The correctness of output
+is shown for any input that terminates the algorithm, but the termination
+itself is proved only for the case of input being regular polynomial
+sequence. This article shows that algorithm correctly terminates for
+any homogeneous input without any reference to regularity. The scheme
+contains two steps: first it is shown that if the algorithm does not
+terminate it eventually generates two polynomials where first is a
+reductor for the second. But first step doesn't show that this reduction
+is permitted by criteria introduced in F$_{5}$. The second step shows
+that if such pair exists then there exists another pair for which
+the reduction is permitted by all criteria. Existence of such pair
+leads to contradiction.
+\end{abstract}
+
+\section{Introduction}
+
+The Faugère's F$_{5}$ algorithm is known to be efficient method for
+Gröbner basis computation but one of the main problems with it's practical
+usage is lack of termination proof for all cases. The original paper
+\cite{F5-Orig} and detailed investigations in \cite{F5-Revisited}
+states the termination for the case of reductions to zero absence,
+which practically means termination proof for the case of input being
+regular polynomial sequence. But for most input sequences the regularity
+is not known, so this is not enough for practical implementations
+termination proof. One of the approaches to solve this issue is adding
+of additional checks and criteria for ensuring algorithm termination.
+Examples are \cite{term-mod-1,term-mod-2,Modifying-for-termination}.
+
+This paper introduces another approach for termination proof of original
+algorithm without any modifications. The first step of proof is based
+on the idea of S-pair chains which are introduced in this paper. The
+second step of proof is based on the method described in Theorem 21
+of \cite{F5C} for the proof of F5C algorithm correctness: the representation
+of an S-polynomial as the sum of multiplied polynomials from set computed
+by F5C can be iteratively rewritten using replacements for S-pairs
+and rejected S-pair parts until a representation with certain good
+properties is achieved after finitely many steps.
+
+This article shows that the hypothesis of this method can be weakened
+to apply it for the set at any middle stage of F5 computations and
+the conclusions can be strengthened to use them for termination proof.
+The paper is designed as alternative termination proof for exact algorithm
+described in \cite{F5-Orig}, so the reader is assumed to be familiar
+with it and all terminology with names for algorithm steps are borrowed
+from there.
+
+
+\section{Possibilities for infinite cycles in F5}
+
+
+\subsection{Inside AlgorithmF5: $d$ growth}
+
+This section aims to prove the following
+\begin{claim}
+\label{iterations-d_grow}If the number of \textbf{while} cycle iteration
+inside AlgorithmF5 is infinite then the $d$ value infinitely grow.
+\end{claim}
+Let's suppose that there is an input $\left\{ f_{1},...,f_{m}\right\} $
+over $\mathcal{K}[x_{1}...,x_{n}]$ for which original F$_{5}$ does
+not terminate, and that it is shortest input of such kind -- the algorithm
+do terminate on shorter input $\left\{ f_{2},...,f_{m}\right\} $.
+This means that last iteration of outer cycle in incrementalF5 does
+not terminate, so some call to AlgorithmF5 does not terminate. To
+investigate this we need to study how the total degree $d$ can change
+during execution of the cycle inside AlgorithmF5. Let's call $d_{i}$
+the value of $d$ on $i$-th cycle iteration and extend it to $d_{0}=-1$.
+The simple property of $d_{i}$ is it's non-strict growth: $d_{i}\geqslant d_{i-1}$.
+It holds because on the $i-1$-th iteration all polynomials in $R_{d}$
+have degree $d_{i-1}$ and therefore all new generated critical pairs
+have degree at least $d_{i-1}$. Now suppose that $j$ is number of
+some iteration. At the iteration $j$ all critical pairs with degree
+$d_{j}$ are extracted from $P$. After call to Reduction some new
+critical pairs are added to $P$. There exist a possibility that some
+of them has degree $d_{j}$. We're going to show that all such critical
+pairs do not generate S-polynomials in the algorithm because they
+are discarded .
+
+For each new critical pair $[t,u_{1},r_{1},u_{2,}r_{2}]$ generated
+during iteration $j$ at least one of the generating polynomials belong
+to $R_{d}$ and no more than one belong to $G_{i}$ at the beginning
+of the iteration. All polynomials in $R_{d}$ are generated by Reduction
+function by appending single polynomials to $Done$. So we can select
+from one or two $R_{d}$-belonging generators of critical pair a polynomial
+$r_{k}$ that was added to $Done$ later. Then we can state that the
+other S-pair part $r_{3-k}$ was already present in $G\cup Done$
+at the moment of $r_{k}$ was added to $Done$. So the TopReduction
+tries to reduce $r_{k}$ by $r_{3-k}$ but failed to do this because
+one of IsReducible checks (a)-(d) forbids this.
+
+From the other hand for critical pairs with degree equal to $d_{j}$
+we have $u_{k}=1$ because total degree of critical pair is equal
+to total degree of it's generator $r_{k}$. This means that value
+$u_{3-k}$ is equal to $\frac{\HM(r_{k})}{\HM(r_{3-k})}$ so the IsReducible's
+rule (a) allow reduction $r_{k}$ by $r_{3-k}$. It follows that only
+checks (b)-(d) are left as possibilities.
+
+Suppose that reduction was forbidden by (b). This means that there
+is a polynomial in $G_{i+1}$ that reduces $u_{3-k}\Sig(r_{3-k})$.
+For our case it means that in the CritPair function the same check
+$\varphi(u_{3-k}\Sig(r_{3-k}))=u_{3-k}\Sig(r_{3-k})$ fails and such
+critical pair wouldn't be created at all. So the rule (b) can't forbid
+reduction too.
+
+Suppose that reduction was forbidden by (c). This means that there
+is a rewriting for the multiplied reductor. So for our case it means
+that Rewritten?($u_{3-k},r_{3-k})$ returns true at the moment of
+TopReduction execution, so it still returns true for all algorithm
+execution after this moment because rewritings do not disappear.
+
+Suppose that reduction was forbidden by (d). The pseudo code in \cite{F5-Orig}
+is a bit unclear at this point, but the source code of procedure FindReductor
+attached to \cite{F5-Revisited} is more clear and states that the
+reductor is discarded if both monomial of signature and index of signature
+are equal to those of polynomial we're reducing (it's signature monomial
+is r{[}k0{]}{[}1{]} and index is r{[}k0{]}{[}2{]} in the code):
+
+\begin{lstlisting}
+if (ut eq r[k0][1]) and (r[j][2] eq r[k0][2]) then
+	// discard reductor by criterion (d)
+	continue;
+end if;
+\end{lstlisting}
+For our case it means that signatures of $r_{k}$ and $u_{3-k}r_{3-k}$
+are equal. This leads to fact that Rewritten?($u_{3-k},r_{3-k})$
+returns true after adding rule corresponding to $r_{k}$ because $u_{3-k}\cdot r_{3-k}$
+is rewritable by $1\cdot r_{k}$. So like in case (c) Rewritten?($u_{3-k},r_{3-k})$
+returns true at the moment of TopReduction execution.
+
+Now consider Spol function execution for some S-pair with total degree
+$d_{j}$ generated during iteration $j$. It executes in $j+1$ iteration
+of AlgorithmF5 cycle which is far after TopReduction execution for
+$r_{k}$ in algorithm flow so for both cases (c) and (d) call to Rewritten?($u_{3-k},r_{3-k})$
+inside Spol returns true. It means that at the $j+1$ step no S-pair
+with total degree $d_{j}$ can add polynomial to $F$.
+
+In the conclusion we have: 
+\begin{itemize}
+\item the first possibility of $d_{j+1}$ and $d_{j}$ comparison is $d_{j+1}=d_{j}$.
+In this case $F$ is empty on $j+1$ iteration and therefore $P$
+does not contain any pairs with degree $d_{j}$ after $j+1$ iteration's
+finish. So $d_{j+2}>d_{j+1}$. 
+\item the other possibility is $d_{j+1}>d_{j}$.
+\end{itemize}
+In conjunction with non-strict growth this gives $\forall j\,\, d_{j+2}>d_{j}$
+which proves the claim \ref{iterations-d_grow}.
+
+
+\subsection{Inside Reduction: $\Sig(h)$ growth}
+
+This section aims to prove the following
+\begin{claim}
+\label{Every_cycle_iteration_finish}Every cycle iteration inside
+AlgorithmF5 does terminate, in particular all calls to Reduction terminate.
+\end{claim}
+We need to get a simple fact about signatures of polynomials in $ToDo$
+set inside Reduction algorithm. All the critical pairs created with
+CritPair inside the AlgorithmF5 called for new input sequence item
+$f_{i}$ have greater S-pair part with signature index $i$. So, all
+polynomial initially forming $ToDo$ are generated by Spol and have
+signature index $i$. The polynomials added in $ToDo$ inside Reduction
+are generated by TopReduction. Each such polynomial has signature
+$u\Sig(r_{k_{1}})$ that is greater than signature $\Sig(r_{k_{0}})$
+of some other polynomial that already is $ToDo$ element because the
+case $u\Sig(r_{k_{1}})=\Sig(r_{k_{0}})$ is discarded inside IsReducible
+(d) and the case $u\Sig(r_{k_{1}})\prec\Sig(r_{k_{0}})$ is an execution
+path inside TopReduction that does not add new polynomials in $ToDo$.
+So signature index of all added elements are equal to $i$ too. From
+the other hand all polynomials inside $ToDo$ has the same total signature
+$d_{j}$. This property together with index equality shows that the
+total degree of signature monomials is equal to the $d_{j}-\totaldeg(f_{i})$
+for all $ToDo$ elements.
+
+The following needs a
+\begin{defn}
+The reduction of labeled polynomial $r_{k}$ with a labeled polynomial
+$r_{m}$ is called \emph{signature-safe} if $\Sig(r_{k})\succ t\cdot\Sig(r_{m})$,
+where $t=\frac{\HM(r_{k})}{\HM(r_{m})}$ is monomial multiplier of
+reductor. The reductor corresponding to signature-safe reduction is
+called \emph{signature-safe reductor}.
+\end{defn}
+We want to show that only possible algorithm non-termination situation
+correspond to the case of infinite $d_{j}$ growth. We showed that
+non-termination leads to AlgorithmF5 does not return, and that it
+can't stuck in iterations with same $d$ value. So, the only possibilities
+left are infinite $d$ growth and sticking inside some iteration.
+We are going to show that such sticking is not possible. The AlgorithmF5
+contains 3 cycles:
+\begin{itemize}
+\item \textbf{for} cycle inside Spol does terminate because it's number
+of iterations is limited by a count of critical pairs which is fixed
+at cycle beginning
+\item \textbf{for} cycle inside AlgorithmF5 iterating over $R_{d}$ elements
+also does terminate because count of $R_{d}$ elements is fixed at
+cycle beginning
+\item the most complex case is the \textbf{while} cycle inside Reduction
+which iterates until $ToDo$ becomes empty. The $ToDo$ set is extended
+by new elements during TopReduction execution, but all new elements
+have signatures greater than $\Sig(h)$ -- signature of smallest $ToDo$
+element at the beginning of cycle iteration. This leads to non-strict
+growth of $\Sig(h)$ during cycle iterations. Now the Reduction termination
+is got by showing two facts:
+
+\begin{itemize}
+\item There is finite number of iterations with fixed smallest $ToDo$ signature
+$\Sig(h)=S_{0}$. Every step of a cycle inside Reduction performs
+an operation with a polynomial of signature $S_{0}$ -- let's call
+them $S_{0}$-signature polynomials. The number of $S_{0}$-signature
+polynomials in $ToDo$ does not increase after first $S_{0}$-signature
+polynomial was taken as $h$ because all polynomials TopReduction
+adds in $ToDo$ has signatures greater than smallest. The real presence
+of example input that produces more than one polynomial in $ToDo$
+with same signature $S_{0}$ is left as open question here. It is
+not needed to termination proof - only the count finiteness is crucial.
+The performed operation can be one of the following three operations
+and we are going to show that neither of them can be performed infinite
+number of times:
+
+\begin{itemize}
+\item Some polynomial with a signature $S_{0}$ is transferred from $ToDo$
+to $Done$. This can be performed only finite number of times because
+the count of polynomials with signature $S_{0}$ inside $ToDo$ is
+finite.
+\item Some polynomial is signature-safe top-reduced. This can be done only
+finite number of steps for each of polynomials because each top-reduction
+reduces the head monomial and the monomial order is well-founded.
+Together with finiteness of $S_{0}$-signature polynomials count this
+shows that the number of such steps is finite too.
+\item Set of $S_{0}$-signature polynomials is not touched, but a possibility
+of signature-unsafe top-reduction adds a polynomial in $ToDo$. The
+consecutive number of operations of this type without interleaving
+second type operations which change the $S_{0}$-signature polynomials
+is limited. This holds because the number of all signature-safe and
+signature-unsafe possible top-reductions for $S_{0}$-signature polynomials
+is limited to number of such polynomials multiplied by number of possible
+reducers. Therefore the fixed count of $S_{0}$-signature polynomials
+gives the number of polynomials to reduce and the fixed $|G\cup Done|$
+gives the count of reducers. Every (polynomial-to-reduce; reducer)
+pair can produce no more than one new polynomial in $ToDo$ because
+after the first addition the multiplied reducer will be rewritten
+by added polynomial and IsReducible discards this pair. The limit
+on consecutive number of operations of this type gives a limit on
+overall number of iterations with $\Sig(h)=S_{0}$ because the finiteness
+of other operation types was proved. 
+\end{itemize}
+\item All different signatures $\Sig(h)$ appeared during Reduction execution
+have the same index and total degree. So their count is finite because
+number of monomials with a fixed total degree is finite.
+\end{itemize}
+\end{itemize}
+We got that all of the cycles inside AlgorithmF5 do finish and the
+claim \ref{Every_cycle_iteration_finish} is proved.
+
+Claims \ref{iterations-d_grow} and \ref{Every_cycle_iteration_finish}
+together give the following result:
+\begin{claim}
+\label{d-does-grow}If the algorithm does not terminate for some input
+then the value of $d$ infinitely grow during iterations.
+\end{claim}
+
+\section{S-pair-chains}
+
+The claim \ref{d-does-grow} shows that algorithm non termination
+leads to existence of infinite sequence of nonzero labeled polynomials
+being added to $G_{i}$ and the total degrees of polynomials in the
+sequence infinitely grow. So, in this case there is an infinite sequence
+of labeled polynomials $\left\{ r_{1},r_{2},...,r_{m},...,r_{n},...\right\} $
+where $r_{1},...,r_{m}$ correspond to $m$ input polynomials and
+other elements are generated either in Spol or in TopReduction. In
+both cases new element $r_{l}$ is formed as S-polynomial of two already
+existing polynomials $r_{i_{l}}$ and $r_{j_{l}}$ as $poly(r_{l})=u_{l}poly(r_{i_{l}})-v_{l}poly(r_{j_{l}})$
+and $\Sig(r_{l})=u_{l}\Sig(r_{i_{l}})\succ v_{l}\Sig(r_{j_{l}})$.
+The $poly(r_{l})$ value can further change inside TopReduction to
+the polynomial with a smaller HM, but the $\Sig(r_{l})$ does never
+change after creation. Now, we want to select an infinite sub-sequence
+$\left\{ r_{k_{1}},r_{k_{2}},...,r_{k_{n}},...\right\} $ in that
+sequence with the property that $r_{k_{n+1}}$ is an S-polynomial
+generated by $r_{k_{n}}=r_{i_{k_{n+1}}}$ and some other polynomial
+$r_{j_{k_{n+1}}}$, where $r_{k_{n}}$ correspond to greater by signature
+S-pair part , so $\Sig(r_{k_{n+1}})=u_{k_{n+1}}\Sig(r_{k_{n}})$ and
+\begin{equation}
+\Sig(r_{k_{n}})|\Sig(r_{k_{n+1}}).\label{eq:s-pair-chain-def}
+\end{equation}
+Finite or infinite labeled polynomial sequence which neighbor elements
+satisfy property \ref{eq:s-pair-chain-def} will be called \emph{S-pair-chain}.
+Every generated labeled polynomial $r_{l}$ has an S-pair-chain corresponding
+to it. This chain can be constructed in reverse direction going from
+it's last element $r_{l}$ by selecting every step from a given polynomial
+$r_{n}$ a polynomial $r_{i_{n}}$ which was used to generate $r_{n}$
+as $Spoly(r_{i_{n}},r_{j_{n}})$. The resulting S-pair-chain has the
+form $\{r_{q},...,r_{i_{i_{l}}},r_{i_{l}},r_{l}\}$ where all polynomials
+has the same signature index $q=index(r_{l})$ and the first element
+is the input polynomial of that index.
+
+The first fact about S-pair-chains is based on the rewritten criteria
+and consists in the following
+\begin{thm}
+Every labeled S-polynomial can participate as the first element only
+in finite number of S-pair-chains of length 2.
+\end{thm}
+The Algorithm F5 computes S-polynomials in 2 places: in procedure
+SPol and in the procedure TopReduction. It's important that in both
+places the Rewritten? check for the part of S-Poly with greater signature
+is performed just before the S-polynomial is constructed. In the first
+case the SPol itself is checking that $(u_{l};r_{i_{l}})$ is not
+rewritten, in the TopReduction the check is in the IsReducible procedure.
+And in both cases the computed S-polynomial is immediately added to
+the list of rules, as the newest element. So, at the moment of the
+construction of S-polynomial with signature $s$ we can assert that
+the higher part of S-pair correspond to the newest rule with signature
+dividing $s$ -- this part even may be determined by list of rules
+and $s$ without knowing anything other about computation.
+
+Consider arbitrary labeled polynomial $r_{l_{0}}$ with signature
+$\Sig(r_{l_{0}})=s$ and an ordered by generating time subset $\{r_{l_{1}},...,r_{l_{n}},...\}$
+of labeled polynomials with signatures of form $\Sig(r_{l_{n}})=\Sig(r_{l_{0}})\cdot u_{n}$.
+From the signature divisibility point of view all of the possibly
+infinite number of pairs $\{r_{l_{0}},r_{l_{n}}\}$ can be S-pair-chains
+of length 2. But the ideal $\left(u_{i}\right)$ in $T$ is finitely
+generated by Dickson's lemma, so after some step $i_{0}$ we have
+$\forall i>i_{0}\,\exists j_{i}\leqslant i_{0}<i$ such that $u_{j_{i}}|u_{i}$.
+So $\forall i>i_{0}$ the sequence $\{r_{l_{0}},r_{l_{i}}\}$ is not
+S-pair-chain because $\Sig(r_{l_{0}})\cdot u_{i}$ is rewritten by
+$\Sig(r_{l_{j_{i}}})\cdot\frac{u_{i}}{u_{j_{i}}}$ and no more than
+$i_{0}$ S-pair-chains of length 2 with first element $r_{l_{0}}$
+exist. This finishes the theorem proof. The set of ends of those 2-length
+S-pair-chains will be called S-pair-descendants of $r_{l_{0}}$.
+
+Proof of existence of infinite S-pair-chain inside infinite labeled
+polynomial sequence require some caution while dealing with infinities,
+so the following definition is needed. 
+\begin{defn}
+The labeled polynomial $r_{l}$ is called \emph{chain generator} if
+there exist infinite number of different finite S-pair-chains starting
+with $r_{l}$.
+\end{defn}
+First we need to prove that input labeled polynomial $r_{1}=(f_{1},1F_{1})$
+is chain generator if the algorithm doesn't terminate. Every labeled
+polynomial $r_{l}$ generated in the last non-terminating call to
+Algorithm F5 has signature index 1, so there exists an S-pair-chain
+corresponding to $r_{l}$ which starts with $r_{1}$ and ends with
+$r_{l}$. So there is infinite different chains starting from $r_{1}$
+corresponding to labeled polynomials $r_{l}$, so $r_{1}$ is a chain
+generator. Now assume that some labeled polynomial $r_{n}$ is known
+to be a chain generator. Then one of the finite number of S-pair-descendants
+of $r_{n}$ need to be a chain generator too, because in the other
+case the number of different chains of length greater than 2 coming
+from $r_{n}$ was limited by a finite sum of the finite counts of
+chains coming from every S-pair-descendant, and the finite number
+of length 2 chains coming from $r_{n}$.
+
+So, if labeled polynomial $p$ is chain-generator, we can select another
+chain generator from it's S-pair-descendants. Using this result we
+can find infinite S-pair-chain starting with $r_{1}$ and consisting
+of chain generators which proves the following
+\begin{thm}
+If the algorithm does not terminate for some input then there exists
+infinite S-pair-chain $\{h_{i}\}$.
+\end{thm}
+For the next S-pair-chain property it is important that the polynomial
+can never reduce after it was used for S-pair generation as higher
+S-pair part. That's true because all polynomials that potentially
+can reduce are stored in set $ToDo$, but all polynomials that are
+used as higher S-pair part are stored in $G$ or in $Done$. So we
+may state that the polynomial $h_{n}$ preceding polynomial $h_{n+1}$
+in the S-pair-chain retains the same $poly(h_{n})$ value that was
+used for S-pair generation and we can state that
+\[
+poly(h_{n+1})=c\frac{\Sig(h_{n+1})}{\Sig(h_{n})}poly(h_{n})+g_{n},
+\]
+where
+\begin{equation}
+\HM(h_{n+1})<\HM\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)=\HM(g_{n}),\,\Sig(h_{n+1})=\Sig\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)\succ\Sig(g_{n}).\label{eq:spair-chain}
+\end{equation}
+The monomial ordering can be transitively extended to monomial quotients:
+$\frac{m_{1}}{m_{2}}>\frac{m_{3}}{m_{4}}\Leftrightarrow m_{1}m_{4}>m_{3}m_{2}$.
+From the first inequality in \ref{eq:spair-chain} we can get $\frac{\HM(h_{n})}{\Sig(h_{n})}>\frac{\HM(h_{n+1})}{\Sig(h_{n+1})}$,
+so in the S-pair-chain the quotients $\frac{\HM(h_{i})}{\Sig(h_{i})}$
+are strictly descending according to term ordering.
+
+There is two possible cases for relation between HMs of consecutive
+elements. We have $\Sig(h_{n})|\Sig(h_{n+1})$, so they are either
+equal or $\totaldeg(h_{n})<\totaldeg(h_{n+1})$. For the first case
+$\HM(h_{n+1})<\HM(h_{n})$ with the equal total degrees for the other
+case $\HM(h_{n+1})>\HM(h_{n})$ because total degrees are different.
+So the sequence of infinite S-pair-chain HMs consists of blocks with
+fixed total degrees where HMs inside a block are strictly decreasing.
+Block lengths can be equal to one and the total degree of blocks are
+increasing. This leads to the following properties: S-pair-chain $\{h_{i}\}$
+can't contain elements with equal HMs and $\HM(h_{i})|\HM(h_{j})$
+is possible only for $i<j$ and $\totaldeg(h_{i})<\totaldeg(h_{j})$.
+
+This allows us to use technique analogous to Proposition 14 from \cite{Arri-Perry-Revised}:
+consider HMs of infinite S-pair-chain $\{h_{i}\}$. They form an infinite
+sequence in $T$, so by Dickson's lemma there exists 2 polynomials
+in sequence with $\HM(h_{i})|\HM(h_{j})$. Therefore from the previous
+result we have $i<j$ and with the S-pair chain properties we get
+$\Sig(h_{i})|\Sig(h_{i+1})|\cdots|\Sig(h_{j})$ and $\frac{\HM(h_{i})}{\Sig(h_{i})}>\frac{\HM(h_{i+1})}{\Sig(h_{i+1})}>\dots>\frac{\HM(h_{j})}{\Sig(h_{j})}$.
+So, we get the following result:
+\begin{thm}
+\label{thm:f_g_3_props}If the algorithm does not terminate for some
+input then after some finite step the set $G$ contains a pair of
+labeled polynomials $f,g$ with $g$ generated after $f$ that satisfies
+the following 3 properties:
+
+\[
+\HM(f)|\HM(g),
+\]
+\[
+\Sig(f)|\Sig(g),
+\]
+
+
+\[
+\frac{\HM(f)}{\Sig(f)}>\frac{\HM(g)}{\Sig(g)},
+\]
+where the \textless{} corresponds to the term ordering.
+\end{thm}
+The proof of theorem\ref{thm:f_g_3_props} does not rely on any correspondence
+between orderings on signatures and terms. But the original algorithm
+F$_{5}$ uses the same ordering for both cases and now we utilize
+this fact and make a transition from one to other to get relation
+on signatures $\Sig(g)\succ t\cdot\Sig(f),\mbox{ where }t=\frac{\HM(g)}{\HM(f)}\in T$.
+The last inequality shows that $tf$ can be used as a reducer for
+$g$ in TopReduction from the signature point of view -- i.e. it satisfy
+checks (a) and (d) inside IsReducible and it's signature is smaller.
+In the absence of criteria this would directly lead to contradiction
+because at the time $g$ was added to the set $G$ labeled polynomial
+$f$ already had been there, so the TopReduction should had reduced
+$g$ by $f$. So we get the following result about termination:
+\begin{fact}
+If no polynomials are rejected by criteria checks (b) and (c) inside
+IsReducible the algorithm does terminate.
+\end{fact}
+But the existence of criteria allow the situation in which $tf$ is
+rejected by criteria checks in (b) or (c) inside IsReducible. The
+idea is to show that even in this case there can be found another
+possible reducer for $g$ that is not rejected and anyway lead to
+contradiction, so for the following parts of paper $g$ is treated
+as some fixed labeled polynomial with signature index 1. If the algorithm
+does not terminate then $g$ is assumed additionally to be a polynomial
+from theorem \ref{thm:f_g_3_props}. Most of the following theory
+is formulated for the objects with signatures $\prec\Sig(g)$.
+
+
+\section{S-pairs with signatures smaller than $\Sig(g)$}
+
+To prove the idea let us work with algorithm state just before adding
+$g$ to $Done$ during call to AlgorithmF5 with $i=1$. Consider a
+finite set $G_{1}\cup Done$ of labeled polynomials at that moment.
+This set contains positions of labeled polynomials in $R$, so it's
+elements can be ordered according to position in $R$ and written
+as an ordered integer sequence $G_{g}=\{b_{1},...,b_{N}\}$ with $b_{j}<b_{j+1}$.
+It should be noted that this order does correspond to the order of
+labeled polynomials in the sequence produced by concatenated rule
+arrays $Rule[m]:Rule[m-1]:\cdots:Rule[1]$ because addition of new
+polynomial to $R$ is always followed by addition of corresponding
+rule. But this order may differ from the order polynomials were added
+to $G_{1}\cup Done$ because polynomials with same total degree are
+added to $Done$ in the increasing signature order, while the addition
+polynomials with same total degree to $R$ is performed in quite random
+order inside Spol and TopReduction procedures. For the simplicity
+we will be speaking about labeled polynomials $b_{j}$ from $G_{g}$,
+assuming that $G_{g}$ is not the ordered positions list but the ordered
+list of labeled polynomials themselves corresponding to those positions.
+In this terminology we can say that all input polynomials $\left\{ f_{1},...,f_{m}\right\} $
+do present in $G_{g}$, because they all present in $G_{1}$ at the
+moment of its creation.
+
+S-pairs of $G_{g}$ elements are processed in two paths in the algorithm.
+The main path is for S-pairs with total degree greater than total
+degrees of polynomials generated it. Such S-pairs are processed in
+the following order:
+\begin{itemize}
+\item in the AlgorithmF5 they are passed in CritPair function while moving
+elements to $G_{i}$ from $R_{d}=Done$ or while processing input
+polynomial $r_{i}$. 
+\item The CritPair function either discards them by normal form check $\varphi$
+or adds to $P$
+\item The S-pair is taken from $P$ and passed to SPol function
+\item The SPol function either discards them by Rewritten? check or adds
+S-polynomial to $F=ToDo$
+\item At some iteration the Reduction procedure takes S-polynomial from
+$ToDo$, performs some signature-safe reductions and adds result to
+$Done$.
+\end{itemize}
+The other processing path is for special S-pairs corresponding to
+reductions forbidden by algorithm -- the case when S-pair is generated
+by polynomials $r_{i_{1}}$ and $r_{j_{1}}$ such that $\HM(r_{j_{1}})|\HM(r_{i_{1}})$
+so that S-polynomial has a form $poly(r_{i_{1}})-v_{1}poly(r_{j_{1}}).$
+Such situation is possible for two $G_{g}$ elements if reduction
+of $r_{i_{1}}$ by $r_{j_{1}}$ was forbidden in TopReduction or IsReducible.
+So for this case the path of S-pair ``processing'' is the following:
+\begin{itemize}
+\item The S-pair part $v_{1}r_{j_{1}}$ is checked in IsReducible. (a) is
+satisfied because $\HM(r_{j_{1}})|\HM(r_{i_{1}})$ . It can be rejected
+by one of the other checks:
+
+\begin{itemize}
+\item Rejection by check (b) correspond to the normal form check $\varphi$
+for $v_{1}r_{j_{1}}$
+\item Rejection by check (c) correspond to the Rewritten? check for $v_{1}r_{j_{1}}$
+\item Rejection by check (d) means that either $v_{1}r_{j_{1}}$ or $1r_{i_{1}}$
+can be rewritten by other, so if S-pair was not rejected by check
+(c) this type of rejection means that S-pair part $1r_{i_{1}}$ fails
+to pass Rewritten? check.
+\end{itemize}
+\item The non-rejected in IsReducible S-pair is returned in the TopReduction.
+Signature comparison in TopReduction forbids the reduction of $r_{i_{1}}$
+by $r_{j_{1}}$ and returns computed S-polynomial corresponding to
+the S-pair in the set $ToDo_{1}$
+\item The Reduction procedure add this polynomial in $ToDo$
+\item The last step is equal to for both processing paths: at some iteration
+the Reduction procedure takes S-polynomial from $ToDo$, performs
+some signature-safe reductions and adds result to $Done$
+\end{itemize}
+It can be seen that after S-pair processing termination every S-pair
+is either reduced and added to $Done$ or one of its S-pair parts
+is rejected by normal form $\varphi$ or Rewritten? check. Some S-pairs
+can be processed by processing paths multiple times, for example this
+is done in the second iteration inside Algorithm F5 with same $d$
+value. But this doesn't matter because the start and finish of the
+processing path one time guarantees that S-pair is rejected by Rewritten?
+check in all other processing attempts.
+
+The processing path is not a single procedure and for the case of
+algorithm infinite cycling some S-pairs are always staying in the
+middle of the path having S-pair queued in $P$ or S-polynomial in
+$ToDo$. So we have to select S-pairs which processing is already
+finished at the fixed moment we studying. The elements from $P$ and
+$ToDo$ in AlgorithmF5 and Reduction procedures are taken in the order
+corresponding to growth of their signatures. So S-pairs with signature
+smaller than $\Sig(g)$ can be split in the following classes:
+\begin{itemize}
+\item S-pairs with signature $w$ such that $index(w)>index(\Sig(g))=1$.
+They were processed on previous calls of AlgorithmF5.
+\item S-pairs with signature $w$ such that $index(w)=index(\Sig(g))=1,\totaldeg(w)<\totaldeg(\Sig(g))$.
+They were processed on previous iterations inside the call to AlgorithmF5
+that is processing $g$.
+\item S-pairs with signature $w$ such that $index(w)=index(\Sig(g))=1,\totaldeg(w)=\totaldeg(\Sig(g)),w\prec\Sig(g)$
+.They were processed on previous iterations inside the call to Reduce
+that is processing $g$.
+\end{itemize}
+S-pairs from these classes can't be at the middle of processing path
+because at the studied state of algorithm the processing is just finished
+for $g$ so $P$ and $ToDo$ sets does not contain any non-processed
+elements with signatures smaller $\Sig(g)$. The only left thing to
+show is proof that processing was started at least one time for all
+for S-pairs. This is true for first two classes: the processing of
+corresponding S-pairs was started at least one time with the call
+to CritPair inside AlgorithmF5 just before the greatest of S-pair
+generators was added to $G$. For S-pairs of third class the situation
+depend on the total degrees of its generators. If both generators
+of S-pair have total degrees $<\totaldeg(g)$ then its processing
+is started in CritPair like for the S-pairs from first two classes.
+But some S-pairs from the third class can have a signature-greater
+generator polynomial $r_{i_{1}}$ such that $\totaldeg(r_{i_{1}})=\totaldeg(g),\,\Sig(r_{i_{1}})\prec\Sig(g)$.
+They are processed with the second mentioned processing path so the
+processing for such S-pairs is not yet started at the beginning of
+last Reduction call. Fortunately, their processing starts inside Reduction
+before fixed moment we studying: the procedure selects polynomials
+from $ToDo$ in the signature increasing order, so $r_{i_{1}}$ is
+reduced before $g$ and during $r_{i_{1}}$ reduction just before
+putting $r_{i_{1}}$ to $Done$ a call to IsReducible starts processing
+for all such S-pairs.
+
+This finishes proof of the following result mentioning properties
+which are very similar to the properties used in Theorem 21 in \cite{F5C}:
+\begin{thm}
+\label{thm:Exist-gg-repr}At the moment of adding $g$ to $Done$
+every S-pair of $G_{g}$ elements which signature is smaller than
+$\Sig(g)$ satisfies one of three properties : \end{thm}
+\begin{enumerate}
+\item S-pair has a part that is rejected by the normal form check $\varphi$
+(in CritPair or in IsReducible). Such S-pairs will be referenced as
+\emph{S-pairs with a part that satisfies F5 criterion}. 
+\item S-pair has a part that is rejected by the Rewritten? check (in SPol
+or in IsReducible). Such S-pairs will be referenced as \emph{S-pairs
+with a part that satisfies Rewritten criterion}.
+\item S-pair was not rejected, so it's S-polynomial was signature-safe reduced
+by $G_{g}$ elements and the result is stored in $G_{g}$. Such S-pairs
+will be referenced as \emph{S-pairs with a computed $G_{g}$-representation}.
+\end{enumerate}
+The ideas of \emph{satisfying F5 criterion }and \emph{satisfying Rewritten
+criterion} can be extended to arbitrary monomial-multiplied labeled
+polynomial $sh,\, h\in G_{g}$:
+\begin{defn}
+The monomial-multiplied labeled polynomial $sr_{i},\, r_{i}\in G_{g}$
+is called \emph{satisfying F5 criterion} if $\varphi_{index(r_{i})+1}(s\Sig(r_{i}))\ne s\Sig(r_{i})$,
+where $\varphi_{index(r_{i})+1}$ is operator of normal form w.r.t
+$G_{index(r_{i})+1}$.
+\end{defn}
+This definition is equivalent to $sr_{i}$ being non-normalized labeled
+polynomial according to definition 2 in part 5 of \cite{F5-Orig}.
+\begin{defn}
+The monomial-multiplied labeled polynomial $sr_{i},\, r_{i}\in G_{g}$
+is called \emph{satisfying Rewritten criterion} if $\exists j>i$
+such that $\Sig(r_{j})|s\Sig(r_{i})$.
+\end{defn}
+For the case $sr_{i}$ is the S-pair part these definitions are equivalent
+to the checks in the algorithm in a sense that S-pair part is rejected
+by the algorithm if and only if it satisfies the definition as monomial-multiplied
+labeled polynomial. Note that for both criteria holds important property
+that if $sr_{i}$ satisfies a criteria then a further multiplied $s_{1}sr_{i}$
+$ $satisfies it too.
+
+
+\section{Representations}
+
+
+\subsection{Definition}
+
+The idea of representations comes from proof of Theorem 21 in \cite{F5C}.
+Representations are used to order all possible ways how a labeled
+polynomial $p$ can be written as an element of $\left(G_{g}\right)$
+ideal. The single representation corresponds to writing a labeled
+polynomial $p$ as any finite sum of the form
+\begin{equation}
+p=\sum_{k}m_{k}\cdot b_{i_{k}},\; b_{i_{k}}\in G_{g}\label{eq:Gg-repr-def}
+\end{equation}
+with coefficients $m_{k}=c_{k}t_{k}\in\mathcal{K}\times T$. 
+\begin{defn}
+Sum of the form \ref{eq:Gg-repr-def} with all pairs $\left(t_{k},b_{i_{k}}\right)$
+distinct is called \emph{$G_{g}$-representation} of $p$. The symbolic
+products $m_{k}\cdot b_{i_{k}}$ are called the \emph{elements} of
+representation. If we treat this symbolic product as multiplication
+we get an labeled polynomial $m_{k}b_{i_{k}}$ corresponding to the
+representation element. So $p$ is equal to sum of labeled polynomials,
+corresponding to elements of its representation. Also the term \emph{element
+signature} will be used for signature of labeled polynomials corresponding
+to the element. Two representations are equal if the sets of their
+elements are equal.
+\end{defn}
+Most representations we are interested in have the following additional
+property limiting elements signature:
+\begin{defn}
+The $G_{g}$-representation of $p$ is called \emph{signature-safe}
+if $\forall k\,\Sig(m_{k}b_{i_{k}})\preccurlyeq\Sig(p)$.
+\end{defn}
+
+\subsection{Examples}
+\begin{example}
+The first important example of a $G_{g}$-representation is trivial:
+the labeled polynomial from $G_{g}$ is equal to sum of one element,
+identity-multiplied itself: 
+\[
+b_{j}=1\cdot b_{j}.
+\]
+
+\end{example}
+This $G_{g}$-representation is signature-safe. The prohibition of
+two elements which have same monomial $t_{k}$ and polynomial $b_{i_{k}}$
+ensures that all elements of representation that differ only in field
+coefficient $c_{k}$ are combined together by summing field coefficients.
+So expressions like $b_{j}=-1\cdot b_{j}+2\cdot b_{j}$ and $b_{j}=2x\cdot b_{k}+1\cdot b_{j}-2x\cdot b_{k}$
+are not valid $G_{g}$-representations.
+\begin{example}
+A labeled polynomial $b_{j}\in G_{g}$ multiplied by arbitrary polynomial
+$h$ also have a simple $G_{g}$-representation arising from splitting
+$h$ into terms: $h=\sum_{k}m_{k},\, m_{k}\in\mathcal{K}\times T$.
+This $G_{g}$-representation has form 
+\begin{equation}
+b_{j}h=\sum_{k}m_{k}\cdot b_{j}\label{eq:repr-ex-2}
+\end{equation}
+and is signature-safe too.
+\end{example}
+A labeled polynomial can have arbitrary number of representations:
+for example we can add elements corresponding to a syzygy to any representation
+and combine elements with identical monomials and polynomials to get
+the correct representation. The result will be representation of the
+same polynomial because sum of syzygy elements is equal to 0.
+\begin{example}
+The product of two polynomial from $G_{g}$ has two representations
+of the form (\ref{eq:repr-ex-2}) which differs in syzygy addition:
+\end{example}
+\[
+b_{j}b_{i}=\sum_{k}m_{i_{k}}\cdot b_{j}=\sum_{k}m_{i_{k}}\cdot b_{j}+0=\sum_{k}m_{i_{k}}\cdot b_{j}+\left(\sum_{k}m_{j_{k}}\cdot b_{i}-\sum_{k}m_{i_{k}}\cdot b_{j}\right)=\sum_{k}m_{j_{k}}\cdot b_{i},
+\]
+where $m_{i_{k}}$ are terms of $b_{i}$ and $m_{j_{k}}$ are terms
+of $b_{j}$.
+\begin{example}
+The zero polynomial has an empty representation and an representation
+for every syzygy:
+\end{example}
+\[
+0=\sum_{\emptyset}\mbox{(empty sum)}=\sum_{k}m_{j_{k}}\cdot b_{i}+\sum_{k}(-m_{i_{k}})\cdot b_{j},
+\]
+where $m_{i_{k}}$ and $m_{j_{k}}$ are same as above.
+
+Another important example of $G_{g}$-representation comes from ideal
+and signature definitions. All labeled polynomials computed by the
+algorithm are elements of ideal $\left(f_{1},...,f_{m}\right)$. So
+any labeled polynomial $p$ can be written as $ $$\sum_{i}f_{i}g_{i}$,
+where $g_{i}$ are homogeneous polynomials. All input polynomials
+$f_{i}$ belong to $G_{g}$, so $f_{i}g_{i}$ has $G_{g}$-representations
+of the form (\ref{eq:repr-ex-2}).
+\begin{example}
+Those representations sum give the following signature-safe representation:
+\[
+p=\sum_{k}m_{k}\cdot b_{i_{k}},\, m_{k}\in\mathcal{K}\times T,\, b_{i_{k}}\in\left\{ f_{1},...,f_{m}\right\} \subset G_{g}.
+\]
+\end{example}
+\begin{defn}
+This particular case of $G_{g}$-representation where $b_{i_{k}}$
+are limited to input polynomials will be called \emph{input-representation}.
+\end{defn}
+The definition of signature combined with this input-representation
+gives the following result:
+\begin{claim}
+A labeled polynomial $p$ with known signature $\Sig(p)$ has an input-representation
+consisting of an element $c\Sig(p)\cdot f_{index(p)}$ and some other
+elements with smaller signatures.
+\end{claim}
+This property is special to input-representations because generic
+$G_{g}$-representations can have multiple elements with same maximal
+signature because it is possible to have $m_{1}\Sig(b_{i_{1}})=m_{2}\Sig(b_{i_{2}})$
+while $i_{1}\ne i_{2}$.
+\begin{example}
+\label{example-of-having-gg-repr}The last example comes from S-pairs
+with a computed $G_{g}$-representation. S-polynomial of $b_{i_{l}}$
+and $b_{j_{l}}$ from $G_{g}$ is $p=u_{l}poly(b_{i_{l}})-v_{l}poly(b_{j_{l}})$.
+It is known from reduction process that for such S-pairs $p$ is signature-safe
+reduced and the result is added to $G_{g}$ as some labeled polynomial
+$b_{l}$. So the $G_{g}$-representation is:
+\end{example}
+\[
+p=\sum_{k}m_{k}\cdot b_{n_{k}}+1\cdot b_{l},
+\]
+where signatures of $m_{k}\cdot b_{n_{k}}$ elements are smaller than
+$\Sig(b_{l})=\Sig(p)$. The value of $l$ is position of $b_{l}$
+in ordered list $G_{g}$. In this representation $l$ is greater than
+$i_{l}$ and $j_{l}$ because corresponding labeled polynomial $b_{l}$
+is added to $R$ at the moment of S-polynomial computation in Spol
+or TopReduction so the polynomials $b_{i_{l}}$ and $b_{j_{l}}$ used
+to create S-pair already present in $R$ at that moment and the order
+of $G_{g}$ correspond to order of $R$.
+
+
+\subsection{Ordering representations}
+\begin{defn}
+To order $G_{g}$-representations we start from \emph{representation
+elements ordering}: $c_{i}t_{i}\cdot b_{i}\gtrdot c_{j}t_{j}\cdot b_{j}$
+iff $t_{i}\Sig(b_{i})\succ t_{j}\Sig(b_{j})$ or $t_{i}\Sig(b_{i})=t_{j}\Sig(b_{j})\mbox{ and }i<j$
+(note the opposite order). 
+\end{defn}
+This ordering is based only on comparison of signatures and positions
+of labeled polynomials in the ordered list $G_{g}$ but does not depend
+on the field coefficient. The only case in which two elements can't
+be ordered is equality of both signatures $t_{i}\Sig(b_{i})=t_{j}\Sig(b_{j})$
+and positions in list $i=j$. Position equality means $b_{i}=b_{j}$
+which in conjunction with signature equality gives $t_{i}=t_{j}$.
+So any two elements that belong to a single $G_{g}$-representation
+are comparable with $\lessdot$ order because they have distinct $\left(t_{k},b_{k}\right)$
+by definition. Below are given some examples of $\lessdot$ element
+ordering for the 3-element list $G_{g}=\left\{ b_{1},\, b_{2},\, b_{3}\right\} $
+with ordering $x\mathbf{F}_{i}\succ y\mathbf{F}_{i}$ and signatures
+$\Sig(b_{1})=\mathbf{F}_{1},\Sig(b_{2})=\mathbf{F}_{2},\Sig(b_{3})=x\mathbf{F}_{1}$.
+\[
+y\cdot b_{1}\gtrdot100y\cdot b_{2},\,\mbox{because signature of left side is}\succ
+\]
+\[
+x\cdot b_{1}\gtrdot y\cdot b_{1},\,\mbox{because signature of left side is}\succ
+\]
+\[
+-x\cdot b_{1}\mbox{ and }2x\cdot b_{1}\,\mbox{are not comparable becuase signatures and list indices are equal}
+\]
+\[
+y^{2}\cdot b_{1}\lessdot y\cdot b_{3},\,\mbox{because signature of left side is}\prec
+\]
+\[
+x^{2}\cdot b_{1}\gtrdot x\cdot b_{3},
+\]
+because signatures are equal and the list position of left side's
+labeled polynomial is 1 which is smaller than right's position 3.
+
+To extend this order to entire $G_{g}$-representations consider \emph{ordered
+form} of representation consisting of all its elements written in
+a list with $\gtrdot$-decreasing order. This form can be used for
+equality testing because if two representations are equal then they
+have exactly equal ordered forms.
+\begin{defn}
+With ordered forms the \emph{$G_{g}$-representations ordering} can
+be introduced: the representation $\sum_{k}m_{i_{k}}\cdot b_{i_{k}}$
+is $\lessdot$-smaller than $\sum_{k}m_{j_{k}}\cdot b_{j_{k}}$ iff
+the ordered form of the first representation is smaller than second's
+according to lexicographical extension of $\lessdot$ ordering on
+elements. For the corner case of the one ordered form being beginning
+of the other the shorter form is $\lessdot$-smaller. If the greatest
+different elements of ordered forms differ only in field coefficient
+the representations are not comparable.
+\end{defn}
+Some examples of this ordering are given for the same as above 3-element
+$G_{g}$ list. Note that all $G_{g}$-representations are already
+written in ordered forms:
+
+\[
+x^{2}\cdot b_{1}+xy\cdot b_{1}+y^{2}b_{1}\gtrdot x^{2}\cdot b_{1}+100y^{2}\cdot b_{1},\mbox{ because }xy\cdot b_{1}\gtrdot y^{2}\cdot b_{1}
+\]
+\[
+x^{2}\cdot b_{1}+100y^{2}\cdot b_{1}\gtrdot x^{2}\cdot b_{1},\mbox{ because the right ordered form is beginning of the left}
+\]
+\[
+x^{2}\cdot b_{1}\gtrdot xy\cdot b_{1}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2},\mbox{ because }x^{2}\cdot b_{1}\gtrdot xy\cdot b_{1}
+\]
+\[
+xy\cdot b_{1}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}\gtrdot y\cdot b_{3}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2},\mbox{ because }xy\cdot b_{1}\gtrdot y\cdot b_{3}
+\]
+\[
+y\cdot b_{3}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}\mbox{ and }2y\cdot b_{3}+y^{2}\cdot b_{2}
+\]
+are not comparable because the greatest different elements are $y\cdot b_{3}$
+and $2y\cdot b_{3}$.
+
+The ordering is compatible with signature-safeness:
+\begin{thm}
+If two representations of $p$ has a relation $\sum_{k}m_{i_{k}}\cdot b_{i_{k}}\lessdot\sum_{k}m_{j_{k}}\cdot b_{j_{k}}$
+and the second one is signature-safe representation then the first
+one is signature-safe too.
+\end{thm}
+This theorem quickly follows from a fact that elements of a $\lessdot$-smaller
+representation can't has signatures $\succ$-greater than signatures
+of $\gtrdot$-greater representation.
+
+The number of different labeled polynomial positions is finite because
+it is equal to $|G_{g}|$. So the existence of infinite $\gtrdot$-descending
+sequence of representation elements would lead to existence of infinite
+$\succ$-descending sequence of signatures. Combining this with well-foundness
+of the relation $\prec$ on signatures we get the proof for well-foundness
+of $\lessdot$ ordering on elements.
+
+The straightforward proof for well-foundness of $\lessdot$ ordering
+on representations following from well-foundness of $\lessdot$ on
+elements is not very complex but to skip its strict details the theorem
+2.5.5 of \cite{Multiset-Order} will be used. It states well-foundness
+of an well-founded ordering lexicographically extended to finite multiset.
+This applies to the representations because they form a subset in
+the finite multiset of representation elements. So, we have
+\begin{thm}
+The $\lessdot$ ordering on representations is well-founded.
+\end{thm}
+
+\subsection{Sequence of representations}
+
+The idea of this part is constructing a finite sequence of strictly
+$\lessdot$-descending signature-safe $G_{g}$-representations for
+a given labeled polynomial $mh,\, m\in\mathcal{K}\times T,\, h\in G_{g}$
+with $\Sig(mh)\prec\Sig(g)$. The first signature-safe representation
+in the sequence is $mh=m\cdot h$, the last representation is $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+with elements having the following properties $\forall k$:
+\begin{enumerate}
+\item $m_{k}b_{i_{k}}$ does not satisfy F5 criterion.
+\item $m_{k}b_{i_{k}}$ does not satisfy Rewritten criterion.
+\item $\HM(m_{k}b_{i_{k}})\leqslant\HM(mh)$
+\end{enumerate}
+The proof of such sequence existence is very similar to Theorem 21
+of \cite{F5C} and is based on a fact, that if a some signature-safe
+representation of $mh$ contains an element $m_{k_{0}}\cdot b_{i_{k_{0}}}$
+not having one of the properties then a $\lessdot$-smaller representation
+can be constructed. The exact construction differ for three cases
+but the replacement scheme is the same: 
+\begin{itemize}
+\item a some element $m_{k'_{0}}\cdot b_{i_{k'_{0}}}$ in $mh$ representation
+is selected. Note that $k'_{0}$ in some cases is not equal to $k_{0}$
+\item some representation $m_{k'_{0}}b_{i_{k'_{0}}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
+is constructed for this element.
+\item it is shown that constructed representation is $\lessdot$-smaller
+than representation $m_{k'_{0}}b_{i_{k'_{0}}}=m_{k'_{0}}\cdot b_{i_{k'_{0}}}$ 
+\end{itemize}
+Now $m_{k'_{0}}\cdot b_{i_{k'_{0}}}$ in $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+is replaced by $\sum_{l}m_{l}\cdot b_{i_{l}}$ and after combining
+coefficients near elements with both monomial and polynomial equal
+a modified representation for $mh$ appears. Is is $\lessdot$-smaller
+than $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$ because all elements $\gtrdot$-greater
+than $m_{k_{0}}\cdot b_{i_{k_{0}}}$ are identical in both representations
+if they present. The element  $m_{k'_{0}}\cdot b_{i_{k'_{0}}}$ is
+contained in original representation but not in the modified. And
+all other elements in representations are $\lessdot$-smaller than
+$m_{k'_{0}}\cdot b_{i_{k'_{0}}}$ so they doesn't influence the comparison.
+The comparison holds even in a corner case when all elements are discarded
+while combining coefficients. This case can appear if the original
+representation is equal to $mh=m_{k'_{0}}\cdot b_{i_{k'_{0}}}+\sum_{l}(-m_{l})\cdot b_{i_{l}}$
+what leads to modified representation $mh=0$ with zero elements which
+is $\lessdot$-smaller than any non-empty representation. This result
+can be expressed in the following 
+\begin{lem}
+If an element $m_{k'_{0}}\cdot b_{i_{k'_{0}}}$ of signature-safe
+representation $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$ has an representation
+$m_{k'_{0}}b_{i_{k'_{0}}}=\sum_{l}m_{l}\cdot b_{i_{l}}$ which is
+$\lessdot$-smaller than representation $m_{k'_{0}}b_{i_{k'_{0}}}=m_{k'_{0}}\cdot b_{i_{k'_{0}}}$
+then $mh$ has a signature-safe representation $\lessdot$-smaller
+than $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$.
+\end{lem}
+Now it will be shown that replacement scheme can be performed if the
+representation contains an element not satisfying at least one of
+three properties. An element not having the first property does satisfy
+the F5 criterion and the idea is to use that $m_{k_{0}}\Sig(b_{i_{k_{0}}})$
+is not the minimal signature of $m_{k_{0}}b_{i_{k_{0}}}$ like in
+Theorem 20 of \cite{F5C}. $k'_{0}=k_{0}$ is taken for this case.
+Consider input-representation of $m_{k_{0}}b_{i_{k_{0}}}$ with signature
+of $\gtrdot$-maximal element equal to $m_{k_{0}}\Sig(b_{i_{k_{0}}})=s_{0}\mathbf{F}_{j_{0}}$:
+
+\begin{equation}
+m_{k_{0}}b_{i_{k_{0}}}=c_{0}s_{0}\cdot f_{j_{0}}+\sum_{l}m_{l}\cdot f_{i_{l}}.\label{eq:input-repr-case1}
+\end{equation}
+From the satisfying F5 criterion $s_{0}$ can be expressed like $s_{0}=s_{1}\HM(f_{j_{1}}),\, j_{1}>j_{0}$
+so $s_{0}f_{j_{0}}=s_{1}f_{j_{0}}f_{j_{1}}-s_{1}(f_{j_{1}}-\HM(f_{j_{1}}))f_{j_{0}}$.
+From this we can write another representation for $m_{k_{0}}b_{i_{k_{0}}}$,
+assuming $m_{0i}$ are sorted terms of $f_{j_{0}}$, $m_{1i}$ are
+sorted terms of $f_{j_{1}}$ and $N_{0,}N_{1}$ are number of terms
+in those polynomials:
+
+\[
+m_{k_{0}}b_{i_{k_{0}}}=\sum_{i=1}^{N_{0}}c_{0}s_{1}m_{0i}\cdot f_{j_{1}}+\sum_{i=2}^{N_{1}}-c_{0}s_{1}m_{1i}\cdot f_{j_{0}}+\sum_{l}m_{l}\cdot f_{i_{l}}.
+\]
+This representation is $\lessdot$-smaller than $m_{k_{0}}\cdot b_{i_{k_{0}}}$
+because signatures of all elements are smaller than $s_{0}\mathbf{F}_{j_{0}}$.
+For the elements of the third sum $\sum_{l}m_{l}\cdot f_{i_{l}}$
+this follows from \textbf{\ref{eq:input-repr-case1}}, where those
+elements are smaller elements of input-representation. For the elements
+of the first sum $\sum_{i=1}^{N_{0}}c_{0}s_{1}m_{0i}\cdot f_{j_{1}}$
+this follows from the position inequality $j_{1}>j_{0}$. And for
+the second sum we use the equality in term and signature orderings:
+all terms $m_{1i},\, i\geqslant2$ are smaller than $m_{11}$, so
+the signatures are:$s_{1}m_{1i}\mathbf{F}_{j_{0}}\prec s_{1}m_{11}\mathbf{F}_{j_{0}}=s_{0}\mathbf{F}_{j_{0}}$.
+This gives 
+\begin{lem}
+If a signature-safe $G_{g}$-representation $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+does not satisfy property 1 then there exists an element $m_{k'_{0}}\cdot b_{i_{k'_{0}}}$
+having $G_{g}$-representation $m_{k'_{0}}b_{i_{k'_{0}}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
+which is $\lessdot$-smaller than representation $m_{k'_{0}}b_{i_{k'_{0}}}=m_{k'_{0}}\cdot b_{i_{k'_{0}}}$
+.
+\end{lem}
+For the elements not satisfying case 2 the $\lessdot$-smaller representation
+is created in a way used in Proposition 17 of \cite{F5C}. $k'_{0}=k_{0}$
+is taken for this case too. Assume that $\Sig(m_{k_{0}}b_{i_{k_{0}}})=s_{0}\mathbf{F}_{j_{0}}$
+and it is rewritten by labeled polynomial $b_{i'}$ from $R$. Because
+the representation is signature-safe we have $\Sig(b_{i'})\preccurlyeq s_{0}\mathbf{F}_{j_{0}}\preccurlyeq\Sig(mh)\prec\Sig(g)$.
+So $b_{i'}$ was processed in TopReduction before $g$. Since $b_{i'}$
+is rewriter we have $b_{i'}\ne0$. All this gives the fact that $b_{i'}$
+does present not only in $R$ but in $G_{g}$ too so it can be used
+as a polynomial of $G_{g}$-representation element. From the Rewritten
+criterion definition we know that $i'>i_{k_{0}}$ and the existence
+of $s'\in T$ such that $s'\Sig(b_{i'})=s_{0}\mathbf{F}_{j_{0}}$.
+So, for the $m_{k_{0}}b_{i_{k_{0}}}$ there is an input-representation
+\ref{eq:input-repr-case1} and for the $s'b_{i'}$ the input-representation
+is:
+
+\[
+s'b_{i'}=c's_{0}\cdot f_{j_{0}}+\sum_{l'}m_{l'}\cdot f_{i_{l'}}.
+\]
+A $G_{g}$-representation for $c_{0}s_{0}f_{j_{0}}$ can be acquired
+with transformation of the above expression:
+
+\[
+c_{0}s_{0}f_{j_{0}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i_{l'}}.
+\]
+Using this to replace the first element in \ref{eq:input-repr-case1}
+we get the wanted result:
+\[
+m_{k_{0}}b_{i_{k_{0}}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i_{l'}}+\sum_{l}m_{l}\cdot f_{i_{l}}
+\]
+It is $\lessdot$-smaller than $m_{k_{0}}b_{i_{k_{0}}}=m_{k_{0}}\cdot b_{i_{k_{0}}}$
+because elements of both sums has signatures smaller than $s_{0}\mathbf{F}_{j_{0}}$,
+and for the first element $ $$\Sig(c'^{-1}c_{0}s'\cdot b_{i'})=\Sig(m_{k_{0}}\cdot b_{i_{k_{0}}})=s_{0}\mathbf{F}_{j_{0}}$
+but $i'>i_{k_{0}}$, so applying the $\lessdot$-comparison rule for
+equal signatures and different list positions we get that element
+$c'^{-1}c_{0}s'\cdot b_{i'}$ is $\lessdot$-smaller than $m_{k_{0}}\cdot b_{i_{k_{0}}}$
+too. This gives
+\begin{lem}
+If a signature-safe $G_{g}$-representation $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+with $\Sig(mh)\prec\Sig(g)$ does not satisfy property 2 then there
+exists an element $m_{k'_{0}}\cdot b_{i_{k'_{0}}}$ having $G_{g}$-representation
+$m_{k'_{0}}b_{i_{k'_{0}}}=\sum_{l}m_{l}\cdot b_{i_{l}}$ which is
+$\lessdot$-smaller than representation $m_{k'_{0}}b_{i_{k'_{0}}}=m_{k'_{0}}\cdot b_{i_{k'_{0}}}$
+\textup{.}
+\end{lem}
+Now assume, that the all representation elements satisfy properties
+1 and 2, but there exists at least one element $m_{k_{0}}\cdot b_{i_{k_{0}}}$
+that does not satisfy property 3. Let $m_{\max}$ be the maximal $\HM$
+of labeled polynomials corresponding to representation elements and
+$H_{\max}$ be a list of elements where $m_{\max}$ is achieved. Select
+$k'_{0}$ to be the index of the $\gtrdot$-greatest representation
+element in $H_{\max}$. We have $ $$\HM(m_{k'_{0}}b_{i_{k'_{0}}})=m_{\max}\geqslant\HM(m_{k{}_{0}}b_{i_{k{}_{0}}})>\HM(mh)$,
+so the HM of sum of all elements except $k'_{0}$ is equal to $\HM(mh-m_{k'_{0}}b_{i_{k'_{0}}})=\HM(m_{k'_{0}}b_{i_{k'_{0}}})=m_{\max}$,
+so there is another element $k'_{1}$ having $\HM(m_{k'_{1}}b_{i_{k'_{1}}})=m_{\max}$.
+So, $m_{k'_{1}}\cdot b_{i_{k'_{1}}}\in H_{\max}$ and $m_{k'_{1}}\cdot b_{i_{k'_{1}}}\lessdot m_{k'_{0}}\cdot b_{i_{k'_{0}}}$
+because of $ $$m_{k'_{0}}\cdot b_{i_{k'_{0}}}$ $\gtrdot$-maximality
+in $H_{\max}$.
+
+The $\HM(m_{k'_{1}}b_{i_{k'_{1}}})=\HM(m_{k'_{0}}b_{i_{k'_{0}}})$
+means that a critical pair of $b_{i_{k'_{0}}}$ and $b_{i_{k'_{1}}}$
+has the form $[m'^{-1}m_{\max},\, m'^{-1}m_{k'_{0}},\, b_{i_{k'_{0}}},\, m'^{-1}m_{k'_{1}},\, b_{i_{k'_{1}}}]$
+where $m'=\mbox{gcd}(m_{k'_{0}},m_{k'_{1}})$. Let $q$ be corresponding
+S-polynomial. Then $m'\Sig(q)\preccurlyeq\Sig(mh)\prec\Sig(g)$ because
+$m'\Sig(q)=\Sig(m_{k'_{0}}b_{i_{k'_{0}}})$ and the representation
+is signature-safe. The S-polynomial parts $m'^{-1}m_{k'_{0}}b_{i_{k'_{0}}}$
+and $m'^{-1}m_{k'_{1}}b_{i_{k'_{1}}}$ doesn't satisfy F5 and Rewritten
+criteria because their forms multiplied by $m'$ are $m_{k'_{0}}b_{i_{k'_{0}}}$
+and $m_{k'_{1}}b_{i_{k'_{1}}}$ -- labeled polynomials corresponding
+to elements which are known not to satisfy both criteria by assumption.
+Therefore $m'\Sig(q)\prec\Sig(g)$ and $\Sig(q)\prec\Sig(g)$. It
+follows from this with theorem \ref{thm:Exist-gg-repr} that the S-pair
+$(b_{i_{k'_{0}}},b_{i_{k'_{1}}})$ is S-pair with computed $G_{g}$-representation,
+what means that there is an representation described in example \ref{example-of-having-gg-repr}
+:
+
+\[
+q=1\cdot b_{i'}+\sum_{l}m_{l}\cdot b_{i_{l}},
+\]
+satisfying the properties shown after that example: $\Sig(q)=\Sig(b_{i'})$,
+$\forall l\,\Sig(q)\succ\Sig(m_{l}b_{i_{l}})$ and $i'>k'_{0}$.
+
+From the other hand we have $m'q=c_{0}m_{k'_{0}}b_{i_{k'_{0}}}-c_{1}m_{k'_{1}}b_{i_{k'_{1}}}$,
+so we get the following representation:
+\[
+m_{k'_{0}}b_{i_{k'_{0}}}=c_{0}^{-1}c_{1}m_{k'_{1}}\cdot b_{i_{k'_{1}}}+c_{0}^{-1}m'\cdot b_{i'}+\sum_{l}c_{0}^{-1}m'm_{l}\cdot b_{i_{l}}.
+\]
+It is $\lessdot$-smaller than $m_{k'_{0}}b_{i_{k'_{0}}}=m_{k'_{0}}\cdot b_{i_{k'_{0}}}$: 
+\begin{itemize}
+\item $m_{k'_{1}}\cdot b_{i_{k'_{1}}}$ was already compared to $m_{k'_{0}}\cdot b_{i_{k'_{0}}}$ 
+\item $m'\cdot b_{i'}$ has the same signature but greater position $i'>i_{k'_{0}}$
+\item the last sum contains elements with signatures smaller than $m'\Sig(b_{i'})=\Sig(m_{k'_{0}}\cdot b_{i_{k'_{0}}})$.
+\end{itemize}
+This gives 
+\begin{lem}
+If a signature-safe representation $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+with $\Sig(mh)\prec\Sig(g)$ satisfies properties 1 and 2 but does
+not satisfy property 3 then there exists an element $m_{k'_{0}}\cdot b_{i_{k'_{0}}}$
+having representation $m_{k'_{0}}b_{i_{k'_{0}}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
+which is $\lessdot$-smaller than representation $m_{k'_{0}}b_{i_{k'_{0}}}=m_{k'_{0}}\cdot b_{i_{k'_{0}}}$
+.
+\end{lem}
+Four previous lemmas together produce a theorem about existence $\lessdot$-smaller
+representation:
+\begin{thm}
+A signature-safe representation $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+with $\Sig(mh)\prec\Sig(g)$ either satisfies properties 1-3 or there
+exists a signature-safe representation $mh=\sum_{l}m_{l}\cdot b_{i_{l}}$
+which is $\lessdot$-smaller than \textup{$\sum_{k}m_{k}\cdot b_{i_{k}}$.}
+\end{thm}
+In conjunction with $\lessdot$-order well-foundness this means that
+from any given signature-safe representation we can produce a finite
+$\lessdot$-descending sequence which ends with an signature-safe
+representation satisfying properties 1-3. This leads to main result:
+\begin{thm}
+For any labeled polynomial $mh,\, m\in\mathcal{K}\times T,\, h\in G_{g}$
+with $\Sig(mh)\prec\Sig(g)$ there exists a signature-safe $G_{g}$-representation
+$mh=\sum_{k}m_{k}\cdot b_{i_{k}}$ that satisfies properties 1-3\textup{.}
+\end{thm}
+This result may be interesting by itself, but for the purposes of
+proving termination only one corollary is needed:
+\begin{cor}
+\label{cor:all-needed-for-terminaton}If there exists a signature-safe
+reductor $f$ for the labeled polynomial $f_{1}$ with $\Sig(f)\frac{\HM(f_{1})}{\HM(f)}\prec\Sig(g)$
+then $G_{g}$ contains a signature-safe reductor for $f_{1}$ that
+is not rejected by F5 and Rewritten criteria.
+\end{cor}
+To prove the corollary let $mf,\, m=\frac{\HM(f_{1})}{\HM(f)}\in\mathcal{K}\times T,\, f\in G_{g}$
+be a multiplied reductor with $\Sig(mf)\prec\Sig(g)$. From the previous
+theorem we can find representation $mf=\sum_{k}m_{k}\cdot b_{i_{k}}$
+that satisfies properties 1-3. Property 3 means that there is no elements
+with HMs greater than $mf$ so because sum of all elements has HM
+equal to $\HM(mf)$ there exists an element $k_{0}$ that achieves
+HM equality: $\HM(m_{k_{0}}\cdot b_{i_{k_{0}}})=\HM(mf)=\HM(f_{1})$.
+Since the representation is signature-safe $\Sig(m_{k_{0}}\cdot b_{i_{k_{0}}})\preccurlyeq\Sig(mf)\prec\Sig(f_{1})$
+so $m_{k_{0}}b_{i_{k_{0}}}$ is a signature-reductor for $f_{1}$
+and properties 1-2 ensure that $m_{k_{0}}b_{i_{k_{0}}}$ does not
+satisfy criteria. The corollary is proved.
+
+
+\section{Finding contradiction with the criteria enabled}
+
+Now return to the result of theorem \ref{thm:f_g_3_props} which states
+for the case of algorithm non-termination existence of a polynomial
+$f$ such that $\HM(f)|\HM(g),$ $\Sig(f)|\Sig(g),$ $\frac{\HM(f)}{\Sig(f)}>\frac{\HM(g)}{\Sig(g)},$
+where $g$ is the same fixed $g$ as above. Let $t=\frac{\HM(g)}{\HM(f)}$.
+$tf$ is a signature-safe reductor for $g$, so $\Sig(f)t\prec\Sig(g)$
+and the corollary \ref{cor:all-needed-for-terminaton} can be applied
+to find a signature-safe reductor $t_{1}f_{1}$ for $g$ which does
+not satisfy criteria. Also the reductor $f_{1}$ is known to belong
+to $G_{g}$, so during the algorithm execution it was appended to
+$G\cup Done$ before $g$. This gives main result for establishing
+contradiction:
+\begin{thm}
+If the algorithm does not terminate for some input then after some
+finite step the set \textup{$G\cup Done$} contains a pair of labeled
+polynomials $f_{1},g$ where:
+
+-$f_{1}$ is added to \textup{$G\cup Done$} before $g$
+
+- $t_{1}f_{1}$ does not satisfy F5 and Rewritten criteria, where
+$t_{1}=\frac{\HM(g)}{\HM(f_{1})}$
+
+-$f_{1}$ is signature-safe reductor for $g$.
+\end{thm}
+From the other hand existence of such pair of labeled polynomials
+is not possible: consider the call to TopReduction after which the
+polynomial $g$ was inserted in $Done$. That call returns polynomial
+as first part of TopReduction return value, so the value returned
+by IsReducible is empty set. It means that one of conditions (a)-(d)
+was not satisfied for all polynomials in $G\cup Done$ including $f$.
+This is not possible because:
+\begin{itemize}
+\item (a) is satisfied because $f_{1}$ is a reductor for $g$ from last
+theorem
+\item (b) and (c) are satisfied because $\frac{\HM(g)}{\HM(f_{1})}f_{1}$
+does not satisfy F5 and Rewritten criteria from last theorem
+\item (d) is satisfied because $f_{1}$ is a signature-safe reductor for
+$g$ from last theorem.
+\end{itemize}
+So, the contradiction is proved and the main result too:
+\begin{thm}
+The original $ $F$_{5}$ algorithm as described in \cite{F5-Orig}
+does terminate for any input.
+\end{thm}
+
+\section{Conclusions}
+
+This paper shows that original F$_{5}$ algorithm terminates for any
+homogeneous input. However, it does not give any limit on number of
+operations. The simplest proof of the termination of Buchberger algorithm
+is based on well-foundness and doesn't give any such limit too. Unfortunately
+the termination proof given here is quite different in structure compared
+to the proof of Buchberger algorithm termination, so this proof doesn't
+show that F$_{5}$ is more efficient than Buchberger in any sense.
+Unlike this the termination of the modified versions of F$_{5}$ algorithm
+in \cite{term-mod-1,term-mod-2,Modifying-for-termination} is shown
+in a way analogous to Buchberger algorithm and there is room for comparison
+of their efficiency with Buchberger's one.
+
+From the point of view of practical computer algebra computations
+there is a question about efficiency of the modified versions compared
+to original F$_{5}$. Unfortunately the only strict fact in this area
+that follows from this paper is that both modified and original versions
+terminate. The modified versions can spend more time in additional
+termination checks. But for some cases it is possible that those checks
+can allow the termination of modified versions before original so
+the modified version performs smaller number of reductions. So it
+is possible that for some inputs the original algorithm is faster
+and for others the modified version. Some experimental timings in
+Table 1 in \cite{Modifying-for-termination} shows that both cases
+are possible in practice but the difference in time is insignificant.
+So the question about efficiency of original F$_{5}$ compared to
+modified versions is open.
+
+This proof uses three properties of original F$_{5}$ that are absent
+or optional in some F$_{5}$-like algorithms: the homogeneity of input
+polynomials, the presence of Rewritten criterion and the equality
+of monomial order $<$ and signature order $\prec$. The possibility
+of extending the termination proof to the modified algorithms without
+these properties is open question. There is an unproved idea that
+the proof can be modified to remove reliance on the first two properties
+but not on the third property of orders equality because it is key
+point of coming to a contradiction form the result of theorem \ref{thm:f_g_3_props}.\\
+
+
+
+\thanks{The author would like to thank Christian Eder, Jean-Charles Faugère,
+Amir Hashemi, John Perry, Till Stagers and Alexey Zobnin for inspiring
+me on investigations in this area by their papers and comments. Thanks!}
+\begin{thebibliography}{References}
+\bibitem{Arri-Perry-Revised}Alberto Arri and John Perry. The F5 criterion
+revised
+
+\bibitem{key-2}Alexey Zobnin. Generalization of the F5 algorithm
+for calculating Gröbner bases for polynomial ideals
+
+\bibitem{F5C}Christian Eder, John Perry. F5C: a variant of Faugère's
+F5 algorithm with reduced Gröbner bases
+
+\bibitem{Modifying-for-termination}Christian Eder, Justin Gash, and
+John Perry. Modifying Faugère\textquoteright{}s F5 algorithm to ensure
+termination
+
+\bibitem{Multiset-Order}Franz Baader and Tobias Nipkow. Term Rewriting
+and All That
+
+\bibitem{key-1}Gwénolé Ars, Amir Hashemi. Extended F 5 criteria.
+
+\bibitem{term-mod-1}Gwénolé Ars. Applications des bases de Gröbner
+à la cryptographie
+
+\bibitem{F5-Orig}Jean-Charles Faugère. A new effi{}cient algorithm
+for computing Gröbner bases without reduction to zero (F$_{5}$)
+
+\bibitem{term-mod-2}Justin M. Gash. On efficient computation of Gröbner
+bases
+
+\bibitem{F5-Revisited}Till Stagers. Faugère\textquoteright{}s F5
+Algorithm Revisited\end{thebibliography}
+
+\end{document}

@@ -245,7 +245,7 @@ basis; polynomial $f$.
 \item [{Variables:}] $R$ and $B$ -- subsets of $H$; $(\sigma,p')\in H$
 -- current step's labeled polynomial before reduction; $(\sigma,p)$
 -- the same after reduction; $r,b$ -- elements of $R$ and $B$
-\item [{Result:}] Gröbner basis of ideal$I=\left(g_{1},\dots,g_{m},f\right)$
+\item [{Result:}] Gröbner basis of ideal $I=\left(g_{1},\dots,g_{m},f\right)$
 \end{lyxlist}
 
 \paragraph*{\label{par:SimpleSignatureGroebner}SimpleSignatureGroebner$\left(\left\{ g_{1},\dots,g_{m}\right\} ,f\right)$}
@@ -261,7 +261,7 @@ basis; polynomial $f$.
 \item \textbf{if} $p\not=0$\textbf{:}
 
 \begin{enumerate}
-\item \textbf{for $\{r\in R\,|\, r\GVWl\left(\sigma,p\right),\HM(r)\neq0\}$:}
+\item \textbf{for }$\{r\in R\,|\, r\GVWl\left(\sigma,p\right),\HM(r)\neq0\}$\textbf{:}
 
 \begin{enumerate}
 \item $B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(r)}r\}$
@@ -291,7 +291,7 @@ $r$ from the set in cycle clause
 \item \textbf{return} $p$\end{enumerate}
 \begin{lem}
 All pairs from $\mathbb{T}_{0}\times P$ appeared in the algorithm
-are labeled polynomials from$H\setminus\left\{ \left(0,0\right)\right\} $.
+are labeled polynomials from $H\setminus\left\{ \left(0,0\right)\right\} $.
 \end{lem}
 The elements created before entering main cycle are labeled polynomials
 mentioned above as examples. All other labeled polynomials in the

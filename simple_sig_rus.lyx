@@ -1010,9 +1010,13 @@ if
 
 \series bold
 for 
+\series default
+
 \begin_inset Formula $\{r\in R\,|\, r\GVWl\left(\sigma,p\right),\HM(r)\neq0\}$
 \end_inset
 
+
+\series bold
 :
 \end_layout
 
