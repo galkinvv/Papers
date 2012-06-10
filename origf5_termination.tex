@@ -126,10 +126,10 @@ This section aims to prove the following
 \label{iterations-d_grow}If the number of \textbf{while} cycle iteration
 inside AlgorithmF5 is infinite then the $d$ value infinitely grow.
 \end{claim}
-Let's suppose that there is an input $\left\{ f_{1},...,f_{m}\right\} $
-over $\mathcal{K}[x_{1}...,x_{n}]$ for which original F$_{5}$ does
-not terminate, and that it is shortest input of such kind -- the algorithm
-do terminate on shorter input $\left\{ f_{2},...,f_{m}\right\} $.
+Let's suppose that there is an input $\left\{ f_{1},\ldots,f_{m}\right\} $
+over $\mathcal{K}[x_{1},\ldots,x_{n}]$ for which original F$_{5}$
+does not terminate, and that it is shortest input of such kind --
+the algorithm do terminate on shorter input $\left\{ f_{2},\ldots,f_{m}\right\} $.
 This means that last iteration of outer cycle in incrementalF5 does
 not terminate, so some call to AlgorithmF5 does not terminate. To
 investigate this we need to study how the total degree $d$ can change
@@ -144,7 +144,7 @@ $d_{j}$ are extracted from $P$. After call to Reduction some new
 critical pairs are added to $P$. There exist a possibility that some
 of them has degree $d_{j}$. We're going to show that all such critical
 pairs do not generate S-polynomials in the algorithm because they
-are discarded .
+are discarded.
 
 For each new critical pair $[t,u_{1},r_{1},u_{2,}r_{2}]$ generated
 during iteration $j$ at least one of the generating polynomials belong
@@ -156,14 +156,14 @@ $r_{k}$ that was added to $Done$ later. Then we can state that the
 other S-pair part $r_{3-k}$ was already present in $G\cup Done$
 at the moment of $r_{k}$ was added to $Done$. So the TopReduction
 tries to reduce $r_{k}$ by $r_{3-k}$ but failed to do this because
-one of IsReducible checks (a)-(d) forbids this.
+one of IsReducible checks (a) - (d) forbids this.
 
 From the other hand for critical pairs with degree equal to $d_{j}$
 we have $u_{k}=1$ because total degree of critical pair is equal
 to total degree of it's generator $r_{k}$. This means that value
 $u_{3-k}$ is equal to $\frac{\HM(r_{k})}{\HM(r_{3-k})}$ so the IsReducible's
 rule (a) allow reduction $r_{k}$ by $r_{3-k}$. It follows that only
-checks (b)-(d) are left as possibilities.
+checks (b) - (d) are left as possibilities.
 
 Suppose that reduction was forbidden by (b). This means that there
 is a polynomial in $G_{i+1}$ that reduces $u_{3-k}\Sig(r_{3-k})$.
@@ -174,9 +174,9 @@ reduction too.
 
 Suppose that reduction was forbidden by (c). This means that there
 is a rewriting for the multiplied reductor. So for our case it means
-that Rewritten?($u_{3-k},r_{3-k})$ returns true at the moment of
-TopReduction execution, so it still returns true for all algorithm
-execution after this moment because rewritings do not disappear.
+that Rewritten?$\left(u_{3-k},r_{3-k}\right)$ returns true at the
+moment of TopReduction execution, so it still returns true for all
+algorithm execution after this moment because rewritings do not disappear.
 
 Suppose that reduction was forbidden by (d). The pseudo code in \cite{F5-Orig}
 is a bit unclear at this point, but the source code of procedure FindReductor
@@ -192,15 +192,15 @@ if (ut eq r[k0][1]) and (r[j][2] eq r[k0][2]) then
 end if;
 \end{lstlisting}
 For our case it means that signatures of $r_{k}$ and $u_{3-k}r_{3-k}$
-are equal. This leads to fact that Rewritten?($u_{3-k},r_{3-k})$
+are equal. This leads to fact that Rewritten?$\left(u_{3-k},r_{3-k}\right)$
 returns true after adding rule corresponding to $r_{k}$ because $u_{3-k}\cdot r_{3-k}$
-is rewritable by $1\cdot r_{k}$. So like in case (c) Rewritten?($u_{3-k},r_{3-k})$
+is rewritable by $1\cdot r_{k}$. So like in case (c) Rewritten?$\left(u_{3-k},r_{3-k}\right)$
 returns true at the moment of TopReduction execution.
 
 Now consider Spol function execution for some S-pair with total degree
 $d_{j}$ generated during iteration $j$. It executes in $j+1$ iteration
 of AlgorithmF5 cycle which is far after TopReduction execution for
-$r_{k}$ in algorithm flow so for both cases (c) and (d) call to Rewritten?($u_{3-k},r_{3-k})$
+$r_{k}$ in algorithm flow so for both cases (c) and (d) call to Rewritten?$\left(u_{3-k},r_{3-k}\right)$
 inside Spol returns true. It means that at the $j+1$ step no S-pair
 with total degree $d_{j}$ can add polynomial to $F$.
 
@@ -293,9 +293,9 @@ the count of polynomials with signature $S_{0}$ inside $ToDo$ is
 finite.
 \item Some polynomial is signature-safe top-reduced. This can be done only
 finite number of steps for each of polynomials because each top-reduction
-reduces the head monomial and the monomial order is well-founded.
-Together with finiteness of $S_{0}$-signature polynomials count this
-shows that the number of such steps is finite too.
+$\prec$-reduces the head monomial and the set of monomials is well-ordered
+with $\prec$. Together with finiteness of $S_{0}$-signature polynomials
+count this shows that the number of such steps is finite too.
 \item Set of $S_{0}$-signature polynomials is not touched, but a possibility
 of signature-unsafe top-reduction adds a polynomial in $ToDo$. The
 consecutive number of operations of this type without interleaving
@@ -334,8 +334,8 @@ The claim \ref{d-does-grow} shows that algorithm non termination
 leads to existence of infinite sequence of nonzero labeled polynomials
 being added to $G_{i}$ and the total degrees of polynomials in the
 sequence infinitely grow. So, in this case there is an infinite sequence
-of labeled polynomials $\left\{ r_{1},r_{2},...,r_{m},...,r_{n},...\right\} $
-where $r_{1},...,r_{m}$ correspond to $m$ input polynomials and
+of labeled polynomials $\left\{ r_{1},r_{2},\ldots,r_{m},\ldots,r_{n},\ldots\right\} $
+where $r_{1},\ldots,r_{m}$ correspond to $m$ input polynomials and
 other elements are generated either in Spol or in TopReduction. In
 both cases new element $r_{l}$ is formed as S-polynomial of two already
 existing polynomials $r_{i_{l}}$ and $r_{j_{l}}$ as $poly(r_{l})=u_{l}poly(r_{i_{l}})-v_{l}poly(r_{j_{l}})$
@@ -343,11 +343,11 @@ and $\Sig(r_{l})=u_{l}\Sig(r_{i_{l}})\succ v_{l}\Sig(r_{j_{l}})$.
 The $poly(r_{l})$ value can further change inside TopReduction to
 the polynomial with a smaller HM, but the $\Sig(r_{l})$ does never
 change after creation. Now, we want to select an infinite sub-sequence
-$\left\{ r_{k_{1}},r_{k_{2}},...,r_{k_{n}},...\right\} $ in that
-sequence with the property that $r_{k_{n+1}}$ is an S-polynomial
+$\left\{ r_{k_{1}},r_{k_{2}},\ldots,r_{k_{n}},\ldots\right\} $ in
+that sequence with the property that $r_{k_{n+1}}$ is an S-polynomial
 generated by $r_{k_{n}}=r_{i_{k_{n+1}}}$ and some other polynomial
 $r_{j_{k_{n+1}}}$, where $r_{k_{n}}$ correspond to greater by signature
-S-pair part , so $\Sig(r_{k_{n+1}})=u_{k_{n+1}}\Sig(r_{k_{n}})$ and
+S-pair part, so $\Sig(r_{k_{n+1}})=u_{k_{n+1}}\Sig(r_{k_{n}})$ and
 \begin{equation}
 \Sig(r_{k_{n}})|\Sig(r_{k_{n+1}}).\label{eq:s-pair-chain-def}
 \end{equation}
@@ -358,7 +358,7 @@ to it. This chain can be constructed in reverse direction going from
 it's last element $r_{l}$ by selecting every step from a given polynomial
 $r_{n}$ a polynomial $r_{i_{n}}$ which was used to generate $r_{n}$
 as $Spoly(r_{i_{n}},r_{j_{n}})$. The resulting S-pair-chain has the
-form $\{r_{q},...,r_{i_{i_{l}}},r_{i_{l}},r_{l}\}$ where all polynomials
+form $\{r_{q},\ldots,r_{i_{i_{l}}},r_{i_{l}},r_{l}\}$ where all polynomials
 has the same signature index $q=index(r_{l})$ and the first element
 is the input polynomial of that index.
 
@@ -382,7 +382,7 @@ dividing $s$ -- this part even may be determined by list of rules
 and $s$ without knowing anything other about computation.
 
 Consider arbitrary labeled polynomial $r_{l_{0}}$ with signature
-$\Sig(r_{l_{0}})=s$ and an ordered by generating time subset $\{r_{l_{1}},...,r_{l_{n}},...\}$
+$\Sig(r_{l_{0}})=s$ and an ordered by generating time subset $\{r_{l_{1}},\ldots,r_{l_{n}},\ldots\}$
 of labeled polynomials with signatures of form $\Sig(r_{l_{n}})=\Sig(r_{l_{0}})\cdot u_{n}$.
 From the signature divisibility point of view all of the possibly
 infinite number of pairs $\{r_{l_{0}},r_{l_{n}}\}$ can be S-pair-chains
@@ -465,7 +465,7 @@ consider HMs of infinite S-pair-chain $\{h_{i}\}$. They form an infinite
 sequence in $T$, so by Dickson's lemma there exists 2 polynomials
 in sequence with $\HM(h_{i})|\HM(h_{j})$. Therefore from the previous
 result we have $i<j$ and with the S-pair chain properties we get
-$\Sig(h_{i})|\Sig(h_{i+1})|\cdots|\Sig(h_{j})$ and $\frac{\HM(h_{i})}{\Sig(h_{i})}>\frac{\HM(h_{i+1})}{\Sig(h_{i+1})}>\dots>\frac{\HM(h_{j})}{\Sig(h_{j})}$.
+$\Sig(h_{i})|\Sig(h_{i+1})|\cdots|\Sig(h_{j})$ and $\frac{\HM(h_{i})}{\Sig(h_{i})}>\frac{\HM(h_{i+1})}{\Sig(h_{i+1})}>\cdots>\frac{\HM(h_{j})}{\Sig(h_{j})}$.
 So, we get the following result:
 \begin{thm}
 \label{thm:f_g_3_props}If the algorithm does not terminate for some
@@ -520,11 +520,11 @@ $g$ to $Done$ during call to AlgorithmF5 with $i=1$. Consider a
 finite set $G_{1}\cup Done$ of labeled polynomials at that moment.
 This set contains positions of labeled polynomials in $R$, so it's
 elements can be ordered according to position in $R$ and written
-as an ordered integer sequence $G_{g}=\{b_{1},...,b_{N}\}$ with $b_{j}<b_{j+1}$.
-It should be noted that this order does correspond to the order of
-labeled polynomials in the sequence produced by concatenated rule
-arrays $Rule[m]:Rule[m-1]:\cdots:Rule[1]$ because addition of new
-polynomial to $R$ is always followed by addition of corresponding
+as an ordered integer sequence $G_{g}=\{b_{1},\ldots,b_{N}\}$ with
+$b_{j}<b_{j+1}$. It should be noted that this order does correspond
+to the order of labeled polynomials in the sequence produced by concatenated
+rule arrays $Rule[m]:Rule[m-1]:\cdots:Rule[1]$ because addition of
+new polynomial to $R$ is always followed by addition of corresponding
 rule. But this order may differ from the order polynomials were added
 to $G_{1}\cup Done$ because polynomials with same total degree are
 added to $Done$ in the increasing signature order, while the addition
@@ -533,7 +533,7 @@ order inside Spol and TopReduction procedures. For the simplicity
 we will be speaking about labeled polynomials $b_{j}$ from $G_{g}$,
 assuming that $G_{g}$ is not the ordered positions list but the ordered
 list of labeled polynomials themselves corresponding to those positions.
-In this terminology we can say that all input polynomials $\left\{ f_{1},...,f_{m}\right\} $
+In this terminology we can say that all input polynomials $\left\{ f_{1},\ldots,f_{m}\right\} $
 do present in $G_{g}$, because they all present in $G_{1}$ at the
 moment of its creation.
 
@@ -557,13 +557,13 @@ $Done$.
 The other processing path is for special S-pairs corresponding to
 reductions forbidden by algorithm -- the case when S-pair is generated
 by polynomials $r_{i_{1}}$ and $r_{j_{1}}$ such that $\HM(r_{j_{1}})|\HM(r_{i_{1}})$
-so that S-polynomial has a form $poly(r_{i_{1}})-v_{1}poly(r_{j_{1}}).$
+so that S-polynomial has a form $poly(r_{i_{1}})-v_{1}poly(r_{j_{1}})$.
 Such situation is possible for two $G_{g}$ elements if reduction
 of $r_{i_{1}}$ by $r_{j_{1}}$ was forbidden in TopReduction or IsReducible.
 So for this case the path of S-pair ``processing'' is the following:
 \begin{itemize}
 \item The S-pair part $v_{1}r_{j_{1}}$ is checked in IsReducible. (a) is
-satisfied because $\HM(r_{j_{1}})|\HM(r_{i_{1}})$ . It can be rejected
+satisfied because $\HM(r_{j_{1}})|\HM(r_{i_{1}})$. It can be rejected
 by one of the other checks:
 
 \begin{itemize}
@@ -639,7 +639,7 @@ which are very similar to the properties used in Theorem 21 in \cite{F5C}:
 \begin{thm}
 \label{thm:Exist-gg-repr}At the moment of adding $g$ to $Done$
 every S-pair of $G_{g}$ elements which signature is smaller than
-$\Sig(g)$ satisfies one of three properties : \end{thm}
+$\Sig(g)$ satisfies one of three properties:\end{thm}
 \begin{enumerate}
 \item S-pair has a part that is rejected by the normal form check $\varphi$
 (in CritPair or in IsReducible). Such S-pairs will be referenced as
@@ -759,15 +759,15 @@ where $m_{i_{k}}$ and $m_{j_{k}}$ are same as above.
 
 Another important example of $G_{g}$-representation comes from ideal
 and signature definitions. All labeled polynomials computed by the
-algorithm are elements of ideal $\left(f_{1},...,f_{m}\right)$. So
-any labeled polynomial $p$ can be written as $ $$\sum_{i}f_{i}g_{i}$,
+algorithm are elements of ideal $\left(f_{1},\ldots,f_{m}\right)$.
+So any labeled polynomial $p$ can be written as $ $$\sum_{i}f_{i}g_{i}$,
 where $g_{i}$ are homogeneous polynomials. All input polynomials
 $f_{i}$ belong to $G_{g}$, so $f_{i}g_{i}$ has $G_{g}$-representations
 of the form (\ref{eq:repr-ex-2}).
 \begin{example}
 Those representations sum give the following signature-safe representation:
 \[
-p=\sum_{k}m_{k}\cdot b_{i_{k}},\, m_{k}\in\mathcal{K}\times T,\, b_{i_{k}}\in\left\{ f_{1},...,f_{m}\right\} \subset G_{g}.
+p=\sum_{k}m_{k}\cdot b_{i_{k}},\, m_{k}\in\mathcal{K}\times T,\, b_{i_{k}}\in\left\{ f_{1},\ldots,f_{m}\right\} \subset G_{g}.
 \]
 \end{example}
 \begin{defn}
@@ -811,7 +811,7 @@ of $G_{g}$ correspond to order of $R$.
 To order $G_{g}$-representations we start from \emph{representation
 elements ordering}: $c_{i}t_{i}\cdot b_{i}\gtrdot c_{j}t_{j}\cdot b_{j}$
 iff $t_{i}\Sig(b_{i})\succ t_{j}\Sig(b_{j})$ or $t_{i}\Sig(b_{i})=t_{j}\Sig(b_{j})\mbox{ and }i<j$
-(note the opposite order). 
+(note the opposite order).
 \end{defn}
 This ordering is based only on comparison of signatures and positions
 of labeled polynomials in the ordered list $G_{g}$ but does not depend
@@ -892,21 +892,22 @@ representation can't has signatures $\succ$-greater than signatures
 of $\gtrdot$-greater representation.
 
 The number of different labeled polynomial positions is finite because
-it is equal to $|G_{g}|$. So the existence of infinite $\gtrdot$-descending
-sequence of representation elements would lead to existence of infinite
-$\succ$-descending sequence of signatures. Combining this with well-foundness
-of the relation $\prec$ on signatures we get the proof for well-foundness
-of $\lessdot$ ordering on elements.
+it is equal to $|G_{g}|$ which is finite for fixed $g$. So the existence
+of infinite $\gtrdot$-descending sequence of representation elements
+would lead to existence of infinite $\succ$-descending sequence of
+signatures. Combining this with well-orderness of signatures with
+ordering $\prec$ we get the proof for well-orderness of elements
+with ordering $\lessdot$.
 
-The straightforward proof for well-foundness of $\lessdot$ ordering
-on representations following from well-foundness of $\lessdot$ on
-elements is not very complex but to skip its strict details the theorem
-2.5.5 of \cite{Multiset-Order} will be used. It states well-foundness
-of an well-founded ordering lexicographically extended to finite multiset.
-This applies to the representations because they form a subset in
-the finite multiset of representation elements. So, we have
+The straightforward proof for well-orderness of representations with
+$\lessdot$ following from well-orderness of elements with $\lessdot$
+is not very complex but to skip its strict details the theorem 2.5.5
+of \cite{Multiset-Order} will be used. It states well-orderness of
+finite multiset with an lexicographically extended ordering of well-ordered
+elements. This applies to the representations because they form a
+subset in the finite multiset of representation elements. So, we have
 \begin{thm}
-The $\lessdot$ ordering on representations is well-founded.
+The representations are well-ordered with $\lessdot$ ordering.
 \end{thm}
 
 \subsection{Sequence of representations}
@@ -1108,7 +1109,7 @@ with $\Sig(mh)\prec\Sig(g)$ either satisfies properties 1-3 or there
 exists a signature-safe representation $mh=\sum_{l}m_{l}\cdot b_{i_{l}}$
 which is $\lessdot$-smaller than \textup{$\sum_{k}m_{k}\cdot b_{i_{k}}$.}
 \end{thm}
-In conjunction with $\lessdot$-order well-foundness this means that
+In conjunction with representation well-orderness this means that
 from any given signature-safe representation we can produce a finite
 $\lessdot$-descending sequence which ends with an signature-safe
 representation satisfying properties 1-3. This leads to main result:
@@ -1142,7 +1143,7 @@ satisfy criteria. The corollary is proved.
 
 Now return to the result of theorem \ref{thm:f_g_3_props} which states
 for the case of algorithm non-termination existence of a polynomial
-$f$ such that $\HM(f)|\HM(g),$ $\Sig(f)|\Sig(g),$ $\frac{\HM(f)}{\Sig(f)}>\frac{\HM(g)}{\Sig(g)},$
+$f$ such that $\HM(f)|\HM(g)$, $\Sig(f)|\Sig(g)$, $\frac{\HM(f)}{\Sig(f)}>\frac{\HM(g)}{\Sig(g)}$,
 where $g$ is the same fixed $g$ as above. Let $t=\frac{\HM(g)}{\HM(f)}$.
 $tf$ is a signature-safe reductor for $g$, so $\Sig(f)t\prec\Sig(g)$
 and the corollary \ref{cor:all-needed-for-terminaton} can be applied
@@ -1167,9 +1168,9 @@ From the other hand existence of such pair of labeled polynomials
 is not possible: consider the call to TopReduction after which the
 polynomial $g$ was inserted in $Done$. That call returns polynomial
 as first part of TopReduction return value, so the value returned
-by IsReducible is empty set. It means that one of conditions (a)-(d)
-was not satisfied for all polynomials in $G\cup Done$ including $f$.
-This is not possible because:
+by IsReducible is empty set. It means that one of conditions (a) -
+(d) was not satisfied for all polynomials in $G\cup Done$ including
+$f$. This is not possible because:
 \begin{itemize}
 \item (a) is satisfied because $f_{1}$ is a reductor for $g$ from last
 theorem
@@ -1189,14 +1190,14 @@ does terminate for any input.
 This paper shows that original F$_{5}$ algorithm terminates for any
 homogeneous input. However, it does not give any limit on number of
 operations. The simplest proof of the termination of Buchberger algorithm
-is based on well-foundness and doesn't give any such limit too. Unfortunately
-the termination proof given here is quite different in structure compared
-to the proof of Buchberger algorithm termination, so this proof doesn't
-show that F$_{5}$ is more efficient than Buchberger in any sense.
-Unlike this the termination of the modified versions of F$_{5}$ algorithm
-in \cite{term-mod-1,term-mod-2,Modifying-for-termination} is shown
-in a way analogous to Buchberger algorithm and there is room for comparison
-of their efficiency with Buchberger's one.
+is based on Noetherian property and doesn't give any such limit too.
+Unfortunately the termination proof given here is quite different
+in structure compared to the proof of Buchberger algorithm termination,
+so this proof doesn't show that F$_{5}$ is more efficient than Buchberger
+in any sense. Unlike this the termination of the modified versions
+of F$_{5}$ algorithm in \cite{term-mod-1,term-mod-2,Modifying-for-termination}
+is shown in a way analogous to Buchberger algorithm and there is room
+for comparison of their efficiency with Buchberger's one.
 
 From the point of view of practical computer algebra computations
 there is a question about efficiency of the modified versions compared

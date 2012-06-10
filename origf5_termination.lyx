@@ -239,11 +239,11 @@ while
 
 \begin_layout Standard
 Let's suppose that there is an input 
-\begin_inset Formula $\left\{ f_{1},...,f_{m}\right\} $
+\begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} $
 \end_inset
 
  over 
-\begin_inset Formula $\mathcal{K}[x_{1}...,x_{n}]$
+\begin_inset Formula $\mathcal{K}[x_{1},\ldots,x_{n}]$
 \end_inset
 
  for which original F
@@ -252,7 +252,7 @@ Let's suppose that there is an input
 
  does not terminate, and that it is shortest input of such kind -- the algorithm
  do terminate on shorter input 
-\begin_inset Formula $\left\{ f_{2},...,f_{m}\right\} $
+\begin_inset Formula $\left\{ f_{2},\ldots,f_{m}\right\} $
 \end_inset
 
 .
@@ -335,7 +335,7 @@ Let's suppose that there is an input
 
 .
  We're going to show that all such critical pairs do not generate S-polynomials
- in the algorithm because they are discarded .
+ in the algorithm because they are discarded.
 \end_layout
 
 \begin_layout Standard
@@ -404,7 +404,7 @@ For each new critical pair
 \begin_inset Formula $r_{3-k}$
 \end_inset
 
- but failed to do this because one of IsReducible checks (a)-(d) forbids
+ but failed to do this because one of IsReducible checks (a) - (d) forbids
  this.
 \end_layout
 
@@ -440,7 +440,7 @@ From the other hand for critical pairs with degree equal to
 \end_inset
 
 .
- It follows that only checks (b)-(d) are left as possibilities.
+ It follows that only checks (b) - (d) are left as possibilities.
 \end_layout
 
 \begin_layout Standard
@@ -465,8 +465,8 @@ Suppose that reduction was forbidden by (b).
 \begin_layout Standard
 Suppose that reduction was forbidden by (c).
  This means that there is a rewriting for the multiplied reductor.
- So for our case it means that Rewritten?(
-\begin_inset Formula $u_{3-k},r_{3-k})$
+ So for our case it means that Rewritten?
+\begin_inset Formula $\left(u_{3-k},r_{3-k}\right)$
 \end_inset
 
  returns true at the moment of TopReduction execution, so it still returns
@@ -533,8 +533,8 @@ For our case it means that signatures of
 \end_inset
 
  are equal.
- This leads to fact that Rewritten?(
-\begin_inset Formula $u_{3-k},r_{3-k})$
+ This leads to fact that Rewritten?
+\begin_inset Formula $\left(u_{3-k},r_{3-k}\right)$
 \end_inset
 
  returns true after adding rule corresponding to 
@@ -550,8 +550,8 @@ For our case it means that signatures of
 \end_inset
 
 .
- So like in case (c) Rewritten?(
-\begin_inset Formula $u_{3-k},r_{3-k})$
+ So like in case (c) Rewritten?
+\begin_inset Formula $\left(u_{3-k},r_{3-k}\right)$
 \end_inset
 
  returns true at the moment of TopReduction execution.
@@ -576,8 +576,8 @@ Now consider Spol function execution for some S-pair with total degree
 \begin_inset Formula $r_{k}$
 \end_inset
 
- in algorithm flow so for both cases (c) and (d) call to Rewritten?(
-\begin_inset Formula $u_{3-k},r_{3-k})$
+ in algorithm flow so for both cases (c) and (d) call to Rewritten?
+\begin_inset Formula $\left(u_{3-k},r_{3-k}\right)$
 \end_inset
 
  inside Spol returns true.
@@ -971,8 +971,16 @@ Some polynomial with a signature
 \begin_layout Itemize
 Some polynomial is signature-safe top-reduced.
  This can be done only finite number of steps for each of polynomials because
- each top-reduction reduces the head monomial and the monomial order is
- well-founded.
+ each top-reduction 
+\begin_inset Formula $\prec$
+\end_inset
+
+-reduces the head monomial and the set of monomials is well-ordered with
+ 
+\begin_inset Formula $\prec$
+\end_inset
+
+.
  Together with finiteness of 
 \begin_inset Formula $S_{0}$
 \end_inset
@@ -1106,11 +1114,11 @@ reference "d-does-grow"
 
  and the total degrees of polynomials in the sequence infinitely grow.
  So, in this case there is an infinite sequence of labeled polynomials 
-\begin_inset Formula $\left\{ r_{1},r_{2},...,r_{m},...,r_{n},...\right\} $
+\begin_inset Formula $\left\{ r_{1},r_{2},\ldots,r_{m},\ldots,r_{n},\ldots\right\} $
 \end_inset
 
  where 
-\begin_inset Formula $r_{1},...,r_{m}$
+\begin_inset Formula $r_{1},\ldots,r_{m}$
 \end_inset
 
  correspond to 
@@ -1151,7 +1159,7 @@ reference "d-does-grow"
 
  does never change after creation.
  Now, we want to select an infinite sub-sequence 
-\begin_inset Formula $\left\{ r_{k_{1}},r_{k_{2}},...,r_{k_{n}},...\right\} $
+\begin_inset Formula $\left\{ r_{k_{1}},r_{k_{2}},\ldots,r_{k_{n}},\ldots\right\} $
 \end_inset
 
  in that sequence with the property that 
@@ -1170,7 +1178,7 @@ reference "d-does-grow"
 \begin_inset Formula $r_{k_{n}}$
 \end_inset
 
- correspond to greater by signature S-pair part , so 
+ correspond to greater by signature S-pair part, so 
 \begin_inset Formula $\Sig(r_{k_{n+1}})=u_{k_{n+1}}\Sig(r_{k_{n}})$
 \end_inset
 
@@ -1223,7 +1231,7 @@ S-pair-chain
 
 .
  The resulting S-pair-chain has the form 
-\begin_inset Formula $\{r_{q},...,r_{i_{i_{l}}},r_{i_{l}},r_{l}\}$
+\begin_inset Formula $\{r_{q},\ldots,r_{i_{i_{l}}},r_{i_{l}},r_{l}\}$
 \end_inset
 
  where all polynomials has the same signature index 
@@ -1282,7 +1290,7 @@ Consider arbitrary labeled polynomial
 \end_inset
 
  and an ordered by generating time subset 
-\begin_inset Formula $\{r_{l_{1}},...,r_{l_{n}},...\}$
+\begin_inset Formula $\{r_{l_{1}},\ldots,r_{l_{n}},\ldots\}$
 \end_inset
 
  of labeled polynomials with signatures of form 
@@ -1649,7 +1657,7 @@ key "Arri-Perry-Revised"
 \end_inset
 
  and 
-\begin_inset Formula $\frac{\HM(h_{i})}{\Sig(h_{i})}>\frac{\HM(h_{i+1})}{\Sig(h_{i+1})}>\dots>\frac{\HM(h_{j})}{\Sig(h_{j})}$
+\begin_inset Formula $\frac{\HM(h_{i})}{\Sig(h_{i})}>\frac{\HM(h_{i+1})}{\Sig(h_{i+1})}>\cdots>\frac{\HM(h_{j})}{\Sig(h_{j})}$
 \end_inset
 
 .
@@ -1847,7 +1855,7 @@ To prove the idea let us work with algorithm state just before adding
 \end_inset
 
  and written as an ordered integer sequence 
-\begin_inset Formula $G_{g}=\{b_{1},...,b_{N}\}$
+\begin_inset Formula $G_{g}=\{b_{1},\ldots,b_{N}\}$
 \end_inset
 
  with 
@@ -1906,7 +1914,7 @@ To prove the idea let us work with algorithm state just before adding
 \noun off
 \color none
 
-\begin_inset Formula $\left\{ f_{1},...,f_{m}\right\} $
+\begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} $
 \end_inset
 
 
@@ -2018,9 +2026,10 @@ The other processing path is for special S-pairs corresponding to reductions
 \end_inset
 
  so that S-polynomial has a form 
-\begin_inset Formula $poly(r_{i_{1}})-v_{1}poly(r_{j_{1}}).$
+\begin_inset Formula $poly(r_{i_{1}})-v_{1}poly(r_{j_{1}})$
 \end_inset
 
+.
  Such situation is possible for two 
 \begin_inset Formula $G_{g}$
 \end_inset
@@ -2079,7 +2088,7 @@ The S-pair part
 \uwave default
 \noun default
 \color inherit
- .
+.
  It can be rejected by one of the other checks:
 \end_layout
 
@@ -2399,7 +2408,7 @@ At the moment of adding
 \begin_inset Formula $\Sig(g)$
 \end_inset
 
- satisfies one of three properties : 
+ satisfies one of three properties:
 \end_layout
 
 \begin_layout Enumerate
@@ -2889,7 +2898,7 @@ Another important example of
 -representation comes from ideal and signature definitions.
  All labeled polynomials computed by the algorithm are elements of ideal
  
-\begin_inset Formula $\left(f_{1},...,f_{m}\right)$
+\begin_inset Formula $\left(f_{1},\ldots,f_{m}\right)$
 \end_inset
 
 .
@@ -2941,7 +2950,7 @@ Those representations sum give the following signature-safe representation:
  
 \begin_inset Formula 
 \[
-p=\sum_{k}m_{k}\cdot b_{i_{k}},\, m_{k}\in\mathcal{K}\times T,\, b_{i_{k}}\in\left\{ f_{1},...,f_{m}\right\} \subset G_{g}.
+p=\sum_{k}m_{k}\cdot b_{i_{k}},\, m_{k}\in\mathcal{K}\times T,\, b_{i_{k}}\in\left\{ f_{1},\ldots,f_{m}\right\} \subset G_{g}.
 \]
 
 \end_inset
@@ -3152,7 +3161,6 @@ representation elements ordering
 \end_inset
 
  (note the opposite order).
- 
 \end_layout
 
 \begin_layout Standard
@@ -3450,6 +3458,10 @@ The number of different labeled polynomial positions is finite because it
 \begin_inset Formula $|G_{g}|$
 \end_inset
 
+ which is finite for fixed 
+\begin_inset Formula $g$
+\end_inset
+
 .
  So the existence of infinite 
 \begin_inset Formula $\gtrdot$
@@ -3461,28 +3473,27 @@ The number of different labeled polynomial positions is finite because it
 \end_inset
 
 -descending sequence of signatures.
- Combining this with well-foundness of the relation 
+ Combining this with well-orderness of signatures with ordering 
 \begin_inset Formula $\prec$
 \end_inset
 
- on signatures we get the proof for well-foundness of 
+ we get the proof for well-orderness of elements with ordering 
 \begin_inset Formula $\lessdot$
 \end_inset
 
- ordering on elements.
+.
 \end_layout
 
 \begin_layout Standard
-The straightforward proof for well-foundness of 
+The straightforward proof for well-orderness of representations with 
 \begin_inset Formula $\lessdot$
 \end_inset
 
- ordering on representations following from well-foundness of 
+ following from well-orderness of elements with 
 \begin_inset Formula $\lessdot$
 \end_inset
 
- on elements is not very complex but to skip its strict details the theorem
- 2.5.5 of 
+ is not very complex but to skip its strict details the theorem 2.5.5 of 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Multiset-Order"
@@ -3490,19 +3501,19 @@ key "Multiset-Order"
 \end_inset
 
  will be used.
- It states well-foundness of an well-founded ordering lexicographically
- extended to finite multiset.
+ It states well-orderness of finite multiset with an lexicographically extended
+ ordering of well-ordered elements.
  This applies to the representations because they form a subset in the finite
  multiset of representation elements.
  So, we have
 \end_layout
 
 \begin_layout Theorem
-The 
+The representations are well-ordered with 
 \begin_inset Formula $\lessdot$
 \end_inset
 
- ordering on representations is well-founded.
+ ordering.
 \end_layout
 
 \begin_layout Subsection
@@ -4789,12 +4800,8 @@ A signature-safe representation
 \end_layout
 
 \begin_layout Standard
-In conjunction with 
-\begin_inset Formula $\lessdot$
-\end_inset
-
--order well-foundness this means that from any given signature-safe representati
-on we can produce a finite 
+In conjunction with representation well-orderness this means that from any
+ given signature-safe representation we can produce a finite 
 \begin_inset Formula $\lessdot$
 \end_inset
 
@@ -4940,18 +4947,18 @@ l
 \end_inset
 
  such that 
-\begin_inset Formula $\HM(f)|\HM(g),$
+\begin_inset Formula $\HM(f)|\HM(g)$
 \end_inset
 
- 
-\begin_inset Formula $\Sig(f)|\Sig(g),$
+, 
+\begin_inset Formula $\Sig(f)|\Sig(g)$
 \end_inset
 
- 
-\begin_inset Formula $\frac{\HM(f)}{\Sig(f)}>\frac{\HM(g)}{\Sig(g)},$
+, 
+\begin_inset Formula $\frac{\HM(f)}{\Sig(f)}>\frac{\HM(g)}{\Sig(g)}$
 \end_inset
 
- where 
+, where 
 \begin_inset Formula $g$
 \end_inset
 
@@ -5140,7 +5147,7 @@ From the other hand existence of such pair of labeled polynomials is not
 .
  That call returns polynomial as first part of TopReduction return value,
  so the value returned by IsReducible is empty set.
- It means that one of conditions (a)-(d) was not satisfied for all polynomials
+ It means that one of conditions (a) - (d) was not satisfied for all polynomials
  in 
 \family roman
 \series medium
@@ -5244,7 +5251,7 @@ This paper shows that original F
  algorithm terminates for any homogeneous input.
  However, it does not give any limit on number of operations.
  The simplest proof of the termination of Buchberger algorithm is based
- on well-foundness and doesn't give any such limit too.
+ on Noetherian property and doesn't give any such limit too.
  Unfortunately the termination proof given here is quite different in structure
  compared to the proof of Buchberger algorithm termination, so this proof
  doesn't show that F
