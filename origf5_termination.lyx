@@ -771,10 +771,6 @@ We need to get a simple fact about signatures of polynomials in
  elements.
 \end_layout
 
-\begin_layout Standard
-The following needs a
-\end_layout
-
 \begin_layout Definition
 The reduction of labeled polynomial 
 \begin_inset Formula $r_{k}$
@@ -1190,8 +1186,8 @@ reference "d-does-grow"
 
 \end_inset
 
-Finite or infinite labeled polynomial sequence which neighbor elements satisfy
- property 
+Finite or infinite labeled polynomial sequence which successive elements
+ satisfy property 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "eq:s-pair-chain-def"
@@ -1207,7 +1203,7 @@ S-pair-chain
 \begin_inset Formula $r_{l}$
 \end_inset
 
- has an S-pair-chain corresponding to it.
+ has an finite S-pair-chain ending with that polynomial.
  This chain can be constructed in reverse direction going from it's last
  element 
 \begin_inset Formula $r_{l}$
@@ -1384,43 +1380,24 @@ chain generator
 \end_layout
 
 \begin_layout Standard
-First we need to prove that input labeled polynomial 
+If the algorithm doesn't terminate the input labeled polynomial 
 \begin_inset Formula $r_{1}=(f_{1},1F_{1})$
 \end_inset
 
- is chain generator if the algorithm doesn't terminate.
- Every labeled polynomial 
+ is chain generator because every labeled polynomial 
 \begin_inset Formula $r_{l}$
 \end_inset
 
  generated in the last non-terminating call to Algorithm F5 has signature
- index 1, so there exists an S-pair-chain corresponding to 
-\begin_inset Formula $r_{l}$
-\end_inset
-
- which starts with 
-\begin_inset Formula $r_{1}$
-\end_inset
-
- and ends with 
-\begin_inset Formula $r_{l}$
+ index 1 so there is an S-pair-chain 
+\begin_inset Formula $\{r_{1},\ldots,r_{i_{i_{l}}},r_{i_{l}},r_{l}\}$
 \end_inset
 
 .
- So there is infinite different chains starting from 
-\begin_inset Formula $r_{1}$
-\end_inset
+\end_layout
 
- corresponding to labeled polynomials 
-\begin_inset Formula $r_{l}$
-\end_inset
-
-, so 
-\begin_inset Formula $r_{1}$
-\end_inset
-
- is a chain generator.
- Now assume that some labeled polynomial 
+\begin_layout Standard
+Now assume that some labeled polynomial 
 \begin_inset Formula $r_{n}$
 \end_inset
 
@@ -1441,16 +1418,16 @@ First we need to prove that input labeled polynomial
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Standard
-So, if labeled polynomial 
-\begin_inset Formula $p$
+ So, if labeled polynomial 
+\begin_inset Formula $r_{n}$
 \end_inset
 
  is chain-generator, we can select another chain generator from it's S-pair-desc
 endants.
- Using this result we can find infinite S-pair-chain starting with 
+\end_layout
+
+\begin_layout Standard
+Using theses result we can find infinite S-pair-chain starting with 
 \begin_inset Formula $r_{1}$
 \end_inset
 
@@ -1504,7 +1481,20 @@ poly(h_{n+1})=c\frac{\Sig(h_{n+1})}{\Sig(h_{n})}poly(h_{n})+g_{n},
 
 \end_inset
 
-where
+where 
+\begin_inset Formula $g_{n}$
+\end_inset
+
+ is the polynomial corresponding to smaller part of S-pair used to generate
+ 
+\begin_inset Formula $h_{n+1}$
+\end_inset
+
+ from 
+\begin_inset Formula $h_{n}$
+\end_inset
+
+ and satisfy:
 \begin_inset Formula 
 \begin{equation}
 \HM(h_{n+1})<\HM\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)=\HM(g_{n}),\,\Sig(h_{n+1})=\Sig\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)\succ\Sig(g_{n}).\label{eq:spair-chain}
@@ -1534,6 +1524,13 @@ reference "eq:spair-chain"
 \end_inset
 
  are strictly descending according to term ordering.
+ This fact can't be used directly to show chains finiteness because unlike
+ the ordering of monomials the ordering of monomial quotients is not well
+ ordering -- for example the sequence 
+\begin_inset Formula $\frac{x}{x}>\frac{x}{x^{2}}>\cdots>\frac{x}{x^{n}}>\cdots$
+\end_inset
+
+ is infinitely decreasing.
 \end_layout
 
 \begin_layout Standard
@@ -3219,35 +3216,10 @@ This ordering is based only on comparison of signatures and positions of
 \end_inset
 
 .
-\begin_inset Formula 
-\[
-y\cdot b_{1}\gtrdot100y\cdot b_{2},\,\mbox{because signature of left side is}\succ
-\]
+\end_layout
 
-\end_inset
-
-
-\begin_inset Formula 
-\[
-x\cdot b_{1}\gtrdot y\cdot b_{1},\,\mbox{because signature of left side is}\succ
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
--x\cdot b_{1}\mbox{ and }2x\cdot b_{1}\,\mbox{are not comparable becuase signatures and list indices are equal}
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-y^{2}\cdot b_{1}\lessdot y\cdot b_{3},\,\mbox{because signature of left side is}\prec
-\]
-
+\begin_layout Itemize
+\begin_inset Formula $y\cdot b_{1}\gtrdot100y\cdot b_{2}$
 \end_inset
 
 
@@ -3262,16 +3234,136 @@ y^{2}\cdot b_{1}\lessdot y\cdot b_{3},\,\mbox{because signature of left side is}
 \uwave off
 \noun off
 \color none
-
-\begin_inset Formula 
-\[
-x^{2}\cdot b_{1}\gtrdot x\cdot b_{3},
-\]
-
+ because signature of left side is 
+\begin_inset Formula $\succ$
 \end_inset
 
-because signatures are equal and the list position of left side's labeled
- polynomial is 1 which is smaller than right's position 3.
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $x\cdot b_{1}\gtrdot y\cdot b_{1}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ because signature of left side is 
+\begin_inset Formula $\succ$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $-x\cdot b_{1}$
+\end_inset
+
+ 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+and
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ 
+\begin_inset Formula $2x\cdot b_{1}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ are not comparable because signatures and list indices are equal
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $y^{2}\cdot b_{1}\lessdot y\cdot b_{3}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ because signature of left side is
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ 
+\begin_inset Formula $\prec$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $x^{2}\cdot b_{1}\gtrdot x\cdot b_{3}$
+\end_inset
+
+ because signatures are equal and the list position of left side's labeled
+ polynomial is 1 which is smaller than right side's position 3.
 \end_layout
 
 \begin_layout Standard
@@ -3344,44 +3436,136 @@ Some examples of this ordering are given for the same as above 3-element
 -representations are already written in ordered forms:
 \end_layout
 
-\begin_layout Standard
-\begin_inset Formula 
-\[
-x^{2}\cdot b_{1}+xy\cdot b_{1}+y^{2}b_{1}\gtrdot x^{2}\cdot b_{1}+100y^{2}\cdot b_{1},\mbox{ because }xy\cdot b_{1}\gtrdot y^{2}\cdot b_{1}
-\]
+\begin_layout Itemize
 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $x^{2}\cdot b_{1}+xy\cdot b_{1}+y^{2}b_{1}\gtrdot x^{2}\cdot b_{1}+100y^{2}\cdot b_{1}$
+\end_inset
+
+ because 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $xy\cdot b_{1}\gtrdot y^{2}\cdot b_{1}$
 \end_inset
 
 
-\begin_inset Formula 
-\[
-x^{2}\cdot b_{1}+100y^{2}\cdot b_{1}\gtrdot x^{2}\cdot b_{1},\mbox{ because the right ordered form is beginning of the left}
-\]
+\end_layout
 
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $x^{2}\cdot b_{1}+100y^{2}\cdot b_{1}\gtrdot x^{2}\cdot b_{1}$
+\end_inset
+
+ because the right ordered form is beginning of the left
+\end_layout
+
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $x^{2}\cdot b_{1}\gtrdot xy\cdot b_{1}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}$
+\end_inset
+
+ because 
+\begin_inset Formula $x^{2}\cdot b_{1}\gtrdot xy\cdot b_{1}$
 \end_inset
 
 
-\begin_inset Formula 
-\[
-x^{2}\cdot b_{1}\gtrdot xy\cdot b_{1}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2},\mbox{ because }x^{2}\cdot b_{1}\gtrdot xy\cdot b_{1}
-\]
+\end_layout
 
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $xy\cdot b_{1}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}\gtrdot y\cdot b_{3}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}$
+\end_inset
+
+ because 
+\begin_inset Formula $xy\cdot b_{1}\gtrdot y\cdot b_{3}$
 \end_inset
 
 
-\begin_inset Formula 
-\[
-xy\cdot b_{1}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}\gtrdot y\cdot b_{3}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2},\mbox{ because }xy\cdot b_{1}\gtrdot y\cdot b_{3}
-\]
+\end_layout
 
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $y\cdot b_{3}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}$
 \end_inset
 
+ and 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
 
-\begin_inset Formula 
-\[
-y\cdot b_{3}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}\mbox{ and }2y\cdot b_{3}+y^{2}\cdot b_{2}
-\]
-
+\begin_inset Formula $2y\cdot b_{3}+y^{2}\cdot b_{2}$
 \end_inset
 
 
@@ -3396,7 +3580,7 @@ y\cdot b_{3}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}\mbox{ and }2y\cdot b_{3}+y^{2}\cd
 \uwave off
 \noun off
 \color none
-are not comparable because the greatest different elements are 
+ are not comparable because the greatest different elements are 
 \begin_inset Formula $y\cdot b_{3}$
 \end_inset
 
@@ -3420,7 +3604,7 @@ are not comparable because the greatest different elements are
 \end_layout
 
 \begin_layout Standard
-The ordering is compatible with signature-safeness:
+The ordering is compatible with signature-safety:
 \end_layout
 
 \begin_layout Theorem

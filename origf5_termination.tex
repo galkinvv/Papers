@@ -240,8 +240,6 @@ the other hand all polynomials inside $ToDo$ has the same total signature
 $d_{j}$. This property together with index equality shows that the
 total degree of signature monomials is equal to the $d_{j}-\totaldeg(f_{i})$
 for all $ToDo$ elements.
-
-The following needs a
 \begin{defn}
 The reduction of labeled polynomial $r_{k}$ with a labeled polynomial
 $r_{m}$ is called \emph{signature-safe} if $\Sig(r_{k})\succ t\cdot\Sig(r_{m})$,
@@ -351,16 +349,16 @@ S-pair part, so $\Sig(r_{k_{n+1}})=u_{k_{n+1}}\Sig(r_{k_{n}})$ and
 \begin{equation}
 \Sig(r_{k_{n}})|\Sig(r_{k_{n+1}}).\label{eq:s-pair-chain-def}
 \end{equation}
-Finite or infinite labeled polynomial sequence which neighbor elements
+Finite or infinite labeled polynomial sequence which successive elements
 satisfy property \ref{eq:s-pair-chain-def} will be called \emph{S-pair-chain}.
-Every generated labeled polynomial $r_{l}$ has an S-pair-chain corresponding
-to it. This chain can be constructed in reverse direction going from
-it's last element $r_{l}$ by selecting every step from a given polynomial
-$r_{n}$ a polynomial $r_{i_{n}}$ which was used to generate $r_{n}$
-as $Spoly(r_{i_{n}},r_{j_{n}})$. The resulting S-pair-chain has the
-form $\{r_{q},\ldots,r_{i_{i_{l}}},r_{i_{l}},r_{l}\}$ where all polynomials
-has the same signature index $q=index(r_{l})$ and the first element
-is the input polynomial of that index.
+Every generated labeled polynomial $r_{l}$ has an finite S-pair-chain
+ending with that polynomial. This chain can be constructed in reverse
+direction going from it's last element $r_{l}$ by selecting every
+step from a given polynomial $r_{n}$ a polynomial $r_{i_{n}}$ which
+was used to generate $r_{n}$ as $Spoly(r_{i_{n}},r_{j_{n}})$. The
+resulting S-pair-chain has the form $\{r_{q},\ldots,r_{i_{i_{l}}},r_{i_{l}},r_{l}\}$
+where all polynomials has the same signature index $q=index(r_{l})$
+and the first element is the input polynomial of that index.
 
 The first fact about S-pair-chains is based on the rewritten criteria
 and consists in the following
@@ -404,25 +402,23 @@ The labeled polynomial $r_{l}$ is called \emph{chain generator} if
 there exist infinite number of different finite S-pair-chains starting
 with $r_{l}$.
 \end{defn}
-First we need to prove that input labeled polynomial $r_{1}=(f_{1},1F_{1})$
-is chain generator if the algorithm doesn't terminate. Every labeled
-polynomial $r_{l}$ generated in the last non-terminating call to
-Algorithm F5 has signature index 1, so there exists an S-pair-chain
-corresponding to $r_{l}$ which starts with $r_{1}$ and ends with
-$r_{l}$. So there is infinite different chains starting from $r_{1}$
-corresponding to labeled polynomials $r_{l}$, so $r_{1}$ is a chain
-generator. Now assume that some labeled polynomial $r_{n}$ is known
-to be a chain generator. Then one of the finite number of S-pair-descendants
+If the algorithm doesn't terminate the input labeled polynomial $r_{1}=(f_{1},1F_{1})$
+is chain generator because every labeled polynomial $r_{l}$ generated
+in the last non-terminating call to Algorithm F5 has signature index
+1 so there is an S-pair-chain $\{r_{1},\ldots,r_{i_{i_{l}}},r_{i_{l}},r_{l}\}$.
+
+Now assume that some labeled polynomial $r_{n}$ is known to be a
+chain generator. Then one of the finite number of S-pair-descendants
 of $r_{n}$ need to be a chain generator too, because in the other
 case the number of different chains of length greater than 2 coming
 from $r_{n}$ was limited by a finite sum of the finite counts of
 chains coming from every S-pair-descendant, and the finite number
-of length 2 chains coming from $r_{n}$.
+of length 2 chains coming from $r_{n}$. So, if labeled polynomial
+$r_{n}$ is chain-generator, we can select another chain generator
+from it's S-pair-descendants.
 
-So, if labeled polynomial $p$ is chain-generator, we can select another
-chain generator from it's S-pair-descendants. Using this result we
-can find infinite S-pair-chain starting with $r_{1}$ and consisting
-of chain generators which proves the following
+Using theses result we can find infinite S-pair-chain starting with
+$r_{1}$ and consisting of chain generators which proves the following
 \begin{thm}
 If the algorithm does not terminate for some input then there exists
 infinite S-pair-chain $\{h_{i}\}$.
@@ -438,7 +434,8 @@ used for S-pair generation and we can state that
 \[
 poly(h_{n+1})=c\frac{\Sig(h_{n+1})}{\Sig(h_{n})}poly(h_{n})+g_{n},
 \]
-where
+where $g_{n}$ is the polynomial corresponding to smaller part of
+S-pair used to generate $h_{n+1}$ from $h_{n}$ and satisfy:
 \begin{equation}
 \HM(h_{n+1})<\HM\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)=\HM(g_{n}),\,\Sig(h_{n+1})=\Sig\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)\succ\Sig(g_{n}).\label{eq:spair-chain}
 \end{equation}
@@ -446,7 +443,11 @@ The monomial ordering can be transitively extended to monomial quotients:
 $\frac{m_{1}}{m_{2}}>\frac{m_{3}}{m_{4}}\Leftrightarrow m_{1}m_{4}>m_{3}m_{2}$.
 From the first inequality in \ref{eq:spair-chain} we can get $\frac{\HM(h_{n})}{\Sig(h_{n})}>\frac{\HM(h_{n+1})}{\Sig(h_{n+1})}$,
 so in the S-pair-chain the quotients $\frac{\HM(h_{i})}{\Sig(h_{i})}$
-are strictly descending according to term ordering.
+are strictly descending according to term ordering. This fact can't
+be used directly to show chains finiteness because unlike the ordering
+of monomials the ordering of monomial quotients is not well ordering
+-- for example the sequence $\frac{x}{x}>\frac{x}{x^{2}}>\cdots>\frac{x}{x^{n}}>\cdots$
+is infinitely decreasing.
 
 There is two possible cases for relation between HMs of consecutive
 elements. We have $\Sig(h_{n})|\Sig(h_{n+1})$, so they are either
@@ -825,24 +826,19 @@ by definition. Below are given some examples of $\lessdot$ element
 ordering for the 3-element list $G_{g}=\left\{ b_{1},\, b_{2},\, b_{3}\right\} $
 with ordering $x\mathbf{F}_{i}\succ y\mathbf{F}_{i}$ and signatures
 $\Sig(b_{1})=\mathbf{F}_{1},\Sig(b_{2})=\mathbf{F}_{2},\Sig(b_{3})=x\mathbf{F}_{1}$.
-\[
-y\cdot b_{1}\gtrdot100y\cdot b_{2},\,\mbox{because signature of left side is}\succ
-\]
-\[
-x\cdot b_{1}\gtrdot y\cdot b_{1},\,\mbox{because signature of left side is}\succ
-\]
-\[
--x\cdot b_{1}\mbox{ and }2x\cdot b_{1}\,\mbox{are not comparable becuase signatures and list indices are equal}
-\]
-\[
-y^{2}\cdot b_{1}\lessdot y\cdot b_{3},\,\mbox{because signature of left side is}\prec
-\]
-\[
-x^{2}\cdot b_{1}\gtrdot x\cdot b_{3},
-\]
-because signatures are equal and the list position of left side's
-labeled polynomial is 1 which is smaller than right's position 3.
-
+\begin{itemize}
+\item $y\cdot b_{1}\gtrdot100y\cdot b_{2}$ because signature of left side
+is $\succ$
+\item $x\cdot b_{1}\gtrdot y\cdot b_{1}$ because signature of left side
+is $\succ$
+\item $-x\cdot b_{1}$ and $2x\cdot b_{1}$ are not comparable because signatures
+and list indices are equal
+\item $y^{2}\cdot b_{1}\lessdot y\cdot b_{3}$ because signature of left
+side is $\prec$
+\item $x^{2}\cdot b_{1}\gtrdot x\cdot b_{3}$ because signatures are equal
+and the list position of left side's labeled polynomial is 1 which
+is smaller than right side's position 3.
+\end{itemize}
 To extend this order to entire $G_{g}$-representations consider \emph{ordered
 form} of representation consisting of all its elements written in
 a list with $\gtrdot$-decreasing order. This form can be used for
@@ -862,26 +858,20 @@ the representations are not comparable.
 Some examples of this ordering are given for the same as above 3-element
 $G_{g}$ list. Note that all $G_{g}$-representations are already
 written in ordered forms:
-
-\[
-x^{2}\cdot b_{1}+xy\cdot b_{1}+y^{2}b_{1}\gtrdot x^{2}\cdot b_{1}+100y^{2}\cdot b_{1},\mbox{ because }xy\cdot b_{1}\gtrdot y^{2}\cdot b_{1}
-\]
-\[
-x^{2}\cdot b_{1}+100y^{2}\cdot b_{1}\gtrdot x^{2}\cdot b_{1},\mbox{ because the right ordered form is beginning of the left}
-\]
-\[
-x^{2}\cdot b_{1}\gtrdot xy\cdot b_{1}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2},\mbox{ because }x^{2}\cdot b_{1}\gtrdot xy\cdot b_{1}
-\]
-\[
-xy\cdot b_{1}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}\gtrdot y\cdot b_{3}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2},\mbox{ because }xy\cdot b_{1}\gtrdot y\cdot b_{3}
-\]
-\[
-y\cdot b_{3}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}\mbox{ and }2y\cdot b_{3}+y^{2}\cdot b_{2}
-\]
+\begin{itemize}
+\item $x^{2}\cdot b_{1}+xy\cdot b_{1}+y^{2}b_{1}\gtrdot x^{2}\cdot b_{1}+100y^{2}\cdot b_{1}$
+because $xy\cdot b_{1}\gtrdot y^{2}\cdot b_{1}$
+\item $x^{2}\cdot b_{1}+100y^{2}\cdot b_{1}\gtrdot x^{2}\cdot b_{1}$ because
+the right ordered form is beginning of the left
+\item $x^{2}\cdot b_{1}\gtrdot xy\cdot b_{1}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}$
+because $x^{2}\cdot b_{1}\gtrdot xy\cdot b_{1}$
+\item $xy\cdot b_{1}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}\gtrdot y\cdot b_{3}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}$
+because $xy\cdot b_{1}\gtrdot y\cdot b_{3}$
+\item $y\cdot b_{3}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}$ and $2y\cdot b_{3}+y^{2}\cdot b_{2}$
 are not comparable because the greatest different elements are $y\cdot b_{3}$
 and $2y\cdot b_{3}$.
-
-The ordering is compatible with signature-safeness:
+\end{itemize}
+The ordering is compatible with signature-safety:
 \begin{thm}
 If two representations of $p$ has a relation $\sum_{k}m_{i_{k}}\cdot b_{i_{k}}\lessdot\sum_{k}m_{j_{k}}\cdot b_{j_{k}}$
 and the second one is signature-safe representation then the first
