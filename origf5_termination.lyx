@@ -2652,7 +2652,7 @@ key "F5C"
 \end_inset
 
 .
- Representations are used to order all possible ways how a labeled polynomial
+ Representations are used to describe all possible ways how a labeled polynomial
  
 \begin_inset Formula $p$
 \end_inset
@@ -3042,6 +3042,24 @@ input-representation
 \end_layout
 
 \begin_layout Standard
+Input representations always has the only element with maximal signature.
+ This prperty is special to input-representations because generic 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representations can have multiple elements with same maximal signature
+ -- it is possible to have 
+\begin_inset Formula $m_{1}\Sig(b_{i_{1}})=m_{2}\Sig(b_{i_{2}})$
+\end_inset
+
+ while 
+\begin_inset Formula $i_{1}\ne i_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
 The following claim makes important connection between signatures and input-repr
 esentations:
 \end_layout
@@ -3078,21 +3096,7 @@ key "F5-Orig"
 \end_layout
 
 \begin_layout Standard
-This property is special to input-representations because generic 
-\begin_inset Formula $G_{g}$
-\end_inset
-
--representations can have multiple elements with same maximal signature
- because it is possible to have 
-\begin_inset Formula $m_{1}\Sig(b_{i_{1}})=m_{2}\Sig(b_{i_{2}})$
-\end_inset
-
- while 
-\begin_inset Formula $i_{1}\ne i_{2}$
-\end_inset
-
-.
- Also theorem 1 of 
+The theorem 1 of 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "F5-Orig"
@@ -3100,7 +3104,7 @@ key "F5-Orig"
 \end_inset
 
  states that all polynomials in the algorithm are admissible, do the above
- claim will can be applied to all appeared polynomials.
+ claim will be applied to all appeared polynomials.
 \end_layout
 
 \begin_layout Example

@@ -705,7 +705,7 @@ $ $satisfies it too.
 \subsection{Definition}
 
 The idea of representations comes from proof of Theorem 21 in \cite{F5C}.
-Representations are used to order all possible ways how a labeled
+Representations are used to describe all possible ways how a labeled
 polynomial $p$ can be written as an element of $\left(G_{g}\right)$
 ideal. The single representation corresponds to writing a labeled
 polynomial $p$ as any finite sum of the form
@@ -798,6 +798,11 @@ p=\sum_{k}m_{k}\cdot b_{i_{k}},\, m_{k}\in\mathcal{K}\times T,\, b_{i_{k}}\in\le
 This particular case of $G_{g}$-representation where $b_{i_{k}}$
 are limited to input polynomials will be called \emph{input-representation}.
 \end{defn}
+Input representations always has the only element with maximal signature.
+This prperty is special to input-representations because generic $G_{g}$-representations
+can have multiple elements with same maximal signature -- it is possible
+to have $m_{1}\Sig(b_{i_{1}})=m_{2}\Sig(b_{i_{2}})$ while $i_{1}\ne i_{2}$.
+
 The following claim makes important connection between signatures
 and input-representations:
 \begin{claim}
@@ -809,12 +814,9 @@ The claimed fact follows from the admissible polynomial definition
 in \cite{F5-Orig} referring to function $v$ which correspond to
 summing representation elements.
 \end{proof}
-This property is special to input-representations because generic
-$G_{g}$-representations can have multiple elements with same maximal
-signature because it is possible to have $m_{1}\Sig(b_{i_{1}})=m_{2}\Sig(b_{i_{2}})$
-while $i_{1}\ne i_{2}$. Also theorem 1 of \cite{F5-Orig} states
-that all polynomials in the algorithm are admissible, do the above
-claim will can be applied to all appeared polynomials.
+The theorem 1 of \cite{F5-Orig} states that all polynomials in the
+algorithm are admissible, do the above claim will be applied to all
+appeared polynomials.
 \begin{example}
 \label{example-of-having-gg-repr}The last example comes from S-pairs
 with a computed $G_{g}$-representation. S-polynomial of $b_{l^{*}}$
