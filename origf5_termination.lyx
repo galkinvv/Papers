@@ -237,7 +237,7 @@ while
  value infinitely grow.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 Let's suppose that there is an input 
 \begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} $
 \end_inset
@@ -338,7 +338,7 @@ Let's suppose that there is an input
  in the next iteration of algorithm because they are discarded.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 For each new critical pair 
 \begin_inset Formula $[t,u_{1},r_{1},u_{2,}r_{2}]$
 \end_inset
@@ -408,7 +408,7 @@ For each new critical pair
  this.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 From the other hand for critical pairs with degree equal to 
 \begin_inset Formula $d_{j}$
 \end_inset
@@ -443,7 +443,7 @@ From the other hand for critical pairs with degree equal to
  It follows that only checks (b) - (d) are left as possibilities.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 Suppose that reduction was forbidden by (b).
  This means that there is a polynomial in 
 \begin_inset Formula $G_{i+1}$
@@ -462,7 +462,7 @@ Suppose that reduction was forbidden by (b).
  So the rule (b) can't forbid reduction too.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 Suppose that reduction was forbidden by (c).
  This means that there is a rewriting for the multiplied reductor.
  So for our case it means that Rewritten?
@@ -474,7 +474,7 @@ Suppose that reduction was forbidden by (c).
  not disappear.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 Suppose that reduction was forbidden by (d).
  The pseudo code in 
 \begin_inset CommandInset citation
@@ -497,7 +497,7 @@ key "F5-Revisited"
  the code):
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 \begin_inset listings
 inline false
 status open
@@ -557,7 +557,7 @@ For our case it means that signatures of
  returns true at the moment of TopReduction execution.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 Now consider Spol function execution for some S-pair with total degree 
 \begin_inset Formula $d_{j}$
 \end_inset
@@ -596,10 +596,11 @@ Now consider Spol function execution for some S-pair with total degree
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 In the conclusion we have: 
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
 the first possibility of 
 \begin_inset Formula $d_{j+1}$
@@ -651,7 +652,8 @@ the other possibility is
 .
 \end_layout
 
-\begin_layout Standard
+\end_deeper
+\begin_layout Proof
 In conjunction with non-strict growth this gives 
 \begin_inset Formula $\forall j\,\, d_{j+2}>d_{j}$
 \end_inset
@@ -689,12 +691,16 @@ Every cycle iteration inside AlgorithmF5 does terminate, in particular all
  calls to Reduction terminate.
 \end_layout
 
-\begin_layout Standard
-We need to get a simple fact about signatures of polynomials in 
+\begin_layout Proof
+Firstly we need to get some facts about signatures of polynomials in 
 \begin_inset Formula $ToDo$
 \end_inset
 
- set inside Reduction algorithm.
+ set inside 
+\begin_inset Formula $j$
+\end_inset
+
+-th iteration of AlgorithmF5.
  All the critical pairs created with CritPair inside the AlgorithmF5 called
  for new input sequence item 
 \begin_inset Formula $f_{i}$
@@ -754,7 +760,7 @@ We need to get a simple fact about signatures of polynomials in
 \begin_inset Formula $ToDo$
 \end_inset
 
- has the same total signature 
+ has the same total degree 
 \begin_inset Formula $d_{j}$
 \end_inset
 
@@ -771,6 +777,7 @@ We need to get a simple fact about signatures of polynomials in
  elements.
 \end_layout
 
+\begin_deeper
 \begin_layout Definition
 The reduction of labeled polynomial 
 \begin_inset Formula $r_{k}$
@@ -800,7 +807,8 @@ signature-safe reductor
 .
 \end_layout
 
-\begin_layout Standard
+\end_deeper
+\begin_layout Proof
 We want to show that only possible algorithm non-termination situation correspon
 d to the case of infinite 
 \begin_inset Formula $d_{j}$
@@ -822,6 +830,7 @@ d to the case of infinite
  The AlgorithmF5 contains 3 cycles:
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
 
 \series bold
@@ -1047,7 +1056,8 @@ All different signatures
 \end_layout
 
 \end_deeper
-\begin_layout Standard
+\end_deeper
+\begin_layout Proof
 We got that all of the cycles inside AlgorithmF5 do finish and the claim
  
 \begin_inset CommandInset ref
@@ -1060,21 +1070,7 @@ reference "Every_cycle_iteration_finish"
 \end_layout
 
 \begin_layout Standard
-Claims 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "iterations-d_grow"
-
-\end_inset
-
- and 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "Every_cycle_iteration_finish"
-
-\end_inset
-
- together give the following result:
+This gives the result about algorithm behavior for the non-terminated case:
 \end_layout
 
 \begin_layout Claim
@@ -1089,6 +1085,24 @@ If the algorithm does not terminate for some input then the value of
 \end_inset
 
  infinitely grow during iterations.
+\end_layout
+
+\begin_layout Proof
+Follows from combination of claims 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "iterations-d_grow"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Every_cycle_iteration_finish"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
@@ -1199,6 +1213,10 @@ s
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Definition
 Finite or infinite labeled polynomial sequence which successive elements
  satisfy property 
 \begin_inset CommandInset ref
@@ -1212,7 +1230,10 @@ reference "eq:s-pair-chain-def"
 S-pair-chain
 \emph default
 .
- Every generated labeled polynomial 
+\end_layout
+
+\begin_layout Standard
+Every generated labeled polynomial 
 \begin_inset Formula $r_{l}$
 \end_inset
 
@@ -1252,7 +1273,7 @@ S-pair-chain
 
 \begin_layout Standard
 The first fact about S-pair-chains is based on the rewritten criteria and
- consists in the following
+ consists in the following theorem.
 \end_layout
 
 \begin_layout Theorem
@@ -1260,7 +1281,7 @@ Every labeled S-polynomial can participate as the first element only in
  finite number of S-pair-chains of length 2.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 The Algorithm F5 computes S-polynomials in 2 places: in procedure SPol and
  in the procedure TopReduction.
  It's important that in both places the Rewritten? check for the part of
@@ -1286,7 +1307,7 @@ The Algorithm F5 computes S-polynomials in 2 places: in procedure SPol and
  without knowing anything other about computation.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 Consider arbitrary labeled polynomial 
 \begin_inset Formula $r_{L}$
 \end_inset
@@ -1356,8 +1377,14 @@ Consider arbitrary labeled polynomial
 \end_inset
 
  exist.
- This finishes the theorem proof.
- The set of ends of those 2-length S-pair-chains will be called 
+\end_layout
+
+\begin_layout Definition
+The finite set of ends of 2-length S-pair-chains starting with 
+\begin_inset Formula $r_{L}$
+\end_inset
+
+ will be called 
 \emph on
 S-pair-descendants
 \emph default
@@ -1368,13 +1395,22 @@ S-pair-descendants
 .
 \end_layout
 
-\begin_layout Standard
-Proof of existence of infinite S-pair-chain inside infinite labeled polynomial
- sequence require some caution while dealing with infinities, so the following
- definition is needed.
+\begin_layout Theorem
+If the algorithm does not terminate for some input then there exists infinite
+ S-pair-chain 
+\begin_inset Formula $\{h_{i}\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Some caution is required while dealing with infinities, so we give the following
+ definition.
  
 \end_layout
 
+\begin_deeper
 \begin_layout Definition
 The labeled polynomial 
 \begin_inset Formula $r_{l}$
@@ -1392,7 +1428,8 @@ chain generator
 .
 \end_layout
 
-\begin_layout Standard
+\end_deeper
+\begin_layout Proof
 If the algorithm doesn't terminate the input labeled polynomial 
 \begin_inset Formula $r_{1}=(f_{1},1F_{1})$
 \end_inset
@@ -1409,7 +1446,7 @@ If the algorithm doesn't terminate the input labeled polynomial
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 Now assume that some labeled polynomial 
 \begin_inset Formula $r_{l}$
 \end_inset
@@ -1437,28 +1474,85 @@ Now assume that some labeled polynomial
 
  is chain-generator, we can select another chain generator from it's S-pair-desc
 endants.
-\end_layout
-
-\begin_layout Standard
-Using theses result we can find infinite S-pair-chain starting with 
+ In a such way we can find infinite S-pair-chain starting with 
 \begin_inset Formula $r_{1}$
 \end_inset
 
- and consisting of chain generators which proves the following
+ and consisting of chain generators which proves the theorem.
 \end_layout
 
-\begin_layout Theorem
-If the algorithm does not terminate for some input then there exists infinite
- S-pair-chain 
-\begin_inset Formula $\{h_{i}\}$
+\begin_layout Standard
+For the next theorem we need to introduce monomial quotients order by transitive
+ly extending the monomial ordering: 
+\begin_inset Formula $\frac{m_{1}}{m_{2}}>\frac{m_{3}}{m_{4}}\Leftrightarrow m_{1}m_{4}>m_{3}m_{2}$
 \end_inset
 
 .
 \end_layout
 
-\begin_layout Standard
-For the next S-pair-chain property it is important that the polynomial can
- never reduce after it was used for S-pair generation as higher S-pair part.
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:f_g_3_props"
+
+\end_inset
+
+If the algorithm does not terminate for some input then after some finite
+ step the set 
+\begin_inset Formula $G$
+\end_inset
+
+ contains a pair of labeled polynomials 
+\begin_inset Formula $f,g$
+\end_inset
+
+ with 
+\begin_inset Formula $g$
+\end_inset
+
+ generated after 
+\begin_inset Formula $f$
+\end_inset
+
+ that satisfies the following 3 properties:
+\end_layout
+
+\begin_layout Theorem
+\begin_inset Formula 
+\[
+\HM(f)|\HM(g),
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+\begin_inset Formula 
+\[
+\frac{\HM(f)}{\Sig(f)}>\frac{\HM(g)}{\Sig(g)},
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+\begin_inset Formula 
+\[
+\Sig(f)|\Sig(g),
+\]
+
+\end_inset
+
+where > is quotient ordering.
+\end_layout
+
+\begin_layout Proof
+For working with S-pair-chains it is important that the polynomial can never
+ reduce after it was used for S-pair generation as higher S-pair part.
  That's true because all polynomials that potentially can reduce are stored
  in set 
 \begin_inset Formula $ToDo$
@@ -1515,13 +1609,7 @@ where
 
 \end_inset
 
-The monomial ordering can be transitively extended to monomial quotients:
- 
-\begin_inset Formula $\frac{m_{1}}{m_{2}}>\frac{m_{3}}{m_{4}}\Leftrightarrow m_{1}m_{4}>m_{3}m_{2}$
-\end_inset
-
-.
- From the first inequality in 
+From the first inequality in 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "eq:spair-chain"
@@ -1536,7 +1624,7 @@ reference "eq:spair-chain"
 \begin_inset Formula $\frac{\HM(h_{i})}{\Sig(h_{i})}$
 \end_inset
 
- are strictly descending according to term ordering.
+ are strictly descending according to quotients ordering.
  This fact can't be used directly to show chains finiteness because unlike
  the ordering of monomials the ordering of monomial quotients is not well
  ordering -- for example the sequence 
@@ -1546,7 +1634,7 @@ reference "eq:spair-chain"
  is infinitely decreasing.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 There is two possible cases for relation between HMs of consecutive elements.
  We have 
 \begin_inset Formula $\Sig(h_{n})|\Sig(h_{n+1})$
@@ -1636,7 +1724,7 @@ consists of blocks with fixed total degrees where HMs inside a block are
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 This allows us to use technique analogous to Proposition 14 from 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1658,11 +1746,11 @@ key "Arri-Perry-Revised"
 \end_inset
 
 .
- Therefore from the previous result we have 
+ Therefore from the previous paragraph we have 
 \begin_inset Formula $i<j$
 \end_inset
 
- and with the S-pair chain properties we get 
+ and with the S-pair-chain properties we get 
 \begin_inset Formula $\Sig(h_{i})|\Sig(h_{i+1})|\cdots|\Sig(h_{j})$
 \end_inset
 
@@ -1671,68 +1759,21 @@ key "Arri-Perry-Revised"
 \end_inset
 
 .
- So, we get the following result:
-\end_layout
-
-\begin_layout Theorem
-\begin_inset CommandInset label
-LatexCommand label
-name "thm:f_g_3_props"
-
-\end_inset
-
-If the algorithm does not terminate for some input then after some finite
- step the set 
-\begin_inset Formula $G$
-\end_inset
-
- contains a pair of labeled polynomials 
-\begin_inset Formula $f,g$
-\end_inset
-
- with 
-\begin_inset Formula $g$
-\end_inset
-
- generated after 
-\begin_inset Formula $f$
-\end_inset
-
- that satisfies the following 3 properties:
-\end_layout
-
-\begin_layout Theorem
-\begin_inset Formula 
-\[
-\HM(f)|\HM(g),
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\Sig(f)|\Sig(g),
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Theorem
-\begin_inset Formula 
-\[
-\frac{\HM(f)}{\Sig(f)}>\frac{\HM(g)}{\Sig(g)},
-\]
-
-\end_inset
-
-where the < corresponds to the term ordering.
 \end_layout
 
 \begin_layout Standard
-The proof of theorem
+The last property about signature division from the theorem claim is the
+ consequence of dealing with S-pair-chains and is not used in the following.
+ But the first to properties are used to construct a signature-safe reductor.
+\end_layout
+
+\begin_layout Fact
+If no polynomials are rejected by criteria checks (b) and (c) inside IsReducible
+ the algorithm does terminate.
+\end_layout
+
+\begin_layout Proof
+The above proof of theorem
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:f_g_3_props"
@@ -1746,12 +1787,24 @@ reference "thm:f_g_3_props"
 \end_inset
 
  uses the same ordering for both cases and now we utilize this fact and
- make a transition from one to other to get relation on signatures 
-\begin_inset Formula $\Sig(g)\succ t\cdot\Sig(f),\mbox{ where }t=\frac{\HM(g)}{\HM(f)}\in T$
+ make a transition from one to other to get relation on signatures for polynomia
+ls from theorem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:f_g_3_props"
+
 \end_inset
 
-.
- The last inequality shows that 
+ claim: 
+\begin_inset Formula 
+\[
+\Sig(g)\succ t\cdot\Sig(f),\mbox{ where }t=\frac{\HM(g)}{\HM(f)}\in T.
+\]
+
+\end_inset
+
+The last inequality with HM's division property from theorems result shows
+ that 
 \begin_inset Formula $tf$
 \end_inset
 
@@ -1762,8 +1815,8 @@ reference "thm:f_g_3_props"
  in TopReduction from the signature point of view -- i.e.
  it satisfy checks (a) and (d) inside IsReducible and it's signature is
  smaller.
- In the absence of criteria this would directly lead to contradiction because
- at the time 
+ In the absence of criteria checks (b) and (c) this would directly lead
+ to contradiction because at the time 
 \begin_inset Formula $g$
 \end_inset
 
@@ -1784,12 +1837,6 @@ reference "thm:f_g_3_props"
 \end_inset
 
 .
- So we get the following result about termination:
-\end_layout
-
-\begin_layout Fact
-If no polynomials are rejected by criteria checks (b) and (c) inside IsReducible
- the algorithm does terminate.
 \end_layout
 
 \begin_layout Standard
@@ -1951,6 +1998,93 @@ To prove the idea let us work with algorithm state just before adding
 \end_layout
 
 \begin_layout Standard
+S-pairs can be processed in a different ways inside the algorithm but the
+ main fact we need to know about their processing is encapsulated in the
+ following properties which correspond to the properties used in Theorem
+ 21 in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5C"
+
+\end_inset
+
+ but are taken during arbitrary algorithm iteration without requirements
+ of termination.
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:Exist-gg-repr"
+
+\end_inset
+
+At the moment of adding 
+\begin_inset Formula $g$
+\end_inset
+
+ to 
+\begin_inset Formula $Done$
+\end_inset
+
+ every S-pair of 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ elements which signature is smaller than 
+\begin_inset Formula $\Sig(g)$
+\end_inset
+
+ satisfies one of three properties:
+\end_layout
+
+\begin_layout Enumerate
+S-pair has a part that is rejected by the normal form check 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ (in CritPair or in IsReducible).
+ Such S-pairs will be referenced as 
+\emph on
+S-pairs with a part that satisfies F5 criterion
+\emph default
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+S-pair has a part that is rejected by the Rewritten? check (in SPol or in
+ IsReducible).
+ Such S-pairs will be referenced as 
+\emph on
+S-pairs with a part that satisfies Rewritten criterion
+\emph default
+.
+\end_layout
+
+\begin_layout Enumerate
+S-pair was not rejected, so it's S-polynomial was signature-safe reduced
+ by 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ elements and the result is stored in 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+.
+ Such S-pairs will be referenced as 
+\emph on
+S-pairs with a computed 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representation
+\emph default
+.
+\end_layout
+
+\begin_layout Proof
 S-pairs of 
 \begin_inset Formula $G_{g}$
 \end_inset
@@ -1961,6 +2095,7 @@ S-pairs of
  Such S-pairs are processed in the following order:
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
 in the AlgorithmF5 they are passed in CritPair function while moving elements
  to 
@@ -2020,7 +2155,8 @@ At some iteration the Reduction procedure takes S-polynomial from
 .
 \end_layout
 
-\begin_layout Standard
+\end_deeper
+\begin_layout Proof
 The other processing path is for special S-pairs corresponding to reductions
  forbidden by algorithm -- the case when S-pair is generated by polynomials
  
@@ -2065,6 +2201,7 @@ processing
  is the following:
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
 The S-pair part 
 \begin_inset Formula $\overline{u_{l}}\cdot r_{l^{*}}$
@@ -2205,7 +2342,8 @@ The last step is equal to for both processing paths: at some iteration the
 
 \end_layout
 
-\begin_layout Standard
+\end_deeper
+\begin_layout Proof
 It can be seen that after S-pair processing termination every S-pair is
  either reduced and added to 
 \begin_inset Formula $Done$
@@ -2227,7 +2365,7 @@ It can be seen that after S-pair processing termination every S-pair is
  all other processing attempts.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 The processing path is not a single procedure and for the case of algorithm
  infinite cycling some S-pairs are always staying in the middle of the path
  having S-pair queued in 
@@ -2258,6 +2396,7 @@ The processing path is not a single procedure and for the case of algorithm
  can be split in the following classes:
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
 S-pairs with signature 
 \begin_inset Formula $w$
@@ -2306,7 +2445,8 @@ S-pairs with signature
 .
 \end_layout
 
-\begin_layout Standard
+\end_deeper
+\begin_layout Proof
 S-pairs from these classes can't be at the middle of processing path because
  at the studied state of algorithm the processing is just finished for 
 \begin_inset Formula $g$
@@ -2382,90 +2522,6 @@ S-pairs from these classes can't be at the middle of processing path because
 \end_inset
 
  a call to IsReducible starts processing for all such S-pairs.
-\end_layout
-
-\begin_layout Standard
-This finishes proof of the following result mentioning properties which
- are very similar to the properties used in Theorem 21 in 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "F5C"
-
-\end_inset
-
-:
-\end_layout
-
-\begin_layout Theorem
-\begin_inset CommandInset label
-LatexCommand label
-name "thm:Exist-gg-repr"
-
-\end_inset
-
-At the moment of adding 
-\begin_inset Formula $g$
-\end_inset
-
- to 
-\begin_inset Formula $Done$
-\end_inset
-
- every S-pair of 
-\begin_inset Formula $G_{g}$
-\end_inset
-
- elements which signature is smaller than 
-\begin_inset Formula $\Sig(g)$
-\end_inset
-
- satisfies one of three properties:
-\end_layout
-
-\begin_layout Enumerate
-S-pair has a part that is rejected by the normal form check 
-\begin_inset Formula $\varphi$
-\end_inset
-
- (in CritPair or in IsReducible).
- Such S-pairs will be referenced as 
-\emph on
-S-pairs with a part that satisfies F5 criterion
-\emph default
-.
- 
-\end_layout
-
-\begin_layout Enumerate
-S-pair has a part that is rejected by the Rewritten? check (in SPol or in
- IsReducible).
- Such S-pairs will be referenced as 
-\emph on
-S-pairs with a part that satisfies Rewritten criterion
-\emph default
-.
-\end_layout
-
-\begin_layout Enumerate
-S-pair was not rejected, so it's S-polynomial was signature-safe reduced
- by 
-\begin_inset Formula $G_{g}$
-\end_inset
-
- elements and the result is stored in 
-\begin_inset Formula $G_{g}$
-\end_inset
-
-.
- Such S-pairs will be referenced as 
-\emph on
-S-pairs with a computed 
-\begin_inset Formula $G_{g}$
-\end_inset
-
--representation
-\emph default
-.
 \end_layout
 
 \begin_layout Standard
@@ -2986,12 +3042,12 @@ input-representation
 \end_layout
 
 \begin_layout Standard
-The definition of signature combined with this input-representation gives
- the following result:
+The following claim makes important connection between signatures and input-repr
+esentations:
 \end_layout
 
 \begin_layout Claim
-A labeled polynomial 
+An admissible labeled polynomial 
 \begin_inset Formula $p$
 \end_inset
 
@@ -3004,6 +3060,21 @@ A labeled polynomial
 \end_inset
 
  and some other elements with smaller signatures.
+\end_layout
+
+\begin_layout Proof
+The claimed fact follows from the admissible polynomial definition in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5-Orig"
+
+\end_inset
+
+ referring to function 
+\begin_inset Formula $v$
+\end_inset
+
+ which correspond to summing representation elements.
 \end_layout
 
 \begin_layout Standard
@@ -3021,6 +3092,15 @@ This property is special to input-representations because generic
 \end_inset
 
 .
+ Also theorem 1 of 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5-Orig"
+
+\end_inset
+
+ states that all polynomials in the algorithm are admissible, do the above
+ claim will can be applied to all appeared polynomials.
 \end_layout
 
 \begin_layout Example
@@ -3634,7 +3714,7 @@ If two representations of
  is signature-safe too.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 This theorem quickly follows from a fact that elements of a 
 \begin_inset Formula $\lessdot$
 \end_inset
@@ -3651,6 +3731,22 @@ This theorem quickly follows from a fact that elements of a
 \end_layout
 
 \begin_layout Standard
+The key fact allowing to take 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-minimal element is well-orderness:
+\end_layout
+
+\begin_layout Theorem
+The representations are well-ordered with 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+ ordering.
+\end_layout
+
+\begin_layout Proof
 The number of different labeled polynomial positions is finite because it
  is equal to 
 \begin_inset Formula $|G_{g}|$
@@ -3682,36 +3778,28 @@ The number of different labeled polynomial positions is finite because it
 .
 \end_layout
 
-\begin_layout Standard
-The straightforward proof for well-orderness of representations with 
+\begin_layout Proof
+The straightforward proof for 
 \begin_inset Formula $\lessdot$
 \end_inset
 
- following from well-orderness of elements with 
+-well-orderness of representations following from 
 \begin_inset Formula $\lessdot$
 \end_inset
 
- is not very complex but to skip its strict details the theorem 2.5.5 of 
+-well-orderness of elements is not very complex but to skip its strict details
+ the theorem 2.5.5 of 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Multiset-Order"
 
 \end_inset
 
- will be used.
+ will be referenced.
  It states well-orderness of finite multiset with an lexicographically extended
  ordering of well-ordered elements.
  This applies to the representations because they form a subset in the finite
  multiset of representation elements.
- So, we have
-\end_layout
-
-\begin_layout Theorem
-The representations are well-ordered with 
-\begin_inset Formula $\lessdot$
-\end_inset
-
- ordering.
 \end_layout
 
 \begin_layout Subsection
@@ -3806,8 +3894,8 @@ key "F5C"
 \end_inset
 
 -smaller representation can be constructed.
- The exact construction differ for three cases but the replacement scheme
- is the same: 
+ Though the exact construction differ for three cases but the replacement
+ scheme is the same:
 \end_layout
 
 \begin_layout Itemize
@@ -3852,7 +3940,51 @@ it is shown that constructed representation is
 \end_layout
 
 \begin_layout Standard
-Now 
+Construction of such representation for 
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ allows application of the following lemma:
+\end_layout
+
+\begin_layout Lemma
+If an element 
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ of signature-safe representation 
+\begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+ has an representation 
+\begin_inset Formula $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
+\end_inset
+
+ which is 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-smaller than representation 
+\begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ then 
+\begin_inset Formula $mh$
+\end_inset
+
+ has a signature-safe representation 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-smaller than 
+\begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+We replace 
 \begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
@@ -3860,7 +3992,7 @@ Now
 \begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
- is replaced by 
+ by 
 \family roman
 \series medium
 \shape up
@@ -3876,8 +4008,8 @@ Now
 \begin_inset Formula $\sum_{l}m_{l}\cdot b_{i_{l}}$
 \end_inset
 
- and after combining coefficients near elements with both monomial and polynomia
-l equal a modified representation for 
+ and combine coefficients near elements with both monomial and polynomial
+ equal, so a modified representation for 
 \begin_inset Formula $mh$
 \end_inset
 
@@ -3922,8 +4054,8 @@ l equal a modified representation for
 \uwave off
 \noun off
 \color none
- are identical in both representations if they present.
- The element  
+ are identical in both representations if they present but the element 
+ 
 \family default
 \series default
 \shape default
@@ -3988,19 +4120,31 @@ l equal a modified representation for
 \end_inset
 
 -smaller than any non-empty representation.
- This result can be expressed in the following 
+\end_layout
+
+\begin_layout Standard
+Now it will be shown that replacement scheme can be performed if the representat
+ion contains an element not satisfying at least one of three properties.
 \end_layout
 
 \begin_layout Lemma
-If an element 
-\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+If a signature-safe 
+\begin_inset Formula $G_{g}$
 \end_inset
 
- of signature-safe representation 
+-representation 
 \begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
- has an representation 
+ does not satisfy property 1 then there exists an element 
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ having 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representation 
 \begin_inset Formula $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
 \end_inset
 
@@ -4012,26 +4156,12 @@ If an element
 \begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
- then 
-\begin_inset Formula $mh$
-\end_inset
-
- has a signature-safe representation 
-\begin_inset Formula $\lessdot$
-\end_inset
-
--smaller than 
-\begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
-\end_inset
-
-.
+ .
 \end_layout
 
 \begin_layout Standard
-Now it will be shown that replacement scheme can be performed if the representat
-ion contains an element not satisfying at least one of three properties.
- An element not having the first property does satisfy the F5 criterion
- and the idea is to use that 
+An element not having the first property does satisfy the F5 criterion and
+ the idea is to use that 
 \begin_inset Formula $m_{K}\Sig(b_{i_{K}})$
 \end_inset
 
@@ -4052,7 +4182,10 @@ key "F5C"
 \end_inset
 
  is taken for this case.
- Consider input-representation of 
+\end_layout
+
+\begin_layout Proof
+Consider input-representation of 
 \begin_inset Formula $m_{K}b_{i_{K}}$
 \end_inset
 
@@ -4079,7 +4212,7 @@ key "F5C"
 :
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 \begin_inset Formula 
 \begin{equation}
 m_{K}b_{i_{K}}=c_{0}s_{0}\cdot f_{j_{0}}+\sum_{l}m_{l}\cdot f_{i_{l}}.\label{eq:input-repr-case1}
@@ -4127,7 +4260,7 @@ From the satisfying F5 criterion
  are number of terms in those polynomials:
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 \begin_inset Formula 
 \[
 m_{K}b_{i_{K}}=\sum_{i=1}^{N_{0}}c_{0}s_{1}m_{0i}\cdot f_{j_{1}}+\sum_{i=2}^{N_{1}}-c_{0}s_{1}m_{1i}\cdot f_{j_{0}}+\sum_{l}m_{l}\cdot f_{i_{l}}.
@@ -4214,12 +4347,12 @@ reference "eq:input-repr-case1"
 \begin_inset Formula $m_{11}$
 \end_inset
 
-, so the signatures are:
+, so the signatures are: 
 \begin_inset Formula $s_{1}m_{1i}\mathbf{F}_{j_{0}}\prec s_{1}m_{11}\mathbf{F}_{j_{0}}=s_{0}\mathbf{F}_{j_{0}}$
 \end_inset
 
 .
- This gives 
+ 
 \end_layout
 
 \begin_layout Lemma
@@ -4231,7 +4364,11 @@ If a signature-safe
 \begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
- does not satisfy property 1 then there exists an element 
+ with 
+\begin_inset Formula $\Sig(mh)\prec\Sig(g)$
+\end_inset
+
+ does not satisfy property 2 then there exists an element 
 \begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
@@ -4251,7 +4388,19 @@ If a signature-safe
 \begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
- .
+ 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+.
 \end_layout
 
 \begin_layout Standard
@@ -4272,7 +4421,10 @@ key "F5C"
 \end_inset
 
  is taken for this case too.
- Assume that 
+\end_layout
+
+\begin_layout Proof
+Assume that 
 \begin_inset Formula $\Sig(m_{K}b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$
 \end_inset
 
@@ -4380,7 +4532,7 @@ reference "eq:input-repr-case1"
  the input-representation is:
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 \begin_inset Formula 
 \[
 s'b_{i'}=c's_{0}\cdot f_{j_{0}}+\sum_{l'}m_{l'}\cdot f_{i_{l'}}.
@@ -4435,7 +4587,7 @@ transformation of the above expression
 :
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 
 \family roman
 \series medium
@@ -4536,15 +4688,10 @@ It is
 \end_inset
 
  too.
- This gives
 \end_layout
 
 \begin_layout Lemma
-If a signature-safe 
-\begin_inset Formula $G_{g}$
-\end_inset
-
--representation 
+If a signature-safe representation 
 \begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
@@ -4552,15 +4699,12 @@ If a signature-safe
 \begin_inset Formula $\Sig(mh)\prec\Sig(g)$
 \end_inset
 
- does not satisfy property 2 then there exists an element 
+ satisfies properties 1 and 2 but does not satisfy property 3 then there
+ exists an element 
 \begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
- having 
-\begin_inset Formula $G_{g}$
-\end_inset
-
--representation 
+ having representation 
 \begin_inset Formula $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
 \end_inset
 
@@ -4572,24 +4716,11 @@ If a signature-safe
 \begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
- 
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 .
 \end_layout
 
-\begin_layout Standard
-Now assume, that the all representation elements satisfy properties 1 and
- 2, but there exists at least one element 
+\begin_layout Proof
+There exists at least one element 
 \begin_inset Formula $m_{K}\cdot b_{i_{K}}$
 \end_inset
 
@@ -4629,7 +4760,7 @@ Now assume, that the all representation elements satisfy properties 1 and
 \end_inset
 
 
-\begin_inset Formula $\HM(m_{K'}b_{i_{K'}})=m_{\max}\geqslant\HM(m_{k{}_{0}}b_{i_{k{}_{0}}})>\HM(mh)$
+\begin_inset Formula $\HM(m_{K'}b_{i_{K'}})=m_{\max}\geqslant\HM(m_{K}b_{i_{K}})>\HM(mh)$
 \end_inset
 
 , so the HM of sum of all elements except 
@@ -4688,7 +4819,7 @@ Now assume, that the all representation elements satisfy properties 1 and
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 The 
 \family roman
 \series medium
@@ -4818,7 +4949,7 @@ reference "example-of-having-gg-repr"
  :
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 \begin_inset Formula 
 \[
 q=1\cdot b_{i'}+\sum_{l}m_{l}\cdot b_{i_{l}},
@@ -4841,7 +4972,7 @@ satisfying the properties shown after that example:
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 From the other hand we have 
 \begin_inset Formula $m'q=c_{0}m_{K'}b_{i_{K'}}-c_{1}m_{K''}b_{i_{K''}}$
 \end_inset
@@ -4865,7 +4996,7 @@ It is
 : 
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Proof
 \begin_inset Formula $m_{K''}\cdot b_{i_{K''}}$
 \end_inset
 
@@ -4876,7 +5007,7 @@ It is
  
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Proof
 
 \family roman
 \series medium
@@ -4899,7 +5030,7 @@ It is
 
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Proof
 the last sum contains elements with signatures smaller than 
 \begin_inset Formula $m'\Sig(b_{i'})=\Sig(m_{K'}\cdot b_{i_{K'}})$
 \end_inset
@@ -4907,60 +5038,13 @@ the last sum contains elements with signatures smaller than
 .
 \end_layout
 
-\begin_layout Standard
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-This gives 
-\end_layout
-
-\begin_layout Lemma
-If a signature-safe representation 
-\begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
-\end_inset
-
- with 
-\begin_inset Formula $\Sig(mh)\prec\Sig(g)$
-\end_inset
-
- satisfies properties 1 and 2 but does not satisfy property 3 then there
- exists an element 
-\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
-\end_inset
-
- having representation 
-\begin_inset Formula $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
-\end_inset
-
- which is 
-\begin_inset Formula $\lessdot$
-\end_inset
-
--smaller than representation 
-\begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
-\end_inset
-
- .
-\end_layout
-
-\begin_layout Standard
-Four previous lemmas together produce a theorem about existence 
-\begin_inset Formula $\lessdot$
-\end_inset
-
--smaller representation:
-\end_layout
-
 \begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:exist-smaller-signature-safe-representation"
+
+\end_inset
+
 A signature-safe representation 
 \begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
@@ -4997,15 +5081,12 @@ A signature-safe representation
 .
 \end_layout
 
-\begin_layout Standard
-In conjunction with representation well-orderness this means that from any
- given signature-safe representation we can produce a finite 
-\begin_inset Formula $\lessdot$
-\end_inset
+\begin_layout Proof
+This theorem quickly follows from four previous lemmas together
+\end_layout
 
--descending sequence which ends with an signature-safe representation satisfying
- properties 1-3.
- This leads to main result:
+\begin_layout Standard
+This leads to main result:
 \end_layout
 
 \begin_layout Theorem
@@ -5038,6 +5119,30 @@ For any labeled polynomial
 \noun off
 \color none
 .
+\end_layout
+
+\begin_layout Proof
+Start with representation 
+\begin_inset Formula $mh=m\cdot h$
+\end_inset
+
+ and begin replacing it by 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-smaller representation from theorem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:exist-smaller-signature-safe-representation"
+
+\end_inset
+
+ until the representation satisfying properties 1-3 appears.
+ The finiteness of the process is guaranteed by 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-well-orderness.
 \end_layout
 
 \begin_layout Standard
@@ -5075,8 +5180,8 @@ If there exists a signature-safe reductor
  that is not rejected by F5 and Rewritten criteria.
 \end_layout
 
-\begin_layout Standard
-To prove the corollary let 
+\begin_layout Proof
+Let 
 \begin_inset Formula $mf,\, m=\frac{\HM(f_{1})}{\HM(f)}\in\mathcal{K}\times T,\, f\in G_{g}$
 \end_inset
 
@@ -5124,7 +5229,6 @@ To prove the corollary let
 \end_inset
 
  does not satisfy criteria.
- The corollary is proved.
 \end_layout
 
 \begin_layout Section
@@ -5177,7 +5281,177 @@ l
 \uwave off
 \noun off
 \color none
+Using this result and last corollary we construct two polynomials leading
+ to contradiction 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+for the case of algorithm non-termination.
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:always-exist-ok-reductor"
+
+\end_inset
+
+If the algorithm does not terminate for some input then after some finite
+ step the set 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $G\cup Done$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ contains a pair of labeled polynomials 
+\begin_inset Formula $f_{1},g$
+\end_inset
+
+ where:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $f_{1}$
+\end_inset
+
+ is added to 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $G\cup Done$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ before 
+\begin_inset Formula $g$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $t_{1}f_{1}$
+\end_inset
+
+ does not satisfy F5 and Rewritten criteria, where 
+\begin_inset Formula $t_{1}=\frac{\HM(g)}{\HM(f_{1})}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $f_{1}$
+\end_inset
+
+ is signature-safe reductor for 
+\begin_inset Formula $g$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
 Let 
+\begin_inset Formula $g,f$
+\end_inset
+
+ be polynomials from 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+the theorem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:f_g_3_props"
+
+\end_inset
+
+ an define
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
 \begin_inset Formula $t=\frac{\HM(g)}{\HM(f)}$
 \end_inset
 
@@ -5227,114 +5501,41 @@ reference "cor:all-needed-for-terminaton"
 \end_inset
 
 .
- This gives main result for establishing contradiction:
 \end_layout
 
 \begin_layout Theorem
-If the algorithm does not terminate for some input then after some finite
- step the set 
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-
-\begin_inset Formula $G\cup Done$
+The original 
+\begin_inset Formula $ $
 \end_inset
 
+F
+\begin_inset Formula $_{5}$
+\end_inset
 
-\family default
-\series default
-\shape default
-\size default
-\emph default
-\bar default
-\strikeout default
-\uuline default
-\uwave default
-\noun default
-\color inherit
- contains a pair of labeled polynomials 
+ algorithm as described in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5-Orig"
+
+\end_inset
+
+ does terminate for any input.
+\end_layout
+
+\begin_layout Proof
+We are going o show that the existence of polynomials 
 \begin_inset Formula $f_{1},g$
 \end_inset
 
- where:
-\end_layout
+ from the theorem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:always-exist-ok-reductor"
 
-\begin_layout Theorem
--
-\begin_inset Formula $f_{1}$
 \end_inset
 
- is added to 
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-
-\begin_inset Formula $G\cup Done$
-\end_inset
-
-
-\family default
-\series default
-\shape default
-\size default
-\emph default
-\bar default
-\strikeout default
-\uuline default
-\uwave default
-\noun default
-\color inherit
- before 
-\begin_inset Formula $g$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Theorem
--
-\begin_inset Formula $t_{1}f_{1}$
-\end_inset
-
- does not satisfy F5 and Rewritten criteria, where 
-\begin_inset Formula $t_{1}=\frac{\HM(g)}{\HM(f_{1})}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Theorem
--
-\begin_inset Formula $f_{1}$
-\end_inset
-
- is signature-safe reductor for 
-\begin_inset Formula $g$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-From the other hand existence of such pair of labeled polynomials is not
- possible: consider the call to TopReduction after which the polynomial
- 
+ leads to contradiction.
+ Consider the call to TopReduction after which the polynomial 
 \begin_inset Formula $g$
 \end_inset
 
@@ -5343,8 +5544,12 @@ From the other hand existence of such pair of labeled polynomials is not
 \end_inset
 
 .
- That call returns polynomial as first part of TopReduction return value,
- so the value returned by IsReducible is empty set.
+ That call returns polynomial 
+\begin_inset Formula $g$
+\end_inset
+
+ as first part of TopReduction return value, so the value returned by IsReducibl
+e is empty set.
  It means that one of conditions (a) - (d) was not satisfied for all polynomials
  in 
 \family roman
@@ -5375,13 +5580,14 @@ From the other hand existence of such pair of labeled polynomials is not
 \noun default
 \color inherit
  including 
-\begin_inset Formula $f$
+\begin_inset Formula $f_{1}$
 \end_inset
 
 .
  This is not possible because:
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
 (a) is satisfied because 
 \begin_inset Formula $f_{1}$
@@ -5391,7 +5597,14 @@ From the other hand existence of such pair of labeled polynomials is not
 \begin_inset Formula $g$
 \end_inset
 
- from last theorem
+ from the theorem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:always-exist-ok-reductor"
+
+\end_inset
+
+ 
 \end_layout
 
 \begin_layout Itemize
@@ -5399,7 +5612,14 @@ From the other hand existence of such pair of labeled polynomials is not
 \begin_inset Formula $\frac{\HM(g)}{\HM(f_{1})}f_{1}$
 \end_inset
 
- does not satisfy F5 and Rewritten criteria from last theorem
+ does not satisfy F5 and Rewritten criteria from the theorem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:always-exist-ok-reductor"
+
+\end_inset
+
+ 
 \end_layout
 
 \begin_layout Itemize
@@ -5411,32 +5631,17 @@ From the other hand existence of such pair of labeled polynomials is not
 \begin_inset Formula $g$
 \end_inset
 
- from last theorem.
-\end_layout
-
-\begin_layout Standard
-So, the contradiction is proved and the main result too:
-\end_layout
-
-\begin_layout Theorem
-The original 
-\begin_inset Formula $ $
-\end_inset
-
-F
-\begin_inset Formula $_{5}$
-\end_inset
-
- algorithm as described in 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "F5-Orig"
+ from the theorem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:always-exist-ok-reductor"
 
 \end_inset
 
- does terminate for any input.
+.
 \end_layout
 
+\end_deeper
 \begin_layout Section
 Conclusions
 \end_layout
