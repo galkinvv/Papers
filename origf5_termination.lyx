@@ -3243,8 +3243,12 @@ To order
 \emph on
 representation elements ordering
 \emph default
+ 
+\begin_inset Formula $\gtrdot_{1}$
+\end_inset
+
 : 
-\begin_inset Formula $c_{i}t_{i}\cdot b_{i}\gtrdot c_{j}t_{j}\cdot b_{j}$
+\begin_inset Formula $c_{i}t_{i}\cdot b_{i}\gtrdot_{1}c_{j}t_{j}\cdot b_{j}$
 \end_inset
 
  iff 
@@ -3289,7 +3293,7 @@ This ordering is based only on comparison of signatures and positions of
 \end_inset
 
 -representation are comparable with 
-\begin_inset Formula $\lessdot$
+\begin_inset Formula $\lessdot_{1}$
 \end_inset
 
  order because they have distinct 
@@ -3298,7 +3302,7 @@ This ordering is based only on comparison of signatures and positions of
 
  by definition.
  Below are given some examples of 
-\begin_inset Formula $\lessdot$
+\begin_inset Formula $\lessdot_{1}$
 \end_inset
 
  element ordering for the 3-element list 
@@ -3317,7 +3321,7 @@ This ordering is based only on comparison of signatures and positions of
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $y\cdot b_{1}\gtrdot100y\cdot b_{2}$
+\begin_inset Formula $y\cdot b_{1}\gtrdot_{1}100y\cdot b_{2}$
 \end_inset
 
 
@@ -3340,7 +3344,7 @@ This ordering is based only on comparison of signatures and positions of
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $x\cdot b_{1}\gtrdot y\cdot b_{1}$
+\begin_inset Formula $x\cdot b_{1}\gtrdot_{1}y\cdot b_{1}$
 \end_inset
 
 
@@ -3410,7 +3414,7 @@ and
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $y^{2}\cdot b_{1}\lessdot y\cdot b_{3}$
+\begin_inset Formula $y^{2}\cdot b_{1}\lessdot_{1}y\cdot b_{3}$
 \end_inset
 
 
@@ -3457,7 +3461,7 @@ and
 \uwave off
 \noun off
 \color none
-\begin_inset Formula $x^{2}\cdot b_{1}\gtrdot x\cdot b_{3}$
+\begin_inset Formula $x^{2}\cdot b_{1}\gtrdot_{1}x\cdot b_{3}$
 \end_inset
 
  because signatures are equal and the list position of left side's labeled
@@ -3475,7 +3479,7 @@ ordered form
 \emph default
  of representation consisting of all its elements written in a list with
  
-\begin_inset Formula $\gtrdot$
+\begin_inset Formula $\gtrdot_{1}$
 \end_inset
 
 -decreasing order.
@@ -3506,7 +3510,7 @@ With ordered forms the
 
  iff the ordered form of the first representation is smaller than second's
  according to lexicographical extension of 
-\begin_inset Formula $\lessdot$
+\begin_inset Formula $\lessdot_{1}$
 \end_inset
 
  ordering on elements.
@@ -3762,7 +3766,7 @@ The number of different labeled polynomial positions is finite because it
 
 .
  So the existence of infinite 
-\begin_inset Formula $\gtrdot$
+\begin_inset Formula $\gtrdot_{1}$
 \end_inset
 
 -descending sequence of representation elements would lead to existence
@@ -3776,7 +3780,7 @@ The number of different labeled polynomial positions is finite because it
 \end_inset
 
  we get the proof for well-orderness of elements with ordering 
-\begin_inset Formula $\lessdot$
+\begin_inset Formula $\lessdot{}_{1}$
 \end_inset
 
 .
@@ -3788,7 +3792,7 @@ The straightforward proof for
 \end_inset
 
 -well-orderness of representations following from 
-\begin_inset Formula $\lessdot$
+\begin_inset Formula $\lessdot_{1}$
 \end_inset
 
 -well-orderness of elements is not very complex but to skip its strict details
@@ -4039,7 +4043,7 @@ We replace
 \end_inset
 
  because all elements 
-\begin_inset Formula $\gtrdot$
+\begin_inset Formula $\gtrdot_{1}$
 \end_inset
 
 -greater than 
@@ -4077,7 +4081,7 @@ We replace
 
  is contained in original representation but not in the modified.
  And all other elements in representations are 
-\begin_inset Formula $\lessdot$
+\begin_inset Formula $\lessdot_{1}$
 \end_inset
 
 -smaller than 
@@ -4194,7 +4198,7 @@ Consider input-representation of
 \end_inset
 
  with signature of 
-\begin_inset Formula $\gtrdot$
+\begin_inset Formula $\gtrdot_{1}$
 \end_inset
 
 -maximal element equal to 
@@ -4675,7 +4679,7 @@ It is
 \end_inset
 
 , so applying the 
-\begin_inset Formula $\lessdot$
+\begin_inset Formula $\lessdot_{1}$
 \end_inset
 
 -comparison rule for equal signatures and different list positions we get
@@ -4684,7 +4688,7 @@ It is
 \end_inset
 
  is 
-\begin_inset Formula $\lessdot$
+\begin_inset Formula $\lessdot_{1}$
 \end_inset
 
 -smaller than 
@@ -4751,7 +4755,7 @@ There exists at least one element
 \end_inset
 
  to be the index of the 
-\begin_inset Formula $\gtrdot$
+\begin_inset Formula $\gtrdot_{1}$
 \end_inset
 
 -greatest representation element in 
@@ -4801,7 +4805,7 @@ There exists at least one element
 \end_inset
 
  and 
-\begin_inset Formula $m_{K''}\cdot b_{i_{K''}}\lessdot m_{K'}\cdot b_{i_{K'}}$
+\begin_inset Formula $m_{K''}\cdot b_{i_{K''}}\lessdot_{1}m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
  because of 
@@ -4813,7 +4817,7 @@ There exists at least one element
 \end_inset
 
  
-\begin_inset Formula $\gtrdot$
+\begin_inset Formula $\gtrdot_{1}$
 \end_inset
 
 -maximality in 

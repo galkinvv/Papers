@@ -841,7 +841,7 @@ of $G_{g}$ correspond to order of $R$.
 \subsection{Ordering representations}
 \begin{defn}
 To order $G_{g}$-representations we start from \emph{representation
-elements ordering}: $c_{i}t_{i}\cdot b_{i}\gtrdot c_{j}t_{j}\cdot b_{j}$
+elements ordering} $\gtrdot_{1}$: $c_{i}t_{i}\cdot b_{i}\gtrdot_{1}c_{j}t_{j}\cdot b_{j}$
 iff $t_{i}\Sig(b_{i})\succ t_{j}\Sig(b_{j})$ or $t_{i}\Sig(b_{i})=t_{j}\Sig(b_{j})\mbox{ and }i<j$
 (note the opposite order).
 \end{defn}
@@ -852,36 +852,36 @@ be ordered is equality of both signatures $t_{i}\Sig(b_{i})=t_{j}\Sig(b_{j})$
 and positions in list $i=j$. Position equality means $b_{i}=b_{j}$
 which in conjunction with signature equality gives $t_{i}=t_{j}$.
 So any two elements that belong to a single $G_{g}$-representation
-are comparable with $\lessdot$ order because they have distinct $\left(t_{k},b_{k}\right)$
-by definition. Below are given some examples of $\lessdot$ element
-ordering for the 3-element list $G_{g}=\left\{ b_{1},\, b_{2},\, b_{3}\right\} $
+are comparable with $\lessdot_{1}$ order because they have distinct
+$\left(t_{k},b_{k}\right)$ by definition. Below are given some examples
+of $\lessdot_{1}$ element ordering for the 3-element list $G_{g}=\left\{ b_{1},\, b_{2},\, b_{3}\right\} $
 with ordering $x\mathbf{F}_{i}\succ y\mathbf{F}_{i}$ and signatures
 $\Sig(b_{1})=\mathbf{F}_{1},\Sig(b_{2})=\mathbf{F}_{2},\Sig(b_{3})=x\mathbf{F}_{1}$.
 \begin{itemize}
-\item $y\cdot b_{1}\gtrdot100y\cdot b_{2}$ because signature of left side
-is $\succ$
-\item $x\cdot b_{1}\gtrdot y\cdot b_{1}$ because signature of left side
+\item $y\cdot b_{1}\gtrdot_{1}100y\cdot b_{2}$ because signature of left
+side is $\succ$
+\item $x\cdot b_{1}\gtrdot_{1}y\cdot b_{1}$ because signature of left side
 is $\succ$
 \item $-x\cdot b_{1}$ and $2x\cdot b_{1}$ are not comparable because signatures
 and list indices are equal
-\item $y^{2}\cdot b_{1}\lessdot y\cdot b_{3}$ because signature of left
+\item $y^{2}\cdot b_{1}\lessdot_{1}y\cdot b_{3}$ because signature of left
 side is $\prec$
-\item $x^{2}\cdot b_{1}\gtrdot x\cdot b_{3}$ because signatures are equal
-and the list position of left side's labeled polynomial is 1 which
-is smaller than right side's position 3.
+\item $x^{2}\cdot b_{1}\gtrdot_{1}x\cdot b_{3}$ because signatures are
+equal and the list position of left side's labeled polynomial is 1
+which is smaller than right side's position 3.
 \end{itemize}
 To extend this order to entire $G_{g}$-representations consider \emph{ordered
 form} of representation consisting of all its elements written in
-a list with $\gtrdot$-decreasing order. This form can be used for
-equality testing because if two representations are equal then they
-have exactly equal ordered forms.
+a list with $\gtrdot_{1}$-decreasing order. This form can be used
+for equality testing because if two representations are equal then
+they have exactly equal ordered forms.
 \begin{defn}
 With ordered forms the \emph{$G_{g}$-representations ordering} can
 be introduced: the representation $\sum_{k}m'_{k}\cdot b_{i'_{k}}$
 is $\lessdot$-smaller than $\sum_{k}m_{k}\cdot b_{i_{k}}$ iff the
 ordered form of the first representation is smaller than second's
-according to lexicographical extension of $\lessdot$ ordering on
-elements. For the corner case of the one ordered form being beginning
+according to lexicographical extension of $\lessdot_{1}$ ordering
+on elements. For the corner case of the one ordered form being beginning
 of the other the shorter form is $\lessdot$-smaller. If the greatest
 different elements of ordered forms differ only in field coefficient
 the representations are not comparable.
@@ -918,14 +918,14 @@ The representations are well-ordered with $\lessdot$ ordering.\end{thm}
 \begin{proof}
 The number of different labeled polynomial positions is finite because
 it is equal to $|G_{g}|$ which is finite for fixed $g$. So the existence
-of infinite $\gtrdot$-descending sequence of representation elements
+of infinite $\gtrdot_{1}$-descending sequence of representation elements
 would lead to existence of infinite $\succ$-descending sequence of
 signatures. Combining this with well-orderness of signatures with
 ordering $\prec$ we get the proof for well-orderness of elements
-with ordering $\lessdot$.
+with ordering $\lessdot{}_{1}$.
 
 The straightforward proof for $\lessdot$-well-orderness of representations
-following from $\lessdot$-well-orderness of elements is not very
+following from $\lessdot_{1}$-well-orderness of elements is not very
 complex but to skip its strict details the theorem 2.5.5 of \cite{Multiset-Order}
 will be referenced. It states well-orderness of finite multiset with
 an lexicographically extended ordering of well-ordered elements. This
@@ -973,14 +973,14 @@ We replace $m_{K'}\cdot b_{i_{K'}}$ in $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 by $\sum_{l}m_{l}\cdot b_{i_{l}}$ and combine coefficients near elements
 with both monomial and polynomial equal, so a modified representation
 for $mh$ appears. Is is $\lessdot$-smaller than $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
-because all elements $\gtrdot$-greater than $m_{K'}\cdot b_{i_{K'}}$
+because all elements $\gtrdot_{1}$-greater than $m_{K'}\cdot b_{i_{K'}}$
 are identical in both representations if they present but the element
  $m_{K'}\cdot b_{i_{K'}}$ is contained in original representation
 but not in the modified. And all other elements in representations
-are $\lessdot$-smaller than $m_{K'}\cdot b_{i_{K'}}$ so they doesn't
-influence the comparison. The comparison holds even in a corner case
-when all elements are discarded while combining coefficients. This
-case can appear if the original representation is equal to $mh=m_{K'}\cdot b_{i_{K'}}+\sum_{l}(-m_{l})\cdot b_{i_{l}}$
+are $\lessdot_{1}$-smaller than $m_{K'}\cdot b_{i_{K'}}$ so they
+doesn't influence the comparison. The comparison holds even in a corner
+case when all elements are discarded while combining coefficients.
+This case can appear if the original representation is equal to $mh=m_{K'}\cdot b_{i_{K'}}+\sum_{l}(-m_{l})\cdot b_{i_{l}}$
 what leads to modified representation $mh=0$ with zero elements which
 is $\lessdot$-smaller than any non-empty representation.
 \end{proof}
@@ -1000,7 +1000,7 @@ signature of $m_{K}b_{i_{K}}$ like in Theorem 20 of \cite{F5C}.
 $K'=K$ is taken for this case.
 \begin{proof}
 Consider input-representation of $m_{K}b_{i_{K}}$ with signature
-of $\gtrdot$-maximal element equal to $m_{K}\Sig(b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$:
+of $\gtrdot_{1}$-maximal element equal to $m_{K}\Sig(b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$:
 
 \begin{equation}
 m_{K}b_{i_{K}}=c_{0}s_{0}\cdot f_{j_{0}}+\sum_{l}m_{l}\cdot f_{i_{l}}.\label{eq:input-repr-case1}
@@ -1065,9 +1065,10 @@ m_{K}b_{i_{K}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i
 It is $\lessdot$-smaller than $m_{K}b_{i_{K}}=m_{K}\cdot b_{i_{K}}$
 because elements of both sums has signatures smaller than $s_{0}\mathbf{F}_{j_{0}}$,
 and for the first element $ $$\Sig(c'^{-1}c_{0}s'\cdot b_{i'})=\Sig(m_{K}\cdot b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$
-but $i'>i_{K}$, so applying the $\lessdot$-comparison rule for equal
-signatures and different list positions we get that element $c'^{-1}c_{0}s'\cdot b_{i'}$
-is $\lessdot$-smaller than $m_{K}\cdot b_{i_{K}}$ too.\end{proof}
+but $i'>i_{K}$, so applying the $\lessdot_{1}$-comparison rule for
+equal signatures and different list positions we get that element
+$c'^{-1}c_{0}s'\cdot b_{i'}$ is $\lessdot_{1}$-smaller than $m_{K}\cdot b_{i_{K}}$
+too.\end{proof}
 \begin{lem}
 If a signature-safe representation $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 with $\Sig(mh)\prec\Sig(g)$ satisfies properties 1 and 2 but does
@@ -1079,13 +1080,13 @@ There exists at least one element $m_{K}\cdot b_{i_{K}}$ that does
 not satisfy property 3. Let $m_{\max}$ be the maximal $\HM$ of labeled
 polynomials corresponding to representation elements and $H_{\max}$
 be a list of elements where $m_{\max}$ is achieved. Select $K'$
-to be the index of the $\gtrdot$-greatest representation element
+to be the index of the $\gtrdot_{1}$-greatest representation element
 in $H_{\max}$. We have $ $$\HM(m_{K'}b_{i_{K'}})=m_{\max}\geqslant\HM(m_{K}b_{i_{K}})>\HM(mh)$,
 so the HM of sum of all elements except $K'$ is equal to $\HM(mh-m_{K'}b_{i_{K'}})=\HM(m_{K'}b_{i_{K'}})=m_{\max}$,
 so there is another element $K''$ having $\HM(m_{K''}b_{i_{K''}})=m_{\max}$.
-So, $m_{K''}\cdot b_{i_{K''}}\in H_{\max}$ and $m_{K''}\cdot b_{i_{K''}}\lessdot m_{K'}\cdot b_{i_{K'}}$
-because of $ $$m_{K'}\cdot b_{i_{K'}}$ $\gtrdot$-maximality in
-$H_{\max}$.
+So, $m_{K''}\cdot b_{i_{K''}}\in H_{\max}$ and $m_{K''}\cdot b_{i_{K''}}\lessdot_{1}m_{K'}\cdot b_{i_{K'}}$
+because of $ $$m_{K'}\cdot b_{i_{K'}}$ $\gtrdot_{1}$-maximality
+in $H_{\max}$.
 
 The $\HM(m_{K''}b_{i_{K''}})=\HM(m_{K'}b_{i_{K'}})$ means that a
 critical pair of $b_{i_{K'}}$ and $b_{i_{K''}}$ has the form $[m'^{-1}m_{\max},\, m'^{-1}m_{K'},\, b_{i_{K'}},\, m'^{-1}m_{K''},\, b_{i_{K''}}]$
