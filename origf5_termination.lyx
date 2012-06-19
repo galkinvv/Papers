@@ -1484,7 +1484,7 @@ endants.
 \begin_layout Standard
 For the next theorem we need to introduce monomial quotients order by transitive
 ly extending the monomial ordering: 
-\begin_inset Formula $\frac{m_{1}}{m_{2}}>\frac{m_{3}}{m_{4}}\Leftrightarrow m_{1}m_{4}>m_{3}m_{2}$
+\begin_inset Formula $\frac{m_{1}}{m_{2}}>_{q}\frac{m_{3}}{m_{4}}\Leftrightarrow m_{1}m_{4}>m_{3}m_{2}$
 \end_inset
 
 .
@@ -1503,15 +1503,15 @@ If the algorithm does not terminate for some input then after some finite
 \end_inset
 
  contains a pair of labeled polynomials 
-\begin_inset Formula $f,g$
+\begin_inset Formula $f',f$
 \end_inset
 
  with 
-\begin_inset Formula $g$
+\begin_inset Formula $f$
 \end_inset
 
  generated after 
-\begin_inset Formula $f$
+\begin_inset Formula $f'$
 \end_inset
 
  that satisfies the following 3 properties:
@@ -1520,7 +1520,7 @@ If the algorithm does not terminate for some input then after some finite
 \begin_layout Theorem
 \begin_inset Formula 
 \[
-\HM(f)|\HM(g),
+\HM(f')|\HM(f),
 \]
 
 \end_inset
@@ -1531,7 +1531,7 @@ If the algorithm does not terminate for some input then after some finite
 \begin_layout Theorem
 \begin_inset Formula 
 \[
-\frac{\HM(f)}{\Sig(f)}>\frac{\HM(g)}{\Sig(g)},
+\frac{\HM(f')}{\Sig(f')}>_{q}\frac{\HM(f)}{\Sig(f)},
 \]
 
 \end_inset
@@ -1542,12 +1542,12 @@ If the algorithm does not terminate for some input then after some finite
 \begin_layout Theorem
 \begin_inset Formula 
 \[
-\Sig(f)|\Sig(g),
+\Sig(f')|\Sig(f).
 \]
 
 \end_inset
 
-where > is quotient ordering.
+
 \end_layout
 
 \begin_layout Proof
@@ -1617,7 +1617,7 @@ reference "eq:spair-chain"
 \end_inset
 
  we can get 
-\begin_inset Formula $\frac{\HM(h_{n})}{\Sig(h_{n})}>\frac{\HM(h_{n+1})}{\Sig(h_{n+1})}$
+\begin_inset Formula $\frac{\HM(h_{n})}{\Sig(h_{n})}>_{q}\frac{\HM(h_{n+1})}{\Sig(h_{n+1})}$
 \end_inset
 
 , so in the S-pair-chain the quotients 
@@ -1628,7 +1628,7 @@ reference "eq:spair-chain"
  This fact can't be used directly to show chains finiteness because unlike
  the ordering of monomials the ordering of monomial quotients is not well
  ordering -- for example the sequence 
-\begin_inset Formula $\frac{x}{x}>\frac{x}{x^{2}}>\cdots>\frac{x}{x^{n}}>\cdots$
+\begin_inset Formula $\frac{x}{x}>_{q}\frac{x}{x^{2}}>_{q}\cdots>_{q}\frac{x}{x^{n}}>_{q}\cdots$
 \end_inset
 
  is infinitely decreasing.
@@ -1755,7 +1755,15 @@ key "Arri-Perry-Revised"
 \end_inset
 
  and 
-\begin_inset Formula $\frac{\HM(h_{i})}{\Sig(h_{i})}>\frac{\HM(h_{i+1})}{\Sig(h_{i+1})}>\cdots>\frac{\HM(h_{j})}{\Sig(h_{j})}$
+\begin_inset Formula $\frac{\HM(h_{i})}{\Sig(h_{i})}>_{q}\frac{\HM(h_{i+1})}{\Sig(h_{i+1})}>_{q}\cdots>_{q}\frac{\HM(h_{j})}{\Sig(h_{j})}$
+\end_inset
+
+, so we take 
+\begin_inset Formula $f'=h_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $f=h_{j}$
 \end_inset
 
 .
@@ -1850,30 +1858,8 @@ But the existence of criteria allow the situation in which
 \begin_inset Formula $g$
 \end_inset
 
- that is not rejected and anyway lead to contradiction, so for the following
- parts of paper 
-\begin_inset Formula $g$
-\end_inset
-
- is treated as some fixed labeled polynomial with signature index 1.
- If the algorithm does not terminate then 
-\begin_inset Formula $g$
-\end_inset
-
- is assumed additionally to be a polynomial from theorem 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "thm:f_g_3_props"
-
-\end_inset
-
-.
- Most of the following theory is formulated for the objects with signatures
- 
-\begin_inset Formula $\prec\Sig(g)$
-\end_inset
-
-.
+ that is not rejected and anyway lead to contradiction and the following
+ parts of paper aim to prove it.
 \end_layout
 
 \begin_layout Section
@@ -1885,7 +1871,17 @@ S-pairs with signatures smaller than
 \end_layout
 
 \begin_layout Standard
-To prove the idea let us work with algorithm state just before adding 
+In this and following sections 
+\begin_inset Formula $g$
+\end_inset
+
+ is treated as some fixed labeled polynomial with signature index 1 added
+ to 
+\begin_inset Formula $Done$
+\end_inset
+
+ in some algorithm iteration.
+ Let us work with algorithm state just before adding 
 \begin_inset Formula $g$
 \end_inset
 
@@ -5165,16 +5161,21 @@ name "cor:all-needed-for-terminaton"
 
 \end_inset
 
-If there exists a signature-safe reductor 
+Consider an arbitrary polynomial 
 \begin_inset Formula $f$
 \end_inset
 
- for the labeled polynomial 
-\begin_inset Formula $f_{1}$
+ without any restrictions on its signature.
+ If there exists a signature-safe reductor 
+\begin_inset Formula $f'\in G_{g}$
+\end_inset
+
+ for 
+\begin_inset Formula $f$
 \end_inset
 
  with 
-\begin_inset Formula $\Sig(f)\frac{\HM(f_{1})}{\HM(f)}\prec\Sig(g)$
+\begin_inset Formula $\Sig(f')\frac{\HM(f)}{\HM(f')}\prec\Sig(g)$
 \end_inset
 
  then 
@@ -5182,7 +5183,7 @@ If there exists a signature-safe reductor
 \end_inset
 
  contains a signature-safe reductor for 
-\begin_inset Formula $f_{1}$
+\begin_inset Formula $f$
 \end_inset
 
  that is not rejected by F5 and Rewritten criteria.
@@ -5190,25 +5191,25 @@ If there exists a signature-safe reductor
 
 \begin_layout Proof
 Let 
-\begin_inset Formula $mf,\, m=\frac{\HM(f_{1})}{\HM(f)}\in\mathcal{K}\times T,\, f\in G_{g}$
+\begin_inset Formula $mf',\, m=\frac{\HM(f)}{\HM(f')}\in\mathcal{K}\times T,\, f'\in G_{g}$
 \end_inset
 
  be a multiplied reductor with 
-\begin_inset Formula $\Sig(mf)\prec\Sig(g)$
+\begin_inset Formula $\Sig(mf')\prec\Sig(g)$
 \end_inset
 
 .
  From the previous theorem we can find representation 
-\begin_inset Formula $mf=\sum_{k}m_{k}\cdot b_{i_{k}}$
+\begin_inset Formula $mf'=\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
  that satisfies properties 1-3.
  Property 3 means that there is no elements with HMs greater than 
-\begin_inset Formula $mf$
+\begin_inset Formula $mf'$
 \end_inset
 
  so because sum of all elements has HM equal to 
-\begin_inset Formula $\HM(mf)$
+\begin_inset Formula $\HM(mf')$
 \end_inset
 
  there exists an element 
@@ -5216,20 +5217,20 @@ Let
 \end_inset
 
  that achieves HM equality: 
-\begin_inset Formula $\HM(m_{K}\cdot b_{i_{K}})=\HM(mf)=\HM(f_{1})$
+\begin_inset Formula $\HM(m_{K}\cdot b_{i_{K}})=\HM(mf')=\HM(f_{1}')$
 \end_inset
 
 .
  Since the representation is signature-safe 
-\begin_inset Formula $\Sig(m_{K}\cdot b_{i_{K}})\preccurlyeq\Sig(mf)\prec\Sig(f_{1})$
+\begin_inset Formula $\Sig(m_{K}\cdot b_{i_{K}})\preccurlyeq\Sig(mf')\prec\Sig(f)$
 \end_inset
 
  so 
 \begin_inset Formula $m_{K}b_{i_{K}}$
 \end_inset
 
- is a signature-reductor for 
-\begin_inset Formula $f_{1}$
+ is a signature-safe reductor for 
+\begin_inset Formula $f$
 \end_inset
 
  and properties 1-2 ensure that 
@@ -5252,31 +5253,19 @@ reference "thm:f_g_3_props"
 \end_inset
 
  which states for the case of algorithm non-termination existence of a polynomia
-l 
-\begin_inset Formula $f$
+ls 
+\begin_inset Formula $f',f\in G$
 \end_inset
 
  such that 
-\begin_inset Formula $\HM(f)|\HM(g)$
+\begin_inset Formula $\HM(f')|\HM(f)$
 \end_inset
 
 , 
-\begin_inset Formula $\Sig(f)|\Sig(g)$
+\begin_inset Formula $\frac{\HM(f')}{\Sig(f')}>\frac{\HM(f)}{\Sig(f)}$
 \end_inset
 
-, 
-\begin_inset Formula $\frac{\HM(f)}{\Sig(f)}>\frac{\HM(g)}{\Sig(g)}$
-\end_inset
-
-, where 
-\begin_inset Formula $g$
-\end_inset
-
- is the same fixed 
-\begin_inset Formula $g$
-\end_inset
-
- as above.
+.
  
 \family roman
 \series medium
@@ -5342,7 +5331,7 @@ If the algorithm does not terminate for some input then after some finite
 \noun default
 \color inherit
  contains a pair of labeled polynomials 
-\begin_inset Formula $f_{1},g$
+\begin_inset Formula $f'_{1},f$
 \end_inset
 
  where:
@@ -5350,7 +5339,7 @@ If the algorithm does not terminate for some input then after some finite
 
 \begin_deeper
 \begin_layout Itemize
-\begin_inset Formula $f_{1}$
+\begin_inset Formula $f'_{1}$
 \end_inset
 
  is added to 
@@ -5382,29 +5371,29 @@ If the algorithm does not terminate for some input then after some finite
 \noun default
 \color inherit
  before 
-\begin_inset Formula $g$
+\begin_inset Formula $f$
 \end_inset
 
 
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $t_{1}f_{1}$
+\begin_inset Formula $t_{1}f'_{1}$
 \end_inset
 
  does not satisfy F5 and Rewritten criteria, where 
-\begin_inset Formula $t_{1}=\frac{\HM(g)}{\HM(f_{1})}$
+\begin_inset Formula $t_{1}=\frac{\HM(f)}{\HM(f'_{1})}$
 \end_inset
 
 
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $f_{1}$
+\begin_inset Formula $f'_{1}$
 \end_inset
 
  is signature-safe reductor for 
-\begin_inset Formula $g$
+\begin_inset Formula $f$
 \end_inset
 
 .
@@ -5425,7 +5414,7 @@ If the algorithm does not terminate for some input then after some finite
 \noun off
 \color none
 Let 
-\begin_inset Formula $g,f$
+\begin_inset Formula $f',f$
 \end_inset
 
  be polynomials from 
@@ -5460,20 +5449,66 @@ reference "thm:f_g_3_props"
 \noun off
 \color none
  
-\begin_inset Formula $t=\frac{\HM(g)}{\HM(f)}$
+\begin_inset Formula $t=\frac{\HM(f)}{\HM(f')}$
 \end_inset
 
 .
- 
-\begin_inset Formula $tf$
+ We have 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $f\in G$
 \end_inset
 
- is a signature-safe reductor for 
+ so the above theory about representations can be applied to the fixed value
+ of 
 \begin_inset Formula $g$
 \end_inset
 
-, so 
-\begin_inset Formula $\Sig(f)t\prec\Sig(g)$
+ equal to 
+\begin_inset Formula $f$
+\end_inset
+
+ and we can speak about 
+\begin_inset Formula $G_{f}$
+\end_inset
+
+ set and 
+\begin_inset Formula $G_{f}$
+\end_inset
+
+-representations.
+ Because
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\begin_inset Formula $tf'$
+\end_inset
+
+ is a signature-safe reductor for 
+\begin_inset Formula $f$
+\end_inset
+
+ we have 
+\begin_inset Formula $\Sig(f')t\prec\Sig(f)$
 \end_inset
 
  and the corollary 
@@ -5484,28 +5519,30 @@ reference "cor:all-needed-for-terminaton"
 \end_inset
 
  can be applied to find a signature-safe reductor 
-\begin_inset Formula $t_{1}f_{1}$
+\begin_inset Formula $t_{1}f'_{1}$
 \end_inset
 
  for 
-\begin_inset Formula $g$
+\begin_inset Formula $f$
 \end_inset
 
  which does not satisfy criteria.
- Also the reductor 
-\begin_inset Formula $f_{1}$
+ Also it is known to belong to 
+\begin_inset Formula $G_{f}$
 \end_inset
 
- is known to belong to 
-\begin_inset Formula $G_{g}$
+, so during the algorithm execution 
+
+\begin_inset Formula $f'_{1}$
 \end_inset
 
-, so during the algorithm execution it was appended to 
+
+ was appended to 
 \begin_inset Formula $G\cup Done$
 \end_inset
 
  before 
-\begin_inset Formula $g$
+\begin_inset Formula $f$
 \end_inset
 
 .
@@ -5532,7 +5569,7 @@ key "F5-Orig"
 
 \begin_layout Proof
 We are going o show that the existence of polynomials 
-\begin_inset Formula $f_{1},g$
+\begin_inset Formula $f'_{1},f$
 \end_inset
 
  from the theorem 
@@ -5544,7 +5581,7 @@ reference "thm:always-exist-ok-reductor"
 
  leads to contradiction.
  Consider the call to TopReduction after which the polynomial 
-\begin_inset Formula $g$
+\begin_inset Formula $f$
 \end_inset
 
  was inserted in 
@@ -5553,7 +5590,7 @@ reference "thm:always-exist-ok-reductor"
 
 .
  That call returns polynomial 
-\begin_inset Formula $g$
+\begin_inset Formula $f$
 \end_inset
 
  as first part of TopReduction return value, so the value returned by IsReducibl
@@ -5588,7 +5625,7 @@ e is empty set.
 \noun default
 \color inherit
  including 
-\begin_inset Formula $f_{1}$
+\begin_inset Formula $f'_{1}$
 \end_inset
 
 .
@@ -5598,11 +5635,11 @@ e is empty set.
 \begin_deeper
 \begin_layout Itemize
 (a) is satisfied because 
-\begin_inset Formula $f_{1}$
+\begin_inset Formula $f'_{1}$
 \end_inset
 
  is a reductor for 
-\begin_inset Formula $g$
+\begin_inset Formula $f$
 \end_inset
 
  from the theorem 
@@ -5617,7 +5654,7 @@ reference "thm:always-exist-ok-reductor"
 
 \begin_layout Itemize
 (b) and (c) are satisfied because 
-\begin_inset Formula $\frac{\HM(g)}{\HM(f_{1})}f_{1}$
+\begin_inset Formula $\frac{\HM(f)}{\HM(f'_{1})}f'_{1}$
 \end_inset
 
  does not satisfy F5 and Rewritten criteria from the theorem 
@@ -5632,11 +5669,11 @@ reference "thm:always-exist-ok-reductor"
 
 \begin_layout Itemize
 (d) is satisfied because 
-\begin_inset Formula $f_{1}$
+\begin_inset Formula $f'_{1}$
 \end_inset
 
  is a signature-safe reductor for 
-\begin_inset Formula $g$
+\begin_inset Formula $f$
 \end_inset
 
  from the theorem 

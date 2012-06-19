@@ -432,27 +432,27 @@ starting with $r_{1}$ and consisting of chain generators which proves
 the theorem.
 \end{proof}
 For the next theorem we need to introduce monomial quotients order
-by transitively extending the monomial ordering: $\frac{m_{1}}{m_{2}}>\frac{m_{3}}{m_{4}}\Leftrightarrow m_{1}m_{4}>m_{3}m_{2}$.
+by transitively extending the monomial ordering: $\frac{m_{1}}{m_{2}}>_{q}\frac{m_{3}}{m_{4}}\Leftrightarrow m_{1}m_{4}>m_{3}m_{2}$.
 \begin{thm}
 \label{thm:f_g_3_props}If the algorithm does not terminate for some
 input then after some finite step the set $G$ contains a pair of
-labeled polynomials $f,g$ with $g$ generated after $f$ that satisfies
+labeled polynomials $f',f$ with $f$ generated after $f'$ that satisfies
 the following 3 properties:
 
 \[
-\HM(f)|\HM(g),
+\HM(f')|\HM(f),
 \]
 
 
 \[
-\frac{\HM(f)}{\Sig(f)}>\frac{\HM(g)}{\Sig(g)},
+\frac{\HM(f')}{\Sig(f')}>_{q}\frac{\HM(f)}{\Sig(f)},
 \]
 
 
 \[
-\Sig(f)|\Sig(g),
+\Sig(f')|\Sig(f).
 \]
-where \textgreater{} is quotient ordering.\end{thm}
+\end{thm}
 \begin{proof}
 For working with S-pair-chains it is important that the polynomial
 can never reduce after it was used for S-pair generation as higher
@@ -470,12 +470,12 @@ S-pair used to generate $h_{n+1}$ from $h_{n}$ and satisfy:
 \begin{equation}
 \HM(h_{n+1})<\HM\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)=\HM(g_{n}),\,\Sig(h_{n+1})=\Sig\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)\succ\Sig(g_{n}).\label{eq:spair-chain}
 \end{equation}
-From the first inequality in \ref{eq:spair-chain} we can get $\frac{\HM(h_{n})}{\Sig(h_{n})}>\frac{\HM(h_{n+1})}{\Sig(h_{n+1})}$,
+From the first inequality in \ref{eq:spair-chain} we can get $\frac{\HM(h_{n})}{\Sig(h_{n})}>_{q}\frac{\HM(h_{n+1})}{\Sig(h_{n+1})}$,
 so in the S-pair-chain the quotients $\frac{\HM(h_{i})}{\Sig(h_{i})}$
 are strictly descending according to quotients ordering. This fact
 can't be used directly to show chains finiteness because unlike the
 ordering of monomials the ordering of monomial quotients is not well
-ordering -- for example the sequence $\frac{x}{x}>\frac{x}{x^{2}}>\cdots>\frac{x}{x^{n}}>\cdots$
+ordering -- for example the sequence $\frac{x}{x}>_{q}\frac{x}{x^{2}}>_{q}\cdots>_{q}\frac{x}{x^{n}}>_{q}\cdots$
 is infinitely decreasing.
 
 There is two possible cases for relation between HMs of consecutive
@@ -495,7 +495,8 @@ consider HMs of infinite S-pair-chain $\{h_{i}\}$. They form an infinite
 sequence in $T$, so by Dickson's lemma there exists 2 polynomials
 in sequence with $\HM(h_{i})|\HM(h_{j})$. Therefore from the previous
 paragraph we have $i<j$ and with the S-pair-chain properties we get
-$\Sig(h_{i})|\Sig(h_{i+1})|\cdots|\Sig(h_{j})$ and $\frac{\HM(h_{i})}{\Sig(h_{i})}>\frac{\HM(h_{i+1})}{\Sig(h_{i+1})}>\cdots>\frac{\HM(h_{j})}{\Sig(h_{j})}$.
+$\Sig(h_{i})|\Sig(h_{i+1})|\cdots|\Sig(h_{j})$ and $\frac{\HM(h_{i})}{\Sig(h_{i})}>_{q}\frac{\HM(h_{i+1})}{\Sig(h_{i+1})}>_{q}\cdots>_{q}\frac{\HM(h_{j})}{\Sig(h_{j})}$,
+so we take $f'=h_{i}$ and $f=h_{j}$.
 \end{proof}
 The last property about signature division from the theorem claim
 is the consequence of dealing with S-pair-chains and is not used in
@@ -527,25 +528,23 @@ But the existence of criteria allow the situation in which $tf$ is
 rejected by criteria checks in (b) or (c) inside IsReducible. The
 idea is to show that even in this case there can be found another
 possible reducer for $g$ that is not rejected and anyway lead to
-contradiction, so for the following parts of paper $g$ is treated
-as some fixed labeled polynomial with signature index 1. If the algorithm
-does not terminate then $g$ is assumed additionally to be a polynomial
-from theorem \ref{thm:f_g_3_props}. Most of the following theory
-is formulated for the objects with signatures $\prec\Sig(g)$.
+contradiction and the following parts of paper aim to prove it.
 
 
 \section{S-pairs with signatures smaller than $\Sig(g)$}
 
-To prove the idea let us work with algorithm state just before adding
-$g$ to $Done$ during call to AlgorithmF5 with $i=1$. Consider a
-finite set $G_{1}\cup Done$ of labeled polynomials at that moment.
-This set contains positions of labeled polynomials in $R$, so it's
-elements can be ordered according to position in $R$ and written
-as an ordered integer sequence $G_{g}=\{b_{1},\ldots,b_{N}\}$ with
-$b_{j}<b_{j+1}$. It should be noted that this order does correspond
-to the order of labeled polynomials in the sequence produced by concatenated
-rule arrays $Rule[m]:Rule[m-1]:\cdots:Rule[1]$ because addition of
-new polynomial to $R$ is always followed by addition of corresponding
+In this and following sections $g$ is treated as some fixed labeled
+polynomial with signature index 1 added to $Done$ in some algorithm
+iteration. Let us work with algorithm state just before adding $g$
+to $Done$ during call to AlgorithmF5 with $i=1$. Consider a finite
+set $G_{1}\cup Done$ of labeled polynomials at that moment. This
+set contains positions of labeled polynomials in $R$, so it's elements
+can be ordered according to position in $R$ and written as an ordered
+integer sequence $G_{g}=\{b_{1},\ldots,b_{N}\}$ with $b_{j}<b_{j+1}$.
+It should be noted that this order does correspond to the order of
+labeled polynomials in the sequence produced by concatenated rule
+arrays $Rule[m]:Rule[m-1]:\cdots:Rule[1]$ because addition of new
+polynomial to $R$ is always followed by addition of corresponding
 rule. But this order may differ from the order polynomials were added
 to $G_{1}\cup Done$ because polynomials with same total degree are
 added to $Done$ in the increasing signature order, while the addition
@@ -1144,68 +1143,71 @@ of the process is guaranteed by $\lessdot$-well-orderness.
 This result may be interesting by itself, but for the purposes of
 proving termination only one corollary is needed:
 \begin{cor}
-\label{cor:all-needed-for-terminaton}If there exists a signature-safe
-reductor $f$ for the labeled polynomial $f_{1}$ with $\Sig(f)\frac{\HM(f_{1})}{\HM(f)}\prec\Sig(g)$
-then $G_{g}$ contains a signature-safe reductor for $f_{1}$ that
-is not rejected by F5 and Rewritten criteria.\end{cor}
+\label{cor:all-needed-for-terminaton}Consider an arbitrary polynomial
+$f$ without any restrictions on its signature. If there exists a
+signature-safe reductor $f'\in G_{g}$ for $f$ with $\Sig(f')\frac{\HM(f)}{\HM(f')}\prec\Sig(g)$
+then $G_{g}$ contains a signature-safe reductor for $f$ that is
+not rejected by F5 and Rewritten criteria.\end{cor}
 \begin{proof}
-Let $mf,\, m=\frac{\HM(f_{1})}{\HM(f)}\in\mathcal{K}\times T,\, f\in G_{g}$
-be a multiplied reductor with $\Sig(mf)\prec\Sig(g)$. From the previous
-theorem we can find representation $mf=\sum_{k}m_{k}\cdot b_{i_{k}}$
+Let $mf',\, m=\frac{\HM(f)}{\HM(f')}\in\mathcal{K}\times T,\, f'\in G_{g}$
+be a multiplied reductor with $\Sig(mf')\prec\Sig(g)$. From the previous
+theorem we can find representation $mf'=\sum_{k}m_{k}\cdot b_{i_{k}}$
 that satisfies properties 1-3. Property 3 means that there is no elements
-with HMs greater than $mf$ so because sum of all elements has HM
-equal to $\HM(mf)$ there exists an element $K$ that achieves HM
-equality: $\HM(m_{K}\cdot b_{i_{K}})=\HM(mf)=\HM(f_{1})$. Since the
-representation is signature-safe $\Sig(m_{K}\cdot b_{i_{K}})\preccurlyeq\Sig(mf)\prec\Sig(f_{1})$
-so $m_{K}b_{i_{K}}$ is a signature-reductor for $f_{1}$ and properties
+with HMs greater than $mf'$ so because sum of all elements has HM
+equal to $\HM(mf')$ there exists an element $K$ that achieves HM
+equality: $\HM(m_{K}\cdot b_{i_{K}})=\HM(mf')=\HM(f_{1}')$. Since
+the representation is signature-safe $\Sig(m_{K}\cdot b_{i_{K}})\preccurlyeq\Sig(mf')\prec\Sig(f)$
+so $m_{K}b_{i_{K}}$ is a signature-safe reductor for $f$ and properties
 1-2 ensure that $m_{K}b_{i_{K}}$ does not satisfy criteria.
 \end{proof}
 
 \section{Finding contradiction with the criteria enabled}
 
 Now return to the result of theorem \ref{thm:f_g_3_props} which states
-for the case of algorithm non-termination existence of a polynomial
-$f$ such that $\HM(f)|\HM(g)$, $\Sig(f)|\Sig(g)$, $\frac{\HM(f)}{\Sig(f)}>\frac{\HM(g)}{\Sig(g)}$,
-where $g$ is the same fixed $g$ as above. Using this result and
-last corollary we construct two polynomials leading to contradiction
-for the case of algorithm non-termination.
+for the case of algorithm non-termination existence of a polynomials
+$f',f\in G$ such that $\HM(f')|\HM(f)$, $\frac{\HM(f')}{\Sig(f')}>\frac{\HM(f)}{\Sig(f)}$.
+Using this result and last corollary we construct two polynomials
+leading to contradiction for the case of algorithm non-termination.
 \begin{thm}
 \label{thm:always-exist-ok-reductor}If the algorithm does not terminate
 for some input then after some finite step the set \textup{$G\cup Done$}
-contains a pair of labeled polynomials $f_{1},g$ where:
+contains a pair of labeled polynomials $f'_{1},f$ where:
 \begin{itemize}
-\item $f_{1}$ is added to \textup{$G\cup Done$} before $g$
-\item $t_{1}f_{1}$ does not satisfy F5 and Rewritten criteria, where $t_{1}=\frac{\HM(g)}{\HM(f_{1})}$
-\item $f_{1}$ is signature-safe reductor for $g$.
+\item $f'_{1}$ is added to \textup{$G\cup Done$} before $f$
+\item $t_{1}f'_{1}$ does not satisfy F5 and Rewritten criteria, where $t_{1}=\frac{\HM(f)}{\HM(f'_{1})}$
+\item $f'_{1}$ is signature-safe reductor for $f$.
 \end{itemize}
 \end{thm}
 \begin{proof}
-Let $g,f$ be polynomials from the theorem \ref{thm:f_g_3_props}
-an define $t=\frac{\HM(g)}{\HM(f)}$. $tf$ is a signature-safe reductor
-for $g$, so $\Sig(f)t\prec\Sig(g)$ and the corollary \ref{cor:all-needed-for-terminaton}
-can be applied to find a signature-safe reductor $t_{1}f_{1}$ for
-$g$ which does not satisfy criteria. Also the reductor $f_{1}$ is
-known to belong to $G_{g}$, so during the algorithm execution it
-was appended to $G\cup Done$ before $g$.\end{proof}
+Let $f',f$ be polynomials from the theorem \ref{thm:f_g_3_props}
+an define $t=\frac{\HM(f)}{\HM(f')}$. We have $f\in G$ so the above
+theory about representations can be applied to the fixed value of
+$g$ equal to $f$ and we can speak about $G_{f}$ set and $G_{f}$-representations.
+Because $tf'$ is a signature-safe reductor for $f$ we have $\Sig(f')t\prec\Sig(f)$
+and the corollary \ref{cor:all-needed-for-terminaton} can be applied
+to find a signature-safe reductor $t_{1}f'_{1}$ for $f$ which does
+not satisfy criteria. Also it is known to belong to $G_{f}$, so during
+the algorithm execution $f'_{1}$ was appended to $G\cup Done$ before
+$f$.\end{proof}
 \begin{thm}
 The original $ $F$_{5}$ algorithm as described in \cite{F5-Orig}
 does terminate for any input.\end{thm}
 \begin{proof}
-We are going o show that the existence of polynomials $f_{1},g$ from
-the theorem \ref{thm:always-exist-ok-reductor} leads to contradiction.
-Consider the call to TopReduction after which the polynomial $g$
-was inserted in $Done$. That call returns polynomial $g$ as first
+We are going o show that the existence of polynomials $f'_{1},f$
+from the theorem \ref{thm:always-exist-ok-reductor} leads to contradiction.
+Consider the call to TopReduction after which the polynomial $f$
+was inserted in $Done$. That call returns polynomial $f$ as first
 part of TopReduction return value, so the value returned by IsReducible
 is empty set. It means that one of conditions (a) - (d) was not satisfied
-for all polynomials in $G\cup Done$ including $f_{1}$. This is not
-possible because:
+for all polynomials in $G\cup Done$ including $f'_{1}$. This is
+not possible because:
 \begin{itemize}
-\item (a) is satisfied because $f_{1}$ is a reductor for $g$ from the
+\item (a) is satisfied because $f'_{1}$ is a reductor for $f$ from the
 theorem \ref{thm:always-exist-ok-reductor} 
-\item (b) and (c) are satisfied because $\frac{\HM(g)}{\HM(f_{1})}f_{1}$
+\item (b) and (c) are satisfied because $\frac{\HM(f)}{\HM(f'_{1})}f'_{1}$
 does not satisfy F5 and Rewritten criteria from the theorem \ref{thm:always-exist-ok-reductor} 
-\item (d) is satisfied because $f_{1}$ is a signature-safe reductor for
-$g$ from the theorem \ref{thm:always-exist-ok-reductor}.
+\item (d) is satisfied because $f'_{1}$ is a signature-safe reductor for
+$f$ from the theorem \ref{thm:always-exist-ok-reductor}.
 \end{itemize}
 \end{proof}
 
