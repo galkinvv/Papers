@@ -19,13 +19,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
 \numberwithin{equation}{section}
 \numberwithin{figure}{section}
-\newcommand{\lyxrightaddress}[1]{
-\par {\raggedleft \begin{tabular}{l}\ignorespaces
-#1
-\end{tabular}
-\vspace{1.4em}
-\par}
-}
 \theoremstyle{plain}
 \newtheorem{thm}{\protect\theoremname}
   \theoremstyle{remark}
@@ -60,13 +53,6 @@
 \begin{document}
 
 \title{Termination of original F5}
-
-
-\author{Vasily Galkin}
-
-\maketitle
-
-\lyxrightaddress{Moscow State University}
 \begin{abstract}
 The original F$_{5}$ algorithm described in \cite{FaugereF5} is
 formulated for any homogeneous polynomial set input. The correctness
@@ -82,6 +68,13 @@ step shows that if such pair exists then there exists another pair
 for which the reduction is permitted by all criteria. Existence of
 such pair leads to contradiction.
 \end{abstract}
+
+\author{Vasily Galkin}
+
+
+\address{Moscow State University}
+
+\maketitle
 
 \section{Introduction}
 
@@ -141,10 +134,10 @@ have degree $d_{j-1}$ and therefore all new generated critical pairs
 have degree at least $d_{j-1}$. Now suppose that $j$ is number of
 some fixed iteration. At the iteration $j$ all critical pairs with
 degree $d_{j}$ are extracted from $P$. After call to Reduction some
-new critical pairs are added to $P$. There exist a possibility that
-some of them has degree $d_{j}$. We're going to show that all such
-critical pairs do not generate S-polynomials in the next iteration
-of algorithm because they are discarded.
+new critical pairs are added to $P$ in the cycle over $R_{d}$. There
+exist a possibility that some of them has degree $d_{j}$. We're going
+to show that all such critical pairs do not generate S-polynomials
+in the next iteration of algorithm because they are discarded.
 
 For each new critical pair $[t,u_{1},r_{1},u_{2,}r_{2}]$ generated
 during iteration $j$ at least one of the generating polynomials belong

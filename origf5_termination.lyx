@@ -84,14 +84,6 @@ figs-within-sections
 Termination of original F5
 \end_layout
 
-\begin_layout Author
-Vasily Galkin
-\end_layout
-
-\begin_layout Right Address
-Moscow State University
-\end_layout
-
 \begin_layout Abstract
 The original F
 \begin_inset Formula $_{5}$
@@ -122,6 +114,14 @@ key "FaugereF5"
  The second step shows that if such pair exists then there exists another
  pair for which the reduction is permitted by all criteria.
  Existence of such pair leads to contradiction.
+\end_layout
+
+\begin_layout Author
+Vasily Galkin
+\end_layout
+
+\begin_layout Address
+Moscow State University
 \end_layout
 
 \begin_layout Section
@@ -326,6 +326,10 @@ Let's suppose that there is an input
 .
  After call to Reduction some new critical pairs are added to 
 \begin_inset Formula $P$
+\end_inset
+
+ in the cycle over 
+\begin_inset Formula $R_{d}$
 \end_inset
 
 .
