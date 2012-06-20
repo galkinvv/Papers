@@ -68,19 +68,19 @@
 
 \lyxrightaddress{Moscow State University}
 \begin{abstract}
-The original F$_{5}$ algorithm described in \cite{F5-Orig} is formulated
-for any homogeneous polynomial set input. The correctness of output
-is shown for any input that terminates the algorithm, but the termination
-itself is proved only for the case of input being regular polynomial
-sequence. This article shows that algorithm correctly terminates for
-any homogeneous input without any reference to regularity. The scheme
-contains two steps: first it is shown that if the algorithm does not
-terminate it eventually generates two polynomials where first is a
-reductor for the second. But first step doesn't show that this reduction
-is permitted by criteria introduced in F$_{5}$. The second step shows
-that if such pair exists then there exists another pair for which
-the reduction is permitted by all criteria. Existence of such pair
-leads to contradiction.
+The original F$_{5}$ algorithm described in \cite{FaugereF5} is
+formulated for any homogeneous polynomial set input. The correctness
+of output is shown for any input that terminates the algorithm, but
+the termination itself is proved only for the case of input being
+regular polynomial sequence. This article shows that algorithm correctly
+terminates for any homogeneous input without any reference to regularity.
+The scheme contains two steps: first it is shown that if the algorithm
+does not terminate it eventually generates two polynomials where first
+is a reductor for the second. But first step doesn't show that this
+reduction is permitted by criteria introduced in F$_{5}$. The second
+step shows that if such pair exists then there exists another pair
+for which the reduction is permitted by all criteria. Existence of
+such pair leads to contradiction.
 \end{abstract}
 
 \section{Introduction}
@@ -88,14 +88,14 @@ leads to contradiction.
 The Faugère's F$_{5}$ algorithm is known to be efficient method for
 Gröbner basis computation but one of the main problems with it's practical
 usage is lack of termination proof for all cases. The original paper
-\cite{F5-Orig} and detailed investigations in \cite{F5-Revisited}
+\cite{FaugereF5} and detailed investigations in \cite{F5-revisited}
 states the termination for the case of reductions to zero absence,
 which practically means termination proof for the case of input being
 regular polynomial sequence. But for most input sequences the regularity
 is not known, so this is not enough for practical implementations
 termination proof. One of the approaches to solve this issue is adding
 of additional checks and criteria for ensuring algorithm termination.
-Examples are \cite{term-mod-1,term-mod-2,Modifying-for-termination}.
+Examples are \cite{Modifying-for-termination,Ars05applicationsdes,Gash:2008:ECG}.
 
 This paper introduces another approach for termination proof of original
 algorithm without any modifications. The first step of proof is based
@@ -111,7 +111,7 @@ This article shows that the hypothesis of this method can be weakened
 to apply it for the set at any middle stage of F5 computations and
 the conclusions can be strengthened to use them for termination proof.
 The paper is designed as alternative termination proof for exact algorithm
-described in \cite{F5-Orig}, so the reader is assumed to be familiar
+described in \cite{FaugereF5}, so the reader is assumed to be familiar
 with it and all terminology with names for algorithm steps are borrowed
 from there.
 
@@ -178,9 +178,9 @@ that Rewritten?$\left(u_{3-k},r_{3-k}\right)$ returns true at the
 moment of TopReduction execution, so it still returns true for all
 algorithm execution after this moment because rewritings do not disappear.
 
-Suppose that reduction was forbidden by (d). The pseudo code in \cite{F5-Orig}
+Suppose that reduction was forbidden by (d). The pseudo code in \cite{FaugereF5}
 is a bit unclear at this point, but the source code of procedure FindReductor
-attached to \cite{F5-Revisited} is more clear and states that the
+attached to \cite{F5-revisited} is more clear and states that the
 reductor is discarded if both monomial of signature and index of signature
 are equal to those of polynomial we're reducing (it's signature monomial
 is r{[}k0{]}{[}1{]} and index is r{[}k0{]}{[}2{]} in the code):
@@ -490,7 +490,7 @@ increasing. This leads to the following properties: S-pair-chain $\{h_{i}\}$
 can't contain elements with equal HMs and $\HM(h_{i})|\HM(h_{j})$
 is possible only for $i<j$ and $\totaldeg(h_{i})<\totaldeg(h_{j})$.
 
-This allows us to use technique analogous to Proposition 14 from \cite{Arri-Perry-Revised}:
+This allows us to use technique analogous to Proposition 14 from \cite{TheF5Revised}:
 consider HMs of infinite S-pair-chain $\{h_{i}\}$. They form an infinite
 sequence in $T$, so by Dickson's lemma there exists 2 polynomials
 in sequence with $\HM(h_{i})|\HM(h_{j})$. Therefore from the previous
@@ -684,7 +684,7 @@ where $\varphi_{index(r_{i})+1}$ is operator of normal form w.r.t
 $G_{index(r_{i})+1}$.
 \end{defn}
 This definition is equivalent to $sr_{i}$ being non-normalized labeled
-polynomial according to definition 2 in part 5 of \cite{F5-Orig}.
+polynomial according to definition 2 in part 5 of \cite{FaugereF5}.
 \begin{defn}
 The monomial-multiplied labeled polynomial $sr_{i},\, r_{i}\in G_{g}$
 is called \emph{satisfying Rewritten criterion} if $\exists j>i$
@@ -810,12 +810,12 @@ has an input-representation consisting of an element $c\Sig(p)\cdot f_{index(p)}
 and some other elements with smaller signatures.\end{claim}
 \begin{proof}
 The claimed fact follows from the admissible polynomial definition
-in \cite{F5-Orig} referring to function $v$ which correspond to
+in \cite{FaugereF5} referring to function $v$ which correspond to
 summing representation elements.
 \end{proof}
-The theorem 1 of \cite{F5-Orig} states that all polynomials in the
-algorithm are admissible, do the above claim will be applied to all
-appeared polynomials.
+The theorem 1 of \cite{FaugereF5} states that all polynomials in
+the algorithm are admissible, do the above claim will be applied to
+all appeared polynomials.
 \begin{example}
 \label{example-of-having-gg-repr}The last example comes from S-pairs
 with a computed $G_{g}$-representation. S-polynomial of $b_{l^{*}}$
@@ -925,7 +925,7 @@ with ordering $\lessdot{}_{1}$.
 
 The straightforward proof for $\lessdot$-well-orderness of representations
 following from $\lessdot_{1}$-well-orderness of elements is not very
-complex but to skip its strict details the theorem 2.5.5 of \cite{Multiset-Order}
+complex but to skip its strict details the theorem 2.5.5 of \cite{Baader.Nipkow98Term}
 will be referenced. It states well-orderness of finite multiset with
 an lexicographically extended ordering of well-ordered elements. This
 applies to the representations because they form a subset in the finite
@@ -1190,7 +1190,7 @@ not satisfy criteria. Also it is known to belong to $G_{f}$, so during
 the algorithm execution $f'_{1}$ was appended to $G\cup Done$ before
 $f$.\end{proof}
 \begin{thm}
-The original $ $F$_{5}$ algorithm as described in \cite{F5-Orig}
+The original $ $F$_{5}$ algorithm as described in \cite{FaugereF5}
 does terminate for any input.\end{thm}
 \begin{proof}
 We are going o show that the existence of polynomials $f'_{1},f$
@@ -1221,7 +1221,7 @@ Unfortunately the termination proof given here is quite different
 in structure compared to the proof of Buchberger algorithm termination,
 so this proof doesn't show that F$_{5}$ is more efficient than Buchberger
 in any sense. Unlike this the termination of the modified versions
-of F$_{5}$ algorithm in \cite{term-mod-1,term-mod-2,Modifying-for-termination}
+of F$_{5}$ algorithm in \cite{Modifying-for-termination,Ars05applicationsdes,Gash:2008:ECG}
 is shown in a way analogous to Buchberger algorithm and there is room
 for comparison of their efficiency with Buchberger's one.
 
@@ -1255,35 +1255,8 @@ point of coming to a contradiction form the result of theorem \ref{thm:f_g_3_pro
 \thanks{The author would like to thank Christian Eder, Jean-Charles Faugère,
 Amir Hashemi, John Perry, Till Stagers and Alexey Zobnin for inspiring
 me on investigations in this area by their papers and comments. Thanks!}
-\begin{thebibliography}{References}
-\bibitem{Arri-Perry-Revised}Alberto Arri and John Perry. The F5 criterion
-revised
 
-\bibitem{key-2}Alexey Zobnin. Generalization of the F5 algorithm
-for calculating Gröbner bases for polynomial ideals
-
-\bibitem{F5C}Christian Eder, John Perry. F5C: a variant of Faugère's
-F5 algorithm with reduced Gröbner bases
-
-\bibitem{Modifying-for-termination}Christian Eder, Justin Gash, and
-John Perry. Modifying Faugère\textquoteright{}s F5 algorithm to ensure
-termination
-
-\bibitem{Multiset-Order}Franz Baader and Tobias Nipkow. Term Rewriting
-and All That
-
-\bibitem{key-1}Gwénolé Ars, Amir Hashemi. Extended F 5 criteria.
-
-\bibitem{term-mod-1}Gwénolé Ars. Applications des bases de Gröbner
-à la cryptographie
-
-\bibitem{F5-Orig}Jean-Charles Faugère. A new effi{}cient algorithm
-for computing Gröbner bases without reduction to zero (F$_{5}$)
-
-\bibitem{term-mod-2}Justin M. Gash. On efficient computation of Gröbner
-bases
-
-\bibitem{F5-Revisited}Till Stagers. Faugère\textquoteright{}s F5
-Algorithm Revisited\end{thebibliography}
+\bibliographystyle{plain}
+\bibliography{f5_references}
 
 \end{document}

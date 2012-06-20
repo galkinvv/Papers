@@ -1,7 +1,7 @@
-simple_sig_rus.tex: simple_sig_rus.lyx
+simple_sig_rus.tex: simple_sig_rus.lyx Makefile
 	rm -f $@
 	lyx -e pdflatex $^
-simple_sig.tex: simple_sig.lyx
+simple_sig.tex: simple_sig.lyx Makefile
 	rm -f $@
 	lyx -e pdflatex $^
 define PYREPLACE
@@ -57,12 +57,12 @@ view-rus: simple_sig_rus.pdf
 view: simple_sig.pdf
 	make clean-logs
 	xdg-open $^
-origf5_termination.tex: origf5_termination.lyx
+origf5_termination.tex: origf5_termination.lyx Makefile
 	rm -f $@
 	lyx -e pdflatex $^
 origf5_termination.pdf: origf5_termination.tex
 	pdflatex $^
-	#bibtex origf5_termination.aux
+	bibtex origf5_termination.aux
 	pdflatex $^
 	pdflatex $^
 view-origf5_termination: origf5_termination.pdf

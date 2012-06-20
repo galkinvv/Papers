@@ -100,7 +100,7 @@ The original F
  algorithm described in 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "F5-Orig"
+key "FaugereF5"
 
 \end_inset
 
@@ -139,14 +139,14 @@ The Faugère's F
  The original paper 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "F5-Orig"
+key "FaugereF5"
 
 \end_inset
 
  and detailed investigations in 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "F5-Revisited"
+key "F5-revisited"
 
 \end_inset
 
@@ -160,7 +160,7 @@ key "F5-Revisited"
  Examples are 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "term-mod-1,term-mod-2,Modifying-for-termination"
+key "Modifying-for-termination,Ars05applicationsdes,Gash:2008:ECG"
 
 \end_inset
 
@@ -195,7 +195,7 @@ This article shows that the hypothesis of this method can be weakened to
  described in 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "F5-Orig"
+key "FaugereF5"
 
 \end_inset
 
@@ -479,7 +479,7 @@ Suppose that reduction was forbidden by (d).
  The pseudo code in 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "F5-Orig"
+key "FaugereF5"
 
 \end_inset
 
@@ -487,7 +487,7 @@ key "F5-Orig"
  attached to 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "F5-Revisited"
+key "F5-revisited"
 
 \end_inset
 
@@ -1728,7 +1728,7 @@ consists of blocks with fixed total degrees where HMs inside a block are
 This allows us to use technique analogous to Proposition 14 from 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Arri-Perry-Revised"
+key "TheF5Revised"
 
 \end_inset
 
@@ -2569,7 +2569,7 @@ This definition is equivalent to
  5 of 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "F5-Orig"
+key "FaugereF5"
 
 \end_inset
 
@@ -3080,7 +3080,7 @@ An admissible labeled polynomial
 The claimed fact follows from the admissible polynomial definition in 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "F5-Orig"
+key "FaugereF5"
 
 \end_inset
 
@@ -3095,7 +3095,7 @@ key "F5-Orig"
 The theorem 1 of 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "F5-Orig"
+key "FaugereF5"
 
 \end_inset
 
@@ -3795,7 +3795,7 @@ The straightforward proof for
  the theorem 2.5.5 of 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Multiset-Order"
+key "Baader.Nipkow98Term"
 
 \end_inset
 
@@ -5532,10 +5532,8 @@ reference "cor:all-needed-for-terminaton"
 \end_inset
 
 , so during the algorithm execution 
-
 \begin_inset Formula $f'_{1}$
 \end_inset
-
 
  was appended to 
 \begin_inset Formula $G\cup Done$
@@ -5560,7 +5558,7 @@ F
  algorithm as described in 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "F5-Orig"
+key "FaugereF5"
 
 \end_inset
 
@@ -5714,7 +5712,7 @@ This paper shows that original F
  algorithm in 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "term-mod-1,term-mod-2,Modifying-for-termination"
+key "Modifying-for-termination,Ars05applicationsdes,Gash:2008:ECG"
 
 \end_inset
 
@@ -5799,131 +5797,15 @@ The author would like to thank Christian Eder, Jean-Charles Faugère, Amir
  Thanks!
 \end_layout
 
-\begin_layout Bibliography
-\labelwidthstring References
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "Arri-Perry-Revised"
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "f5_references"
+options "plain"
 
 \end_inset
 
-Alberto Arri and John Perry.
- The F5 criterion revised
-\end_layout
 
-\begin_layout Bibliography
-\labelwidthstring References
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "key-2"
-
-\end_inset
-
-Alexey Zobnin.
- Generalization of the F5 algorithm for calculating Gröbner bases for polynomial
- ideals
-\end_layout
-
-\begin_layout Bibliography
-\labelwidthstring References
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "F5C"
-
-\end_inset
-
-Christian Eder, John Perry.
- F5C: a variant of Faugère's F5 algorithm with reduced Gröbner bases
-\end_layout
-
-\begin_layout Bibliography
-\labelwidthstring References
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "Modifying-for-termination"
-
-\end_inset
-
-Christian Eder, Justin Gash, and John Perry.
- Modifying Faugère’s F5 algorithm to ensure termination
-\end_layout
-
-\begin_layout Bibliography
-\labelwidthstring References
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "Multiset-Order"
-
-\end_inset
-
-Franz Baader and Tobias Nipkow.
- Term Rewriting and All That
-\end_layout
-
-\begin_layout Bibliography
-\labelwidthstring References
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "key-1"
-
-\end_inset
-
-Gwénolé Ars, Amir Hashemi.
- Extended F 5 criteria.
-\end_layout
-
-\begin_layout Bibliography
-\labelwidthstring References
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "term-mod-1"
-
-\end_inset
-
-Gwénolé Ars.
- Applications des bases de Gröbner à la cryptographie
-\end_layout
-
-\begin_layout Bibliography
-\labelwidthstring References
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "F5-Orig"
-
-\end_inset
-
-Jean-Charles Faugère.
- A new efﬁcient algorithm for computing Gröbner bases without reduction
- to zero (F
-\begin_inset Formula $_{5}$
-\end_inset
-
-)
-\end_layout
-
-\begin_layout Bibliography
-\labelwidthstring References
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "term-mod-2"
-
-\end_inset
-
-Justin M.
- Gash.
- On efficient computation of Gröbner bases
-\end_layout
-
-\begin_layout Bibliography
-\labelwidthstring References
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "F5-Revisited"
-
-\end_inset
-
-Till Stagers.
- Faugère’s F5 Algorithm Revisited
 \end_layout
 
 \end_body
