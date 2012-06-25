@@ -1,48 +1,53 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{}
 
-\bibitem{TheF5Revised}
-A.~{Arri} and J.~{Perry}.
+\bibitem[{Arri} and {Perry}, 2010]{TheF5Revised}
+{Arri}, A. and {Perry}, J. (2010).
 \newblock {The F5 Criterion revised}.
-\newblock {\em ArXiv e-prints}, December 2010.
+\newblock {\em ArXiv e-prints}.
 
-\bibitem{Ars05applicationsdes}
-Gwenole Ars.
+\bibitem[Ars, 2005]{Ars05applicationsdes}
+Ars, G. (2005).
 \newblock {Applications des bases de Gr{\"o}bner {\`a} la cryptographie}.
-\newblock Technical report, 2005.
+\newblock Technical report.
 
-\bibitem{Baader.Nipkow98Term}
-Franz Baader and Tobias Nipkow.
+\bibitem[Baader and Nipkow, 1998]{Baader.Nipkow98Term}
+Baader, F. and Nipkow, T. (1998).
 \newblock {\em {Term Rewriting and All That}}.
-\newblock Cambridge University Press, United Kingdom, 1998.
+\newblock Cambridge University Press, United Kingdom.
 
-\bibitem{F5C}
-C.~{Eder} and J.~{Perry}.
-\newblock {F5C: a variant of Faug{\`e}re's F5 algorithm with reduced
-  Gr{\"o}bner bases}.
-\newblock {\em ArXiv e-prints}, June 2009.
-
-\bibitem{Modifying-for-termination}
-Christian Eder, Justin Gash, and John Perry.
+\bibitem[Eder et~al., 2010]{Modifying-for-termination}
+Eder, C., Gash, J., and Perry, J. (2010).
 \newblock {Modifying Faug{\`e}re's F5 Algorithm to ensure termination}.
 \newblock {\em ACM Communications in Computer Algebra, Issue 176, vol. 45, no.
-  2 (June 2011), pgs. 70-89}, December 2010.
+  2 (June 2011), pgs. 70-89}.
 
-\bibitem{FaugereF5}
-Jean~Charles Faug{\`e}re.
+\bibitem[{Eder} and {Perry}, 2009]{F5C}
+{Eder}, C. and {Perry}, J. (2009).
+\newblock {F5C: a variant of Faug{\`e}re's F5 algorithm with reduced
+  Gr{\"o}bner bases}.
+\newblock {\em ArXiv e-prints}.
+
+\bibitem[Faug{\`e}re, 2002]{FaugereF5}
+Faug{\`e}re, J.~C. (2002).
 \newblock {A new efficient algorithm for computing Gr{\"o}bner bases without
   reduction to zero (F5)}.
 \newblock In {\em {Proceedings of the 2002 international symposium on Symbolic
-  and algebraic computation}}, {ISSAC '02}, pages 75--83, New York, NY, USA,
-  2002. ACM.
+  and algebraic computation}}, {ISSAC '02}, pages 75--83, New York, NY, USA.
+  ACM.
 
-\bibitem{Gash:2008:ECG}
-Justin~M. Gash.
+\bibitem[Gash, 2008]{Gash:2008:ECG}
+Gash, J.~M. (2008).
 \newblock {\em {On efficient computation of grobner bases}}.
-\newblock PhD thesis, Indianapolis, IN, USA, 2008.
+\newblock PhD thesis, Indiana University, Indianapolis, IN, USA.
 
-\bibitem{F5-revisited}
-Till Stegers.
+\bibitem[{Pan} et~al., 2012]{2012GrbTermination}
+{Pan}, S., {Hu}, Y., and {Wang}, B. (2012).
+\newblock {The Termination of Algorithms for Computing Gr{\"o}bner Bases}.
+\newblock {\em ArXiv e-prints}.
+
+\bibitem[Stegers, 2006]{F5-revisited}
+Stegers, T. (2006).
 \newblock {Faugere's F5 Algorithm Revisited.}
-\newblock {\em IACR Cryptology ePrint Archive}, 2006:404, 2006.
+\newblock {\em IACR Cryptology ePrint Archive}, 2006:404.
 
 \end{thebibliography}
