@@ -156,7 +156,10 @@ key "Modifying-for-termination,Ars05applicationsdes,Gash:2008:ECG"
 \end_inset
 
 .
- The another approach is termination proof of custom F5-based algorithms
+\end_layout
+
+\begin_layout Standard
+The another approach is termination proof of custom F5-based algorithms
  followed by attempt to reformulate original F5 in the terms of this custom
  algorithm.
  The main problem of this approach arise during reformulation: attempts
@@ -170,8 +173,33 @@ key "2012GrbTermination"
 
 \end_inset
 
- proofs the termination of the F5GEN algorithm differs from original F5
- is the absence of criteria check during reductor selection.
+ proofs the termination of the F5GEN algorithm which differs from original
+ F5 by absence of criteria check during reductor selection.
+ The 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HuangConception"
+
+\end_inset
+
+ gives the proof of TRB-F5 algorithm termination which has two main differences
+ realized by the author with great help of discussions with John Perry.
+ The first is another rule building scheme which eventually lead to the
+ ordering by signature the rules in Rule array during TRB-F5 execution.
+ The second is the absence of applying in TRB-F5 the normal form 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ before reduction, which leads to an effect opposite to the difference with
+ F5GEN: criteria checks are applied for elements with greater signature
+ index which are used in original F5 in the normal from operator as reductors
+ without the checks.
+ The author thinks that these algorithms may be changed to exactly reproduce
+ the original F5 behavior and apply the termination proofs can be applied
+ to such changed versions.
+ But the approach with algorithms equivalent to F5 has a drawback: it makes
+ harder to understand how the theorems used in termination proof can be
+ expressed in terms of original F5 behavior.
 \end_layout
 
 \begin_layout Standard
@@ -859,7 +887,7 @@ signature-safe reductor
 \end_deeper
 \begin_layout Proof
 The algorithm performs only signature-safe reductions: the TopReduction
- function performs reduction by non-rejected reducer if it is signature-safe
+ function performs reduction by non-rejected reductor if it is signature-safe
  and adds new element to 
 \begin_inset Formula $ToDo$
 \end_inset
@@ -1831,7 +1859,7 @@ The last inequality with HM's division property from theorems result shows
 \begin_inset Formula $tf$
 \end_inset
 
- can be used as a reducer for 
+ can be used as a reductor for 
 \begin_inset Formula $g$
 \end_inset
 
@@ -1869,7 +1897,7 @@ But the existence of criteria allow the situation in which
 
  is rejected by criteria checks in (b) or (c) inside IsReducible.
  The idea is to show that even in this case there can be found another possible
- reducer for 
+ reductor for 
 \begin_inset Formula $g$
 \end_inset
 
@@ -5702,7 +5730,7 @@ Conclusions
 
 \begin_layout Standard
 This paper shows that original F5 algorithm terminates for any homogeneous
- input.
+ input without introducing intermediate algorithms.
  However, it does not give any limit on number of operations.
  The simplest proof of the termination of Buchberger algorithm is based
  on Noetherian property and doesn't give any such limit too.

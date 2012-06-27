@@ -40,6 +40,12 @@ Gash, J.~M. (2008).
 \newblock {\em {On efficient computation of grobner bases}}.
 \newblock PhD thesis, Indiana University, Indianapolis, IN, USA.
 
+\bibitem[{Huang}, 2010]{HuangConception}
+{Huang}, L. (2010).
+\newblock {A new conception for computing gr{\"o}bner basis and its
+  applications}.
+\newblock {\em ArXiv e-prints}.
+
 \bibitem[{Pan} et~al., 2012]{2012GrbTermination}
 {Pan}, S., {Hu}, Y., and {Wang}, B. (2012).
 \newblock {The Termination of Algorithms for Computing Gr{\"o}bner Bases}.
