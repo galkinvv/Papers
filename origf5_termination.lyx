@@ -195,8 +195,8 @@ key "HuangConception"
  index which are used in original F5 in the normal from operator as reductors
  without the checks.
  The author thinks that these algorithms may be changed to exactly reproduce
- the original F5 behavior and apply the termination proofs can be applied
- to such changed versions.
+ the original F5 behavior and apply the termination proofs to such changed
+ versions.
  But the approach with algorithms equivalent to F5 has a drawback: it makes
  harder to understand how the theorems used in termination proof can be
  expressed in terms of original F5 behavior.
