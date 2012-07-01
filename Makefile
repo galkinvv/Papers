@@ -60,7 +60,7 @@ view: simple_sig.pdf
 origf5_termination.tex: origf5_termination.lyx Makefile
 	rm -f $@
 	lyx -e pdflatex origf5_termination.lyx
-origf5_termination.pdf: origf5_termination.tex
+origf5_termination.pdf: origf5_termination.tex short.bst
 	pdflatex $^
 	bibtex origf5_termination.aux
 	pdflatex $^
