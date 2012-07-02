@@ -61,7 +61,7 @@ origf5_termination.tex: origf5_termination.lyx Makefile
 	rm -f $@
 	lyx -e pdflatex $<
 origf5_termination.pdf: origf5_termination.tex short.bst
-	rm -f origf5_termination.aux
+	rm -f origf5_termination.aux  origf5_termination.bbl
 	pdflatex $<
 	bibtex origf5_termination.aux
 	pdflatex $<
@@ -73,7 +73,7 @@ origf5_termination_ru.tex: origf5_termination_ru.lyx Makefile
 	rm -f $@
 	lyx -e pdflatex $<
 origf5_termination_ru.pdf: origf5_termination_ru.tex short.bst
-	rm -f origf5_termination_ru.aux
+	rm -f origf5_termination_ru.aux origf5_termination_ru.bbl
 	pdflatex $<
 	bibtex origf5_termination_ru.aux
 	pdflatex $<

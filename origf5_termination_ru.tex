@@ -1,8 +1,8 @@
 %% LyX 2.0.2 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
-\documentclass[oneside,english]{amsart}
+\documentclass[oneside,russian]{amsart}
 \usepackage[T2A]{fontenc}
-\usepackage[latin9]{inputenc}
+\usepackage[cp1251]{inputenc}
 \usepackage{listings}
 \usepackage[a4paper]{geometry}
 \geometry{verbose}
@@ -16,6 +16,14 @@
  {hyperref}
 
 \makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+\DeclareRobustCommand{\cyrtext}{%
+  \fontencoding{T2A}\selectfont\def\encodingdefault{T2A}}
+\DeclareRobustCommand{\textcyr}[1]{\leavevmode{\cyrtext #1}}
+\AtBeginDocument{\DeclareFontEncoding{T2A}{}{}}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
 \numberwithin{equation}{section}
 \numberwithin{figure}{section}
@@ -43,100 +51,110 @@
 
 \makeatother
 
-  \providecommand{\claimname}{Claim}
-  \providecommand{\corollaryname}{Corollary}
-  \providecommand{\definitionname}{Definition}
-  \providecommand{\examplename}{Example}
-  \providecommand{\factname}{Fact}
-  \providecommand{\lemmaname}{Lemma}
-\providecommand{\theoremname}{Theorem}
+  \providecommand{\claimname}{\inputencoding{koi8-r}хФЧЕТЦДЕОЙЕ}
+  \providecommand{\corollaryname}{\inputencoding{koi8-r}чЩЧПД}
+  \providecommand{\definitionname}{\inputencoding{koi8-r}пРТЕДЕМЕОЙЕ}
+  \providecommand{\examplename}{\inputencoding{koi8-r}рТЙНЕТ}
+  \providecommand{\factname}{\inputencoding{koi8-r}жБЛФ}
+  \providecommand{\lemmaname}{\inputencoding{koi8-r}мЕННБ}
+\providecommand{\theoremname}{\inputencoding{koi8-r}фЕПТЕНБ}
 
 \begin{document}
 
-\title{Termination of original F5}
+\title{Остановка Алгоритма F5}
 \begin{abstract}
-The original F5 algorithm introduced by Faugиre is formulated for
-any homogeneous polynomial set input. The correctness of output is
-shown for any input that terminates the algorithm, but the termination
-itself is proved only for the case of input being regular polynomial
-sequence. This article shows that algorithm correctly terminates for
-any homogeneous input without any reference to regularity. The scheme
-contains two steps: first it is shown that if the algorithm does not
-terminate it eventually generates two polynomials where first is a
-reductor for the second. But first step does not show that this reduction
-is permitted by criteria introduced in F5. The second step shows that
-if such pair exists then there exists another pair for which the reduction
-is permitted by all criteria. Existence of such pair leads to contradiction.
+Алгоритм F5, предложенный Фожером, принимает в качестве входных данных
+произвольное множество однородных многочленов и корректность результата
+доказана для всех случаев, когда алгоритм останавливается. Однако
+остановка алгоритма за конечное число шагов доказана лишь для случая,
+когда на вход алгоритма подаётся регулярная последовательность многочленов.
+В этой работе показано, что алгоритм останавливается на любых входных
+данных без какого-либо использования регулярности. Схема доказательства
+состоит из двух частей: в первой части показано, что если алгоритм
+не останавливается, то рано или поздно он получит пару многочленов,
+в которой первый может редуцировать второй. При этом, однако, не утверждается,
+что такая редукция будет разрешена критериями, предложенными в F5.
+Вторая часть показывает, что при существовании такой пары также будет
+существовать пара в которой редукция разрешена всеми критериями. Существование
+такой пары приводит к противоречию.
 \end{abstract}
 
-\author{Vasily Galkin}
+\author{Василий Галкин}
 
 
-\address{Moscow State University}
+\address{МГУ}
 
 
 \email{galkin-vv@ya.ru}
 
 \maketitle
 
-\section{Introduction}
+\section{Введение}
 
-The Faugиre's F5 algorithm is known to be efficient method for Grцbner
-basis computation but one of the main problems with it's practical
-usage is lack of termination proof for all cases. The original paper
-\cite{FaugereF5} and detailed investigations in \cite{F5-revisited}
-states the termination for the case of reductions to zero absence,
-which practically means termination proof for the case of input being
-regular polynomial sequence. But for most input sequences the regularity
-is not known, so this is not enough for practical implementations
-termination proof. One of the approaches to solve this issue is adding
-of additional checks and criteria for ensuring algorithm termination.
-This approach is perfectly strict but the obtained result is termination
-proof of a modified version of F5 algorithm which contain additional
-checks and therefore can be more complex for implementation and possibly
-slower for some input cases. Examples are \cite{Modifying-for-termination,Ars05applicationsdes,Gash:2008:ECG,ZobninGeneralization,Hashemi-ExtF5}.
+Алгоритм Фожера F5 известен как эффективный алгоритм вычисления базисов
+Грёбнера, но одной из главных проблем в его практическом использовании
+является отсутствие доказательства остановки для всех входных данных.
+Первоисточник \cite{FaugereF5} и детальные исследования в \cite{F5-revisited}
+показывают остановку алгоритма только для случая отсутствия редукций
+к нулю, что с практической точки зрения означает доказательство для
+тех случаев, когда входное множество многочленов представлено регулярной
+последовательностью. Но для большинства входных последовательностей
+их регулярность неизвестна, и доказанного факта оказывается недостаточно
+для утверждения остановки реализации алгоритма на конкретных входных
+данных. Один из подходов к решению проблемы -- добавление в алгоритм
+дополнительных проверок и критериев, гарантирующих остановку алгоритма.
+Этот подход даёт строгое доказательство остановки, однако получаемый
+результат есть доказательство остановки модифицированной версии F5,
+содержащей дополнительные проверки, которая в силу этого может быть
+более сложна в реализации или иметь большее время работы на некоторых
+входных данных. Этот подход применяется в работах \cite{Modifying-for-termination,Ars05applicationsdes,Gash:2008:ECG,Hashemi-ExtF5,ZobninGeneralization}.
 
-The another approach is termination proof of custom F5-based algorithms
-followed by attempt to reformulate original F5 in the terms of this
-custom algorithm. The main problem of this approach arise during reformulation:
-attempts to describe F5 in another terms may inadvertently introduce
-some changes in behavior which are hard to discover but require additional
-proofs to show equivalence. For example \cite{2012GrbTermination}
-proofs the termination of the F5GEN algorithm which differs from original
-F5 by absence of criteria check during reductor selection. The \cite{HuangConception}
-gives the proof of TRB-F5 algorithm termination which has two main
-differences realized by the author with great help of discussions
-with John Perry. The first is another rule building scheme which eventually
-lead to the ordering by signature the rules in $Rule$ array during
-TRB-F5 execution. The second is the absence of applying in TRB-F5
-the normal form $\varphi$ before reduction, which leads to an effect
-opposite to the difference with F5GEN: criteria checks are applied
-for elements with greater signature index which are used in original
-F5 in the normal from operator as reductors without the checks. The
-author thinks that these algorithms may be changed to exactly reproduce
-the original F5 behavior and the termination proofs can be applied
-to such changed versions. But the approach with algorithms equivalent
-to F5 has a drawback: it makes harder to understand how the theorems
-used in termination proof can be expressed in terms of original F5
-behavior.
+Другой подход состоит в доказательстве остановки некоторого семейства
+алгоритмов, основанных на идеях F5 с последующей попыткой переформулировать
+F5 таким образом, чтоб он являлся представителем этого семейства.
+Основная проблема этого подхода появляется в процессе переформулировки:
+описание F5 в других терминах может привести к незаметному внесению
+различий в поведение алгоритма, которые трудно заметить, но которые
+требуют дополнительных рассуждений для доказательства эквивалентности
+с F5. К примеру, \cite{2012GrbTermination} доказывает остановку алгоритма
+F5GEN, который отличается от исходного F5 отсутствием проверки критериев
+при выборе редуктора. Работа \cite{HuangConception} даёт доказательство
+остановки алгоритма TRB-F5, который, как удалось осознать автору в
+процессе плодотворных дискуссиях с Джоном Перри, имеет два существенных
+отличия от F5. Первое отличие -- другая схема построения правил, приводящая
+в конце концов к тому, что в процессе выполнения TRB-F5 правила в
+массивах $Rule$ оказываются отсортированными по возрастания сигнатуры.
+Второе отличие -- отсутствие в TRB-F5 применения оператора нормальной
+формы $\varphi$ перед редукцией, что приводит к эффекту противоположному
+отличиям F5 от F5GEN: алгоритм TRB-F5 при выборе редуктора проверяет
+критерии для элементов с б\'{о}льшими индексами, которые в F5 используются
+неявно в операторе нормальной формы и за счёт этого не подвергаются
+проверки критериев. Автор полагает, что эти алгоритмы могут быть изменены
+таким образом, чтоб в точности повторять поведение алгоритма F5, и
+доказательство остановки может быть перенесено на изменённые версии.
+Однако подход с алгоритмами, эквивалентными F5 имеет недостаток: он
+усложняет понимание того, как теоремы, используемые для доказательства
+остановки могут быть сформулированы в терминах поведения исходного
+алгоритма F5.
 
-This paper introduces another approach for termination proof of original
-algorithm without any modifications. The first step of proof is based
-on the idea of S-pair-chains which are introduced in this paper. The
-second step of proof is based on the method described in Theorem 21
-of \cite{F5C} for the proof of F5C algorithm correctness: the representation
-of an S-polynomial as the sum of multiplied polynomials from set computed
-by F5C can be iteratively rewritten using replacements for S-pairs
-and rejected S-pair parts until a representation with certain good
-properties is achieved after finitely many steps.
+Подход к доказательству остановки, предлагаемый в данной работе, применяется
+к F5 без каких-либо модификаций. Первый шаг доказательства основан
+на предлагаемой ниже идеи цепей S-пар. Второй шаг основывается на
+методе, использованном в теореме 21 работы \cite{F5C} для доказательства
+корректности алгоритма F5C: представление S-многочлена в виде суммы
+домноженных многочленов из множества, вычисленного F5C может быть
+модифицировано последовательностью замен S-пар и их отброшенных частей,
+и за конечное число таких шагов приведено к состоянию, когда выполняются
+определённые \flqq{}хорошие\frqq{} свойства.
 
-This article shows that the hypothesis of this method can be weakened
-to apply it for the set at any middle stage of F5 computations and
-the conclusions can be strengthened to use them for termination proof.
-The paper is designed as alternative termination proof for exact algorithm
-described in \cite{FaugereF5}, so the reader is assumed to be familiar
-with it and all terminology including names for algorithm steps are
-borrowed from there.
+Вторая часть этой статьи показывает, что предусловия этого метода
+могут быть ослаблены для его применения к множеству на любом промежуточном
+шаге вычислений F5, и что получаемые следствия могут быть усилены
+для их использования в доказательстве остановки. Работа оформлена
+как альтернативное доказательство остановки для алгоритма, описанного
+в статье \cite{FaugereF5}, доступной на сайте её автора, поэтому
+читатель предполагается хорошо знакомым с ней. Большинство используемой
+терминологии, включая названия этапов алгоритма, взято оттуда.
 
 
 \section{Possibilities for infinite cycles in F5}
@@ -1288,11 +1306,11 @@ to a contradiction form the result of theorem \ref{thm:f_g_3_props}.\\
 
 
 
-\thanks{The author would like to thank Christian Eder, Jean-Charles Faugиre,
+\thanks{The author would like to thank Christian Eder, Jean-Charles Faug\`{e}re,
 Amir Hashemi, John Perry, Till Stagers and Alexey Zobnin for inspiring
 me on investigations in this area by their papers and comments. Thanks!}
 
-\bibliographystyle{short}
+\bibliographystyle{plain}
 \bibliography{f5_references}
 
 \end{document}
