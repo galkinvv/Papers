@@ -1,0 +1,6584 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass amsart
+\begin_preamble
+\newcommand{\Sig}{\mathcal{S}}
+\newcommand{\HM}{\mathrm{HM}}
+\newcommand{\totaldeg}{\mathrm{deg}}
+\newcommand{\poly}{\mathrm{poly}}
+\newcommand{\sigidx}{\mathrm{index}}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen true
+\pdf_bookmarksopenlevel 2
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize a4paper
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Termination of original F5
+\end_layout
+
+\begin_layout Abstract
+The original F5 algorithm introduced by Faugère is formulated for any homogeneou
+s polynomial set input.
+ The correctness of output is shown for any input that terminates the algorithm,
+ but the termination itself is proved only for the case of input being regular
+ polynomial sequence.
+ This article shows that algorithm correctly terminates for any homogeneous
+ input without any reference to regularity.
+ The scheme contains two steps: first it is shown that if the algorithm
+ does not terminate it eventually generates two polynomials where first
+ is a reductor for the second.
+ But first step does not show that this reduction is permitted by criteria
+ introduced in F5.
+ The second step shows that if such pair exists then there exists another
+ pair for which the reduction is permitted by all criteria.
+ Existence of such pair leads to contradiction.
+\end_layout
+
+\begin_layout Author
+Vasily Galkin
+\end_layout
+
+\begin_layout Address
+Moscow State University
+\end_layout
+
+\begin_layout Email
+galkin-vv@ya.ru
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+The Faugère
+\begin_inset Quotes ers
+\end_inset
+
+s F5 algorithm is known to be efficient method for Gröbner basis computation
+ but one of the main problems with it
+\begin_inset Quotes ers
+\end_inset
+
+s practical usage is lack of termination proof for all cases.
+ The original paper 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5"
+
+\end_inset
+
+ and detailed investigations in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5-revisited"
+
+\end_inset
+
+ states the termination for the case of reductions to zero absence, which
+ practically means termination proof for the case of input being regular
+ polynomial sequence.
+ But for most input sequences the regularity is not known, so this is not
+ enough for practical implementations termination proof.
+ One of the approaches to solve this issue is adding of additional checks
+ and criteria for ensuring algorithm termination.
+ This approach is perfectly strict but the obtained result is termination
+ proof of a modified version of F5 algorithm which contain additional checks
+ and therefore can be more complex for implementation and possibly slower
+ for some input cases.
+ Examples are 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Modifying-for-termination,Ars05applicationsdes,Gash:2008:ECG,ZobninGeneralization,Hashemi-ExtF5"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The another approach is termination proof of custom F5-based algorithms
+ followed by attempt to reformulate original F5 in the terms of this custom
+ algorithm.
+ The main problem of this approach arise during reformulation: attempts
+ to describe F5 in another terms may inadvertently introduce some changes
+ in behavior which are hard to discover but require additional proofs to
+ show equivalence.
+ For example 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "2012GrbTermination"
+
+\end_inset
+
+ proofs the termination of the F5GEN algorithm which differs from original
+ F5 by absence of criteria check during reductor selection.
+ The 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HuangConception"
+
+\end_inset
+
+ gives the proof of TRB-F5 algorithm termination which has two main differences
+ realized by the author with great help of discussions with John Perry.
+ The first is another rule building scheme which eventually lead to the
+ ordering by signature the rules in 
+\begin_inset Formula $Rule$
+\end_inset
+
+ array during TRB-F5 execution.
+ The second is the absence of applying in TRB-F5 the normal form 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ before reduction, which leads to an effect opposite to the difference with
+ F5GEN: criteria checks are applied for elements with greater signature
+ index which are used in original F5 in the normal from operator as reductors
+ without the checks.
+ The author thinks that these algorithms may be changed to exactly reproduce
+ the original F5 behavior and the termination proofs can be applied to such
+ changed versions.
+ But the approach with algorithms equivalent to F5 has a drawback: it makes
+ harder to understand how the theorems used in termination proof can be
+ expressed in terms of original F5 behavior.
+\end_layout
+
+\begin_layout Standard
+This paper introduces another approach for termination proof of original
+ algorithm without any modifications.
+ The first step of proof is based on the idea of S-pair-chains which are
+ introduced in this paper.
+ The second step of proof is based on the method described in Theorem 21
+ of 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5C"
+
+\end_inset
+
+ for the proof of F5C algorithm correctness: the representation of an S-polynomi
+al as the sum of multiplied polynomials from set computed by F5C can be
+ iteratively rewritten using replacements for S-pairs and rejected S-pair
+ parts until a representation with certain good properties is achieved after
+ finitely many steps.
+\end_layout
+
+\begin_layout Standard
+This article shows that the hypothesis of this method can be weakened to
+ apply it for the set at any middle stage of F5 computations and the conclusions
+ can be strengthened to use them for termination proof.
+ The paper is designed as alternative termination proof for exact algorithm
+ described in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5"
+
+\end_inset
+
+, so the reader is assumed to be familiar with it and all terminology including
+ names for algorithm steps are borrowed from there.
+\end_layout
+
+\begin_layout Section
+Possibilities for infinite cycles in F5
+\end_layout
+
+\begin_layout Subsection
+Inside 
+\family typewriter
+AlgorithmF5
+\family default
+: 
+\begin_inset Formula $d$
+\end_inset
+
+ growth
+\end_layout
+
+\begin_layout Claim
+\begin_inset CommandInset label
+LatexCommand label
+name "iterations-d_grow"
+
+\end_inset
+
+If the number of 
+\series bold
+while
+\series default
+ cycle iterations inside 
+\family typewriter
+AlgorithmF5
+\family default
+ is infinite then the 
+\begin_inset Formula $d$
+\end_inset
+
+ value infinitely grow.
+\end_layout
+
+\begin_layout Proof
+Let
+\begin_inset Quotes ers
+\end_inset
+
+s suppose that there is an input 
+\begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} $
+\end_inset
+
+ over 
+\begin_inset Formula $\mathcal{K}[x_{1},\ldots,x_{n}]$
+\end_inset
+
+ for which original F5 does not terminate, and that it is shortest input
+ of such kind -- the algorithm terminates on shorter input 
+\begin_inset Formula $\left\{ f_{2},\ldots,f_{m}\right\} $
+\end_inset
+
+.
+ This means that last iteration of outer cycle in 
+\family typewriter
+incrementalF5
+\family default
+ does not terminate, so last call to 
+\family typewriter
+AlgorithmF5
+\family default
+ does not terminate.
+ To investigate this we need to study how the total degree 
+\begin_inset Formula $d$
+\end_inset
+
+ can change during execution of the cycle inside 
+\family typewriter
+AlgorithmF5
+\family default
+.
+ Let
+\begin_inset Quotes ers
+\end_inset
+
+s call 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+ the value of 
+\begin_inset Formula $d$
+\end_inset
+
+ on 
+\begin_inset Formula $j$
+\end_inset
+
+-th cycle iteration and extend it to 
+\begin_inset Formula $d_{0}=-1$
+\end_inset
+
+.
+ The simple property of 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+ is it
+\begin_inset Quotes ers
+\end_inset
+
+s non-strict growth: 
+\begin_inset Formula $d_{j}\geqslant d_{j-1}$
+\end_inset
+
+.
+ It holds because on the 
+\begin_inset Formula $j-1$
+\end_inset
+
+-th iteration all polynomials in 
+\begin_inset Formula $R_{d}$
+\end_inset
+
+ have degree 
+\begin_inset Formula $d_{j-1}$
+\end_inset
+
+ and therefore all new generated critical pairs have degree at least 
+\begin_inset Formula $d_{j-1}$
+\end_inset
+
+.
+ Now suppose that 
+\begin_inset Formula $j$
+\end_inset
+
+ is number of some fixed iteration.
+ At the iteration 
+\begin_inset Formula $j$
+\end_inset
+
+ all critical pairs with degree 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+ are extracted from 
+\begin_inset Formula $P$
+\end_inset
+
+.
+ After call to 
+\family typewriter
+Reduction
+\family default
+ some new critical pairs are added to 
+\begin_inset Formula $P$
+\end_inset
+
+ in the cycle over 
+\begin_inset Formula $R_{d}$
+\end_inset
+
+.
+ There exist a possibility that some of them has degree 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+.
+ We
+\begin_inset Quotes ers
+\end_inset
+
+re going to show that all such critical pairs do not generate S-polynomials
+ in the next iteration of algorithm because they are discarded.
+\end_layout
+
+\begin_layout Proof
+For each new critical pair 
+\begin_inset Formula $[t,u_{1},r_{1},u_{2,}r_{2}]$
+\end_inset
+
+ generated during iteration 
+\begin_inset Formula $j$
+\end_inset
+
+ at least one of the generating polynomials belong to 
+\begin_inset Formula $R_{d}$
+\end_inset
+
+ and no more than one belong to 
+\begin_inset Formula $G_{i}$
+\end_inset
+
+ at the beginning of the iteration.
+ All polynomials in 
+\begin_inset Formula $R_{d}$
+\end_inset
+
+ are generated by 
+\family typewriter
+Reduction
+\family default
+ function by appending single polynomials to 
+\begin_inset Formula $Done$
+\end_inset
+
+.
+ So we can select from one or two 
+\begin_inset Formula $R_{d}$
+\end_inset
+
+-belonging generators of critical pair a polynomial 
+\begin_inset Formula $r_{k}$
+\end_inset
+
+ that was added to 
+\begin_inset Formula $Done$
+\end_inset
+
+ later.
+ Then we can state that the other S-pair part 
+\begin_inset Formula $r_{3-k}$
+\end_inset
+
+ was already present in 
+\begin_inset Formula $G\cup Done$
+\end_inset
+
+ at the moment of 
+\begin_inset Formula $r_{k}$
+\end_inset
+
+ was added to 
+\begin_inset Formula $Done$
+\end_inset
+
+.
+ So the 
+\family typewriter
+TopReduction
+\family default
+ tries to reduce 
+\begin_inset Formula $r_{k}$
+\end_inset
+
+ by 
+\begin_inset Formula $r_{3-k}$
+\end_inset
+
+ but failed to do this because one of 
+\family typewriter
+IsReducible
+\family default
+ checks (a) - (d) forbids this.
+\end_layout
+
+\begin_layout Proof
+From the other hand for critical pairs with degree equal to 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+ we have 
+\begin_inset Formula $u_{k}=1$
+\end_inset
+
+ because total degree of critical pair is equal to total degree of it
+\begin_inset Quotes ers
+\end_inset
+
+s generator 
+\begin_inset Formula $r_{k}$
+\end_inset
+
+.
+ This means that value 
+\begin_inset Formula $u_{3-k}$
+\end_inset
+
+ is equal to 
+\begin_inset Formula $\frac{\HM(r_{k})}{\HM(r_{3-k})}$
+\end_inset
+
+ so the 
+\family typewriter
+IsReducible
+\family default
+
+\begin_inset Quotes ers
+\end_inset
+
+s rule (a) allow reduction 
+\begin_inset Formula $r_{k}$
+\end_inset
+
+ by 
+\begin_inset Formula $r_{3-k}$
+\end_inset
+
+.
+ It follows that only checks (b) - (d) are left as possibilities.
+\end_layout
+
+\begin_layout Proof
+Suppose that reduction was forbidden by (b).
+ This means that there is a polynomial in 
+\begin_inset Formula $G_{i+1}$
+\end_inset
+
+ that reduces 
+\begin_inset Formula $u_{3-k}\Sig(r_{3-k})$
+\end_inset
+
+.
+ For our case it means that in the 
+\family typewriter
+CritPair
+\family default
+ function the same check 
+\begin_inset Formula $\varphi(u_{3-k}\Sig(r_{3-k}))=u_{3-k}\Sig(r_{3-k})$
+\end_inset
+
+ fails and such critical pair would not be created at all.
+ So the rule (b) can
+\begin_inset Quotes ers
+\end_inset
+
+t forbid reduction too.
+\end_layout
+
+\begin_layout Proof
+Suppose that reduction was forbidden by (c).
+ This means that there is a rewriting for the multiplied reductor.
+ So for our case it means that 
+\family typewriter
+Rewritten?
+\family default
+
+\begin_inset Formula $\left(u_{3-k},r_{3-k}\right)$
+\end_inset
+
+ returns true at the moment of 
+\family typewriter
+TopReduction
+\family default
+ execution, so it still returns true for all algorithm execution after this
+ moment because rewritings do not disappear.
+\end_layout
+
+\begin_layout Proof
+Suppose that reduction was forbidden by (d).
+ The pseudo code in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5"
+
+\end_inset
+
+ is a bit unclear at this point, but the source code of procedure 
+\family typewriter
+FindReductor
+\family default
+ attached to 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5-revisited"
+
+\end_inset
+
+ is more clear and states that the reductor is discarded if both monomial
+ of signature and index of signature are equal to those of polynomial we
+\begin_inset Quotes ers
+\end_inset
+
+re reducing (it
+\begin_inset Quotes ers
+\end_inset
+
+s signature monomial is 
+\family typewriter
+r[k0][1]
+\family default
+ and index is 
+\family typewriter
+r[k0][2]
+\family default
+ in the code):
+\end_layout
+
+\begin_layout Proof
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},tabsize=4"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+if (ut eq r[k0][1]) and (r[j][2] eq r[k0][2]) then
+\end_layout
+
+\begin_layout Plain Layout
+
+	// discard reductor by criterion (d)
+\end_layout
+
+\begin_layout Plain Layout
+
+	continue;
+\end_layout
+
+\begin_layout Plain Layout
+
+end if;
+\end_layout
+
+\end_inset
+
+For our case it means that signatures of 
+\begin_inset Formula $r_{k}$
+\end_inset
+
+ and 
+\begin_inset Formula $u_{3-k}r_{3-k}$
+\end_inset
+
+ are equal.
+ This leads to fact that 
+\family typewriter
+Rewritten?
+\family default
+
+\begin_inset Formula $\left(u_{3-k},r_{3-k}\right)$
+\end_inset
+
+ returns true after adding rule corresponding to 
+\begin_inset Formula $r_{k}$
+\end_inset
+
+ because 
+\begin_inset Formula $u_{3-k}\cdot r_{3-k}$
+\end_inset
+
+ is rewritable by 
+\begin_inset Formula $1\cdot r_{k}$
+\end_inset
+
+.
+ So like in case (c) 
+\family typewriter
+Rewritten?
+\family default
+
+\begin_inset Formula $\left(u_{3-k},r_{3-k}\right)$
+\end_inset
+
+ returns true at the moment of 
+\family typewriter
+TopReduction
+\family default
+ execution.
+\end_layout
+
+\begin_layout Proof
+Now consider 
+\family typewriter
+Spol
+\family default
+ function execution for some S-pair with total degree 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+ generated during iteration 
+\begin_inset Formula $j$
+\end_inset
+
+.
+ It executes in 
+\begin_inset Formula $j+1$
+\end_inset
+
+ iteration of 
+\family typewriter
+AlgorithmF5
+\family default
+ cycle which is far after 
+\family typewriter
+TopReduction
+\family default
+ execution for 
+\begin_inset Formula $r_{k}$
+\end_inset
+
+ in algorithm flow so for both cases (c) and (d) call to 
+\family typewriter
+Rewritten?
+\family default
+
+\begin_inset Formula $\left(u_{3-k},r_{3-k}\right)$
+\end_inset
+
+ inside 
+\family typewriter
+Spol
+\family default
+ returns true.
+ It means that at the 
+\begin_inset Formula $j+1$
+\end_inset
+
+ step no S-pair with total degree 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+ can add polynomial to 
+\begin_inset Formula $F$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+In the conclusion we have: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+the first possibility of 
+\begin_inset Formula $d_{j+1}$
+\end_inset
+
+ and 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+ comparison is 
+\begin_inset Formula $d_{j+1}=d_{j}$
+\end_inset
+
+.
+ In this case 
+\begin_inset Formula $F$
+\end_inset
+
+ is empty on 
+\begin_inset Formula $j+1$
+\end_inset
+
+ iteration and therefore 
+\begin_inset Formula $P$
+\end_inset
+
+ does not contain any pairs with degree 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+ after 
+\begin_inset Formula $j+1$
+\end_inset
+
+ iteration
+\begin_inset Quotes ers
+\end_inset
+
+s finish.
+ So 
+\begin_inset Formula $d_{j+2}>d_{j+1}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+the other possibility is 
+\begin_inset Formula $d_{j+1}>d_{j}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+In conjunction with non-strict growth this gives 
+\begin_inset Formula $\forall j\,\, d_{j+2}>d_{j}$
+\end_inset
+
+ which proves the claim 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "iterations-d_grow"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Inside 
+\family typewriter
+Reduction
+\family default
+: 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ finiteness
+\end_layout
+
+\begin_layout Claim
+\begin_inset CommandInset label
+LatexCommand label
+name "Every_cycle_iteration_finish"
+
+\end_inset
+
+Every cycle iteration inside 
+\family typewriter
+AlgorithmF5
+\family default
+ does terminate, in particular all calls to 
+\family typewriter
+Reduction
+\family default
+ terminate.
+\end_layout
+
+\begin_layout Proof
+The calls to 
+\family typewriter
+AlgorithmF5
+\family default
+ corresponding to polynomials 
+\begin_inset Formula $f_{2},\dots,f_{m}$
+\end_inset
+
+ are known to terminate, so we will study the only left call of 
+\family typewriter
+AlgorithmF5
+\family default
+ corresponding to processing of input sequence item 
+\begin_inset Formula $f_{1}$
+\end_inset
+
+.
+ Firstly we need to get some facts about polynomials in 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ and 
+\begin_inset Formula $Rule$
+\end_inset
+
+ sets inside 
+\begin_inset Formula $j$
+\end_inset
+
+-th iteration of that call to 
+\family typewriter
+AlgorithmF5
+\family default
+.
+ All the critical pairs created initially by 
+\family typewriter
+CritPair
+\family default
+ inside the 
+\family typewriter
+AlgorithmF5
+\family default
+ have greater S-pair part with signature index 
+\begin_inset Formula $1$
+\end_inset
+
+.
+ All other critical pairs are generated with signature index corresponding
+ to 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ elements moved to 
+\begin_inset Formula $Done$
+\end_inset
+
+ set.
+ All elements of 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ are generated either from critical pairs or in the 
+\family typewriter
+TopReduction
+\family default
+ procedure.
+ The polynomials generated by 
+\family typewriter
+TopReduction
+\family default
+ has signatures greater than the signature of polynomial the function tries
+ to top-reduce which is 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ element.
+ So, there is no place in algorithm flow where a polynomial or critical
+ pair with signature index different from 1 can be generated in the 
+\family typewriter
+AlgorithmF5
+\family default
+ call.
+ From the other hand all polynomials inside 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ has the same total degree 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+.
+ Together with index equality this shows that the total degree of signature
+ monomials is equal to the 
+\begin_inset Formula $d_{j}-\totaldeg(f_{1})$
+\end_inset
+
+ for all 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ elements.
+\end_layout
+
+\begin_layout Proof
+Every addition of polynomial in the 
+\begin_inset Formula $Rule$
+\end_inset
+
+ set correspond to the addition of 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ element.
+ So, the elements added to 
+\begin_inset Formula $Rule$
+\end_inset
+
+ in 
+\begin_inset Formula $j$
+\end_inset
+
+-th iteration have total degree equal to 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+.
+ Combining this with non-strict 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+ growing we get that at 
+\begin_inset Formula $j$
+\end_inset
+
+-th iteration all elements of 
+\begin_inset Formula $Rule$
+\end_inset
+
+ with signature index 1 have total degree 
+\begin_inset Formula $\leqslant d_{j}$
+\end_inset
+
+ and total degree of signature 
+\begin_inset Formula $\leqslant d_{j}-\totaldeg(f_{1})$
+\end_inset
+
+.
+ In addition this gives the fact about order of 
+\begin_inset Formula $Rule$
+\end_inset
+
+ elements with signature index 1: their total degrees are non-strictly increasin
+g.
+\end_layout
+
+\begin_deeper
+\begin_layout Definition
+The reduction of labeled polynomial 
+\begin_inset Formula $r_{k}$
+\end_inset
+
+ with a labeled polynomial 
+\begin_inset Formula $r_{m}$
+\end_inset
+
+ is called 
+\emph on
+signature-safe
+\emph default
+ if 
+\begin_inset Formula $\Sig(r_{k})\succ t\cdot\Sig(r_{m})$
+\end_inset
+
+, where 
+\begin_inset Formula $t=\frac{\HM(r_{k})}{\HM(r_{m})}$
+\end_inset
+
+ is monomial multiplier of reductor.
+ The reductor corresponding to signature-safe reduction is called 
+\emph on
+signature-safe reductor
+\emph default
+.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+The algorithm performs only signature-safe reductions: the 
+\family typewriter
+TopReduction
+\family default
+ function performs reduction by non-rejected reductor if it is signature-safe
+ and adds new element to 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ otherwise.
+ The elements of 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ are processed in signature increasing order, so no elements of 
+\begin_inset Formula $G\cup Done$
+\end_inset
+
+ has signature greater than signature of polynomial 
+\begin_inset Formula $r_{k}$
+\end_inset
+
+ being reduced in 
+\family typewriter
+TopReduction
+\family default
+.
+ If the reductor 
+\begin_inset Formula $r_{m}$
+\end_inset
+
+ has 
+\begin_inset Formula $\totaldeg(r_{m})=\totaldeg(r_{k})$
+\end_inset
+
+ we have 
+\begin_inset Formula $t=1$
+\end_inset
+
+ and 
+\begin_inset Formula $\Sig(r_{k})\succ\Sig(r_{m})$
+\end_inset
+
+ which ensures the signature-safety of such reduction because the case 
+\begin_inset Formula $\Sig(r_{k})=\Sig(r_{m})$
+\end_inset
+
+ would have been rejected by (d) check in 
+\family typewriter
+IsReducible
+\family default
+.
+ So 
+\begin_inset Formula $\Sig(r_{k})\prec t\cdot\Sig(r_{m})$
+\end_inset
+
+ is possible only when 
+\begin_inset Formula $\totaldeg(r_{m})<\totaldeg(r_{k})$
+\end_inset
+
+ and all additions in 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ in 
+\family typewriter
+TopReduction
+\family default
+ correspond to such situation.
+ The signature of polynomial added such way is 
+\begin_inset Formula $t\cdot\Sig(r_{m})$
+\end_inset
+
+ and the fact that 
+\begin_inset Formula $r_{m}$
+\end_inset
+
+ was not rejected by 
+\family typewriter
+Rewritten?
+\family default
+ check in 
+\family typewriter
+IsReducible
+\family default
+ ensures that no polynomial with signature 
+\begin_inset Formula $t\Sig(r_{m})$
+\end_inset
+
+ were generated yet because such polynomial would have rule corresponding
+ to it in 
+\begin_inset Formula $Rule$
+\end_inset
+
+ with greater total degree than rule corresponding to 
+\begin_inset Formula $r_{m}$
+\end_inset
+
+ and 
+\begin_inset Formula $r_{m}$
+\end_inset
+
+ would be rejected in 
+\family typewriter
+IsReducible
+\family default
+.
+ 
+\end_layout
+
+\begin_layout Proof
+We want to show that only possible algorithm non-termination situation correspon
+d to the case of infinite 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+ growth.
+ We showed that non-termination leads to 
+\family typewriter
+AlgorithmF5
+\family default
+ does not return, and that it can
+\begin_inset Quotes ers
+\end_inset
+
+t stuck in iterations with same 
+\begin_inset Formula $d$
+\end_inset
+
+ value.
+ So, the only possibilities left are infinite 
+\begin_inset Formula $d$
+\end_inset
+
+ growth and sticking inside some iteration.
+ We are going to show that such sticking is not possible.
+ The 
+\family typewriter
+AlgorithmF5
+\family default
+ contains 3 cycles:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+for
+\series default
+ cycle inside 
+\family typewriter
+Spol
+\family default
+ does terminate because it
+\begin_inset Quotes ers
+\end_inset
+
+s number of iterations is limited by a count of critical pairs which is
+ fixed at cycle beginning
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+for
+\series default
+ cycle inside 
+\family typewriter
+AlgorithmF5
+\family default
+ iterating over 
+\begin_inset Formula $R_{d}$
+\end_inset
+
+ elements also does terminate because count of 
+\begin_inset Formula $R_{d}$
+\end_inset
+
+ elements is fixed at cycle beginning
+\end_layout
+
+\begin_layout Itemize
+the most complex case is the 
+\series bold
+while
+\series default
+ cycle inside 
+\family typewriter
+Reduction
+\family default
+ which iterates until 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ becomes empty.
+ The 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ set is initially generated by 
+\family typewriter
+Spol
+\family default
+ and then extended by new elements during 
+\family typewriter
+TopReduction
+\family default
+ execution.
+ 
+\family typewriter
+Spol
+\family default
+ generates finite number of elements because it terminates and the 
+\family typewriter
+TopReduction
+\family default
+ adds elements with distinct signatures having index 1 so their number is
+ limited by the count of different signatures of total degree 
+\begin_inset Formula $d_{j}-\totaldeg(f_{1})$
+\end_inset
+
+, so only finite number of elements is added in 
+\begin_inset Formula $ToDo$
+\end_inset
+
+.
+ We will show that all types of steps that perform 
+\family typewriter
+Reduction
+\family default
+ can be performed only finitely number of times:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+the step when 
+\family typewriter
+IsReducible
+\family default
+ returns empty set correspond to transferring 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ element in 
+\begin_inset Formula $Done$
+\end_inset
+
+ and the number of such steps is limited by number of elements added in
+ 
+\begin_inset Formula $ToDo$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+the step when 
+\family typewriter
+IsReducible
+\family default
+ returns reductor which is not signature-safe correspond to adding new element
+ in 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ and the number of such steps is limited by the number of possible additions.
+\end_layout
+
+\begin_layout Itemize
+the step when 
+\family typewriter
+IsReducible
+\family default
+ returns reductor which is signature-safe correspond to reduction of some
+ 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ element.
+ This can be done only finite number of times because there are finitely
+ many polynomials added in 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ and no polynomial can be top-reduced infinite number of times because its
+ 
+\begin_inset Formula $\HM$
+\end_inset
+
+ is 
+\begin_inset Formula $\prec$
+\end_inset
+
+-decreasing during reduction and monomials are well-ordered with 
+\begin_inset Formula $\prec$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Proof
+We got that all of the cycles inside 
+\family typewriter
+AlgorithmF5
+\family default
+ do finish and the claim 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Every_cycle_iteration_finish"
+
+\end_inset
+
+ is proved.
+\end_layout
+
+\begin_layout Standard
+This gives the result about algorithm behavior for the non-terminated case:
+\end_layout
+
+\begin_layout Claim
+\begin_inset CommandInset label
+LatexCommand label
+name "d-does-grow"
+
+\end_inset
+
+If the algorithm does not terminate for some input then the value of 
+\begin_inset Formula $d$
+\end_inset
+
+ infinitely grow during iterations.
+\end_layout
+
+\begin_layout Proof
+Follows from combination of claims 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "iterations-d_grow"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Every_cycle_iteration_finish"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+S-pair-chains
+\end_layout
+
+\begin_layout Standard
+The claim 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "d-does-grow"
+
+\end_inset
+
+ shows that algorithm non termination leads to existence of infinite sequence
+ of nonzero labeled polynomials being added to 
+\begin_inset Formula $G_{i}$
+\end_inset
+
+ and the total degrees of polynomials in the sequence infinitely grow.
+ So, in this case algorithm generates an infinite sequence of labeled polynomial
+s 
+\begin_inset Formula $\left\{ r_{1},r_{2},\ldots,r_{m},\ldots,r_{l},\ldots\right\} $
+\end_inset
+
+ where 
+\begin_inset Formula $r_{1},\ldots,r_{m}$
+\end_inset
+
+ correspond to 
+\begin_inset Formula $m$
+\end_inset
+
+ input polynomials and other elements are generated either in 
+\family typewriter
+Spol
+\family default
+ or in 
+\family typewriter
+TopReduction
+\family default
+.
+ In both cases new element 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+ is formed as S-polynomial of two already existing polynomials already present
+ in the list.
+ We will write 
+\begin_inset Formula $l^{*}$
+\end_inset
+
+ and 
+\begin_inset Formula $l_{*}$
+\end_inset
+
+ for the indexes of the polynomials used to generate 
+\begin_inset Formula $l$
+\end_inset
+
+-th element and 
+\begin_inset Formula $\overline{u_{l}}$
+\end_inset
+
+, 
+\begin_inset Formula $\underline{u_{l}}$
+\end_inset
+
+ for monomials they are multiplied.
+ Note that 
+\begin_inset Formula $l^{*}$
+\end_inset
+
+ correspond to the part with greater signature: 
+\begin_inset Formula $\poly(r_{l})=\overline{u_{l}}\poly(r_{l^{*}})-\underline{u_{l}}\poly(r_{l_{*}})$
+\end_inset
+
+ and 
+\begin_inset Formula $\Sig(r_{l})=\overline{u_{l}}\Sig(r_{l^{*}})\succ\underline{u_{l}}\Sig(r_{l_{*}})$
+\end_inset
+
+.
+ The 
+\begin_inset Formula $\poly(r_{l})$
+\end_inset
+
+ value can further change inside 
+\family typewriter
+TopReduction
+\family default
+ to the polynomial with a smaller 
+\begin_inset Formula $\HM$
+\end_inset
+
+, but the 
+\begin_inset Formula $\Sig(r_{l})$
+\end_inset
+
+ does never change after creation.
+ Now, we want to select an infinite sub-sequence 
+\begin_inset Formula $\left\{ r_{k_{1}},r_{k_{2}},\ldots,r_{k_{n}},\ldots\right\} $
+\end_inset
+
+ in that sequence with the property that 
+\begin_inset Formula $r_{k_{n}}$
+\end_inset
+
+ is an S-polynomial generated by 
+\begin_inset Formula $r_{k_{n-1}}=r_{k_{n}^{*}}$
+\end_inset
+
+ and some other polynomial corresponding to smaller by signature S-pair
+ part, so 
+\begin_inset Formula $\Sig(r_{k_{n}})=\overline{u_{k_{n}}}\Sig(r_{k_{n-1}})$
+\end_inset
+
+ and 
+\begin_inset Formula 
+\begin{equation}
+\Sig(r_{k_{n-1}})|\Sig(r_{k_{n}}).\label{eq:s-pair-chain-def}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+Finite or infinite labeled polynomial sequence which successive elements
+ satisfy property 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:s-pair-chain-def"
+
+\end_inset
+
+ will be called 
+\emph on
+S-pair-chain
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Every generated labeled polynomial 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+ has an finite S-pair-chain ending with that polynomial.
+ This chain can be constructed in reverse direction going from it
+\begin_inset Quotes ers
+\end_inset
+
+s last element 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+ by selecting every step from a given polynomial 
+\begin_inset Formula $r_{n}$
+\end_inset
+
+ a polynomial 
+\begin_inset Formula $r_{n^{*}}$
+\end_inset
+
+ which was used to generate 
+\begin_inset Formula $r_{n}$
+\end_inset
+
+ as 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+S-polynomial
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+.
+ The resulting S-pair-chain has the form 
+\begin_inset Formula $\{r_{q},\ldots,r_{l^{**}},r_{l^{*}},r_{l}\}$
+\end_inset
+
+ where all polynomials has the same signature index 
+\begin_inset Formula $q=\sigidx(r_{l})$
+\end_inset
+
+ and the first element is the input polynomial of that index.
+\end_layout
+
+\begin_layout Standard
+The first fact about S-pair-chains is based on the rewritten criteria and
+ consists in the following theorem.
+\end_layout
+
+\begin_layout Theorem
+Every labeled S-polynomial can participate as the first element only in
+ finite number of S-pair-chains of length 2.
+\end_layout
+
+\begin_layout Proof
+The 
+\family typewriter
+AlgorithmF5
+\family default
+ computes S-polynomials in 2 places: in procedure 
+\family typewriter
+SPol
+\family default
+ and in the procedure 
+\family typewriter
+TopReduction
+\family default
+.
+ It
+\begin_inset Quotes ers
+\end_inset
+
+s important that in both places the 
+\family typewriter
+Rewritten?
+\family default
+ check for the part of S-polynomial with greater signature is performed
+ just before the S-polynomial is constructed.
+ In the first case the 
+\family typewriter
+SPol
+\family default
+ is checking that itself, in the 
+\family typewriter
+TopReduction
+\family default
+ the check is in the 
+\family typewriter
+IsReducible
+\family default
+ procedure.
+ And in both cases the computed S-polynomial is immediately added to the
+ 
+\begin_inset Formula $Rule$
+\end_inset
+
+ list as the newest element.
+ So, at the moment of the construction of S-polynomial with signature 
+\begin_inset Formula $s$
+\end_inset
+
+ we can assert that the higher part of S-pair correspond to the newest rule
+ with signature dividing 
+\begin_inset Formula $s$
+\end_inset
+
+ -- this part even may be determined by 
+\begin_inset Formula $Rule$
+\end_inset
+
+ list and 
+\begin_inset Formula $s$
+\end_inset
+
+ without knowing anything other about computation.
+\end_layout
+
+\begin_layout Proof
+Consider arbitrary labeled polynomial 
+\begin_inset Formula $r_{L}$
+\end_inset
+
+ with signature 
+\begin_inset Formula $\Sig(r_{L})=s$
+\end_inset
+
+ and an ordered by generating time subset 
+\begin_inset Formula $\{r_{l_{1}},\ldots,r_{l_{i}},\ldots\}$
+\end_inset
+
+ of labeled polynomials with signatures satisfying 
+\begin_inset Formula $\Sig(r_{l_{i}})=v_{i}\Sig(r_{L})$
+\end_inset
+
+.
+ From the signature divisibility point of view all of the possibly infinite
+ number of pairs 
+\begin_inset Formula $\{r_{L},r_{l_{i}}\}$
+\end_inset
+
+ can be S-pair-chains of length 2.
+ But the ideal 
+\begin_inset Formula $\left(v_{i}\right)$
+\end_inset
+
+ in 
+\begin_inset Formula $T$
+\end_inset
+
+ is finitely generated by Dickson
+\begin_inset Quotes ers
+\end_inset
+
+s lemma, so after some step 
+\begin_inset Formula $i_{0}$
+\end_inset
+
+ we have 
+\begin_inset Formula $\forall i>i_{0}\,\exists j\leqslant i_{0}$
+\end_inset
+
+ such that 
+\begin_inset Formula $v_{j}|v_{i}$
+\end_inset
+
+.
+ So 
+\begin_inset Formula $\forall i>i_{0}$
+\end_inset
+
+ the sequence 
+\begin_inset Formula $\{r_{L},r_{l_{i}}\}$
+\end_inset
+
+ is not S-pair-chain because 
+\begin_inset Formula $\Sig(r_{L})\cdot v_{i}$
+\end_inset
+
+ is rewritten by 
+\begin_inset Formula $\Sig(r_{l_{j}})\cdot\frac{v_{i}}{v_{j}}$
+\end_inset
+
+ and no more than 
+\begin_inset Formula $i_{0}$
+\end_inset
+
+ S-pair-chains of length 2 with first element 
+\begin_inset Formula $r_{L}$
+\end_inset
+
+ exist.
+\end_layout
+
+\begin_layout Definition
+The finite set of ends of 2-length S-pair-chains starting with 
+\begin_inset Formula $r_{L}$
+\end_inset
+
+ will be called 
+\emph on
+S-pair-descendants
+\emph default
+ of 
+\begin_inset Formula $r_{L}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Theorem
+If the algorithm does not terminate for some input then there exists infinite
+ S-pair-chain 
+\begin_inset Formula $\{h_{i}\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Some caution is required while dealing with infinities, so we give the following
+ definition.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Definition
+The labeled polynomial 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+ is called 
+\emph on
+chain generator
+\emph default
+ if there exist infinite number of different finite S-pair-chains starting
+ with 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+If the algorithm does not terminate the input labeled polynomial 
+\begin_inset Formula $r_{1}=(f_{1},1F_{1})$
+\end_inset
+
+ is chain generator because every labeled polynomial 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+ generated in the last non-terminating call to 
+\family typewriter
+AlgorithmF5
+\family default
+ has signature index 1 so there is an S-pair-chain 
+\begin_inset Formula $\{r_{1},\ldots,r_{l^{**}},r_{l^{*}},r_{l}\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Now assume that some labeled polynomial 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+ is known to be a chain generator.
+ Then one of the finite number of S-pair-descendants of 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+ need to be a chain generator too, because in the other case the number
+ of different chains of length greater than 2 coming from 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+ was limited by a finite sum of the finite counts of chains coming from
+ every S-pair-descendant, and the finite number of length 2 chains coming
+ from 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+.
+ So, if labeled polynomial 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+ is chain-generator, we can select another chain generator from it
+\begin_inset Quotes ers
+\end_inset
+
+s S-pair-descendants.
+ In a such way we can find infinite S-pair-chain starting with 
+\begin_inset Formula $r_{1}$
+\end_inset
+
+ and consisting of chain generators which proves the theorem.
+\end_layout
+
+\begin_layout Standard
+For the next theorem we need to introduce monomial quotients order by transitive
+ly extending the monomial ordering: 
+\begin_inset Formula $\frac{m_{1}}{m_{2}}>_{q}\frac{m_{3}}{m_{4}}\Leftrightarrow m_{1}m_{4}>m_{3}m_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:f_g_3_props"
+
+\end_inset
+
+If the algorithm does not terminate for some input then after some finite
+ step the set 
+\begin_inset Formula $G$
+\end_inset
+
+ contains a pair of labeled polynomials 
+\begin_inset Formula $f',f$
+\end_inset
+
+ with 
+\begin_inset Formula $f$
+\end_inset
+
+ generated after 
+\begin_inset Formula $f'$
+\end_inset
+
+ that satisfies the following 3 properties:
+\end_layout
+
+\begin_layout Theorem
+\begin_inset Formula 
+\[
+\HM(f')|\HM(f),
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+\begin_inset Formula 
+\[
+\frac{\HM(f')}{\Sig(f')}>_{q}\frac{\HM(f)}{\Sig(f)},
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+\begin_inset Formula 
+\[
+\Sig(f')|\Sig(f).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+For working with S-pair-chains it is important that the polynomial can never
+ reduce after it was used for S-pair generation as higher S-pair part.
+ That
+\begin_inset Quotes ers
+\end_inset
+
+s true because all polynomials that potentially can reduce are stored in
+ set 
+\begin_inset Formula $ToDo$
+\end_inset
+
+, but all polynomials that are used as higher S-pair part are stored in
+ 
+\begin_inset Formula $G$
+\end_inset
+
+ or in 
+\begin_inset Formula $Done$
+\end_inset
+
+.
+ So we may state that the polynomial 
+\begin_inset Formula $h_{n}$
+\end_inset
+
+ preceding polynomial 
+\begin_inset Formula $h_{n+1}$
+\end_inset
+
+ in the S-pair-chain keeps the same 
+\begin_inset Formula $\poly(h_{n})$
+\end_inset
+
+ value after it was used for some S-pair generation and we can state that
+\begin_inset Formula 
+\[
+\poly(h_{n+1})=c\frac{\Sig(h_{n+1})}{\Sig(h_{n})}\poly(h_{n})+g_{n},
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $g_{n}$
+\end_inset
+
+ is the polynomial corresponding to smaller part of S-pair used to generate
+ 
+\begin_inset Formula $h_{n+1}$
+\end_inset
+
+ from 
+\begin_inset Formula $h_{n}$
+\end_inset
+
+ and satisfy:
+\begin_inset Formula 
+\begin{equation}
+\HM(h_{n+1})<\HM\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)=\HM(g_{n}),\,\Sig(h_{n+1})=\Sig\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)\succ\Sig(g_{n}).\label{eq:spair-chain}
+\end{equation}
+
+\end_inset
+
+From the first inequality in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:spair-chain"
+
+\end_inset
+
+ we can get 
+\begin_inset Formula $\frac{\HM(h_{n})}{\Sig(h_{n})}>_{q}\frac{\HM(h_{n+1})}{\Sig(h_{n+1})}$
+\end_inset
+
+, so in the S-pair-chain the quotients 
+\begin_inset Formula $\frac{\HM(h_{i})}{\Sig(h_{i})}$
+\end_inset
+
+ are strictly descending according to quotients ordering.
+ This fact can
+\begin_inset Quotes ers
+\end_inset
+
+t be used directly to show chains finiteness because unlike the ordering
+ of monomials the ordering of monomial quotients is not well ordering --
+ for example the sequence 
+\begin_inset Formula $\frac{x}{x}>_{q}\frac{x}{x^{2}}>_{q}\cdots>_{q}\frac{x}{x^{n}}>_{q}\cdots$
+\end_inset
+
+ is infinitely decreasing.
+\end_layout
+
+\begin_layout Proof
+There is two possible cases for relation between 
+\begin_inset Formula $\HM$
+\end_inset
+
+
+\begin_inset Quotes ers
+\end_inset
+
+s of consecutive elements.
+ We have 
+\begin_inset Formula $\Sig(h_{n})|\Sig(h_{n+1})$
+\end_inset
+
+, so they either have equal signatures or 
+\begin_inset Formula $\totaldeg(h_{n})<\totaldeg(h_{n+1})$
+\end_inset
+
+.
+ For the first case 
+\begin_inset Formula $\HM(h_{n+1})<\HM(h_{n})$
+\end_inset
+
+ with the equal total degrees for the other case 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\HM(h_{n+1})>\HM(h_{n})$
+\end_inset
+
+ because total degrees of 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $\HM$
+\end_inset
+
+
+\begin_inset Quotes ers
+\end_inset
+
+s
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ are different.
+ So the sequence of 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+infinite S-pair-chain 
+\begin_inset Formula $\HM$
+\end_inset
+
+
+\begin_inset Quotes ers
+\end_inset
+
+s
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+consists of blocks with fixed total degrees where 
+\begin_inset Formula $\HM$
+\end_inset
+
+
+\begin_inset Quotes ers
+\end_inset
+
+s inside a block are strictly decreasing.
+ Block lengths can be equal to one and the total degree of blocks are increasing.
+ This leads to the following properties: S-pair-chain 
+\begin_inset Formula $\{h_{i}\}$
+\end_inset
+
+ can
+\begin_inset Quotes ers
+\end_inset
+
+t contain elements with equal 
+\begin_inset Formula $\HM$
+\end_inset
+
+
+\begin_inset Quotes ers
+\end_inset
+
+s and 
+\begin_inset Formula $\HM(h_{i})|\HM(h_{j})$
+\end_inset
+
+ is possible only for 
+\begin_inset Formula $i<j$
+\end_inset
+
+ and 
+\begin_inset Formula $\totaldeg(h_{i})<\totaldeg(h_{j})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+This allows us to use technique analogous to Proposition 14 from 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "TheF5Revised"
+
+\end_inset
+
+: consider 
+\begin_inset Formula $\HM$
+\end_inset
+
+
+\begin_inset Quotes ers
+\end_inset
+
+s of infinite S-pair-chain 
+\begin_inset Formula $\{h_{i}\}$
+\end_inset
+
+.
+ They form an infinite sequence in 
+\begin_inset Formula $T$
+\end_inset
+
+, so by Dickson
+\begin_inset Quotes ers
+\end_inset
+
+s lemma there exists 2 polynomials in sequence with 
+\begin_inset Formula $\HM(h_{i})|\HM(h_{j})$
+\end_inset
+
+.
+ Therefore from the previous paragraph we have 
+\begin_inset Formula $i<j$
+\end_inset
+
+ and with the S-pair-chain properties we get 
+\begin_inset Formula $\Sig(h_{i})|\Sig(h_{i+1})|\cdots|\Sig(h_{j})$
+\end_inset
+
+ and 
+\begin_inset Formula $\frac{\HM(h_{i})}{\Sig(h_{i})}>_{q}\frac{\HM(h_{i+1})}{\Sig(h_{i+1})}>_{q}\cdots>_{q}\frac{\HM(h_{j})}{\Sig(h_{j})}$
+\end_inset
+
+, so we take 
+\begin_inset Formula $f'=h_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $f=h_{j}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The last property about signature division from the theorem claim is the
+ consequence of dealing with S-pair-chains and is not used in the following.
+ But the first two properties are used to construct a signature-safe reductor.
+\end_layout
+
+\begin_layout Fact
+If no polynomials are rejected by criteria checks (b) and (c) inside 
+\family typewriter
+IsReducible
+\family default
+ the algorithm does terminate.
+\end_layout
+
+\begin_layout Proof
+The above proof of theorem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:f_g_3_props"
+
+\end_inset
+
+ does not rely on any correspondence between orderings on signatures and
+ terms.
+ But the original F5 algorithm uses the same ordering for both cases and
+ now we utilize this fact and make a transition from one to other to get
+ relation on signatures for polynomials from theorem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:f_g_3_props"
+
+\end_inset
+
+ claim: 
+\begin_inset Formula 
+\[
+\Sig(g)\succ t\cdot\Sig(f),\mbox{ where }t=\frac{\HM(g)}{\HM(f)}\in T.
+\]
+
+\end_inset
+
+The last inequality with 
+\begin_inset Formula $\HM$
+\end_inset
+
+
+\begin_inset Quotes ers
+\end_inset
+
+s division property from theorems result shows that 
+\begin_inset Formula $tf$
+\end_inset
+
+ can be used as a reductor for 
+\begin_inset Formula $g$
+\end_inset
+
+ in 
+\family typewriter
+TopReduction
+\family default
+ from the signature point of view -- i.e.
+ it satisfy checks (a) and (d) inside 
+\family typewriter
+IsReducible
+\family default
+ and it
+\begin_inset Quotes ers
+\end_inset
+
+s signature is smaller.
+ In the absence of criteria checks (b) and (c) this would directly lead
+ to contradiction because at the time 
+\begin_inset Formula $g$
+\end_inset
+
+ was added to the set 
+\begin_inset Formula $G$
+\end_inset
+
+ labeled polynomial 
+\begin_inset Formula $f$
+\end_inset
+
+ already had been there, so the 
+\family typewriter
+TopReduction
+\family default
+ should had reduced 
+\begin_inset Formula $g$
+\end_inset
+
+ by 
+\begin_inset Formula $f$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+But the existence of criteria allow the situation in which 
+\begin_inset Formula $tf$
+\end_inset
+
+ is rejected by criteria checks in (b) or (c) inside 
+\family typewriter
+IsReducible
+\family default
+.
+ The idea is to show that even in this case there can be found another possible
+ reductor for 
+\begin_inset Formula $g$
+\end_inset
+
+ that is not rejected and anyway lead to contradiction and the following
+ parts of paper aim to prove it.
+\end_layout
+
+\begin_layout Section
+S-pairs with signatures smaller than 
+\begin_inset Formula $\Sig(g)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In this and following sections 
+\begin_inset Formula $g$
+\end_inset
+
+ is treated as some fixed labeled polynomial with signature index 1 added
+ to 
+\begin_inset Formula $Done$
+\end_inset
+
+ in some algorithm iteration.
+ Let us work with algorithm state just before adding 
+\begin_inset Formula $g$
+\end_inset
+
+ to 
+\begin_inset Formula $Done$
+\end_inset
+
+ during call to 
+\family typewriter
+AlgorithmF5
+\family default
+ with 
+\begin_inset Formula $i=1$
+\end_inset
+
+.
+ Consider a finite set 
+\begin_inset Formula $G_{1}\cup Done$
+\end_inset
+
+ of labeled polynomials at that moment.
+ This set contains positions of labeled polynomials in 
+\begin_inset Formula $R$
+\end_inset
+
+, so it
+\begin_inset Quotes ers
+\end_inset
+
+s elements can be ordered according to position in 
+\begin_inset Formula $R$
+\end_inset
+
+ and written as an ordered integer sequence 
+\begin_inset Formula $G_{g}=\{b_{1},\ldots,b_{N}\}$
+\end_inset
+
+ with 
+\begin_inset Formula $b_{j}<b_{j+1}$
+\end_inset
+
+.
+ It should be noted that this order does correspond to the order of labeled
+ polynomials in the sequence produced by concatenated rule arrays 
+\begin_inset Formula $Rule[m]:Rule[m-1]:\cdots:Rule[1]$
+\end_inset
+
+ because addition of new polynomial to 
+\begin_inset Formula $R$
+\end_inset
+
+ is always followed by addition of corresponding rule.
+ But this order may differ from the order polynomials were added to 
+\begin_inset Formula $G_{1}\cup Done$
+\end_inset
+
+ because polynomials with same total degree are added to 
+\begin_inset Formula $Done$
+\end_inset
+
+ in the increasing signature order, while the addition polynomials with
+ same total degree to 
+\begin_inset Formula $R$
+\end_inset
+
+ is performed in quite random order inside 
+\family typewriter
+Spol
+\family default
+ and 
+\family typewriter
+TopReduction
+\family default
+ procedures.
+ For the simplicity we will be speaking about labeled polynomials 
+\begin_inset Formula $b_{j}$
+\end_inset
+
+ from 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+, assuming that 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ is not the ordered positions list but the ordered list of labeled polynomials
+ themselves corresponding to those positions.
+ In this terminology we can say that all input polynomials 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} $
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ do present in 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+, because they all present in 
+\begin_inset Formula $G_{1}$
+\end_inset
+
+ at the moment of its creation.
+\end_layout
+
+\begin_layout Standard
+S-pairs can be processed in a different ways inside the algorithm but the
+ main fact we need to know about their processing is encapsulated in the
+ following properties which correspond to the properties used in Theorem
+ 21 in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5C"
+
+\end_inset
+
+ but are taken during arbitrary algorithm iteration without requirements
+ of termination.
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:Exist-gg-repr"
+
+\end_inset
+
+At the moment of adding 
+\begin_inset Formula $g$
+\end_inset
+
+ to 
+\begin_inset Formula $Done$
+\end_inset
+
+ every S-pair of 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ elements which signature is smaller than 
+\begin_inset Formula $\Sig(g)$
+\end_inset
+
+ satisfies one of three properties:
+\end_layout
+
+\begin_layout Enumerate
+S-pair has a part that is rejected by the normal form check 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ (in 
+\family typewriter
+CritPair
+\family default
+ or in 
+\family typewriter
+IsReducible
+\family default
+).
+ Such S-pairs will be referenced as 
+\emph on
+S-pairs with a part that satisfies F5 criterion
+\emph default
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+S-pair has a part that is rejected by the 
+\family typewriter
+Rewritten?
+\family default
+ check (in 
+\family typewriter
+SPol
+\family default
+ or in 
+\family typewriter
+IsReducible
+\family default
+).
+ Such S-pairs will be referenced as 
+\emph on
+S-pairs with a part that satisfies Rewritten criterion
+\emph default
+.
+\end_layout
+
+\begin_layout Enumerate
+S-pair was not rejected, so it
+\begin_inset Quotes ers
+\end_inset
+
+s S-polynomial was signature-safe reduced by 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ elements and the result is stored in 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+.
+ Such S-pairs will be referenced as 
+\emph on
+S-pairs with a computed 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representation
+\emph default
+.
+\end_layout
+
+\begin_layout Proof
+S-pairs of 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ elements are processed in two paths in the algorithm.
+ The main path is for S-pairs with total degree greater than total degrees
+ of polynomials generated it.
+ Such S-pairs are processed in the following order:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+in the 
+\family typewriter
+AlgorithmF5
+\family default
+ they are passed in 
+\family typewriter
+CritPair
+\family default
+ function while moving elements to 
+\begin_inset Formula $G_{i}$
+\end_inset
+
+ from 
+\begin_inset Formula $R_{d}=Done$
+\end_inset
+
+ or while processing input polynomial 
+\begin_inset Formula $r_{i}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+The 
+\family typewriter
+CritPair
+\family default
+ function either discards them by normal form check 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ or adds to 
+\begin_inset Formula $P$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The S-pair is taken from 
+\begin_inset Formula $P$
+\end_inset
+
+ and passed to 
+\family typewriter
+SPol
+\family default
+ function
+\end_layout
+
+\begin_layout Itemize
+The 
+\family typewriter
+SPol
+\family default
+ function either discards them by 
+\family typewriter
+Rewritten?
+\family default
+ check or adds S-polynomial to 
+\begin_inset Formula $F=ToDo$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+At some iteration the 
+\family typewriter
+Reduction
+\family default
+ procedure takes S-polynomial from 
+\begin_inset Formula $ToDo$
+\end_inset
+
+, performs some signature-safe reductions and adds result to 
+\begin_inset Formula $Done$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+The other processing path is for special S-pairs corresponding to reductions
+ forbidden by algorithm -- the case when S-pair is generated by polynomials
+ 
+\begin_inset Formula $r_{l^{*}}$
+\end_inset
+
+ and 
+\begin_inset Formula $r_{l_{*}}$
+\end_inset
+
+ such that 
+\begin_inset Formula $\HM(r_{l^{*}})|\HM(r_{l_{*}})$
+\end_inset
+
+ so that S-polynomial has a form 
+\begin_inset Formula $\overline{u_{l}}\cdot\poly(r_{l^{*}})-1\cdot\poly(r_{l_{*}})$
+\end_inset
+
+.
+ Such situation is possible for two 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ elements if reduction of 
+\begin_inset Formula $r_{l_{*}}$
+\end_inset
+
+ by 
+\begin_inset Formula $r_{l^{*}}$
+\end_inset
+
+ was forbidden by signature comparison in 
+\family typewriter
+TopReduction
+\family default
+ or by checks in 
+\family typewriter
+IsReducible
+\family default
+.
+ So for this case the path of S-pair 
+\begin_inset Quotes eld
+\end_inset
+
+processing
+\begin_inset Quotes erd
+\end_inset
+
+ is the following:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The S-pair part 
+\begin_inset Formula $\overline{u_{l}}\cdot r_{l^{*}}$
+\end_inset
+
+ is checked in 
+\family typewriter
+IsReducible
+\family default
+.
+ (a) is satisfied because 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\HM(r_{l^{*}})|\HM(r_{l_{*}})$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+.
+ It can be rejected by one of the other checks:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Rejection by check (b) correspond to the normal form check 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ for 
+\begin_inset Formula $\overline{u_{l}}\cdot r_{l^{*}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Rejection by check (c) correspond to the 
+\family typewriter
+Rewritten?
+\family default
+ check for 
+\begin_inset Formula $\overline{u_{l}}\cdot r_{l^{*}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Rejection by check (d) means that either 
+\begin_inset Formula $\overline{u_{l}}\cdot r_{l^{*}}$
+\end_inset
+
+ or 
+\begin_inset Formula $1\cdot r_{l_{*}}$
+\end_inset
+
+ can be rewritten by other, so if S-pair was not rejected by check (c) this
+ type of rejection means that S-pair part 
+\begin_inset Formula $1\cdot r_{i_{1}}$
+\end_inset
+
+ fails to pass 
+\family typewriter
+Rewritten?
+\family default
+ check.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+The non-rejected in 
+\family typewriter
+IsReducible
+\family default
+ S-pair is returned in the 
+\family typewriter
+TopReduction
+\family default
+.
+ 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Signature comparison in 
+\family typewriter
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+TopReduction
+\family default
+ forbids the reduction of 
+\begin_inset Formula $r_{l_{*}}$
+\end_inset
+
+ by 
+\begin_inset Formula $r_{l^{*}}$
+\end_inset
+
+ and returns computed S-polynomial corresponding to the S-pair in the set
+ 
+\begin_inset Formula $ToDo_{1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The 
+\family typewriter
+Reduction
+\family default
+ procedure add this polynomial in 
+\begin_inset Formula $ToDo$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The last step is equal to for both processing paths: at some iteration the
+ 
+\family typewriter
+Reduction
+\family default
+ procedure takes S-polynomial from 
+\begin_inset Formula $ToDo$
+\end_inset
+
+, performs some signature-safe reductions and adds result to 
+\begin_inset Formula $Done$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+It can be seen that after S-pair processing termination every S-pair is
+ either reduced and added to 
+\begin_inset Formula $Done$
+\end_inset
+
+ or one of its S-pair parts is rejected by normal form 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ or 
+\family typewriter
+Rewritten?
+\family default
+ check.
+ Some S-pairs can be processed by processing paths multiple times, for example
+ this is done in the second iteration inside 
+\family typewriter
+AlgorithmF5
+\family default
+ with same 
+\begin_inset Formula $d$
+\end_inset
+
+ value.
+ If the pair was rejected during first processing it will be rejected the
+ same way during next attempt.
+ If the first time processing adds polynomial to 
+\begin_inset Formula $Done$
+\end_inset
+
+ the pair will be rejected in next attempts by 
+\family typewriter
+the Rewritten?
+\family default
+ check with that polynomial.
+ So all but the first processing attempts are insignificant.
+\end_layout
+
+\begin_layout Proof
+The processing path is not a single procedure and for the case of algorithm
+ infinite cycling some S-pairs are always staying in the middle of the path
+ having S-pair queued in 
+\begin_inset Formula $P$
+\end_inset
+
+ or S-polynomial in 
+\begin_inset Formula $ToDo$
+\end_inset
+
+.
+ So we have to select S-pairs which processing is already finished at the
+ fixed moment we studying.
+ The elements from 
+\begin_inset Formula $P$
+\end_inset
+
+ and 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ in 
+\family typewriter
+AlgorithmF5
+\family default
+ and 
+\family typewriter
+Reduction
+\family default
+ procedures are taken in the order corresponding to growth of their signatures.
+ So S-pairs with signature smaller than 
+\begin_inset Formula $\Sig(g)$
+\end_inset
+
+ can be split in the following classes:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+S-pairs with signature 
+\begin_inset Formula $w$
+\end_inset
+
+ such that 
+\begin_inset Formula $\sigidx(w)>\sigidx(\Sig(g))=1$
+\end_inset
+
+.
+ They were processed on previous calls of 
+\family typewriter
+AlgorithmF5
+\family default
+.
+\end_layout
+
+\begin_layout Itemize
+S-pairs with signature 
+\begin_inset Formula $w$
+\end_inset
+
+ such that 
+\begin_inset Formula $\sigidx(w)=\sigidx(\Sig(g))=1,\totaldeg(w)<\totaldeg(\Sig(g))$
+\end_inset
+
+.
+ They were processed on previous iterations inside the call to 
+\family typewriter
+AlgorithmF5
+\family default
+ that is processing 
+\begin_inset Formula $g$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+S-pairs with signature 
+\begin_inset Formula $w$
+\end_inset
+
+ such that 
+\begin_inset Formula $\sigidx(w)=\sigidx(\Sig(g))=1,\totaldeg(w)=\totaldeg(\Sig(g)),w\prec\Sig(g)$
+\end_inset
+
+.
+ They were processed on previous iterations inside the call to Reduce that
+ is processing 
+\begin_inset Formula $g$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+S-pairs from these classes can
+\begin_inset Quotes ers
+\end_inset
+
+t be at the middle of processing path because at the studied state of algorithm
+ the processing is just finished for 
+\begin_inset Formula $g$
+\end_inset
+
+ so 
+\begin_inset Formula $P$
+\end_inset
+
+ and 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ sets does not contain any non-processed elements with signatures smaller
+ 
+\begin_inset Formula $\Sig(g)$
+\end_inset
+
+.
+ The only left thing to show is proof that processing was started at least
+ one time for all S-pairs from theorem claim.
+ This is true for first two classes: the processing of corresponding S-pairs
+ was started at least one time with the call to 
+\family typewriter
+CritPair
+\family default
+ inside 
+\family typewriter
+AlgorithmF5
+\family default
+ just before the greatest of S-pair generators was added to 
+\begin_inset Formula $G$
+\end_inset
+
+.
+ For S-pairs of third class the situation depend on the total degrees of
+ its generators.
+ If both generators of S-pair have total degrees 
+\begin_inset Formula $<\totaldeg(g)$
+\end_inset
+
+ then its processing is started in 
+\family typewriter
+CritPair
+\family default
+ like for the S-pairs from first two classes.
+ But some S-pairs from the third class can have a signature-greater generator
+ polynomial 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+ such that 
+\begin_inset Formula $\totaldeg(r_{l})=\totaldeg(g),\,\Sig(r_{l})\prec\Sig(g)$
+\end_inset
+
+.
+ They are processed with the second mentioned processing path so the processing
+ for such S-pairs is not yet started at the beginning of last 
+\family typewriter
+Reduction
+\family default
+ call.
+ Fortunately, their processing starts inside 
+\family typewriter
+Reduction
+\family default
+ before fixed moment we studying: the procedure selects polynomials from
+ 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ in the signature increasing order, so 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+ is reduced before 
+\begin_inset Formula $g$
+\end_inset
+
+ and during 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+ reduction just before putting 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+ to 
+\begin_inset Formula $Done$
+\end_inset
+
+ a call to 
+\family typewriter
+IsReducible
+\family default
+ starts processing for all such S-pairs.
+\end_layout
+
+\begin_layout Standard
+The ideas of 
+\emph on
+satisfying F5 criterion 
+\emph default
+and 
+\emph on
+satisfying Rewritten criterion
+\emph default
+ can be extended to arbitrary monomial-multiplied labeled polynomial 
+\begin_inset Formula $sh,\, h\in G_{g}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Definition
+The monomial-multiplied labeled polynomial 
+\begin_inset Formula $sr_{i},\, r_{i}\in G_{g}$
+\end_inset
+
+ is called 
+\emph on
+satisfying F5 criterion
+\emph default
+ if 
+\begin_inset Formula $\varphi_{index(r_{i})+1}(s\Sig(r_{i}))\ne s\Sig(r_{i})$
+\end_inset
+
+, where 
+\begin_inset Formula $\varphi_{index(r_{i})+1}$
+\end_inset
+
+ is operator of normal form w.r.t 
+\begin_inset Formula $G_{index(r_{i})+1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+This definition is equivalent to 
+\begin_inset Formula $sr_{i}$
+\end_inset
+
+ being non-normalized labeled polynomial according to definition 2 in part
+ 5 of 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+The monomial-multiplied labeled polynomial 
+\begin_inset Formula $sr_{i},\, r_{i}\in G_{g}$
+\end_inset
+
+ is called 
+\emph on
+satisfying Rewritten criterion
+\emph default
+ if 
+\begin_inset Formula $\exists j>i$
+\end_inset
+
+ such that 
+\begin_inset Formula $\Sig(r_{j})|s\Sig(r_{i})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+For the case 
+\begin_inset Formula $sr_{i}$
+\end_inset
+
+ is the S-pair part these definitions are equivalent to the checks in the
+ algorithm in a sense that S-pair part is rejected by the algorithm if and
+ only if it satisfies the definition as monomial-multiplied labeled polynomial.
+ Note that for both criteria holds important property that if 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $sr_{i}$
+\end_inset
+
+ satisfies a criteria then a further multiplied 
+\begin_inset Formula $s_{1}sr_{i}$
+\end_inset
+
+ 
+\begin_inset Formula $ $
+\end_inset
+
+satisfies it too.
+\end_layout
+
+\begin_layout Section
+Representations
+\end_layout
+
+\begin_layout Subsection
+Definition
+\end_layout
+
+\begin_layout Standard
+The idea of representations comes from 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5C"
+
+\end_inset
+
+, where a similar method is used in the proof of Theorem 21.
+ Representations are used to describe all possible ways how a labeled polynomial
+ 
+\begin_inset Formula $p$
+\end_inset
+
+ can be written as an element of 
+\begin_inset Formula $\left(G_{g}\right)$
+\end_inset
+
+ ideal.
+ The single representation corresponds to writing a labeled polynomial 
+\begin_inset Formula $p$
+\end_inset
+
+ as any finite sum of the form
+\begin_inset Formula 
+\begin{equation}
+p=\sum_{k}m_{k}\cdot b_{i_{k}},\; b_{i_{k}}\in G_{g}\label{eq:Gg-repr-def}
+\end{equation}
+
+\end_inset
+
+with coefficients 
+\begin_inset Formula $m_{k}=c_{k}t_{k}\in\mathcal{K}\times T$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Definition
+Sum of the form 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Gg-repr-def"
+
+\end_inset
+
+ with all pairs 
+\begin_inset Formula $\left(t_{k},b_{i_{k}}\right)$
+\end_inset
+
+ distinct is called 
+\emph on
+
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representation
+\emph default
+ of 
+\begin_inset Formula $p$
+\end_inset
+
+.
+ The symbolic products 
+\begin_inset Formula $m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+ are called the 
+\emph on
+elements
+\emph default
+ of representation.
+ If we treat this symbolic product as multiplication we get an labeled polynomia
+l 
+\begin_inset Formula $m_{k}b_{i_{k}}$
+\end_inset
+
+ corresponding to the representation element.
+ So 
+\begin_inset Formula $p$
+\end_inset
+
+ is equal to sum of labeled polynomials, corresponding to elements of its
+ representation.
+ Also the term 
+\emph on
+element signature
+\emph default
+ will be used for signature of labeled polynomials corresponding to the
+ element.
+ Two representations are equal if the sets of their elements are equal.
+\end_layout
+
+\begin_layout Standard
+Most representations we are interested in have the following additional
+ property limiting elements signature:
+\end_layout
+
+\begin_layout Definition
+The 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representation of 
+\begin_inset Formula $p$
+\end_inset
+
+ is called 
+\emph on
+signature-safe
+\emph default
+ if 
+\begin_inset Formula $\forall k\,\Sig(m_{k}b_{i_{k}})\preccurlyeq\Sig(p)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Examples
+\end_layout
+
+\begin_layout Example
+The first important example of a 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representation is trivial: the labeled polynomial from 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ is equal to sum of one element, identity-multiplied itself: 
+\begin_inset Formula 
+\[
+b_{j}=1\cdot b_{j}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representation is signature-safe.
+ The prohibition of two elements which have same monomial 
+\begin_inset Formula $t_{k}$
+\end_inset
+
+ and polynomial 
+\begin_inset Formula $b_{i_{k}}$
+\end_inset
+
+ ensures that all elements of representation that differ only in field coefficie
+nt 
+\begin_inset Formula $c_{k}$
+\end_inset
+
+ are combined together by summing field coefficients.
+ So expressions like 
+\begin_inset Formula $b_{j}=-1\cdot b_{j}+2\cdot b_{j}$
+\end_inset
+
+ and 
+\begin_inset Formula $b_{j}=2x\cdot b_{k}+1\cdot b_{j}-2x\cdot b_{k}$
+\end_inset
+
+ are not valid 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representations.
+\end_layout
+
+\begin_layout Example
+A labeled polynomial 
+\begin_inset Formula $b_{j}\in G_{g}$
+\end_inset
+
+ multiplied by arbitrary polynomial 
+\begin_inset Formula $h$
+\end_inset
+
+ also have a simple 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representation arising from splitting 
+\begin_inset Formula $h$
+\end_inset
+
+ into terms: 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $h=\sum_{k}m_{k},\, m_{k}\in\mathcal{K}\times T$
+\end_inset
+
+.
+ This 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representation has form 
+\begin_inset Formula 
+\begin{equation}
+b_{j}h=\sum_{k}m_{k}\cdot b_{j}\label{eq:repr-ex-2}
+\end{equation}
+
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+and is signature-safe too.
+\end_layout
+
+\begin_layout Standard
+A labeled polynomial can have arbitrary number of representations: for example
+ we can add elements corresponding to a syzygy to any representation and
+ combine elements with identical monomials and polynomials to get the correct
+ representation.
+ The result will be representation of the same polynomial because sum of
+ syzygy elements is equal to 0.
+\end_layout
+
+\begin_layout Example
+The product of two polynomial from 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ has two representations of the form (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:repr-ex-2"
+
+\end_inset
+
+) which differs in syzygy addition:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+b_{j}b_{i}=\sum_{k}m_{i_{k}}\cdot b_{j}=\sum_{k}m_{i_{k}}\cdot b_{j}+0=\sum_{k}m_{i_{k}}\cdot b_{j}+\left(\sum_{k}m_{j_{k}}\cdot b_{i}-\sum_{k}m_{i_{k}}\cdot b_{j}\right)=\sum_{k}m_{j_{k}}\cdot b_{i},
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $m_{i_{k}}$
+\end_inset
+
+ are terms of 
+\begin_inset Formula $b_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $m_{j_{k}}$
+\end_inset
+
+ are terms of 
+\begin_inset Formula $b_{j}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Example
+The zero polynomial has an empty representation and an representation for
+ every syzygy:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+0=\sum_{\emptyset}\mbox{(empty sum)}=\sum_{k}m_{j_{k}}\cdot b_{i}+\sum_{k}(-m_{i_{k}})\cdot b_{j},
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $m_{i_{k}}$
+\end_inset
+
+ and 
+\begin_inset Formula $m_{j_{k}}$
+\end_inset
+
+ are same as above.
+\end_layout
+
+\begin_layout Standard
+Another important example of 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representation comes from ideal and signature definitions.
+ All labeled polynomials computed by the algorithm are elements of ideal
+ 
+\begin_inset Formula $\left(f_{1},\ldots,f_{m}\right)$
+\end_inset
+
+.
+ So any labeled polynomial 
+\begin_inset Formula $p$
+\end_inset
+
+ can be written as 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $\sum_{i}f_{i}g_{i}$
+\end_inset
+
+, where 
+\begin_inset Formula $g_{i}$
+\end_inset
+
+ are homogeneous polynomials.
+ All input polynomials 
+\begin_inset Formula $f_{i}$
+\end_inset
+
+ belong to 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+, so 
+\begin_inset Formula $f_{i}g_{i}$
+\end_inset
+
+ has 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representations of the form (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:repr-ex-2"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Example
+Those representations sum give the following signature-safe representation:
+ 
+\begin_inset Formula 
+\[
+p=\sum_{k}m_{k}\cdot b_{i_{k}},\, m_{k}\in\mathcal{K}\times T,\, b_{i_{k}}\in\left\{ f_{1},\ldots,f_{m}\right\} \subset G_{g}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+This particular case of 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representation where 
+\begin_inset Formula $b_{i_{k}}$
+\end_inset
+
+ are limited to input polynomials will be called 
+\emph on
+input-representation
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Input representations always has the only element with maximal signature.
+ This property is special to input-representations because generic 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representations can have multiple elements with same maximal signature
+ -- it is possible to have 
+\begin_inset Formula $m_{1}\Sig(b_{i_{1}})=m_{2}\Sig(b_{i_{2}})$
+\end_inset
+
+ while 
+\begin_inset Formula $i_{1}\ne i_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The following claim makes important connection between signatures and input-repr
+esentations:
+\end_layout
+
+\begin_layout Claim
+An admissible labeled polynomial 
+\begin_inset Formula $p$
+\end_inset
+
+ with known signature 
+\begin_inset Formula $\Sig(p)$
+\end_inset
+
+ has an input-representation consisting of an element 
+\begin_inset Formula $c\Sig(p)\cdot f_{index(p)}$
+\end_inset
+
+ and some other elements with smaller signatures.
+\end_layout
+
+\begin_layout Proof
+The claimed fact follows from the admissible polynomial definition in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5"
+
+\end_inset
+
+ referring to function 
+\begin_inset Formula $v$
+\end_inset
+
+ which correspond to summing representation elements.
+\end_layout
+
+\begin_layout Standard
+The theorem 1 of 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5"
+
+\end_inset
+
+ states that all polynomials in the algorithm are admissible, do the above
+ claim will be applied to all appeared polynomials.
+\end_layout
+
+\begin_layout Example
+\begin_inset CommandInset label
+LatexCommand label
+name "example-of-having-gg-repr"
+
+\end_inset
+
+The last example comes from S-pairs with a computed 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representation.
+ S-polynomial of 
+\begin_inset Formula $b_{l^{*}}$
+\end_inset
+
+ and 
+\begin_inset Formula $b_{l_{*}}$
+\end_inset
+
+ from 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ is 
+\begin_inset Formula $p=\overline{u_{l}}\poly(b_{l^{*}})-\underline{u_{l}}\poly(b_{l_{*}})$
+\end_inset
+
+.
+ It is known from reduction process that for such S-pairs 
+\begin_inset Formula $p$
+\end_inset
+
+ is signature-safe reduced and the result is added to 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ as some labeled polynomial 
+\begin_inset Formula $b_{l}$
+\end_inset
+
+.
+ So the 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representation is:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p=\sum_{k}m_{k}\cdot b_{n_{k}}+1\cdot b_{l},
+\]
+
+\end_inset
+
+where signatures of 
+\begin_inset Formula $m_{k}\cdot b_{n_{k}}$
+\end_inset
+
+ elements are smaller than 
+\begin_inset Formula $\Sig(b_{l})=\Sig(p)$
+\end_inset
+
+.
+ The value of 
+\begin_inset Formula $l$
+\end_inset
+
+ is position of 
+\begin_inset Formula $b_{l}$
+\end_inset
+
+ in ordered list 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+.
+ In this representation 
+\begin_inset Formula $l$
+\end_inset
+
+ is greater than 
+\begin_inset Formula $l^{*}$
+\end_inset
+
+ and 
+\begin_inset Formula $l_{*}$
+\end_inset
+
+ because corresponding labeled polynomial 
+\begin_inset Formula $b_{l}$
+\end_inset
+
+ is added to 
+\begin_inset Formula $R$
+\end_inset
+
+ at the moment of S-polynomial computation in 
+\family typewriter
+Spol
+\family default
+ or 
+\family typewriter
+TopReduction
+\family default
+ so the polynomials 
+\begin_inset Formula $b_{l^{*}}$
+\end_inset
+
+ and 
+\begin_inset Formula $b_{l_{*}}$
+\end_inset
+
+ used to create S-pair already present in 
+\begin_inset Formula $R$
+\end_inset
+
+ at that moment and the order of 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ correspond to order of 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Ordering representations
+\end_layout
+
+\begin_layout Definition
+To order 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representations we start from 
+\emph on
+representation elements ordering
+\emph default
+ 
+\begin_inset Formula $\gtrdot_{1}$
+\end_inset
+
+: we say that 
+\begin_inset Formula $c_{i}t_{i}\cdot b_{i}\gtrdot_{1}c_{j}t_{j}\cdot b_{j}$
+\end_inset
+
+ if one of the following cases holds:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $t_{i}\Sig(b_{i})\succ t_{j}\Sig(b_{j})$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $t_{i}\Sig(b_{i})=t_{j}\Sig(b_{j})$
+\end_inset
+
+ and 
+\begin_inset Formula $i<j$
+\end_inset
+
+ (note the opposite order).
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+This ordering is based only on comparison of signatures and positions of
+ labeled polynomials in the ordered list 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ but does not depend on the field coefficient.
+ The only case in which two elements can
+\begin_inset Quotes ers
+\end_inset
+
+t be ordered is equality of both signatures 
+\begin_inset Formula $t_{i}\Sig(b_{i})=t_{j}\Sig(b_{j})$
+\end_inset
+
+ and positions in list 
+\begin_inset Formula $i=j$
+\end_inset
+
+.
+ Position equality means 
+\begin_inset Formula $b_{i}=b_{j}$
+\end_inset
+
+ which in conjunction with signature equality gives 
+\begin_inset Formula $t_{i}=t_{j}$
+\end_inset
+
+.
+ So any two elements that belong to a single 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representation are comparable with 
+\begin_inset Formula $\lessdot_{1}$
+\end_inset
+
+ order because they have distinct 
+\begin_inset Formula $\left(t_{k},b_{k}\right)$
+\end_inset
+
+ by definition.
+ Below are given some examples of 
+\begin_inset Formula $\lessdot_{1}$
+\end_inset
+
+ element ordering for the 3-element list 
+\begin_inset Formula $G_{g}=\left\{ b_{1},\, b_{2},\, b_{3}\right\} $
+\end_inset
+
+ with ordering 
+\begin_inset Formula $x\mathbf{F}_{i}\succ y\mathbf{F}_{i}$
+\end_inset
+
+ and signatures 
+\begin_inset Formula $\Sig(b_{1})=\mathbf{F}_{1},\Sig(b_{2})=\mathbf{F}_{2},\Sig(b_{3})=x\mathbf{F}_{1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $y\cdot b_{1}\gtrdot_{1}100y\cdot b_{2}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ because signature of left side is 
+\begin_inset Formula $\succ$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $x\cdot b_{1}\gtrdot_{1}y\cdot b_{1}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ because signature of left side is 
+\begin_inset Formula $\succ$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $-x\cdot b_{1}$
+\end_inset
+
+ 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+and
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ 
+\begin_inset Formula $2x\cdot b_{1}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ are not comparable because signatures and list indexes are equal
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $y^{2}\cdot b_{1}\lessdot_{1}y\cdot b_{3}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ because signature of left side is
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ 
+\begin_inset Formula $\prec$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $x^{2}\cdot b_{1}\gtrdot_{1}x\cdot b_{3}$
+\end_inset
+
+ because signatures are equal and the list position of left side
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Quotes ers
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+s labeled polynomial is 1 which is smaller than right side
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Quotes ers
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+s position 3.
+\end_layout
+
+\begin_layout Standard
+To extend this order to entire 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representations consider 
+\emph on
+ordered form
+\emph default
+ of representation consisting of all its elements written in a list with
+ 
+\begin_inset Formula $\gtrdot_{1}$
+\end_inset
+
+-decreasing order.
+ This form can be used for equality testing because if two representations
+ are equal then they have exactly equal ordered forms.
+\end_layout
+
+\begin_layout Definition
+With ordered forms the 
+\emph on
+
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representations ordering
+\emph default
+ can be introduced: the representation 
+\begin_inset Formula $\sum_{k}m'_{k}\cdot b_{i'_{k}}$
+\end_inset
+
+ is 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-smaller than 
+\begin_inset Formula $\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+ if the ordered form of the first representation is smaller than second
+\begin_inset Quotes ers
+\end_inset
+
+s according to lexicographical extension of 
+\begin_inset Formula $\lessdot_{1}$
+\end_inset
+
+ ordering on elements.
+ For the corner case of the one ordered form being beginning of the other
+ the shorter form is 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-smaller.
+ If the greatest different elements of ordered forms differ only in field
+ coefficient the representations are not comparable.
+\end_layout
+
+\begin_layout Standard
+Some examples of this ordering are given for the same as above 3-element
+ 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ list.
+ Note that all 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representations are already written in ordered forms:
+\end_layout
+
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $x^{2}\cdot b_{1}+xy\cdot b_{1}+y^{2}b_{1}\gtrdot x^{2}\cdot b_{1}+100y^{2}\cdot b_{1}$
+\end_inset
+
+ because 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $xy\cdot b_{1}\gtrdot y^{2}\cdot b_{1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $x^{2}\cdot b_{1}+100y^{2}\cdot b_{1}\gtrdot x^{2}\cdot b_{1}$
+\end_inset
+
+ because the right ordered form is beginning of the left
+\end_layout
+
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $x^{2}\cdot b_{1}\gtrdot xy\cdot b_{1}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}$
+\end_inset
+
+ because 
+\begin_inset Formula $x^{2}\cdot b_{1}\gtrdot xy\cdot b_{1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $xy\cdot b_{1}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}\gtrdot y\cdot b_{3}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}$
+\end_inset
+
+ because 
+\begin_inset Formula $xy\cdot b_{1}\gtrdot y\cdot b_{3}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $y\cdot b_{3}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}$
+\end_inset
+
+ and 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $2y\cdot b_{3}+y^{2}\cdot b_{2}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ are not comparable because the greatest different elements are 
+\begin_inset Formula $y\cdot b_{3}$
+\end_inset
+
+ and 
+\begin_inset Formula $2y\cdot b_{3}$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+.
+\end_layout
+
+\begin_layout Standard
+The ordering is compatible with signature-safety:
+\end_layout
+
+\begin_layout Theorem
+If two representations of 
+\begin_inset Formula $p$
+\end_inset
+
+ has a relation 
+\begin_inset Formula $\sum_{k}m'_{k}\cdot b_{i'_{k}}\lessdot\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+ and the second one is signature-safe representation then the first one
+ is signature-safe too.
+\end_layout
+
+\begin_layout Proof
+This theorem quickly follows from a fact that elements of a 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-smaller representation can
+\begin_inset Quotes ers
+\end_inset
+
+t has signatures 
+\begin_inset Formula $\succ$
+\end_inset
+
+-greater than signatures of 
+\begin_inset Formula $\gtrdot$
+\end_inset
+
+-greater representation.
+\end_layout
+
+\begin_layout Standard
+The key fact allowing to take 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-minimal element is well-orderness:
+\end_layout
+
+\begin_layout Theorem
+The representations are well-ordered with 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+ ordering.
+\end_layout
+
+\begin_layout Proof
+The number of different labeled polynomial positions is finite because it
+ is equal to 
+\begin_inset Formula $|G_{g}|$
+\end_inset
+
+ which is finite for fixed 
+\begin_inset Formula $g$
+\end_inset
+
+.
+ So the existence of infinite 
+\begin_inset Formula $\gtrdot_{1}$
+\end_inset
+
+-descending sequence of representation elements would lead to existence
+ of infinite 
+\begin_inset Formula $\succ$
+\end_inset
+
+-descending sequence of signatures.
+ Combining this with well-orderness of signatures with ordering 
+\begin_inset Formula $\prec$
+\end_inset
+
+ we get the proof for well-orderness of elements with ordering 
+\begin_inset Formula $\lessdot{}_{1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+The straightforward proof for 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-well-orderness of representations following from 
+\begin_inset Formula $\lessdot_{1}$
+\end_inset
+
+-well-orderness of elements is not very complex but to skip its strict details
+ the theorem 2.5.5 of 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Baader.Nipkow98Term"
+
+\end_inset
+
+ will be referenced.
+ It states well-orderness of finite multiset with an lexicographically extended
+ ordering of well-ordered elements.
+ This applies to the representations because they form a subset in the finite
+ multiset of representation elements.
+\end_layout
+
+\begin_layout Subsection
+Sequence of representations
+\end_layout
+
+\begin_layout Standard
+The idea of this part is constructing a finite sequence of strictly 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-descending signature-safe 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representations for a given labeled polynomial 
+\begin_inset Formula $mh,\, m\in\mathcal{K}\times T,\, h\in G_{g}$
+\end_inset
+
+ with 
+\begin_inset Formula $\Sig(mh)\prec\Sig(g)$
+\end_inset
+
+.
+ The first signature-safe representation in the sequence is 
+\begin_inset Formula $mh=m\cdot h$
+\end_inset
+
+, the last representation is 
+\begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+ with elements having the following properties 
+\begin_inset Formula $\forall k$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $m_{k}b_{i_{k}}$
+\end_inset
+
+ does not satisfy F5 criterion.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $m_{k}b_{i_{k}}$
+\end_inset
+
+ does not satisfy Rewritten criterion.
+\end_layout
+
+\begin_layout Enumerate
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $\HM(m_{k}b_{i_{k}})\leqslant\HM(mh)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The proof of such sequence existence is very similar to Theorem 21 of 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5C"
+
+\end_inset
+
+ and is based on a fact, that if a some signature-safe representation of
+ 
+\begin_inset Formula $mh$
+\end_inset
+
+ contains an element 
+\begin_inset Formula $m_{K}\cdot b_{i_{K}}$
+\end_inset
+
+ not having one of the properties then a 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-smaller representation can be constructed.
+ The exact construction differ for three cases but the replacement scheme
+ is the same:
+\end_layout
+
+\begin_layout Itemize
+a some element 
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ in 
+\begin_inset Formula $mh$
+\end_inset
+
+ representation is selected.
+ Note that 
+\begin_inset Formula $K'$
+\end_inset
+
+ in some cases is not equal to 
+\begin_inset Formula $K$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+some representation 
+\begin_inset Formula $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
+\end_inset
+
+ is constructed for this element.
+\end_layout
+
+\begin_layout Itemize
+it is shown that constructed representation is 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-smaller than representation 
+\begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Construction of such representation for 
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ allows application of the following lemma:
+\end_layout
+
+\begin_layout Lemma
+If an element 
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ of signature-safe representation 
+\begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+ has an representation 
+\begin_inset Formula $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
+\end_inset
+
+ which is 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-smaller than representation 
+\begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ then 
+\begin_inset Formula $mh$
+\end_inset
+
+ has a signature-safe representation 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-smaller than 
+\begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+We replace 
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ in 
+\begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+ by 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\sum_{l}m_{l}\cdot b_{i_{l}}$
+\end_inset
+
+ and combine coefficients near elements with both monomial and polynomial
+ equal, so a modified representation for 
+\begin_inset Formula $mh$
+\end_inset
+
+ appears.
+ Is is 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-smaller than 
+\begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+ because all elements 
+\begin_inset Formula $\gtrdot_{1}$
+\end_inset
+
+-greater than 
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ are identical in both representations if they present but the element 
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ is contained in original representation but not in the modified.
+ And all other elements in representations are 
+\begin_inset Formula $\lessdot_{1}$
+\end_inset
+
+-smaller than 
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ so they does not influence the comparison.
+ The comparison holds even in a corner case when all elements are discarded
+ while combining coefficients.
+ This case can appear if the original representation is equal to 
+\begin_inset Formula $mh=m_{K'}\cdot b_{i_{K'}}+\sum_{l}(-m_{l})\cdot b_{i_{l}}$
+\end_inset
+
+ what leads to modified representation 
+\begin_inset Formula $mh=0$
+\end_inset
+
+ with zero elements which is 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-smaller than any non-empty representation.
+\end_layout
+
+\begin_layout Standard
+Now it will be shown that replacement scheme can be performed if the representat
+ion contains an element not satisfying at least one of three properties.
+\end_layout
+
+\begin_layout Lemma
+If a signature-safe 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representation 
+\begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+ does not satisfy property 1 then there exists an element 
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ having 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representation 
+\begin_inset Formula $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
+\end_inset
+
+ which is 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-smaller than representation 
+\begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ .
+\end_layout
+
+\begin_layout Standard
+An element not having the first property does satisfy the F5 criterion and
+ the idea is to use that 
+\begin_inset Formula $m_{K}\Sig(b_{i_{K}})$
+\end_inset
+
+ is not the minimal signature of 
+\begin_inset Formula $m_{K}b_{i_{K}}$
+\end_inset
+
+ like in Theorem 20 of 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5C"
+
+\end_inset
+
+.
+ 
+\begin_inset Formula $K'=K$
+\end_inset
+
+ is taken for this case.
+\end_layout
+
+\begin_layout Proof
+Consider input-representation of 
+\begin_inset Formula $m_{K}b_{i_{K}}$
+\end_inset
+
+ with signature of 
+\begin_inset Formula $\gtrdot_{1}$
+\end_inset
+
+-maximal element equal to 
+\begin_inset Formula $m_{K}\Sig(b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+:
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula 
+\begin{equation}
+m_{K}b_{i_{K}}=c_{0}s_{0}\cdot f_{j_{0}}+\sum_{l}m_{l}\cdot f_{i_{l}}.\label{eq:input-repr-case1}
+\end{equation}
+
+\end_inset
+
+From the satisfying F5 criterion 
+\begin_inset Formula $s_{0}$
+\end_inset
+
+ can be expressed like 
+\begin_inset Formula $s_{0}=s_{1}\HM(f_{j_{1}}),\, j_{1}>j_{0}$
+\end_inset
+
+ so 
+\begin_inset Formula $s_{0}f_{j_{0}}=s_{1}f_{j_{0}}f_{j_{1}}-s_{1}(f_{j_{1}}-\HM(f_{j_{1}}))f_{j_{0}}$
+\end_inset
+
+.
+ From this we can write another representation for 
+\begin_inset Formula $m_{K}b_{i_{K}}$
+\end_inset
+
+, assuming 
+\begin_inset Formula $m_{0i}$
+\end_inset
+
+ are sorted terms of 
+\begin_inset Formula $f_{j_{0}}$
+\end_inset
+
+, 
+\begin_inset Formula $m_{1i}$
+\end_inset
+
+ are sorted terms of 
+\begin_inset Formula $f_{j_{1}}$
+\end_inset
+
+ and 
+\begin_inset Formula $N_{0,}N_{1}$
+\end_inset
+
+ are number of terms in those polynomials:
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula 
+\[
+m_{K}b_{i_{K}}=\sum_{i=1}^{N_{0}}c_{0}s_{1}m_{0i}\cdot f_{j_{1}}+\sum_{i=2}^{N_{1}}-c_{0}s_{1}m_{1i}\cdot f_{j_{0}}+\sum_{l}m_{l}\cdot f_{i_{l}}.
+\]
+
+\end_inset
+
+This representation is 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-smaller than 
+\begin_inset Formula $m_{K}\cdot b_{i_{K}}$
+\end_inset
+
+ because signatures of all elements are smaller than 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $s_{0}\mathbf{F}_{j_{0}}$
+\end_inset
+
+.
+ For the elements of the third sum 
+\begin_inset Formula $\sum_{l}m_{l}\cdot f_{i_{l}}$
+\end_inset
+
+ this follows from 
+\family default
+\series bold
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:input-repr-case1"
+
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+, where those elements are smaller elements of input-representation.
+ For the elements of the first sum 
+\begin_inset Formula $\sum_{i=1}^{N_{0}}c_{0}s_{1}m_{0i}\cdot f_{j_{1}}$
+\end_inset
+
+ this follows from the position inequality 
+\begin_inset Formula $j_{1}>j_{0}$
+\end_inset
+
+.
+ And for the second sum we use the equality in term and signature orderings:
+ all terms 
+\begin_inset Formula $m_{1i},\, i\geqslant2$
+\end_inset
+
+ are smaller than 
+\begin_inset Formula $m_{11}$
+\end_inset
+
+, so the signatures are: 
+\begin_inset Formula $s_{1}m_{1i}\mathbf{F}_{j_{0}}\prec s_{1}m_{11}\mathbf{F}_{j_{0}}=s_{0}\mathbf{F}_{j_{0}}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Lemma
+If a signature-safe 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representation 
+\begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+ with 
+\begin_inset Formula $\Sig(mh)\prec\Sig(g)$
+\end_inset
+
+ does not satisfy property 2 then there exists an element 
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ having 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representation 
+\begin_inset Formula $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
+\end_inset
+
+ which is 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-smaller than representation 
+\begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+.
+\end_layout
+
+\begin_layout Standard
+For the elements not satisfying case 2 the 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-smaller representation is created in a way used in Proposition 17 of 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5C"
+
+\end_inset
+
+.
+ 
+\begin_inset Formula $K'=K$
+\end_inset
+
+ is taken for this case too.
+\end_layout
+
+\begin_layout Proof
+Assume that 
+\begin_inset Formula $\Sig(m_{K}b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ and it is rewritten by labeled polynomial 
+\begin_inset Formula $b_{i'}$
+\end_inset
+
+ from 
+\begin_inset Formula $R$
+\end_inset
+
+.
+ Because the representation is signature-safe we have 
+\begin_inset Formula $\Sig(b_{i'})\preccurlyeq s_{0}\mathbf{F}_{j_{0}}\preccurlyeq\Sig(mh)\prec\Sig(g)$
+\end_inset
+
+.
+ So 
+\begin_inset Formula $b_{i'}$
+\end_inset
+
+ was processed in 
+\family typewriter
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+TopReduction
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ before 
+\begin_inset Formula $g$
+\end_inset
+
+.
+ Since 
+\begin_inset Formula $b_{i'}$
+\end_inset
+
+ is rewriter we have 
+\begin_inset Formula $b_{i'}\ne0$
+\end_inset
+
+.
+ All this gives the fact that 
+\begin_inset Formula $b_{i'}$
+\end_inset
+
+ does present not only in 
+\begin_inset Formula $R$
+\end_inset
+
+ but in 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ too so it can be used as a polynomial of 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representation element.
+ From the Rewritten criterion definition we know that 
+\begin_inset Formula $i'>i_{K}$
+\end_inset
+
+ and the existence of 
+\begin_inset Formula $s'\in T$
+\end_inset
+
+ such that 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $s'\Sig(b_{i'})=s_{0}\mathbf{F}_{j_{0}}$
+\end_inset
+
+.
+ So, for the 
+\begin_inset Formula $m_{K}b_{i_{K}}$
+\end_inset
+
+ there is an input-representation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:input-repr-case1"
+
+\end_inset
+
+ and for the 
+\begin_inset Formula $s'b_{i'}$
+\end_inset
+
+ the input-representation is:
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula 
+\[
+s'b_{i'}=c's_{0}\cdot f_{j_{0}}+\sum_{l'}m_{l'}\cdot f_{i_{l'}}.
+\]
+
+\end_inset
+
+A 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representation for 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $c_{0}s_{0}f_{j_{0}}$
+\end_inset
+
+ can be acquired with 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+transformation of the above expression
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+:
+\end_layout
+
+\begin_layout Proof
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula 
+\[
+c_{0}s_{0}f_{j_{0}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i_{l'}}.
+\]
+
+\end_inset
+
+Using this to replace the first element in 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:input-repr-case1"
+
+\end_inset
+
+ we get the wanted result:
+\begin_inset Formula 
+\[
+m_{K}b_{i_{K}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i_{l'}}+\sum_{l}m_{l}\cdot f_{i_{l}}
+\]
+
+\end_inset
+
+It is 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-smaller than 
+\begin_inset Formula $m_{K}b_{i_{K}}=m_{K}\cdot b_{i_{K}}$
+\end_inset
+
+ because elements of both sums has signatures smaller than 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $s_{0}\mathbf{F}_{j_{0}}$
+\end_inset
+
+, and for the first element 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $\Sig(c'^{-1}c_{0}s'\cdot b_{i'})=\Sig(m_{K}\cdot b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$
+\end_inset
+
+ but 
+\begin_inset Formula $i'>i_{K}$
+\end_inset
+
+, so applying the 
+\begin_inset Formula $\lessdot_{1}$
+\end_inset
+
+-comparison rule for equal signatures and different list positions we get
+ that element 
+\begin_inset Formula $c'^{-1}c_{0}s'\cdot b_{i'}$
+\end_inset
+
+ is 
+\begin_inset Formula $\lessdot_{1}$
+\end_inset
+
+-smaller than 
+\begin_inset Formula $m_{K}\cdot b_{i_{K}}$
+\end_inset
+
+ too.
+\end_layout
+
+\begin_layout Lemma
+If a signature-safe representation 
+\begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+ with 
+\begin_inset Formula $\Sig(mh)\prec\Sig(g)$
+\end_inset
+
+ satisfies properties 1 and 2 but does not satisfy property 3 then there
+ exists an element 
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ having representation 
+\begin_inset Formula $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
+\end_inset
+
+ which is 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-smaller than representation 
+\begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+There exists at least one element 
+\begin_inset Formula $m_{K}\cdot b_{i_{K}}$
+\end_inset
+
+ that does not satisfy property 3.
+ Let 
+\begin_inset Formula $m_{\max}$
+\end_inset
+
+ be the maximal 
+\begin_inset Formula $\HM$
+\end_inset
+
+ of labeled polynomials corresponding to representation elements and 
+\begin_inset Formula $H_{\max}$
+\end_inset
+
+ be a list of elements where 
+\begin_inset Formula $m_{\max}$
+\end_inset
+
+ is achieved.
+ Select 
+\begin_inset Formula $K'$
+\end_inset
+
+ to be the index of the 
+\begin_inset Formula $\gtrdot_{1}$
+\end_inset
+
+-greatest representation element in 
+\begin_inset Formula $H_{\max}$
+\end_inset
+
+.
+ We have 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $\HM(m_{K'}b_{i_{K'}})=m_{\max}\geqslant\HM(m_{K}b_{i_{K}})>\HM(mh)$
+\end_inset
+
+, so the 
+\begin_inset Formula $\HM$
+\end_inset
+
+ of sum of all elements except 
+\begin_inset Formula $K'$
+\end_inset
+
+ is equal to 
+\begin_inset Formula $\HM(mh-m_{K'}b_{i_{K'}})=\HM(m_{K'}b_{i_{K'}})=m_{\max}$
+\end_inset
+
+, so there is another element 
+\begin_inset Formula $K''$
+\end_inset
+
+ having 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\HM(m_{K''}b_{i_{K''}})=m_{\max}$
+\end_inset
+
+.
+ So, 
+\begin_inset Formula $m_{K''}\cdot b_{i_{K''}}\in H_{\max}$
+\end_inset
+
+ and 
+\begin_inset Formula $m_{K''}\cdot b_{i_{K''}}\lessdot_{1}m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ because of 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ 
+\begin_inset Formula $\gtrdot_{1}$
+\end_inset
+
+-maximality in 
+\begin_inset Formula $H_{\max}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+The 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\HM(m_{K''}b_{i_{K''}})=\HM(m_{K'}b_{i_{K'}})$
+\end_inset
+
+ means that a critical pair of 
+\begin_inset Formula $b_{i_{K'}}$
+\end_inset
+
+ and 
+\begin_inset Formula $b_{i_{K''}}$
+\end_inset
+
+ has the form 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $[m'^{-1}m_{\max},\, m'^{-1}m_{K'},\, b_{i_{K'}},\, m'^{-1}m_{K''},\, b_{i_{K''}}]$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ where 
+\begin_inset Formula $m'=\mbox{gcd}(m_{K'},m_{K''})$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $q$
+\end_inset
+
+ be corresponding S-polynomial.
+ Then 
+\begin_inset Formula $m'\Sig(q)\preccurlyeq\Sig(mh)\prec\Sig(g)$
+\end_inset
+
+ because 
+\begin_inset Formula $m'\Sig(q)=\Sig(m_{K'}b_{i_{K'}})$
+\end_inset
+
+ and the representation is signature-safe.
+ The S-polynomial parts 
+\begin_inset Formula $m'^{-1}m_{K'}b_{i_{K'}}$
+\end_inset
+
+ and 
+\begin_inset Formula $m'^{-1}m_{K''}b_{i_{K''}}$
+\end_inset
+
+ does not satisfy F5 and Rewritten criteria because their forms multiplied
+ by 
+\begin_inset Formula $m'$
+\end_inset
+
+ are 
+\begin_inset Formula $m_{K'}b_{i_{K'}}$
+\end_inset
+
+ and 
+\begin_inset Formula $m_{K''}b_{i_{K''}}$
+\end_inset
+
+ -- labeled polynomials corresponding to elements which are known not to
+ satisfy both criteria by assumption.
+ Therefore 
+\begin_inset Formula $m'\Sig(q)\prec\Sig(g)$
+\end_inset
+
+ and 
+\begin_inset Formula $\Sig(q)\prec\Sig(g)$
+\end_inset
+
+.
+ It follows from this with theorem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:Exist-gg-repr"
+
+\end_inset
+
+ that the S-pair 
+\begin_inset Formula $(b_{i_{K'}},b_{i_{K''}})$
+\end_inset
+
+ is S-pair with computed 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representation, what means that there is an representation described in
+ example 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "example-of-having-gg-repr"
+
+\end_inset
+
+ :
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula 
+\[
+q=1\cdot b_{i'}+\sum_{l}m_{l}\cdot b_{i_{l}},
+\]
+
+\end_inset
+
+satisfying the properties shown after that example: 
+\begin_inset Formula $\Sig(q)=\Sig(b_{i'})$
+\end_inset
+
+, 
+\begin_inset Formula $\forall l\,\Sig(q)\succ\Sig(m_{l}b_{i_{l}})$
+\end_inset
+
+ and 
+\begin_inset Formula $i'>K'$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+From the other hand we have 
+\begin_inset Formula $m'q=c_{0}m_{K'}b_{i_{K'}}-c_{1}m_{K''}b_{i_{K''}}$
+\end_inset
+
+, so we get the following representation:
+\begin_inset Formula 
+\[
+m_{K'}b_{i_{K'}}=c_{0}^{-1}c_{1}m_{K''}\cdot b_{i_{K''}}+c_{0}^{-1}m'\cdot b_{i'}+\sum_{l}c_{0}^{-1}m'm_{l}\cdot b_{i_{l}}.
+\]
+
+\end_inset
+
+It is 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-smaller than 
+\begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+: 
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula $m_{K''}\cdot b_{i_{K''}}$
+\end_inset
+
+ was already compared to 
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Proof
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $m'\cdot b_{i'}$
+\end_inset
+
+ has the same signature but greater position 
+\begin_inset Formula $i'>i_{K'}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+the last sum contains elements with signatures smaller than 
+\begin_inset Formula $m'\Sig(b_{i'})=\Sig(m_{K'}\cdot b_{i_{K'}})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:exist-smaller-signature-safe-representation"
+
+\end_inset
+
+A signature-safe representation 
+\begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+ with 
+\begin_inset Formula $\Sig(mh)\prec\Sig(g)$
+\end_inset
+
+ either satisfies properties 1-3 or there exists a signature-safe representation
+ 
+\begin_inset Formula $mh=\sum_{l}m_{l}\cdot b_{i_{l}}$
+\end_inset
+
+ which is 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-smaller than 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+This theorem quickly follows from four previous lemmas together
+\end_layout
+
+\begin_layout Standard
+This leads to main result:
+\end_layout
+
+\begin_layout Theorem
+For any labeled polynomial 
+\begin_inset Formula $mh,\, m\in\mathcal{K}\times T,\, h\in G_{g}$
+\end_inset
+
+ with 
+\begin_inset Formula $\Sig(mh)\prec\Sig(g)$
+\end_inset
+
+ there exists a signature-safe 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-representation 
+\begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+ that satisfies properties 1-3
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+.
+\end_layout
+
+\begin_layout Proof
+Start with representation 
+\begin_inset Formula $mh=m\cdot h$
+\end_inset
+
+ and begin replacing it by 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-smaller representation from theorem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:exist-smaller-signature-safe-representation"
+
+\end_inset
+
+ until the representation satisfying properties 1-3 appears.
+ The finiteness of the process is guaranteed by 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-well-orderness.
+\end_layout
+
+\begin_layout Standard
+This result may be interesting by itself, but for the purposes of proving
+ termination only one corollary is needed:
+\end_layout
+
+\begin_layout Corollary
+\begin_inset CommandInset label
+LatexCommand label
+name "cor:all-needed-for-terminaton"
+
+\end_inset
+
+Consider an arbitrary polynomial 
+\begin_inset Formula $f$
+\end_inset
+
+ without any restrictions on its signature.
+ If there exists a signature-safe reductor 
+\begin_inset Formula $f'\in G_{g}$
+\end_inset
+
+ for 
+\begin_inset Formula $f$
+\end_inset
+
+ with 
+\begin_inset Formula $\Sig(f')\frac{\HM(f)}{\HM(f')}\prec\Sig(g)$
+\end_inset
+
+ then 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ contains a signature-safe reductor for 
+\begin_inset Formula $f$
+\end_inset
+
+ that is not rejected by F5 and Rewritten criteria.
+\end_layout
+
+\begin_layout Proof
+Let 
+\begin_inset Formula $mf',\, m=\frac{\HM(f)}{\HM(f')}\in\mathcal{K}\times T,\, f'\in G_{g}$
+\end_inset
+
+ be a multiplied reductor with 
+\begin_inset Formula $\Sig(mf')\prec\Sig(g)$
+\end_inset
+
+.
+ From the previous theorem we can find representation 
+\begin_inset Formula $mf'=\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+ that satisfies properties 1-3.
+ Property 3 means that there is no elements with 
+\begin_inset Formula $\HM$
+\end_inset
+
+
+\begin_inset Quotes ers
+\end_inset
+
+s greater than 
+\begin_inset Formula $mf'$
+\end_inset
+
+ so because sum of all elements has 
+\begin_inset Formula $\HM$
+\end_inset
+
+ equal to 
+\begin_inset Formula $\HM(mf')$
+\end_inset
+
+ there exists an element 
+\begin_inset Formula $K$
+\end_inset
+
+ that achieves 
+\begin_inset Formula $\HM$
+\end_inset
+
+ equality: 
+\begin_inset Formula $\HM(m_{K}\cdot b_{i_{K}})=\HM(mf')=\HM(f_{1}')$
+\end_inset
+
+.
+ Since the representation is signature-safe 
+\begin_inset Formula $\Sig(m_{K}\cdot b_{i_{K}})\preccurlyeq\Sig(mf')\prec\Sig(f)$
+\end_inset
+
+ so 
+\begin_inset Formula $m_{K}b_{i_{K}}$
+\end_inset
+
+ is a signature-safe reductor for 
+\begin_inset Formula $f$
+\end_inset
+
+ and properties 1-2 ensure that 
+\begin_inset Formula $m_{K}b_{i_{K}}$
+\end_inset
+
+ does not satisfy criteria.
+\end_layout
+
+\begin_layout Section
+Finding contradiction with the criteria enabled
+\end_layout
+
+\begin_layout Standard
+Now return to the result of theorem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:f_g_3_props"
+
+\end_inset
+
+ which states for the case of algorithm non-termination existence of a polynomia
+ls 
+\begin_inset Formula $f',f\in G$
+\end_inset
+
+ such that 
+\begin_inset Formula $\HM(f')|\HM(f)$
+\end_inset
+
+, 
+\begin_inset Formula $\frac{\HM(f')}{\Sig(f')}>_{q}\frac{\HM(f)}{\Sig(f)}$
+\end_inset
+
+.
+ 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Using this result and last corollary we construct two polynomials leading
+ to contradiction 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+for the case of algorithm non-termination.
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:always-exist-ok-reductor"
+
+\end_inset
+
+If the algorithm does not terminate for some input then after some finite
+ step the set 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $G\cup Done$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ contains a pair of labeled polynomials 
+\begin_inset Formula $f'_{1},f$
+\end_inset
+
+ where:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $f'_{1}$
+\end_inset
+
+ is added to 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $G\cup Done$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ before 
+\begin_inset Formula $f$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $t_{1}f'_{1}$
+\end_inset
+
+ does not satisfy F5 and Rewritten criteria, where 
+\begin_inset Formula $t_{1}=\frac{\HM(f)}{\HM(f'_{1})}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $f'_{1}$
+\end_inset
+
+ is signature-safe reductor for 
+\begin_inset Formula $f$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Let 
+\begin_inset Formula $f',f$
+\end_inset
+
+ be polynomials from 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+the theorem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:f_g_3_props"
+
+\end_inset
+
+ an define
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\begin_inset Formula $t=\frac{\HM(f)}{\HM(f')}$
+\end_inset
+
+.
+ We have 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $f\in G$
+\end_inset
+
+ so the above theory about representations can be applied to the fixed value
+ of 
+\begin_inset Formula $g$
+\end_inset
+
+ equal to 
+\begin_inset Formula $f$
+\end_inset
+
+ and we can speak about 
+\begin_inset Formula $G_{f}$
+\end_inset
+
+ set and 
+\begin_inset Formula $G_{f}$
+\end_inset
+
+-representations.
+ Because
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\begin_inset Formula $tf'$
+\end_inset
+
+ is a signature-safe reductor for 
+\begin_inset Formula $f$
+\end_inset
+
+ we have 
+\begin_inset Formula $\Sig(f')t\prec\Sig(f)$
+\end_inset
+
+ and the corollary 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cor:all-needed-for-terminaton"
+
+\end_inset
+
+ can be applied to find a signature-safe reductor 
+\begin_inset Formula $t_{1}f'_{1}$
+\end_inset
+
+ for 
+\begin_inset Formula $f$
+\end_inset
+
+ which does not satisfy criteria.
+ Also it is known to belong to 
+\begin_inset Formula $G_{f}$
+\end_inset
+
+, so during the algorithm execution 
+\begin_inset Formula $f'_{1}$
+\end_inset
+
+ was appended to 
+\begin_inset Formula $G\cup Done$
+\end_inset
+
+ before 
+\begin_inset Formula $f$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Theorem
+The original 
+\begin_inset Formula $ $
+\end_inset
+
+F5 algorithm as described in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5"
+
+\end_inset
+
+ does terminate for any input.
+\end_layout
+
+\begin_layout Proof
+We are going o show that the existence of polynomials 
+\begin_inset Formula $f'_{1},f$
+\end_inset
+
+ from the theorem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:always-exist-ok-reductor"
+
+\end_inset
+
+ leads to contradiction.
+ Consider the call to 
+\family typewriter
+TopReduction
+\family default
+ after which the polynomial 
+\begin_inset Formula $f$
+\end_inset
+
+ was inserted in 
+\begin_inset Formula $Done$
+\end_inset
+
+.
+ That call returns polynomial 
+\begin_inset Formula $f$
+\end_inset
+
+ as first part of 
+\family typewriter
+TopReduction
+\family default
+ return value, so the value returned by 
+\family typewriter
+IsReducible
+\family default
+ is empty set.
+ It means that one of conditions (a) - (d) was not satisfied for all polynomials
+ in 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $G\cup Done$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ including 
+\begin_inset Formula $f'_{1}$
+\end_inset
+
+.
+ This is not possible because:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+(a) is satisfied because 
+\begin_inset Formula $f'_{1}$
+\end_inset
+
+ is a reductor for 
+\begin_inset Formula $f$
+\end_inset
+
+ from the theorem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:always-exist-ok-reductor"
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+(b) and (c) are satisfied because 
+\begin_inset Formula $\frac{\HM(f)}{\HM(f'_{1})}f'_{1}$
+\end_inset
+
+ does not satisfy F5 and Rewritten criteria from the theorem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:always-exist-ok-reductor"
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+(d) is satisfied because 
+\begin_inset Formula $f'_{1}$
+\end_inset
+
+ is a signature-safe reductor for 
+\begin_inset Formula $f$
+\end_inset
+
+ from the theorem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:always-exist-ok-reductor"
+
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Conclusions
+\end_layout
+
+\begin_layout Standard
+This paper shows that original F5 algorithm terminates for any homogeneous
+ input without introducing intermediate algorithms.
+ However, it does not give any limit on number of operations.
+ The simplest proof of the termination of Buchberger algorithm is based
+ on Noetherian property and does not give any such limit too.
+ Unfortunately the termination proof given here is quite different in structure
+ compared to the proof of Buchberger algorithm termination, so this proof
+ does not show that F5 is more efficient than Buchberger in any sense.
+ Unlike this the termination of the modified versions of F5 algorithm in
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Modifying-for-termination,Ars05applicationsdes,Gash:2008:ECG"
+
+\end_inset
+
+ is shown in a way analogous to Buchberger algorithm and there is room for
+ comparison of their efficiency with Buchberger
+\begin_inset Quotes ers
+\end_inset
+
+s one.
+\end_layout
+
+\begin_layout Standard
+From the point of view of practical computer algebra computations there
+ is a question about efficiency of the modified versions compared to original
+ F5.
+ The modified versions can spend more time in additional termination checks.
+ But for some cases it is possible that those checks can allow the termination
+ of modified versions before original so the modified version performs smaller
+ number of reductions.
+ So it is possible that for some inputs the original algorithm is faster
+ and for others the modified version.
+ Some experimental timings in Table 1 in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Modifying-for-termination"
+
+\end_inset
+
+ shows that both cases are possible in practice but the difference in time
+ is insignificant.
+ So the question about efficiency of original F5 compared to modified versions
+ is open.
+\end_layout
+
+\begin_layout Standard
+This proof uses three properties of original F5 that are absent or optional
+ in some F5-like algorithms: the homogeneity of input polynomials, the presence
+ of Rewritten criterion and the equality of monomial order 
+\begin_inset Formula $<$
+\end_inset
+
+ and signature order 
+\begin_inset Formula $\prec$
+\end_inset
+
+.
+ The possibility of extending the termination proof to the modified algorithms
+ without these properties is open question.
+ There is an unproved idea that the proof can be modified to remove reliance
+ on the first two properties but not on the third property of orders equality
+ because it is key point of coming to a contradiction form the result of
+ theorem 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:f_g_3_props"
+
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Thanks
+The author would like to thank Christian Eder, Jean-Charles Faugère, Amir
+ Hashemi, John Perry, Till Stagers and Alexey Zobnin for inspiring me on
+ investigations in this area by their papers and comments.
+ Thanks!
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "f5_references"
+options "short"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

@@ -59,13 +59,26 @@ view: simple_sig.pdf
 	xdg-open $^
 origf5_termination.tex: origf5_termination.lyx Makefile
 	rm -f $@
-	lyx -e pdflatex origf5_termination.lyx
+	lyx -e pdflatex $<
 origf5_termination.pdf: origf5_termination.tex short.bst
-	pdflatex $^
+	rm -f origf5_termination.aux
+	pdflatex $<
 	bibtex origf5_termination.aux
-	pdflatex $^
-	pdflatex $^
+	pdflatex $<
+	pdflatex $<
 view-origf5_termination: origf5_termination.pdf
+	make clean-logs
+	xdg-open $^
+origf5_termination_ru.tex: origf5_termination_ru.lyx Makefile
+	rm -f $@
+	lyx -e pdflatex $<
+origf5_termination_ru.pdf: origf5_termination_ru.tex short.bst
+	rm -f origf5_termination_ru.aux
+	pdflatex $<
+	bibtex origf5_termination_ru.aux
+	pdflatex $<
+	pdflatex $<
+view-origf5_termination_ru: origf5_termination_ru.pdf
 	make clean-logs
 	xdg-open $^
 clean: clean-logs
