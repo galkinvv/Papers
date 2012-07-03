@@ -268,19 +268,19 @@ key "FaugereF5"
 \end_layout
 
 \begin_layout Section
-Possibilities for infinite cycles in F5
+Потенциально бесконечные циклы в F5
 \end_layout
 
 \begin_layout Subsection
-Inside 
+Процедура 
 \family typewriter
 AlgorithmF5
 \family default
-: 
+: увеличение 
 \begin_inset Formula $d$
 \end_inset
 
- growth
+
 \end_layout
 
 \begin_layout Claim
@@ -290,310 +290,290 @@ name "iterations-d_grow"
 
 \end_inset
 
-If the number of 
+Если при некоторых входных данных цикл 
 \series bold
 while
 \series default
- cycle iterations inside 
+ внутри процедуры 
 \family typewriter
 AlgorithmF5
 \family default
- is infinite then the 
+ выполняется бесконечное число раз, то значение 
 \begin_inset Formula $d$
 \end_inset
 
- value infinitely grow.
+ неограниченно возрастает.
 \end_layout
 
 \begin_layout Proof
-Let
-\begin_inset Quotes ers
-\end_inset
-
-s suppose that there is an input 
+Предположим существование последовательности многочленов 
 \begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} $
 \end_inset
 
- over 
+ в кольце 
 \begin_inset Formula $\mathcal{K}[x_{1},\ldots,x_{n}]$
 \end_inset
 
- for which original F5 does not terminate, and that it is shortest input
- of such kind -- the algorithm terminates on shorter input 
+ для которой алгоритм F5 не завершается.
+ Без ограничение общности будем считать что это самая короткая последовательност
+ь такого рода -- алгоритм завершается на более короткой последовательности
+ 
 \begin_inset Formula $\left\{ f_{2},\ldots,f_{m}\right\} $
 \end_inset
 
 .
- This means that last iteration of outer cycle in 
+ Это означает, что не завершается последняя итерация цикла внутри 
 \family typewriter
 incrementalF5
 \family default
- does not terminate, so last call to 
-\family typewriter
-AlgorithmF5
-\family default
- does not terminate.
- To investigate this we need to study how the total degree 
-\begin_inset Formula $d$
-\end_inset
-
- can change during execution of the cycle inside 
+, то есть не завершается последний вызов процедуры 
 \family typewriter
 AlgorithmF5
 \family default
 .
- Let
-\begin_inset Quotes ers
-\end_inset
-
-s call 
-\begin_inset Formula $d_{j}$
-\end_inset
-
- the value of 
+ Для исследования данной ситуации необходимо понять, как ведёт себя значение
+ полной степени 
 \begin_inset Formula $d$
 \end_inset
 
- on 
+ в процессе выполнения цикла внутри процедуры 
+\family typewriter
+AlgorithmF5
+\family default
+.
+ Обозначим за 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+ значение 
+\begin_inset Formula $d$
+\end_inset
+
+ на 
 \begin_inset Formula $j$
 \end_inset
 
--th cycle iteration and extend it to 
+-ой итерации цикла и положим 
 \begin_inset Formula $d_{0}=-1$
 \end_inset
 
 .
- The simple property of 
+ Простейшее свойство 
 \begin_inset Formula $d_{j}$
 \end_inset
 
- is it
-\begin_inset Quotes ers
-\end_inset
-
-s non-strict growth: 
+ -- неубывание: 
 \begin_inset Formula $d_{j}\geqslant d_{j-1}$
 \end_inset
 
 .
- It holds because on the 
+ Оно выполняется, поскольку на 
 \begin_inset Formula $j-1$
 \end_inset
 
--th iteration all polynomials in 
+-ой итерации все многочлены в 
 \begin_inset Formula $R_{d}$
 \end_inset
 
- have degree 
+ имеют степень 
 \begin_inset Formula $d_{j-1}$
 \end_inset
 
- and therefore all new generated critical pairs have degree at least 
+, и поэтому все вновь создаваемые критические пары имеют степень не менее
+ 
 \begin_inset Formula $d_{j-1}$
 \end_inset
 
 .
- Now suppose that 
+ Предположим теперь, что 
 \begin_inset Formula $j$
 \end_inset
 
- is number of some fixed iteration.
- At the iteration 
+ фиксированный номер некоторой итерации.
+ В начале итерации 
 \begin_inset Formula $j$
 \end_inset
 
- all critical pairs with degree 
+ все критические пары степени 
 \begin_inset Formula $d_{j}$
 \end_inset
 
- are extracted from 
+ извлекаются из 
 \begin_inset Formula $P$
 \end_inset
 
 .
- After call to 
+ После вызова процедуры 
 \family typewriter
 Reduction
 \family default
- some new critical pairs are added to 
+ в 
 \begin_inset Formula $P$
 \end_inset
 
- in the cycle over 
+ добавляются некоторые новые критические пары в цикле, итерирующем по 
 \begin_inset Formula $R_{d}$
 \end_inset
 
 .
- There exist a possibility that some of them has degree 
+ Существует возможность что некоторые из них будут иметь полную степень
+ равную 
 \begin_inset Formula $d_{j}$
 \end_inset
 
 .
- We
-\begin_inset Quotes ers
-\end_inset
-
-re going to show that all such critical pairs do not generate S-polynomials
- in the next iteration of algorithm because they are discarded.
+ Нижеследующие рассуждения призваны показать, что все критические пары такой
+ полной степени будут отброшены на следующей итерации алгоритма и ни одна
+ из них не породит S-многочлен.
 \end_layout
 
 \begin_layout Proof
-For each new critical pair 
+Для каждой из критических пар 
 \begin_inset Formula $[t,u_{1},r_{1},u_{2,}r_{2}]$
 \end_inset
 
- generated during iteration 
+ порождённых на итерации 
 \begin_inset Formula $j$
 \end_inset
 
- at least one of the generating polynomials belong to 
+ как минимум один из многочленов пары принадлежит 
 \begin_inset Formula $R_{d}$
 \end_inset
 
- and no more than one belong to 
+ и не более чем один многочлен из пары мог принадлежать 
 \begin_inset Formula $G_{i}$
 \end_inset
 
- at the beginning of the iteration.
- All polynomials in 
+ на момент начала итерации.
+ Все многочлены 
 \begin_inset Formula $R_{d}$
 \end_inset
 
- are generated by 
+ генерируются процедурой 
 \family typewriter
 Reduction
 \family default
- function by appending single polynomials to 
+ путём добавления по одному многочлену к множеству 
 \begin_inset Formula $Done$
 \end_inset
 
 .
- So we can select from one or two 
+ Поэтому, среди одного или двух многочленов критической пары, принадлежащих
+ 
 \begin_inset Formula $R_{d}$
 \end_inset
 
--belonging generators of critical pair a polynomial 
+, мы можем выбрать многочлен 
 \begin_inset Formula $r_{k}$
 \end_inset
 
- that was added to 
+ добавленный в 
 \begin_inset Formula $Done$
 \end_inset
 
- later.
- Then we can state that the other S-pair part 
+ позже.
+ Тогда про другой многочлен S-пары 
 \begin_inset Formula $r_{3-k}$
 \end_inset
 
- was already present in 
+ можно утверждать, что он уже присутствовал в 
 \begin_inset Formula $G\cup Done$
 \end_inset
 
- at the moment of 
+ к моменту добавления 
 \begin_inset Formula $r_{k}$
 \end_inset
 
- was added to 
+ в 
 \begin_inset Formula $Done$
 \end_inset
 
 .
- So the 
+ Поэтому процедура 
 \family typewriter
 TopReduction
 \family default
- tries to reduce 
+ пыталась редуцировать 
 \begin_inset Formula $r_{k}$
 \end_inset
 
- by 
+ по 
 \begin_inset Formula $r_{3-k}$
 \end_inset
 
- but failed to do this because one of 
+, но не сделала этого, поскольку в функции 
 \family typewriter
 IsReducible
 \family default
- checks (a) - (d) forbids this.
+ одна из проверок (a) - (d) запретила это.
 \end_layout
 
 \begin_layout Proof
-From the other hand for critical pairs with degree equal to 
+При этом для критических пар с полной степенью равной 
 \begin_inset Formula $d_{j}$
 \end_inset
 
- we have 
+ мы имеем 
 \begin_inset Formula $u_{k}=1$
 \end_inset
 
- because total degree of critical pair is equal to total degree of it
-\begin_inset Quotes ers
-\end_inset
-
-s generator 
+, поскольку полная степень критической пары равна полной степени её челна
+ 
 \begin_inset Formula $r_{k}$
 \end_inset
 
 .
- This means that value 
+ Это означает, что значение 
 \begin_inset Formula $u_{3-k}$
 \end_inset
 
- is equal to 
+ равно 
 \begin_inset Formula $\frac{\HM(r_{k})}{\HM(r_{3-k})}$
 \end_inset
 
- so the 
+, поэтому в 
 \family typewriter
 IsReducible
 \family default
-
-\begin_inset Quotes ers
-\end_inset
-
-s rule (a) allow reduction 
+ правило (a) разрешает редукцию 
 \begin_inset Formula $r_{k}$
 \end_inset
 
- by 
+ по 
 \begin_inset Formula $r_{3-k}$
 \end_inset
 
 .
- It follows that only checks (b) - (d) are left as possibilities.
+ Получается, что только правила (b) - (d) могли запретить редукцию.
 \end_layout
 
 \begin_layout Proof
-Suppose that reduction was forbidden by (b).
- This means that there is a polynomial in 
+Предположим, что редукция была запрещена правилом (b).
+ Это означает, что в 
 \begin_inset Formula $G_{i+1}$
 \end_inset
 
- that reduces 
+ существует многочлен, редуцирующий 
 \begin_inset Formula $u_{3-k}\Sig(r_{3-k})$
 \end_inset
 
 .
- For our case it means that in the 
+ Для нашего случая отсюда следовало бы, что в функции 
 \family typewriter
 CritPair
 \family default
- function the same check 
+ эквивалентная проверка 
 \begin_inset Formula $\varphi(u_{3-k}\Sig(r_{3-k}))=u_{3-k}\Sig(r_{3-k})$
 \end_inset
 
- fails and such critical pair would not be created at all.
- So the rule (b) can
-\begin_inset Quotes ers
-\end_inset
-
-t forbid reduction too.
+ запретила бы создание критической пары.
+ Получается, что правило (b) также не могло запретить редукцию.
 \end_layout
 
 \begin_layout Proof
-Suppose that reduction was forbidden by (c).
- This means that there is a rewriting for the multiplied reductor.
- So for our case it means that 
+Предположим, что редукция была запрещена правилом (c).
+ Это означает существование перезаписи для домноженного редуктора.
+ В нашем случае это значит, что 
 \family typewriter
 Rewritten?
 \family default
@@ -601,52 +581,53 @@ Rewritten?
 \begin_inset Formula $\left(u_{3-k},r_{3-k}\right)$
 \end_inset
 
- returns true at the moment of 
+ показала наличие перезаписи в процессе выполнения 
 \family typewriter
 TopReduction
 \family default
- execution, so it still returns true for all algorithm execution after this
- moment because rewritings do not disappear.
+, и будет продолжать возвращать значение 
+\begin_inset Quotes fld
+\end_inset
+
+Истина
+\begin_inset Quotes frd
+\end_inset
+
+ на всех последующих этапах алгоритма, поскольку перезаписывающие многочлены
+ не могут исчезнуть.
 \end_layout
 
 \begin_layout Proof
-Suppose that reduction was forbidden by (d).
- The pseudo code in 
+Предположим, что редукция была запрещена правилом (d).
+ Псевдокод в 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "FaugereF5"
 
 \end_inset
 
- is a bit unclear at this point, but the source code of procedure 
+ несколько неясен в этом месте, но исходный код процедуры 
 \family typewriter
 FindReductor
 \family default
- attached to 
+, приложенный к 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "F5-revisited"
 
 \end_inset
 
- is more clear and states that the reductor is discarded if both monomial
- of signature and index of signature are equal to those of polynomial we
-\begin_inset Quotes ers
-\end_inset
-
-re reducing (it
-\begin_inset Quotes ers
-\end_inset
-
-s signature monomial is 
+ достаточно ясен и утверждает, что редуктор отбрасывается, если одновременно
+ моном и индекс сигнатуры совпадают для редуктора и редуцируемого многочлена
+ (в коде 
 \family typewriter
 r[k0][1]
 \family default
- and index is 
+ -- моном сигнатуры, а 
 \family typewriter
 r[k0][2]
 \family default
- in the code):
+ -- её индекс):
 \end_layout
 
 \begin_layout Proof
@@ -677,16 +658,16 @@ end if;
 
 \end_inset
 
-For our case it means that signatures of 
+В нашем случае это обозначает, что сигнатуры 
 \begin_inset Formula $r_{k}$
 \end_inset
 
- and 
+ и 
 \begin_inset Formula $u_{3-k}r_{3-k}$
 \end_inset
 
- are equal.
- This leads to fact that 
+ равны.
+ Значит вызов 
 \family typewriter
 Rewritten?
 \family default
@@ -694,20 +675,28 @@ Rewritten?
 \begin_inset Formula $\left(u_{3-k},r_{3-k}\right)$
 \end_inset
 
- returns true after adding rule corresponding to 
+ будет возвращать 
+\begin_inset Quotes fld
+\end_inset
+
+Истину
+\begin_inset Quotes frd
+\end_inset
+
+ после добавления правила, соответствующего 
 \begin_inset Formula $r_{k}$
 \end_inset
 
- because 
+, поскольку 
 \begin_inset Formula $u_{3-k}\cdot r_{3-k}$
 \end_inset
 
- is rewritable by 
+ перезаписывается 
 \begin_inset Formula $1\cdot r_{k}$
 \end_inset
 
 .
- So like in case (c) 
+ Получается, что как и в случае с правилом (c), 
 \family typewriter
 Rewritten?
 \family default
@@ -715,44 +704,53 @@ Rewritten?
 \begin_inset Formula $\left(u_{3-k},r_{3-k}\right)$
 \end_inset
 
- returns true at the moment of 
+ возвращает 
+\begin_inset Quotes fld
+\end_inset
+
+Истину
+\begin_inset Quotes frd
+\end_inset
+
+ при выполнении 
 \family typewriter
 TopReduction
 \family default
- execution.
+ и позже.
 \end_layout
 
 \begin_layout Proof
-Now consider 
+Теперь рассмотрим функцию 
 \family typewriter
 Spol
 \family default
- function execution for some S-pair with total degree 
+, выполняемую для некоторой S-пары полной степени 
 \begin_inset Formula $d_{j}$
 \end_inset
 
- generated during iteration 
+, сгенерированной на итерации 
 \begin_inset Formula $j$
 \end_inset
 
 .
- It executes in 
+ Она выполняется внутри 
 \begin_inset Formula $j+1$
 \end_inset
 
- iteration of 
+ итерации цикла в 
 \family typewriter
 AlgorithmF5
 \family default
- cycle which is far after 
+, то есть уже после того, как закончилось выполнение 
 \family typewriter
 TopReduction
 \family default
- execution for 
+ для 
 \begin_inset Formula $r_{k}$
 \end_inset
 
- in algorithm flow so for both cases (c) and (d) call to 
+.
+ Поэтому для случаев (c) и (d) вызов 
 \family typewriter
 Rewritten?
 \family default
@@ -760,20 +758,28 @@ Rewritten?
 \begin_inset Formula $\left(u_{3-k},r_{3-k}\right)$
 \end_inset
 
- inside 
+ внутри 
 \family typewriter
 Spol
 \family default
- returns true.
- It means that at the 
+ вернёт 
+\begin_inset Quotes fld
+\end_inset
+
+Истину
+\begin_inset Quotes frd
+\end_inset
+
+.
+ Значит на итерации 
 \begin_inset Formula $j+1$
 \end_inset
 
- step no S-pair with total degree 
+ ни одна из S-пар полной степени 
 \begin_inset Formula $d_{j}$
 \end_inset
 
- can add polynomial to 
+ не добавит многочлена в 
 \begin_inset Formula $F$
 \end_inset
 
@@ -781,50 +787,46 @@ Spol
 \end_layout
 
 \begin_layout Proof
-In the conclusion we have: 
+Итого, получено: 
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-the first possibility of 
+первая возможность относительного расположения 
 \begin_inset Formula $d_{j+1}$
 \end_inset
 
- and 
+ и 
 \begin_inset Formula $d_{j}$
 \end_inset
 
- comparison is 
+ -- их равенство: 
 \begin_inset Formula $d_{j+1}=d_{j}$
 \end_inset
 
 .
- In this case 
+ В этом случае 
 \begin_inset Formula $F$
 \end_inset
 
- is empty on 
+ оказывается пустым на итерации 
 \begin_inset Formula $j+1$
 \end_inset
 
- iteration and therefore 
+, и, таким образом, 
 \begin_inset Formula $P$
 \end_inset
 
- does not contain any pairs with degree 
+ не содержит ни одной пары с полной степенью 
 \begin_inset Formula $d_{j}$
 \end_inset
 
- after 
+ после того как итерация 
 \begin_inset Formula $j+1$
 \end_inset
 
- iteration
-\begin_inset Quotes ers
-\end_inset
-
-s finish.
- So 
+ завершится.
+ Значит 
 \begin_inset Formula $d_{j+2}>d_{j+1}$
 \end_inset
 
@@ -833,7 +835,7 @@ s finish.
 \end_layout
 
 \begin_layout Itemize
-the other possibility is 
+Другая возможность относительного расположения -- строгое возрастание 
 \begin_inset Formula $d_{j+1}>d_{j}$
 \end_inset
 
@@ -842,11 +844,11 @@ the other possibility is
 
 \end_deeper
 \begin_layout Proof
-In conjunction with non-strict growth this gives 
+Вместе эти факты дают 
 \begin_inset Formula $\forall j\,\, d_{j+2}>d_{j}$
 \end_inset
 
- which proves the claim 
+, что доказывает утверждение 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "iterations-d_grow"
