@@ -1,0 +1,85 @@
+# LyX 2.0.2 generated this file. If you want to make your own
+# modifications you should do them from inside LyX and save.
+
+Format 1
+
+\force_paint_single_char false
+#
+# MISC SECTION ######################################
+#
+
+\user_name "ptic,,,"
+\user_email ""
+\preview no_math
+
+#
+# SCREEN & FONTS SECTION ############################
+#
+
+\screen_zoom 80
+\cursor_follows_scrollbar true
+\paragraph_markers true
+\screen_font_sizes 5 7 8 9 10 12 14.4 17.260000000000002 20.739999999999998 24.879999999999999
+\single_instance false
+
+#
+# COLOR SECTION ###################################
+#
+
+
+#
+# PRINTER SECTION ###################################
+#
+
+
+#
+# TEX SECTION #######################################
+#
+
+\font_encoding "T2A"
+
+#
+# FILE SECTION ######################################
+#
+
+\completion_inline_math false
+\completion_popup_math false
+\completion_popup_after_complete false
+
+#
+# PLAIN TEXT EXPORT SECTION ##############################
+#
+
+
+#
+# SPELLCHECKER SECTION ##############################
+#
+
+\use_tooltip false
+
+#
+# LANGUAGE SUPPORT SECTION ##########################
+#
+
+\spellchecker enchant
+\spellcheck_continuously true
+
+#
+# 2nd MISC SUPPORT SECTION ##########################
+#
+
+
+#
+# FORMATS SECTION ##########################
+#
+
+
+#
+# CONVERTERS SECTION ##########################
+#
+
+
+#
+# COPIERS SECTION ##########################
+#
+
