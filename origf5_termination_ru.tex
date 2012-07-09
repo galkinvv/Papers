@@ -471,7 +471,7 @@ $r_{L}$.\end{proof}
 будет называться \emph{множеством S-порождённых} $r_{L}$.\end{defn}
 \begin{thm}
 Если алгоритм не останавливается на некоторых входных данных, то он
-порождает бесконечную цепь S-пар$\{h_{i}\}$.\end{thm}
+порождает бесконечную цепь S-пар $\{h_{i}\}$.\end{thm}
 \begin{proof}
 Поскольку при работе с понятием бесконечности требуется некоторая
 строгость, дадим следующее определение.
@@ -587,7 +587,7 @@ $T$, поэтому по лемме Диксона существует два многочлена, с $\HM(h_{i})|\HM(h_{j}
 \Sig(f)\succ t\cdot\Sig(f'),\mbox{ где }t=\frac{\HM(f)}{\HM(f')}\in T.
 \]
 Это неравенство вместе с делимостью $\HM$ из утверждения теоремы
-показывает, что $tf$' является редуктором для $f$ в \texttt{TopReduction}
+показывает, что $tf'$ является редуктором для $f$ в \texttt{TopReduction}
 с точки зрения сигнатуры -- он проходит проверки (a) и (d) внутри
 \texttt{IsReducible} и его сигнатура меньше. При отсутствии проверки
 критериев (b) и (c) это напрямую приводило бы к противоречию, так
@@ -595,7 +595,7 @@ $T$, поэтому по лемме Диксона существует два многочлена, с $\HM(h_{i})|\HM(h_{j}
 был там и процедура \texttt{TopReduction} должна была бы редуцировать
 $f$ по $f'$.
 \end{proof}
-Но существование критериев делает возможной ситуацию, в которой $tf$'
+Но существование критериев делает возможной ситуацию, в которой $tf'$
 отбрасывается проверками (b) или (c) процедуры \texttt{IsReducible}.
 Идея дальнейших рассуждений состоит в том, чтоб показать что в этом
 случае может быть найден другой сигнатурный редуктор $f$, который
@@ -603,176 +603,183 @@ $f$ по $f'$.
 Последующие главы работы посвящены этому.
 
 
-\section{S-pairs with signatures smaller than $\Sig(g)$}
+\section{S-пары с сигнатурами, меньшими $\Sig(g)$}
 
-In this and following sections $g$ is treated as some fixed labeled
-polynomial with signature index 1 added to $Done$ in some algorithm
-iteration. Let us work with algorithm state just before adding $g$
-to $Done$ during call to \texttt{AlgorithmF5} with $i=1$. Consider
-a finite set $G_{1}\cup Done$ of labeled polynomials at that moment.
-This set contains positions of labeled polynomials in $R$, so it's
-elements can be ordered according to position in $R$ and written
-as an ordered integer sequence $G_{g}=\{b_{1},\ldots,b_{N}\}$ with
-$b_{j}<b_{j+1}$. It should be noted that this order does correspond
-to the order of labeled polynomials in the sequence produced by concatenated
-rule arrays $Rule[m]:Rule[m-1]:\cdots:Rule[1]$ because addition of
-new polynomial to $R$ is always followed by addition of corresponding
-rule. But this order may differ from the order polynomials were added
-to $G_{1}\cup Done$ because polynomials with same total degree are
-added to $Done$ in the increasing signature order, while the addition
-polynomials with same total degree to $R$ is performed in quite random
-order inside \texttt{Spol} and \texttt{TopReduction} procedures. For
-the simplicity we will be speaking about labeled polynomials $b_{j}$
-from $G_{g}$, assuming that $G_{g}$ is not the ordered positions
-list but the ordered list of labeled polynomials themselves corresponding
-to those positions. In this terminology we can say that all input
-polynomials $\left\{ f_{1},\ldots,f_{m}\right\} $ do present in $G_{g}$,
-because they all present in $G_{1}$ at the moment of its creation.
+В этой и последующих частях $g$ подразумевается некоторым фиксированным
+многочленом с индексом сигнатуры 1, добавленный на некоторой итерации
+алгоритма в $Done$. Мы будем анализировать состояние алгоритма в
+момент непосредственно предшествующий добавлению $g$ в $Done$ в
+вызове \texttt{AlgorithmF5} с $i=1$. Рассмотрим в этот момент конечное
+множество отмеченных многочленов $G_{1}\cup Done$. Оно состоит из
+чисел, являющихся позиций отмеченных многочленов в $R$, поэтому его
+элементы могут быть упорядочены в соответствии с позицией в $R$ и
+оно окажется записанным в виде упорядоченной последовательности целых
+чисел $G_{g}=\{b_{1},\ldots,b_{N}\}$ с $b_{j}<b_{j+1}$. Необходимо
+отметить, что этот порядок соответствует порядку отмеченных многочленов
+в последовательности, получаемой склеиванием массивов правил $Rule[m]:Rule[m-1]:\cdots:Rule[1]$,
+поскольку добавление нового многочлена в $R$ всегда сопровождается
+добавлением соответствующего правила. Но этот порядок может отличаться
+от порядка в котором многочлены добавлялись в множество $G_{1}\cup Done$,
+поскольку многочлены одной полной степени добавляются в $Done$ в
+порядке возрастания сигнатуры, при том что добавление многочленов
+одной полной степени в $R$ производится в довольно случайном порядке
+в процедурах \texttt{Spol} и \texttt{TopReduction}. Далее для простоты
+мы будем говорить о отмеченных многочленах $b_{j}$ в $G_{g}$, подразумевая
+что $G_{g}$ является не упорядоченным списком позиций, а упорядоченным
+списком отмеченных многочленов, расположенных на этих позициях. В
+этой терминологии можно сказать, что все входные многочлены $\left\{ f_{1},\ldots,f_{m}\right\} $
+присутствуют в $G_{g}$, поскольку они присутствуют в $G_{1}$ в момент
+его создания.
 
-S-pairs can be processed in a different ways inside the algorithm
-but the main fact we need to know about their processing is encapsulated
-in the following properties which correspond to the properties used
-in Theorem 21 in \cite{F5C} but are taken during arbitrary algorithm
-iteration without requirements of termination.
+S-пары могут обрабатываться в алгоритме различным путями, но главный
+факт, описывающий порядок их обработки выражается следующими свойствами,
+соответствующими свойствам, использованным в Теореме 21 работы \cite{F5C},
+но рассматриваются на произвольной итерации алгоритма, а не после
+его остановки.
 \begin{thm}
-\label{thm:Exist-gg-repr}At the moment of adding $g$ to $Done$
-every S-pair of $G_{g}$ elements which signature is smaller than
-$\Sig(g)$ satisfies one of three properties:\end{thm}
+\label{thm:Exist-gg-repr}К моменту добавления $g$ в $Done$ каждая
+S-пара элементов $G_{g}$, сигнатура которой меньше $\Sig(g)$ удовлетворяет
+одному из трёх свойств:\end{thm}
 \begin{enumerate}
-\item S-pair has a part that is rejected by the normal form check $\varphi$
-(in \texttt{CritPair} or in \texttt{IsReducible}). Such S-pairs will
-be referenced as \emph{S-pairs with a part that satisfies F5 criterion}. 
-\item S-pair has a part that is rejected by the \texttt{Rewritten?} check
-(in \texttt{SPol} or in \texttt{IsReducible}). Such S-pairs will be
-referenced as \emph{S-pairs with a part that satisfies Rewritten criterion}.
-\item S-pair was not rejected, so it's S-polynomial was signature-safe
-reduced by $G_{g}$ elements and the result is stored in $G_{g}$.
-Such S-pairs will be referenced as \emph{S-pairs with a computed $G_{g}$-representation}.\end{enumerate}
+\item S-пара имеет часть, которая была отброшена критерием проверки нормальной
+формы $\varphi$ (в \texttt{CritPair} или в \texttt{IsReducible}).
+Такие S-пары будут называться \emph{S-парами с частью, удовлетворяющей
+критерию F5}. 
+\item S-пара имеет часть, которая была отброшена проверкой \texttt{Rewritten?}
+(в \texttt{SPol} или в \texttt{IsReducible}). Такие S-пары будут называться
+\emph{S-парами с частью, удовлетворяющей критерию Перезаписи}.
+\item S-пара не была отброшена, поэтому её S-многочлен был сигнатурно редуцирован
+по некоторым элементам $G_{g}$ и результат был добавлен как элемент
+$G_{g}$. Такие S-пары будут называться \emph{S-парами с известным
+$G_{g}$-представлением}.\end{enumerate}
 \begin{proof}
-S-pairs of $G_{g}$ elements are processed in two paths in the algorithm.
-The main path is for S-pairs with total degree greater than total
-degrees of polynomials generated it. Such S-pairs are processed in
-the following order:
+S-пары элементов $G_{g}$ обрабатываются в алгоритме двумя основными
+путями. Основной путь используется для S-пар, полная степень которых
+больше чем полная степень породивших их многочленов. Такие S-пары
+обрабатываются в следующем порядке:
 \begin{itemize}
-\item in the \texttt{AlgorithmF5} they are passed in \texttt{CritPair} function
-while moving elements to $G_{i}$ from $R_{d}=Done$ or while processing
-input polynomial $r_{i}$. 
-\item The \texttt{CritPair} function either discards them by normal form
-check $\varphi$ or adds to $P$
-\item The S-pair is taken from $P$ and passed to \texttt{SPol} function
-\item The \texttt{SPol} function either discards them by \texttt{Rewritten?}
-check or adds S-polynomial to $F=ToDo$
-\item At some iteration the \texttt{Reduction} procedure takes S-polynomial
-from $ToDo$, performs some signature-safe reductions and adds result
-to $Done$.
+\item в процедуре \texttt{AlgorithmF5} они рассматриваются функцией \texttt{CritPair}
+при перемещении элементов $G_{i}$ из $R_{d}=Done$ и при обработке
+входного многочлена $r_{i}$
+\item функция \texttt{CritPair} или отбрасывает пару после проверки нормальной
+формы $\varphi$ или добавляет пару в $P$
+\item S-пара извлекается из $P$ и передаётся в функцию \texttt{SPol}
+\item функция \texttt{SPol} или отбрасывает пару после проверки \texttt{Rewritten?}
+или добавляет S-многочлен в $F=ToDo$
+\item на некоторой итерации процедура \texttt{Reduction} берёт S-многочлен
+из $ToDo$, производит некоторые сигнатурные редукции и добавляет
+результат в $Done$.
 \end{itemize}
-The other processing path is for special S-pairs corresponding to
-reductions forbidden by algorithm -- the case when S-pair is generated
-by polynomials $r_{l^{*}}$ and $r_{l_{*}}$ such that $\HM(r_{l^{*}})|\HM(r_{l_{*}})$
-so that S-polynomial has a form $\overline{u_{l}}\cdot\poly(r_{l^{*}})-1\cdot\poly(r_{l_{*}})$.
-Such situation is possible for two $G_{g}$ elements if reduction
-of $r_{l_{*}}$ by $r_{l^{*}}$ was forbidden by signature comparison
-in \texttt{TopReduction} or by checks in \texttt{IsReducible}. So
-for this case the path of S-pair ``processing'' is the following:
+Второй путь обработки используется для S-пар, соответствующих редукциям,
+запрещённым алгоритмом -- соответствующие S-пары порождаются многочленами
+$r_{l^{*}}$ и $r_{l_{*}}$, такими что $\HM(r_{l^{*}})|\HM(r_{l_{*}})$,
+и S-многочлен им соответствующий имеет вид $\overline{u_{l}}\cdot\poly(r_{l^{*}})-1\cdot\poly(r_{l_{*}})$.
+Такая ситуация возможна, если для элементов $G_{g}$ редукция $r_{l_{*}}$
+по $r_{l^{*}}$ была запрещена сравнением сигнатур в \texttt{TopReduction}
+или проверками в \texttt{IsReducible}. Для этого случая порядок \flqq{}обработки\frqq{}
+S-пары такой:
 \begin{itemize}
-\item The S-pair part $\overline{u_{l}}\cdot r_{l^{*}}$ is checked in \texttt{IsReducible}.
-(a) is satisfied because $\HM(r_{l^{*}})|\HM(r_{l_{*}})$. It can
-be rejected by one of the other checks:
+\item часть S-пары $\overline{u_{l}}\cdot r_{l^{*}}$ проверяется в \texttt{IsReducible}.
+(a) выполнено, поскольку $\HM(r_{l^{*}})|\HM(r_{l_{*}})$. Она может
+быть отброшена другими проверками:
 
 \begin{itemize}
-\item Rejection by check (b) correspond to the normal form check $\varphi$
-for $\overline{u_{l}}\cdot r_{l^{*}}$
-\item Rejection by check (c) correspond to the \texttt{Rewritten?} check
-for $\overline{u_{l}}\cdot r_{l^{*}}$
-\item Rejection by check (d) means that either $\overline{u_{l}}\cdot r_{l^{*}}$
-or $1\cdot r_{l_{*}}$ can be rewritten by other, so if S-pair was
-not rejected by check (c) this type of rejection means that S-pair
-part $1\cdot r_{i_{1}}$ fails to pass \texttt{Rewritten?} check.
+\item отбрасывание пунктом (b) соответствует проверке нормальной формы $\varphi$
+для $\overline{u_{l}}\cdot r_{l^{*}}$
+\item отбрасывание пунктом (c) соответствует проверке \texttt{Rewritten?}
+для $\overline{u_{l}}\cdot r_{l^{*}}$
+\item отбрасывание пунктом (d) означает, что один из многочленов $\overline{u_{l}}\cdot r_{l^{*}}$
+и $1\cdot r_{l_{*}}$ может быть перезаписано другим, поэтому, если
+S-пара не была отброшена проверкой (c), данный тип отбрасывания означает,
+что часть S-пары $1\cdot r_{i_{1}}$ не проходит проверку \texttt{Rewritten?}
 \end{itemize}
-\item The non-rejected in \texttt{IsReducible} S-pair is returned in the
-\texttt{TopReduction}. Signature comparison in \texttt{TopReduction}
-forbids the reduction of $r_{l_{*}}$ by $r_{l^{*}}$ and returns
-computed S-polynomial corresponding to the S-pair in the set $ToDo_{1}$
-\item The \texttt{Reduction} procedure add this polynomial in $ToDo$
-\item The last step is equal to for both processing paths: at some iteration
-the \texttt{Reduction} procedure takes S-polynomial from $ToDo$,
-performs some signature-safe reductions and adds result to $Done$
+\item S-пары, не отброшенные в \texttt{IsReducible} возвращаются в \texttt{TopReduction}.
+Сравнение сигнатур в \texttt{TopReduction} запрещает редукцию $r_{l_{*}}$
+по $r_{l^{*}}$ и помещает вычисленный S-многочлен, соответствующий
+S-паре, в множество $ToDo_{1}$
+\item процедура \texttt{Reduction} добавляет этот многочлен в $ToDo$
+\item последний шаг совпадает для обоих путей обработки S-пар: на некоторой
+итерации процедура \texttt{Reduction} берёт S-многочлен из $ToDo$,
+производит некоторые сигнатурные редукции и добавляет результат в
+$Done$.
 \end{itemize}
-It can be seen that after S-pair processing termination every S-pair
-is either reduced and added to $Done$ or one of its S-pair parts
-is rejected by normal form $\varphi$ or \texttt{Rewritten?} check.
-Some S-pairs can be processed by processing paths multiple times,
-for example this is done in the second iteration inside \texttt{AlgorithmF5}
-with same $d$ value. If the pair was rejected during first processing
-it will be rejected the same way during next attempt. If the first
-time processing adds polynomial to $Done$ the pair will be rejected
-in next attempts by \texttt{the Rewritten?} check with that polynomial.
-So all but the first processing attempts are insignificant.
+Из путей обработки S-пар видно, что после окончания обработки каждая
+S-пара или редуцирована и добавлена в $Done$ или одна из частей S-пары
+была отброшена проверкой нормальной формы $\varphi$ или критерием
+\texttt{Rewritten?}. Некоторые S-пары могут оказываться на путях обработки
+несколько раз, к примеру это происходит на итерации в \texttt{AlgorithmF5}
+со значением $d$, не изменившимся с прошлой итерации. Если S-пара
+была отброшена при первой попытке обработки, то она будет точно также
+отброшена и на следующей попытке. Если первая обработка добавила редуцированный
+многочлен в $Done$, то пара будет отбрасываться при следующих попытках
+обработки проверкой\texttt{ Rewritten?} за счёт этого многочлена.
+Поэтому все попытки обработки, кроме первой, не дают ничего нового.
 
-The processing path is not a single procedure and for the case of
-algorithm infinite cycling some S-pairs are always staying in the
-middle of the path having S-pair queued in $P$ or S-polynomial in
-$ToDo$. So we have to select S-pairs which processing is already
-finished at the fixed moment we studying. The elements from $P$ and
-$ToDo$ in \texttt{AlgorithmF5} and \texttt{Reduction} procedures
-are taken in the order corresponding to growth of their signatures.
-So S-pairs with signature smaller than $\Sig(g)$ can be split in
-the following classes:
+Путь обработки не является одной процедурой, и в случае, если алгоритм
+не останавливается, некоторые S-пары всегда находятся в середине обработки,
+при этом или соответствующая S-пара находится в очереди $P$ или S-многочлен
+в очереди $ToDo$. Поэтому необходимо понять, обработка каких S-пар
+уже завершилась в рассматриваемый нами момент. Элементы $P$ и $ToDo$
+извлекаются в процедурах \texttt{AlgorithmF5} и \texttt{Reduction}
+в порядке возрастания сигнатур. S-пары с сигнатурами, меньшими $\Sig(g)$,
+могут быть разделены на 3 класса:
 \begin{itemize}
-\item S-pairs with signature $w$ such that $\sigidx(w)>\sigidx(\Sig(g))=1$.
-They were processed on previous calls of \texttt{AlgorithmF5}.
-\item S-pairs with signature $w$ such that $\sigidx(w)=\sigidx(\Sig(g))=1,\totaldeg(w)<\totaldeg(\Sig(g))$.
-They were processed on previous iterations inside the call to \texttt{AlgorithmF5}
-that is processing $g$.
-\item S-pairs with signature $w$ such that $\sigidx(w)=\sigidx(\Sig(g))=1,\totaldeg(w)=\totaldeg(\Sig(g)),w\prec\Sig(g)$.
-They were processed on previous iterations inside the call to Reduce
-that is processing $g$.
+\item S-пары с сигнатурой $w$, такой что $\sigidx(w)>\sigidx(\Sig(g))=1$.
+Они обрабатывались на предыдущих вызовах \texttt{AlgorithmF5}.
+\item S-пары с сигнатурой $w$, такой что $\sigidx(w)=\sigidx(\Sig(g))=1,\totaldeg(w)<\totaldeg(\Sig(g))$.
+Они обрабатывались на предыдущих итерациях цикла внутри того же вызова
+\texttt{AlgorithmF5}, который обрабатывает $g$.
+\item S-пары с сигнатурой $w$, такой что $\sigidx(w)=\sigidx(\Sig(g))=1,\totaldeg(w)=\totaldeg(\Sig(g)),w\prec\Sig(g)$.
+Они обрабатывались на предыдущих итерациях цикла внутри того же вызова
+\texttt{Reduce}, который обрабатывает $g$.
 \end{itemize}
-S-pairs from these classes can't be at the middle of processing path
-because at the studied state of algorithm the processing is just finished
-for $g$ so $P$ and $ToDo$ sets does not contain any non-processed
-elements with signatures smaller $\Sig(g)$. The only left thing to
-show is proof that processing was started at least one time for all
-S-pairs from theorem claim. This is true for first two classes: the
-processing of corresponding S-pairs was started at least one time
-with the call to \texttt{CritPair} inside \texttt{AlgorithmF5} just
-before the greatest of S-pair generators was added to $G$. For S-pairs
-of third class the situation depend on the total degrees of its generators.
-If both generators of S-pair have total degrees $<\totaldeg(g)$ then
-its processing is started in \texttt{CritPair} like for the S-pairs
-from first two classes. But some S-pairs from the third class can
-have a signature-greater generator polynomial $r_{l}$ such that $\totaldeg(r_{l})=\totaldeg(g),\,\Sig(r_{l})\prec\Sig(g)$.
-They are processed with the second mentioned processing path so the
-processing for such S-pairs is not yet started at the beginning of
-last \texttt{Reduction} call. Fortunately, their processing starts
-inside \texttt{Reduction} before fixed moment we studying: the procedure
-selects polynomials from $ToDo$ in the signature increasing order,
-so $r_{l}$ is reduced before $g$ and during $r_{l}$ reduction just
-before putting $r_{l}$ to $Done$ a call to \texttt{IsReducible}
-starts processing for all such S-pairs.
+S-пары из этих классов не могут находиться в середине пути обработки,
+потому что в рассматриваемом состоянии алгоритма обработка только
+что завершена для $g$, поэтому ни $P$ ни $ToDo$ не содержат необработанных
+элементов с сигнатурами, меньшими $\Sig(g)$. Осталось показать, что
+для всех S-пар из утверждения теоремы обработка начиналась хотя бы
+один раз. Это просто проверить для первых двух классов: обработка
+соответствующих S-пар была начата по крайней мере один раз путём вызова
+\texttt{CritPair} в \texttt{AlgorithmF5} непосредственно перед тем,
+как наибольший из порождающих S-пару был добавлен в $G$. Для S-пар
+третьего класса ситуация зависит от полной степени её порождающих.
+Если оба порождающих S-пары имеют полную степень $<\totaldeg(g)$,
+то её обработка была начата в \texttt{CritPair} аналогично S-парам
+первых двух классов. Но некоторые S-пары третьего класса могут иметь
+старший по сигнатуре порождающий $r_{l}$, такой что $\totaldeg(r_{l})=\totaldeg(g),\,\Sig(r_{l})\prec\Sig(g)$.
+Они обрабатываются вторым из рассмотренных путей обработки S-пар,
+поэтому обработка таких S-пар ещё не стартовала к моменту последнего
+вызова \texttt{Reduction}. Однако, их обработка начинается внутри
+\texttt{Reduction} до изучаемого нами момента: процедура выбирает
+многочлены из $ToDo$ в порядке возрастания сигнатуры, поэтому $r_{l}$
+редуцируется до $g$ и в процессе редукции $r_{l}$ непосредственно
+перед добавлением $r_{l}$ в $Done$ вызов \texttt{TopReduction} начинает
+обработку всех таких S-пар.
 \end{proof}
-The ideas of \emph{satisfying F5 criterion }and \emph{satisfying Rewritten
-criterion} can be extended to arbitrary monomial-multiplied labeled
-polynomial $sh,\, h\in G_{g}$:
+Понятие \emph{удовлетворять критерию F5 }и \emph{удовлетворять критерию
+Перезаписи} могут быть расширены но произвольные умноженные на моном
+отмеченные многочлены $sh,\, h\in G_{g}$:
 \begin{defn}
-The monomial-multiplied labeled polynomial $sr_{i},\, r_{i}\in G_{g}$
-is called \emph{satisfying F5 criterion} if $\varphi_{index(r_{i})+1}(s\Sig(r_{i}))\ne s\Sig(r_{i})$,
-where $\varphi_{index(r_{i})+1}$ is operator of normal form w.r.t
-$G_{index(r_{i})+1}$.
+Умноженный на моном отмеченный многочлен  $sr_{i},\, r_{i}\in G_{g}$
+называется \emph{удовлетворяющим критерию F5}, если $\varphi_{index(r_{i})+1}(s\Sig(r_{i}))\ne s\Sig(r_{i})$,
+где $\varphi_{index(r_{i})+1}$ -- оператор нормальной формы по отношению
+к $G_{index(r_{i})+1}$.
 \end{defn}
-This definition is equivalent to $sr_{i}$ being non-normalized labeled
-polynomial according to definition 2 in part 5 of \cite{FaugereF5}.
+Это определение эквивалентно тому, что $sr_{i}$ является не-нормализованным
+отмеченным многочленом с точки зрения определения 2 в части 5 работы
+\cite{FaugereF5}.
 \begin{defn}
-The monomial-multiplied labeled polynomial $sr_{i},\, r_{i}\in G_{g}$
-is called \emph{satisfying Rewritten criterion} if $\exists j>i$
-such that $\Sig(r_{j})|s\Sig(r_{i})$.
+Умноженный на моном отмеченный многочлен $sr_{i},\, r_{i}\in G_{g}$
+называется \emph{удовлетворяющим критерию Перезаписи}, если $\exists j>i$
+такое что $\Sig(r_{j})|s\Sig(r_{i})$.
 \end{defn}
-For the case $sr_{i}$ is the S-pair part these definitions are equivalent
-to the checks in the algorithm in a sense that S-pair part is rejected
-by the algorithm if and only if it satisfies the definition as monomial-multiplied
-labeled polynomial. Note that for both criteria holds important property
-that if $sr_{i}$ satisfies a criteria then a further multiplied $s_{1}sr_{i}$
-$ $satisfies it too.
+В случае, если $sr_{i}$ является частью S-пары, эти определения эквиваленты
+проверкам, производимым в алгоритме, в том смысле, что часть S-пары
+отбрасывается алгоритмом тогда и только тогда, когда она удовлетворяет
+данному определению как умноженный на моном отмеченный многочлен.
+Для обоих критериев выполняется важное свойство, утверждающее, что
+если $sr_{i}$ удовлетворяет критерию, то то и дополнительно домноженный
+многочлен $s_{1}sr_{i}$ $ $также ему удовлетврояет.
 
 
 \section{Representations}

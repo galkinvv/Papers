@@ -1766,7 +1766,7 @@ IsReducible
 
 \begin_layout Theorem
 Если алгоритм не останавливается на некоторых входных данных, то он порождает
- бесконечную цепь S-пар
+ бесконечную цепь S-пар 
 \begin_inset Formula $\{h_{i}\}$
 \end_inset
 
@@ -2211,10 +2211,10 @@ reference "thm:f_g_3_props"
 \end_inset
 
  из утверждения теоремы показывает, что 
-\begin_inset Formula $tf$
+\begin_inset Formula $tf'$
 \end_inset
 
-' является редуктором для 
+ является редуктором для 
 \begin_inset Formula $f$
 \end_inset
 
@@ -2257,10 +2257,10 @@ TopReduction
 
 \begin_layout Standard
 Но существование критериев делает возможной ситуацию, в которой 
-\begin_inset Formula $tf$
+\begin_inset Formula $tf'$
 \end_inset
 
-' отбрасывается проверками (b) или (c) процедуры 
+ отбрасывается проверками (b) или (c) процедуры 
 \family typewriter
 IsReducible
 \family default
@@ -2275,7 +2275,7 @@ IsReducible
 \end_layout
 
 \begin_layout Section
-S-pairs with signatures smaller than 
+S-пары с сигнатурами, меньшими 
 \begin_inset Formula $\Sig(g)$
 \end_inset
 
@@ -2283,106 +2283,107 @@ S-pairs with signatures smaller than
 \end_layout
 
 \begin_layout Standard
-In this and following sections 
+В этой и последующих частях 
 \begin_inset Formula $g$
 \end_inset
 
- is treated as some fixed labeled polynomial with signature index 1 added
- to 
+ подразумевается некоторым фиксированным многочленом с индексом сигнатуры
+ 1, добавленный на некоторой итерации алгоритма в 
 \begin_inset Formula $Done$
 \end_inset
 
- in some algorithm iteration.
- Let us work with algorithm state just before adding 
+.
+ Мы будем анализировать состояние алгоритма в момент непосредственно предшествую
+щий добавлению 
 \begin_inset Formula $g$
 \end_inset
 
- to 
+ в 
 \begin_inset Formula $Done$
 \end_inset
 
- during call to 
+ в вызове 
 \family typewriter
 AlgorithmF5
 \family default
- with 
+ с 
 \begin_inset Formula $i=1$
 \end_inset
 
 .
- Consider a finite set 
+ Рассмотрим в этот момент конечное множество отмеченных многочленов 
 \begin_inset Formula $G_{1}\cup Done$
 \end_inset
 
- of labeled polynomials at that moment.
- This set contains positions of labeled polynomials in 
+.
+ Оно состоит из чисел, являющихся позиций отмеченных многочленов в 
 \begin_inset Formula $R$
 \end_inset
 
-, so it
-\begin_inset Quotes ers
-\end_inset
-
-s elements can be ordered according to position in 
+, поэтому его элементы могут быть упорядочены в соответствии с позицией
+ в 
 \begin_inset Formula $R$
 \end_inset
 
- and written as an ordered integer sequence 
+ и оно окажется записанным в виде упорядоченной последовательности целых
+ чисел 
 \begin_inset Formula $G_{g}=\{b_{1},\ldots,b_{N}\}$
 \end_inset
 
- with 
+ с 
 \begin_inset Formula $b_{j}<b_{j+1}$
 \end_inset
 
 .
- It should be noted that this order does correspond to the order of labeled
- polynomials in the sequence produced by concatenated rule arrays 
+ Необходимо отметить, что этот порядок соответствует порядку отмеченных
+ многочленов в последовательности, получаемой склеиванием массивов правил
+ 
 \begin_inset Formula $Rule[m]:Rule[m-1]:\cdots:Rule[1]$
 \end_inset
 
- because addition of new polynomial to 
+, поскольку добавление нового многочлена в 
 \begin_inset Formula $R$
 \end_inset
 
- is always followed by addition of corresponding rule.
- But this order may differ from the order polynomials were added to 
+ всегда сопровождается добавлением соответствующего правила.
+ Но этот порядок может отличаться от порядка в котором многочлены добавлялись
+ в множество 
 \begin_inset Formula $G_{1}\cup Done$
 \end_inset
 
- because polynomials with same total degree are added to 
+, поскольку многочлены одной полной степени добавляются в 
 \begin_inset Formula $Done$
 \end_inset
 
- in the increasing signature order, while the addition polynomials with
- same total degree to 
+ в порядке возрастания сигнатуры, при том что добавление многочленов одной
+ полной степени в 
 \begin_inset Formula $R$
 \end_inset
 
- is performed in quite random order inside 
+ производится в довольно случайном порядке в процедурах 
 \family typewriter
 Spol
 \family default
- and 
+ и 
 \family typewriter
 TopReduction
 \family default
- procedures.
- For the simplicity we will be speaking about labeled polynomials 
+.
+ Далее для простоты мы будем говорить о отмеченных многочленах 
 \begin_inset Formula $b_{j}$
 \end_inset
 
- from 
+ в 
 \begin_inset Formula $G_{g}$
 \end_inset
 
-, assuming that 
+, подразумевая что 
 \begin_inset Formula $G_{g}$
 \end_inset
 
- is not the ordered positions list but the ordered list of labeled polynomials
- themselves corresponding to those positions.
- In this terminology we can say that all input polynomials 
+ является не упорядоченным списком позиций, а упорядоченным списком отмеченных
+ многочленов, расположенных на этих позициях.
+ В этой терминологии можно сказать, что все входные многочлены 
 \family roman
 \series medium
 \shape up
@@ -2410,30 +2411,29 @@ TopReduction
 \uwave default
 \noun default
 \color inherit
- do present in 
+ присутствуют в 
 \begin_inset Formula $G_{g}$
 \end_inset
 
-, because they all present in 
+, поскольку они присутствуют в 
 \begin_inset Formula $G_{1}$
 \end_inset
 
- at the moment of its creation.
+ в момент его создания.
 \end_layout
 
 \begin_layout Standard
-S-pairs can be processed in a different ways inside the algorithm but the
- main fact we need to know about their processing is encapsulated in the
- following properties which correspond to the properties used in Theorem
- 21 in 
+S-пары могут обрабатываться в алгоритме различным путями, но главный факт,
+ описывающий порядок их обработки выражается следующими свойствами, соответствую
+щими свойствам, использованным в Теореме 21 работы 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "F5C"
 
 \end_inset
 
- but are taken during arbitrary algorithm iteration without requirements
- of termination.
+, но рассматриваются на произвольной итерации алгоритма, а не после его
+ остановки.
 \end_layout
 
 \begin_layout Theorem
@@ -2443,140 +2443,137 @@ name "thm:Exist-gg-repr"
 
 \end_inset
 
-At the moment of adding 
+К моменту добавления 
 \begin_inset Formula $g$
 \end_inset
 
- to 
+ в 
 \begin_inset Formula $Done$
 \end_inset
 
- every S-pair of 
+ каждая S-пара элементов 
 \begin_inset Formula $G_{g}$
 \end_inset
 
- elements which signature is smaller than 
+, сигнатура которой меньше 
 \begin_inset Formula $\Sig(g)$
 \end_inset
 
- satisfies one of three properties:
+ удовлетворяет одному из трёх свойств:
 \end_layout
 
 \begin_layout Enumerate
-S-pair has a part that is rejected by the normal form check 
+S-пара имеет часть, которая была отброшена критерием проверки нормальной
+ формы 
 \begin_inset Formula $\varphi$
 \end_inset
 
- (in 
+ (в 
 \family typewriter
 CritPair
 \family default
- or in 
+ или в 
 \family typewriter
 IsReducible
 \family default
 ).
- Such S-pairs will be referenced as 
+ Такие S-пары будут называться 
 \emph on
-S-pairs with a part that satisfies F5 criterion
+S-парами с частью, удовлетворяющей критерию F5
 \emph default
 .
  
 \end_layout
 
 \begin_layout Enumerate
-S-pair has a part that is rejected by the 
+S-пара имеет часть, которая была отброшена проверкой 
 \family typewriter
 Rewritten?
 \family default
- check (in 
+ (в 
 \family typewriter
 SPol
 \family default
- or in 
+ или в 
 \family typewriter
 IsReducible
 \family default
 ).
- Such S-pairs will be referenced as 
+ Такие S-пары будут называться 
 \emph on
-S-pairs with a part that satisfies Rewritten criterion
+S-парами с частью, удовлетворяющей критерию Перезаписи
 \emph default
 .
 \end_layout
 
 \begin_layout Enumerate
-S-pair was not rejected, so it
-\begin_inset Quotes ers
-\end_inset
-
-s S-polynomial was signature-safe reduced by 
+S-пара не была отброшена, поэтому её S-многочлен был сигнатурно редуцирован
+ по некоторым элементам 
 \begin_inset Formula $G_{g}$
 \end_inset
 
- elements and the result is stored in 
+ и результат был добавлен как элемент 
 \begin_inset Formula $G_{g}$
 \end_inset
 
 .
- Such S-pairs will be referenced as 
+ Такие S-пары будут называться 
 \emph on
-S-pairs with a computed 
+S-парами с известным 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representation
+-представлением
 \emph default
 .
 \end_layout
 
 \begin_layout Proof
-S-pairs of 
+S-пары элементов 
 \begin_inset Formula $G_{g}$
 \end_inset
 
- elements are processed in two paths in the algorithm.
- The main path is for S-pairs with total degree greater than total degrees
- of polynomials generated it.
- Such S-pairs are processed in the following order:
+ обрабатываются в алгоритме двумя основными путями.
+ Основной путь используется для S-пар, полная степень которых больше чем
+ полная степень породивших их многочленов.
+ Такие S-пары обрабатываются в следующем порядке:
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-in the 
+в процедуре 
 \family typewriter
 AlgorithmF5
 \family default
- they are passed in 
+ они рассматриваются функцией 
 \family typewriter
 CritPair
 \family default
- function while moving elements to 
+ при перемещении элементов 
 \begin_inset Formula $G_{i}$
 \end_inset
 
- from 
+ из 
 \begin_inset Formula $R_{d}=Done$
 \end_inset
 
- or while processing input polynomial 
+ и при обработке входного многочлена 
 \begin_inset Formula $r_{i}$
 \end_inset
 
-.
- 
+
 \end_layout
 
 \begin_layout Itemize
-The 
+функция 
 \family typewriter
 CritPair
 \family default
- function either discards them by normal form check 
+ или отбрасывает пару после проверки нормальной формы 
 \begin_inset Formula $\varphi$
 \end_inset
 
- or adds to 
+ или добавляет пару в 
 \begin_inset Formula $P$
 \end_inset
 
@@ -2584,27 +2581,25 @@ CritPair
 \end_layout
 
 \begin_layout Itemize
-The S-pair is taken from 
+S-пара извлекается из 
 \begin_inset Formula $P$
 \end_inset
 
- and passed to 
+ и передаётся в функцию 
 \family typewriter
 SPol
-\family default
- function
 \end_layout
 
 \begin_layout Itemize
-The 
+функция 
 \family typewriter
 SPol
 \family default
- function either discards them by 
+ или отбрасывает пару после проверки 
 \family typewriter
 Rewritten?
 \family default
- check or adds S-polynomial to 
+ или добавляет S-многочлен в 
 \begin_inset Formula $F=ToDo$
 \end_inset
 
@@ -2612,15 +2607,15 @@ Rewritten?
 \end_layout
 
 \begin_layout Itemize
-At some iteration the 
+на некоторой итерации процедура 
 \family typewriter
 Reduction
 \family default
- procedure takes S-polynomial from 
+ берёт S-многочлен из 
 \begin_inset Formula $ToDo$
 \end_inset
 
-, performs some signature-safe reductions and adds result to 
+, производит некоторые сигнатурные редукции и добавляет результат в 
 \begin_inset Formula $Done$
 \end_inset
 
@@ -2629,69 +2624,69 @@ Reduction
 
 \end_deeper
 \begin_layout Proof
-The other processing path is for special S-pairs corresponding to reductions
- forbidden by algorithm -- the case when S-pair is generated by polynomials
+Второй путь обработки используется для S-пар, соответствующих редукциям,
+ запрещённым алгоритмом -- соответствующие S-пары порождаются многочленами
  
 \begin_inset Formula $r_{l^{*}}$
 \end_inset
 
- and 
+ и 
 \begin_inset Formula $r_{l_{*}}$
 \end_inset
 
- such that 
+, такими что 
 \begin_inset Formula $\HM(r_{l^{*}})|\HM(r_{l_{*}})$
 \end_inset
 
- so that S-polynomial has a form 
+, и S-многочлен им соответствующий имеет вид 
 \begin_inset Formula $\overline{u_{l}}\cdot\poly(r_{l^{*}})-1\cdot\poly(r_{l_{*}})$
 \end_inset
 
 .
- Such situation is possible for two 
+ Такая ситуация возможна, если для элементов 
 \begin_inset Formula $G_{g}$
 \end_inset
 
- elements if reduction of 
+ редукция 
 \begin_inset Formula $r_{l_{*}}$
 \end_inset
 
- by 
+ по 
 \begin_inset Formula $r_{l^{*}}$
 \end_inset
 
- was forbidden by signature comparison in 
+ была запрещена сравнением сигнатур в 
 \family typewriter
 TopReduction
 \family default
- or by checks in 
+ или проверками в 
 \family typewriter
 IsReducible
 \family default
 .
- So for this case the path of S-pair 
-\begin_inset Quotes eld
+ Для этого случая порядок 
+\begin_inset Quotes fld
 \end_inset
 
-processing
-\begin_inset Quotes erd
+обработки
+\begin_inset Quotes frd
 \end_inset
 
- is the following:
+ S-пары такой:
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-The S-pair part 
+часть S-пары 
 \begin_inset Formula $\overline{u_{l}}\cdot r_{l^{*}}$
 \end_inset
 
- is checked in 
+ проверяется в 
 \family typewriter
 IsReducible
 \family default
 .
- (a) is satisfied because 
+ (a) выполнено, поскольку 
 \family roman
 \series medium
 \shape up
@@ -2720,16 +2715,16 @@ IsReducible
 \noun default
 \color inherit
 .
- It can be rejected by one of the other checks:
+ Она может быть отброшена другими проверками:
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-Rejection by check (b) correspond to the normal form check 
+отбрасывание пунктом (b) соответствует проверке нормальной формы 
 \begin_inset Formula $\varphi$
 \end_inset
 
- for 
+ для 
 \begin_inset Formula $\overline{u_{l}}\cdot r_{l^{*}}$
 \end_inset
 
@@ -2737,11 +2732,11 @@ Rejection by check (b) correspond to the normal form check
 \end_layout
 
 \begin_layout Itemize
-Rejection by check (c) correspond to the 
+отбрасывание пунктом (c) соответствует проверке 
 \family typewriter
 Rewritten?
 \family default
- check for 
+ для 
 \begin_inset Formula $\overline{u_{l}}\cdot r_{l^{*}}$
 \end_inset
 
@@ -2749,33 +2744,31 @@ Rewritten?
 \end_layout
 
 \begin_layout Itemize
-Rejection by check (d) means that either 
+отбрасывание пунктом (d) означает, что один из многочленов 
 \begin_inset Formula $\overline{u_{l}}\cdot r_{l^{*}}$
 \end_inset
 
- or 
+ и 
 \begin_inset Formula $1\cdot r_{l_{*}}$
 \end_inset
 
- can be rewritten by other, so if S-pair was not rejected by check (c) this
- type of rejection means that S-pair part 
+ может быть перезаписано другим, поэтому, если S-пара не была отброшена
+ проверкой (c), данный тип отбрасывания означает, что часть S-пары 
 \begin_inset Formula $1\cdot r_{i_{1}}$
 \end_inset
 
- fails to pass 
+ не проходит проверку 
 \family typewriter
 Rewritten?
-\family default
- check.
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-The non-rejected in 
+S-пары, не отброшенные в 
 \family typewriter
 IsReducible
 \family default
- S-pair is returned in the 
+ возвращаются в 
 \family typewriter
 TopReduction
 \family default
@@ -2792,7 +2785,7 @@ TopReduction
 \uwave off
 \noun off
 \color none
-Signature comparison in 
+Сравнение сигнатур в 
 \family typewriter
 \series default
 \shape default
@@ -2806,15 +2799,15 @@ Signature comparison in
 \color inherit
 TopReduction
 \family default
- forbids the reduction of 
+ запрещает редукцию 
 \begin_inset Formula $r_{l_{*}}$
 \end_inset
 
- by 
+ по 
 \begin_inset Formula $r_{l^{*}}$
 \end_inset
 
- and returns computed S-polynomial corresponding to the S-pair in the set
+ и помещает вычисленный S-многочлен, соответствующий S-паре, в множество
  
 \begin_inset Formula $ToDo_{1}$
 \end_inset
@@ -2823,11 +2816,11 @@ TopReduction
 \end_layout
 
 \begin_layout Itemize
-The 
+процедура 
 \family typewriter
 Reduction
 \family default
- procedure add this polynomial in 
+ добавляет этот многочлен в 
 \begin_inset Formula $ToDo$
 \end_inset
 
@@ -2835,112 +2828,112 @@ Reduction
 \end_layout
 
 \begin_layout Itemize
-The last step is equal to for both processing paths: at some iteration the
- 
+последний шаг совпадает для обоих путей обработки S-пар: на некоторой итерации
+ процедура 
 \family typewriter
 Reduction
 \family default
- procedure takes S-polynomial from 
+ берёт S-многочлен из 
 \begin_inset Formula $ToDo$
 \end_inset
 
-, performs some signature-safe reductions and adds result to 
+, производит некоторые сигнатурные редукции и добавляет результат в 
 \begin_inset Formula $Done$
 \end_inset
 
-
+.
 \end_layout
 
 \end_deeper
 \begin_layout Proof
-It can be seen that after S-pair processing termination every S-pair is
- either reduced and added to 
+Из путей обработки S-пар видно, что после окончания обработки каждая S-пара
+ или редуцирована и добавлена в 
 \begin_inset Formula $Done$
 \end_inset
 
- or one of its S-pair parts is rejected by normal form 
+ или одна из частей S-пары была отброшена проверкой нормальной формы 
 \begin_inset Formula $\varphi$
 \end_inset
 
- or 
+ или критерием 
 \family typewriter
 Rewritten?
 \family default
- check.
- Some S-pairs can be processed by processing paths multiple times, for example
- this is done in the second iteration inside 
+.
+ Некоторые S-пары могут оказываться на путях обработки несколько раз, к
+ примеру это происходит на итерации в 
 \family typewriter
 AlgorithmF5
 \family default
- with same 
+ со значением 
 \begin_inset Formula $d$
 \end_inset
 
- value.
- If the pair was rejected during first processing it will be rejected the
- same way during next attempt.
- If the first time processing adds polynomial to 
+, не изменившимся с прошлой итерации.
+ Если S-пара была отброшена при первой попытке обработки, то она будет точно
+ также отброшена и на следующей попытке.
+ Если первая обработка добавила редуцированный многочлен в 
 \begin_inset Formula $Done$
 \end_inset
 
- the pair will be rejected in next attempts by 
+, то пара будет отбрасываться при следующих попытках обработки проверкой
 \family typewriter
-the Rewritten?
+ Rewritten?
 \family default
- check with that polynomial.
- So all but the first processing attempts are insignificant.
+ за счёт этого многочлена.
+ Поэтому все попытки обработки, кроме первой, не дают ничего нового.
 \end_layout
 
 \begin_layout Proof
-The processing path is not a single procedure and for the case of algorithm
- infinite cycling some S-pairs are always staying in the middle of the path
- having S-pair queued in 
+Путь обработки не является одной процедурой, и в случае, если алгоритм не
+ останавливается, некоторые S-пары всегда находятся в середине обработки,
+ при этом или соответствующая S-пара находится в очереди 
 \begin_inset Formula $P$
 \end_inset
 
- or S-polynomial in 
+ или S-многочлен в очереди 
 \begin_inset Formula $ToDo$
 \end_inset
 
 .
- So we have to select S-pairs which processing is already finished at the
- fixed moment we studying.
- The elements from 
+ Поэтому необходимо понять, обработка каких S-пар уже завершилась в рассматривае
+мый нами момент.
+ Элементы 
 \begin_inset Formula $P$
 \end_inset
 
- and 
+ и 
 \begin_inset Formula $ToDo$
 \end_inset
 
- in 
+ извлекаются в процедурах 
 \family typewriter
 AlgorithmF5
 \family default
- and 
+ и 
 \family typewriter
 Reduction
 \family default
- procedures are taken in the order corresponding to growth of their signatures.
- So S-pairs with signature smaller than 
+ в порядке возрастания сигнатур.
+ S-пары с сигнатурами, меньшими 
 \begin_inset Formula $\Sig(g)$
 \end_inset
 
- can be split in the following classes:
+, могут быть разделены на 3 класса:
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-S-pairs with signature 
+S-пары с сигнатурой 
 \begin_inset Formula $w$
 \end_inset
 
- such that 
+, такой что 
 \begin_inset Formula $\sigidx(w)>\sigidx(\Sig(g))=1$
 \end_inset
 
 .
- They were processed on previous calls of 
+ Они обрабатывались на предыдущих вызовах 
 \family typewriter
 AlgorithmF5
 \family default
@@ -2948,20 +2941,21 @@ AlgorithmF5
 \end_layout
 
 \begin_layout Itemize
-S-pairs with signature 
+S-пары с сигнатурой 
 \begin_inset Formula $w$
 \end_inset
 
- such that 
+, такой что 
 \begin_inset Formula $\sigidx(w)=\sigidx(\Sig(g))=1,\totaldeg(w)<\totaldeg(\Sig(g))$
 \end_inset
 
 .
- They were processed on previous iterations inside the call to 
+ Они обрабатывались на предыдущих итерациях цикла внутри того же вызова
+ 
 \family typewriter
 AlgorithmF5
 \family default
- that is processing 
+, который обрабатывает 
 \begin_inset Formula $g$
 \end_inset
 
@@ -2969,17 +2963,21 @@ AlgorithmF5
 \end_layout
 
 \begin_layout Itemize
-S-pairs with signature 
+S-пары с сигнатурой 
 \begin_inset Formula $w$
 \end_inset
 
- such that 
+, такой что 
 \begin_inset Formula $\sigidx(w)=\sigidx(\Sig(g))=1,\totaldeg(w)=\totaldeg(\Sig(g)),w\prec\Sig(g)$
 \end_inset
 
 .
- They were processed on previous iterations inside the call to Reduce that
- is processing 
+ Они обрабатывались на предыдущих итерациях цикла внутри того же вызова
+ 
+\family typewriter
+Reduce
+\family default
+, который обрабатывает 
 \begin_inset Formula $g$
 \end_inset
 
@@ -2988,118 +2986,114 @@ S-pairs with signature
 
 \end_deeper
 \begin_layout Proof
-S-pairs from these classes can
-\begin_inset Quotes ers
-\end_inset
-
-t be at the middle of processing path because at the studied state of algorithm
- the processing is just finished for 
+S-пары из этих классов не могут находиться в середине пути обработки, потому
+ что в рассматриваемом состоянии алгоритма обработка только что завершена
+ для 
 \begin_inset Formula $g$
 \end_inset
 
- so 
+, поэтому ни 
 \begin_inset Formula $P$
 \end_inset
 
- and 
+ ни 
 \begin_inset Formula $ToDo$
 \end_inset
 
- sets does not contain any non-processed elements with signatures smaller
- 
+ не содержат необработанных элементов с сигнатурами, меньшими 
 \begin_inset Formula $\Sig(g)$
 \end_inset
 
 .
- The only left thing to show is proof that processing was started at least
- one time for all S-pairs from theorem claim.
- This is true for first two classes: the processing of corresponding S-pairs
- was started at least one time with the call to 
+ Осталось показать, что для всех S-пар из утверждения теоремы обработка
+ начиналась хотя бы один раз.
+ Это просто проверить для первых двух классов: обработка соответствующих
+ S-пар была начата по крайней мере один раз путём вызова 
 \family typewriter
 CritPair
 \family default
- inside 
+ в 
 \family typewriter
 AlgorithmF5
 \family default
- just before the greatest of S-pair generators was added to 
+ непосредственно перед тем, как наибольший из порождающих S-пару был добавлен
+ в 
 \begin_inset Formula $G$
 \end_inset
 
 .
- For S-pairs of third class the situation depend on the total degrees of
- its generators.
- If both generators of S-pair have total degrees 
+ Для S-пар третьего класса ситуация зависит от полной степени её порождающих.
+ Если оба порождающих S-пары имеют полную степень 
 \begin_inset Formula $<\totaldeg(g)$
 \end_inset
 
- then its processing is started in 
+, то её обработка была начата в 
 \family typewriter
 CritPair
 \family default
- like for the S-pairs from first two classes.
- But some S-pairs from the third class can have a signature-greater generator
- polynomial 
+ аналогично S-парам первых двух классов.
+ Но некоторые S-пары третьего класса могут иметь старший по сигнатуре порождающи
+й 
 \begin_inset Formula $r_{l}$
 \end_inset
 
- such that 
+, такой что 
 \begin_inset Formula $\totaldeg(r_{l})=\totaldeg(g),\,\Sig(r_{l})\prec\Sig(g)$
 \end_inset
 
 .
- They are processed with the second mentioned processing path so the processing
- for such S-pairs is not yet started at the beginning of last 
+ Они обрабатываются вторым из рассмотренных путей обработки S-пар, поэтому
+ обработка таких S-пар ещё не стартовала к моменту последнего вызова 
 \family typewriter
 Reduction
 \family default
- call.
- Fortunately, their processing starts inside 
+.
+ Однако, их обработка начинается внутри 
 \family typewriter
 Reduction
 \family default
- before fixed moment we studying: the procedure selects polynomials from
- 
+ до изучаемого нами момента: процедура выбирает многочлены из 
 \begin_inset Formula $ToDo$
 \end_inset
 
- in the signature increasing order, so 
+ в порядке возрастания сигнатуры, поэтому 
 \begin_inset Formula $r_{l}$
 \end_inset
 
- is reduced before 
+ редуцируется до 
 \begin_inset Formula $g$
 \end_inset
 
- and during 
+ и в процессе редукции 
 \begin_inset Formula $r_{l}$
 \end_inset
 
- reduction just before putting 
+ непосредственно перед добавлением 
 \begin_inset Formula $r_{l}$
 \end_inset
 
- to 
+ в 
 \begin_inset Formula $Done$
 \end_inset
 
- a call to 
+ вызов 
 \family typewriter
-IsReducible
+TopReduction
 \family default
- starts processing for all such S-pairs.
+ начинает обработку всех таких S-пар.
 \end_layout
 
 \begin_layout Standard
-The ideas of 
+Понятие 
 \emph on
-satisfying F5 criterion 
+удовлетворять критерию F5 
 \emph default
-and 
+и 
 \emph on
-satisfying Rewritten criterion
+удовлетворять критерию Перезаписи
 \emph default
- can be extended to arbitrary monomial-multiplied labeled polynomial 
+ могут быть расширены но произвольные умноженные на моном отмеченные многочлены
+ 
 \begin_inset Formula $sh,\, h\in G_{g}$
 \end_inset
 
@@ -3107,23 +3101,23 @@ satisfying Rewritten criterion
 \end_layout
 
 \begin_layout Definition
-The monomial-multiplied labeled polynomial 
+Умноженный на моном отмеченный многочлен  
 \begin_inset Formula $sr_{i},\, r_{i}\in G_{g}$
 \end_inset
 
- is called 
+ называется 
 \emph on
-satisfying F5 criterion
+удовлетворяющим критерию F5
 \emph default
- if 
+, если 
 \begin_inset Formula $\varphi_{index(r_{i})+1}(s\Sig(r_{i}))\ne s\Sig(r_{i})$
 \end_inset
 
-, where 
+, где 
 \begin_inset Formula $\varphi_{index(r_{i})+1}$
 \end_inset
 
- is operator of normal form w.r.t 
+ -- оператор нормальной формы по отношению к 
 \begin_inset Formula $G_{index(r_{i})+1}$
 \end_inset
 
@@ -3131,12 +3125,12 @@ satisfying F5 criterion
 \end_layout
 
 \begin_layout Standard
-This definition is equivalent to 
+Это определение эквивалентно тому, что 
 \begin_inset Formula $sr_{i}$
 \end_inset
 
- being non-normalized labeled polynomial according to definition 2 in part
- 5 of 
+ является не-нормализованным отмеченным многочленом с точки зрения определения
+ 2 в части 5 работы 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "FaugereF5"
@@ -3147,19 +3141,19 @@ key "FaugereF5"
 \end_layout
 
 \begin_layout Definition
-The monomial-multiplied labeled polynomial 
+Умноженный на моном отмеченный многочлен 
 \begin_inset Formula $sr_{i},\, r_{i}\in G_{g}$
 \end_inset
 
- is called 
+ называется 
 \emph on
-satisfying Rewritten criterion
+удовлетворяющим критерию Перезаписи
 \emph default
- if 
+, если 
 \begin_inset Formula $\exists j>i$
 \end_inset
 
- such that 
+ такое что 
 \begin_inset Formula $\Sig(r_{j})|s\Sig(r_{i})$
 \end_inset
 
@@ -3167,14 +3161,16 @@ satisfying Rewritten criterion
 \end_layout
 
 \begin_layout Standard
-For the case 
+В случае, если 
 \begin_inset Formula $sr_{i}$
 \end_inset
 
- is the S-pair part these definitions are equivalent to the checks in the
- algorithm in a sense that S-pair part is rejected by the algorithm if and
- only if it satisfies the definition as monomial-multiplied labeled polynomial.
- Note that for both criteria holds important property that if 
+ является частью S-пары, эти определения эквиваленты проверкам, производимым
+ в алгоритме, в том смысле, что часть S-пары отбрасывается алгоритмом тогда
+ и только тогда, когда она удовлетворяет данному определению как умноженный
+ на моном отмеченный многочлен.
+ Для обоих критериев выполняется важное свойство, утверждающее, что если
+ 
 \family roman
 \series medium
 \shape up
@@ -3190,7 +3186,7 @@ For the case
 \begin_inset Formula $sr_{i}$
 \end_inset
 
- satisfies a criteria then a further multiplied 
+ удовлетворяет критерию, то то и дополнительно домноженный многочлен 
 \begin_inset Formula $s_{1}sr_{i}$
 \end_inset
 
@@ -3198,7 +3194,7 @@ For the case
 \begin_inset Formula $ $
 \end_inset
 
-satisfies it too.
+также ему удовлетврояет.
 \end_layout
 
 \begin_layout Section
