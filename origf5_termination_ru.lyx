@@ -3190,45 +3190,40 @@ key "FaugereF5"
 \begin_inset Formula $s_{1}sr_{i}$
 \end_inset
 
- 
-\begin_inset Formula $ $
-\end_inset
-
-также ему удовлетврояет.
+ также ему удовлетворяет.
 \end_layout
 
 \begin_layout Section
-Representations
+Представления
 \end_layout
 
 \begin_layout Subsection
-Definition
+Определение
 \end_layout
 
 \begin_layout Standard
-The idea of representations comes from 
+Идея представлений, определённых ниже, приходит из 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "F5C"
 
 \end_inset
 
-, where a similar method is used in the proof of Theorem 21.
- Representations are used to describe all possible ways how a labeled polynomial
- 
+, где подобный метод используется в доказательстве Теоремы 21.
+ Представления используются для описания способов, которыми многочлен 
 \begin_inset Formula $p$
 \end_inset
 
- can be written as an element of 
+ может быть записан как элемент идеала 
 \begin_inset Formula $\left(G_{g}\right)$
 \end_inset
 
- ideal.
- The single representation corresponds to writing a labeled polynomial 
+.
+ Одно представление соответствует записи отмеченного многочлена 
 \begin_inset Formula $p$
 \end_inset
 
- as any finite sum of the form
+ в виде конечной суммы вида
 \begin_inset Formula 
 \begin{equation}
 p=\sum_{k}m_{k}\cdot b_{i_{k}},\; b_{i_{k}}\in G_{g}\label{eq:Gg-repr-def}
@@ -3236,7 +3231,7 @@ p=\sum_{k}m_{k}\cdot b_{i_{k}},\; b_{i_{k}}\in G_{g}\label{eq:Gg-repr-def}
 
 \end_inset
 
-with coefficients 
+с коэффициентами 
 \begin_inset Formula $m_{k}=c_{k}t_{k}\in\mathcal{K}\times T$
 \end_inset
 
@@ -3245,79 +3240,78 @@ with coefficients
 \end_layout
 
 \begin_layout Definition
-Sum of the form 
+Сумма вида 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "eq:Gg-repr-def"
 
 \end_inset
 
- with all pairs 
+, в которой все пары 
 \begin_inset Formula $\left(t_{k},b_{i_{k}}\right)$
 \end_inset
 
- distinct is called 
+ различны, называется 
 \emph on
 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representation
+-представлением
 \emph default
- of 
+ 
 \begin_inset Formula $p$
 \end_inset
 
 .
- The symbolic products 
+ Символические произведения 
 \begin_inset Formula $m_{k}\cdot b_{i_{k}}$
 \end_inset
 
- are called the 
+ называются 
 \emph on
-elements
+элементами
 \emph default
- of representation.
- If we treat this symbolic product as multiplication we get an labeled polynomia
-l 
+ представления.
+ Если рассмотреть это символическое произведение как умножение многочленов,
+ то мы получим отмеченный многочлен 
 \begin_inset Formula $m_{k}b_{i_{k}}$
 \end_inset
 
- corresponding to the representation element.
- So 
+, соответствующий элементу представления.
+ Тогда 
 \begin_inset Formula $p$
 \end_inset
 
- is equal to sum of labeled polynomials, corresponding to elements of its
- representation.
- Also the term 
+ оказывается равным сумме отмеченных многочленов, соответствующих элементам
+ его представления.
+ Понятие 
 \emph on
-element signature
+сигнатура элемента
 \emph default
- will be used for signature of labeled polynomials corresponding to the
- element.
- Two representations are equal if the sets of their elements are equal.
+ будет использоваться для обозначения сигнатура многочлена, соответствующего
+ элементу.
+ Два представления равны, если наборы их элементов совпадают как множества.
 \end_layout
 
 \begin_layout Standard
-Most representations we are interested in have the following additional
- property limiting elements signature:
+Большинство представлений, которые будут нам интересны также имеют следующее
+ свойство, ограничивающее сигнатуру элементов:
 \end_layout
 
 \begin_layout Definition
-The 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representation of 
+-представление 
 \begin_inset Formula $p$
 \end_inset
 
- is called 
+ называется 
 \emph on
-signature-safe
+сигнатурным
 \emph default
- if 
+, если 
 \begin_inset Formula $\forall k\,\Sig(m_{k}b_{i_{k}})\preccurlyeq\Sig(p)$
 \end_inset
 
@@ -3325,19 +3319,20 @@ signature-safe
 \end_layout
 
 \begin_layout Subsection
-Examples
+Примеры
 \end_layout
 
 \begin_layout Example
-The first important example of a 
+Первый важный пример 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representation is trivial: the labeled polynomial from 
+-представления тривиален: отмеченный многочлен из 
 \begin_inset Formula $G_{g}$
 \end_inset
 
- is equal to sum of one element, identity-multiplied itself: 
+ равен сумме одного слагаемого -- самого себя с единичным коэффициентом:
+ 
 \begin_inset Formula 
 \[
 b_{j}=1\cdot b_{j}.
@@ -3349,58 +3344,59 @@ b_{j}=1\cdot b_{j}.
 \end_layout
 
 \begin_layout Standard
-This 
+Это 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representation is signature-safe.
- The prohibition of two elements which have same monomial 
+-представление сигнатурно.
+ Запрет на наличие в представлении нескольких элементов, имеющих одинаковый
+ моном 
 \begin_inset Formula $t_{k}$
 \end_inset
 
- and polynomial 
+ и многочлен 
 \begin_inset Formula $b_{i_{k}}$
 \end_inset
 
- ensures that all elements of representation that differ only in field coefficie
-nt 
+ гарантирует, что все элементы представления, отличающиеся только коэффициентом
+ из поля 
 \begin_inset Formula $c_{k}$
 \end_inset
 
- are combined together by summing field coefficients.
- So expressions like 
+ скомбинированы вместе путём суммирования коэффициентов из поля.
+ Поэтому выражения вида 
 \begin_inset Formula $b_{j}=-1\cdot b_{j}+2\cdot b_{j}$
 \end_inset
 
- and 
+ и 
 \begin_inset Formula $b_{j}=2x\cdot b_{k}+1\cdot b_{j}-2x\cdot b_{k}$
 \end_inset
 
- are not valid 
+ не являются корректными 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representations.
+-представлениями.
 \end_layout
 
 \begin_layout Example
-A labeled polynomial 
+Отмеченный многочлен 
 \begin_inset Formula $b_{j}\in G_{g}$
 \end_inset
 
- multiplied by arbitrary polynomial 
+, домноженный на произвольный многочлен 
 \begin_inset Formula $h$
 \end_inset
 
- also have a simple 
+ также имеет простое 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representation arising from splitting 
+-представление, получающееся из записи 
 \begin_inset Formula $h$
 \end_inset
 
- into terms: 
+ в виде суммы термов: 
 \family roman
 \series medium
 \shape up
@@ -3417,11 +3413,11 @@ A labeled polynomial
 \end_inset
 
 .
- This 
+ Это 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representation has form 
+-представление имеет форму 
 \begin_inset Formula 
 \begin{equation}
 b_{j}h=\sum_{k}m_{k}\cdot b_{j}\label{eq:repr-ex-2}
@@ -3441,31 +3437,31 @@ b_{j}h=\sum_{k}m_{k}\cdot b_{j}\label{eq:repr-ex-2}
 \uwave default
 \noun default
 \color inherit
-and is signature-safe too.
+и также является сигнатурным.
 \end_layout
 
 \begin_layout Standard
-A labeled polynomial can have arbitrary number of representations: for example
- we can add elements corresponding to a syzygy to any representation and
- combine elements with identical monomials and polynomials to get the correct
- representation.
- The result will be representation of the same polynomial because sum of
- syzygy elements is equal to 0.
+Отмеченный многочлен может иметь бесконечное множество различных представлений:
+ к любому представлению можно добавить элементы, соответствующие сизигии,
+ сгруппировать элементы с одновременно равными мономами и многочленами и
+ получить другое корректное представление.
+ Это будет представление того же многочлена, поскольку сумма многочленов,
+ соответствующих элементам сизигии равна 0.
 \end_layout
 
 \begin_layout Example
-The product of two polynomial from 
+Произведение двух многочленов из 
 \begin_inset Formula $G_{g}$
 \end_inset
 
- has two representations of the form (
+ имеет 2 представления вида 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand eqref
 reference "eq:repr-ex-2"
 
 \end_inset
 
-) which differs in syzygy addition:
+, которые отличаются прибавлением сизигии:
 \end_layout
 
 \begin_layout Standard
@@ -3476,19 +3472,19 @@ b_{j}b_{i}=\sum_{k}m_{i_{k}}\cdot b_{j}=\sum_{k}m_{i_{k}}\cdot b_{j}+0=\sum_{k}m
 
 \end_inset
 
-where 
+где 
 \begin_inset Formula $m_{i_{k}}$
 \end_inset
 
- are terms of 
+ -- термы 
 \begin_inset Formula $b_{i}$
 \end_inset
 
- and 
+, а 
 \begin_inset Formula $m_{j_{k}}$
 \end_inset
 
- are terms of 
+ -- термы 
 \begin_inset Formula $b_{j}$
 \end_inset
 
@@ -3496,8 +3492,8 @@ where
 \end_layout
 
 \begin_layout Example
-The zero polynomial has an empty representation and an representation for
- every syzygy:
+Нулевой многочлен имеет пустое представление и представление, соответствующее
+ каждой сизигии:
 \end_layout
 
 \begin_layout Standard
@@ -3508,34 +3504,34 @@ The zero polynomial has an empty representation and an representation for
 
 \end_inset
 
-where 
+где 
 \begin_inset Formula $m_{i_{k}}$
 \end_inset
 
- and 
+ и 
 \begin_inset Formula $m_{j_{k}}$
 \end_inset
 
- are same as above.
+ взяты из предыдущего примера.
+ Все непустые представления нулевого многочлена не сигнатурны.
 \end_layout
 
 \begin_layout Standard
-Another important example of 
+Другой важный пример 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representation comes from ideal and signature definitions.
- All labeled polynomials computed by the algorithm are elements of ideal
- 
+-представлений получается из определений сигнатуры и идеала.
+ Все отмеченные многочлены, вычисляемые алгоритмом, принадлежат идеалу 
 \begin_inset Formula $\left(f_{1},\ldots,f_{m}\right)$
 \end_inset
 
 .
- So any labeled polynomial 
+ Поэтому любой отмеченный многочлен 
 \begin_inset Formula $p$
 \end_inset
 
- can be written as 
+ может быть записан в виде 
 \begin_inset Formula $ $
 \end_inset
 
@@ -3543,40 +3539,39 @@ Another important example of
 \begin_inset Formula $\sum_{i}f_{i}g_{i}$
 \end_inset
 
-, where 
+, где 
 \begin_inset Formula $g_{i}$
 \end_inset
 
- are homogeneous polynomials.
- All input polynomials 
+ -- однородные многочлены.
+ Все входные многочлены 
 \begin_inset Formula $f_{i}$
 \end_inset
 
- belong to 
+ принадлежат 
 \begin_inset Formula $G_{g}$
 \end_inset
 
-, so 
+, поэтому 
 \begin_inset Formula $f_{i}g_{i}$
 \end_inset
 
- has 
+ имеют 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representations of the form (
+-представления вида 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand eqref
 reference "eq:repr-ex-2"
 
 \end_inset
 
-).
+.
 \end_layout
 
 \begin_layout Example
-Those representations sum give the following signature-safe representation:
- 
+Сумма этих представлений даёт следующее сигнатурное представление: 
 \begin_inset Formula 
 \[
 p=\sum_{k}m_{k}\cdot b_{i_{k}},\, m_{k}\in\mathcal{K}\times T,\, b_{i_{k}}\in\left\{ f_{1},\ldots,f_{m}\right\} \subset G_{g}.
@@ -3588,33 +3583,34 @@ p=\sum_{k}m_{k}\cdot b_{i_{k}},\, m_{k}\in\mathcal{K}\times T,\, b_{i_{k}}\in\le
 \end_layout
 
 \begin_layout Definition
-This particular case of 
+Частный случай 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representation where 
+-представления, при котором 
 \begin_inset Formula $b_{i_{k}}$
 \end_inset
 
- are limited to input polynomials will be called 
+ ограничены лишь входными многочленами, будет называться 
 \emph on
-input-representation
+входным представлением
 \emph default
 .
 \end_layout
 
 \begin_layout Standard
-Input representations always has the only element with maximal signature.
- This property is special to input-representations because generic 
+Входные представления всегда имеют единственный элемент максимальной сигнатуры.
+ Произвольные 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representations can have multiple elements with same maximal signature
- -- it is possible to have 
+-представления не всегда обладают этим свойством, поскольку могут иметь
+ несколько разных элементов с одинаковой максимальной сигнатурой, так как
+ для них возможна ситуация 
 \begin_inset Formula $m_{1}\Sig(b_{i_{1}})=m_{2}\Sig(b_{i_{2}})$
 \end_inset
 
- while 
+ при 
 \begin_inset Formula $i_{1}\ne i_{2}$
 \end_inset
 
@@ -3622,51 +3618,51 @@ Input representations always has the only element with maximal signature.
 \end_layout
 
 \begin_layout Standard
-The following claim makes important connection between signatures and input-repr
-esentations:
+Следующее утверждение устанавливает связь между входными представлениями
+ и понятием сигнатуры:
 \end_layout
 
 \begin_layout Claim
-An admissible labeled polynomial 
+Допустимый отмеченный многочлен 
 \begin_inset Formula $p$
 \end_inset
 
- with known signature 
+ с известной сигнатурой 
 \begin_inset Formula $\Sig(p)$
 \end_inset
 
- has an input-representation consisting of an element 
+ имеет входное представление, состоящее из элемента 
 \begin_inset Formula $c\Sig(p)\cdot f_{index(p)}$
 \end_inset
 
- and some other elements with smaller signatures.
+ и некоторых других элементов с меньшими сигнатурами.
 \end_layout
 
 \begin_layout Proof
-The claimed fact follows from the admissible polynomial definition in 
+Утверждение вытекает из определения допустимого многочлена в 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "FaugereF5"
 
 \end_inset
 
- referring to function 
+, ссылающегося на функцию 
 \begin_inset Formula $v$
 \end_inset
 
- which correspond to summing representation elements.
+, которая соответствует суммированию элементов входного представления.
 \end_layout
 
 \begin_layout Standard
-The theorem 1 of 
+Теорема 1 из 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "FaugereF5"
 
 \end_inset
 
- states that all polynomials in the algorithm are admissible, do the above
- claim will be applied to all appeared polynomials.
+ утверждает, что все многочлены, порождаемые алгоритмом, допустимы, поэтому
+ мы будем применять предыдущее утверждение ко всем таким многочленам.
 \end_layout
 
 \begin_layout Example
@@ -3676,46 +3672,46 @@ name "example-of-having-gg-repr"
 
 \end_inset
 
-The last example comes from S-pairs with a computed 
+Последний пример восходит к S-парам с известным 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representation.
- S-polynomial of 
+-представлением.
+ S-многочлен, порождённый 
 \begin_inset Formula $b_{l^{*}}$
 \end_inset
 
- and 
+ и 
 \begin_inset Formula $b_{l_{*}}$
 \end_inset
 
- from 
+ из 
 \begin_inset Formula $G_{g}$
 \end_inset
 
- is 
+, имеет вид 
 \begin_inset Formula $p=\overline{u_{l}}\poly(b_{l^{*}})-\underline{u_{l}}\poly(b_{l_{*}})$
 \end_inset
 
 .
- It is known from reduction process that for such S-pairs 
+ Из процесса редукции вытекает, что 
 \begin_inset Formula $p$
 \end_inset
 
- is signature-safe reduced and the result is added to 
+ сигнатурно редуцируется и результат добавляется в 
 \begin_inset Formula $G_{g}$
 \end_inset
 
- as some labeled polynomial 
+ как некоторый отмеченный многочлен 
 \begin_inset Formula $b_{l}$
 \end_inset
 
 .
- So the 
+ Отсюда его 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representation is:
+-представление имеет вид:
 \end_layout
 
 \begin_layout Standard
@@ -3726,73 +3722,74 @@ p=\sum_{k}m_{k}\cdot b_{n_{k}}+1\cdot b_{l},
 
 \end_inset
 
-where signatures of 
+где сигнатуры элементов 
 \begin_inset Formula $m_{k}\cdot b_{n_{k}}$
 \end_inset
 
- elements are smaller than 
+ меньше чем 
 \begin_inset Formula $\Sig(b_{l})=\Sig(p)$
 \end_inset
 
 .
- The value of 
+ Значение 
 \begin_inset Formula $l$
 \end_inset
 
- is position of 
+ -- позиция 
 \begin_inset Formula $b_{l}$
 \end_inset
 
- in ordered list 
+ в упорядоченном списке 
 \begin_inset Formula $G_{g}$
 \end_inset
 
 .
- In this representation 
+ В данном представлении 
 \begin_inset Formula $l$
 \end_inset
 
- is greater than 
+ больше чем 
 \begin_inset Formula $l^{*}$
 \end_inset
 
- and 
+ и 
 \begin_inset Formula $l_{*}$
 \end_inset
 
- because corresponding labeled polynomial 
+, поскольку соответствующий отмеченный многочлен 
 \begin_inset Formula $b_{l}$
 \end_inset
 
- is added to 
+ был добавлен в 
 \begin_inset Formula $R$
 \end_inset
 
- at the moment of S-polynomial computation in 
+ в момент подсчёта S-многочлена в процедурах 
 \family typewriter
 Spol
 \family default
- or 
+ или 
 \family typewriter
 TopReduction
 \family default
- so the polynomials 
+, поэтому многочлены 
 \begin_inset Formula $b_{l^{*}}$
 \end_inset
 
- and 
+ и 
 \begin_inset Formula $b_{l_{*}}$
 \end_inset
 
- used to create S-pair already present in 
+, использованные для его создания не отброшенной S-пары, уже присутствовали
+ в 
 \begin_inset Formula $R$
 \end_inset
 
- at that moment and the order of 
+ к тому моменту, а порядок 
 \begin_inset Formula $G_{g}$
 \end_inset
 
- correspond to order of 
+ соответствует порядку добавления элементов в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -3800,27 +3797,27 @@ TopReduction
 \end_layout
 
 \begin_layout Subsection
-Ordering representations
+Порядок на представлениях
 \end_layout
 
 \begin_layout Definition
-To order 
+Для введения порядка на 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representations we start from 
+-представлениях мы начнём с 
 \emph on
-representation elements ordering
+порядка на элементах представления
 \emph default
  
 \begin_inset Formula $\gtrdot_{1}$
 \end_inset
 
-: we say that 
+: будем говорить, что 
 \begin_inset Formula $c_{i}t_{i}\cdot b_{i}\gtrdot_{1}c_{j}t_{j}\cdot b_{j}$
 \end_inset
 
- if one of the following cases holds:
+ если выполняется один из следующих случаев:
 \end_layout
 
 \begin_deeper
@@ -3835,69 +3832,66 @@ representation elements ordering
 \begin_inset Formula $t_{i}\Sig(b_{i})=t_{j}\Sig(b_{j})$
 \end_inset
 
- and 
+ и 
 \begin_inset Formula $i<j$
 \end_inset
 
- (note the opposite order).
+ (сравнение позиций -- в обратную сторону).
 \end_layout
 
 \end_deeper
 \begin_layout Standard
-This ordering is based only on comparison of signatures and positions of
- labeled polynomials in the ordered list 
+Этот порядок основан лишь на сравнение сигнатур и позиций отмеченных многочленов
+ в упорядоченном списке 
 \begin_inset Formula $G_{g}$
 \end_inset
 
- but does not depend on the field coefficient.
- The only case in which two elements can
-\begin_inset Quotes ers
-\end_inset
-
-t be ordered is equality of both signatures 
+, но не зависит от коэффициента из поля.
+ Единственный случай, в котором два элемента не могут быть упорядочены --
+ одновременное равенство сигнатур 
 \begin_inset Formula $t_{i}\Sig(b_{i})=t_{j}\Sig(b_{j})$
 \end_inset
 
- and positions in list 
+ и позиций в списке 
 \begin_inset Formula $i=j$
 \end_inset
 
 .
- Position equality means 
+ Равенство позиций означает равенство многочленов 
 \begin_inset Formula $b_{i}=b_{j}$
 \end_inset
 
- which in conjunction with signature equality gives 
+, что вместе с равенством сигнатур даёт 
 \begin_inset Formula $t_{i}=t_{j}$
 \end_inset
 
 .
- So any two elements that belong to a single 
+ Поэтому любые два элемента, принадлежащие одному корректному 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representation are comparable with 
+представлению являются сравнимыми с точки зрения порядка 
 \begin_inset Formula $\lessdot_{1}$
 \end_inset
 
- order because they have distinct 
+, поскольку они имеют различные 
 \begin_inset Formula $\left(t_{k},b_{k}\right)$
 \end_inset
 
- by definition.
- Below are given some examples of 
+ по определению.
+ Ниже приведены некоторые примеры сравнений элементов по 
 \begin_inset Formula $\lessdot_{1}$
 \end_inset
 
- element ordering for the 3-element list 
+ для списка 
 \begin_inset Formula $G_{g}=\left\{ b_{1},\, b_{2},\, b_{3}\right\} $
 \end_inset
 
- with ordering 
+ из 3-х элементов с порядком на сигнатурах 
 \begin_inset Formula $x\mathbf{F}_{i}\succ y\mathbf{F}_{i}$
 \end_inset
 
- and signatures 
+ и сигнатурами 
 \begin_inset Formula $\Sig(b_{1})=\mathbf{F}_{1},\Sig(b_{2})=\mathbf{F}_{2},\Sig(b_{3})=x\mathbf{F}_{1}$
 \end_inset
 
@@ -3920,7 +3914,7 @@ t be ordered is equality of both signatures
 \uwave off
 \noun off
 \color none
- because signature of left side is 
+ поскольку сигнатура левой части  
 \begin_inset Formula $\succ$
 \end_inset
 
@@ -3943,7 +3937,7 @@ t be ordered is equality of both signatures
 \uwave off
 \noun off
 \color none
- because signature of left side is 
+ поскольку сигнатура левой части 
 \begin_inset Formula $\succ$
 \end_inset
 
@@ -3966,7 +3960,7 @@ t be ordered is equality of both signatures
 \uwave off
 \noun off
 \color none
-and
+и
 \family default
 \series default
 \shape default
@@ -3994,7 +3988,7 @@ and
 \uwave off
 \noun off
 \color none
- are not comparable because signatures and list indexes are equal
+ не сравнимы, поскольку сигнатуры и позиции в списке равны
 \end_layout
 
 \begin_layout Itemize
@@ -4013,7 +4007,7 @@ and
 \uwave off
 \noun off
 \color none
- because signature of left side is
+ поскольку сигнатура левой части
 \family default
 \series default
 \shape default
@@ -4048,136 +4042,78 @@ and
 \begin_inset Formula $x^{2}\cdot b_{1}\gtrdot_{1}x\cdot b_{3}$
 \end_inset
 
- because signatures are equal and the list position of left side
-\family default
-\series default
-\shape default
-\size default
-\emph default
-\bar default
-\strikeout default
-\uuline default
-\uwave default
-\noun default
-\color inherit
-
-\begin_inset Quotes ers
-\end_inset
-
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-s labeled polynomial is 1 which is smaller than right side
-\family default
-\series default
-\shape default
-\size default
-\emph default
-\bar default
-\strikeout default
-\uuline default
-\uwave default
-\noun default
-\color inherit
-
-\begin_inset Quotes ers
-\end_inset
-
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-s position 3.
+ поскольку сигнатуры равны, а позиция в списке отмеченного многочлена левой
+ части равна 1, что меньше чем позиция многочлена правой части, равная 3.
 \end_layout
 
 \begin_layout Standard
-To extend this order to entire 
+Для расширения этого порядка на 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representations consider 
+-представления целиком будем рассматривать 
 \emph on
-ordered form
+упорядоченную форму
 \emph default
- of representation consisting of all its elements written in a list with
- 
+ представления, состоящую из всех его элементов, записанных в 
 \begin_inset Formula $\gtrdot_{1}$
 \end_inset
 
--decreasing order.
- This form can be used for equality testing because if two representations
- are equal then they have exactly equal ordered forms.
+-убывающий список.
+ Эта форма может быть использована для проверки на равенство, поскольку
+ представления равны тогда и только тогда, когда равны их упорядоченные
+ формы.
 \end_layout
 
 \begin_layout Definition
-With ordered forms the 
+При помощи упорядоченных форм введём 
 \emph on
-
+порядок на 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representations ordering
+-представлениях
 \emph default
- can be introduced: the representation 
+: представление 
 \begin_inset Formula $\sum_{k}m'_{k}\cdot b_{i'_{k}}$
 \end_inset
 
- is 
+ является 
 \begin_inset Formula $\lessdot$
 \end_inset
 
--smaller than 
+-меньшим, чем 
 \begin_inset Formula $\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
- if the ordered form of the first representation is smaller than second
-\begin_inset Quotes ers
-\end_inset
-
-s according to lexicographical extension of 
+, если упорядоченные формы для первого и второго представления удовлетворяют
+ лексикографически расширенному на формы отношению 
 \begin_inset Formula $\lessdot_{1}$
 \end_inset
 
- ordering on elements.
- For the corner case of the one ordered form being beginning of the other
- the shorter form is 
+.
+ Для особого случая, когда упорядоченные формы отличаются лишь длиной, более
+ короткая форма будет называться 
 \begin_inset Formula $\lessdot$
 \end_inset
 
--smaller.
- If the greatest different elements of ordered forms differ only in field
- coefficient the representations are not comparable.
+-меньшей.
+ Если наибольшие различные элементы в упорядоченных формах двух представлений
+ отличаются лишь коэффициентов поля, то представления являются не сравнимыми.
 \end_layout
 
 \begin_layout Standard
-Some examples of this ordering are given for the same as above 3-element
- 
+Далее даны некоторые примеры этого порядка для того же, трёх-элементного
+ списка 
 \begin_inset Formula $G_{g}$
 \end_inset
 
- list.
- Note that all 
+.
+ Все 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representations are already written in ordered forms:
+-представления записаны в упорядоченных формах:
 \end_layout
 
 \begin_layout Itemize
@@ -4196,7 +4132,7 @@ Some examples of this ordering are given for the same as above 3-element
 \begin_inset Formula $x^{2}\cdot b_{1}+xy\cdot b_{1}+y^{2}b_{1}\gtrdot x^{2}\cdot b_{1}+100y^{2}\cdot b_{1}$
 \end_inset
 
- because 
+ поскольку 
 \family default
 \series default
 \shape default
@@ -4209,7 +4145,7 @@ Some examples of this ordering are given for the same as above 3-element
 \noun default
 \color inherit
 
-\begin_inset Formula $xy\cdot b_{1}\gtrdot y^{2}\cdot b_{1}$
+\begin_inset Formula $xy\cdot b_{1}\gtrdot_{1}y^{2}\cdot b_{1}$
 \end_inset
 
 
@@ -4231,7 +4167,7 @@ Some examples of this ordering are given for the same as above 3-element
 \begin_inset Formula $x^{2}\cdot b_{1}+100y^{2}\cdot b_{1}\gtrdot x^{2}\cdot b_{1}$
 \end_inset
 
- because the right ordered form is beginning of the left
+ поскольку правая часть является началом левой
 \end_layout
 
 \begin_layout Itemize
@@ -4250,8 +4186,8 @@ Some examples of this ordering are given for the same as above 3-element
 \begin_inset Formula $x^{2}\cdot b_{1}\gtrdot xy\cdot b_{1}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}$
 \end_inset
 
- because 
-\begin_inset Formula $x^{2}\cdot b_{1}\gtrdot xy\cdot b_{1}$
+ поскольку 
+\begin_inset Formula $x^{2}\cdot b_{1}\gtrdot_{1}xy\cdot b_{1}$
 \end_inset
 
 
@@ -4273,8 +4209,8 @@ Some examples of this ordering are given for the same as above 3-element
 \begin_inset Formula $xy\cdot b_{1}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}\gtrdot y\cdot b_{3}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}$
 \end_inset
 
- because 
-\begin_inset Formula $xy\cdot b_{1}\gtrdot y\cdot b_{3}$
+ поскольку 
+\begin_inset Formula $xy\cdot b_{1}\gtrdot_{1}y\cdot b_{3}$
 \end_inset
 
 
@@ -4296,7 +4232,7 @@ Some examples of this ordering are given for the same as above 3-element
 \begin_inset Formula $y\cdot b_{3}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}$
 \end_inset
 
- and 
+ и 
 \family default
 \series default
 \shape default
@@ -4324,11 +4260,11 @@ Some examples of this ordering are given for the same as above 3-element
 \uwave off
 \noun off
 \color none
- are not comparable because the greatest different elements are 
+ не сравнимы, поскольку наибольшие различные элементы -- это 
 \begin_inset Formula $y\cdot b_{3}$
 \end_inset
 
- and 
+ и 
 \begin_inset Formula $2y\cdot b_{3}$
 \end_inset
 
@@ -4348,84 +4284,80 @@ Some examples of this ordering are given for the same as above 3-element
 \end_layout
 
 \begin_layout Standard
-The ordering is compatible with signature-safety:
+Порядок на представлениях совместим с понятием сигнатурности представления:
 \end_layout
 
 \begin_layout Theorem
-If two representations of 
+Если для пары представлений отмеченного многочлена 
 \begin_inset Formula $p$
 \end_inset
 
- has a relation 
+ выполняется отношение 
 \begin_inset Formula $\sum_{k}m'_{k}\cdot b_{i'_{k}}\lessdot\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
- and the second one is signature-safe representation then the first one
- is signature-safe too.
+ и правое представление сигнатурно, то и левое представление сигнатурно.
 \end_layout
 
 \begin_layout Proof
-This theorem quickly follows from a fact that elements of a 
+Теорема легко следует из того, что сигнатуры элементов 
 \begin_inset Formula $\lessdot$
 \end_inset
 
--smaller representation can
-\begin_inset Quotes ers
-\end_inset
-
-t has signatures 
+-меньшего представления не могут быть 
 \begin_inset Formula $\succ$
 \end_inset
 
--greater than signatures of 
+-больше, чем максимальная сигнатура 
 \begin_inset Formula $\gtrdot$
 \end_inset
 
--greater representation.
+-большего представления.
 \end_layout
 
 \begin_layout Standard
-The key fact allowing to take 
+Важным фактом, позволяющим брать 
 \begin_inset Formula $\lessdot$
 \end_inset
 
--minimal element is well-orderness:
+-минимальный элемент, является вполне упорядоченность:
 \end_layout
 
 \begin_layout Theorem
-The representations are well-ordered with 
+Представление вполне упорядочены порядком 
 \begin_inset Formula $\lessdot$
 \end_inset
 
- ordering.
+.
 \end_layout
 
 \begin_layout Proof
-The number of different labeled polynomial positions is finite because it
- is equal to 
+Количество различных отмеченных многочленов, входящих в элементы представления,
+ конечно, поскольку оно равно 
 \begin_inset Formula $|G_{g}|$
 \end_inset
 
- which is finite for fixed 
+ для некоторого фиксированного 
 \begin_inset Formula $g$
 \end_inset
 
 .
- So the existence of infinite 
+ Поэтому существование бесконечной 
 \begin_inset Formula $\gtrdot_{1}$
 \end_inset
 
--descending sequence of representation elements would lead to existence
- of infinite 
+-убывающей последовательности элементов представлений привело бы к существованию
+ бесконечной 
 \begin_inset Formula $\succ$
 \end_inset
 
--descending sequence of signatures.
- Combining this with well-orderness of signatures with ordering 
+-убывающей последовательности сигнатур.
+ Учитывая вполне упорядоченность сигнатур по 
 \begin_inset Formula $\prec$
 \end_inset
 
- we get the proof for well-orderness of elements with ordering 
+ мы получаем доказательство мы получаем доказательство вполне упорядоченности
+ элементов представлений по 
 \begin_inset Formula $\lessdot{}_{1}$
 \end_inset
 
@@ -4433,27 +4365,26 @@ The number of different labeled polynomial positions is finite because it
 \end_layout
 
 \begin_layout Proof
-The straightforward proof for 
+Прямое доказательство вполне упорядоченности представлений по 
 \begin_inset Formula $\lessdot$
 \end_inset
 
--well-orderness of representations following from 
+ на основе вполне упорядоченности их элементов по 
 \begin_inset Formula $\lessdot_{1}$
 \end_inset
 
--well-orderness of elements is not very complex but to skip its strict details
- the theorem 2.5.5 of 
+ не является очень сложным, однако дабы не вдаваться в детали, используем
+ теорему 2.5.5 книги 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Baader.Nipkow98Term"
 
 \end_inset
 
- will be referenced.
- It states well-orderness of finite multiset with an lexicographically extended
- ordering of well-ordered elements.
- This applies to the representations because they form a subset in the finite
- multiset of representation elements.
+.
+ Она утверждает вполне упорядоченность конечных наборов с порядком, являющимся
+ лексикографическим расширением порядка на элементах набора.
+ Это применимо к предмтавлениямм, так как они являются наборами своих элементов.
 \end_layout
 
 \begin_layout Subsection

@@ -779,247 +779,252 @@ S-пары из этих классов не могут находиться в середине пути обработки,
 данному определению как умноженный на моном отмеченный многочлен.
 Для обоих критериев выполняется важное свойство, утверждающее, что
 если $sr_{i}$ удовлетворяет критерию, то то и дополнительно домноженный
-многочлен $s_{1}sr_{i}$ $ $также ему удовлетврояет.
+многочлен $s_{1}sr_{i}$ также ему удовлетворяет.
 
 
-\section{Representations}
+\section{Представления}
 
 
-\subsection{Definition}
+\subsection{Определение}
 
-The idea of representations comes from \cite{F5C}, where a similar
-method is used in the proof of Theorem 21. Representations are used
-to describe all possible ways how a labeled polynomial $p$ can be
-written as an element of $\left(G_{g}\right)$ ideal. The single representation
-corresponds to writing a labeled polynomial $p$ as any finite sum
-of the form
+Идея представлений, определённых ниже, приходит из \cite{F5C}, где
+подобный метод используется в доказательстве Теоремы 21. Представления
+используются для описания способов, которыми многочлен $p$ может
+быть записан как элемент идеала $\left(G_{g}\right)$. Одно представление
+соответствует записи отмеченного многочлена $p$ в виде конечной суммы
+вида
 \begin{equation}
 p=\sum_{k}m_{k}\cdot b_{i_{k}},\; b_{i_{k}}\in G_{g}\label{eq:Gg-repr-def}
 \end{equation}
-with coefficients $m_{k}=c_{k}t_{k}\in\mathcal{K}\times T$. 
+с коэффициентами $m_{k}=c_{k}t_{k}\in\mathcal{K}\times T$. 
 \begin{defn}
-Sum of the form \ref{eq:Gg-repr-def} with all pairs $\left(t_{k},b_{i_{k}}\right)$
-distinct is called \emph{$G_{g}$-representation} of $p$. The symbolic
-products $m_{k}\cdot b_{i_{k}}$ are called the \emph{elements} of
-representation. If we treat this symbolic product as multiplication
-we get an labeled polynomial $m_{k}b_{i_{k}}$ corresponding to the
-representation element. So $p$ is equal to sum of labeled polynomials,
-corresponding to elements of its representation. Also the term \emph{element
-signature} will be used for signature of labeled polynomials corresponding
-to the element. Two representations are equal if the sets of their
-elements are equal.
+Сумма вида \ref{eq:Gg-repr-def}, в которой все пары $\left(t_{k},b_{i_{k}}\right)$
+различны, называется \emph{$G_{g}$-представлением} $p$. Символические
+произведения $m_{k}\cdot b_{i_{k}}$ называются \emph{элементами}
+представления. Если рассмотреть это символическое произведение как
+умножение многочленов, то мы получим отмеченный многочлен $m_{k}b_{i_{k}}$,
+соответствующий элементу представления. Тогда $p$ оказывается равным
+сумме отмеченных многочленов, соответствующих элементам его представления.
+Понятие \emph{сигнатура элемента} будет использоваться для обозначения
+сигнатура многочлена, соответствующего элементу. Два представления
+равны, если наборы их элементов совпадают как множества.
 \end{defn}
-Most representations we are interested in have the following additional
-property limiting elements signature:
+Большинство представлений, которые будут нам интересны также имеют
+следующее свойство, ограничивающее сигнатуру элементов:
 \begin{defn}
-The $G_{g}$-representation of $p$ is called \emph{signature-safe}
-if $\forall k\,\Sig(m_{k}b_{i_{k}})\preccurlyeq\Sig(p)$.
+$G_{g}$-представление $p$ называется \emph{сигнатурным}, если $\forall k\,\Sig(m_{k}b_{i_{k}})\preccurlyeq\Sig(p)$.
 \end{defn}
 
-\subsection{Examples}
+\subsection{Примеры}
 \begin{example}
-The first important example of a $G_{g}$-representation is trivial:
-the labeled polynomial from $G_{g}$ is equal to sum of one element,
-identity-multiplied itself: 
+Первый важный пример $G_{g}$-представления тривиален: отмеченный
+многочлен из $G_{g}$ равен сумме одного слагаемого -- самого себя
+с единичным коэффициентом: 
 \[
 b_{j}=1\cdot b_{j}.
 \]
 
 \end{example}
-This $G_{g}$-representation is signature-safe. The prohibition of
-two elements which have same monomial $t_{k}$ and polynomial $b_{i_{k}}$
-ensures that all elements of representation that differ only in field
-coefficient $c_{k}$ are combined together by summing field coefficients.
-So expressions like $b_{j}=-1\cdot b_{j}+2\cdot b_{j}$ and $b_{j}=2x\cdot b_{k}+1\cdot b_{j}-2x\cdot b_{k}$
-are not valid $G_{g}$-representations.
+Это $G_{g}$-представление сигнатурно. Запрет на наличие в представлении
+нескольких элементов, имеющих одинаковый моном $t_{k}$ и многочлен
+$b_{i_{k}}$ гарантирует, что все элементы представления, отличающиеся
+только коэффициентом из поля $c_{k}$ скомбинированы вместе путём
+суммирования коэффициентов из поля. Поэтому выражения вида $b_{j}=-1\cdot b_{j}+2\cdot b_{j}$
+и $b_{j}=2x\cdot b_{k}+1\cdot b_{j}-2x\cdot b_{k}$ не являются корректными
+$G_{g}$-представлениями.
 \begin{example}
-A labeled polynomial $b_{j}\in G_{g}$ multiplied by arbitrary polynomial
-$h$ also have a simple $G_{g}$-representation arising from splitting
-$h$ into terms: $h=\sum_{k}m_{k},\, m_{k}\in\mathcal{K}\times T$.
-This $G_{g}$-representation has form 
+Отмеченный многочлен $b_{j}\in G_{g}$, домноженный на произвольный
+многочлен $h$ также имеет простое $G_{g}$-представление, получающееся
+из записи $h$ в виде суммы термов: $h=\sum_{k}m_{k},\, m_{k}\in\mathcal{K}\times T$.
+Это $G_{g}$-представление имеет форму 
 \begin{equation}
 b_{j}h=\sum_{k}m_{k}\cdot b_{j}\label{eq:repr-ex-2}
 \end{equation}
-and is signature-safe too.
+и также является сигнатурным.
 \end{example}
-A labeled polynomial can have arbitrary number of representations:
-for example we can add elements corresponding to a syzygy to any representation
-and combine elements with identical monomials and polynomials to get
-the correct representation. The result will be representation of the
-same polynomial because sum of syzygy elements is equal to 0.
+Отмеченный многочлен может иметь бесконечное множество различных представлений:
+к любому представлению можно добавить элементы, соответствующие сизигии,
+сгруппировать элементы с одновременно равными мономами и многочленами
+и получить другое корректное представление. Это будет представление
+того же многочлена, поскольку сумма многочленов, соответствующих элементам
+сизигии равна 0.
 \begin{example}
-The product of two polynomial from $G_{g}$ has two representations
-of the form (\ref{eq:repr-ex-2}) which differs in syzygy addition:
+Произведение двух многочленов из $G_{g}$ имеет 2 представления вида
+\eqref{eq:repr-ex-2}, которые отличаются прибавлением сизигии:
 \end{example}
 \[
 b_{j}b_{i}=\sum_{k}m_{i_{k}}\cdot b_{j}=\sum_{k}m_{i_{k}}\cdot b_{j}+0=\sum_{k}m_{i_{k}}\cdot b_{j}+\left(\sum_{k}m_{j_{k}}\cdot b_{i}-\sum_{k}m_{i_{k}}\cdot b_{j}\right)=\sum_{k}m_{j_{k}}\cdot b_{i},
 \]
-where $m_{i_{k}}$ are terms of $b_{i}$ and $m_{j_{k}}$ are terms
-of $b_{j}$.
+где $m_{i_{k}}$ -- термы $b_{i}$, а $m_{j_{k}}$ -- термы $b_{j}$.
 \begin{example}
-The zero polynomial has an empty representation and an representation
-for every syzygy:
+Нулевой многочлен имеет пустое представление и представление, соответствующее
+каждой сизигии:
 \end{example}
 \[
 0=\sum_{\emptyset}\mbox{(empty sum)}=\sum_{k}m_{j_{k}}\cdot b_{i}+\sum_{k}(-m_{i_{k}})\cdot b_{j},
 \]
-where $m_{i_{k}}$ and $m_{j_{k}}$ are same as above.
+где $m_{i_{k}}$ и $m_{j_{k}}$ взяты из предыдущего примера. Все
+непустые представления нулевого многочлена не сигнатурны.
 
-Another important example of $G_{g}$-representation comes from ideal
-and signature definitions. All labeled polynomials computed by the
-algorithm are elements of ideal $\left(f_{1},\ldots,f_{m}\right)$.
-So any labeled polynomial $p$ can be written as $ $$\sum_{i}f_{i}g_{i}$,
-where $g_{i}$ are homogeneous polynomials. All input polynomials
-$f_{i}$ belong to $G_{g}$, so $f_{i}g_{i}$ has $G_{g}$-representations
-of the form (\ref{eq:repr-ex-2}).
+Другой важный пример $G_{g}$-представлений получается из определений
+сигнатуры и идеала. Все отмеченные многочлены, вычисляемые алгоритмом,
+принадлежат идеалу $\left(f_{1},\ldots,f_{m}\right)$. Поэтому любой
+отмеченный многочлен $p$ может быть записан в виде $ $$\sum_{i}f_{i}g_{i}$,
+где $g_{i}$ -- однородные многочлены. Все входные многочлены $f_{i}$
+принадлежат $G_{g}$, поэтому $f_{i}g_{i}$ имеют $G_{g}$-представления
+вида \eqref{eq:repr-ex-2}.
 \begin{example}
-Those representations sum give the following signature-safe representation:
+Сумма этих представлений даёт следующее сигнатурное представление:
 \[
 p=\sum_{k}m_{k}\cdot b_{i_{k}},\, m_{k}\in\mathcal{K}\times T,\, b_{i_{k}}\in\left\{ f_{1},\ldots,f_{m}\right\} \subset G_{g}.
 \]
 \end{example}
 \begin{defn}
-This particular case of $G_{g}$-representation where $b_{i_{k}}$
-are limited to input polynomials will be called \emph{input-representation}.
+Частный случай $G_{g}$-представления, при котором $b_{i_{k}}$ ограничены
+лишь входными многочленами, будет называться \emph{входным представлением}.
 \end{defn}
-Input representations always has the only element with maximal signature.
-This property is special to input-representations because generic
-$G_{g}$-representations can have multiple elements with same maximal
-signature -- it is possible to have $m_{1}\Sig(b_{i_{1}})=m_{2}\Sig(b_{i_{2}})$
-while $i_{1}\ne i_{2}$.
+Входные представления всегда имеют единственный элемент максимальной
+сигнатуры. Произвольные $G_{g}$-представления не всегда обладают
+этим свойством, поскольку могут иметь несколько разных элементов с
+одинаковой максимальной сигнатурой, так как для них возможна ситуация
+$m_{1}\Sig(b_{i_{1}})=m_{2}\Sig(b_{i_{2}})$ при $i_{1}\ne i_{2}$.
 
-The following claim makes important connection between signatures
-and input-representations:
+Следующее утверждение устанавливает связь между входными представлениями
+и понятием сигнатуры:
 \begin{claim}
-An admissible labeled polynomial $p$ with known signature $\Sig(p)$
-has an input-representation consisting of an element $c\Sig(p)\cdot f_{index(p)}$
-and some other elements with smaller signatures.\end{claim}
+Допустимый отмеченный многочлен $p$ с известной сигнатурой $\Sig(p)$
+имеет входное представление, состоящее из элемента $c\Sig(p)\cdot f_{index(p)}$
+и некоторых других элементов с меньшими сигнатурами.\end{claim}
 \begin{proof}
-The claimed fact follows from the admissible polynomial definition
-in \cite{FaugereF5} referring to function $v$ which correspond to
-summing representation elements.
+Утверждение вытекает из определения допустимого многочлена в \cite{FaugereF5},
+ссылающегося на функцию $v$, которая соответствует суммированию элементов
+входного представления.
 \end{proof}
-The theorem 1 of \cite{FaugereF5} states that all polynomials in
-the algorithm are admissible, do the above claim will be applied to
-all appeared polynomials.
+Теорема 1 из \cite{FaugereF5} утверждает, что все многочлены, порождаемые
+алгоритмом, допустимы, поэтому мы будем применять предыдущее утверждение
+ко всем таким многочленам.
 \begin{example}
-\label{example-of-having-gg-repr}The last example comes from S-pairs
-with a computed $G_{g}$-representation. S-polynomial of $b_{l^{*}}$
-and $b_{l_{*}}$ from $G_{g}$ is $p=\overline{u_{l}}\poly(b_{l^{*}})-\underline{u_{l}}\poly(b_{l_{*}})$.
-It is known from reduction process that for such S-pairs $p$ is signature-safe
-reduced and the result is added to $G_{g}$ as some labeled polynomial
-$b_{l}$. So the $G_{g}$-representation is:
+\label{example-of-having-gg-repr}Последний пример восходит к S-парам
+с известным $G_{g}$-представлением. S-многочлен, порождённый $b_{l^{*}}$
+и $b_{l_{*}}$ из $G_{g}$, имеет вид $p=\overline{u_{l}}\poly(b_{l^{*}})-\underline{u_{l}}\poly(b_{l_{*}})$.
+Из процесса редукции вытекает, что $p$ сигнатурно редуцируется и
+результат добавляется в $G_{g}$ как некоторый отмеченный многочлен
+$b_{l}$. Отсюда его $G_{g}$-представление имеет вид:
 \end{example}
 \[
 p=\sum_{k}m_{k}\cdot b_{n_{k}}+1\cdot b_{l},
 \]
-where signatures of $m_{k}\cdot b_{n_{k}}$ elements are smaller than
-$\Sig(b_{l})=\Sig(p)$. The value of $l$ is position of $b_{l}$
-in ordered list $G_{g}$. In this representation $l$ is greater than
-$l^{*}$ and $l_{*}$ because corresponding labeled polynomial $b_{l}$
-is added to $R$ at the moment of S-polynomial computation in \texttt{Spol}
-or \texttt{TopReduction} so the polynomials $b_{l^{*}}$ and $b_{l_{*}}$
-used to create S-pair already present in $R$ at that moment and the
-order of $G_{g}$ correspond to order of $R$.
+где сигнатуры элементов $m_{k}\cdot b_{n_{k}}$ меньше чем $\Sig(b_{l})=\Sig(p)$.
+Значение $l$ -- позиция $b_{l}$ в упорядоченном списке $G_{g}$.
+В данном представлении $l$ больше чем $l^{*}$ и $l_{*}$, поскольку
+соответствующий отмеченный многочлен $b_{l}$ был добавлен в $R$
+в момент подсчёта S-многочлена в процедурах \texttt{Spol} или \texttt{TopReduction},
+поэтому многочлены $b_{l^{*}}$ и $b_{l_{*}}$, использованные для
+его создания не отброшенной S-пары, уже присутствовали в $R$ к тому
+моменту, а порядок $G_{g}$ соответствует порядку добавления элементов
+в $R$.
 
 
-\subsection{Ordering representations}
+\subsection{Порядок на представлениях}
 \begin{defn}
-To order $G_{g}$-representations we start from \emph{representation
-elements ordering} $\gtrdot_{1}$: we say that $c_{i}t_{i}\cdot b_{i}\gtrdot_{1}c_{j}t_{j}\cdot b_{j}$
-if one of the following cases holds:
+Для введения порядка на $G_{g}$-представлениях мы начнём с \emph{порядка
+на элементах представления} $\gtrdot_{1}$: будем говорить, что $c_{i}t_{i}\cdot b_{i}\gtrdot_{1}c_{j}t_{j}\cdot b_{j}$
+если выполняется один из следующих случаев:
 \begin{itemize}
 \item $t_{i}\Sig(b_{i})\succ t_{j}\Sig(b_{j})$ 
-\item $t_{i}\Sig(b_{i})=t_{j}\Sig(b_{j})$ and $i<j$ (note the opposite
-order).
+\item $t_{i}\Sig(b_{i})=t_{j}\Sig(b_{j})$ и $i<j$ (сравнение позиций --
+в обратную сторону).
 \end{itemize}
 \end{defn}
-This ordering is based only on comparison of signatures and positions
-of labeled polynomials in the ordered list $G_{g}$ but does not depend
-on the field coefficient. The only case in which two elements can't
-be ordered is equality of both signatures $t_{i}\Sig(b_{i})=t_{j}\Sig(b_{j})$
-and positions in list $i=j$. Position equality means $b_{i}=b_{j}$
-which in conjunction with signature equality gives $t_{i}=t_{j}$.
-So any two elements that belong to a single $G_{g}$-representation
-are comparable with $\lessdot_{1}$ order because they have distinct
-$\left(t_{k},b_{k}\right)$ by definition. Below are given some examples
-of $\lessdot_{1}$ element ordering for the 3-element list $G_{g}=\left\{ b_{1},\, b_{2},\, b_{3}\right\} $
-with ordering $x\mathbf{F}_{i}\succ y\mathbf{F}_{i}$ and signatures
-$\Sig(b_{1})=\mathbf{F}_{1},\Sig(b_{2})=\mathbf{F}_{2},\Sig(b_{3})=x\mathbf{F}_{1}$.
+Этот порядок основан лишь на сравнение сигнатур и позиций отмеченных
+многочленов в упорядоченном списке $G_{g}$, но не зависит от коэффициента
+из поля. Единственный случай, в котором два элемента не могут быть
+упорядочены -- одновременное равенство сигнатур $t_{i}\Sig(b_{i})=t_{j}\Sig(b_{j})$
+и позиций в списке $i=j$. Равенство позиций означает равенство многочленов
+$b_{i}=b_{j}$, что вместе с равенством сигнатур даёт $t_{i}=t_{j}$.
+Поэтому любые два элемента, принадлежащие одному корректному $G_{g}$представлению
+являются сравнимыми с точки зрения порядка $\lessdot_{1}$, поскольку
+они имеют различные $\left(t_{k},b_{k}\right)$ по определению. Ниже
+приведены некоторые примеры сравнений элементов по $\lessdot_{1}$
+для списка $G_{g}=\left\{ b_{1},\, b_{2},\, b_{3}\right\} $ из 3-х
+элементов с порядком на сигнатурах $x\mathbf{F}_{i}\succ y\mathbf{F}_{i}$
+и сигнатурами $\Sig(b_{1})=\mathbf{F}_{1},\Sig(b_{2})=\mathbf{F}_{2},\Sig(b_{3})=x\mathbf{F}_{1}$.
 \begin{itemize}
-\item $y\cdot b_{1}\gtrdot_{1}100y\cdot b_{2}$ because signature of left
-side is $\succ$
-\item $x\cdot b_{1}\gtrdot_{1}y\cdot b_{1}$ because signature of left side
-is $\succ$
-\item $-x\cdot b_{1}$ and $2x\cdot b_{1}$ are not comparable because signatures
-and list indexes are equal
-\item $y^{2}\cdot b_{1}\lessdot_{1}y\cdot b_{3}$ because signature of left
-side is $\prec$
-\item $x^{2}\cdot b_{1}\gtrdot_{1}x\cdot b_{3}$ because signatures are
-equal and the list position of left side's labeled polynomial is
-1 which is smaller than right side's position 3.
+\item $y\cdot b_{1}\gtrdot_{1}100y\cdot b_{2}$ поскольку сигнатура левой
+части  $\succ$
+\item $x\cdot b_{1}\gtrdot_{1}y\cdot b_{1}$ поскольку сигнатура левой части
+$\succ$
+\item $-x\cdot b_{1}$ и $2x\cdot b_{1}$ не сравнимы, поскольку сигнатуры
+и позиции в списке равны
+\item $y^{2}\cdot b_{1}\lessdot_{1}y\cdot b_{3}$ поскольку сигнатура левой
+части $\prec$
+\item $x^{2}\cdot b_{1}\gtrdot_{1}x\cdot b_{3}$ поскольку сигнатуры равны,
+а позиция в списке отмеченного многочлена левой части равна 1, что
+меньше чем позиция многочлена правой части, равная 3.
 \end{itemize}
-To extend this order to entire $G_{g}$-representations consider \emph{ordered
-form} of representation consisting of all its elements written in
-a list with $\gtrdot_{1}$-decreasing order. This form can be used
-for equality testing because if two representations are equal then
-they have exactly equal ordered forms.
+Для расширения этого порядка на $G_{g}$-представления целиком будем
+рассматривать \emph{упорядоченную форму} представления, состоящую
+из всех его элементов, записанных в $\gtrdot_{1}$-убывающий список.
+Эта форма может быть использована для проверки на равенство, поскольку
+представления равны тогда и только тогда, когда равны их упорядоченные
+формы.
 \begin{defn}
-With ordered forms the \emph{$G_{g}$-representations ordering} can
-be introduced: the representation $\sum_{k}m'_{k}\cdot b_{i'_{k}}$
-is $\lessdot$-smaller than $\sum_{k}m_{k}\cdot b_{i_{k}}$ if the
-ordered form of the first representation is smaller than second's
-according to lexicographical extension of $\lessdot_{1}$ ordering
-on elements. For the corner case of the one ordered form being beginning
-of the other the shorter form is $\lessdot$-smaller. If the greatest
-different elements of ordered forms differ only in field coefficient
-the representations are not comparable.
+При помощи упорядоченных форм введём \emph{порядок на $G_{g}$-представлениях}:
+представление $\sum_{k}m'_{k}\cdot b_{i'_{k}}$ является $\lessdot$-меньшим,
+чем $\sum_{k}m_{k}\cdot b_{i_{k}}$, если упорядоченные формы для
+первого и второго представления удовлетворяют лексикографически расширенному
+на формы отношению $\lessdot_{1}$. Для особого случая, когда упорядоченные
+формы отличаются лишь длиной, более короткая форма будет называться
+$\lessdot$-меньшей. Если наибольшие различные элементы в упорядоченных
+формах двух представлений отличаются лишь коэффициентов поля, то представления
+являются не сравнимыми.
 \end{defn}
-Some examples of this ordering are given for the same as above 3-element
-$G_{g}$ list. Note that all $G_{g}$-representations are already
-written in ordered forms:
+Далее даны некоторые примеры этого порядка для того же, трёх-элементного
+списка $G_{g}$. Все $G_{g}$-представления записаны в упорядоченных
+формах:
 \begin{itemize}
 \item $x^{2}\cdot b_{1}+xy\cdot b_{1}+y^{2}b_{1}\gtrdot x^{2}\cdot b_{1}+100y^{2}\cdot b_{1}$
-because $xy\cdot b_{1}\gtrdot y^{2}\cdot b_{1}$
-\item $x^{2}\cdot b_{1}+100y^{2}\cdot b_{1}\gtrdot x^{2}\cdot b_{1}$ because
-the right ordered form is beginning of the left
+поскольку $xy\cdot b_{1}\gtrdot_{1}y^{2}\cdot b_{1}$
+\item $x^{2}\cdot b_{1}+100y^{2}\cdot b_{1}\gtrdot x^{2}\cdot b_{1}$ поскольку
+правая часть является началом левой
 \item $x^{2}\cdot b_{1}\gtrdot xy\cdot b_{1}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}$
-because $x^{2}\cdot b_{1}\gtrdot xy\cdot b_{1}$
+поскольку $x^{2}\cdot b_{1}\gtrdot_{1}xy\cdot b_{1}$
 \item $xy\cdot b_{1}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}\gtrdot y\cdot b_{3}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}$
-because $xy\cdot b_{1}\gtrdot y\cdot b_{3}$
-\item $y\cdot b_{3}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}$ and $2y\cdot b_{3}+y^{2}\cdot b_{2}$
-are not comparable because the greatest different elements are $y\cdot b_{3}$
-and $2y\cdot b_{3}$.
+поскольку $xy\cdot b_{1}\gtrdot_{1}y\cdot b_{3}$
+\item $y\cdot b_{3}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}$ и $2y\cdot b_{3}+y^{2}\cdot b_{2}$
+не сравнимы, поскольку наибольшие различные элементы -- это $y\cdot b_{3}$
+и $2y\cdot b_{3}$.
 \end{itemize}
-The ordering is compatible with signature-safety:
+Порядок на представлениях совместим с понятием сигнатурности представления:
 \begin{thm}
-If two representations of $p$ has a relation $\sum_{k}m'_{k}\cdot b_{i'_{k}}\lessdot\sum_{k}m_{k}\cdot b_{i_{k}}$
-and the second one is signature-safe representation then the first
-one is signature-safe too.\end{thm}
+Если для пары представлений отмеченного многочлена $p$ выполняется
+отношение $\sum_{k}m'_{k}\cdot b_{i'_{k}}\lessdot\sum_{k}m_{k}\cdot b_{i_{k}}$
+и правое представление сигнатурно, то и левое представление сигнатурно.\end{thm}
 \begin{proof}
-This theorem quickly follows from a fact that elements of a $\lessdot$-smaller
-representation can't has signatures $\succ$-greater than signatures
-of $\gtrdot$-greater representation.
+Теорема легко следует из того, что сигнатуры элементов $\lessdot$-меньшего
+представления не могут быть $\succ$-больше, чем максимальная сигнатура
+$\gtrdot$-большего представления.
 \end{proof}
-The key fact allowing to take $\lessdot$-minimal element is well-orderness:
+Важным фактом, позволяющим брать $\lessdot$-минимальный элемент,
+является вполне упорядоченность:
 \begin{thm}
-The representations are well-ordered with $\lessdot$ ordering.\end{thm}
+Представление вполне упорядочены порядком $\lessdot$.\end{thm}
 \begin{proof}
-The number of different labeled polynomial positions is finite because
-it is equal to $|G_{g}|$ which is finite for fixed $g$. So the existence
-of infinite $\gtrdot_{1}$-descending sequence of representation elements
-would lead to existence of infinite $\succ$-descending sequence of
-signatures. Combining this with well-orderness of signatures with
-ordering $\prec$ we get the proof for well-orderness of elements
-with ordering $\lessdot{}_{1}$.
+Количество различных отмеченных многочленов, входящих в элементы представления,
+конечно, поскольку оно равно $|G_{g}|$ для некоторого фиксированного
+$g$. Поэтому существование бесконечной $\gtrdot_{1}$-убывающей последовательности
+элементов представлений привело бы к существованию бесконечной $\succ$-убывающей
+последовательности сигнатур. Учитывая вполне упорядоченность сигнатур
+по $\prec$ мы получаем доказательство мы получаем доказательство
+вполне упорядоченности элементов представлений по $\lessdot{}_{1}$.
 
-The straightforward proof for $\lessdot$-well-orderness of representations
-following from $\lessdot_{1}$-well-orderness of elements is not very
-complex but to skip its strict details the theorem 2.5.5 of \cite{Baader.Nipkow98Term}
-will be referenced. It states well-orderness of finite multiset with
-an lexicographically extended ordering of well-ordered elements. This
-applies to the representations because they form a subset in the finite
-multiset of representation elements.
+Прямое доказательство вполне упорядоченности представлений по $\lessdot$
+на основе вполне упорядоченности их элементов по $\lessdot_{1}$ не
+является очень сложным, однако дабы не вдаваться в детали, используем
+теорему 2.5.5 книги \cite{Baader.Nipkow98Term}. Она утверждает вполне
+упорядоченность конечных наборов с порядком, являющимся лексикографическим
+расширением порядка на элементах набора. Это применимо к предмтавлениямм,
+так как они являются наборами своих элементов.
 \end{proof}
 
 \subsection{Sequence of representations}
