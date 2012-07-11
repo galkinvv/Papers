@@ -4388,36 +4388,37 @@ key "Baader.Nipkow98Term"
 \end_layout
 
 \begin_layout Subsection
-Sequence of representations
+Последовательность представлений
 \end_layout
 
 \begin_layout Standard
-The idea of this part is constructing a finite sequence of strictly 
+Идея этой части состоит в построении конечной последовательности строго
+ 
 \begin_inset Formula $\lessdot$
 \end_inset
 
--descending signature-safe 
+-убывающих сигнатурных 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representations for a given labeled polynomial 
+-представлений для некоторого отмеченного многочлена 
 \begin_inset Formula $mh,\, m\in\mathcal{K}\times T,\, h\in G_{g}$
 \end_inset
 
- with 
+ со свойством 
 \begin_inset Formula $\Sig(mh)\prec\Sig(g)$
 \end_inset
 
 .
- The first signature-safe representation in the sequence is 
+ Первым сигнатурным представлением в последовательности является 
 \begin_inset Formula $mh=m\cdot h$
 \end_inset
 
-, the last representation is 
+, а последнее представление имеет вид 
 \begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
- with elements having the following properties 
+ со свойствами, выполняющимися для 
 \begin_inset Formula $\forall k$
 \end_inset
 
@@ -4428,14 +4429,14 @@ The idea of this part is constructing a finite sequence of strictly
 \begin_inset Formula $m_{k}b_{i_{k}}$
 \end_inset
 
- does not satisfy F5 criterion.
+ не удовлетворяет критерию F5.
 \end_layout
 
 \begin_layout Enumerate
 \begin_inset Formula $m_{k}b_{i_{k}}$
 \end_inset
 
- does not satisfy Rewritten criterion.
+ не удовлетворяет критерию Перезаписи.
 \end_layout
 
 \begin_layout Enumerate
@@ -4458,46 +4459,45 @@ The idea of this part is constructing a finite sequence of strictly
 \end_layout
 
 \begin_layout Standard
-The proof of such sequence existence is very similar to Theorem 21 of 
+Доказательство существования такой последовательности довольно похоже на
+ доказательство Теоремы 21 из 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "F5C"
 
 \end_inset
 
- and is based on a fact, that if a some signature-safe representation of
- 
+ и основано на том, что если некоторое сигнатурное представление 
 \begin_inset Formula $mh$
 \end_inset
 
- contains an element 
+ содержит не удовлетворяющий одному из свойств элемент 
 \begin_inset Formula $m_{K}\cdot b_{i_{K}}$
 \end_inset
 
- not having one of the properties then a 
+, то может быть найдено 
 \begin_inset Formula $\lessdot$
 \end_inset
 
--smaller representation can be constructed.
- The exact construction differ for three cases but the replacement scheme
- is the same:
+-меньшее представление.
+ Метод построения отличается для разных свойств, однако схема замены одинакова:
 \end_layout
 
 \begin_layout Itemize
-a some element 
+выбирается некоторый элемент 
 \begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
- in 
+ в представлении 
 \begin_inset Formula $mh$
 \end_inset
 
- representation is selected.
- Note that 
+.
+ Следует отметить, что 
 \begin_inset Formula $K'$
 \end_inset
 
- in some cases is not equal to 
+ может как совпадать, так и отличаться от 
 \begin_inset Formula $K$
 \end_inset
 
@@ -4505,19 +4505,19 @@ a some element
 \end_layout
 
 \begin_layout Itemize
-some representation 
+строится некоторое представление 
 \begin_inset Formula $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
 \end_inset
 
- is constructed for this element.
+ для этого элемента
 \end_layout
 
 \begin_layout Itemize
-it is shown that constructed representation is 
+показывается, что построенное представление 
 \begin_inset Formula $\lessdot$
 \end_inset
 
--smaller than representation 
+-меньше, чем представление 
 \begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
@@ -4525,43 +4525,43 @@ it is shown that constructed representation is
 \end_layout
 
 \begin_layout Standard
-Construction of such representation for 
+Построение такого представления для 
 \begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
- allows application of the following lemma:
+ позволяет применить следующую лемму:
 \end_layout
 
 \begin_layout Lemma
-If an element 
+Если элемент 
 \begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
- of signature-safe representation 
+ сигнатурного представления 
 \begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
- has an representation 
+ имеет представление 
 \begin_inset Formula $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
 \end_inset
 
- which is 
+, 
 \begin_inset Formula $\lessdot$
 \end_inset
 
--smaller than representation 
+-меньшее чем представление 
 \begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
- then 
+, то 
 \begin_inset Formula $mh$
 \end_inset
 
- has a signature-safe representation 
+ имеет сигнатурное представление, 
 \begin_inset Formula $\lessdot$
 \end_inset
 
--smaller than 
+-меньшее, чем 
 \begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
@@ -4569,15 +4569,15 @@ If an element
 \end_layout
 
 \begin_layout Proof
-We replace 
+Заменим элемент 
 \begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
- in 
+ в представлении 
 \begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
- by 
+ на 
 \family roman
 \series medium
 \shape up
@@ -4593,13 +4593,13 @@ We replace
 \begin_inset Formula $\sum_{l}m_{l}\cdot b_{i_{l}}$
 \end_inset
 
- and combine coefficients near elements with both monomial and polynomial
- equal, so a modified representation for 
+ и скомбинируем коэффициенты при элементах с одновременно одинаковыми мономами
+ и многочленами, получив таким образом изменённое представления для 
 \begin_inset Formula $mh$
 \end_inset
 
- appears.
- Is is 
+.
+ Оно будет 
 \family default
 \series default
 \shape default
@@ -4615,15 +4615,15 @@ We replace
 \begin_inset Formula $\lessdot$
 \end_inset
 
--smaller than 
+-меньше, чем 
 \begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
- because all elements 
+ поскольку: все элементы 
 \begin_inset Formula $\gtrdot_{1}$
 \end_inset
 
--greater than 
+-большие 
 \begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
@@ -4639,8 +4639,7 @@ We replace
 \uwave off
 \noun off
 \color none
- are identical in both representations if they present but the element 
- 
+ идентичны в исходном и изменённом представлениях; элемент 
 \family default
 \series default
 \shape default
@@ -4656,12 +4655,12 @@ We replace
 \begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
- is contained in original representation but not in the modified.
- And all other elements in representations are 
+ содержится в исходном, но не в изменённом представлении; все остальные
+ элементы в представлениях являются 
 \begin_inset Formula $\lessdot_{1}$
 \end_inset
 
--smaller than 
+-меньшими, чем 
 \begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
@@ -4677,18 +4676,20 @@ We replace
 \uwave off
 \noun off
 \color none
- so they does not influence the comparison.
- The comparison holds even in a corner case when all elements are discarded
- while combining coefficients.
- This case can appear if the original representation is equal to 
+ поэтому они не играют роли при сравнении.
+ Сравнение выполняется даже в случае, когда при комбинировании коэффициентов
+ все элементы обнулились.
+ Этот случай может возникнуть, если исходное представление было равно 
 \begin_inset Formula $mh=m_{K'}\cdot b_{i_{K'}}+\sum_{l}(-m_{l})\cdot b_{i_{l}}$
 \end_inset
 
- what leads to modified representation 
+, что привело к изменённому представлению вообще не содержащему элементов:
+ 
 \begin_inset Formula $mh=0$
 \end_inset
 
- with zero elements which is 
+.
+ Оно является 
 \family default
 \series default
 \shape default
@@ -4704,57 +4705,58 @@ We replace
 \begin_inset Formula $\lessdot$
 \end_inset
 
--smaller than any non-empty representation.
+-меньшим, чем любое непустое представление.
 \end_layout
 
 \begin_layout Standard
-Now it will be shown that replacement scheme can be performed if the representat
-ion contains an element not satisfying at least one of three properties.
+Теперь покажем, что представление элемента по вышеуказанной схеме может
+ быть построено, если исходное представление содержит элемент, не удовлетворяющи
+й по крайней мере одному из свойств.
 \end_layout
 
 \begin_layout Lemma
-If a signature-safe 
+Если сигнатурное 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representation 
+-представление 
 \begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
- does not satisfy property 1 then there exists an element 
+ содержит элемент, не удовлетворяющий свойству 1, то найдётся элемент 
 \begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
- having 
+ обладающий 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representation 
+-представлением 
 \begin_inset Formula $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
 \end_inset
 
- which is 
+ 
 \begin_inset Formula $\lessdot$
 \end_inset
 
--smaller than representation 
+-меньшим, чем представление 
 \begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
- .
+.
 \end_layout
 
 \begin_layout Standard
-An element not having the first property does satisfy the F5 criterion and
- the idea is to use that 
+Элемент, не обладающий первым свойством, удовлетворяет критерию F5, что
+ позволяет позволяет использовать соображение о том, что 
 \begin_inset Formula $m_{K}\Sig(b_{i_{K}})$
 \end_inset
 
- is not the minimal signature of 
+ не является его сигнатурой 
 \begin_inset Formula $m_{K}b_{i_{K}}$
 \end_inset
 
- like in Theorem 20 of 
+ аналогично теореме 20 работы 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "F5C"
@@ -4762,23 +4764,23 @@ key "F5C"
 \end_inset
 
 .
- 
+ Для этого случая берётся 
 \begin_inset Formula $K'=K$
 \end_inset
 
- is taken for this case.
+.
 \end_layout
 
 \begin_layout Proof
-Consider input-representation of 
+Рассмотрим входное представление 
 \begin_inset Formula $m_{K}b_{i_{K}}$
 \end_inset
 
- with signature of 
+ с сигнатурой 
 \begin_inset Formula $\gtrdot_{1}$
 \end_inset
 
--maximal element equal to 
+-максимального элемента, равной 
 \begin_inset Formula $m_{K}\Sig(b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$
 \end_inset
 
@@ -4805,44 +4807,44 @@ m_{K}b_{i_{K}}=c_{0}s_{0}\cdot f_{j_{0}}+\sum_{l}m_{l}\cdot f_{i_{l}}.\label{eq:
 
 \end_inset
 
-From the satisfying F5 criterion 
+Из удовлетворения критерия F5 следует, что 
 \begin_inset Formula $s_{0}$
 \end_inset
 
- can be expressed like 
+ может быть представлено как 
 \begin_inset Formula $s_{0}=s_{1}\HM(f_{j_{1}}),\, j_{1}>j_{0}$
 \end_inset
 
- so 
+, откуда 
 \begin_inset Formula $s_{0}f_{j_{0}}=s_{1}f_{j_{0}}f_{j_{1}}-s_{1}(f_{j_{1}}-\HM(f_{j_{1}}))f_{j_{0}}$
 \end_inset
 
 .
- From this we can write another representation for 
+ На основе этого выражения можно получить другое представление для 
 \begin_inset Formula $m_{K}b_{i_{K}}$
 \end_inset
 
-, assuming 
+, обозначая за 
 \begin_inset Formula $m_{0i}$
 \end_inset
 
- are sorted terms of 
+ упорядоченные термы 
 \begin_inset Formula $f_{j_{0}}$
 \end_inset
 
-, 
+, за 
 \begin_inset Formula $m_{1i}$
 \end_inset
 
- are sorted terms of 
+ -- упорядоченные термы 
 \begin_inset Formula $f_{j_{1}}$
 \end_inset
 
- and 
+ и за 
 \begin_inset Formula $N_{0,}N_{1}$
 \end_inset
 
- are number of terms in those polynomials:
+ число термов в этих многочленах:
 \end_layout
 
 \begin_layout Proof
@@ -4853,15 +4855,15 @@ m_{K}b_{i_{K}}=\sum_{i=1}^{N_{0}}c_{0}s_{1}m_{0i}\cdot f_{j_{1}}+\sum_{i=2}^{N_{
 
 \end_inset
 
-This representation is 
+Это представление 
 \begin_inset Formula $\lessdot$
 \end_inset
 
--smaller than 
+-меньше, чем 
 \begin_inset Formula $m_{K}\cdot b_{i_{K}}$
 \end_inset
 
- because signatures of all elements are smaller than 
+ поскольку сигнатуры всех его элементов меньше чем 
 \family roman
 \series medium
 \shape up
@@ -4878,11 +4880,11 @@ This representation is
 \end_inset
 
 .
- For the elements of the third sum 
+ Для элементов третьей суммы 
 \begin_inset Formula $\sum_{l}m_{l}\cdot f_{i_{l}}$
 \end_inset
 
- this follows from 
+ это следует из 
 \family default
 \series bold
 \shape default
@@ -4896,7 +4898,7 @@ This representation is
 \color inherit
 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand eqref
 reference "eq:input-repr-case1"
 
 \end_inset
@@ -4913,26 +4915,26 @@ reference "eq:input-repr-case1"
 \uwave off
 \noun off
 \color none
-, where those elements are smaller elements of input-representation.
- For the elements of the first sum 
+, где эти элементы являются меньшими элементами входного представления.
+ Для элементов первой суммы 
 \begin_inset Formula $\sum_{i=1}^{N_{0}}c_{0}s_{1}m_{0i}\cdot f_{j_{1}}$
 \end_inset
 
- this follows from the position inequality 
+ это следует из неравенства индексов сигнатур 
 \begin_inset Formula $j_{1}>j_{0}$
 \end_inset
 
 .
- And for the second sum we use the equality in term and signature orderings:
- all terms 
+ А для второй суммы используем совпадение порядка на сигнатурах и на термах:
+ все термы 
 \begin_inset Formula $m_{1i},\, i\geqslant2$
 \end_inset
 
- are smaller than 
+ меньше, чем 
 \begin_inset Formula $m_{11}$
 \end_inset
 
-, so the signatures are: 
+, поэтому и выполняется неравенство для сигнатур: 
 \begin_inset Formula $s_{1}m_{1i}\mathbf{F}_{j_{0}}\prec s_{1}m_{11}\mathbf{F}_{j_{0}}=s_{0}\mathbf{F}_{j_{0}}$
 \end_inset
 
@@ -4941,39 +4943,39 @@ reference "eq:input-repr-case1"
 \end_layout
 
 \begin_layout Lemma
-If a signature-safe 
+Если сигнатурное 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representation 
+-представление 
 \begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
- with 
+ с 
 \begin_inset Formula $\Sig(mh)\prec\Sig(g)$
 \end_inset
 
- does not satisfy property 2 then there exists an element 
+ содержит элемент, не удовлетворяющий свойству 2, то найдётся элемент 
 \begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
- having 
+ обладающий 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representation 
+-представлением 
 \begin_inset Formula $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
 \end_inset
 
- which is 
+ 
 \begin_inset Formula $\lessdot$
 \end_inset
 
--smaller than representation 
+-меньшим, чем представление 
 \begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
- 
+
 \family roman
 \series medium
 \shape up
@@ -4989,11 +4991,11 @@ If a signature-safe
 \end_layout
 
 \begin_layout Standard
-For the elements not satisfying case 2 the 
+Для элементов, не удовлетворяющих критерию Перезаписи 
 \begin_inset Formula $\lessdot$
 \end_inset
 
--smaller representation is created in a way used in Proposition 17 of 
+-меньшее представление сроится методом, аналогичным Предложению 17 из 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "F5C"
@@ -5001,15 +5003,15 @@ key "F5C"
 \end_inset
 
 .
- 
+ В этом случае также берётся 
 \begin_inset Formula $K'=K$
 \end_inset
 
- is taken for this case too.
+.
 \end_layout
 
 \begin_layout Proof
-Assume that 
+Предположим, что сигнатура 
 \begin_inset Formula $\Sig(m_{K}b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$
 \end_inset
 
@@ -5025,25 +5027,25 @@ Assume that
 \uwave off
 \noun off
 \color none
- and it is rewritten by labeled polynomial 
+ и она перезаписывается отмеченным многочленом 
 \begin_inset Formula $b_{i'}$
 \end_inset
 
- from 
+ из 
 \begin_inset Formula $R$
 \end_inset
 
 .
- Because the representation is signature-safe we have 
+ Поскольку представление сигнатурно, мы имеем 
 \begin_inset Formula $\Sig(b_{i'})\preccurlyeq s_{0}\mathbf{F}_{j_{0}}\preccurlyeq\Sig(mh)\prec\Sig(g)$
 \end_inset
 
 .
- So 
+ Поэтому 
 \begin_inset Formula $b_{i'}$
 \end_inset
 
- was processed in 
+ обрабатывался в процедуре 
 \family typewriter
 \series default
 \shape default
@@ -5067,46 +5069,34 @@ TopReduction
 \uwave off
 \noun off
 \color none
- before 
+ раньше 
 \begin_inset Formula $g$
 \end_inset
 
 .
- Since 
+ Значит 
 \begin_inset Formula $b_{i'}$
 \end_inset
 
- is rewriter we have 
-\begin_inset Formula $b_{i'}\ne0$
-\end_inset
-
-.
- All this gives the fact that 
-\begin_inset Formula $b_{i'}$
-\end_inset
-
- does present not only in 
-\begin_inset Formula $R$
-\end_inset
-
- but in 
+ был редуцирован и результат его редукции или был нулевым или присутствует
+ в 
 \begin_inset Formula $G_{g}$
 \end_inset
 
- too so it can be used as a polynomial of 
+, поэтому он может использоваться как многочлен элемента 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representation element.
- From the Rewritten criterion definition we know that 
+-представления.
+ Из критерия Перезаписи известно, что 
 \begin_inset Formula $i'>i_{K}$
 \end_inset
 
- and the existence of 
+ и существует 
 \begin_inset Formula $s'\in T$
 \end_inset
 
- such that 
+, такое что 
 \family default
 \series default
 \shape default
@@ -5123,22 +5113,22 @@ TopReduction
 \end_inset
 
 .
- So, for the 
+ Для 
 \begin_inset Formula $m_{K}b_{i_{K}}$
 \end_inset
 
- there is an input-representation 
+ есть входное представление 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand eqref
 reference "eq:input-repr-case1"
 
 \end_inset
 
- and for the 
+ а для 
 \begin_inset Formula $s'b_{i'}$
 \end_inset
 
- the input-representation is:
+ входным представлением является:
 \end_layout
 
 \begin_layout Proof
@@ -5149,11 +5139,11 @@ s'b_{i'}=c's_{0}\cdot f_{j_{0}}+\sum_{l'}m_{l'}\cdot f_{i_{l'}}.
 
 \end_inset
 
-A 
+Преобразованием этого выражения получим 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representation for 
+-представление для 
 \family roman
 \series medium
 \shape up
@@ -5169,30 +5159,6 @@ A
 \begin_inset Formula $c_{0}s_{0}f_{j_{0}}$
 \end_inset
 
- can be acquired with 
-\family default
-\series default
-\shape default
-\size default
-\emph default
-\bar default
-\strikeout default
-\uuline default
-\uwave default
-\noun default
-\color inherit
-transformation of the above expression
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 :
 \end_layout
 
@@ -5216,7 +5182,7 @@ c_{0}s_{0}f_{j_{0}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot
 
 \end_inset
 
-Using this to replace the first element in 
+Используя его для замены первого элемента в 
 \family default
 \series default
 \shape default
@@ -5230,12 +5196,12 @@ Using this to replace the first element in
 \color inherit
 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand eqref
 reference "eq:input-repr-case1"
 
 \end_inset
 
- we get the wanted result:
+ получим желаемый результат:
 \begin_inset Formula 
 \[
 m_{K}b_{i_{K}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i_{l'}}+\sum_{l}m_{l}\cdot f_{i_{l}}
@@ -5243,15 +5209,15 @@ m_{K}b_{i_{K}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i
 
 \end_inset
 
-It is 
+Он 
 \begin_inset Formula $\lessdot$
 \end_inset
 
--smaller than 
+-меньше, чем 
 \begin_inset Formula $m_{K}b_{i_{K}}=m_{K}\cdot b_{i_{K}}$
 \end_inset
 
- because elements of both sums has signatures smaller than 
+ поскольку элементы обоих сумм имеют сигнатуры, меньшие 
 \family roman
 \series medium
 \shape up
@@ -5267,61 +5233,67 @@ It is
 \begin_inset Formula $s_{0}\mathbf{F}_{j_{0}}$
 \end_inset
 
-, and for the first element 
-\begin_inset Formula $ $
+, а для первого элемента, если 
+\begin_inset Formula $b_{i'}$
 \end_inset
 
-
+ не нулевой, имеем 
 \begin_inset Formula $\Sig(c'^{-1}c_{0}s'\cdot b_{i'})=\Sig(m_{K}\cdot b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$
 \end_inset
 
- but 
+ с 
 \begin_inset Formula $i'>i_{K}$
 \end_inset
 
-, so applying the 
+, откуда применяя правило 
 \begin_inset Formula $\lessdot_{1}$
 \end_inset
 
--comparison rule for equal signatures and different list positions we get
- that element 
+-сравнения для равных сигнатур и различных позиций в списке, получаем, что
+ элемент 
 \begin_inset Formula $c'^{-1}c_{0}s'\cdot b_{i'}$
 \end_inset
 
- is 
+ также 
 \begin_inset Formula $\lessdot_{1}$
 \end_inset
 
--smaller than 
+-меньше, чем
 \begin_inset Formula $m_{K}\cdot b_{i_{K}}$
 \end_inset
 
- too.
+.
+ Если же 
+\begin_inset Formula $b_{i'}=0$
+\end_inset
+
+, то он отбрасывается, и желаемое представление состоит только из оставшихся
+ 2-х сумм.
 \end_layout
 
 \begin_layout Lemma
-If a signature-safe representation 
+Если все элементы сигнатурного представления 
 \begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
- with 
+ с 
 \begin_inset Formula $\Sig(mh)\prec\Sig(g)$
 \end_inset
 
- satisfies properties 1 and 2 but does not satisfy property 3 then there
- exists an element 
+ удовлетворяют свойствам 1 и 2, но один из них не удовлетворяет свойству
+ 3, то найдётся элемент 
 \begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
- having representation 
+, имеющий представление 
 \begin_inset Formula $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
 \end_inset
 
- which is 
+ 
 \begin_inset Formula $\lessdot$
 \end_inset
 
--smaller than representation 
+-меньшее, чем представление 
 \begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
@@ -5329,42 +5301,42 @@ If a signature-safe representation
 \end_layout
 
 \begin_layout Proof
-There exists at least one element 
+Существует по крайней мере один элемент 
 \begin_inset Formula $m_{K}\cdot b_{i_{K}}$
 \end_inset
 
- that does not satisfy property 3.
- Let 
+, не удовлетворяющий свойству 3.
+ Обозначим за 
 \begin_inset Formula $m_{\max}$
 \end_inset
 
- be the maximal 
+ максимальный 
 \begin_inset Formula $\HM$
 \end_inset
 
- of labeled polynomials corresponding to representation elements and 
+ отмеченных многочленов, соответствующих элементам представления, и за 
 \begin_inset Formula $H_{\max}$
 \end_inset
 
- be a list of elements where 
+ список элементов, на котором 
 \begin_inset Formula $m_{\max}$
 \end_inset
 
- is achieved.
- Select 
+ достигается.
+ Возьмём в качестве 
 \begin_inset Formula $K'$
 \end_inset
 
- to be the index of the 
+ номер элемента представления, являющегося 
 \begin_inset Formula $\gtrdot_{1}$
 \end_inset
 
--greatest representation element in 
+-максимальным в 
 \begin_inset Formula $H_{\max}$
 \end_inset
 
 .
- We have 
+ Имеем 
 \begin_inset Formula $ $
 \end_inset
 
@@ -5372,23 +5344,23 @@ There exists at least one element
 \begin_inset Formula $\HM(m_{K'}b_{i_{K'}})=m_{\max}\geqslant\HM(m_{K}b_{i_{K}})>\HM(mh)$
 \end_inset
 
-, so the 
+, поэтому 
 \begin_inset Formula $\HM$
 \end_inset
 
- of sum of all elements except 
+ суммы всех элементов, кроме 
 \begin_inset Formula $K'$
 \end_inset
 
- is equal to 
+-го равен 
 \begin_inset Formula $\HM(mh-m_{K'}b_{i_{K'}})=\HM(m_{K'}b_{i_{K'}})=m_{\max}$
 \end_inset
 
-, so there is another element 
+, поэтому существует другой элемент 
 \begin_inset Formula $K''$
 \end_inset
 
- having 
+, обладающий 
 \family roman
 \series medium
 \shape up
@@ -5405,15 +5377,15 @@ There exists at least one element
 \end_inset
 
 .
- So, 
+ Отсюда 
 \begin_inset Formula $m_{K''}\cdot b_{i_{K''}}\in H_{\max}$
 \end_inset
 
- and 
+ и 
 \begin_inset Formula $m_{K''}\cdot b_{i_{K''}}\lessdot_{1}m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
- because of 
+ поскольку 
 \begin_inset Formula $ $
 \end_inset
 
@@ -5425,7 +5397,7 @@ There exists at least one element
 \begin_inset Formula $\gtrdot_{1}$
 \end_inset
 
--maximality in 
+-максимален в 
 \begin_inset Formula $H_{\max}$
 \end_inset
 
@@ -5433,7 +5405,7 @@ There exists at least one element
 \end_layout
 
 \begin_layout Proof
-The 
+Равенство 
 \family roman
 \series medium
 \shape up
@@ -5449,15 +5421,15 @@ The
 \begin_inset Formula $\HM(m_{K''}b_{i_{K''}})=\HM(m_{K'}b_{i_{K'}})$
 \end_inset
 
- means that a critical pair of 
+ означает, что S-пара 
 \begin_inset Formula $b_{i_{K'}}$
 \end_inset
 
- and 
+ и 
 \begin_inset Formula $b_{i_{K''}}$
 \end_inset
 
- has the form 
+ имеет вид 
 \family default
 \series default
 \shape default
@@ -5485,81 +5457,104 @@ The
 \uwave off
 \noun off
 \color none
- where 
+ где 
 \begin_inset Formula $m'=\mbox{gcd}(m_{K'},m_{K''})$
 \end_inset
 
 .
- Let 
+ Пусть 
 \begin_inset Formula $q$
 \end_inset
 
- be corresponding S-polynomial.
- Then 
+ -- соответствующий S-многочлен.
+ Тогда 
 \begin_inset Formula $m'\Sig(q)\preccurlyeq\Sig(mh)\prec\Sig(g)$
 \end_inset
 
- because 
+ поскольку 
 \begin_inset Formula $m'\Sig(q)=\Sig(m_{K'}b_{i_{K'}})$
 \end_inset
 
- and the representation is signature-safe.
- The S-polynomial parts 
+ и представление сигнатурно.
+ Части S-многочлена 
 \begin_inset Formula $m'^{-1}m_{K'}b_{i_{K'}}$
 \end_inset
 
- and 
+ и 
 \begin_inset Formula $m'^{-1}m_{K''}b_{i_{K''}}$
 \end_inset
 
- does not satisfy F5 and Rewritten criteria because their forms multiplied
- by 
+ не удовлетворяют критериям F5 и Перезаписи, поскольку они же, умноженные
+ на 
 \begin_inset Formula $m'$
 \end_inset
 
- are 
+ равны 
 \begin_inset Formula $m_{K'}b_{i_{K'}}$
 \end_inset
 
- and 
+ и 
 \begin_inset Formula $m_{K''}b_{i_{K''}}$
 \end_inset
 
- -- labeled polynomials corresponding to elements which are known not to
- satisfy both criteria by assumption.
- Therefore 
+ -- отмеченным многочленам, соответствующим элементам, про которые известно,
+ что они не удовлетворяют критериям по предположению леммы.
+ Из 
 \begin_inset Formula $m'\Sig(q)\prec\Sig(g)$
 \end_inset
 
- and 
+ имеем 
 \begin_inset Formula $\Sig(q)\prec\Sig(g)$
 \end_inset
 
-.
- It follows from this with theorem 
+, а значит можно применить теорему 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:Exist-gg-repr"
 
 \end_inset
 
- that the S-pair 
+ и получить, что 
 \begin_inset Formula $(b_{i_{K'}},b_{i_{K''}})$
 \end_inset
 
- is S-pair with computed 
+ -- S-пара с 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+известным
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representation, what means that there is an representation described in
- example 
+-представлением, что означает существование представления, описанного в
+ примере 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "example-of-having-gg-repr"
 
 \end_inset
 
- :
+:
 \end_layout
 
 \begin_layout Proof
@@ -5570,7 +5565,7 @@ q=1\cdot b_{i'}+\sum_{l}m_{l}\cdot b_{i_{l}},
 
 \end_inset
 
-satisfying the properties shown after that example: 
+причём выполняются свойства, показанные после примера: 
 \begin_inset Formula $\Sig(q)=\Sig(b_{i'})$
 \end_inset
 
@@ -5578,7 +5573,7 @@ satisfying the properties shown after that example:
 \begin_inset Formula $\forall l\,\Sig(q)\succ\Sig(m_{l}b_{i_{l}})$
 \end_inset
 
- and 
+ и 
 \begin_inset Formula $i'>K'$
 \end_inset
 
@@ -5586,11 +5581,11 @@ satisfying the properties shown after that example:
 \end_layout
 
 \begin_layout Proof
-From the other hand we have 
+С другой стороны по определению S-многочлена мы имеем 
 \begin_inset Formula $m'q=c_{0}m_{K'}b_{i_{K'}}-c_{1}m_{K''}b_{i_{K''}}$
 \end_inset
 
-, so we get the following representation:
+, откуда получаем следующее представление:
 \begin_inset Formula 
 \[
 m_{K'}b_{i_{K'}}=c_{0}^{-1}c_{1}m_{K''}\cdot b_{i_{K''}}+c_{0}^{-1}m'\cdot b_{i'}+\sum_{l}c_{0}^{-1}m'm_{l}\cdot b_{i_{l}}.
@@ -5598,11 +5593,11 @@ m_{K'}b_{i_{K'}}=c_{0}^{-1}c_{1}m_{K''}\cdot b_{i_{K''}}+c_{0}^{-1}m'\cdot b_{i'
 
 \end_inset
 
-It is 
+Оно 
 \begin_inset Formula $\lessdot$
 \end_inset
 
--smaller than 
+-меньше, чем 
 \begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
@@ -5613,7 +5608,7 @@ It is
 \begin_inset Formula $m_{K''}\cdot b_{i_{K''}}$
 \end_inset
 
- was already compared to 
+ уже сравнивалось с 
 \begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
@@ -5636,7 +5631,7 @@ It is
 \begin_inset Formula $m'\cdot b_{i'}$
 \end_inset
 
- has the same signature but greater position 
+ имеет ту же сигнатуру, но больший номер позиции 
 \begin_inset Formula $i'>i_{K'}$
 \end_inset
 
@@ -5644,7 +5639,7 @@ It is
 \end_layout
 
 \begin_layout Proof
-the last sum contains elements with signatures smaller than 
+последняя сумма состоит из элементов с сигнатурами, меньшими чем 
 \begin_inset Formula $m'\Sig(b_{i'})=\Sig(m_{K'}\cdot b_{i_{K'}})$
 \end_inset
 
@@ -5658,24 +5653,24 @@ name "thm:exist-smaller-signature-safe-representation"
 
 \end_inset
 
-A signature-safe representation 
+Или сигнатурное представление 
 \begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
- with 
+ с 
 \begin_inset Formula $\Sig(mh)\prec\Sig(g)$
 \end_inset
 
- either satisfies properties 1-3 or there exists a signature-safe representation
+ удовлетворяет свойствам 1-3 или существует другое сигнатурное представление
  
 \begin_inset Formula $mh=\sum_{l}m_{l}\cdot b_{i_{l}}$
 \end_inset
 
- which is 
+ 
 \begin_inset Formula $\lessdot$
 \end_inset
 
--smaller than 
+-меньшее, чем 
 \family roman
 \series medium
 \shape up
@@ -5695,31 +5690,31 @@ A signature-safe representation
 \end_layout
 
 \begin_layout Proof
-This theorem quickly follows from four previous lemmas together
+Теорема немедленно следует из комбинации четырёх предыдущих лемм.
 \end_layout
 
 \begin_layout Standard
-This leads to main result:
+Это привод на с к следующему ключевому результату:
 \end_layout
 
 \begin_layout Theorem
-For any labeled polynomial 
+Для любого многочлена 
 \begin_inset Formula $mh,\, m\in\mathcal{K}\times T,\, h\in G_{g}$
 \end_inset
 
- with 
+ с 
 \begin_inset Formula $\Sig(mh)\prec\Sig(g)$
 \end_inset
 
- there exists a signature-safe 
+ существует удовлетворяющее свойствам 1-3 сигнатурное 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--representation 
+-представление 
 \begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
- that satisfies properties 1-3
+
 \family roman
 \series medium
 \shape up
@@ -5735,32 +5730,34 @@ For any labeled polynomial
 \end_layout
 
 \begin_layout Proof
-Start with representation 
+Начнём с представления 
 \begin_inset Formula $mh=m\cdot h$
 \end_inset
 
- and begin replacing it by 
+ и будем заменять текущее представление на 
 \begin_inset Formula $\lessdot$
 \end_inset
 
--smaller representation from theorem 
+-меньшее из теоремы 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:exist-smaller-signature-safe-representation"
 
 \end_inset
 
- until the representation satisfying properties 1-3 appears.
- The finiteness of the process is guaranteed by 
+ до тех пор пока текущее представление не будет удовлетворять свойствам
+ 1-3.
+ Конечность процесса гарантируется вполне упорядоченностью представлений
+ по 
 \begin_inset Formula $\lessdot$
 \end_inset
 
--well-orderness.
+.
 \end_layout
 
 \begin_layout Standard
-This result may be interesting by itself, but for the purposes of proving
- termination only one corollary is needed:
+Этот результат может представлять интерес сам по себе, однако для целей
+ доказательства остановки нужно лишь одно следствие из него:
 \end_layout
 
 \begin_layout Corollary
@@ -5770,99 +5767,96 @@ name "cor:all-needed-for-terminaton"
 
 \end_inset
 
-Consider an arbitrary polynomial 
+Рассмотрим произвольный многочлен 
 \begin_inset Formula $f$
 \end_inset
 
- without any restrictions on its signature.
- If there exists a signature-safe reductor 
+ без ограничений на его сигнатуру.
+ Если существует сигнатурный редуктор 
 \begin_inset Formula $f'\in G_{g}$
 \end_inset
 
- for 
+ для 
 \begin_inset Formula $f$
 \end_inset
 
- with 
+ с 
 \begin_inset Formula $\Sig(f')\frac{\HM(f)}{\HM(f')}\prec\Sig(g)$
 \end_inset
 
- then 
+ то 
 \begin_inset Formula $G_{g}$
 \end_inset
 
- contains a signature-safe reductor for 
+ содержит сигнатурный редуктор для 
 \begin_inset Formula $f$
 \end_inset
 
- that is not rejected by F5 and Rewritten criteria.
+, который не отбрасывается критериями F5 и перезаписи.
 \end_layout
 
 \begin_layout Proof
-Let 
+Пусть 
 \begin_inset Formula $mf',\, m=\frac{\HM(f)}{\HM(f')}\in\mathcal{K}\times T,\, f'\in G_{g}$
 \end_inset
 
- be a multiplied reductor with 
+ умноженный редуктор с 
 \begin_inset Formula $\Sig(mf')\prec\Sig(g)$
 \end_inset
 
 .
- From the previous theorem we can find representation 
+ Из предыдущей теоремы мы можем найти удовлетворяющее свойствам 1-3 представлени
+е 
 \begin_inset Formula $mf'=\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
- that satisfies properties 1-3.
- Property 3 means that there is no elements with 
+.
+ Свойство 3 означает отсутствие элементов с 
 \begin_inset Formula $\HM$
 \end_inset
 
-
-\begin_inset Quotes ers
-\end_inset
-
-s greater than 
+, большим чем у 
 \begin_inset Formula $mf'$
 \end_inset
 
- so because sum of all elements has 
+, откуда, поскольку сумма всех элементов этого представления имеет 
 \begin_inset Formula $\HM$
 \end_inset
 
- equal to 
+ равный 
 \begin_inset Formula $\HM(mf')$
 \end_inset
 
- there exists an element 
+, существует элемент 
 \begin_inset Formula $K$
 \end_inset
 
- that achieves 
+, на котором достигается равенство 
 \begin_inset Formula $\HM$
 \end_inset
 
- equality: 
+: 
 \begin_inset Formula $\HM(m_{K}\cdot b_{i_{K}})=\HM(mf')=\HM(f_{1}')$
 \end_inset
 
 .
- Since the representation is signature-safe 
+ Поскольку представление сигнатурно, имеем 
 \begin_inset Formula $\Sig(m_{K}\cdot b_{i_{K}})\preccurlyeq\Sig(mf')\prec\Sig(f)$
 \end_inset
 
- so 
+, а значит 
 \begin_inset Formula $m_{K}b_{i_{K}}$
 \end_inset
 
- is a signature-safe reductor for 
+ -- сигнатурный редуктор для 
 \begin_inset Formula $f$
 \end_inset
 
- and properties 1-2 ensure that 
+ и выполнение свойств 1-2 гарантирует, что 
 \begin_inset Formula $m_{K}b_{i_{K}}$
 \end_inset
 
- does not satisfy criteria.
+ не отбрасывается критериями.
 \end_layout
 
 \begin_layout Section

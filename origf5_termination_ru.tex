@@ -1027,233 +1027,235 @@ $g$. Поэтому существование бесконечной $\gtrdot_{1}$-убывающей последовательност
 так как они являются наборами своих элементов.
 \end{proof}
 
-\subsection{Sequence of representations}
+\subsection{Последовательность представлений}
 
-The idea of this part is constructing a finite sequence of strictly
-$\lessdot$-descending signature-safe $G_{g}$-representations for
-a given labeled polynomial $mh,\, m\in\mathcal{K}\times T,\, h\in G_{g}$
-with $\Sig(mh)\prec\Sig(g)$. The first signature-safe representation
-in the sequence is $mh=m\cdot h$, the last representation is $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
-with elements having the following properties $\forall k$:
+Идея этой части состоит в построении конечной последовательности строго
+$\lessdot$-убывающих сигнатурных $G_{g}$-представлений для некоторого
+отмеченного многочлена $mh,\, m\in\mathcal{K}\times T,\, h\in G_{g}$
+со свойством $\Sig(mh)\prec\Sig(g)$. Первым сигнатурным представлением
+в последовательности является $mh=m\cdot h$, а последнее представление
+имеет вид $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$ со свойствами, выполняющимися
+для $\forall k$:
 \begin{enumerate}
-\item $m_{k}b_{i_{k}}$ does not satisfy F5 criterion.
-\item $m_{k}b_{i_{k}}$ does not satisfy Rewritten criterion.
+\item $m_{k}b_{i_{k}}$ не удовлетворяет критерию F5.
+\item $m_{k}b_{i_{k}}$ не удовлетворяет критерию Перезаписи.
 \item $\HM(m_{k}b_{i_{k}})\leqslant\HM(mh)$
 \end{enumerate}
-The proof of such sequence existence is very similar to Theorem 21
-of \cite{F5C} and is based on a fact, that if a some signature-safe
-representation of $mh$ contains an element $m_{K}\cdot b_{i_{K}}$
-not having one of the properties then a $\lessdot$-smaller representation
-can be constructed. The exact construction differ for three cases
-but the replacement scheme is the same:
+Доказательство существования такой последовательности довольно похоже
+на доказательство Теоремы 21 из \cite{F5C} и основано на том, что
+если некоторое сигнатурное представление $mh$ содержит не удовлетворяющий
+одному из свойств элемент $m_{K}\cdot b_{i_{K}}$, то может быть найдено
+$\lessdot$-меньшее представление. Метод построения отличается для
+разных свойств, однако схема замены одинакова:
 \begin{itemize}
-\item a some element $m_{K'}\cdot b_{i_{K'}}$ in $mh$ representation is
-selected. Note that $K'$ in some cases is not equal to $K$
-\item some representation $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
-is constructed for this element.
-\item it is shown that constructed representation is $\lessdot$-smaller
-than representation $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$ 
+\item выбирается некоторый элемент $m_{K'}\cdot b_{i_{K'}}$ в представлении
+$mh$. Следует отметить, что $K'$ может как совпадать, так и отличаться
+от $K$
+\item строится некоторое представление $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
+для этого элемента
+\item показывается, что построенное представление $\lessdot$-меньше, чем
+представление $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$ 
 \end{itemize}
-Construction of such representation for $m_{K'}\cdot b_{i_{K'}}$
-allows application of the following lemma:
+Построение такого представления для $m_{K'}\cdot b_{i_{K'}}$ позволяет
+применить следующую лемму:
 \begin{lem}
-If an element $m_{K'}\cdot b_{i_{K'}}$ of signature-safe representation
-$mh=\sum_{k}m_{k}\cdot b_{i_{k}}$ has an representation $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
-which is $\lessdot$-smaller than representation $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
-then $mh$ has a signature-safe representation $\lessdot$-smaller
-than $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$.\end{lem}
+Если элемент $m_{K'}\cdot b_{i_{K'}}$ сигнатурного представления
+$mh=\sum_{k}m_{k}\cdot b_{i_{k}}$ имеет представление $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$,
+$\lessdot$-меньшее чем представление $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$,
+то $mh$ имеет сигнатурное представление, $\lessdot$-меньшее, чем
+$mh=\sum_{k}m_{k}\cdot b_{i_{k}}$.\end{lem}
 \begin{proof}
-We replace $m_{K'}\cdot b_{i_{K'}}$ in $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
-by $\sum_{l}m_{l}\cdot b_{i_{l}}$ and combine coefficients near elements
-with both monomial and polynomial equal, so a modified representation
-for $mh$ appears. Is is $\lessdot$-smaller than $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
-because all elements $\gtrdot_{1}$-greater than $m_{K'}\cdot b_{i_{K'}}$
-are identical in both representations if they present but the element
- $m_{K'}\cdot b_{i_{K'}}$ is contained in original representation
-but not in the modified. And all other elements in representations
-are $\lessdot_{1}$-smaller than $m_{K'}\cdot b_{i_{K'}}$ so they
-does not influence the comparison. The comparison holds even in a
-corner case when all elements are discarded while combining coefficients.
-This case can appear if the original representation is equal to $mh=m_{K'}\cdot b_{i_{K'}}+\sum_{l}(-m_{l})\cdot b_{i_{l}}$
-what leads to modified representation $mh=0$ with zero elements which
-is $\lessdot$-smaller than any non-empty representation.
+Заменим элемент $m_{K'}\cdot b_{i_{K'}}$ в представлении $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+на $\sum_{l}m_{l}\cdot b_{i_{l}}$ и скомбинируем коэффициенты при
+элементах с одновременно одинаковыми мономами и многочленами, получив
+таким образом изменённое представления для $mh$. Оно будет $\lessdot$-меньше,
+чем $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$ поскольку: все элементы $\gtrdot_{1}$-большие
+$m_{K'}\cdot b_{i_{K'}}$ идентичны в исходном и изменённом представлениях;
+элемент $m_{K'}\cdot b_{i_{K'}}$ содержится в исходном, но не в изменённом
+представлении; все остальные элементы в представлениях являются $\lessdot_{1}$-меньшими,
+чем $m_{K'}\cdot b_{i_{K'}}$ поэтому они не играют роли при сравнении.
+Сравнение выполняется даже в случае, когда при комбинировании коэффициентов
+все элементы обнулились. Этот случай может возникнуть, если исходное
+представление было равно $mh=m_{K'}\cdot b_{i_{K'}}+\sum_{l}(-m_{l})\cdot b_{i_{l}}$,
+что привело к изменённому представлению вообще не содержащему элементов:
+$mh=0$. Оно является $\lessdot$-меньшим, чем любое непустое представление.
 \end{proof}
-Now it will be shown that replacement scheme can be performed if the
-representation contains an element not satisfying at least one of
-three properties.
+Теперь покажем, что представление элемента по вышеуказанной схеме
+может быть построено, если исходное представление содержит элемент,
+не удовлетворяющий по крайней мере одному из свойств.
 \begin{lem}
-If a signature-safe $G_{g}$-representation $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
-does not satisfy property 1 then there exists an element $m_{K'}\cdot b_{i_{K'}}$
-having $G_{g}$-representation $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
-which is $\lessdot$-smaller than representation $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
-.
+Если сигнатурное $G_{g}$-представление $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+содержит элемент, не удовлетворяющий свойству 1, то найдётся элемент
+$m_{K'}\cdot b_{i_{K'}}$ обладающий $G_{g}$-представлением $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
+$\lessdot$-меньшим, чем представление $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$.
 \end{lem}
-An element not having the first property does satisfy the F5 criterion
-and the idea is to use that $m_{K}\Sig(b_{i_{K}})$ is not the minimal
-signature of $m_{K}b_{i_{K}}$ like in Theorem 20 of \cite{F5C}.
-$K'=K$ is taken for this case.
+Элемент, не обладающий первым свойством, удовлетворяет критерию F5,
+что позволяет позволяет использовать соображение о том, что $m_{K}\Sig(b_{i_{K}})$
+не является его сигнатурой $m_{K}b_{i_{K}}$ аналогично теореме 20
+работы \cite{F5C}. Для этого случая берётся $K'=K$.
 \begin{proof}
-Consider input-representation of $m_{K}b_{i_{K}}$ with signature
-of $\gtrdot_{1}$-maximal element equal to $m_{K}\Sig(b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$:
+Рассмотрим входное представление $m_{K}b_{i_{K}}$ с сигнатурой $\gtrdot_{1}$-максимального
+элемента, равной $m_{K}\Sig(b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$:
 
 \begin{equation}
 m_{K}b_{i_{K}}=c_{0}s_{0}\cdot f_{j_{0}}+\sum_{l}m_{l}\cdot f_{i_{l}}.\label{eq:input-repr-case1}
 \end{equation}
-From the satisfying F5 criterion $s_{0}$ can be expressed like $s_{0}=s_{1}\HM(f_{j_{1}}),\, j_{1}>j_{0}$
-so $s_{0}f_{j_{0}}=s_{1}f_{j_{0}}f_{j_{1}}-s_{1}(f_{j_{1}}-\HM(f_{j_{1}}))f_{j_{0}}$.
-From this we can write another representation for $m_{K}b_{i_{K}}$,
-assuming $m_{0i}$ are sorted terms of $f_{j_{0}}$, $m_{1i}$ are
-sorted terms of $f_{j_{1}}$ and $N_{0,}N_{1}$ are number of terms
-in those polynomials:
+Из удовлетворения критерия F5 следует, что $s_{0}$ может быть представлено
+как $s_{0}=s_{1}\HM(f_{j_{1}}),\, j_{1}>j_{0}$, откуда $s_{0}f_{j_{0}}=s_{1}f_{j_{0}}f_{j_{1}}-s_{1}(f_{j_{1}}-\HM(f_{j_{1}}))f_{j_{0}}$.
+На основе этого выражения можно получить другое представление для
+$m_{K}b_{i_{K}}$, обозначая за $m_{0i}$ упорядоченные термы $f_{j_{0}}$,
+за $m_{1i}$ -- упорядоченные термы $f_{j_{1}}$ и за $N_{0,}N_{1}$
+число термов в этих многочленах:
 
 \[
 m_{K}b_{i_{K}}=\sum_{i=1}^{N_{0}}c_{0}s_{1}m_{0i}\cdot f_{j_{1}}+\sum_{i=2}^{N_{1}}-c_{0}s_{1}m_{1i}\cdot f_{j_{0}}+\sum_{l}m_{l}\cdot f_{i_{l}}.
 \]
-This representation is $\lessdot$-smaller than $m_{K}\cdot b_{i_{K}}$
-because signatures of all elements are smaller than $s_{0}\mathbf{F}_{j_{0}}$.
-For the elements of the third sum $\sum_{l}m_{l}\cdot f_{i_{l}}$
-this follows from \textbf{\ref{eq:input-repr-case1}}, where those
-elements are smaller elements of input-representation. For the elements
-of the first sum $\sum_{i=1}^{N_{0}}c_{0}s_{1}m_{0i}\cdot f_{j_{1}}$
-this follows from the position inequality $j_{1}>j_{0}$. And for
-the second sum we use the equality in term and signature orderings:
-all terms $m_{1i},\, i\geqslant2$ are smaller than $m_{11}$, so
-the signatures are: $s_{1}m_{1i}\mathbf{F}_{j_{0}}\prec s_{1}m_{11}\mathbf{F}_{j_{0}}=s_{0}\mathbf{F}_{j_{0}}$. \end{proof}
+Это представление $\lessdot$-меньше, чем $m_{K}\cdot b_{i_{K}}$
+поскольку сигнатуры всех его элементов меньше чем $s_{0}\mathbf{F}_{j_{0}}$.
+Для элементов третьей суммы $\sum_{l}m_{l}\cdot f_{i_{l}}$ это следует
+из \textbf{\eqref{eq:input-repr-case1}}, где эти элементы являются
+меньшими элементами входного представления. Для элементов первой суммы
+$\sum_{i=1}^{N_{0}}c_{0}s_{1}m_{0i}\cdot f_{j_{1}}$ это следует из
+неравенства индексов сигнатур $j_{1}>j_{0}$. А для второй суммы используем
+совпадение порядка на сигнатурах и на термах: все термы $m_{1i},\, i\geqslant2$
+меньше, чем $m_{11}$, поэтому и выполняется неравенство для сигнатур:
+$s_{1}m_{1i}\mathbf{F}_{j_{0}}\prec s_{1}m_{11}\mathbf{F}_{j_{0}}=s_{0}\mathbf{F}_{j_{0}}$. \end{proof}
 \begin{lem}
-If a signature-safe $G_{g}$-representation $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
-with $\Sig(mh)\prec\Sig(g)$ does not satisfy property 2 then there
-exists an element $m_{K'}\cdot b_{i_{K'}}$ having $G_{g}$-representation
-$m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$ which is $\lessdot$-smaller
-than representation $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$ \textup{.}
+Если сигнатурное $G_{g}$-представление $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+с $\Sig(mh)\prec\Sig(g)$ содержит элемент, не удовлетворяющий свойству
+2, то найдётся элемент $m_{K'}\cdot b_{i_{K'}}$ обладающий $G_{g}$-представлением
+$m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$ $\lessdot$-меньшим,
+чем представление $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$\textup{.}
 \end{lem}
-For the elements not satisfying case 2 the $\lessdot$-smaller representation
-is created in a way used in Proposition 17 of \cite{F5C}. $K'=K$
-is taken for this case too.
+Для элементов, не удовлетворяющих критерию Перезаписи $\lessdot$-меньшее
+представление сроится методом, аналогичным Предложению 17 из \cite{F5C}.
+В этом случае также берётся $K'=K$.
 \begin{proof}
-Assume that $\Sig(m_{K}b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$ and it
-is rewritten by labeled polynomial $b_{i'}$ from $R$. Because the
-representation is signature-safe we have $\Sig(b_{i'})\preccurlyeq s_{0}\mathbf{F}_{j_{0}}\preccurlyeq\Sig(mh)\prec\Sig(g)$.
-So $b_{i'}$ was processed in \texttt{TopReduction} before $g$. Since
-$b_{i'}$ is rewriter we have $b_{i'}\ne0$. All this gives the fact
-that $b_{i'}$ does present not only in $R$ but in $G_{g}$ too so
-it can be used as a polynomial of $G_{g}$-representation element.
-From the Rewritten criterion definition we know that $i'>i_{K}$ and
-the existence of $s'\in T$ such that $s'\Sig(b_{i'})=s_{0}\mathbf{F}_{j_{0}}$.
-So, for the $m_{K}b_{i_{K}}$ there is an input-representation \ref{eq:input-repr-case1}
-and for the $s'b_{i'}$ the input-representation is:
+Предположим, что сигнатура $\Sig(m_{K}b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$
+и она перезаписывается отмеченным многочленом $b_{i'}$ из $R$. Поскольку
+представление сигнатурно, мы имеем $\Sig(b_{i'})\preccurlyeq s_{0}\mathbf{F}_{j_{0}}\preccurlyeq\Sig(mh)\prec\Sig(g)$.
+Поэтому $b_{i'}$ обрабатывался в процедуре \texttt{TopReduction}
+раньше $g$. Значит $b_{i'}$ был редуцирован и результат его редукции
+или был нулевым или присутствует в $G_{g}$, поэтому он может использоваться
+как многочлен элемента $G_{g}$-представления. Из критерия Перезаписи
+известно, что $i'>i_{K}$ и существует $s'\in T$, такое что $s'\Sig(b_{i'})=s_{0}\mathbf{F}_{j_{0}}$.
+Для $m_{K}b_{i_{K}}$ есть входное представление \eqref{eq:input-repr-case1}
+а для $s'b_{i'}$ входным представлением является:
 
 \[
 s'b_{i'}=c's_{0}\cdot f_{j_{0}}+\sum_{l'}m_{l'}\cdot f_{i_{l'}}.
 \]
-A $G_{g}$-representation for $c_{0}s_{0}f_{j_{0}}$ can be acquired
-with transformation of the above expression:
+Преобразованием этого выражения получим $G_{g}$-представление для
+$c_{0}s_{0}f_{j_{0}}$:
 
 \[
 c_{0}s_{0}f_{j_{0}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i_{l'}}.
 \]
-Using this to replace the first element in \ref{eq:input-repr-case1}
-we get the wanted result:
+Используя его для замены первого элемента в \eqref{eq:input-repr-case1}
+получим желаемый результат:
 \[
 m_{K}b_{i_{K}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i_{l'}}+\sum_{l}m_{l}\cdot f_{i_{l}}
 \]
-It is $\lessdot$-smaller than $m_{K}b_{i_{K}}=m_{K}\cdot b_{i_{K}}$
-because elements of both sums has signatures smaller than $s_{0}\mathbf{F}_{j_{0}}$,
-and for the first element $ $$\Sig(c'^{-1}c_{0}s'\cdot b_{i'})=\Sig(m_{K}\cdot b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$
-but $i'>i_{K}$, so applying the $\lessdot_{1}$-comparison rule for
-equal signatures and different list positions we get that element
-$c'^{-1}c_{0}s'\cdot b_{i'}$ is $\lessdot_{1}$-smaller than $m_{K}\cdot b_{i_{K}}$
-too.\end{proof}
+Он $\lessdot$-меньше, чем $m_{K}b_{i_{K}}=m_{K}\cdot b_{i_{K}}$
+поскольку элементы обоих сумм имеют сигнатуры, меньшие $s_{0}\mathbf{F}_{j_{0}}$,
+а для первого элемента, если $b_{i'}$ не нулевой, имеем $\Sig(c'^{-1}c_{0}s'\cdot b_{i'})=\Sig(m_{K}\cdot b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$
+с $i'>i_{K}$, откуда применяя правило $\lessdot_{1}$-сравнения для
+равных сигнатур и различных позиций в списке, получаем, что элемент
+$c'^{-1}c_{0}s'\cdot b_{i'}$ также $\lessdot_{1}$-меньше, чем$m_{K}\cdot b_{i_{K}}$.
+Если же $b_{i'}=0$, то он отбрасывается, и желаемое представление
+состоит только из оставшихся 2-х сумм.\end{proof}
 \begin{lem}
-If a signature-safe representation $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
-with $\Sig(mh)\prec\Sig(g)$ satisfies properties 1 and 2 but does
-not satisfy property 3 then there exists an element $m_{K'}\cdot b_{i_{K'}}$
-having representation $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
-which is $\lessdot$-smaller than representation $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$.\end{lem}
+Если все элементы сигнатурного представления $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+с $\Sig(mh)\prec\Sig(g)$ удовлетворяют свойствам 1 и 2, но один из
+них не удовлетворяет свойству 3, то найдётся элемент $m_{K'}\cdot b_{i_{K'}}$,
+имеющий представление $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
+$\lessdot$-меньшее, чем представление $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$.\end{lem}
 \begin{proof}
-There exists at least one element $m_{K}\cdot b_{i_{K}}$ that does
-not satisfy property 3. Let $m_{\max}$ be the maximal $\HM$ of labeled
-polynomials corresponding to representation elements and $H_{\max}$
-be a list of elements where $m_{\max}$ is achieved. Select $K'$
-to be the index of the $\gtrdot_{1}$-greatest representation element
-in $H_{\max}$. We have $ $$\HM(m_{K'}b_{i_{K'}})=m_{\max}\geqslant\HM(m_{K}b_{i_{K}})>\HM(mh)$,
-so the $\HM$ of sum of all elements except $K'$ is equal to $\HM(mh-m_{K'}b_{i_{K'}})=\HM(m_{K'}b_{i_{K'}})=m_{\max}$,
-so there is another element $K''$ having $\HM(m_{K''}b_{i_{K''}})=m_{\max}$.
-So, $m_{K''}\cdot b_{i_{K''}}\in H_{\max}$ and $m_{K''}\cdot b_{i_{K''}}\lessdot_{1}m_{K'}\cdot b_{i_{K'}}$
-because of $ $$m_{K'}\cdot b_{i_{K'}}$ $\gtrdot_{1}$-maximality
-in $H_{\max}$.
+Существует по крайней мере один элемент $m_{K}\cdot b_{i_{K}}$, не
+удовлетворяющий свойству 3. Обозначим за $m_{\max}$ максимальный
+$\HM$ отмеченных многочленов, соответствующих элементам представления,
+и за $H_{\max}$ список элементов, на котором $m_{\max}$ достигается.
+Возьмём в качестве $K'$ номер элемента представления, являющегося
+$\gtrdot_{1}$-максимальным в $H_{\max}$. Имеем $ $$\HM(m_{K'}b_{i_{K'}})=m_{\max}\geqslant\HM(m_{K}b_{i_{K}})>\HM(mh)$,
+поэтому $\HM$ суммы всех элементов, кроме $K'$-го равен $\HM(mh-m_{K'}b_{i_{K'}})=\HM(m_{K'}b_{i_{K'}})=m_{\max}$,
+поэтому существует другой элемент $K''$, обладающий $\HM(m_{K''}b_{i_{K''}})=m_{\max}$.
+Отсюда $m_{K''}\cdot b_{i_{K''}}\in H_{\max}$ и $m_{K''}\cdot b_{i_{K''}}\lessdot_{1}m_{K'}\cdot b_{i_{K'}}$
+поскольку $ $$m_{K'}\cdot b_{i_{K'}}$ $\gtrdot_{1}$-максимален
+в $H_{\max}$.
 
-The $\HM(m_{K''}b_{i_{K''}})=\HM(m_{K'}b_{i_{K'}})$ means that a
-critical pair of $b_{i_{K'}}$ and $b_{i_{K''}}$ has the form $[m'^{-1}m_{\max},\, m'^{-1}m_{K'},\, b_{i_{K'}},\, m'^{-1}m_{K''},\, b_{i_{K''}}]$
-where $m'=\mbox{gcd}(m_{K'},m_{K''})$. Let $q$ be corresponding
-S-polynomial. Then $m'\Sig(q)\preccurlyeq\Sig(mh)\prec\Sig(g)$ because
-$m'\Sig(q)=\Sig(m_{K'}b_{i_{K'}})$ and the representation is signature-safe.
-The S-polynomial parts $m'^{-1}m_{K'}b_{i_{K'}}$ and $m'^{-1}m_{K''}b_{i_{K''}}$
-does not satisfy F5 and Rewritten criteria because their forms multiplied
-by $m'$ are $m_{K'}b_{i_{K'}}$ and $m_{K''}b_{i_{K''}}$ -- labeled
-polynomials corresponding to elements which are known not to satisfy
-both criteria by assumption. Therefore $m'\Sig(q)\prec\Sig(g)$ and
-$\Sig(q)\prec\Sig(g)$. It follows from this with theorem \ref{thm:Exist-gg-repr}
-that the S-pair $(b_{i_{K'}},b_{i_{K''}})$ is S-pair with computed
-$G_{g}$-representation, what means that there is an representation
-described in example \ref{example-of-having-gg-repr} :
+Равенство $\HM(m_{K''}b_{i_{K''}})=\HM(m_{K'}b_{i_{K'}})$ означает,
+что S-пара $b_{i_{K'}}$ и $b_{i_{K''}}$ имеет вид $[m'^{-1}m_{\max},\, m'^{-1}m_{K'},\, b_{i_{K'}},\, m'^{-1}m_{K''},\, b_{i_{K''}}]$
+где $m'=\mbox{gcd}(m_{K'},m_{K''})$. Пусть $q$ -- соответствующий
+S-многочлен. Тогда $m'\Sig(q)\preccurlyeq\Sig(mh)\prec\Sig(g)$ поскольку
+$m'\Sig(q)=\Sig(m_{K'}b_{i_{K'}})$ и представление сигнатурно. Части
+S-многочлена $m'^{-1}m_{K'}b_{i_{K'}}$ и $m'^{-1}m_{K''}b_{i_{K''}}$
+не удовлетворяют критериям F5 и Перезаписи, поскольку они же, умноженные
+на $m'$ равны $m_{K'}b_{i_{K'}}$ и $m_{K''}b_{i_{K''}}$ -- отмеченным
+многочленам, соответствующим элементам, про которые известно, что
+они не удовлетворяют критериям по предположению леммы. Из $m'\Sig(q)\prec\Sig(g)$
+имеем $\Sig(q)\prec\Sig(g)$, а значит можно применить теорему \ref{thm:Exist-gg-repr}
+и получить, что $(b_{i_{K'}},b_{i_{K''}})$ -- S-пара с известным
+$G_{g}$-представлением, что означает существование представления,
+описанного в примере \ref{example-of-having-gg-repr}:
 
 \[
 q=1\cdot b_{i'}+\sum_{l}m_{l}\cdot b_{i_{l}},
 \]
-satisfying the properties shown after that example: $\Sig(q)=\Sig(b_{i'})$,
-$\forall l\,\Sig(q)\succ\Sig(m_{l}b_{i_{l}})$ and $i'>K'$.
+причём выполняются свойства, показанные после примера: $\Sig(q)=\Sig(b_{i'})$,
+$\forall l\,\Sig(q)\succ\Sig(m_{l}b_{i_{l}})$ и $i'>K'$.
 
-From the other hand we have $m'q=c_{0}m_{K'}b_{i_{K'}}-c_{1}m_{K''}b_{i_{K''}}$,
-so we get the following representation:
+С другой стороны по определению S-многочлена мы имеем $m'q=c_{0}m_{K'}b_{i_{K'}}-c_{1}m_{K''}b_{i_{K''}}$,
+откуда получаем следующее представление:
 \[
 m_{K'}b_{i_{K'}}=c_{0}^{-1}c_{1}m_{K''}\cdot b_{i_{K''}}+c_{0}^{-1}m'\cdot b_{i'}+\sum_{l}c_{0}^{-1}m'm_{l}\cdot b_{i_{l}}.
 \]
-It is $\lessdot$-smaller than $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$: 
+Оно $\lessdot$-меньше, чем $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$: 
 
-$m_{K''}\cdot b_{i_{K''}}$ was already compared to $m_{K'}\cdot b_{i_{K'}}$ 
+$m_{K''}\cdot b_{i_{K''}}$ уже сравнивалось с $m_{K'}\cdot b_{i_{K'}}$ 
 
-$m'\cdot b_{i'}$ has the same signature but greater position $i'>i_{K'}$
+$m'\cdot b_{i'}$ имеет ту же сигнатуру, но больший номер позиции
+$i'>i_{K'}$
 
-the last sum contains elements with signatures smaller than $m'\Sig(b_{i'})=\Sig(m_{K'}\cdot b_{i_{K'}})$.\end{proof}
+последняя сумма состоит из элементов с сигнатурами, меньшими чем $m'\Sig(b_{i'})=\Sig(m_{K'}\cdot b_{i_{K'}})$.\end{proof}
 \begin{thm}
-\label{thm:exist-smaller-signature-safe-representation}A signature-safe
-representation $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$ with $\Sig(mh)\prec\Sig(g)$
-either satisfies properties 1-3 or there exists a signature-safe representation
-$mh=\sum_{l}m_{l}\cdot b_{i_{l}}$ which is $\lessdot$-smaller than
-\textup{$\sum_{k}m_{k}\cdot b_{i_{k}}$.}\end{thm}
+\label{thm:exist-smaller-signature-safe-representation}Или сигнатурное
+представление $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$ с $\Sig(mh)\prec\Sig(g)$
+удовлетворяет свойствам 1-3 или существует другое сигнатурное представление
+$mh=\sum_{l}m_{l}\cdot b_{i_{l}}$ $\lessdot$-меньшее, чем \textup{$\sum_{k}m_{k}\cdot b_{i_{k}}$.}\end{thm}
 \begin{proof}
-This theorem quickly follows from four previous lemmas together
+Теорема немедленно следует из комбинации четырёх предыдущих лемм.
 \end{proof}
-This leads to main result:
+Это привод на с к следующему ключевому результату:
 \begin{thm}
-For any labeled polynomial $mh,\, m\in\mathcal{K}\times T,\, h\in G_{g}$
-with $\Sig(mh)\prec\Sig(g)$ there exists a signature-safe $G_{g}$-representation
-$mh=\sum_{k}m_{k}\cdot b_{i_{k}}$ that satisfies properties 1-3\textup{.}\end{thm}
+Для любого многочлена $mh,\, m\in\mathcal{K}\times T,\, h\in G_{g}$
+с $\Sig(mh)\prec\Sig(g)$ существует удовлетворяющее свойствам 1-3
+сигнатурное $G_{g}$-представление $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$\textup{.}\end{thm}
 \begin{proof}
-Start with representation $mh=m\cdot h$ and begin replacing it by
-$\lessdot$-smaller representation from theorem \ref{thm:exist-smaller-signature-safe-representation}
-until the representation satisfying properties 1-3 appears. The finiteness
-of the process is guaranteed by $\lessdot$-well-orderness.
+Начнём с представления $mh=m\cdot h$ и будем заменять текущее представление
+на $\lessdot$-меньшее из теоремы \ref{thm:exist-smaller-signature-safe-representation}
+до тех пор пока текущее представление не будет удовлетворять свойствам
+1-3. Конечность процесса гарантируется вполне упорядоченностью представлений
+по $\lessdot$.
 \end{proof}
-This result may be interesting by itself, but for the purposes of
-proving termination only one corollary is needed:
+Этот результат может представлять интерес сам по себе, однако для
+целей доказательства остановки нужно лишь одно следствие из него:
 \begin{cor}
-\label{cor:all-needed-for-terminaton}Consider an arbitrary polynomial
-$f$ without any restrictions on its signature. If there exists a
-signature-safe reductor $f'\in G_{g}$ for $f$ with $\Sig(f')\frac{\HM(f)}{\HM(f')}\prec\Sig(g)$
-then $G_{g}$ contains a signature-safe reductor for $f$ that is
-not rejected by F5 and Rewritten criteria.\end{cor}
+\label{cor:all-needed-for-terminaton}Рассмотрим произвольный многочлен
+$f$ без ограничений на его сигнатуру. Если существует сигнатурный
+редуктор $f'\in G_{g}$ для $f$ с $\Sig(f')\frac{\HM(f)}{\HM(f')}\prec\Sig(g)$
+то $G_{g}$ содержит сигнатурный редуктор для $f$, который не отбрасывается
+критериями F5 и перезаписи.\end{cor}
 \begin{proof}
-Let $mf',\, m=\frac{\HM(f)}{\HM(f')}\in\mathcal{K}\times T,\, f'\in G_{g}$
-be a multiplied reductor with $\Sig(mf')\prec\Sig(g)$. From the previous
-theorem we can find representation $mf'=\sum_{k}m_{k}\cdot b_{i_{k}}$
-that satisfies properties 1-3. Property 3 means that there is no elements
-with $\HM$'s greater than $mf'$ so because sum of all elements
-has $\HM$ equal to $\HM(mf')$ there exists an element $K$ that
-achieves $\HM$ equality: $\HM(m_{K}\cdot b_{i_{K}})=\HM(mf')=\HM(f_{1}')$.
-Since the representation is signature-safe $\Sig(m_{K}\cdot b_{i_{K}})\preccurlyeq\Sig(mf')\prec\Sig(f)$
-so $m_{K}b_{i_{K}}$ is a signature-safe reductor for $f$ and properties
-1-2 ensure that $m_{K}b_{i_{K}}$ does not satisfy criteria.
+Пусть $mf',\, m=\frac{\HM(f)}{\HM(f')}\in\mathcal{K}\times T,\, f'\in G_{g}$
+умноженный редуктор с $\Sig(mf')\prec\Sig(g)$. Из предыдущей теоремы
+мы можем найти удовлетворяющее свойствам 1-3 представление $mf'=\sum_{k}m_{k}\cdot b_{i_{k}}$.
+Свойство 3 означает отсутствие элементов с $\HM$, большим чем у $mf'$,
+откуда, поскольку сумма всех элементов этого представления имеет $\HM$
+равный $\HM(mf')$, существует элемент $K$, на котором достигается
+равенство $\HM$: $\HM(m_{K}\cdot b_{i_{K}})=\HM(mf')=\HM(f_{1}')$.
+Поскольку представление сигнатурно, имеем $\Sig(m_{K}\cdot b_{i_{K}})\preccurlyeq\Sig(mf')\prec\Sig(f)$,
+а значит $m_{K}b_{i_{K}}$ -- сигнатурный редуктор для $f$ и выполнение
+свойств 1-2 гарантирует, что $m_{K}b_{i_{K}}$ не отбрасывается критериями.
 \end{proof}
 
 \section{Finding contradiction with the criteria enabled}
