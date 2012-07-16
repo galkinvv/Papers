@@ -36,12 +36,12 @@ simple_sig_rus.vestnik.tex: simple_sig_rus.tex
 simple_sig_rus.vestnik.pdf: simple_sig_rus.vestnik.tex
 	pdflatex $^
 	pdflatex $^
-simple_sig_rus.pdf: simple_sig_rus.tex
+simple_sig_rus.pdf: simple_sig_rus.tex  f5_references.bib
 	pdflatex $^
 	bibtex simple_sig_rus.aux
 	pdflatex $^
 	pdflatex $^
-simple_sig.pdf: simple_sig.tex
+simple_sig.pdf: simple_sig.tex  f5_references.bib
 	pdflatex $^
 	bibtex simple_sig.aux
 	pdflatex $^
@@ -60,7 +60,7 @@ view: simple_sig.pdf
 origf5_termination.tex: origf5_termination.lyx Makefile
 	rm -f $@
 	lyx -e pdflatex $<
-origf5_termination.pdf: origf5_termination.tex short.bst
+origf5_termination.pdf: origf5_termination.tex short.bst f5_references.bib
 	rm -f origf5_termination.aux  origf5_termination.bbl
 	pdflatex $<
 	bibtex origf5_termination.aux
@@ -72,14 +72,16 @@ view-origf5_termination: origf5_termination.pdf
 origf5_termination_ru.tex: origf5_termination_ru.lyx Makefile
 	rm -f $@
 	lyx -e pdflatex $<
-origf5_termination_ru.pdf: origf5_termination_ru.tex short.bst
+f5_references_1251.bib: f5_references.bib Makefile
+	iconv -t cp1251 $< > $@
+origf5_termination_ru.pdf: origf5_termination_ru.tex vestnik.bst f5_references_1251.bib
 	rm -f origf5_termination_ru.aux origf5_termination_ru.bbl
 	pdflatex $<
-	bibtex origf5_termination_ru.aux
+	bibtex8 -B -c gost/cp1251.csf origf5_termination_ru || true
 	pdflatex $<
 	pdflatex $<
 view-origf5_termination_ru: origf5_termination_ru.pdf
 	make clean-logs
 	xdg-open $^
 clean: clean-logs
-	rm -f *.tex *.bbl *.pdf
+	rm -f *.tex *.bbl *.pdf f5_references_1251.bib

@@ -9,6 +9,7 @@
 \newcommand{\totaldeg}{\mathrm{deg}}
 \newcommand{\poly}{\mathrm{poly}}
 \newcommand{\sigidx}{\mathrm{index}}
+\usepackage{babelbib}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -152,7 +153,7 @@ key "F5-revisited"
  Этот подход применяется в работах 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Modifying-for-termination,Ars05applicationsdes,Gash:2008:ECG,Hashemi-ExtF5,ZobninGeneralization"
+key "Modifying-for-termination,Ars05applicationsdes,Gash:2008:ECG,Hashemi-ExtF5,ZobninGeneralization_ru"
 
 \end_inset
 
@@ -6403,8 +6404,8 @@ reference "thm:f_g_3_props"
 \begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
-bibfiles "f5_references"
-options "plain"
+bibfiles "f5_references_1251"
+options "vestnik"
 
 \end_inset
 
