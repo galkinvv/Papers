@@ -118,7 +118,7 @@ FUNCTION {output.nonnull}
                 { output.state after.slash =
                     { "~/ " * write$ }
                     { output.state after.column =
-                        { "~: " * write$ }
+                        { ": " * write$ }
                         { output.state after.semicolumn =
                             { "~; " * write$ }
                         { add.period$ " " * write$ }
@@ -283,7 +283,7 @@ FUNCTION {field.or.null}
 FUNCTION {emphasize}
 { duplicate$ empty$
     { pop$ "" }
-    { "\BibEmph{" swap$ * "}" * }
+    { "\authorsit{" swap$ * "}" * }
   if$
 }
 
@@ -1072,7 +1072,7 @@ FUNCTION {format.vol.num.pages}
 FUNCTION {format.volume}
 { volume empty$
     { "" }
-    { bbl.vvol volume tie.or.space.connect }
+    { "{\bf" volume "}" * * }
   if$
 }
 
@@ -1277,7 +1277,7 @@ FUNCTION {article}
   new.slash
   author.after
   new.dblslash
-  journal emphasize add.doi "journal" output.check % new in v.2
+  journal "journal" output.check % new in v.2
   new.block
   format.date "year" output.check
   new.block
@@ -1285,11 +1285,6 @@ FUNCTION {article}
   format.number output
   new.block
   format.pages.page output
-  new.block
-  note output
-  new.sentence
-  output.eprint.url
-  format.annote output
   fin.entry
 }
 
@@ -1312,8 +1307,6 @@ FUNCTION {book}
   format.bvolume output
   new.block
   format.pages.page output
-  new.block
-  format.isbn output
   new.block
   note output
   new.sentence
@@ -1356,17 +1349,12 @@ FUNCTION {inbook}
   editor.organization.after
   new.block
   format.edition output
-  new.block
-  format.number.series output
   new.sentence
-  output.address.publisher
   format.date "year" output.check
   new.block
   format.bvolume output
   new.block
   format.pages.page output
-  new.block
-  format.isbn output
   new.block
   note output
   new.sentence
@@ -1422,32 +1410,7 @@ FUNCTION {proceedings}
   fin.entry
 }
 
-FUNCTION {inproceedings}
-{ output.bibitem
-  author.before
-  new.sentence
-  format.title add.doi add.medium "title" output.check
-  new.slash
-  author.after
-  new.dblslash
-  booktitle "booktitle" output.check
-  new.slash
-  editor.organization.after
-  new.block
-  format.bvolume output
-  format.number.series output
-  new.block
-  output.address.publisher
-  format.date "year" output.check
-  new.block
-  format.pages.page output
-  new.block
-  note output
-  new.sentence
-  output.eprint.url
-  format.annote output
-  fin.entry
-}
+FUNCTION {inproceedings}   {inbook}
 
 FUNCTION {manual}
 { output.bibitem
@@ -1603,31 +1566,7 @@ FUNCTION {report}
   fin.entry
 }
 
-FUNCTION {phdthesis}
-{ output.bibitem
-  format.authors "author" output.check
-  new.sentence
-  format.btitle add.doi add.medium "title" output.check
-  new.column
-  bbl.phdthesis format.thesis.type output.nonnull
-  new.column
-  number output
-  new.slash
-  format.authors.after output
-  new.semicolumn
-  school "school" output.check
-  new.block
-  output.address.publisher
-  format.date "year" output.check
-  new.block
-  format.pages.page output
-  new.block
-  note output
-  new.sentence
-  output.eprint.url
-  format.annote output
-  fin.entry
-}
+FUNCTION {phdthesis} {book}
 
 FUNCTION {masterthesis}
 { output.bibitem
@@ -1685,34 +1624,7 @@ FUNCTION {conference} { inproceedings }
 
 %%  format.url output
 
-FUNCTION {techreport}
-{
-  output.bibitem
-  format.title add.doi add.medium "title" output.check
-  new.column
-  format.techreport.type output
-  new.column
-  number output
-  new.slash
-  institution "institution" output.check
-  new.semicolumn
-  format.chief.after output % from editor field
-  new.semicolumn
-  format.executor.after output % from author field
-  new.block
-  address output
-  new.column
-  organization output
-  format.date "year" output.check
-  new.block                % v.2
-  format.pages.page output % v.2
-  new.sentence % или new.block ?
-  output.eprint.url
-  new.block
-  note output
-  format.annote output
-  fin.entry
-}
+FUNCTION {techreport} {book}
 
 FUNCTION {default.type} { misc }
 
@@ -1892,6 +1804,7 @@ FUNCTION {begin.bib}
   "\def\selectlanguageifdefined#1{"                  write$ newline$
   "\expandafter\ifx\csname date#1\endcsname\relax"   write$ newline$
   "\else\language\csname l@#1\endcsname\fi}"         write$ newline$
+  "\providecommand*{\authorsit}[1]{{\it #1}}"          write$ newline$
   "\providecommand*{\href}[2]{{\small #2}}"          write$ newline$
   "\providecommand*{\url}[1]{{\small #1}}"           write$ newline$
   "\providecommand*{\BibUrl}[1]{\url{#1}}"           write$ newline$

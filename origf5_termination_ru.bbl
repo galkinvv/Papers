@@ -2,6 +2,7 @@
 \def\selectlanguageifdefined#1{
 \expandafter\ifx\csname date#1\endcsname\relax
 \else\language\csname l@#1\endcsname\fi}
+\providecommand*{\authorsit}[1]{{\it #1}}
 \providecommand*{\href}[2]{{\small #2}}
 \providecommand*{\url}[1]{{\small #1}}
 \providecommand*{\BibUrl}[1]{\url{#1}}
@@ -13,72 +14,66 @@
 
 \bibitem{FaugereF5}
 \selectlanguageifdefined{english}
-\BibEmph{Faug{\`e}re~J.~C.} {A new efficient algorithm for computing
+\authorsit{Faug{\`e}re~J.~C.} {A new efficient algorithm for computing
   Gr{\"o}bner bases without reduction to zero (F5)}~// {Proceedings of the 2002
-  international symposium on Symbolic and algebraic computation}. {ISSAC '02}.
-  New York, NY, USA~: ACM, 2002.  75--83.
+  international symposium on Symbolic and algebraic computation}. 2002.
+  75--83.
 
 \bibitem{F5-revisited}
 \selectlanguageifdefined{english}
-\BibEmph{Stegers~T.} {Faugere's F5 Algorithm Revisited.}~// \BibEmph{IACR
-  Cryptology ePrint Archive}. 2006. Vol. 2006. P. 404. URL:
-  \BibUrl{http://www.bibsonomy.org/bibtex/2fe6c121f0c15f26d7f0902c5c1387cba/db%
-lp}.
+\authorsit{Stegers~T.} {Faugere's F5 Algorithm Revisited.}~// IACR Cryptology
+  ePrint Archive. 2006. {\bf404}.
 
 \bibitem{Modifying-for-termination}
 \selectlanguageifdefined{english}
-\BibEmph{Eder~C., Gash~J., Perry~J.} {Modifying Faug{\`e}re's F5 Algorithm to
-  ensure termination}~// \BibEmph{ACM Communications in Computer Algebra, Issue
-  176, vol. 45, no. 2 (June 2011), pgs. 70-89}. 2010.
-  \href{http://arxiv.org/abs/1006.0318v4;
-  http://arxiv.org/pdf/1006.0318v4}{1006.0318v4}.
+\authorsit{Eder~C., Gash~J., Perry~J.} {Modifying Faug{\`e}re's F5 Algorithm to
+  ensure termination}~// ACM Commun. Comput. Algebra. 2011. {\bf45}, \No 1/2.
+  70--89.
 
 \bibitem{Ars05applicationsdes}
 \selectlanguageifdefined{english}
-{Applications des bases de Gr{\"o}bner {\`a} la cryptographie}~: Rep.~;
-  Executor: Gwenole~Ars~: 2005.
+\authorsit{Ars~G.} {Applications des bases de Gr{\"o}bner {\`a} la
+  cryptographie}. Rennes, France: Universit{\'e} de Rennes 1, 2005.
 
 \bibitem{Gash:2008:ECG}
 \selectlanguageifdefined{english}
-\BibEmph{Gash~J.~M.} {On efficient computation of Gr{\"o}bner bases}~: Ph.\,D.
-  thesis~/ Justin~M.~Gash~; Indiana University. Indianapolis, IN, USA~: Indiana
-  University, 2008.
+\authorsit{Gash~J.~M.} {On efficient computation of Gr{\"o}bner bases}.
+  Indianapolis, IN, USA: Indiana University, 2008.
 
 \bibitem{Hashemi-ExtF5}
 \selectlanguageifdefined{english}
-\BibEmph{Hashemi~A., Ars~G.} {Extended F5 criteria}~// \BibEmph{J. Symb.
-  Comput.} 2010. Vol.~45, \No~12.  1330--1340. URL:
-  \BibUrl{http://www.bibsonomy.org/bibtex/2378afd0b3fe7713206ae587a599d1565/db%
-lp}.
+\authorsit{Hashemi~A., Ars~G.} {Extended F5 criteria}~// J. Symb. Comput. 2010.
+  {\bf45}, \No~12.  1330--1340.
 
 \bibitem{ZobninGeneralization_ru}
 \selectlanguageifdefined{english}
-\BibEmph{Зобнин~А.~И.} {Обобщение алгоритма F5 вычисления базиса Грёбнера
-  полиномиальных идеалов}~// \BibEmph{Программирование}. 2010. \No~2.  21--30.
+\authorsit{Зобнин~А.~И.} {Обобщение алгоритма F5 вычисления базиса Грёбнера
+  полиномиальных идеалов}~// Программирование. 2010. \No~2.  21--30.
 
 \bibitem{2012GrbTermination}
 \selectlanguageifdefined{english}
-\BibEmph{{Pan}~S., {Hu}~Y., {Wang}~B.} {The Termination of Algorithms for
-  Computing Gr{\"o}bner Bases}~// \BibEmph{ArXiv e-prints}. 2012. 1202.3524.
+\authorsit{{Pan}~S., {Hu}~Y., {Wang}~B.} {The Termination of Algorithms for
+  Computing Gr{\"o}bner Bases}~// ArXiv e-prints. 2012. {\bf1202}, \No 3524.
 
 \bibitem{HuangConception}
 \selectlanguageifdefined{english}
-\BibEmph{{Huang}~L.} {A new conception for computing Gr{\"o}bner basis and its
-  applications}~// \BibEmph{ArXiv e-prints}. 2010. 1012.5425.
+\authorsit{{Huang}~L.} {A new conception for computing Gr{\"o}bner basis and
+  its applications}~// ArXiv e-prints. 2010. {\bf1012}, \No 5425.
 
 \bibitem{F5C}
 \selectlanguageifdefined{english}
-\BibEmph{{Eder}~C., {Perry}~J.} {F5C: a variant of Faug{\`e}re's F5 algorithm
-  with reduced Gr{\"o}bner bases}~// \BibEmph{ArXiv e-prints}. 2009. 0906.2967.
+\authorsit{{Eder}~C., {Perry}~J.} {F5C: a variant of Faug{\`e}re's F5 algorithm
+  with reduced Gr{\"o}bner bases}~// J. Symb. Comput. 2010. {\bf45}, \No~12.
+  1442--1458.
 
 \bibitem{TheF5Revised}
 \selectlanguageifdefined{english}
-\BibEmph{{Arri}~A., {Perry}~J.} {The F5 Criterion revised}~// \BibEmph{ArXiv
-  e-prints}. 2010. 1012.3664.
+\authorsit{{Arri}~A., {Perry}~J.} {The F5 Criterion revised}~// J. Symb.
+  Comput. 2011. {\bf46}, \No~9.  1017--1029.
 
 \bibitem{Baader.Nipkow98Term}
 \selectlanguageifdefined{english}
-\BibEmph{Baader~F., Nipkow~T.} {Term Rewriting and All That}. United Kingdom~:
+\authorsit{Baader~F., Nipkow~T.} {Term Rewriting and All That}. United Kingdom:
   Cambridge University Press, 1998.
 
 \end{thebibliography}
