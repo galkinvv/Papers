@@ -7,7 +7,7 @@
 \usepackage{geometry}
 \geometry{verbose}
 \usepackage{color}
-\usepackage{babel}
+#ifndef VESTNIK
 \usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -33,13 +33,6 @@
 \vspace{1.4em}
 \noindent\par}
 }
-\newcommand{\lyxrightaddress}[1]{
-\par {\raggedleft \begin{tabular}{l}\ignorespaces
-#1
-\end{tabular}
-\vspace{1.4em}
-\par}
-}
 \theoremstyle{plain}
 \newtheorem{thm}{\protect\theoremname}
   \theoremstyle{remark}
@@ -56,6 +49,8 @@
   \newtheorem{cor}[thm]{\protect\corollaryname}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+#endif
+\usepackage{babel}
 \newcommand{\Sig}{\mathcal{S}}
 \newcommand{\HM}{\mathrm{HM}}
 \newcommand{\totaldeg}{\mathrm{deg}}
@@ -63,24 +58,43 @@
 \newcommand{\sigidx}{\mathrm{index}}
 
 #ifdef VESTNIK
+\usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{allerree}
 
 \def\wdeb{0}
-\usepackage{nameref}
 
 \newcounter{countergvtheorems}
 
-\renewenvironment{lem}
+\newenvironment{fact}
+{\refstepcounter{countergvtheorems}\begin{theorem}{Факт \arabic{countergvtheorems}.}}
+{\end{theorem}}
+
+\newenvironment{claim}
+{\refstepcounter{countergvtheorems}\begin{theorem}{Утверждение \arabic{countergvtheorems}.}}
+{\end{theorem}}
+
+\newenvironment{lem}
 {\refstepcounter{countergvtheorems}\begin{theorem}{Лемма  \arabic{countergvtheorems}.}}
 {\end{theorem}}
 
-\renewenvironment{thm}
+\newenvironment{thm}
 {\refstepcounter{countergvtheorems}\begin{theorem}{Теорема \arabic{countergvtheorems}.}}
 {\end{theorem}}
 
-\renewenvironment{defn}
+\newenvironment{cor}
+{\refstepcounter{countergvtheorems}\begin{theorem}{Следствие \arabic{countergvtheorems}.}}
+{\end{theorem}}
+
+
+\newenvironment{defn}
 {\par \refstepcounter{countergvtheorems} {\bf Определение \arabic{countergvtheorems}.}}
 {\par}
+
+\newenvironment{example}
+{\par \refstepcounter{countergvtheorems} {\bf Пример \arabic{countergvtheorems}.}}
+{\par}
+
 #else
 \newcommand{\iabstract}[4]{
 \begin{abstract}
@@ -88,7 +102,6 @@
 \footnote{\emph{Keywords:} #4}
 \end{abstract}
 }
-#endif
 
 \makeatother
 
@@ -101,7 +114,9 @@
 \providecommand{\theoremname}{\inputencoding{koi8-r}фЕПТЕНБ}
 
 \begin{document}
+#endif 
 #ifdef VESTNIK
+\begin{document}
 \cleanbegin 
 \def\udk{512}
 \ltitle{ОСТАНОВКА АЛГОРИТМА F5} {В.\,В.~Галкин\footnote[1]{{\it Галкин Василий Витальевич} --- асп. каф. алгебры мех.-мат. ф-та МГУ, e-mail: galkin-vv@yandex.ru.}}
@@ -123,7 +138,7 @@
 \lyxaddress{МГУ}
 
 
-\lyxrightaddress{galkin-vv@ya.ru}
+\lyxaddress{galkin-vv@ya.ru}
 \begin{abstract}
 Алгоритм F5, предложенный Фожером, принимает в качестве входных данных
 произвольное множество однородных многочленов и корректность результата
@@ -476,8 +491,8 @@ $\underline{u_{l}}$ мономы, на которые они умножались. При этом $l^{*}$
 
 \begin{defn}
 Конечную или бесконечную последовательность, соседние элементы которой
-удовлетворяют свойству \ref{eq:s-pair-chain-def} будем называть \emph{цепью
-S-пар}.
+удовлетворяют свойству \eqref{eq:s-pair-chain-def} будем называть
+\emph{цепью S-пар}.
 \end{defn}
 Каждый порождаемый многочлен $r_{l}$ имеет конечную цепь S-пар, оканчивающуюся
 этим многочленом. Эта цепь может быть последовательно построена, начиная
@@ -593,7 +608,7 @@ $r_{l}$ является генератором цепи S-пар, среди его S-порождённых
 \begin{equation}
 \HM(h_{n+1})<\HM\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)=\HM(g_{n}),\,\Sig(h_{n+1})=\Sig\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)\succ\Sig(g_{n}).\label{eq:spair-chain}
 \end{equation}
-Из первого неравенства в \ref{eq:spair-chain} получаем, что $\frac{\HM(h_{n})}{\Sig(h_{n})}>_{q}\frac{\HM(h_{n+1})}{\Sig(h_{n+1})}$,
+Из первого неравенства в \eqref{eq:spair-chain} получаем, что $\frac{\HM(h_{n})}{\Sig(h_{n})}>_{q}\frac{\HM(h_{n+1})}{\Sig(h_{n+1})}$,
 поэтому в цепи S-пар частные $\frac{\HM(h_{i})}{\Sig(h_{i})}$ строго
 убывают в смысле порядка на частных. Этот факт не может быть напрямую
 использован для доказательства конечности цепей, поскольку порядок
@@ -608,7 +623,7 @@ $r_{l}$ является генератором цепи S-пар, среди его S-порождённых
 во втором -- $\HM(h_{n+1})>\HM(h_{n})$, поскольку полные степени
 $\HM$ отличаются. Поэтому, последовательность$\HM$ элементов бесконечной
 цепи S-пар состоит из блоков с фиксированной полной степенью, где
-$\HM$ внутри блока строго убывают. Длтны блоков могут быть равными
+$\HM$ внутри блока строго убывают. Длины блоков могут быть равными
 единице, и полные степени блоков возрастают. Это приводит к следующим
 свойствам: цепь S-пар $\{h_{i}\}$ не может содержать элементов с
 равными $\HM$ и $\HM(h_{i})|\HM(h_{j})$ возможно только в случае
@@ -785,8 +800,8 @@ S-пара или редуцирована и добавлена в $Done$ или одна из частей S-пары
 \texttt{AlgorithmF5}, который обрабатывает $g$.
 \item S-пары с сигнатурой $w$, такой что $\sigidx(w)=\sigidx(\Sig(g))=1,\totaldeg(w)=\totaldeg(\Sig(g)),w\prec\Sig(g)$.
 Они обрабатывались на предыдущих итерациях цикла внутри того же вызова
-\texttt{Reduce}, который обрабатывает $g$.
-\end{itemize}
+\texttt{Reduce}, который обрабатывает $g$.\end{itemize}
+\begin{proof}
 S-пары из этих классов не могут находиться в середине пути обработки,
 потому что в рассматриваемом состоянии алгоритма обработка только
 что завершена для $g$, поэтому ни $P$ ни $ToDo$ не содержат необработанных
@@ -809,6 +824,7 @@ S-пары из этих классов не могут находиться в середине пути обработки,
 редуцируется до $g$ и в процессе редукции $r_{l}$ непосредственно
 перед добавлением $r_{l}$ в $Done$ вызов \texttt{TopReduction} начинает
 обработку всех таких S-пар.
+\end{proof}
 \end{proof}
 Понятие \emph{удовлетворять критерию F5 }и \emph{удовлетворять критерию
 Перезаписи} могут быть расширены но произвольные умноженные на моном
@@ -852,7 +868,7 @@ p=\sum_{k}m_{k}\cdot b_{i_{k}},\; b_{i_{k}}\in G_{g}\label{eq:Gg-repr-def}
 \end{equation}
 с коэффициентами $m_{k}=c_{k}t_{k}\in\mathcal{K}\times T$. 
 \begin{defn}
-Сумма вида \ref{eq:Gg-repr-def}, в которой все пары $\left(t_{k},b_{i_{k}}\right)$
+Сумма вида \eqref{eq:Gg-repr-def}, в которой все пары $\left(t_{k},b_{i_{k}}\right)$
 различны, называется \emph{$G_{g}$-представлением} $p$. Символические
 произведения $m_{k}\cdot b_{i_{k}}$ называются \emph{элементами}
 представления. Если рассмотреть это символическое произведение как
@@ -1230,12 +1246,11 @@ $\lessdot$-меньшее, чем представление $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$.
 $\HM$ отмеченных многочленов, соответствующих элементам представления,
 и за $H_{\max}$ список элементов, на котором $m_{\max}$ достигается.
 Возьмём в качестве $K'$ номер элемента представления, являющегося
-$\gtrdot_{1}$-максимальным в $H_{\max}$. Имеем $ $$\HM(m_{K'}b_{i_{K'}})=m_{\max}\geqslant\HM(m_{K}b_{i_{K}})>\HM(mh)$,
+$\gtrdot_{1}$-максимальным в $H_{\max}$. Имеем $\HM(m_{K'}b_{i_{K'}})=m_{\max}\geqslant\HM(m_{K}b_{i_{K}})>\HM(mh)$,
 поэтому $\HM$ суммы всех элементов, кроме $K'$-го равен $\HM(mh-m_{K'}b_{i_{K'}})=\HM(m_{K'}b_{i_{K'}})=m_{\max}$,
 поэтому существует другой элемент $K''$, обладающий $\HM(m_{K''}b_{i_{K''}})=m_{\max}$.
 Отсюда $m_{K''}\cdot b_{i_{K''}}\in H_{\max}$ и $m_{K''}\cdot b_{i_{K''}}\lessdot_{1}m_{K'}\cdot b_{i_{K'}}$
-поскольку $ $$m_{K'}\cdot b_{i_{K'}}$ $\gtrdot_{1}$-максимален
-в $H_{\max}$.
+поскольку $m_{K'}\cdot b_{i_{K'}}$ $\gtrdot_{1}$-максимален в $H_{\max}$.
 
 Равенство $\HM(m_{K''}b_{i_{K''}})=\HM(m_{K'}b_{i_{K'}})$ означает,
 что S-пара $b_{i_{K'}}$ и $b_{i_{K''}}$ имеет вид $[m'^{-1}m_{\max},\, m'^{-1}m_{K'},\, b_{i_{K'}},\, m'^{-1}m_{K''},\, b_{i_{K''}}]$
@@ -1342,8 +1357,8 @@ $tf'$ -- сигнатурный редуктор для $f$ -- мы имеем $\Sig(f')t\prec\Sig(f)$
 $G_{f}$, поэтому выполняется и первое свойство: в процессе работы
 алгоритма $f'_{1}$ был добавлен в $G\cup Done$ раньше $f$.\end{proof}
 \begin{thm}
-Алгоритм $ $F5, описанный в \cite{FaugereF5}, останавливается на
-любых входных данных.\end{thm}
+Алгоритм F5, описанный в \cite{FaugereF5}, останавливается на любых
+входных данных.\end{thm}
 \begin{proof}
 Покажем, что существование многочленов $f'_{1},f$ из теоремы \ref{thm:always-exist-ok-reductor}
 приводит к противоречию. Рассмотрим вызов \texttt{TopReduction} после

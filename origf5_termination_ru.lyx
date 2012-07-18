@@ -4,6 +4,8 @@
 \begin_header
 \textclass article
 \begin_preamble
+#endif
+\usepackage{babel}
 \newcommand{\Sig}{\mathcal{S}}
 \newcommand{\HM}{\mathrm{HM}}
 \newcommand{\totaldeg}{\mathrm{deg}}
@@ -11,24 +13,43 @@
 \newcommand{\sigidx}{\mathrm{index}}
 
 #ifdef VESTNIK
+\usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{allerree}
 
 \def\wdeb{0}
-\usepackage{nameref}
 
 \newcounter{countergvtheorems}
 
-\renewenvironment{lem}
+\newenvironment{fact}
+{\refstepcounter{countergvtheorems}\begin{theorem}{Факт \arabic{countergvtheorems}.}}
+{\end{theorem}}
+
+\newenvironment{claim}
+{\refstepcounter{countergvtheorems}\begin{theorem}{Утверждение \arabic{countergvtheorems}.}}
+{\end{theorem}}
+
+\newenvironment{lem}
 {\refstepcounter{countergvtheorems}\begin{theorem}{Лемма  \arabic{countergvtheorems}.}}
 {\end{theorem}}
 
-\renewenvironment{thm}
+\newenvironment{thm}
 {\refstepcounter{countergvtheorems}\begin{theorem}{Теорема \arabic{countergvtheorems}.}}
 {\end{theorem}}
 
-\renewenvironment{defn}
+\newenvironment{cor}
+{\refstepcounter{countergvtheorems}\begin{theorem}{Следствие \arabic{countergvtheorems}.}}
+{\end{theorem}}
+
+
+\newenvironment{defn}
 {\par \refstepcounter{countergvtheorems} {\bf Определение \arabic{countergvtheorems}.}}
 {\par}
+
+\newenvironment{example}
+{\par \refstepcounter{countergvtheorems} {\bf Пример \arabic{countergvtheorems}.}}
+{\par}
+
 #else
 \newcommand{\iabstract}[4]{
 \begin{abstract}
@@ -36,7 +57,6 @@
 \footnote{\emph{Keywords:} #4}
 \end{abstract}
 }
-#endif
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -45,8 +65,11 @@ eqs-within-sections
 figs-within-sections
 \end_modules
 \maintain_unincluded_children false
+\begin_local_layout
+
+\end_local_layout
 \language russian
-\language_package default
+\language_package #ifndef VESTNIK
 \inputencoding cp1251
 \fontencoding global
 \font_roman default
@@ -115,7 +138,19 @@ status open
 
 \begin_layout Plain Layout
 
+#endif 
+\end_layout
+
+\begin_layout Plain Layout
+
 #ifdef VESTNIK
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{document}
 \end_layout
 
 \begin_layout Plain Layout
@@ -212,7 +247,7 @@ iabstract
 МГУ
 \end_layout
 
-\begin_layout Right Address
+\begin_layout Address
 galkin-vv@ya.ru
 \end_layout
 
@@ -1694,7 +1729,7 @@ TopReduction
 Конечную или бесконечную последовательность, соседние элементы которой удовлетво
 ряют свойству 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand eqref
 reference "eq:s-pair-chain-def"
 
 \end_inset
@@ -2117,7 +2152,7 @@ name "thm:f_g_3_props"
 
 Из первого неравенства в 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand eqref
 reference "eq:spair-chain"
 
 \end_inset
@@ -2226,7 +2261,7 @@ reference "eq:spair-chain"
 \end_inset
 
  внутри блока строго убывают.
- Длтны блоков могут быть равными единице, и полные степени блоков возрастают.
+ Длины блоков могут быть равными единице, и полные степени блоков возрастают.
  Это приводит к следующим свойствам: цепь S-пар 
 \begin_inset Formula $\{h_{i}\}$
 \end_inset
@@ -3120,7 +3155,6 @@ Reduce
 .
 \end_layout
 
-\end_deeper
 \begin_layout Proof
 S-пары из этих классов не могут находиться в середине пути обработки, потому
  что в рассматриваемом состоянии алгоритма обработка только что завершена
@@ -3219,6 +3253,7 @@ TopReduction
  начинает обработку всех таких S-пар.
 \end_layout
 
+\end_deeper
 \begin_layout Standard
 Понятие 
 \emph on
@@ -3378,7 +3413,7 @@ p=\sum_{k}m_{k}\cdot b_{i_{k}},\; b_{i_{k}}\in G_{g}\label{eq:Gg-repr-def}
 \begin_layout Definition
 Сумма вида 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand eqref
 reference "eq:Gg-repr-def"
 
 \end_inset
@@ -5469,10 +5504,6 @@ m_{K}b_{i_{K}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i
 
 .
  Имеем 
-\begin_inset Formula $ $
-\end_inset
-
-
 \begin_inset Formula $\HM(m_{K'}b_{i_{K'}})=m_{\max}\geqslant\HM(m_{K}b_{i_{K}})>\HM(mh)$
 \end_inset
 
@@ -5518,10 +5549,6 @@ m_{K}b_{i_{K}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i
 \end_inset
 
  поскольку 
-\begin_inset Formula $ $
-\end_inset
-
-
 \begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
@@ -6298,11 +6325,7 @@ reference "cor:all-needed-for-terminaton"
 \end_layout
 
 \begin_layout Theorem
-Алгоритм 
-\begin_inset Formula $ $
-\end_inset
-
-F5, описанный в 
+Алгоритм F5, описанный в 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "FaugereF5"

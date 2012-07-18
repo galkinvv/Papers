@@ -75,9 +75,20 @@ origf5_termination_ru.tex: origf5_termination_ru.lyx Makefile
 f5_references_1251.bib: f5_references.bib Makefile
 	iconv -t cp1251 $< > $@
 origf5_termination_full.tex: origf5_termination_ru.tex Makefile
-	cpp -P $< > $@
+	cpp -traditional-cpp -P $< > $@
 origf5_termination_vestnik.tex: origf5_termination_ru.tex Makefile
-	cpp -P -DVESTNIK $< > $@
+	cpp -traditional-cpp -P -DVESTNIK $< | sed \
+	-e 's/\\label{eq:s-pair-chain-def}/\\tag{1}/' \
+	-e 's/\\eqref{eq:s-pair-chain-def}/(1)/' \
+	-e 's/\\label{eq:spair-chain}/\\tag{2}/' \
+	-e 's/\\eqref{eq:spair-chain}/(2)/' \
+	-e 's/\\label{eq:Gg-repr-def}/\\tag{3}/' \
+	-e 's/\\eqref{eq:Gg-repr-def}/(3)/' \
+	-e 's/\\label{eq:repr-ex-2}/\\tag{4}/' \
+	-e 's/\\eqref{eq:repr-ex-2}/(4)/' \
+	-e 's/\\label{eq:input-repr-case1}/\\tag{5}/' \
+	-e 's/\\eqref{eq:input-repr-case1}/(5)/' \
+	>$@
 origf5_termination_full.pdf: origf5_termination_full.tex vestnik.bst f5_references_1251.bib
 	rm -f origf5_termination_full.aux origf5_termination_full.bbl
 	pdflatex $<
