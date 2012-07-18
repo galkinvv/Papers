@@ -74,13 +74,26 @@ origf5_termination_ru.tex: origf5_termination_ru.lyx Makefile
 	lyx -e pdflatex $<
 f5_references_1251.bib: f5_references.bib Makefile
 	iconv -t cp1251 $< > $@
-origf5_termination_ru.pdf: origf5_termination_ru.tex vestnik.bst f5_references_1251.bib
-	rm -f origf5_termination_ru.aux origf5_termination_ru.bbl
+origf5_termination_full.tex: origf5_termination_ru.tex Makefile
+	cpp -P $< > $@
+origf5_termination_vestnik.tex: origf5_termination_ru.tex Makefile
+	cpp -P -DVESTNIK $< > $@
+origf5_termination_full.pdf: origf5_termination_full.tex vestnik.bst f5_references_1251.bib
+	rm -f origf5_termination_full.aux origf5_termination_full.bbl
 	pdflatex $<
-	bibtex8 -B -c gost/cp1251.csf origf5_termination_ru || true
+	bibtex8 -B -c gost/cp1251.csf origf5_termination_full || true
 	pdflatex $<
 	pdflatex $<
-view-origf5_termination_ru: origf5_termination_ru.pdf
+origf5_termination_vestnik.pdf: origf5_termination_vestnik.tex vestnik.bst f5_references_1251.bib
+	rm -f origf5_termination_vestnik.aux origf5_termination_vestnik.bbl
+	pdflatex $<
+	bibtex8 -B -c gost/cp1251.csf origf5_termination_vestnik || true
+	pdflatex $<
+	pdflatex $<
+view-origf5_termination_full: origf5_termination_full.pdf
+	make clean-logs
+	xdg-open $^
+view-origf5_termination_vestnik: origf5_termination_vestnik.pdf
 	make clean-logs
 	xdg-open $^
 clean: clean-logs

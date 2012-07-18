@@ -2,14 +2,41 @@
 \lyxformat 413
 \begin_document
 \begin_header
-\textclass amsart
+\textclass article
 \begin_preamble
 \newcommand{\Sig}{\mathcal{S}}
 \newcommand{\HM}{\mathrm{HM}}
 \newcommand{\totaldeg}{\mathrm{deg}}
 \newcommand{\poly}{\mathrm{poly}}
 \newcommand{\sigidx}{\mathrm{index}}
-\usepackage{babelbib}
+
+#ifdef VESTNIK
+\usepackage{allerree}
+
+\def\wdeb{0}
+\usepackage{nameref}
+
+\newcounter{countergvtheorems}
+
+\renewenvironment{lem}
+{\refstepcounter{countergvtheorems}\begin{theorem}{Лемма  \arabic{countergvtheorems}.}}
+{\end{theorem}}
+
+\renewenvironment{thm}
+{\refstepcounter{countergvtheorems}\begin{theorem}{Теорема \arabic{countergvtheorems}.}}
+{\end{theorem}}
+
+\renewenvironment{defn}
+{\par \refstepcounter{countergvtheorems} {\bf Определение \arabic{countergvtheorems}.}}
+{\par}
+#else
+\newcommand{\iabstract}[4]{
+\begin{abstract}
+#3
+\footnote{\emph{Keywords:} #4}
+\end{abstract}
+}
+#endif
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -49,7 +76,7 @@ figs-within-sections
 \pdf_colorlinks true
 \pdf_backref false
 \pdf_pdfusetitle true
-\papersize a4paper
+\papersize default
 \use_geometry true
 \use_amsmath 1
 \use_esint 1
@@ -82,8 +109,111 @@ figs-within-sections
 
 \begin_body
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+#ifdef VESTNIK
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+cleanbegin 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+def
+\backslash
+udk{512}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+ltitle{ОСТАНОВКА АЛГОРИТМА F5} {В.
+\backslash
+,В.~Галкин
+\backslash
+footnote[1]{{
+\backslash
+it Галкин Василий Витальевич} --- асп.
+ каф.
+ алгебры мех.-мат.
+ ф-та МГУ, e-mail: galkin-vv@yandex.ru.}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+iabstract
+\end_layout
+
+\begin_layout Plain Layout
+
+{Алгоритм F5, предложенный Фожером, принимает в качестве входных данных
+ произвольное множество однородных многочленов и корректность результата
+ доказана для всех случаев, когда алгоритм останавливается.
+ Однако остановка алгоритма за конечное число шагов доказана лишь для случая,
+ когда на вход алгоритма подаётся регулярная последовательность многочленов.
+ В этой работе показано, что алгоритм останавливается на любых входных данных
+ без какого-либо использования регулярности}
+\end_layout
+
+\begin_layout Plain Layout
+
+{базис Грёбнера, алгоритм F5, доказательство остановки}
+\end_layout
+
+\begin_layout Plain Layout
+
+{The original F5 algorithm introduced by Faug{
+\backslash
+`e}re is formulated for any homogeneous polynomial set input.
+ The correctness of output is shown for any input that terminates the algorithm,
+ but the termination itself is proved only for the case of input being regular
+ polynomial sequence.
+ This article shows that algorithm correctly terminates for any homogeneous
+ input without any reference to regularity} {Groebner basis, F5 algorithm,
+ termination proof}
+\end_layout
+
+\begin_layout Plain Layout
+
+#else
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Title
 Остановка Алгоритма F5
+\end_layout
+
+\begin_layout Author
+Василий Галкин
+\end_layout
+
+\begin_layout Address
+МГУ
+\end_layout
+
+\begin_layout Right Address
+galkin-vv@ya.ru
 \end_layout
 
 \begin_layout Abstract
@@ -104,16 +234,18 @@ figs-within-sections
  Существование такой пары приводит к противоречию.
 \end_layout
 
-\begin_layout Author
-Василий Галкин
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+#endif
 \end_layout
 
-\begin_layout Address
-МГУ
-\end_layout
+\end_inset
 
-\begin_layout Email
-galkin-vv@ya.ru
+
 \end_layout
 
 \begin_layout Section
@@ -6393,7 +6525,7 @@ reference "thm:f_g_3_props"
 
 \end_layout
 
-\begin_layout Thanks
+\begin_layout Standard
 Автор благодарит Christian Eder, Jean-Charles Faugère, Amir Hashemi, John
  Perry, Till Stagers и Алексея Зобнина за их работы и комментарии, воодушевившие
  автора на исследования в этой области.
