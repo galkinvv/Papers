@@ -1803,8 +1803,11 @@ IsReducible
 \begin_inset Formula $r_{1}=(f_{1},1F_{1})$
 \end_inset
 
- является генератором цепи S-пар, поскольку каждый многочлен, порождаемый
- в последнем не завершающемся вызове 
+ является генератором цепи S-пар, поскольку каждый многочлен 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+, порождаемый в последнем не завершающемся вызове 
 \family typewriter
 AlgorithmF5
 \family default
@@ -3533,10 +3536,6 @@ b_{j}b_{i}=\sum_{k}m_{i_{k}}\cdot b_{j}=\sum_{k}m_{i_{k}}\cdot b_{j}+0=\sum_{k}m
 \end_inset
 
  может быть записан в виде 
-\begin_inset Formula $ $
-\end_inset
-
-
 \begin_inset Formula $\sum_{i}f_{i}g_{i}$
 \end_inset
 
@@ -3871,7 +3870,7 @@ TopReduction
 \begin_inset Formula $G_{g}$
 \end_inset
 
-представлению являются сравнимыми с точки зрения порядка 
+ представлению являются сравнимыми с точки зрения порядка 
 \begin_inset Formula $\lessdot_{1}$
 \end_inset
 
@@ -5259,7 +5258,7 @@ m_{K}b_{i_{K}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i
 \begin_inset Formula $\lessdot_{1}$
 \end_inset
 
--меньше, чем
+-меньше, чем 
 \begin_inset Formula $m_{K}\cdot b_{i_{K}}$
 \end_inset
 

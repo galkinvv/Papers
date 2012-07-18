@@ -2281,7 +2281,7 @@ reference "thm:f_g_3_props"
  claim: 
 \begin_inset Formula 
 \[
-\Sig(g)\succ t\cdot\Sig(f),\mbox{ where }t=\frac{\HM(g)}{\HM(f)}\in T.
+\Sig(f)\succ t\cdot\Sig(f'),\mbox{ где }t=\frac{\HM(f)}{\HM(f')}\in T.
 \]
 
 \end_inset
@@ -2295,11 +2295,11 @@ The last inequality with
 \end_inset
 
 s division property from theorems result shows that 
-\begin_inset Formula $tf$
+\begin_inset Formula $tf'$
 \end_inset
 
  can be used as a reductor for 
-\begin_inset Formula $g$
+\begin_inset Formula $f$
 \end_inset
 
  in 
@@ -2318,7 +2318,7 @@ IsReducible
 s signature is smaller.
  In the absence of criteria checks (b) and (c) this would directly lead
  to contradiction because at the time 
-\begin_inset Formula $g$
+\begin_inset Formula $f$
 \end_inset
 
  was added to the set 
@@ -2326,7 +2326,7 @@ s signature is smaller.
 \end_inset
 
  labeled polynomial 
-\begin_inset Formula $f$
+\begin_inset Formula $f'$
 \end_inset
 
  already had been there, so the 
@@ -2334,11 +2334,11 @@ s signature is smaller.
 TopReduction
 \family default
  should had reduced 
-\begin_inset Formula $g$
+\begin_inset Formula $f$
 \end_inset
 
  by 
-\begin_inset Formula $f$
+\begin_inset Formula $f'$
 \end_inset
 
 .
@@ -2346,7 +2346,7 @@ TopReduction
 
 \begin_layout Standard
 But the existence of criteria allow the situation in which 
-\begin_inset Formula $tf$
+\begin_inset Formula $tf'$
 \end_inset
 
  is rejected by criteria checks in (b) or (c) inside 
@@ -2356,7 +2356,7 @@ IsReducible
 .
  The idea is to show that even in this case there can be found another possible
  reductor for 
-\begin_inset Formula $g$
+\begin_inset Formula $f$
 \end_inset
 
  that is not rejected and anyway lead to contradiction and the following
@@ -3283,10 +3283,6 @@ For the case
 \begin_inset Formula $s_{1}sr_{i}$
 \end_inset
 
- 
-\begin_inset Formula $ $
-\end_inset
-
 satisfies it too.
 \end_layout
 
@@ -3629,10 +3625,6 @@ Another important example of
 \end_inset
 
  can be written as 
-\begin_inset Formula $ $
-\end_inset
-
-
 \begin_inset Formula $\sum_{i}f_{i}g_{i}$
 \end_inset
 
@@ -4302,7 +4294,7 @@ Some examples of this ordering are given for the same as above 3-element
 \noun default
 \color inherit
 
-\begin_inset Formula $xy\cdot b_{1}\gtrdot y^{2}\cdot b_{1}$
+\begin_inset Formula $xy\cdot b_{1}\gtrdot_{1}y^{2}\cdot b_{1}$
 \end_inset
 
 
@@ -4344,7 +4336,7 @@ Some examples of this ordering are given for the same as above 3-element
 \end_inset
 
  because 
-\begin_inset Formula $x^{2}\cdot b_{1}\gtrdot xy\cdot b_{1}$
+\begin_inset Formula $x^{2}\cdot b_{1}\gtrdot_{1}xy\cdot b_{1}$
 \end_inset
 
 
@@ -4367,7 +4359,7 @@ Some examples of this ordering are given for the same as above 3-element
 \end_inset
 
  because 
-\begin_inset Formula $xy\cdot b_{1}\gtrdot y\cdot b_{3}$
+\begin_inset Formula $xy\cdot b_{1}\gtrdot_{1}y\cdot b_{3}$
 \end_inset
 
 
@@ -5234,28 +5226,15 @@ TopReduction
 \end_inset
 
 .
- Since 
+ So 
 \begin_inset Formula $b_{i'}$
 \end_inset
 
- is rewriter we have 
-\begin_inset Formula $b_{i'}\ne0$
-\end_inset
-
-.
- All this gives the fact that 
-\begin_inset Formula $b_{i'}$
-\end_inset
-
- does present not only in 
-\begin_inset Formula $R$
-\end_inset
-
- but in 
+ was reduced and the reduction result is either zero or was added to 
 \begin_inset Formula $G_{g}$
 \end_inset
 
- too so it can be used as a polynomial of 
+, so it can be used as a polynomial of 
 \begin_inset Formula $G_{g}$
 \end_inset
 
@@ -5429,15 +5408,15 @@ It is
 \begin_inset Formula $s_{0}\mathbf{F}_{j_{0}}$
 \end_inset
 
-, and for the first element 
-\begin_inset Formula $ $
+, and the first element in the case of non-zero 
+\begin_inset Formula $b_{i'}$
 \end_inset
 
-
+ has 
 \begin_inset Formula $\Sig(c'^{-1}c_{0}s'\cdot b_{i'})=\Sig(m_{K}\cdot b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$
 \end_inset
 
- but 
+ and 
 \begin_inset Formula $i'>i_{K}$
 \end_inset
 
@@ -5459,6 +5438,12 @@ It is
 \end_inset
 
  too.
+ In the case 
+\begin_inset Formula $b_{i'}=0$
+\end_inset
+
+ the zero element does not present in representation, and it consists only
+ of two sums.
 \end_layout
 
 \begin_layout Lemma

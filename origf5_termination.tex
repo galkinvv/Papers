@@ -16,6 +16,14 @@
  {hyperref}
 
 \makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+\DeclareRobustCommand{\cyrtext}{%
+  \fontencoding{T2A}\selectfont\def\encodingdefault{T2A}}
+\DeclareRobustCommand{\textcyr}[1]{\leavevmode{\cyrtext #1}}
+\AtBeginDocument{\DeclareFontEncoding{T2A}{}{}}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
 \numberwithin{equation}{section}
 \numberwithin{figure}{section}
@@ -540,21 +548,21 @@ now we utilize this fact and make a transition from one to other to
 get relation on signatures for polynomials from theorem \ref{thm:f_g_3_props}
 claim: 
 \[
-\Sig(g)\succ t\cdot\Sig(f),\mbox{ where }t=\frac{\HM(g)}{\HM(f)}\in T.
+\Sig(f)\succ t\cdot\Sig(f'),\mbox{ \textcyr{\char227}\textcyr{\char228}\textcyr{\char229} }t=\frac{\HM(f)}{\HM(f')}\in T.
 \]
 The last inequality with $\HM$'s division property from theorems
-result shows that $tf$ can be used as a reductor for $g$ in \texttt{TopReduction}
+result shows that $tf'$ can be used as a reductor for $f$ in \texttt{TopReduction}
 from the signature point of view -- i.e. it satisfy checks (a) and
 (d) inside \texttt{IsReducible} and it's signature is smaller. In
 the absence of criteria checks (b) and (c) this would directly lead
-to contradiction because at the time $g$ was added to the set $G$
-labeled polynomial $f$ already had been there, so the \texttt{TopReduction}
-should had reduced $g$ by $f$.
+to contradiction because at the time $f$ was added to the set $G$
+labeled polynomial $f'$ already had been there, so the \texttt{TopReduction}
+should had reduced $f$ by $f'$.
 \end{proof}
-But the existence of criteria allow the situation in which $tf$ is
-rejected by criteria checks in (b) or (c) inside \texttt{IsReducible}.
+But the existence of criteria allow the situation in which $tf'$
+is rejected by criteria checks in (b) or (c) inside \texttt{IsReducible}.
 The idea is to show that even in this case there can be found another
-possible reductor for $g$ that is not rejected and anyway lead to
+possible reductor for $f$ that is not rejected and anyway lead to
 contradiction and the following parts of paper aim to prove it.
 
 
@@ -726,8 +734,8 @@ For the case $sr_{i}$ is the S-pair part these definitions are equivalent
 to the checks in the algorithm in a sense that S-pair part is rejected
 by the algorithm if and only if it satisfies the definition as monomial-multiplied
 labeled polynomial. Note that for both criteria holds important property
-that if $sr_{i}$ satisfies a criteria then a further multiplied $s_{1}sr_{i}$
-$ $satisfies it too.
+that if $sr_{i}$ satisfies a criteria then a further multiplied $s_{1}sr_{i}$satisfies
+it too.
 
 
 \section{Representations}
@@ -816,7 +824,7 @@ where $m_{i_{k}}$ and $m_{j_{k}}$ are same as above.
 Another important example of $G_{g}$-representation comes from ideal
 and signature definitions. All labeled polynomials computed by the
 algorithm are elements of ideal $\left(f_{1},\ldots,f_{m}\right)$.
-So any labeled polynomial $p$ can be written as $ $$\sum_{i}f_{i}g_{i}$,
+So any labeled polynomial $p$ can be written as $\sum_{i}f_{i}g_{i}$,
 where $g_{i}$ are homogeneous polynomials. All input polynomials
 $f_{i}$ belong to $G_{g}$, so $f_{i}g_{i}$ has $G_{g}$-representations
 of the form (\ref{eq:repr-ex-2}).
@@ -928,13 +936,13 @@ $G_{g}$ list. Note that all $G_{g}$-representations are already
 written in ordered forms:
 \begin{itemize}
 \item $x^{2}\cdot b_{1}+xy\cdot b_{1}+y^{2}b_{1}\gtrdot x^{2}\cdot b_{1}+100y^{2}\cdot b_{1}$
-because $xy\cdot b_{1}\gtrdot y^{2}\cdot b_{1}$
+because $xy\cdot b_{1}\gtrdot_{1}y^{2}\cdot b_{1}$
 \item $x^{2}\cdot b_{1}+100y^{2}\cdot b_{1}\gtrdot x^{2}\cdot b_{1}$ because
 the right ordered form is beginning of the left
 \item $x^{2}\cdot b_{1}\gtrdot xy\cdot b_{1}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}$
-because $x^{2}\cdot b_{1}\gtrdot xy\cdot b_{1}$
+because $x^{2}\cdot b_{1}\gtrdot_{1}xy\cdot b_{1}$
 \item $xy\cdot b_{1}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}\gtrdot y\cdot b_{3}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}$
-because $xy\cdot b_{1}\gtrdot y\cdot b_{3}$
+because $xy\cdot b_{1}\gtrdot_{1}y\cdot b_{3}$
 \item $y\cdot b_{3}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}$ and $2y\cdot b_{3}+y^{2}\cdot b_{2}$
 are not comparable because the greatest different elements are $y\cdot b_{3}$
 and $2y\cdot b_{3}$.
@@ -1009,7 +1017,7 @@ than $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$.\end{lem}
 We replace $m_{K'}\cdot b_{i_{K'}}$ in $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 by $\sum_{l}m_{l}\cdot b_{i_{l}}$ and combine coefficients near elements
 with both monomial and polynomial equal, so a modified representation
-for $mh$ appears. Is is $\lessdot$-smaller than $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+for $mh$ appears. It is $\lessdot$-smaller than $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 because all elements $\gtrdot_{1}$-greater than $m_{K'}\cdot b_{i_{K'}}$
 are identical in both representations if they present but the element
  $m_{K'}\cdot b_{i_{K'}}$ is contained in original representation
@@ -1076,12 +1084,11 @@ is taken for this case too.
 Assume that $\Sig(m_{K}b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$ and it
 is rewritten by labeled polynomial $b_{i'}$ from $R$. Because the
 representation is signature-safe we have $\Sig(b_{i'})\preccurlyeq s_{0}\mathbf{F}_{j_{0}}\preccurlyeq\Sig(mh)\prec\Sig(g)$.
-So $b_{i'}$ was processed in \texttt{TopReduction} before $g$. Since
-$b_{i'}$ is rewriter we have $b_{i'}\ne0$. All this gives the fact
-that $b_{i'}$ does present not only in $R$ but in $G_{g}$ too so
-it can be used as a polynomial of $G_{g}$-representation element.
-From the Rewritten criterion definition we know that $i'>i_{K}$ and
-the existence of $s'\in T$ such that $s'\Sig(b_{i'})=s_{0}\mathbf{F}_{j_{0}}$.
+So $b_{i'}$ was processed in \texttt{TopReduction} before $g$. So
+$b_{i'}$ was reduced and the reduction result is either zero or was
+added to $G_{g}$, so it can be used as a polynomial of $G_{g}$-representation
+element. From the Rewritten criterion definition we know that $i'>i_{K}$
+and the existence of $s'\in T$ such that $s'\Sig(b_{i'})=s_{0}\mathbf{F}_{j_{0}}$.
 So, for the $m_{K}b_{i_{K}}$ there is an input-representation \ref{eq:input-repr-case1}
 and for the $s'b_{i'}$ the input-representation is:
 
@@ -1101,11 +1108,12 @@ m_{K}b_{i_{K}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i
 \]
 It is $\lessdot$-smaller than $m_{K}b_{i_{K}}=m_{K}\cdot b_{i_{K}}$
 because elements of both sums has signatures smaller than $s_{0}\mathbf{F}_{j_{0}}$,
-and for the first element $ $$\Sig(c'^{-1}c_{0}s'\cdot b_{i'})=\Sig(m_{K}\cdot b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$
-but $i'>i_{K}$, so applying the $\lessdot_{1}$-comparison rule for
+and the first element in the case of non-zero $b_{i'}$ has $\Sig(c'^{-1}c_{0}s'\cdot b_{i'})=\Sig(m_{K}\cdot b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$
+and $i'>i_{K}$, so applying the $\lessdot_{1}$-comparison rule for
 equal signatures and different list positions we get that element
 $c'^{-1}c_{0}s'\cdot b_{i'}$ is $\lessdot_{1}$-smaller than $m_{K}\cdot b_{i_{K}}$
-too.\end{proof}
+too. In the case $b_{i'}=0$ the zero element does not present in
+representation, and it consists only of two sums.\end{proof}
 \begin{lem}
 If a signature-safe representation $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 with $\Sig(mh)\prec\Sig(g)$ satisfies properties 1 and 2 but does
@@ -1231,7 +1239,7 @@ $f$.\end{proof}
 The original $ $F5 algorithm as described in \cite{FaugereF5} does
 terminate for any input.\end{thm}
 \begin{proof}
-We are going o show that the existence of polynomials $f'_{1},f$
+We are going to show that the existence of polynomials $f'_{1},f$
 from the theorem \ref{thm:always-exist-ok-reductor} leads to contradiction.
 Consider the call to \texttt{TopReduction} after which the polynomial
 $f$ was inserted in $Done$. That call returns polynomial $f$ as

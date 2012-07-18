@@ -4,30 +4,32 @@
 \providecommand{\RNtxt}{\relax}
 \RNtxt{}
 
-\bibitem[{Arri}, {Perry}(2010)]{TheF5Revised}
+\bibitem[{Arri}, {Perry}(2011)]{TheF5Revised}
 {\EM {Arri} A., {Perry} J.}
-\newblock {The F5 Criterion revised} \allowbreak\newblock// ArXiv e-prints. XII
-  2010.
+\newblock {The F5 Criterion revised} \allowbreak\newblock// J. Symb. Comput. IX
+  2011. 46, 9. 1017--1029.
 
 \bibitem[Ars(2005)]{Ars05applicationsdes}
 {\EM Ars Gwenole}.
-\newblock {Applications des bases de Gr{\"o}bner {\`a} la cryptographie}. 2005.
+\newblock {Applications des bases de Gr{\"o}bner {\`a} la cryptographie}.
+  Rennes, France: Universit{\'e} de Rennes 1, 2005.
 
 \bibitem[Baader, Nipkow(1998)]{Baader.Nipkow98Term}
 {\EM Baader Franz, Nipkow Tobias}.
 \newblock {Term Rewriting and All That}. United Kingdom: Cambridge University
   Press, 1998.
 
-\bibitem[{Eder}, {Perry}(2009)]{F5C}
+\bibitem[{Eder}, {Perry}(2010)]{F5C}
 {\EM {Eder} C., {Perry} J.}
 \newblock {F5C: a variant of Faug{\`e}re's F5 algorithm with reduced
-  Gr{\"o}bner bases} \allowbreak\newblock// ArXiv e-prints. VI 2009.
+  Gr{\"o}bner bases} \allowbreak\newblock// J. Symb. Comput. XII 2010. 45, 12.
+  1442--1458.
 
-\bibitem[Eder et~al.(2010)]{Modifying-for-termination}
+\bibitem[Eder et~al.(2011)]{Modifying-for-termination}
 {\EM Eder Christian, Gash Justin, Perry John}.
 \newblock {Modifying Faug{\`e}re's F5 Algorithm to ensure termination}
-  \allowbreak\newblock// ACM Communications in Computer Algebra, Issue 176,
-  vol. 45, no. 2 (June 2011), pgs. 70-89. XII 2010.
+  \allowbreak\newblock// ACM Commun. Comput. Algebra. VII 2011. 45, 1/2.
+  70--89.
 
 \bibitem[Faug{\`e}re(2002)]{FaugereF5}
 {\EM Faug{\`e}re Jean~Charles}.
@@ -50,17 +52,17 @@
 \bibitem[{Huang}(2010)]{HuangConception}
 {\EM {Huang} L.}
 \newblock {A new conception for computing Gr{\"o}bner basis and its
-  applications} \allowbreak\newblock// ArXiv e-prints. XII 2010.
+  applications} \allowbreak\newblock// ArXiv e-prints. XII 2010. 1012, 5425.
 
 \bibitem[{Pan} et~al.(2012)]{2012GrbTermination}
 {\EM {Pan} S., {Hu} Y., {Wang} B.}
 \newblock {The Termination of Algorithms for Computing Gr{\"o}bner Bases}
-  \allowbreak\newblock// ArXiv e-prints. II 2012.
+  \allowbreak\newblock// ArXiv e-prints. II 2012. 1202, 3524.
 
 \bibitem[Stegers(2006)]{F5-revisited}
 {\EM Stegers Till}.
 \newblock {Faugere's F5 Algorithm Revisited.} \allowbreak\newblock// IACR
-  Cryptology ePrint Archive. 2006. 2006. 404.
+  Cryptology ePrint Archive. 2006. 404.
 
 \bibitem[Zobnin(2010)]{ZobninGeneralization}
 {\EM Zobnin A.~I.}
