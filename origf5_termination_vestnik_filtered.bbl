@@ -1,0 +1,24 @@
+\bibitem{FaugereF5}
+\authorsit{Faug{\`e}re~J.~C.} {A new efficient algorithm for computing Gr{\"o}bner bases without reduction to zero (F5)}~// {Proceedings of the 2002 international symposium on Symbolic and algebraic computation}. 2002. 75--83.
+\bibitem{F5-revisited}
+\authorsit{Stegers~T.} {Faugere's F5 Algorithm Revisited.}~// IACR Cryptology ePrint Archive. 2006. {\bf404}.
+\bibitem{Modifying-for-termination}
+\authorsit{Eder~C., Gash~J., Perry~J.} {Modifying Faug{\`e}re's F5 Algorithm to ensure termination}~// ACM Commun. Comput. Algebra. 2011. {\bf45}, \No 1/2. 70--89.
+\bibitem{Ars05applicationsdes}
+\authorsit{Ars~G.} {Applications des bases de Gr{\"o}bner {\`a} la cryptographie}. Rennes, France: Universit{\'e} de Rennes 1, 2005.
+\bibitem{Gash:2008:ECG}
+\authorsit{Gash~J.~M.} {On efficient computation of Gr{\"o}bner bases}. Indianapolis, IN, USA: Indiana University, 2008.
+\bibitem{Hashemi-ExtF5}
+\authorsit{Hashemi~A., Ars~G.} {Extended F5 criteria}~// J. Symb. Comput. 2010. {\bf45}, \No~12.  1330--1340.
+\bibitem{ZobninGeneralization_ru}
+\authorsit{Зобнин~А.~И.} {Обобщение алгоритма F5 вычисления базиса Грёбнера полиномиальных идеалов}~// Программирование. 2010. \No~2.  21--30.
+\bibitem{2012GrbTermination}
+\authorsit{{Pan}~S., {Hu}~Y., {Wang}~B.} {The Termination of Algorithms for Computing Gr{\"o}bner Bases}~// ArXiv e-prints. 2012. {\bf1202}, \No 3524.
+\bibitem{HuangConception}
+\authorsit{{Huang}~L.} {A new conception for computing Gr{\"o}bner basis and its applications}~// ArXiv e-prints. 2010. {\bf1012}, \No 5425.
+\bibitem{F5C}
+\authorsit{{Eder}~C., {Perry}~J.} {F5C: a variant of Faug{\`e}re's F5 algorithm with reduced Gr{\"o}bner bases}~// J. Symb. Comput. 2010. {\bf45}, \No~12. 1442--1458.
+\bibitem{TheF5Revised}
+\authorsit{{Arri}~A., {Perry}~J.} {The F5 Criterion revised}~// J. Symb. Comput. 2011. {\bf46}, \No~9.  1017--1029.
+\bibitem{Baader.Nipkow98Term}
+\authorsit{Baader~F., Nipkow~T.} {Term Rewriting and All That}. United Kingdom: Cambridge University Press, 1998.

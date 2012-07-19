@@ -1425,7 +1425,17 @@ F5 в работах \cite{Modifying-for-termination,Ars05applicationsdes,Gash:2008:ECG}
 John Perry, Till Stagers и Алексея Зобнина за их работы и комментарии,
 воодушевившие автора на исследования в этой области. Спасибо!
 
+#ifdef VESTNIK
+\newpage
+\spisoklit
+\small
+#endif
+
 \bibliographystyle{vestnik}
 \bibliography{f5_references_1251}
 
+
+#ifdef VESTNIK
+\lend
+#endif
 \end{document}

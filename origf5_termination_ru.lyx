@@ -6556,10 +6556,76 @@ reference "thm:f_g_3_props"
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+#ifdef VESTNIK
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+spisoklit
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+small
+\end_layout
+
+\begin_layout Plain Layout
+
+#endif
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 bibfiles "f5_references_1251"
 options "vestnik"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+#ifdef VESTNIK
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+lend
+\end_layout
+
+\begin_layout Plain Layout
+
+#endif
+\end_layout
 
 \end_inset
 
