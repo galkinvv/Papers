@@ -95,12 +95,38 @@ origf5_termination_full.pdf: origf5_termination_full.tex vestnik.bst f5_referenc
 	bibtex8 -B -c gost/cp1251.csf origf5_termination_full || true
 	pdflatex $<
 	pdflatex $<
+define PYVESTNIKBIB
+import sys,re
+cites=[]
+bibl=[]
+for bibline in open(sys.argv[2]):
+	m = re.search("bibitem{([^}]+)}",bibline)
+	if m: cites.append(m.group(1))
+	else: bibl.append(re.sub("authorsit","wref{"+str(len(bibl)+1)+"}",bibline))
+replacer=lambda match: "{[}"+",".join(sorted(str(1+cites.index(book)) for book in match.group(1).split(",")))+"{]}"
+#sys.stdout.write(str(cites)+str(bibl))
+with_cites=re.sub(r"\\cite{([^}]+)}",replacer,open(sys.argv[1]).read())
+with_bibl=with_cites.replace(r"""
+\bibliographystyle{vestnik}
+\bibliography{f5_references_1251}""",
+r"\wrefdef{"+str(len(bibl))+"}\n"+
+"\n".join(bibl))
+
+sys.stdout.write(with_bibl)
+
+endef
+export PYVESTNIKBIB
+
 origf5_termination_vestnik.pdf: origf5_termination_vestnik.tex vestnik.bst f5_references_1251.bib
 	rm -f origf5_termination_vestnik.aux origf5_termination_vestnik.bbl
 	pdflatex $<
+	rm $@
 	bibtex8 -B -c gost/cp1251.csf origf5_termination_vestnik || true
-	pdflatex $<
-	pdflatex $<
+	tr '\n' '\t' < origf5_termination_vestnik.bbl | sed 's/\t  / /g' | tr '\t' '\n' |grep -e '\(^\\authorsit\|bibitem\)' > origf5_termination_vestnik_filtered.bbl
+	python -c "$$PYVESTNIKBIB" $< origf5_termination_vestnik_filtered.bbl > $<.pyvestnikbib.tex
+	pdflatex $<.pyvestnikbib.tex
+	pdflatex $<.pyvestnikbib.tex
+	mv $<.pyvestnikbib.pdf $@
 view-origf5_termination_full: origf5_termination_full.pdf
 	make clean-logs
 	xdg-open $^
