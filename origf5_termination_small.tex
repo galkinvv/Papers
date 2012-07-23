@@ -7,6 +7,43 @@
 \geometry{verbose}
 \setcounter{secnumdepth}{-1}
 \usepackage{color}
+#ifndef VESTNIK
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=true,bookmarksopenlevel=2,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=true]
+ {hyperref}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+\DeclareRobustCommand{\cyrtext}{%
+  \fontencoding{T2A}\selectfont\def\encodingdefault{T2A}}
+\DeclareRobustCommand{\textcyr}[1]{\leavevmode{\cyrtext #1}}
+\AtBeginDocument{\DeclareFontEncoding{T2A}{}{}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\newcommand{\lyxaddress}[1]{
+\par {\raggedright #1
+\vspace{1.4em}
+\noindent\par}
+}
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}
+  \theoremstyle{definition}
+  \newtheorem{defn}[thm]{\protect\definitionname}
+  \theoremstyle{plain}
+  \newtheorem{lem}[thm]{\protect\lemmaname}
+  \theoremstyle{plain}
+  \newtheorem{cor}[thm]{\protect\corollaryname}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+#endif
 \usepackage{babel}
 \newcommand{\Sig}{\mathcal{S}}
 \newcommand{\HM}{\mathrm{HM}}
@@ -14,6 +51,7 @@
 \newcommand{\poly}{\mathrm{poly}}
 \newcommand{\sigidx}{\mathrm{index}}
 
+#ifdef VESTNIK
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{allerree}
@@ -55,6 +93,24 @@
 {\par \refstepcounter{countergvtheorems} {\bf Пример \arabic{countergvtheorems}.}}
 {\par}
 
+#else
+\newcommand{\iabstract}[4]{
+\begin{abstract}
+#3
+\footnote{\emph{Keywords:} #4}
+\end{abstract}
+}
+
+\makeatother
+
+  \providecommand{\corollaryname}{\inputencoding{koi8-r}чЩЧПД}
+  \providecommand{\definitionname}{\inputencoding{koi8-r}пРТЕДЕМЕОЙЕ}
+  \providecommand{\lemmaname}{\inputencoding{koi8-r}мЕННБ}
+\providecommand{\theoremname}{\inputencoding{koi8-r}фЕПТЕНБ}
+
+\begin{document}
+#endif 
+#ifdef VESTNIK
 \begin{document}
 \cleanbegin 
 \def\udk{512}
@@ -63,6 +119,38 @@
 {Алгоритм F5, предложенный Фожером, принимает в качестве входных данных произвольное множество однородных многочленов и корректность результата доказана для всех случаев, когда алгоритм останавливается. Однако остановка алгоритма за конечное число шагов доказана лишь для случая, когда на вход алгоритма подаётся регулярная последовательность многочленов. В этой работе показано, что алгоритм останавливается на любых входных данных без какого-либо использования регулярности}
 {базис Грёбнера, алгоритм F5, доказательство остановки}
 {The original F5 algorithm introduced by Faug{\`e}re is formulated for any homogeneous polynomial set input. The correctness of output is shown for any input that terminates the algorithm, but the termination itself is proved only for the case of input being regular polynomial sequence. This article shows that algorithm correctly terminates for any homogeneous input without any reference to regularity} {Groebner basis, F5 algorithm, termination proof}
+#else
+
+
+
+\title{Остановка Алгоритма F5}
+
+
+\author{Василий Галкин}
+
+\maketitle
+
+\lyxaddress{МГУ}
+
+
+\lyxaddress{galkin-vv@ya.ru}
+\begin{abstract}
+Алгоритм F5, предложенный Фожером, принимает в качестве входных данных
+произвольное множество однородных многочленов и корректность результата
+доказана для всех случаев, когда алгоритм останавливается. Однако
+остановка алгоритма за конечное число шагов доказана лишь для случая,
+когда на вход алгоритма подаётся регулярная последовательность многочленов.
+В этой работе показано, что алгоритм останавливается на любых входных
+данных без какого-либо использования регулярности. Схема доказательства
+состоит из двух частей: в первой части показано, что если алгоритм
+не останавливается, то рано или поздно он получит пару многочленов,
+в которой первый может редуцировать второй. При этом, однако, не утверждается,
+что такая редукция будет разрешена критериями, предложенными в F5.
+Вторая часть показывает, что при существовании такой пары также будет
+существовать пара в которой редукция разрешена всеми критериями. Существование
+такой пары приводит к противоречию.
+\end{abstract}
+#endif
 
 Алгоритм Фожера F5 известен как эффективный алгоритм вычисления базисов
 Грёбнера, но одной из главных его проблем является отсутствие доказательства
@@ -142,7 +230,7 @@ F5, и доказательство остановки может быть перенесено на изменённые
 \begin{thm}
 Любой отмеченный многочлен может являться начальным элементом лишь
 конечного числа различных цепей S-пар длины 2.\end{thm}
-\begin{proofwithpar}
+\begin{proof}
 Рассмотрим произвольный отмеченный многочлен $r_{L}$ с сигнатурой
 $\Sig(r_{L})=s$ и упорядоченное по порядку добавления подмножество
 $\{r_{l_{1}},\ldots,r_{l_{i}},\ldots\}$ отмеченных многочленов с
@@ -156,14 +244,14 @@ $s$. Поэтому при $\forall i>i_{0}$ последовательность $\{r_{L},r_{l_{i}}\}$
 не может являться цепью S-пар, поскольку $\Sig(r_{L})\cdot v_{i}$
 перезаписывается $\Sig(r_{l_{j}})\cdot\frac{v_{i}}{v_{j}}$ и существует
 не более чем $i_{0}$ цепей S-пар длины 2, начинающихся с многочлена
-$r_{L}$.\end{proofwithpar}
+$r_{L}$.\end{proof}
 \begin{defn}
 Конечное множество концов цепей S-пар длины 2, начинающихся с $r_{L}$
 будет называться \emph{множеством S-порождённых} $r_{L}$.\end{defn}
 \begin{thm}
 Если алгоритм не останавливается на некоторых входных данных, то он
 порождает бесконечную цепь S-пар $\{h_{i}\}$.\end{thm}
-\begin{proofwithpar}
+\begin{proof}
 Если алгоритм не останавливается, то многочлен входного множества
 $r_{1}=(f_{1},1F_{1})$ является началом бесконечного числа различных
 конечных цепей S-пар -- каждому многочлену $r_{l}$ соответствует
@@ -173,7 +261,7 @@ $r_{1}=(f_{1},1F_{1})$ является началом бесконечного числа различных
 с тем же свойством. Продолжая выбирать элементы таким образом, мы
 получим искомую бесконечную последовательность, состоящую из элементов,
 являющихся началами бесконечного числа S-пар.
-\end{proofwithpar}
+\end{proof}
 Для следующей теоремы необходимо ввести порядок на частных, образованных
 мономами, путём транзитивного расширения порядка на мономах: $\frac{m_{1}}{m_{2}}>_{q}\frac{m_{3}}{m_{4}}\Leftrightarrow m_{1}m_{4}>m_{3}m_{2}$.
 \begin{thm}
@@ -181,7 +269,7 @@ $r_{1}=(f_{1},1F_{1})$ является началом бесконечного числа различных
 входных данных, то после некоторого конечного шага множество $G$
 содержит пару отмеченных многочленов $f',f$, причём $f$ сгенерирован
 после $f'$ и выполняются свойства $\HM(f')|\HM(f)$ и $\frac{\HM(f')}{\Sig(f')}>_{q}\frac{\HM(f)}{\Sig(f)}$.\end{thm}
-\begin{proofwithpar}
+\begin{proof}
 При работе с цепями S-пар является важным тот факт, что многочлен
 никогда не редуцируется дальше, после того как он был использован
 для создания S-пары в качестве старей по сигнатуре части. Факт выполняется,
@@ -195,9 +283,9 @@ $r_{1}=(f_{1},1F_{1})$ является началом бесконечного числа различных
 где $g_{n}$ многочлен, соответствующей младшей части S-пары, использованный
 при генерации $h_{n+1}$ из $h_{n}$, и удовлетворяет следующему:
 \begin{equation}
-\HM(h_{n+1})<\HM\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)=\HM(g_{n}),\,\Sig(h_{n+1})=\Sig\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)\succ\Sig(g_{n}).\tag{1}
+\HM(h_{n+1})<\HM\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)=\HM(g_{n}),\,\Sig(h_{n+1})=\Sig\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)\succ\Sig(g_{n}).\label{eq:spair-chain}
 \end{equation}
-Из первого неравенства в (1) получаем, что $\frac{\HM(h_{n})}{\Sig(h_{n})}>_{q}\frac{\HM(h_{n+1})}{\Sig(h_{n+1})}$,
+Из первого неравенства в \eqref{eq:spair-chain} получаем, что $\frac{\HM(h_{n})}{\Sig(h_{n})}>_{q}\frac{\HM(h_{n+1})}{\Sig(h_{n+1})}$,
 поэтому в цепи S-пар частные $\frac{\HM(h_{i})}{\Sig(h_{i})}$ строго
 убывают в смысле порядка на частных.
 
@@ -210,7 +298,7 @@ $T$, поэтому по лемме Диксона существует два многочлена, с $\HM(h_{i})|\HM(h_{j}
 При этом $i<j$, а при помощи свойств цепи S-пар мы получаем, что
 $\frac{\HM(h_{i})}{\Sig(h_{i})}>_{q}\frac{\HM(h_{i+1})}{\Sig(h_{i+1})}>_{q}\cdots>_{q}\frac{\HM(h_{j})}{\Sig(h_{j})}$,
 поэтому можно взять $f'=h_{i}$ и $f=h_{j}$.
-\end{proofwithpar}
+\end{proof}
 Многочлен $f$ -- сигнатурный редуктор для $f'$. Для доказательства
 остановки на основе результата предыдущей теоремы, нужно показать
 невозможность такой ситуации. Последующие главы работы посвящены этому.
@@ -263,9 +351,9 @@ S-пара элементов $G_{g}$, сигнатура которой меньше $\Sig(g)$ удовлетворяет
 \item S-пара не была отброшена, её S-многочлен был сигнатурно редуцирован
 по некоторым элементам $G_{g}$ и результат был добавлен в $G_{g}$.
 Такие S-пары будут называться \emph{S-парами с известным $G_{g}$-представлением}.\end{enumerate}
-\begin{proofwithpar}
+\begin{proof}
 Вытекает из порядка обработки S-пар и S-многочленов в алгоритме.
-\end{proofwithpar}
+\end{proof}
 Понятия \emph{удовлетворять критерию F5 }и \emph{удовлетворять критерию
 Перезаписи} могут быть расширены на произвольные умноженные на моном
 отмеченные многочлены $sh,\, h\in G_{g}$:
@@ -330,22 +418,22 @@ $G_{g}$-представление $p$ называется \emph{сигнатурным}, если $\forall k\,\Sig(m
 Если для пары представлений отмеченного многочлена $p$ выполняется
 отношение $\sum_{k}m'_{k}\cdot b_{i'_{k}}\lessdot\sum_{k}m_{k}\cdot b_{i_{k}}$
 и правое представление сигнатурно, то и левое представление сигнатурно.\end{thm}
-\begin{proofwithpar}
+\begin{proof}
 Теорема легко следует из того, что сигнатуры элементов $\lessdot$-меньшего
 представления не могут быть $\succ$-больше, чем максимальная сигнатура
 $\gtrdot$-большего представления.
-\end{proofwithpar}
+\end{proof}
 Важным фактом, позволяющим брать $\lessdot$-минимальный элемент,
 является вполне упорядоченность:
 \begin{thm}
 Представления вполне упорядочены порядком $\lessdot$.\end{thm}
-\begin{proofwithpar}
+\begin{proof}
 Вполне упорядоченность сигнатур по $\prec$ даёт вполне упорядоченность
 элементов представлений по $\lessdot{}_{1}$. Теорема 2.5.5 книги
 \cite{Baader.Nipkow98Term} утверждает вполне упорядоченность конечных
 наборов упорядоченных лексикографическим расширением порядка их элементов.
 Это применимо к представлениям -- наборам своих элементов.
-\end{proofwithpar}
+\end{proof}
 
 \subsection{Последовательность представлений}
 
@@ -374,11 +462,11 @@ $mh$, где $K'$ может как совпадать, так и отличаться от $K$. Далее
 $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$ имеет представление $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$,
 $\lessdot$-меньшее, чем $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$,
 то $mh$ имеет представление $\lessdot$-меньшее, чем $\sum_{k}m_{k}\cdot b_{i_{k}}$.\end{lem}
-\begin{proofwithpar}
+\begin{proof}
 Заменим элемент $m_{K'}\cdot b_{i_{K'}}$ в представлении $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 на $\sum_{l}m_{l}\cdot b_{i_{l}}$ и скомбинируем коэффициенты при
 элементах с одновременно одинаковыми мономами и многочленами.
-\end{proofwithpar}
+\end{proof}
 Осталось показать, что представление элемента по вышеуказанной схеме
 может быть построено. Выражения, позволяющие построить такое представления
 описаны в работе \cite{F5C} и довольно громоздки, поэтому здесь мы
@@ -389,49 +477,49 @@ $\lessdot$-меньшее, чем $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$,
 содержит элемент, не удовлетворяющий свойству 1, то найдётся элемент
 $m_{K'}\cdot b_{i_{K'}}$ обладающий $G_{g}$-представлением $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
 $\lessdot$-меньшим, чем представление $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$.\end{lem}
-\begin{proofwithpar}
-Рассмотрим выражение, аналогичное упоминаемому в теореме 20 \cite{F5C}.\end{proofwithpar}
+\begin{proof}
+Рассмотрим выражение, аналогичное упоминаемому в теореме 20 \cite{F5C}.\end{proof}
 \begin{lem}
 Если сигнатурное $G_{g}$-представление $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 с $\Sig(mh)\prec\Sig(g)$ содержит элемент, не удовлетворяющий свойству
 2, то найдётся элемент $m_{K'}\cdot b_{i_{K'}}$ обладающий $G_{g}$-представлением
 $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$ $\lessdot$-меньшим,
 чем представление $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$\textup{.}\end{lem}
-\begin{proofwithpar}
-Рассмотрим выражение, аналогичное упоминаемому в Предложении 17 \cite{F5C}.\end{proofwithpar}
+\begin{proof}
+Рассмотрим выражение, аналогичное упоминаемому в Предложении 17 \cite{F5C}.\end{proof}
 \begin{lem}
 Если все элементы сигнатурного представления $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 с $\Sig(mh)\prec\Sig(g)$ удовлетворяют свойствам 1 и 2, но один из
 них не удовлетворяет свойству 3, то найдётся элемент $m_{K'}\cdot b_{i_{K'}}$,
 имеющий представление $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
 $\lessdot$-меньшее, чем представление $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$.\end{lem}
-\begin{proofwithpar}
+\begin{proof}
 Применим идею о сокращении старших мономов, аналогично с Теоремой
-21 в работе \cite{F5C}.\end{proofwithpar}
+21 в работе \cite{F5C}.\end{proof}
 \begin{thm}
 \label{thm:exist-smaller-signature-safe-representation}Или сигнатурное
 представление $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$ с $\Sig(mh)\prec\Sig(g)$
 удовлетворяет свойствам 1-3 или существует другое сигнатурное представление
 $mh=\sum_{l}m_{l}\cdot b_{i_{l}}$ $\lessdot$-меньшее, чем \textup{$\sum_{k}m_{k}\cdot b_{i_{k}}$.}\end{thm}
-\begin{proofwithpar}
-Теорема немедленно следует из комбинации четырёх предыдущих лемм.\end{proofwithpar}
+\begin{proof}
+Теорема немедленно следует из комбинации четырёх предыдущих лемм.\end{proof}
 \begin{thm}
 Для любого многочлена $mh,\, m\in\mathcal{K}\times T,\, h\in G_{g}$
 с $\Sig(mh)\prec\Sig(g)$ существует удовлетворяющее свойствам 1-3
 сигнатурное $G_{g}$-представление $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$\textup{.}\end{thm}
-\begin{proofwithpar}
+\begin{proof}
 Начнём с представления $mh=m\cdot h$ и будем заменять текущее представление
 на $\lessdot$-меньшее из теоремы \ref{thm:exist-smaller-signature-safe-representation}
 до тех пор пока текущее представление не будет удовлетворять свойствам
 1-3. Конечность процесса гарантируется вполне упорядоченностью представлений
-по $\lessdot$.\end{proofwithpar}
+по $\lessdot$.\end{proof}
 \begin{cor}
 \label{cor:all-needed-for-terminaton}Рассмотрим произвольный многочлен
 $f$ без ограничений на его сигнатуру. Если существует сигнатурный
 редуктор $f'\in G_{g}$ для $f$ с $\Sig(f')\frac{\HM(f)}{\HM(f')}\prec\Sig(g)$
 то $G_{g}$ содержит сигнатурный редуктор для $f$, который не отбрасывается
 критериями F5 и перезаписи.\end{cor}
-\begin{proofwithpar}
+\begin{proof}
 Пусть $mf',\, m=\frac{\HM(f)}{\HM(f')}\in\mathcal{K}\times T,\, f'\in G_{g}$
 умноженный редуктор с $\Sig(mf')\prec\Sig(g)$. Из предыдущей теоремы
 мы можем найти удовлетворяющее свойствам 1-3 представление $mf'=\sum_{k}m_{k}\cdot b_{i_{k}}$.
@@ -441,7 +529,7 @@ $\HM(m_{K}\cdot b_{i_{K}})=\HM(mf')=\HM(f_{1}')$. Из сигнатурности
 имеем $\Sig(m_{K}\cdot b_{i_{K}})\preccurlyeq\Sig(mf')\prec\Sig(f)$,
 а значит $m_{K}b_{i_{K}}$ -- сигнатурный редуктор для $f$ и свойства
 1-2 гарантируют прохождение критериев.
-\end{proofwithpar}
+\end{proof}
 
 \subsection{Обнаружение противоречия}
 
@@ -456,17 +544,17 @@ $\frac{\HM(f')}{\Sig(f')}>_{q}\frac{\HM(f)}{\Sig(f)}$. Применяя к
 $f'_{1},f$, для которых выполняется: $f'_{1}$ было добавлено в \textup{$G\cup Done$}
 до $f$; $f'_{1}$ -- сигнатурный редуктор для $f$; $t_{1}f'_{1}$
 не удовлетворяет критериям F5 и Перезаписи, где $t_{1}=\frac{\HM(f)}{\HM(f'_{1})}$.\end{thm}
-\begin{proofwithpar}
+\begin{proof}
 Пусть $f',f$ -- многочлены из теоремы \ref{thm:f_g_3_props} и $t=\frac{\HM(f)}{\HM(f')}$.
 Построенная выше теория о представлениях может быть рассмотрена применительно
 к случаю $g$ равного $f$. Поскольку $tf'$ -- сигнатурный редуктор
 для $f$ -- мы имеем $\Sig(f')t\prec\Sig(f)$ и следствие \ref{cor:all-needed-for-terminaton}
 может быть применено для нахождения сигнатурного редуктора $t_{1}f'_{1}$
-для $f$, который не удовлетворяет критериям.\end{proofwithpar}
+для $f$, который не удовлетворяет критериям.\end{proof}
 \begin{thm}
 Алгоритм F5, описанный в \cite{FaugereF5}, останавливается на любых
 входных данных.\end{thm}
-\begin{proofwithpar}
+\begin{proof}
 Предположим отсутствие остановки и рассмотрим многочлены $f'_{1},f$
 из теоремы \ref{thm:always-exist-ok-reductor}. Вызов \texttt{TopReduction}
 после которого $f$ был добавлен в $Done$ вернул многочлен $f$ как
@@ -475,7 +563,7 @@ $f'_{1},f$, для которых выполняется: $f'_{1}$ было добавлено в \textup{$G\cup Do
 в $G\cup Done$ хотя бы одно из условий (a) - (d) не выполнилось.
 Это невозможно, поскольку для $f'_{1}$ их выполнение следует из утверждения
 теоремы \ref{thm:always-exist-ok-reductor}.
-\end{proofwithpar}
+\end{proof}
 
 \subsection{Выводы}
 
@@ -517,19 +605,24 @@ F5 в работах \cite{Modifying-for-termination,Ars05applicationsdes,Gash:2008:ECG}
 может быть модифицировано таким образом, что зависимость от первых
 двух свойств исчезнет, однако от третьего избавиться не получится,
 поскольку оно является ключевым моментом при получении противоречия
-на основе результата теоремы \ref{thm:f_g_3_props}.\
+на основе результата теоремы \ref{thm:f_g_3_props}.\\
+
 
 Автор благодарит Christian Eder, Jean-Charles Faug\`{e}re, Amir Hashemi,
 John Perry, Till Stagers и Алексея Зобнина за их работы и комментарии,
 воодушевившие автора на исследования в этой области. Спасибо!
 
+#ifdef VESTNIK
 \newpage
 \spisoklit
 \small
+#endif
 
 \bibliographystyle{vestnik}
 \bibliography{f5_references_1251}
 
 
+#ifdef VESTNIK
 \lend
+#endif
 \end{document}
