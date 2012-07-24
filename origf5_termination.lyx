@@ -5989,7 +5989,7 @@ s greater than
 \end_inset
 
  equality: 
-\begin_inset Formula $\HM(m_{K}\cdot b_{i_{K}})=\HM(mf')=\HM(f_{1}')$
+\begin_inset Formula $\HM(m_{K}\cdot b_{i_{K}})=\HM(mf')=\HM(f)$
 \end_inset
 
 .

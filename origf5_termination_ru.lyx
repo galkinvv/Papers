@@ -1880,7 +1880,7 @@ IsReducible
 \begin_inset Formula $i_{0}$
 \end_inset
 
- будет выполняться
+ будет выполняться 
 \begin_inset Formula $\forall i>i_{0}\,\exists j\leqslant i_{0}$
 \end_inset
 
@@ -5995,7 +5995,7 @@ name "cor:all-needed-for-terminaton"
 \end_inset
 
 : 
-\begin_inset Formula $\HM(m_{K}\cdot b_{i_{K}})=\HM(mf')=\HM(f_{1}')$
+\begin_inset Formula $\HM(m_{K}\cdot b_{i_{K}})=\HM(mf')=\HM(f)$
 \end_inset
 
 .

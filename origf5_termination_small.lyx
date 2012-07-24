@@ -847,18 +847,17 @@ key "TheF5Revised"
 \end_layout
 
 \begin_layout Standard
-Многочлен 
+Из неравенства на частных следует, что 
 \begin_inset Formula $f$
 \end_inset
 
- -- сигнатурный редуктор для 
+ -- сигнатурный редуктор 
 \begin_inset Formula $f'$
 \end_inset
 
 .
- Для доказательства остановки на основе результата предыдущей теоремы, нужно
- показать невозможность такой ситуации.
- Последующие главы работы посвящены этому.
+ Последующие главы посвящены доказательству невозможности такой ситуации,
+ приводящей к противоречию предположение об отсутствии остановки.
 \end_layout
 
 \begin_layout Subsection
@@ -1322,12 +1321,16 @@ key "F5C"
 
 -представлениях мы начнём с 
 \emph on
-порядка на элементах представления
+порядка 
 \emph default
- 
+
 \begin_inset Formula $\gtrdot_{1}$
 \end_inset
 
+
+\emph on
+ на элементах представления
+\emph default
 : будем говорить, что 
 \begin_inset Formula $c_{i}t_{i}\cdot b_{i}\gtrdot_{1}c_{j}t_{j}\cdot b_{j}$
 \end_inset
@@ -1362,7 +1365,11 @@ key "F5C"
 \begin_layout Definition
 Введём 
 \emph on
-порядок на 
+порядок 
+\begin_inset Formula $\gtrdot$
+\end_inset
+
+ на 
 \begin_inset Formula $G_{g}$
 \end_inset
 
@@ -1373,16 +1380,20 @@ key "F5C"
 \end_inset
 
  является 
-\begin_inset Formula $\lessdot$
+\emph on
+
+\begin_inset Formula $\gtrdot$
 \end_inset
 
--меньшим, чем 
+
+\emph default
+-большим, чем 
 \begin_inset Formula $\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
 , если их упорядоченные формы удовлетворяют лексикографически расширенному
  отношению 
-\begin_inset Formula $\lessdot_{1}$
+\begin_inset Formula $\gtrdot_{1}$
 \end_inset
 
 .
@@ -1454,8 +1465,8 @@ key "Baader.Nipkow98Term"
 
 \end_inset
 
- утверждает вполне упорядоченность конечных наборов упорядоченных лексикографиче
-ским расширением порядка их элементов.
+ утверждает вполне упорядоченность конечных наборов, упорядоченных лексикографич
+еским расширением порядка на их составляющих.
  Это применимо к представлениям -- наборам своих элементов.
 \end_layout
 
@@ -1481,11 +1492,11 @@ key "Baader.Nipkow98Term"
 \end_inset
 
 .
- Первым -- является сигнатурное представление 
+ Она начинается с сигнатурного представления 
 \begin_inset Formula $mh=m\cdot h$
 \end_inset
 
-, а последнее имеет вид 
+, и заканчивается представлением 
 \begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
@@ -1545,7 +1556,7 @@ key "Baader.Nipkow98Term"
 
 -меньшее представление.
  Схема построения такова: выбирается элемент 
-\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\begin_inset Formula $m_{Q}\cdot b_{i_{Q}}$
 \end_inset
 
  в представлении 
@@ -1553,7 +1564,7 @@ key "Baader.Nipkow98Term"
 \end_inset
 
 , где 
-\begin_inset Formula $K'$
+\begin_inset Formula $Q$
 \end_inset
 
  может как совпадать, так и отличаться от 
@@ -1562,7 +1573,7 @@ key "Baader.Nipkow98Term"
 
 .
  Далее строится некоторое представление 
-\begin_inset Formula $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
+\begin_inset Formula $m_{Q}b_{i_{Q}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
 \end_inset
 
  для этого элемента и показывается, что оно 
@@ -1570,7 +1581,7 @@ key "Baader.Nipkow98Term"
 \end_inset
 
 -меньше, чем представление 
-\begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
+\begin_inset Formula $m_{Q}b_{i_{Q}}=m_{Q}\cdot b_{i_{Q}}$
 \end_inset
 
 .
@@ -1579,15 +1590,15 @@ key "Baader.Nipkow98Term"
 
 \begin_layout Lemma
 Если элемент 
-\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\begin_inset Formula $m_{Q}\cdot b_{i_{Q}}$
 \end_inset
 
- сигнатурного представления 
+ представления 
 \begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
  имеет представление 
-\begin_inset Formula $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
+\begin_inset Formula $m_{Q}b_{i_{Q}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
 \end_inset
 
 , 
@@ -1595,7 +1606,7 @@ key "Baader.Nipkow98Term"
 \end_inset
 
 -меньшее, чем 
-\begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
+\begin_inset Formula $m_{Q}b_{i_{Q}}=m_{Q}\cdot b_{i_{Q}}$
 \end_inset
 
 , то 
@@ -1615,7 +1626,7 @@ key "Baader.Nipkow98Term"
 
 \begin_layout Proof
 Заменим элемент 
-\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\begin_inset Formula $m_{Q}\cdot b_{i_{Q}}$
 \end_inset
 
  в представлении 
@@ -1665,16 +1676,16 @@ key "F5C"
 \begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
- содержит элемент, не удовлетворяющий свойству 1, то найдётся элемент 
-\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+ содержит элемент 
+\begin_inset Formula $m_{K}\cdot b_{i_{K}}$
 \end_inset
 
- обладающий 
+, не удовлетворяющий свойству 1, то он обладает 
 \begin_inset Formula $G_{g}$
 \end_inset
 
 -представлением 
-\begin_inset Formula $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
+\begin_inset Formula $m_{K}b_{i_{K}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
 \end_inset
 
  
@@ -1682,14 +1693,14 @@ key "F5C"
 \end_inset
 
 -меньшим, чем представление 
-\begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
+\begin_inset Formula $m_{K}b_{i_{K}}=m_{K}\cdot b_{i_{K}}$
 \end_inset
 
 .
 \end_layout
 
 \begin_layout Proof
-Рассмотрим выражение, аналогичное упоминаемому в теореме 20 
+Рассмотрим выражение, аналогичное упоминаемому в Теореме 20 из 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "F5C"
@@ -1712,16 +1723,16 @@ key "F5C"
 \begin_inset Formula $\Sig(mh)\prec\Sig(g)$
 \end_inset
 
- содержит элемент, не удовлетворяющий свойству 2, то найдётся элемент 
-\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+ содержит элемент 
+\begin_inset Formula $m_{K}\cdot b_{i_{K}}$
 \end_inset
 
- обладающий 
+, не удовлетворяющий свойству 2, то он обладает 
 \begin_inset Formula $G_{g}$
 \end_inset
 
 -представлением 
-\begin_inset Formula $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
+\begin_inset Formula $m_{K}b_{i_{K}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
 \end_inset
 
  
@@ -1729,26 +1740,14 @@ key "F5C"
 \end_inset
 
 -меньшим, чем представление 
-\begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
+\begin_inset Formula $m_{K}b_{i_{K}}=m_{K}\cdot b_{i_{K}}$
 \end_inset
 
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
 .
 \end_layout
 
 \begin_layout Proof
-Рассмотрим выражение, аналогичное упоминаемому в Предложении 17 
+Рассмотрим выражение, аналогичное упоминаемому в Предложении 17 из 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "F5C"
@@ -1767,13 +1766,13 @@ key "F5C"
 \begin_inset Formula $\Sig(mh)\prec\Sig(g)$
 \end_inset
 
- удовлетворяют свойствам 1 и 2, но один из них не удовлетворяет свойству
- 3, то найдётся элемент 
-\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+ удовлетворяют свойствам 1 и 2, но хотя бы один из них не удовлетворяет
+ свойству 3, то найдётся элемент 
+\begin_inset Formula $m_{Q}\cdot b_{i_{Q}}$
 \end_inset
 
 , имеющий представление 
-\begin_inset Formula $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
+\begin_inset Formula $m_{Q}b_{i_{Q}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
 \end_inset
 
  
@@ -1781,7 +1780,7 @@ key "F5C"
 \end_inset
 
 -меньшее, чем представление 
-\begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
+\begin_inset Formula $m_{Q}b_{i_{Q}}=m_{Q}\cdot b_{i_{Q}}$
 \end_inset
 
 .
@@ -1893,7 +1892,7 @@ reference "thm:exist-smaller-signature-safe-representation"
 
 \end_inset
 
- до тех пор пока текущее представление не будет удовлетворять свойствам
+ до тех пор, пока текущее представление не будет удовлетворять свойствам
  1-3.
  Конечность процесса гарантируется вполне упорядоченностью представлений
  по 
@@ -1927,7 +1926,7 @@ name "cor:all-needed-for-terminaton"
 \begin_inset Formula $\Sig(f')\frac{\HM(f)}{\HM(f')}\prec\Sig(g)$
 \end_inset
 
- то 
+, то 
 \begin_inset Formula $G_{g}$
 \end_inset
 
@@ -1971,7 +1970,7 @@ name "cor:all-needed-for-terminaton"
 \end_inset
 
 : 
-\begin_inset Formula $\HM(m_{K}\cdot b_{i_{K}})=\HM(mf')=\HM(f_{1}')$
+\begin_inset Formula $\HM(m_{K}\cdot b_{i_{K}})=\HM(mf')=\HM(f)$
 \end_inset
 
 .
@@ -2349,7 +2348,7 @@ reference "thm:always-exist-ok-reductor"
 
 \begin_layout Standard
 Данная работа показывает, что исходный алгоритм F5 завершается на любых
- однородных входных данных, не вводя промежуточных алгоритмов.
+ однородных входных данных, не ссылаясь на остановку других алгоритмов.
  При этом не даётся никакого ограничения на количество операций.
  Простейшее доказательство остановки алгоритма Бухбергера основано на свойстве
  Нётеровости и тоже не даёт такого ограничения.
