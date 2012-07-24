@@ -401,7 +401,7 @@ key "F5C"
 \end_layout
 
 \begin_layout Standard
-Работа оформлена как альтернативное доказательство остановки для алгоритма,
+Работа оформлена как альтернативное доказательство остановки алгоритма,
  описанного в статье 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -411,8 +411,47 @@ key "FaugereF5"
 
 , доступной на сайте её автора, поэтому читатель предполагается хорошо знакомым
  с ней.
- Большинство используемой терминологии, включая названия этапов алгоритма,
- взято оттуда.
+ Большинство используемой терминологии, включая названия процедур, взято
+ оттуда.
+ Термин ``signature-safe'' переводится как 
+\begin_inset Quotes fld
+\end_inset
+
+сигнатурный
+\begin_inset Quotes frd
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Definition
+Редукция отмеченного многочлена 
+\begin_inset Formula $r_{k}$
+\end_inset
+
+ по отмеченному многочлену 
+\begin_inset Formula $r_{m}$
+\end_inset
+
+ называется
+\emph on
+ сигнатурной редукцией,
+\emph default
+ если 
+\begin_inset Formula $\Sig(r_{k})\succ t\cdot\Sig(r_{m})$
+\end_inset
+
+, где 
+\begin_inset Formula $t=\frac{\HM(r_{k})}{\HM(r_{m})}$
+\end_inset
+
+ -- моном, на который умножается редуктор.
+ Редуктор, соответствующий такой редукции называется 
+\emph on
+сигнатурным редуктором
+\emph default
+.
+ 
 \end_layout
 
 \begin_layout Subsection
