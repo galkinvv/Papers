@@ -4,59 +4,11 @@
 \begin_header
 \textclass article
 \begin_preamble
-#endif
-\usepackage{babel}
 \newcommand{\Sig}{\mathcal{S}}
 \newcommand{\HM}{\mathrm{HM}}
 \newcommand{\totaldeg}{\mathrm{deg}}
 \newcommand{\poly}{\mathrm{poly}}
 \newcommand{\sigidx}{\mathrm{index}}
-
-#ifdef VESTNIK
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{allerree}
-
-\def\wdeb{0}
-
-\newcounter{countergvtheorems}
-
-\newenvironment{fact}
-{\refstepcounter{countergvtheorems}\begin{theorem}{Факт \arabic{countergvtheorems}.}}
-{\end{theorem}}
-
-\newenvironment{claim}
-{\refstepcounter{countergvtheorems}\begin{theorem}{Утверждение \arabic{countergvtheorems}.}}
-{\end{theorem}}
-
-\newenvironment{lem}
-{\refstepcounter{countergvtheorems}\begin{theorem}{Лемма  \arabic{countergvtheorems}.}}
-{\end{theorem}}
-
-\newenvironment{thm}
-{\refstepcounter{countergvtheorems}\begin{theorem}{Теорема \arabic{countergvtheorems}.}}
-{\end{theorem}}
-
-\newenvironment{cor}
-{\refstepcounter{countergvtheorems}\begin{theorem}{Следствие \arabic{countergvtheorems}.}}
-{\end{theorem}}
-
-
-\newenvironment{defn}
-{\par \refstepcounter{countergvtheorems} {\bf Определение \arabic{countergvtheorems}.}}
-{\par}
-
-\newenvironment{example}
-{\par \refstepcounter{countergvtheorems} {\bf Пример \arabic{countergvtheorems}.}}
-{\par}
-
-#else
-\newcommand{\iabstract}[4]{
-\begin{abstract}
-#3
-\footnote{\emph{Keywords:} #4}
-\end{abstract}
-}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -69,7 +21,7 @@ figs-within-sections
 
 \end_local_layout
 \language russian
-\language_package #ifndef VESTNIK
+\language_package default
 \inputencoding cp1251
 \fontencoding global
 \font_roman default
@@ -132,109 +84,6 @@ figs-within-sections
 
 \begin_body
 
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-#endif 
-\end_layout
-
-\begin_layout Plain Layout
-
-#ifdef VESTNIK
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{document}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-cleanbegin 
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-def
-\backslash
-udk{512}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-ltitle{ОСТАНОВКА АЛГОРИТМА F5} {В.
-\backslash
-,В.~Галкин
-\backslash
-footnote[1]{{
-\backslash
-it Галкин Василий Витальевич} --- асп.
- каф.
- алгебры мех.-мат.
- ф-та МГУ, e-mail: galkin-vv@yandex.ru.}}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-iabstract
-\end_layout
-
-\begin_layout Plain Layout
-
-{Алгоритм F5, предложенный Фожером, принимает в качестве входных данных
- произвольное множество однородных многочленов и корректность результата
- доказана для всех случаев, когда алгоритм останавливается.
- Однако остановка алгоритма за конечное число шагов доказана лишь для случая,
- когда на вход алгоритма подаётся регулярная последовательность многочленов.
- В этой работе показано, что алгоритм останавливается на любых входных данных
- без какого-либо использования регулярности}
-\end_layout
-
-\begin_layout Plain Layout
-
-{базис Грёбнера, алгоритм F5, доказательство остановки}
-\end_layout
-
-\begin_layout Plain Layout
-
-{The original F5 algorithm introduced by Faug{
-\backslash
-`e}re is formulated for any homogeneous polynomial set input.
- The correctness of output is shown for any input that terminates the algorithm,
- but the termination itself is proved only for the case of input being regular
- polynomial sequence.
- This article shows that algorithm correctly terminates for any homogeneous
- input without any reference to regularity} {Groebner basis, F5 algorithm,
- termination proof}
-\end_layout
-
-\begin_layout Plain Layout
-
-#else
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Title
 Остановка Алгоритма F5
 \end_layout
@@ -253,8 +102,8 @@ galkin-vv@ya.ru
 
 \begin_layout Abstract
 Алгоритм F5, предложенный Фожером, принимает в качестве входных данных произволь
-ное множество однородных многочленов и корректность результата доказана
- для всех случаев, когда алгоритм останавливается.
+ное множество однородных многочленов.
+ Его корректность доказана при условии остановки алгоритма.
  Однако остановка алгоритма за конечное число шагов доказана лишь для случая,
  когда на вход алгоритма подаётся регулярная последовательность многочленов.
  В этой работе показано, что алгоритм останавливается на любых входных данных
@@ -269,45 +118,46 @@ galkin-vv@ya.ru
  Существование такой пары приводит к противоречию.
 \end_layout
 
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-#endif
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Section
 Введение
 \end_layout
 
 \begin_layout Standard
 Алгоритм Фожера F5 является эффективным алгоритмом вычисления базисов Грёбнера,
- но обладает рядом проблем, одна из которых -- отсутствие доказательства
- остановки для всех входных данных.
- Первоисточник 
+ но обладает рядом проблем, связанных с его обоснованием.
+ Корректность его работы при условии остановки показана в первоисточнике
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "FaugereF5"
 
 \end_inset
 
- и детальные исследования в 
+ и в работах 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GermanF5Proof_ru,F5InBBStyle,NewF5Proof"
+
+\end_inset
+
+, предложивших другие способы её доказательства.
+ Но остановка алгоритма, как в 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5"
+
+\end_inset
+
+, так и в детальных исследованиях 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "F5-revisited"
 
 \end_inset
 
- показывают остановку алгоритма только для случая отсутствия редукций к
- нулю, что с практической точки зрения означает доказательство для тех случаев,
- когда входное множество многочленов представлено регулярной последовательностью.
+, показана только для случая отсутствия редукций к нулю, что с практической
+ точки зрения означает доказательство для тех случаев, когда входное множество
+ многочленов представлено регулярной последовательностью.
  Но для большинства входных последовательностей их регулярность неизвестна,
  и доказанного факта оказывается недостаточно для утверждения остановки
  реализации алгоритма на конкретных входных данных.
@@ -330,7 +180,7 @@ key "Modifying-for-termination,Ars05applicationsdes,Gash:2008:ECG,Hashemi-ExtF5,
 \begin_layout Standard
 Другой подход состоит в доказательстве остановки семейства алгоритмов, основанны
 х на идеях F5, с последующей попыткой переформулировать F5 таким образом,
- чтоб он являлся представителем этого семейства.
+ чтобы он являлся представителем этого семейства.
  Основная проблема этого подхода появляется в процессе переформулировки:
  описание F5 в других терминах может привести к незаметному внесению различий
  в поведение алгоритма, которые трудно заметить, но которые требуют дополнительн
@@ -382,7 +232,7 @@ status open
 
  индексами, которые в F5 используются неявно в операторе нормальной формы
  и за счёт этого не подвергаются проверки критериев.
- Предположительно, эти алгоритмы могут быть изменены таким образом, чтоб
+ Предположительно, эти алгоритмы могут быть изменены таким образом, чтобы
  в точности повторять поведение алгоритма F5, а доказательство остановки
  может быть перенесено на изменённые версии.
  Однако подход с алгоритмами, эквивалентными F5 имеет недостаток: он усложняет
@@ -393,7 +243,7 @@ status open
 \begin_layout Standard
 Подход к доказательству остановки, предлагаемый в данной работе, применяется
  к F5 без каких-либо модификаций.
- Первый шаг доказательства основан на предлагаемой ниже идеи цепей S-пар.
+ Первый шаг доказательства основан на предлагаемой ниже идее цепей S-пар.
  Второй шаг основывается на методе, использованном в теореме 21 работы 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1710,11 +1560,11 @@ TopReduction
 \end_inset
 
  и некоторого другого многочлена меньшей сигнатуры.
- то есть 
+ То есть 
 \begin_inset Formula $\Sig(r_{k_{n}})=\overline{u_{k_{n}}}\Sig(r_{k_{n-1}})$
 \end_inset
 
- и 
+, откуда вытекает делимость: 
 \begin_inset Formula 
 \begin{equation}
 \Sig(r_{k_{n-1}})|\Sig(r_{k_{n}}).\label{eq:s-pair-chain-def}
@@ -1868,7 +1718,7 @@ IsReducible
 
  может быть цепью S-пар длины 2.
  Но идеал 
-\begin_inset Formula $\left(v_{i}\right)$
+\begin_inset Formula $\left(v_{1},\ldots,v_{i},\ldots\right)$
 \end_inset
 
  в 
@@ -1967,7 +1817,7 @@ IsReducible
 \end_deeper
 \begin_layout Proof
 Если алгоритм не останавливается, то многочлен входного множества 
-\begin_inset Formula $r_{1}=(f_{1},1F_{1})$
+\begin_inset Formula $r_{1}=(1\mathbf{F}_{1},f_{1})$
 \end_inset
 
  является генератором цепи S-пар, поскольку каждый многочлен 
@@ -2436,7 +2286,7 @@ TopReduction
 IsReducible
 \family default
 .
- Идея дальнейших рассуждений состоит в том, чтоб показать что в этом случае
+ Идея дальнейших рассуждений состоит в том, чтобы показать что в этом случае
  может быть найден другой сигнатурный редуктор 
 \begin_inset Formula $f$
 \end_inset
@@ -6556,76 +6406,10 @@ reference "thm:f_g_3_props"
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-#ifdef VESTNIK
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-newpage
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-spisoklit
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-small
-\end_layout
-
-\begin_layout Plain Layout
-
-#endif
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 bibfiles "f5_references_1251"
 options "vestnik"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-#ifdef VESTNIK
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-lend
-\end_layout
-
-\begin_layout Plain Layout
-
-#endif
-\end_layout
 
 \end_inset
 

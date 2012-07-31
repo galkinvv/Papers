@@ -1,5 +1,11 @@
 \bibitem{FaugereF5}
 \authorsit{Faug{\`e}re~J.~C.} {A new efficient algorithm for computing Gr{\"o}bner bases without reduction to zero (F5)}~// {Proceedings of the 2002 international symposium on Symbolic and algebraic computation}. 2002. 75--83.
+\bibitem{GermanF5Proof_ru}
+\authorsit{{Герман}~О.~Н.} {Доказательство критерия Фожера для алгоритма F5}~// Матем. заметки. 2010. {\bf88}, \No~4.  502--510.
+\bibitem{F5InBBStyle}
+\authorsit{Sun~Y., Wang~D.} {The F5 algorithm in Buchberger{\rq}s style}~// Journal of Systems Science and Complexity. 2011. {\bf24}.  1218--1231.
+\bibitem{NewF5Proof}
+\authorsit{{Sun}~Y., {Wang}~D.} {A New Proof for the Correctness of F5 (F5-Like) Algorithm}~// ArXiv e-prints. 2010. {\bf1004}, \No 0084.
 \bibitem{F5-revisited}
 \authorsit{Stegers~T.} {Faugere's F5 Algorithm Revisited.}~// IACR Cryptology ePrint Archive. 2006. {\bf404}.
 \bibitem{Modifying-for-termination}

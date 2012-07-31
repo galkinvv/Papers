@@ -77,20 +77,19 @@ origf5_termination_small.tex: origf5_termination_small.lyx Makefile
 	lyx -e pdflatex $<
 f5_references_1251.bib: f5_references.bib Makefile
 	iconv -t cp1251 $< > $@
-origf5_termination_full.tex: origf5_termination_ru.tex Makefile
-	cpp -traditional-cpp -P $< > $@
 origf5_termination_vestnik.tex: origf5_termination_small.tex Makefile
 	cpp -traditional-cpp -P -DVESTNIK $< | sed \
 	-e 's/\\label{eq:spair-chain}/\\tag{1}/' \
 	-e 's/\\eqref{eq:spair-chain}/(1)/' \
 	-e 's/{proof}/{proofwithpar}/' \
 	>$@
-origf5_termination_full.pdf: origf5_termination_full.tex vestnik.bst f5_references_1251.bib
-	rm -f origf5_termination_full.aux origf5_termination_full.bbl
+origf5_termination_full.pdf: origf5_termination_ru.tex vestnik.bst f5_references_1251.bib
+	rm -f origf5_termination_ru.aux origf5_termination_ru.bbl
 	pdflatex $<
-	bibtex8 -B -c gost/cp1251.csf origf5_termination_full || true
+	bibtex8 -B -c gost/cp1251.csf origf5_termination_ru || true
 	pdflatex $<
 	pdflatex $<
+	mv origf5_termination_ru.pdf $@
 define PYVESTNIKBIB
 import sys,re
 cites=[]
@@ -99,7 +98,7 @@ for bibline in open(sys.argv[2]):
 	m = re.search("bibitem{([^}]+)}",bibline)
 	if m: cites.append(m.group(1))
 	else: bibl.append(re.sub("authorsit","wref{"+str(len(bibl)+1)+"}",bibline))
-replacer=lambda match: "{[}"+",".join(sorted(str(1+cites.index(book)) for book in match.group(1).split(",")))+"{]}"
+replacer=lambda match: "{[}"+",".join((str(num) for num in sorted(1+cites.index(book) for book in match.group(1).split(","))))+"{]}"
 #sys.stdout.write(str(cites)+str(bibl))
 with_cites=re.sub(r"\\cite{([^}]+)}",replacer,open(sys.argv[1]).read())
 with_bibl=with_cites.replace(r"""
@@ -123,6 +122,8 @@ origf5_termination_vestnik.pdf: origf5_termination_vestnik.tex vestnik.bst f5_re
 	pdflatex $<.pyvestnikbib.tex
 	pdflatex $<.pyvestnikbib.tex
 	mv $<.pyvestnikbib.pdf $@
+	cp $<.pyvestnikbib.tex origf5_termination_for_publish.tex
+	cp $@ origf5_termination_for_publish.pdf
 view-origf5_termination_full: origf5_termination_full.pdf
 	make clean-logs
 	xdg-open $^
