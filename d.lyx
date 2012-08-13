@@ -1,0 +1,225 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\newcommand{\Sig}{\mathcal{S}}
+\newcommand{\HM}{\mathrm{HM}}
+\newcommand{\totaldeg}{\mathrm{deg}}
+\newcommand{\poly}{\mathrm{poly}}
+\newcommand{\sigidx}{\mathrm{index}}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\begin_local_layout
+
+\end_local_layout
+\language russian
+\language_package default
+\inputencoding cp1251
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command bibtex8
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen true
+\pdf_bookmarksopenlevel 2
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language french
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Алгоритмы вычисления Базисов Грёбнера, основанные на сигнатурах
+\end_layout
+
+\begin_layout Author
+Василий Галкин
+\end_layout
+
+\begin_layout Address
+МГУ
+\end_layout
+
+\begin_layout Address
+galkin-vv@ya.ru
+\end_layout
+
+\begin_layout Abstract
+Основное направление данной работы -- построение эффективного способа применения
+ алгоритмов, основанных на сигнатурах, для решения полиномиальных уравнений.
+ В работе показана остановка алгоритм F5, предложенного Фожером, преложена
+ его модификация, значительно упрощающая реализацию и теоретическое обоснование
+ и показано, как данная модификация может эффективно применяться для решения
+ полиномиальных систем уравнений в интервальной арифметике путём ввода дополните
+льных вычислений над конечными полями.
+\end_layout
+
+\begin_layout Standard
+Рассмотрим задачу нахождения базиса Грёбнера с точки зрения порядка degrevlex(
+\begin_inset Formula $t,x,y,z$
+\end_inset
+
+) для идеала, заданного многочленами с параметром 
+\begin_inset Formula $a$
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+g_{1}=x^{5}+x^{3}+x^{2}+ax
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+g_{2}=x^{4}y+xy^{2}+y
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+g_{3}=x^{4}z+z^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Применим алгоритм Бухбергера:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+g_{4}=S(g_{1},g_{2})=x^{3}y-x^{2}y^{2}+x^{2}y+(a-1)xy
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+g_{5}=S(g_{1},g_{3})=x^{3}z+x^{2}z-xz^{2}+axz
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+g_{6}=S(g_{2},g_{3})=xy^{2}z-yz^{2}+yz
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+S(g_{4},g_{5})=-x^{2}y^{2}z+xz^{2}y+((a-1)-a)xyz
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "f5_references_1251"
+options "vestnik"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
