@@ -112,17 +112,21 @@ galkin-vv@ya.ru
 
 \begin_layout Standard
 Рассмотрим задачу нахождения базиса Грёбнера с точки зрения порядка degrevlex(
-\begin_inset Formula $t,x,y,z$
+\begin_inset Formula $x,y,z$
 \end_inset
 
-) для идеала, заданного многочленами с параметром 
+) для идеала, заданного многочленами с параметрами 
 \begin_inset Formula $a$
+\end_inset
+
+ и 
+\begin_inset Formula $b$
 \end_inset
 
 : 
 \begin_inset Formula 
 \[
-g_{1}=x^{5}+x^{3}+x^{2}+ax
+g_{1}=y^{2}z+z^{2}+az
 \]
 
 \end_inset
@@ -133,7 +137,7 @@ g_{1}=x^{5}+x^{3}+x^{2}+ax
 \begin_layout Standard
 \begin_inset Formula 
 \[
-g_{2}=x^{4}y+xy^{2}+y
+g_{2}=xyz
 \]
 
 \end_inset
@@ -144,17 +148,7 @@ g_{2}=x^{4}y+xy^{2}+y
 \begin_layout Standard
 \begin_inset Formula 
 \[
-g_{3}=x^{4}z+z^{2}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
+g_{3}=xy^{2}+bx+1
 \]
 
 \end_inset
@@ -169,7 +163,7 @@ g_{3}=x^{4}z+z^{2}
 \begin_layout Standard
 \begin_inset Formula 
 \[
-g_{4}=S(g_{1},g_{2})=x^{3}y-x^{2}y^{2}+x^{2}y+(a-1)xy
+g_{4}=S(g_{1},g_{2})=xz^{2}+axz
 \]
 
 \end_inset
@@ -180,18 +174,30 @@ g_{4}=S(g_{1},g_{2})=x^{3}y-x^{2}y^{2}+x^{2}y+(a-1)xy
 \begin_layout Standard
 \begin_inset Formula 
 \[
-g_{5}=S(g_{1},g_{3})=x^{3}z+x^{2}z-xz^{2}+axz
+g_{5}=S(g_{1},g_{3})=-xz^{2}+(b-a)xz+z
 \]
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+что после редукции по 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $g_{4}$
+\end_inset
+
+ даёт:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
-g_{6}=S(g_{2},g_{3})=xy^{2}z-yz^{2}+yz
+(1-1)xz^{2}+(a+(b-a))xz+z=(a+(b-a))xz+z
 \]
 
 \end_inset
@@ -200,17 +206,29 @@ g_{6}=S(g_{2},g_{3})=xy^{2}z-yz^{2}+yz
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
-\[
-S(g_{4},g_{5})=-x^{2}y^{2}z+xz^{2}y+((a-1)-a)xyz
-\]
-
+При вычислениях с ограниченной точностью или в интервальной арифметике выражения
+ вида 
+\begin_inset Formula $(a+(b-a))xz+z$
 \end_inset
 
+ с фиксированным значением параметра 
+\begin_inset Formula $a$
+\end_inset
 
-\end_layout
+ может произойти потеря точности в ведущем коэффициенте многочлена, особенно
+ если абсолютная точность значения 
+\begin_inset Formula $a$
+\end_inset
 
-\begin_layout Standard
+ много меньше абсолютной точности значения значения 
+\begin_inset Formula $b$
+\end_inset
+
+.
+ Если же проводить вычисление базиса символически, и подставить конкретные
+ значения параметров в результат -- точность полученного результата будет
+ больше.
+ 
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 bibfiles "f5_references_1251"
