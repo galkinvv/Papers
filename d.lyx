@@ -106,8 +106,169 @@ galkin-vv@ya.ru
  В работе показана остановка алгоритм F5, предложенного Фожером, преложена
  его модификация, значительно упрощающая реализацию и теоретическое обоснование
  и показано, как данная модификация может эффективно применяться для решения
- полиномиальных систем уравнений в интервальной арифметике путём ввода дополните
-льных вычислений над конечными полями.
+ полиномиальных систем уравнений в интервальной арифметике путём ввода новых
+ переменных и дополнительных вычислений над конечными полями.
+\end_layout
+
+\begin_layout Part
+Вычисление базисов Грёбнера
+\end_layout
+
+\begin_layout Standard
+[определения, свойства]
+\end_layout
+
+\begin_layout Section
+Алгоритм Бухбергера
+\end_layout
+
+\begin_layout Standard
+[определения S-пар, простейший вариант]
+\end_layout
+
+\begin_layout Section
+Алгоритмы, основанные на сигнатурах
+\end_layout
+
+\begin_layout Standard
+[Определения сигнатур, правил редукции, S-представлений]
+\end_layout
+
+\begin_layout Subsection
+Алгоритм F5 в формулировке Фожера
+\end_layout
+
+\begin_layout Standard
+[псевдокод в форме Фожера]
+\end_layout
+
+\begin_layout Subsection
+Доказательство остановки
+\end_layout
+
+\begin_layout Standard
+[работа 
+\begin_inset Quotes fld
+\end_inset
+
+Остановка алгоритма F5
+\begin_inset Quotes frd
+\end_inset
+
+]
+\end_layout
+
+\begin_layout Subsection
+Упрощение F5
+\end_layout
+
+\begin_layout Standard
+[доказательство единственности выбираемого редуктора]
+\end_layout
+
+\begin_layout Standard
+[отсуствие добавления S-пар до окончания редукции - краткое объяснение,
+ и ссылка на L.Huang (перепроверить правильность)]
+\end_layout
+
+\begin_layout Standard
+[переформулировка критериев в стиле, близком к SSG]
+\end_layout
+
+\begin_layout Standard
+[Формулировка списка фактов, натолкнувших на идею SSG]
+\end_layout
+
+\begin_layout Section
+Простой алгоритм, основанный на сигнатурах
+\end_layout
+
+\begin_layout Standard
+[работа 
+\begin_inset Quotes fld
+\end_inset
+
+Простой итеративный алгоритм вычисления базисов Грёбнера, основанный на
+ сигнатурах
+\begin_inset Quotes frd
+\end_inset
+
+]
+\end_layout
+
+\begin_layout Subsection
+Вариант без итераций
+\end_layout
+
+\begin_layout Standard
+[Построение варианта без итераций и доказательство корректности работы с
+ произвольным порядком на сигнатурах]
+\end_layout
+
+\begin_layout Subsection
+Взвешенные порядки
+\end_layout
+
+\begin_layout Standard
+[Общее определение, порядок Schreyer]
+\end_layout
+
+\begin_layout Part
+Решение систем полиномиальных уравнений
+\end_layout
+
+\begin_layout Standard
+[Метод использующий, матрицу линейного оператора и базис краёв]
+\end_layout
+
+\begin_layout Section
+Задачи с приближёнными входными данными
+\end_layout
+
+\begin_layout Standard
+[Символический метод, приближённая арифметика, интервальная арифметика]
+\end_layout
+
+\begin_layout Section
+Проблемы применения алгоритмов Базиса Грёбнера в интервальной арифметике
+\end_layout
+
+\begin_layout Standard
+[Влияние нулей на процесс вычисления]
+\end_layout
+
+\begin_layout Subsection
+Символические нули
+\end_layout
+
+\begin_layout Standard
+[Пример того, когда ноль при любом значении параметра]
+\end_layout
+
+\begin_layout Subsection
+Приближённые нули, порождаемые входными данными
+\end_layout
+
+\begin_layout Standard
+[Пример того, когда ноль выражает существующую зависимость во входных данных.
+ Примеры устранимой (
+\begin_inset Formula $\varepsilon x+y+1$
+\end_inset
+
+) и неустранимой (
+\begin_inset Formula $\varepsilon x+1$
+\end_inset
+
+) зависимости.
+ Хорошо бы с определениями, если удастся сформулировать]
+\end_layout
+
+\begin_layout Subsection
+Приближённые нули, порождаемые вычислениями
+\end_layout
+
+\begin_layout Standard
+[Пример - во многом готов, адаптировать к SSG-Shreyer]
 \end_layout
 
 \begin_layout Standard
@@ -184,10 +345,6 @@ g_{5}=S(g_{1},g_{3})=-xz^{2}+(b-a)xz+z
 
 \begin_layout Standard
 что после редукции по 
-\begin_inset Formula $ $
-\end_inset
-
-
 \begin_inset Formula $g_{4}$
 \end_inset
 
@@ -228,7 +385,51 @@ g_{5}=S(g_{1},g_{3})=-xz^{2}+(b-a)xz+z
  Если же проводить вычисление базиса символически, и подставить конкретные
  значения параметров в результат -- точность полученного результата будет
  больше.
- 
+\end_layout
+
+\begin_layout Section
+Вычисления для борьбы с нулями
+\end_layout
+
+\begin_layout Standard
+[Символические вычисления, вычисления над конечными полями с полной полиномиальн
+ой сигнатурой, теорема из дипломной работы]
+\end_layout
+
+\begin_layout Subsection
+Борьба с устранимыми нулями
+\end_layout
+
+\begin_layout Standard
+[Идея Фожера о замене переменных, применение расширенного базиса к задаче
+ решения системы; недостатки используемого Фожером подхода с перезапуском
+ алгоритма при каждом обнаружении нуля]
+\end_layout
+
+\begin_layout Subsection
+Использование взвешенного порядка
+\end_layout
+
+\begin_layout Standard
+[Модификация алгоритма SSG для борьбы с устранимыми нулями путём добавления
+ многочленов 
+\begin_inset Formula $m_{i}-\varepsilon_{i}$
+\end_inset
+
+ с правильными сигнатурными весами]
+\end_layout
+
+\begin_layout Section
+Заключение
+\end_layout
+
+\begin_layout Standard
+[Построен алгоритм, позволяющий численно решать системы полиномиальных уравнений
+, комбинирующий один из самых эффективных методов вычисления Базисов Грёбнера
+ с методиками численной устойчивости]
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 bibfiles "f5_references_1251"
