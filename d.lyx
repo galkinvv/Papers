@@ -374,6 +374,67 @@ t_{1}\prec t_{2}\Longrightarrow t_{1}t_{3}\prec t_{2}t_{3}
 \end_layout
 
 \begin_layout Definition
+Ненулевой многочлен 
+\begin_inset Formula $g$
+\end_inset
+
+ 
+\emph on
+редуцирует
+\emph default
+ ненулевой многочлен 
+\begin_inset Formula $f$
+\end_inset
+
+, если 
+\begin_inset Formula $\HM(g)|\HM(f)$
+\end_inset
+
+.
+ 
+\emph on
+Результатом редукции
+\emph default
+ называется многочлен 
+\begin_inset Formula $h=f-\frac{\HC(f)\HM(f)}{\HC(g)\HM(g)}g$
+\end_inset
+
+.
+ Он может быть нулевой и для него выполняется 
+\begin_inset Formula $\HM(h)\prec_{0}\HM(f)$
+\end_inset
+
+.
+ Конечная или бесконечная последовательность 
+\begin_inset Formula $\left\{ f,f_{1},f_{2},...\right\} $
+\end_inset
+
+ называется 
+\emph on
+последовательностью редукций 
+\emph default
+по элементам 
+\begin_inset Formula $G\subset\mathcal{P}$
+\end_inset
+
+ многочлена 
+\begin_inset Formula $f$
+\end_inset
+
+, если каждый следующий элемент есть результат редукции предыдущего по некотором
+у многочлену из 
+\begin_inset Formula $G$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Определение редукции зависит от порядка.
+ На его основе дадим самое простое определение базиса Грёбнера:
+\end_layout
+
+\begin_layout Definition
 \begin_inset CommandInset label
 LatexCommand label
 name "gb-def-1"
@@ -400,18 +461,58 @@ name "gb-def-1"
 \begin_inset Formula $\prec$
 \end_inset
 
-, если
-\end_layout
-
-\begin_layout Definition
-\begin_inset Formula 
-\[
-\forall f\in I,f\neq0\exists g\in G:\HM(g)|\HM(f).
-\]
-
+, если 
+\begin_inset Formula $\forall f\in I,f\neq0\exists g\in G$
 \end_inset
 
+, редуцирующий 
+\begin_inset Formula $f$
+\end_inset
 
+.
+\end_layout
+
+\begin_layout Lemma
+Если множество 
+\begin_inset Formula $G\subset I$
+\end_inset
+
+ является базисом Грёбнера идеала 
+\begin_inset Formula $I$
+\end_inset
+
+, то для 
+\begin_inset Formula $\forall f\in I$
+\end_inset
+
+ есть конечная последовательность редукций по элементам 
+\begin_inset Formula $G$
+\end_inset
+
+, начинающаяся с 
+\begin_inset Formula $f$
+\end_inset
+
+ и заканчивающаяся нулём.
+\end_layout
+
+\begin_layout Proof
+Она может быть получена последовательным проведением редукций до тех пор,
+ пока не будет получен нулевой многочлен.
+ Конечность этой операции гарантируется тем, что каждая редукция уменьшает
+ 
+\begin_inset Formula $\HM$
+\end_inset
+
+ по 
+\begin_inset Formula $\prec_{0}$
+\end_inset
+
+, а множество 
+\begin_inset Formula $\mathbb{T}_{0}$
+\end_inset
+
+ вполне упорядочено.
 \end_layout
 
 \begin_layout Standard
@@ -693,83 +794,136 @@ reference "gb-def-2"
 \end_layout
 
 \begin_layout Proof
-я
+Если множество 
+\begin_inset Formula $G$
+\end_inset
+
+ удовлетворяет второму определению, то для 
+\begin_inset Formula $\forall f\in I$
+\end_inset
+
+ один из элементов степенного представления может быть взят в качестве редуцирую
+щего.
 \end_layout
 
-\begin_layout Standard
-В кольце многочленов может быть поставлена задача вычисления базиса Грёбнера
- для произвольного идеала 
-\begin_inset Formula $\left(f_{1},\dots,f_{l}\right)\subset\mathcal{P}$
+\begin_layout Proof
+Если множество 
+\begin_inset Formula $G$
 \end_inset
 
-.
- Один из способов её решения инкрементальный: последовательно вычисляются
- базисы идеалов 
-\begin_inset Formula $\left(f_{1},\dots,f_{i}\right),i=2\dots l$
+ удовлетворяет первому определению, то для 
+\begin_inset Formula $\forall f\in I$
 \end_inset
 
- на основе уже вычисленного для идеала 
-\begin_inset Formula $\left(f_{1},\dots,f_{i-1}\right)$
-\end_inset
-
- базиса 
-\begin_inset Formula $R_{i-1}$
-\end_inset
-
- и многочлена 
-\begin_inset Formula $f_{i}$
-\end_inset
-
-.
- Представляемый алгоритм позволяет выполнить шаг такого вычисления.
- Таким образом, входные данные для алгоритма -- это некоторый многочлен
- 
+ степенное представление может быть получено как последовательность вычитаемых
+ элементов в последовательности редукций 
 \begin_inset Formula $f$
 \end_inset
 
- и множество многочленов, обозначаемое 
-\begin_inset Formula $\left\{ g_{1},\dots,g_{m}\right\} $
-\end_inset
-
-, являющееся базисом Грёбнера идеала 
-\begin_inset Formula $I_{0}=\left(g_{1},\dots,g_{m}\right)$
+ к нулю по элементам 
+\begin_inset Formula $G$
 \end_inset
 
 .
- В качестве результата своей работы алгоритм должен построить множество
- многочленов 
-\begin_inset Formula $R$
-\end_inset
-
-, являющееся базисом Грёбнера идеала 
-\begin_inset Formula $I=\left(g_{1},\dots,g_{m},f\right)$
-\end_inset
-
-.
- Поскольку случаи 
-\begin_inset Formula $f=0\Rightarrow I=I_{0}$
-\end_inset
-
- и 
-\begin_inset Formula $\exists i\, g_{i}\in\mathcal{K}\Rightarrow I=\mathcal{P}$
-\end_inset
-
- не представляют интереса, далее предполагается что 
-\begin_inset Formula $f\neq0,\forall i\, g_{i}\notin\mathcal{K}.$
-\end_inset
-
- Заметим, что в отличии от алгоритма F5, описанного в 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "FaugereF5"
-
-\end_inset
-
-, однородность многочленов не требуется.
 \end_layout
 
 \begin_layout Standard
-[определения, свойства]
+При зафиксированных кольце многочленов и порядке на мономах для постановки
+ задачи вычисления базисов Грёбнера необходимо задать идеал 
+\begin_inset Formula $I\subset\mathcal{P}$
+\end_inset
+
+.
+ Все алгоритмы, описанные в этой работе подразумевают, что идеал задаётся
+ конечным набором своих порождающих: 
+\begin_inset Formula $I=\left(F\right)=\left(f_{1},\ldots,f_{m}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Все алгоритмы вычисления базиса Грёбнера по заданным таким образом входным
+ данным могут быть разделены на 2 больших группы: инкрементальные и одноэтапные.
+ Инкрементальные алгоритмы состоят из 
+\begin_inset Formula $m-1$
+\end_inset
+
+ шагов, причём 
+\begin_inset Formula $i$
+\end_inset
+
+-й шаг строит базис Грёбнера 
+\begin_inset Formula $G_{i+1}$
+\end_inset
+
+ идеала 
+\begin_inset Formula $\left(f_{1},\ldots,f_{i+1}\right)$
+\end_inset
+
+, принимая на вход многочлен 
+\begin_inset Formula $f_{i+1}$
+\end_inset
+
+ и набор многочленов, составляющих найденный ранее базис 
+\begin_inset Formula $G_{i}$
+\end_inset
+
+.
+ При этом 
+\begin_inset Formula $G_{1}$
+\end_inset
+
+ известно сразу, поскольку равно 
+\begin_inset Formula $\left\{ f_{1}\right\} $
+\end_inset
+
+, а последний найденный базис 
+\begin_inset Formula $G_{m}$
+\end_inset
+
+ является искомым базисом 
+\begin_inset Formula $I$
+\end_inset
+
+.
+ Таким образом, чтоб задать инкрементальный алгоритм нужно задать лишь его
+ шаг, находящий конечное множество 
+\begin_inset Formula $G_{i+1}$
+\end_inset
+
+ по заданным 
+\begin_inset Formula $f_{i+1}$
+\end_inset
+
+ и множеству 
+\begin_inset Formula $G_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Одноэтапные алгоритмы принимают на вход сразу все многочлены 
+\begin_inset Formula $f_{1},\ldots,f_{m}$
+\end_inset
+
+ и возвращают искомый базис Грёбнера, и не допускают естественного разбиения
+ на шаги, аналогичные инкрементальным алгоритмам.
+ Они могут быть сделаны инкрементальными 
+\begin_inset Quotes fld
+\end_inset
+
+искусственно
+\begin_inset Quotes frd
+\end_inset
+
+ путём использования одноэтапного алгоритма в роли шага для инкрементального,
+ подавая ему на вход множество 
+\begin_inset Formula $G_{i}\cup f_{i+1}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
@@ -7104,7 +7258,7 @@ key "FaugereF5"
 сигнатура
 \emph default
  
-\begin_inset Formula $\SIG(h)\eqdef\sigma$
+\begin_inset Formula $\Sig(h)\eqdef\sigma$
 \end_inset
 
  и вводится обозначение многочлена -- второго элемента пары: 
@@ -7184,7 +7338,7 @@ key "FaugereF5"
 
 \emph default
  выполняется 
-\begin_inset Formula $\SIG(h'_{1})\succ_{0}\SIG(th_{2}),\HM(h'{}_{1})=\HM(th{}_{2})\neq0,$
+\begin_inset Formula $\Sig(h'_{1})\succ_{0}\Sig(th_{2}),\HM(h'{}_{1})=\HM(th{}_{2})\neq0,$
 \end_inset
 
  то возможна 
@@ -7206,7 +7360,7 @@ key "FaugereF5"
 , равный: 
 \begin_inset Formula 
 \[
-h_{1}=\left(\SIG(h'_{1}),\poly(h'_{1})+Kt\poly(h_{2})\right),
+h_{1}=\left(\Sig(h'_{1}),\poly(h'_{1})+Kt\poly(h_{2})\right),
 \]
 
 \end_inset
@@ -7310,7 +7464,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 
 \begin_layout Proof
 Следует из того что оба утверждения равносильны 
-\begin_inset Formula $\SIG(h_{2})\succ_{0}\SIG(h_{1})\frac{\HM(h_{2})}{\HM(h_{1})}$
+\begin_inset Formula $\Sig(h_{2})\succ_{0}\Sig(h_{1})\frac{\HM(h_{2})}{\HM(h_{1})}$
 \end_inset
 
 .
@@ -7335,7 +7489,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 
 \begin_layout Proof
 Следует из 
-\begin_inset Formula $\SIG(h_{1})=\SIG(h_{1}')$
+\begin_inset Formula $\Sig(h_{1})=\Sig(h_{1}')$
 \end_inset
 
  и уменьшения 
@@ -7380,13 +7534,13 @@ name "lem:greater-or-smaller"
 Из условия леммы известно, что
 \begin_inset Formula 
 \begin{equation}
-\HM(h_{1})\SIG(h_{2})\prec_{0}\HM(h_{2})\SIG(h_{1})\label{eq:gvw-order-3}
+\HM(h_{1})\Sig(h_{2})\prec_{0}\HM(h_{2})\Sig(h_{1})\label{eq:gvw-order-3}
 \end{equation}
 
 \end_inset
 
 откуда 
-\begin_inset Formula $\HM(h_{2})\neq0,\SIG(h_{1})\neq0$
+\begin_inset Formula $\HM(h_{2})\neq0,\Sig(h_{1})\neq0$
 \end_inset
 
 .
@@ -7399,7 +7553,7 @@ name "lem:greater-or-smaller"
 \end_inset
 
 , а если 
-\begin_inset Formula $\SIG(h_{3})=0$
+\begin_inset Formula $\Sig(h_{3})=0$
 \end_inset
 
  -- то 
@@ -7415,19 +7569,19 @@ reference "eq:gvw-order-3"
 \end_inset
 
  на ненулевой элемент 
-\begin_inset Formula $\HM(h_{3})\SIG(h_{3})$
+\begin_inset Formula $\HM(h_{3})\Sig(h_{3})$
 \end_inset
 
 : 
 \begin_inset Formula 
 \begin{equation}
-\HM(h_{3})\SIG(h_{3})\HM(h_{1})\SIG(h_{2})\prec_{0}\HM(h_{3})\SIG(h_{3})\HM(h_{2})\SIG(h_{1}).\label{eq:left-or-right-monom}
+\HM(h_{3})\Sig(h_{3})\HM(h_{1})\Sig(h_{2})\prec_{0}\HM(h_{3})\Sig(h_{3})\HM(h_{2})\Sig(h_{1}).\label{eq:left-or-right-monom}
 \end{equation}
 
 \end_inset
 
 Поэтому 
-\begin_inset Formula $\HM(h_{3})^{2}\SIG(h_{2})\SIG(h_{1})\in\mathbb{T}_{0}$
+\begin_inset Formula $\HM(h_{3})^{2}\Sig(h_{2})\Sig(h_{1})\in\mathbb{T}_{0}$
 \end_inset
 
  будет или 
@@ -7655,7 +7809,7 @@ name "enu:-remove-from-B"
 \end_inset
 
 
-\begin_inset Formula $B\leftarrow B\setminus\{b\in B\,|\,\exists r\in R\, r\GVWl b\wedge\SIG(r)|\SIG(b)\}$
+\begin_inset Formula $B\leftarrow B\setminus\{b\in B\,|\,\exists r\in R\, r\GVWl b\wedge\Sig(r)|\Sig(b)\}$
 \end_inset
 
 
@@ -8241,7 +8395,7 @@ S-представлением
 \end_inset
 
 , такое что 
-\begin_inset Formula $\forall j\,\HM(h)\succcurlyeq_{0}\HM(t_{j}r_{i_{j}}),\SIG(h)\succcurlyeq_{0}\SIG(t_{j}r_{i_{j}})$
+\begin_inset Formula $\forall j\,\HM(h)\succcurlyeq_{0}\HM(t_{j}r_{i_{j}}),\Sig(h)\succcurlyeq_{0}\Sig(t_{j}r_{i_{j}})$
 \end_inset
 
 .
@@ -8323,7 +8477,7 @@ S
 \end_inset
 
  (соответственно 
-\begin_inset Formula $\left\{ h\in H\,|\,\SIG(h)\prec_{0}\sigma\right\} $
+\begin_inset Formula $\left\{ h\in H\,|\,\Sig(h)\prec_{0}\sigma\right\} $
 \end_inset
 
 )
@@ -8363,7 +8517,7 @@ name "lem:s-basis-and-no-reductions"
 
 \emph default
 -базис и выбраны 
-\begin_inset Formula $h_{1},h_{2}\in H,\SIG(h_{i})=\sigma$
+\begin_inset Formula $h_{1},h_{2}\in H,\Sig(h_{i})=\sigma$
 \end_inset
 
 , которые не редуцируются по 
@@ -8429,7 +8583,7 @@ name "lem:s-basis-and-no-reductions"
 \end_inset
 
  вытекает 
-\begin_inset Formula $\exists r_{j}\in R,t\in\mathbb{T}\,\SIG(tr_{j})\preccurlyeq_{0}\sigma',\HM(tr_{j})=\HM(p')$
+\begin_inset Formula $\exists r_{j}\in R,t\in\mathbb{T}\,\Sig(tr_{j})\preccurlyeq_{0}\sigma',\HM(tr_{j})=\HM(p')$
 \end_inset
 
 .
@@ -8497,7 +8651,7 @@ reference "enu:-remove-from-B"
 \end_inset
 
 , найдутся 
-\begin_inset Formula $r_{\sigma}\in R,t_{\sigma}\in\mathbb{T}:\SIG(t_{\sigma}r_{\sigma})=\sigma$
+\begin_inset Formula $r_{\sigma}\in R,t_{\sigma}\in\mathbb{T}:\Sig(t_{\sigma}r_{\sigma})=\sigma$
 \end_inset
 
  и 
@@ -8513,7 +8667,7 @@ reference "enu:-remove-from-B"
 
 \begin_layout Proof
 Множество 
-\begin_inset Formula $R_{\sigma}=\left\{ r\in R\,|\,\SIG(r)|\sigma\right\} $
+\begin_inset Formula $R_{\sigma}=\left\{ r\in R\,|\,\Sig(r)|\sigma\right\} $
 \end_inset
 
  непусто, так как содержит добавленный на первой итерации элемент 
@@ -8521,7 +8675,7 @@ reference "enu:-remove-from-B"
 \end_inset
 
  с 
-\begin_inset Formula $\SIG(r_{0})=1$
+\begin_inset Formula $\Sig(r_{0})=1$
 \end_inset
 
 .
@@ -8534,7 +8688,7 @@ reference "enu:-remove-from-B"
 \end_inset
 
 -минимальный элемент; положим 
-\begin_inset Formula $t_{\sigma}=\frac{\sigma}{\SIG(r_{\sigma})}$
+\begin_inset Formula $t_{\sigma}=\frac{\sigma}{\Sig(r_{\sigma})}$
 \end_inset
 
 .
@@ -8579,7 +8733,7 @@ reference "enu:-remove-from-B"
 
 .
  Отсюда 
-\begin_inset Formula $\SIG(t'r_{\sigma})|\SIG(t_{\sigma}r_{\sigma})=\sigma\Rightarrow\SIG(t'r_{\sigma})\preccurlyeq\sigma\prec$
+\begin_inset Formula $\Sig(t'r_{\sigma})|\Sig(t_{\sigma}r_{\sigma})=\sigma\Rightarrow\Sig(t'r_{\sigma})\preccurlyeq\sigma\prec$
 \end_inset
 
  сигнатур элементов 
@@ -8603,7 +8757,7 @@ reference "enu:-remove-from-B"
 \end_inset
 
  одной из итераций, то есть 
-\begin_inset Formula $\exists r_{2}\in R\, r_{2}\GVWl t'r_{\sigma},\SIG(r_{2})|\SIG(t'r_{\sigma})$
+\begin_inset Formula $\exists r_{2}\in R\, r_{2}\GVWl t'r_{\sigma},\Sig(r_{2})|\Sig(t'r_{\sigma})$
 \end_inset
 
 .
@@ -8637,7 +8791,7 @@ reference "enu:-remove-from-B"
 \end_inset
 
  выполнен инвариант: 
-\begin_inset Formula $\forall h\in H,\SIG(h)\prec$
+\begin_inset Formula $\forall h\in H,\Sig(h)\prec$
 \end_inset
 
  сигнатур элементов 
@@ -8661,7 +8815,7 @@ reference "enu:-remove-from-B"
 \end_inset
 
 , для которой непусто 
-\begin_inset Formula $V_{\sigma}\eqdef\{h\in H\,|\, h\mbox{ нарушает инвариант},\SIG(h)=\sigma\}$
+\begin_inset Formula $V_{\sigma}\eqdef\{h\in H\,|\, h\mbox{ нарушает инвариант},\Sig(h)=\sigma\}$
 \end_inset
 
 .
