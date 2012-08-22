@@ -137,15 +137,107 @@ galkin-vv@ya.ru
 \begin_layout Abstract
 Основное направление данной работы -- построение эффективного способа применения
  алгоритмов, основанных на сигнатурах, для решения полиномиальных уравнений.
- В работе показана остановка алгоритм F5, предложенного Фожером, преложена
- его модификация, значительно упрощающая реализацию и теоретическое обоснование
- и показано, как данная модификация может эффективно применяться для решения
- полиномиальных систем уравнений в интервальной арифметике путём ввода новых
- переменных и дополнительных вычислений над конечными полями.
+ В первой части показана остановка алгоритм F5, предложенного Фожером, и
+ описан его вариант, значительно упрощающий реализацию и теоретическое обоснован
+ие.
+ Во второй части показано, как данная вариация может быть модифицирована
+ для эффективного решения полиномиальных систем уравнений в интервальной
+ арифметике путём ввода новых переменных и дополнительных вычислений над
+ конечными полями.
 \end_layout
 
 \begin_layout Part
 Вычисление базисов Грёбнера
+\end_layout
+
+\begin_layout Standard
+Рассмотрим кольцо многочленов 
+\begin_inset Formula $P=\mathcal{K}[x_{1},\dots,x_{n}]$
+\end_inset
+
+ над полем 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
+ Будем предполагать, что на моноиде его мономов 
+\begin_inset Formula $\mathbb{T}$
+\end_inset
+
+ задан допустимый мономиальный порядок 
+\begin_inset Formula $\prec$
+\end_inset
+
+.
+ В этом кольце может быть поставлена задача вычисления базиса Грёбнера для
+ произвольного идеала 
+\begin_inset Formula $\left(f_{1},\dots,f_{l}\right)$
+\end_inset
+
+.
+ Один из способов её решения инкрементальный: последовательно вычисляются
+ базисы идеалов 
+\begin_inset Formula $\left(f_{1},\dots,f_{i}\right),i=2\dots l$
+\end_inset
+
+ на основе уже вычисленного для идеала 
+\begin_inset Formula $\left(f_{1},\dots,f_{i-1}\right)$
+\end_inset
+
+ базиса 
+\begin_inset Formula $R_{i-1}$
+\end_inset
+
+ и многочлена 
+\begin_inset Formula $f_{i}$
+\end_inset
+
+.
+ Представляемый алгоритм позволяет выполнить шаг такого вычисления.
+ Таким образом, входные данные для алгоритма -- это некоторый многочлен
+ 
+\begin_inset Formula $f$
+\end_inset
+
+ и множество многочленов, обозначаемое 
+\begin_inset Formula $\left\{ g_{1},\dots,g_{m}\right\} $
+\end_inset
+
+, являющееся базисом Грёбнера идеала 
+\begin_inset Formula $I_{0}=\left(g_{1},\dots,g_{m}\right)$
+\end_inset
+
+.
+ В качестве результата своей работы алгоритм должен построить множество
+ многочленов 
+\begin_inset Formula $R$
+\end_inset
+
+, являющееся базисом Грёбнера идеала 
+\begin_inset Formula $I=\left(g_{1},\dots,g_{m},f\right)$
+\end_inset
+
+.
+ Поскольку случаи 
+\begin_inset Formula $f=0\Rightarrow I=I_{0}$
+\end_inset
+
+ и 
+\begin_inset Formula $\exists i\, g_{i}\in\mathcal{K}\Rightarrow I=P$
+\end_inset
+
+ не представляют интереса, далее предполагается что 
+\begin_inset Formula $f\neq0,\forall i\, g_{i}\notin\mathcal{K}.$
+\end_inset
+
+ Заметим, что в отличии от алгоритма F5, описанного в 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5"
+
+\end_inset
+
+, однородность многочленов не требуется.
 \end_layout
 
 \begin_layout Standard
@@ -1936,7 +2028,7 @@ AlgorithmF5
 \begin_layout Standard
 Для следующей теоремы необходимо ввести порядок на частных, образованных
  мономами, путём транзитивного расширения порядка на мономах: 
-\begin_inset Formula $\frac{m_{1}}{m_{2}}>_{q}\frac{m_{3}}{m_{4}}\Leftrightarrow m_{1}m_{4}>m_{3}m_{2}$
+\begin_inset Formula $\frac{m_{1}}{m_{2}}\succ_{q}\frac{m_{3}}{m_{4}}\Leftrightarrow m_{1}m_{4}\succ m_{3}m_{2}$
 \end_inset
 
 .
@@ -1983,7 +2075,7 @@ name "thm:f_g_3_props"
 \begin_layout Theorem
 \begin_inset Formula 
 \[
-\frac{\HM(f')}{\Sig(f')}>_{q}\frac{\HM(f)}{\Sig(f)},
+\frac{\HM(f')}{\Sig(f')}\succ_{q}\frac{\HM(f)}{\Sig(f)},
 \]
 
 \end_inset
@@ -2057,7 +2149,7 @@ name "thm:f_g_3_props"
 , удовлетворяющее следующему:
 \begin_inset Formula 
 \begin{equation}
-\HM(h_{n+1})<\HM\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)=\HM(g_{n}),\,\Sig(h_{n+1})=\Sig\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)\succ\Sig(g_{n}).\label{eq:spair-chain}
+\HM(h_{n+1})\prec\HM\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)=\HM(g_{n}),\,\Sig(h_{n+1})=\Sig\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)\succ\Sig(g_{n}).\label{eq:spair-chain}
 \end{equation}
 
 \end_inset
@@ -2070,7 +2162,7 @@ reference "eq:spair-chain"
 \end_inset
 
  получаем, что 
-\begin_inset Formula $\frac{\HM(h_{n})}{\Sig(h_{n})}>_{q}\frac{\HM(h_{n+1})}{\Sig(h_{n+1})}$
+\begin_inset Formula $\frac{\HM(h_{n})}{\Sig(h_{n})}\succ_{q}\frac{\HM(h_{n+1})}{\Sig(h_{n+1})}$
 \end_inset
 
 , поэтому в цепи S-пар частные 
@@ -2081,7 +2173,7 @@ reference "eq:spair-chain"
  Этот факт не может быть напрямую использован для доказательства конечности
  цепей, поскольку порядок на частных, в отличии от порядка на мономах, не
  даёт вполне упорядоченности: к примеру последовательность 
-\begin_inset Formula $\frac{x}{x}>_{q}\frac{x}{x^{2}}>_{q}\cdots>_{q}\frac{x}{x^{n}}>_{q}\cdots$
+\begin_inset Formula $\frac{x}{x}\succ_{q}\frac{x}{x^{2}}\succ_{q}\cdots\succ_{q}\frac{x}{x^{n}}>_{q}\cdots$
 \end_inset
 
  является бесконечно убывающей.
@@ -2103,7 +2195,7 @@ reference "eq:spair-chain"
 
 .
  В первом случае 
-\begin_inset Formula $\HM(h_{n+1})<\HM(h_{n})$
+\begin_inset Formula $\HM(h_{n+1})\prec\HM(h_{n})$
 \end_inset
 
  при равенстве полной степени, а во втором -- 
@@ -2119,7 +2211,7 @@ reference "eq:spair-chain"
 \noun off
 \color none
 
-\begin_inset Formula $\HM(h_{n+1})>\HM(h_{n})$
+\begin_inset Formula $\HM(h_{n+1})\succ\HM(h_{n})$
 \end_inset
 
 , поскольку полные степени 
@@ -2233,7 +2325,7 @@ key "TheF5Revised"
 \end_inset
 
  и 
-\begin_inset Formula $\frac{\HM(h_{i})}{\Sig(h_{i})}>_{q}\frac{\HM(h_{i+1})}{\Sig(h_{i+1})}>_{q}\cdots>_{q}\frac{\HM(h_{j})}{\Sig(h_{j})}$
+\begin_inset Formula $\frac{\HM(h_{i})}{\Sig(h_{i})}\succ_{q}\frac{\HM(h_{i+1})}{\Sig(h_{i+1})}\succ_{q}\cdots\succ_{q}\frac{\HM(h_{j})}{\Sig(h_{j})}$
 \end_inset
 
 , поэтому можно взять 
@@ -5416,7 +5508,7 @@ m_{K}b_{i_{K}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i
 
 .
  Имеем 
-\begin_inset Formula $\HM(m_{K'}b_{i_{K'}})=m_{\max}\geqslant\HM(m_{K}b_{i_{K}})>\HM(mh)$
+\begin_inset Formula $\HM(m_{K'}b_{i_{K'}})=m_{\max}\succcurlyeq\HM(m_{K}b_{i_{K}})\succ\HM(mh)$
 \end_inset
 
 , поэтому 
@@ -5952,7 +6044,7 @@ reference "thm:f_g_3_props"
 \end_inset
 
 , 
-\begin_inset Formula $\frac{\HM(f')}{\Sig(f')}>_{q}\frac{\HM(f)}{\Sig(f)}$
+\begin_inset Formula $\frac{\HM(f')}{\Sig(f')}\succ_{q}\frac{\HM(f)}{\Sig(f)}$
 \end_inset
 
 .
