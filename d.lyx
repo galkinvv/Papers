@@ -6,6 +6,8 @@
 \begin_preamble
 \newcommand{\Sig}{\mathcal{S}}
 \newcommand{\HM}{\mathrm{HM}}
+\newcommand{\HC}{\mathrm{HC}}
+\newcommand{\LCM}{\mathrm{LCM}}
 \newcommand{\totaldeg}{\mathrm{deg}}
 \newcommand{\poly}{\mathrm{poly}}
 \newcommand{\sigidx}{\mathrm{index}}
@@ -146,18 +148,6203 @@ galkin-vv@ya.ru
 Доказательство остановки
 \end_layout
 
+\begin_layout Subsubsection
+Введение
+\end_layout
+
 \begin_layout Standard
-[работа 
+Алгоритм Фожера F5 является эффективным алгоритмом вычисления базисов Грёбнера,
+ но обладает рядом проблем, связанных с его обоснованием.
+ Корректность его работы при условии остановки показана в первоисточнике
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5"
+
+\end_inset
+
+ и в работах 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GermanF5Proof_ru,F5InBBStyle,NewF5Proof"
+
+\end_inset
+
+, предложивших другие способы её доказательства.
+ Но остановка алгоритма, как в 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5"
+
+\end_inset
+
+, так и в детальных исследованиях 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5-revisited"
+
+\end_inset
+
+, показана только для случая отсутствия редукций к нулю, что с практической
+ точки зрения означает доказательство для тех случаев, когда входное множество
+ многочленов представлено регулярной последовательностью.
+ Но для большинства входных последовательностей их регулярность неизвестна,
+ и доказанного факта оказывается недостаточно для утверждения остановки
+ реализации алгоритма на конкретных входных данных.
+ Один из подходов к решению проблемы -- добавление в алгоритм дополнительных
+ проверок и критериев, гарантирующих остановку алгоритма.
+ Этот подход даёт строгое доказательство остановки, однако получаемый результат
+ есть доказательство остановки модифицированной версии F5, содержащей дополнител
+ьные проверки, которая в силу этого может быть более сложна в реализации
+ или иметь большее время работы на некоторых входных данных.
+ Этот подход применяется в работах 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Modifying-for-termination,Ars05applicationsdes,Gash:2008:ECG,Hashemi-ExtF5,ZobninGeneralization_ru"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Другой подход состоит в доказательстве остановки семейства алгоритмов, основанны
+х на идеях F5, с последующей попыткой переформулировать F5 таким образом,
+ чтобы он являлся представителем этого семейства.
+ Основная проблема этого подхода появляется в процессе переформулировки:
+ описание F5 в других терминах может привести к незаметному внесению различий
+ в поведение алгоритма, которые трудно заметить, но которые требуют дополнительн
+ых рассуждений для доказательства эквивалентности с F5.
+ К примеру, 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "2012GrbTermination"
+
+\end_inset
+
+ доказывает остановку алгоритма F5GEN, который отличается от исходного F5
+ отсутствием проверки критериев при выборе редуктора.
+ Работа 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HuangConception"
+
+\end_inset
+
+ даёт доказательство остановки алгоритма TRB-F5, который, как удалось осознать
+ автору в процессе плодотворных дискуссий с Джоном Перри, имеет два существенных
+ отличия от F5.
+ Первое отличие -- другая схема построения правил, приводящая в конце концов
+ к тому, что в процессе выполнения TRB-F5 правила в массивах 
+\begin_inset Formula $Rule$
+\end_inset
+
+ оказываются отсортированными по возрастанию сигнатуры.
+ Второе отличие -- отсутствие в TRB-F5 применения оператора нормальной формы
+ 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ перед редукцией, что приводит к эффекту противоположному отличиям F5 от
+ F5GEN: алгоритм TRB-F5 при выборе редуктора проверяет критерии для элементов
+ с 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+б
+\backslash
+'{о}льшими
+\end_layout
+
+\end_inset
+
+ индексами, которые в F5 используются неявно в операторе нормальной формы
+ и за счёт этого не подвергаются проверки критериев.
+ Предположительно, эти алгоритмы могут быть изменены таким образом, чтобы
+ в точности повторять поведение алгоритма F5, а доказательство остановки
+ может быть перенесено на изменённые версии.
+ Однако подход с алгоритмами, эквивалентными F5 имеет недостаток: он усложняет
+ понимание того, как теоремы, используемые для доказательства остановки
+ отражают поведение исходного алгоритма F5.
+\end_layout
+
+\begin_layout Standard
+Подход к доказательству остановки, предлагаемый в данной работе, применяется
+ к F5 без каких-либо модификаций.
+ Первый шаг доказательства основан на предлагаемой ниже идее цепей S-пар.
+ Второй шаг основывается на методе, использованном в теореме 21 работы 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5C"
+
+\end_inset
+
+ для доказательства корректности алгоритма F5C: представление S-многочлена
+ в виде суммы домноженных многочленов из множества, вычисленного F5C может
+ быть модифицировано последовательностью замен S-пар и их отброшенных частей,
+ и за конечное число таких шагов приведено к состоянию, когда выполняются
+ определённые 
 \begin_inset Quotes fld
 \end_inset
 
-Остановка алгоритма F5
+хорошие
 \begin_inset Quotes frd
 \end_inset
 
-]
+ свойства.
 \end_layout
 
+\begin_layout Standard
+Вторая часть этой статьи показывает, что предусловия этого метода могут
+ быть ослаблены для его применения к множеству на любом промежуточном шаге
+ вычислений F5, и что получаемые следствия могут быть усилены для их использован
+ия в доказательстве остановки.
+ Работа оформлена как альтернативное доказательство остановки для алгоритма,
+ описанного в статье 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5"
+
+\end_inset
+
+, доступной на сайте её автора, поэтому читатель предполагается хорошо знакомым
+ с ней.
+ Большинство используемой терминологии, включая названия этапов алгоритма,
+ взято оттуда.
+\end_layout
+
+\begin_layout Subsubsection
+Потенциально бесконечные циклы в F5
+\end_layout
+
+\begin_layout Paragraph
+Процедура 
+\family typewriter
+AlgorithmF5
+\family default
+: увеличение 
+\begin_inset Formula $d$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Claim
+\begin_inset CommandInset label
+LatexCommand label
+name "iterations-d_grow"
+
+\end_inset
+
+Если при некоторых входных данных цикл 
+\series bold
+while
+\series default
+ внутри процедуры 
+\family typewriter
+AlgorithmF5
+\family default
+ выполняется бесконечное число раз, то значение 
+\begin_inset Formula $d$
+\end_inset
+
+ неограниченно возрастает.
+\end_layout
+
+\begin_layout Proof
+Предположим существование последовательности многочленов 
+\begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} $
+\end_inset
+
+ в кольце 
+\begin_inset Formula $\mathcal{K}[x_{1},\ldots,x_{n}]$
+\end_inset
+
+ для которой алгоритм F5 не завершается.
+ Без ограничение общности будем считать что это самая короткая последовательност
+ь такого рода -- алгоритм завершается на более короткой последовательности
+ 
+\begin_inset Formula $\left\{ f_{2},\ldots,f_{m}\right\} $
+\end_inset
+
+.
+ Это означает, что не завершается последняя итерация цикла внутри 
+\family typewriter
+incrementalF5
+\family default
+, то есть не завершается последний вызов процедуры 
+\family typewriter
+AlgorithmF5
+\family default
+.
+ Для исследования данной ситуации необходимо понять, как ведёт себя значение
+ полной степени 
+\begin_inset Formula $d$
+\end_inset
+
+ в процессе выполнения цикла внутри процедуры 
+\family typewriter
+AlgorithmF5
+\family default
+.
+ Обозначим за 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+ значение 
+\begin_inset Formula $d$
+\end_inset
+
+ на 
+\begin_inset Formula $j$
+\end_inset
+
+-ой итерации цикла и положим 
+\begin_inset Formula $d_{0}=-1$
+\end_inset
+
+.
+ Простейшее свойство 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+ -- неубывание: 
+\begin_inset Formula $d_{j}\geqslant d_{j-1}$
+\end_inset
+
+.
+ Оно выполняется, поскольку на 
+\begin_inset Formula $j-1$
+\end_inset
+
+-ой итерации все многочлены в 
+\begin_inset Formula $R_{d}$
+\end_inset
+
+ имеют степень 
+\begin_inset Formula $d_{j-1}$
+\end_inset
+
+, и поэтому все вновь создаваемые критические пары имеют степень не менее
+ 
+\begin_inset Formula $d_{j-1}$
+\end_inset
+
+.
+ Предположим теперь, что 
+\begin_inset Formula $j$
+\end_inset
+
+ фиксированный номер некоторой итерации.
+ В начале итерации 
+\begin_inset Formula $j$
+\end_inset
+
+ все критические пары степени 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+ извлекаются из 
+\begin_inset Formula $P$
+\end_inset
+
+.
+ После вызова процедуры 
+\family typewriter
+Reduction
+\family default
+ в 
+\begin_inset Formula $P$
+\end_inset
+
+ добавляются некоторые новые критические пары в цикле, итерирующем по 
+\begin_inset Formula $R_{d}$
+\end_inset
+
+.
+ Существует возможность что некоторые из них будут иметь полную степень
+ равную 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+.
+ Нижеследующие рассуждения призваны показать, что все критические пары такой
+ полной степени будут отброшены на следующей итерации алгоритма и ни одна
+ из них не породит S-многочлен.
+\end_layout
+
+\begin_layout Proof
+Для каждой из критических пар 
+\begin_inset Formula $[t,u_{1},r_{1},u_{2,}r_{2}]$
+\end_inset
+
+ порождённых на итерации 
+\begin_inset Formula $j$
+\end_inset
+
+ как минимум один из многочленов пары принадлежит 
+\begin_inset Formula $R_{d}$
+\end_inset
+
+ и не более чем один многочлен из пары мог принадлежать 
+\begin_inset Formula $G_{i}$
+\end_inset
+
+ на момент начала итерации.
+ Все многочлены 
+\begin_inset Formula $R_{d}$
+\end_inset
+
+ генерируются процедурой 
+\family typewriter
+Reduction
+\family default
+ путём добавления по одному многочлену к множеству 
+\begin_inset Formula $Done$
+\end_inset
+
+.
+ Поэтому, среди одного или двух многочленов критической пары, принадлежащих
+ 
+\begin_inset Formula $R_{d}$
+\end_inset
+
+, мы можем выбрать многочлен 
+\begin_inset Formula $r_{k}$
+\end_inset
+
+ добавленный в 
+\begin_inset Formula $Done$
+\end_inset
+
+ позже.
+ Тогда про другой многочлен S-пары 
+\begin_inset Formula $r_{3-k}$
+\end_inset
+
+ можно утверждать, что он уже присутствовал в 
+\begin_inset Formula $G\cup Done$
+\end_inset
+
+ к моменту добавления 
+\begin_inset Formula $r_{k}$
+\end_inset
+
+ в 
+\begin_inset Formula $Done$
+\end_inset
+
+.
+ Поэтому процедура 
+\family typewriter
+TopReduction
+\family default
+ пыталась редуцировать 
+\begin_inset Formula $r_{k}$
+\end_inset
+
+ по 
+\begin_inset Formula $r_{3-k}$
+\end_inset
+
+, но не сделала этого, поскольку в функции 
+\family typewriter
+IsReducible
+\family default
+ одна из проверок (a) - (d) запретила это.
+\end_layout
+
+\begin_layout Proof
+При этом для критических пар с полной степенью равной 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+ мы имеем 
+\begin_inset Formula $u_{k}=1$
+\end_inset
+
+, поскольку полная степень критической пары равна полной степени её челна
+ 
+\begin_inset Formula $r_{k}$
+\end_inset
+
+.
+ Это означает, что значение 
+\begin_inset Formula $u_{3-k}$
+\end_inset
+
+ равно 
+\begin_inset Formula $\frac{\HM(r_{k})}{\HM(r_{3-k})}$
+\end_inset
+
+, поэтому в 
+\family typewriter
+IsReducible
+\family default
+ правило (a) разрешает редукцию 
+\begin_inset Formula $r_{k}$
+\end_inset
+
+ по 
+\begin_inset Formula $r_{3-k}$
+\end_inset
+
+.
+ Получается, что только правила (b) - (d) могли запретить редукцию.
+\end_layout
+
+\begin_layout Proof
+Предположим, что редукция была запрещена правилом (b).
+ Это означает, что в 
+\begin_inset Formula $G_{i+1}$
+\end_inset
+
+ существует многочлен, редуцирующий 
+\begin_inset Formula $u_{3-k}\Sig(r_{3-k})$
+\end_inset
+
+.
+ Для нашего случая отсюда следовало бы, что в функции 
+\family typewriter
+CritPair
+\family default
+ эквивалентная проверка 
+\begin_inset Formula $\varphi(u_{3-k}\Sig(r_{3-k}))=u_{3-k}\Sig(r_{3-k})$
+\end_inset
+
+ запретила бы создание критической пары.
+ Получается, что правило (b) также не могло запретить редукцию.
+\end_layout
+
+\begin_layout Proof
+Предположим, что редукция была запрещена правилом (c).
+ Это означает существование перезаписи для домноженного редуктора.
+ В нашем случае это значит, что 
+\family typewriter
+Rewritten?
+\family default
+
+\begin_inset Formula $\left(u_{3-k},r_{3-k}\right)$
+\end_inset
+
+ показала наличие перезаписи в процессе выполнения 
+\family typewriter
+TopReduction
+\family default
+, и будет продолжать возвращать значение 
+\begin_inset Quotes fld
+\end_inset
+
+Истина
+\begin_inset Quotes frd
+\end_inset
+
+ на всех последующих этапах алгоритма, поскольку перезаписывающие многочлены
+ не могут исчезнуть.
+\end_layout
+
+\begin_layout Proof
+Предположим, что редукция была запрещена правилом (d).
+ Псевдокод в 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5"
+
+\end_inset
+
+ несколько неясен в этом месте, но исходный код процедуры 
+\family typewriter
+FindReductor
+\family default
+, приложенный к 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5-revisited"
+
+\end_inset
+
+ достаточно ясен и утверждает, что редуктор отбрасывается, если одновременно
+ моном и индекс сигнатуры совпадают для редуктора и редуцируемого многочлена
+ (в коде 
+\family typewriter
+r[k0][1]
+\family default
+ -- моном сигнатуры, а 
+\family typewriter
+r[k0][2]
+\family default
+ -- её индекс):
+\end_layout
+
+\begin_layout Proof
+\begin_inset listings
+lstparams "basicstyle={\ttfamily},tabsize=4"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+if (ut eq r[k0][1]) and (r[j][2] eq r[k0][2]) then
+\end_layout
+
+\begin_layout Plain Layout
+
+	// discard reductor by criterion (d)
+\end_layout
+
+\begin_layout Plain Layout
+
+	continue;
+\end_layout
+
+\begin_layout Plain Layout
+
+end if;
+\end_layout
+
+\end_inset
+
+В нашем случае это обозначает, что сигнатуры 
+\begin_inset Formula $r_{k}$
+\end_inset
+
+ и 
+\begin_inset Formula $u_{3-k}r_{3-k}$
+\end_inset
+
+ равны.
+ Значит вызов 
+\family typewriter
+Rewritten?
+\family default
+
+\begin_inset Formula $\left(u_{3-k},r_{3-k}\right)$
+\end_inset
+
+ будет возвращать 
+\begin_inset Quotes fld
+\end_inset
+
+Истину
+\begin_inset Quotes frd
+\end_inset
+
+ после добавления правила, соответствующего 
+\begin_inset Formula $r_{k}$
+\end_inset
+
+, поскольку 
+\begin_inset Formula $u_{3-k}\cdot r_{3-k}$
+\end_inset
+
+ перезаписывается 
+\begin_inset Formula $1\cdot r_{k}$
+\end_inset
+
+.
+ Получается, что как и в случае с правилом (c), 
+\family typewriter
+Rewritten?
+\family default
+
+\begin_inset Formula $\left(u_{3-k},r_{3-k}\right)$
+\end_inset
+
+ возвращает 
+\begin_inset Quotes fld
+\end_inset
+
+Истину
+\begin_inset Quotes frd
+\end_inset
+
+ при выполнении 
+\family typewriter
+TopReduction
+\family default
+ и позже.
+\end_layout
+
+\begin_layout Proof
+Теперь рассмотрим функцию 
+\family typewriter
+Spol
+\family default
+, выполняемую для некоторой S-пары полной степени 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+, сгенерированной на итерации 
+\begin_inset Formula $j$
+\end_inset
+
+.
+ Она выполняется внутри 
+\begin_inset Formula $j+1$
+\end_inset
+
+ итерации цикла в 
+\family typewriter
+AlgorithmF5
+\family default
+, то есть уже после того, как закончилось выполнение 
+\family typewriter
+TopReduction
+\family default
+ для 
+\begin_inset Formula $r_{k}$
+\end_inset
+
+.
+ Поэтому для случаев (c) и (d) вызов 
+\family typewriter
+Rewritten?
+\family default
+
+\begin_inset Formula $\left(u_{3-k},r_{3-k}\right)$
+\end_inset
+
+ внутри 
+\family typewriter
+Spol
+\family default
+ вернёт 
+\begin_inset Quotes fld
+\end_inset
+
+Истину
+\begin_inset Quotes frd
+\end_inset
+
+.
+ Значит на итерации 
+\begin_inset Formula $j+1$
+\end_inset
+
+ ни одна из S-пар полной степени 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+ не добавит многочлена в 
+\begin_inset Formula $F$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Итого, получено: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+первая возможность относительного расположения 
+\begin_inset Formula $d_{j+1}$
+\end_inset
+
+ и 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+ -- их равенство: 
+\begin_inset Formula $d_{j+1}=d_{j}$
+\end_inset
+
+.
+ В этом случае 
+\begin_inset Formula $F$
+\end_inset
+
+ оказывается пустым на итерации 
+\begin_inset Formula $j+1$
+\end_inset
+
+, и, таким образом, 
+\begin_inset Formula $P$
+\end_inset
+
+ не содержит ни одной пары с полной степенью 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+ после того как итерация 
+\begin_inset Formula $j+1$
+\end_inset
+
+ завершится.
+ Значит 
+\begin_inset Formula $d_{j+2}>d_{j+1}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+Другая возможность относительного расположения -- строгое возрастание 
+\begin_inset Formula $d_{j+1}>d_{j}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+Вместе эти факты дают 
+\begin_inset Formula $\forall j\,\, d_{j+2}>d_{j}$
+\end_inset
+
+, что доказывает утверждение 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "iterations-d_grow"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph
+Процедура 
+\family typewriter
+Reduction
+\family default
+: конечность 
+\begin_inset Formula $ToDo$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Claim
+\begin_inset CommandInset label
+LatexCommand label
+name "Every_cycle_iteration_finish"
+
+\end_inset
+
+Каждая итерация цикла внутри процедуры 
+\family typewriter
+AlgorithmF5
+\family default
+ останавливается, в частности останавливаются все вызовы процедуры 
+\family typewriter
+Reduction
+\family default
+.
+\end_layout
+
+\begin_layout Proof
+Факт остановки известен для вызовов 
+\family typewriter
+AlgorithmF5
+\family default
+, соответствующих многочленам 
+\begin_inset Formula $f_{2},\dots,f_{m}$
+\end_inset
+
+, поэтому будет рассматриваться лишь один оставшийся вызов 
+\family typewriter
+AlgorithmF5
+\family default
+, обрабатывающий первый элемент входного набора многочленов 
+\begin_inset Formula $f_{1}$
+\end_inset
+
+.
+ Вначале покажем несколько общих утверждений о многочленах в множествах
+ 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ и 
+\begin_inset Formula $Rule$
+\end_inset
+
+ в процессе 
+\begin_inset Formula $j$
+\end_inset
+
+-ой итераций цикла внутри этого вызова 
+\family typewriter
+AlgorithmF5
+\family default
+.
+ Старшая по сигнатуре часть S-пары всех критических пар, добавляемых функцией
+ 
+\family typewriter
+CritPair
+\family default
+ вначале выполнения 
+\family typewriter
+AlgorithmF5
+\family default
+, обладает индексом сигнатуры, равным 
+\begin_inset Formula $1$
+\end_inset
+
+.
+ Все прочие критические пары порождаются с индексом сигнатуры, соответствующим
+ некоторому отмеченному многочлену, перемещённому из множества 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ в множество 
+\begin_inset Formula $Done$
+\end_inset
+
+.
+ В свою очередь все элементы 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ создаются или на основе критических пар или внутри процедуры 
+\family typewriter
+TopReduction
+\family default
+.
+ Многочлены, генерируемые 
+\family typewriter
+TopReduction
+\family default
+ имеют сигнатуру, превышающую сигнатуру многочлена, который редуцирует данный
+ вызов процедуры, и который является элементом 
+\begin_inset Formula $ToDo$
+\end_inset
+
+.
+ Поэтому многочлен или критическая пара с индексом сигнатуры, отличным от
+ 1 не могут появиться в рассматриваемом вызове 
+\family typewriter
+AlgorithmF5
+\family default
+.
+ С другой стороны, все многочлены в 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ имеют одну и ту же полную степень 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+.
+ Вместе с единичностью индексов это позволяет заключить, что полная степень
+ мономов сигнатур равна 
+\begin_inset Formula $d_{j}-\totaldeg(f_{1})$
+\end_inset
+
+ для всех элементов 
+\begin_inset Formula $ToDo$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Каждое добавление элемента в массив 
+\begin_inset Formula $Rule$
+\end_inset
+
+ соответствует добавлению в множество 
+\begin_inset Formula $ToDo$
+\end_inset
+
+.
+ Поэтому, элементы добавляемые в 
+\begin_inset Formula $Rule$
+\end_inset
+
+ на итерации 
+\begin_inset Formula $j$
+\end_inset
+
+ имеют полную степень равную 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+.
+ Вспоминая неубывание 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+ получаем, что на 
+\begin_inset Formula $j$
+\end_inset
+
+-ой итерации все элементы 
+\begin_inset Formula $Rule$
+\end_inset
+
+ с индексом сигнатуры 1 имеют полную степень 
+\begin_inset Formula $\leqslant d_{j}$
+\end_inset
+
+ и полную степень монома сигнатуры 
+\begin_inset Formula $\leqslant d_{j}-\totaldeg(f_{1})$
+\end_inset
+
+.
+ Также это даёт информацию о порядке элементов 
+\begin_inset Formula $Rule$
+\end_inset
+
+ с сигнатурой 1: их полная степень не убывает.
+\end_layout
+
+\begin_deeper
+\begin_layout Definition
+Редукция отмеченного многочлена 
+\begin_inset Formula $r_{k}$
+\end_inset
+
+ по отмеченному многочлену 
+\begin_inset Formula $r_{m}$
+\end_inset
+
+ называется
+\emph on
+ сигнатурной редукцией,
+\emph default
+ если 
+\begin_inset Formula $\Sig(r_{k})\succ t\cdot\Sig(r_{m})$
+\end_inset
+
+, где 
+\begin_inset Formula $t=\frac{\HM(r_{k})}{\HM(r_{m})}$
+\end_inset
+
+ -- моном, на который умножается редуктор.
+ Редуктор, соответствующий такой редукции называется 
+\emph on
+сигнатурным редуктором
+\emph default
+.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+Алгоритм производит только сигнатурные редукции: процедура 
+\family typewriter
+TopReduction
+\family default
+ производит редукцию по неотброшенному редуктору, если он сигнатурный, и
+ добавляет элемент в 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ в противном случае.
+ Элементы 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ обрабатываются в порядке возрастания сигнатур, поэтому ни один из элементов
+ 
+\begin_inset Formula $G\cup Done$
+\end_inset
+
+ не может иметь сигнатуры, превышающей сигнатуру многочлена 
+\begin_inset Formula $r_{k}$
+\end_inset
+
+, редуцируемого в 
+\family typewriter
+TopReduction
+\family default
+.
+ Рассмотрим неотброшенный проверками редуктор 
+\begin_inset Formula $r_{m}$
+\end_inset
+
+.
+ Если он имеет полную степень 
+\begin_inset Formula $\totaldeg(r_{m})=\totaldeg(r_{k})$
+\end_inset
+
+, мы получаем свойства 
+\begin_inset Formula $t=1$
+\end_inset
+
+ и 
+\begin_inset Formula $\Sig(r_{k})\succ\Sig(r_{m})$
+\end_inset
+
+, гарантирующие что редукция по нему будет сигнатурной.
+ Случай 
+\begin_inset Formula $\Sig(r_{k})=\Sig(r_{m})$
+\end_inset
+
+ невозможен, поскольку такие редукторы отбрасываются в правиле (d) процедуры
+ 
+\family typewriter
+IsReducible
+\family default
+.
+ Таким образом, ситуация 
+\begin_inset Formula $\Sig(r_{k})\prec t\cdot\Sig(r_{m})$
+\end_inset
+
+ возможна только при 
+\begin_inset Formula $\totaldeg(r_{m})<\totaldeg(r_{k})$
+\end_inset
+
+ и все добавления в 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ в процессе 
+\family typewriter
+TopReduction
+\family default
+ соответствуют этому случаю.
+ Моном сигнатуры многочлена, добавляемого таким образом, равен 
+\begin_inset Formula $t\cdot\Sig(r_{m})$
+\end_inset
+
+ и тот факт что 
+\begin_inset Formula $r_{m}$
+\end_inset
+
+ не был отброшен проверкой правила 
+\family typewriter
+Rewritten?
+\family default
+ внутри 
+\family typewriter
+IsReducible
+\family default
+ гарантирует, что ни одного многочлена с сигнатурой 
+\begin_inset Formula $t\Sig(r_{m})$
+\end_inset
+
+ не было порождено, потому что иначе такой многочлен имел бы связанное с
+ ним правило в 
+\begin_inset Formula $Rule$
+\end_inset
+
+ с большей полной степенью, чем правило, соответствующее 
+\begin_inset Formula $r_{m}$
+\end_inset
+
+, и 
+\begin_inset Formula $r_{m}$
+\end_inset
+
+ был бы отброшен в 
+\family typewriter
+IsReducible
+\family default
+.
+ 
+\end_layout
+
+\begin_layout Proof
+Мы хотим показать, что единственная возможность отсутствия остановки алгоритма
+ соответствует случая неограниченного возрастания 
+\begin_inset Formula $d_{j}$
+\end_inset
+
+.
+ Мы показали, что отсутствие остановки алгоритма происходит в случае, когда
+ не завершается вызов 
+\family typewriter
+AlgorithmF5
+\family default
+, и что он не может зациклиться обрабатывая бесконечное число итераций итерации
+ с одним и тем же значением 
+\begin_inset Formula $d$
+\end_inset
+
+.
+ Остаются два варианта: неограниченное возрастание 
+\begin_inset Formula $d$
+\end_inset
+
+ и зацикливание внутри одной из итераций с фиксированным значением.
+ Далее показано, что такое зацикливание невозможно.
+ Процедура 
+\family typewriter
+AlgorithmF5
+\family default
+ содержит 3 цикла помимо главного:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+for
+\series default
+-цикл внутри 
+\family typewriter
+Spol
+\family default
+ завершается, поскольку число его итераций ограничено числом критических
+ пар к моменту начала выполнения цикла;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+for
+\series default
+-цикл внутри 
+\family typewriter
+AlgorithmF5
+\family default
+ проходит по элементам 
+\begin_inset Formula $R_{d}$
+\end_inset
+
+ и также завершается, поскольку число элементов 
+\begin_inset Formula $R_{d}$
+\end_inset
+
+ зафиксировано к моменту начала выполнения цикла;
+\end_layout
+
+\begin_layout Itemize
+наиболее сложный случай соответствует 
+\series bold
+while
+\series default
+-циклу внутри 
+\family typewriter
+процедуры Reduction
+\family default
+, который выполняется до тех пор, пока множество 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ не станет пустым.
+ Множество 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ изначально заполняется процедурой 
+\family typewriter
+Spol
+\family default
+ и потом дополняется новыми элементами в процессе выполнения 
+\family typewriter
+TopReduction
+\family default
+.
+ Процедура 
+\family typewriter
+Spol
+\family default
+ порождает конечное число элементов, поскольку она завершается, а все элементы
+ добавляемые 
+\family typewriter
+TopReduction
+\family default
+ имеют различные сигнатуры индекса 1, поэтому их число ограничено числом
+ различных сигнатур полной степени 
+\begin_inset Formula $d_{j}-\totaldeg(f_{1})$
+\end_inset
+
+, поэтому в 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ добавляется лишь конечное число элементов.
+ Теперь мы покажем, что все типы шагов, происходящих внутри 
+\family typewriter
+Reduction
+\family default
+ могут быть выполнены лишь конечное число раз:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+шаг, на котором 
+\family typewriter
+IsReducible
+\family default
+ возвращает пустое множество, соответствует переносу элемента множества
+ 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ в 
+\begin_inset Formula $Done$
+\end_inset
+
+ и число таких шагов ограничено числом элементов, добавляемых в 
+\begin_inset Formula $ToDo$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+шаг, на котором 
+\family typewriter
+IsReducible
+\family default
+ возвращает не сигнатурный редуктор, соответствует добавлению нового элемента
+ в 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ и число таких шагов ограничено числом возможных добавлений
+\end_layout
+
+\begin_layout Itemize
+шаг, на котором 
+\family typewriter
+IsReducible
+\family default
+ возвращает сигнатурный редуктор, соответствует редукции одного из элементов
+ 
+\begin_inset Formula $ToDo$
+\end_inset
+
+.
+ Это может произойти лишь конечное число раз, поскольку в 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ добавляется конечное число многочленов и не может существовать бесконечной
+ цепочки редукций для одного многочлена, поскольку в процессе редукции его
+ старший моном 
+\begin_inset Formula $\HM$
+\end_inset
+
+ строго 
+\begin_inset Formula $\prec$
+\end_inset
+
+-убывает, а множество мономов вполне упорядочено по 
+\begin_inset Formula $\prec$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Proof
+Мы получили, что все циклы внутри процедуры 
+\family typewriter
+AlgorithmF5
+\family default
+, кроме главного, завершаются, что доказывает утверждение 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Every_cycle_iteration_finish"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Отсюда получается следующий факт о поведении алгоритма в ситуации, когда
+ он не завершается:
+\end_layout
+
+\begin_layout Claim
+\begin_inset CommandInset label
+LatexCommand label
+name "d-does-grow"
+
+\end_inset
+
+Если алгоритм не завершается на некоторых входных данных, то значение 
+\begin_inset Formula $d$
+\end_inset
+
+ неограниченно возрастает в процессе итераций.
+\end_layout
+
+\begin_layout Proof
+Следует из комбинирования утверждений 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "iterations-d_grow"
+
+\end_inset
+
+ и 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Every_cycle_iteration_finish"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Цепи S-пар
+\end_layout
+
+\begin_layout Standard
+Утверждение 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "d-does-grow"
+
+\end_inset
+
+ показывает, что в случае отсутствия остановки работа алгоритма приводит
+ к появлению бесконечной последовательности ненулевых отмеченных многочленов
+ с неограниченно возрастающей полной степенью, добавляемых в 
+\begin_inset Formula $G_{i}$
+\end_inset
+
+.
+ То есть, в этом случае алгоритм порождает бесконечную последовательность
+ отмеченных многочленов 
+\begin_inset Formula $\left\{ r_{1},r_{2},\ldots,r_{m},\ldots,r_{l},\ldots\right\} $
+\end_inset
+
+, в которой 
+\begin_inset Formula $r_{1},\ldots,r_{m}$
+\end_inset
+
+ соответствуют 
+\begin_inset Formula $m$
+\end_inset
+
+ исходным многочленам, а остальные были получены в процедурах 
+\family typewriter
+Spol
+\family default
+ и 
+\family typewriter
+TopReduction
+\family default
+.
+ В обоих случаях новый элемент 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+ порождается как S-многочлен двух уже ранее добавленных в последовательность
+ многочленов.
+ Будем обозначать за 
+\begin_inset Formula $l^{*}$
+\end_inset
+
+ и 
+\begin_inset Formula $l_{*}$
+\end_inset
+
+ позиции многочленов, использовавшихся для генерации 
+\begin_inset Formula $l$
+\end_inset
+
+-го многочлена последовательности и за 
+\begin_inset Formula $\overline{u_{l}}$
+\end_inset
+
+, 
+\begin_inset Formula $\underline{u_{l}}$
+\end_inset
+
+ мономы, на которые они умножались.
+ При этом 
+\begin_inset Formula $l^{*}$
+\end_inset
+
+ соответствует части с большей сигнатурой: 
+\begin_inset Formula $\poly(r_{l})=\overline{u_{l}}\poly(r_{l^{*}})-\underline{u_{l}}\poly(r_{l_{*}})$
+\end_inset
+
+ и 
+\begin_inset Formula $\Sig(r_{l})=\overline{u_{l}}\Sig(r_{l^{*}})\succ\underline{u_{l}}\Sig(r_{l_{*}})$
+\end_inset
+
+.
+ Значение 
+\begin_inset Formula $\poly(r_{l})$
+\end_inset
+
+ может меняться в процедуре 
+\family typewriter
+TopReduction
+\family default
+ на многочлен с меньшим 
+\begin_inset Formula $\HM$
+\end_inset
+
+, но 
+\begin_inset Formula $\Sig(r_{l})$
+\end_inset
+
+ нигде далее не меняется после добавления многочлена в последовательность.
+ Далее, будем пытаться найти бесконечную подпоследовательность 
+\begin_inset Formula $\left\{ r_{k_{1}},r_{k_{2}},\ldots,r_{k_{n}},\ldots\right\} $
+\end_inset
+
+ в этой последовательности, обладающую свойством, что 
+\begin_inset Formula $r_{k_{n}}$
+\end_inset
+
+ является S-многочленом 
+\begin_inset Formula $r_{k_{n-1}}=r_{k_{n}^{*}}$
+\end_inset
+
+ и некоторого другого многочлена меньшей сигнатуры.
+ То есть 
+\begin_inset Formula $\Sig(r_{k_{n}})=\overline{u_{k_{n}}}\Sig(r_{k_{n-1}})$
+\end_inset
+
+, откуда вытекает делимость: 
+\begin_inset Formula 
+\begin{equation}
+\Sig(r_{k_{n-1}})|\Sig(r_{k_{n}}).\label{eq:s-pair-chain-def}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+Конечную или бесконечную последовательность, соседние элементы которой удовлетво
+ряют свойству 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:s-pair-chain-def"
+
+\end_inset
+
+ будем называть 
+\emph on
+цепью S-пар
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Каждый порождаемый многочлен 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+ имеет конечную цепь S-пар, оканчивающуюся этим многочленом.
+ Эта цепь может быть последовательно построена, начиная с последнего элемента
+\begin_inset Formula $r_{l}$
+\end_inset
+
+, если на каждом шаге переходить от текущего многочлена 
+\begin_inset Formula $r_{n}$
+\end_inset
+
+ к многочлену 
+\begin_inset Formula $r_{n^{*}}$
+\end_inset
+
+, который использовался при генерации 
+\begin_inset Formula $r_{n}$
+\end_inset
+
+ как S-многочлена.
+ Результирующая цепь S-пар имеет вид 
+\begin_inset Formula $\{r_{q},\ldots,r_{l^{**}},r_{l^{*}},r_{l}\}$
+\end_inset
+
+, где все многочлены имеют одинаковый индекс сигнатуры 
+\begin_inset Formula $q=\sigidx(r_{l})$
+\end_inset
+
+ и первый элемент является входным многочленом этого индекса.
+\end_layout
+
+\begin_layout Standard
+Первое свойство цепей S-пар основано на критерии перезаписи и заключается
+ в следующей теореме.
+\end_layout
+
+\begin_layout Theorem
+Любой отмеченный многочлен может являться начальным элементом лишь конечного
+ числа различных цепей S-пар длины 2.
+\end_layout
+
+\begin_layout Proof
+Алгоритм 
+\family typewriter
+AlgorithmF5
+\family default
+ считает S-многочлены в двух местах: процедуре 
+\family typewriter
+SPol
+\family default
+ и процедуре 
+\family typewriter
+TopReduction
+\family default
+.
+ Важно заметить, что в обоих случаях проверка 
+\family typewriter
+Rewritten?
+\family default
+ для части S-многочлена с большей сигнатурой выполняется непосредственно
+ перед созданием S-многочлена.
+ В первом случае такая проверка производится в самой 
+\family typewriter
+SPol
+\family default
+, а в 
+\family typewriter
+TopReduction
+\family default
+ проверка присутствует в вызове 
+\family typewriter
+IsReducible
+\family default
+.
+ И в обоих случаях получаемый S-многочлен немедленно добавляется в список
+ 
+\begin_inset Formula $Rule$
+\end_inset
+
+ последним элементом.
+ Поэтому, в момент построения S-многочлена с сигнатурой 
+\begin_inset Formula $s$
+\end_inset
+
+ можно утверждать, что старшая часть S-пары соответствует последнему из
+ правил с сигнатурой, делящей 
+\begin_inset Formula $s$
+\end_inset
+
+ -- она даже может быть найдена исходя лишь из списка 
+\begin_inset Formula $Rule$
+\end_inset
+
+ и сигнатуры 
+\begin_inset Formula $s$
+\end_inset
+
+ без знания какой-либо ещё информации об алгоритме.
+\end_layout
+
+\begin_layout Proof
+Рассмотрим произвольный отмеченный многочлен 
+\begin_inset Formula $r_{L}$
+\end_inset
+
+ с сигнатурой 
+\begin_inset Formula $\Sig(r_{L})=s$
+\end_inset
+
+ и упорядоченное по порядку добавления подмножество 
+\begin_inset Formula $\{r_{l_{1}},\ldots,r_{l_{i}},\ldots\}$
+\end_inset
+
+ отмеченных многочленов с сигнатурами удовлетворяющими условию 
+\begin_inset Formula $\Sig(r_{l_{i}})=v_{i}\Sig(r_{L})$
+\end_inset
+
+.
+ С точки зрения делимости любая из потенциально бесконечного числа пар 
+\begin_inset Formula $\{r_{L},r_{l_{i}}\}$
+\end_inset
+
+ может быть цепью S-пар длины 2.
+ Но идеал 
+\begin_inset Formula $\left(v_{1},\ldots,v_{i},\ldots\right)$
+\end_inset
+
+ в 
+\begin_inset Formula $\mathbb{T}$
+\end_inset
+
+ является конечно порождённым по лемме Диксона, поэтому после некоторого
+ шага 
+\begin_inset Formula $i_{0}$
+\end_inset
+
+ будет выполняться 
+\begin_inset Formula $\forall i>i_{0}\,\exists j\leqslant i_{0}$
+\end_inset
+
+ такое что 
+\begin_inset Formula $v_{j}|v_{i}$
+\end_inset
+
+.
+ Поэтому при 
+\begin_inset Formula $\forall i>i_{0}$
+\end_inset
+
+ последовательность 
+\begin_inset Formula $\{r_{L},r_{l_{i}}\}$
+\end_inset
+
+ не может являться цепью S-пар, поскольку 
+\begin_inset Formula $\Sig(r_{L})\cdot v_{i}$
+\end_inset
+
+ перезаписывается 
+\begin_inset Formula $\Sig(r_{l_{j}})\cdot\frac{v_{i}}{v_{j}}$
+\end_inset
+
+ и существует не более чем 
+\begin_inset Formula $i_{0}$
+\end_inset
+
+ цепей S-пар длины 2, начинающихся с многочлена 
+\begin_inset Formula $r_{L}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+Конечное множество концов цепей S-пар длины 2, начинающихся с 
+\begin_inset Formula $r_{L}$
+\end_inset
+
+ будет называться 
+\emph on
+множеством S-порождённых
+\emph default
+ 
+\begin_inset Formula $r_{L}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Theorem
+Если алгоритм не останавливается на некоторых входных данных, то он порождает
+ бесконечную цепь S-пар 
+\begin_inset Formula $\{h_{i}\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Поскольку при работе с понятием бесконечности требуется некоторая строгость,
+ дадим следующее определение.
+\end_layout
+
+\begin_deeper
+\begin_layout Definition
+Отмеченный многочлен 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+ называется 
+\emph on
+генератором цепи S-пар
+\emph default
+, если существует бесконечное множество различных конечных цепей S-пар,
+ начинающихся с 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+Если алгоритм не останавливается, то многочлен входного множества 
+\begin_inset Formula $r_{1}=(1\mathbf{F}_{1},f_{1})$
+\end_inset
+
+ является генератором цепи S-пар, поскольку каждый многочлен 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+, порождаемый в последнем не завершающемся вызове 
+\family typewriter
+AlgorithmF5
+\family default
+ имеет индекс сигнатуры 1 и является концом цепи S-пар
+\begin_inset Formula $\{r_{1},\ldots,r_{l^{**}},r_{l^{*}},r_{l}\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Теперь предположим, что про некоторый отмеченный многочлен 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+ известно, что он является генератором цепи S-пар.
+ Один из конечного множества S-порождённых 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+ также должен являться генератором цепи S-пар, поскольку в противном случае
+ число различных цепей, исходящих из 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+, было бы ограничено конечной суммой конечных количеств цепей, выходящих
+ из S-порождённых плюс конечным количеством цепей длины 2, выходящих из
+ 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+.
+ Поэтому, если отмеченный многочлен 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+ является генератором цепи S-пар, среди его S-порождённых всегда может быть
+ выбран другой генератор цепи S-пар.
+ Таким образом может быть построена бесконечная цепь S-пар, начинающаяся
+ 
+\begin_inset Formula $r_{1}$
+\end_inset
+
+ и состоящая из генераторов, что доказывает теорему.
+\end_layout
+
+\begin_layout Standard
+Для следующей теоремы необходимо ввести порядок на частных, образованных
+ мономами, путём транзитивного расширения порядка на мономах: 
+\begin_inset Formula $\frac{m_{1}}{m_{2}}>_{q}\frac{m_{3}}{m_{4}}\Leftrightarrow m_{1}m_{4}>m_{3}m_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:f_g_3_props"
+
+\end_inset
+
+Если алгоритм не останавливается на некоторых входных данных, то после некоторог
+о конечного шага множество 
+\begin_inset Formula $G$
+\end_inset
+
+ содержит пару отмеченных многочленов 
+\begin_inset Formula $f',f$
+\end_inset
+
+, причём 
+\begin_inset Formula $f$
+\end_inset
+
+ сгенерирован после 
+\begin_inset Formula $f'$
+\end_inset
+
+ и выполняются следующие 3 свойства:
+\end_layout
+
+\begin_layout Theorem
+\begin_inset Formula 
+\[
+\HM(f')|\HM(f),
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+\begin_inset Formula 
+\[
+\frac{\HM(f')}{\Sig(f')}>_{q}\frac{\HM(f)}{\Sig(f)},
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+\begin_inset Formula 
+\[
+\Sig(f')|\Sig(f).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+При работе с цепями S-пар является важным тот факт, что многочлен никогда
+ не редуцируется дальше, после того как он был использован для создания
+ S-пары в качестве старшей по сигнатуре части.
+ Факт выполняется, поскольку все многочлены, которые ещё могут быть подвергнуты
+ редукции находятся в множестве 
+\begin_inset Formula $ToDo$
+\end_inset
+
+, а все многочлены, используемые как старшая часть S-пары, находятся в 
+\begin_inset Formula $G$
+\end_inset
+
+ или в 
+\begin_inset Formula $Done$
+\end_inset
+
+.
+ Поэтому многочлен 
+\begin_inset Formula $h_{n}$
+\end_inset
+
+, предшествующий многочлену 
+\begin_inset Formula $h_{n+1}$
+\end_inset
+
+ в цепи S-пар, сохраняет одно и то же значение 
+\begin_inset Formula $\poly(h_{n})$
+\end_inset
+
+ после того как был использован для создания какой-либо S-пары.
+ И можно утверждать, что выполняется равенство 
+\begin_inset Formula 
+\[
+\poly(h_{n+1})=c\frac{\Sig(h_{n+1})}{\Sig(h_{n})}\poly(h_{n})+g_{n},
+\]
+
+\end_inset
+
+, где 
+\begin_inset Formula $g_{n}$
+\end_inset
+
+ -- многочлен, соответствующей младшей части S-пары, использованный при
+ генерации 
+\begin_inset Formula $h_{n+1}$
+\end_inset
+
+ из 
+\begin_inset Formula $h_{n}$
+\end_inset
+
+, удовлетворяющее следующему:
+\begin_inset Formula 
+\begin{equation}
+\HM(h_{n+1})<\HM\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)=\HM(g_{n}),\,\Sig(h_{n+1})=\Sig\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)\succ\Sig(g_{n}).\label{eq:spair-chain}
+\end{equation}
+
+\end_inset
+
+Из первого неравенства в 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:spair-chain"
+
+\end_inset
+
+ получаем, что 
+\begin_inset Formula $\frac{\HM(h_{n})}{\Sig(h_{n})}>_{q}\frac{\HM(h_{n+1})}{\Sig(h_{n+1})}$
+\end_inset
+
+, поэтому в цепи S-пар частные 
+\begin_inset Formula $\frac{\HM(h_{i})}{\Sig(h_{i})}$
+\end_inset
+
+ строго убывают в смысле порядка на частных.
+ Этот факт не может быть напрямую использован для доказательства конечности
+ цепей, поскольку порядок на частных, в отличии от порядка на мономах, не
+ даёт вполне упорядоченности: к примеру последовательность 
+\begin_inset Formula $\frac{x}{x}>_{q}\frac{x}{x^{2}}>_{q}\cdots>_{q}\frac{x}{x^{n}}>_{q}\cdots$
+\end_inset
+
+ является бесконечно убывающей.
+\end_layout
+
+\begin_layout Proof
+Существует две возможности для отношения между 
+\begin_inset Formula $\HM$
+\end_inset
+
+ соседних элементов.
+ Известно, что 
+\begin_inset Formula $\Sig(h_{n})|\Sig(h_{n+1})$
+\end_inset
+
+, поэтому они или имеют равные сигнатуры, или 
+\begin_inset Formula $\totaldeg(h_{n})<\totaldeg(h_{n+1})$
+\end_inset
+
+.
+ В первом случае 
+\begin_inset Formula $\HM(h_{n+1})<\HM(h_{n})$
+\end_inset
+
+ при равенстве полной степени, а во втором -- 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\HM(h_{n+1})>\HM(h_{n})$
+\end_inset
+
+, поскольку полные степени 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $\HM$
+\end_inset
+
+ отличаются
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+.
+ Поэтому, последовательность
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $\HM$
+\end_inset
+
+ элементов бесконечной цепи S-пар состоит из блоков с фиксированной полной
+ степенью, где 
+\begin_inset Formula $\HM$
+\end_inset
+
+ внутри блока строго убывают.
+ Длины блоков могут быть равными единице, и полные степени блоков возрастают.
+ Это приводит к следующим свойствам: цепь S-пар 
+\begin_inset Formula $\{h_{i}\}$
+\end_inset
+
+ не может содержать элементов с равными 
+\begin_inset Formula $\HM$
+\end_inset
+
+ и 
+\begin_inset Formula $\HM(h_{i})|\HM(h_{j})$
+\end_inset
+
+ возможно только в случае 
+\begin_inset Formula $i<j$
+\end_inset
+
+ и 
+\begin_inset Formula $\totaldeg(h_{i})<\totaldeg(h_{j})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Это позволяет использовать метод аналогичный используемому в Предложении
+ 14 работы 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "TheF5Revised"
+
+\end_inset
+
+: рассмотрим 
+\begin_inset Formula $\HM$
+\end_inset
+
+ бесконечной цепи S-пар 
+\begin_inset Formula $\{h_{i}\}$
+\end_inset
+
+.
+ Они порождают бесконечную последовательность в 
+\begin_inset Formula $\mathbb{T}$
+\end_inset
+
+, поэтому по лемме Диксона существует два многочлена, с 
+\begin_inset Formula $\HM(h_{i})|\HM(h_{j})$
+\end_inset
+
+.
+ Из предыдущего абзаца следует, что при этом 
+\begin_inset Formula $i<j$
+\end_inset
+
+, а при помощи свойств цепи S-пар мы получаем, что 
+\begin_inset Formula $\Sig(h_{i})|\Sig(h_{i+1})|\cdots|\Sig(h_{j})$
+\end_inset
+
+ и 
+\begin_inset Formula $\frac{\HM(h_{i})}{\Sig(h_{i})}>_{q}\frac{\HM(h_{i+1})}{\Sig(h_{i+1})}>_{q}\cdots>_{q}\frac{\HM(h_{j})}{\Sig(h_{j})}$
+\end_inset
+
+, поэтому можно взять 
+\begin_inset Formula $f'=h_{i}$
+\end_inset
+
+ и 
+\begin_inset Formula $f=h_{j}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Последнее свойство о делимости сигнатур из утверждения теоремы является
+ побочным эффектом от использования цепей S-пар и не используется в дальнейшем.
+ При этом первые два свойства используются для построения сигнатурного редуктора.
+\end_layout
+
+\begin_layout Fact
+Если никакие многочлены не были отброшены проверками критериев (b) и (c)
+ в 
+\family typewriter
+IsReducible
+\family default
+, рассматриваемый алгоритм завершается.
+\end_layout
+
+\begin_layout Proof
+Данное выше доказательство теоремы 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:f_g_3_props"
+
+\end_inset
+
+ не опирается на соответствие между порядками на сигнатурах и мономах многочлено
+в.
+ Но алгоритм F5 использует один и тот же порядок в обоих случаях, и теперь
+ мы можем воспользоваться этим фактом и переформулировать отношение на частных
+ мономов из теоремы 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:f_g_3_props"
+
+\end_inset
+
+ в отношение на сигнатурах: 
+\begin_inset Formula 
+\[
+\Sig(f)\succ t\cdot\Sig(f'),\mbox{ где }t=\frac{\HM(f)}{\HM(f')}\in\mathbb{T}.
+\]
+
+\end_inset
+
+Это неравенство вместе с делимостью 
+\begin_inset Formula $\HM$
+\end_inset
+
+ из утверждения теоремы показывает, что 
+\begin_inset Formula $tf'$
+\end_inset
+
+ является редуктором для 
+\begin_inset Formula $f$
+\end_inset
+
+ в 
+\family typewriter
+TopReduction
+\family default
+ с точки зрения сигнатуры -- он проходит проверки (a) и (d) внутри 
+\family typewriter
+IsReducible
+\family default
+ и его сигнатура меньше.
+ При отсутствии проверки критериев (b) и (c) это напрямую приводило бы к
+ противоречию, так как в момент добавления 
+\begin_inset Formula $f$
+\end_inset
+
+ в 
+\begin_inset Formula $G$
+\end_inset
+
+ отмеченный многочлен 
+\begin_inset Formula $f'$
+\end_inset
+
+ уже был там и процедура 
+\family typewriter
+TopReduction
+\family default
+ должна была бы редуцировать 
+\begin_inset Formula $f$
+\end_inset
+
+ по 
+\begin_inset Formula $f'$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Но существование критериев делает возможной ситуацию, в которой 
+\begin_inset Formula $tf'$
+\end_inset
+
+ отбрасывается проверками (b) или (c) процедуры 
+\family typewriter
+IsReducible
+\family default
+.
+ Идея дальнейших рассуждений состоит в том, чтобы показать что в этом случае
+ может быть найден другой сигнатурный редуктор 
+\begin_inset Formula $f$
+\end_inset
+
+, который не будет отброшен проверками и таким образом прийти к противоречию.
+ Последующие главы работы посвящены этому.
+\end_layout
+
+\begin_layout Subsubsection
+S-пары с сигнатурами, меньшими 
+\begin_inset Formula $\Sig(g)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+В этой и последующих частях 
+\begin_inset Formula $g$
+\end_inset
+
+ подразумевается некоторым фиксированным многочленом с индексом сигнатуры
+ 1, добавленным на некоторой итерации алгоритма в 
+\begin_inset Formula $Done$
+\end_inset
+
+.
+ Мы будем анализировать состояние алгоритма в момент непосредственно предшествую
+щий добавлению 
+\begin_inset Formula $g$
+\end_inset
+
+ в 
+\begin_inset Formula $Done$
+\end_inset
+
+ в вызове 
+\family typewriter
+AlgorithmF5
+\family default
+ с 
+\begin_inset Formula $i=1$
+\end_inset
+
+.
+ Рассмотрим в этот момент конечное множество 
+\begin_inset Formula $G_{1}\cup Done$
+\end_inset
+
+.
+ Оно состоит из чисел, являющихся позициями отмеченных многочленов в 
+\begin_inset Formula $R$
+\end_inset
+
+, поэтому его элементы могут быть упорядочены в соответствии с позицией
+ в 
+\begin_inset Formula $R$
+\end_inset
+
+ и оно окажется записанным в виде упорядоченной последовательности целых
+ чисел 
+\begin_inset Formula $G_{g}=\{b_{1},\ldots,b_{N}\}$
+\end_inset
+
+ с 
+\begin_inset Formula $b_{j}<b_{j+1}$
+\end_inset
+
+.
+ Необходимо отметить, что этот порядок соответствует порядку отмеченных
+ многочленов в последовательности, получаемой склеиванием массивов правил
+ 
+\begin_inset Formula $Rule[m]:Rule[m-1]:\cdots:Rule[1]$
+\end_inset
+
+, поскольку добавление нового многочлена в 
+\begin_inset Formula $R$
+\end_inset
+
+ всегда сопровождается добавлением соответствующего правила.
+ Но этот порядок может отличаться от порядка в котором многочлены добавлялись
+ в множество 
+\begin_inset Formula $G_{1}\cup Done$
+\end_inset
+
+, поскольку многочлены одной полной степени добавляются в 
+\begin_inset Formula $Done$
+\end_inset
+
+ в порядке возрастания сигнатуры, при том что добавление многочленов одной
+ полной степени в 
+\begin_inset Formula $R$
+\end_inset
+
+ производится в довольно случайном порядке в процедурах 
+\family typewriter
+Spol
+\family default
+ и 
+\family typewriter
+TopReduction
+\family default
+.
+ Далее для простоты мы будем говорить о отмеченных многочленах 
+\begin_inset Formula $b_{j}$
+\end_inset
+
+ в 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+, подразумевая что 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ является не упорядоченным списком позиций, а упорядоченным списком отмеченных
+ многочленов, расположенных на этих позициях.
+ В этой терминологии можно сказать, что все входные многочлены 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} $
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ присутствуют в 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+, поскольку они присутствуют в 
+\begin_inset Formula $G_{1}$
+\end_inset
+
+ в момент его создания.
+\end_layout
+
+\begin_layout Standard
+S-пары могут обрабатываться в алгоритме различным путями, но главный факт,
+ описывающий порядок их обработки выражается следующими свойствами, соответствую
+щими свойствам, использованным в Теореме 21 работы 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5C"
+
+\end_inset
+
+, но рассматриваются на произвольной итерации алгоритма, а не после его
+ остановки.
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:Exist-gg-repr"
+
+\end_inset
+
+К моменту добавления 
+\begin_inset Formula $g$
+\end_inset
+
+ в 
+\begin_inset Formula $Done$
+\end_inset
+
+ каждая S-пара элементов 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+, сигнатура которой меньше 
+\begin_inset Formula $\Sig(g)$
+\end_inset
+
+, удовлетворяет одному из трёх свойств:
+\end_layout
+
+\begin_layout Enumerate
+S-пара имеет часть, которая была отброшена критерием проверки нормальной
+ формы 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ (в 
+\family typewriter
+CritPair
+\family default
+ или в 
+\family typewriter
+IsReducible
+\family default
+).
+ Такие S-пары будут называться 
+\emph on
+S-парами с частью, удовлетворяющей критерию F5
+\emph default
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+S-пара имеет часть, которая была отброшена проверкой 
+\family typewriter
+Rewritten?
+\family default
+ (в 
+\family typewriter
+SPol
+\family default
+ или в 
+\family typewriter
+IsReducible
+\family default
+).
+ Такие S-пары будут называться 
+\emph on
+S-парами с частью, удовлетворяющей критерию Перезаписи
+\emph default
+.
+\end_layout
+
+\begin_layout Enumerate
+S-пара не была отброшена, поэтому её S-многочлен был сигнатурно редуцирован
+ по некоторым элементам 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ и результат был добавлен как элемент 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+.
+ Такие S-пары будут называться 
+\emph on
+S-парами с известным 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представлением
+\emph default
+.
+\end_layout
+
+\begin_layout Proof
+S-пары элементов 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ обрабатываются в алгоритме двумя основными путями.
+ Основной путь используется для S-пар, полная степень которых больше чем
+ полная степень породивших их многочленов.
+ Такие S-пары обрабатываются в следующем порядке:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+в процедуре 
+\family typewriter
+AlgorithmF5
+\family default
+ они рассматриваются функцией 
+\family typewriter
+CritPair
+\family default
+ при перемещении элементов 
+\begin_inset Formula $G_{i}$
+\end_inset
+
+ из 
+\begin_inset Formula $R_{d}=Done$
+\end_inset
+
+ и при обработке входного многочлена 
+\begin_inset Formula $r_{i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+функция 
+\family typewriter
+CritPair
+\family default
+ или отбрасывает пару после проверки нормальной формы 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ или добавляет пару в 
+\begin_inset Formula $P$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+S-пара извлекается из 
+\begin_inset Formula $P$
+\end_inset
+
+ и передаётся в функцию 
+\family typewriter
+SPol
+\end_layout
+
+\begin_layout Itemize
+функция 
+\family typewriter
+SPol
+\family default
+ или отбрасывает пару после проверки 
+\family typewriter
+Rewritten?
+\family default
+ или добавляет S-многочлен в 
+\begin_inset Formula $F=ToDo$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+на некоторой итерации процедура 
+\family typewriter
+Reduction
+\family default
+ берёт S-многочлен из 
+\begin_inset Formula $ToDo$
+\end_inset
+
+, производит некоторые сигнатурные редукции и добавляет результат в 
+\begin_inset Formula $Done$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+Второй путь обработки используется для S-пар, соответствующих редукциям,
+ запрещённым алгоритмом -- соответствующие S-пары порождаются многочленами
+ 
+\begin_inset Formula $r_{l^{*}}$
+\end_inset
+
+ и 
+\begin_inset Formula $r_{l_{*}}$
+\end_inset
+
+, такими что 
+\begin_inset Formula $\HM(r_{l^{*}})|\HM(r_{l_{*}})$
+\end_inset
+
+, и S-многочлен им соответствующий имеет вид 
+\begin_inset Formula $\overline{u_{l}}\cdot\poly(r_{l^{*}})-1\cdot\poly(r_{l_{*}})$
+\end_inset
+
+.
+ Такая ситуация возможна, если для элементов 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ редукция 
+\begin_inset Formula $r_{l_{*}}$
+\end_inset
+
+ по 
+\begin_inset Formula $r_{l^{*}}$
+\end_inset
+
+ была запрещена сравнением сигнатур в 
+\family typewriter
+TopReduction
+\family default
+ или проверками в 
+\family typewriter
+IsReducible
+\family default
+.
+ Для этого случая порядок 
+\begin_inset Quotes fld
+\end_inset
+
+обработки
+\begin_inset Quotes frd
+\end_inset
+
+ S-пары такой:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+часть S-пары 
+\begin_inset Formula $\overline{u_{l}}\cdot r_{l^{*}}$
+\end_inset
+
+ проверяется в 
+\family typewriter
+IsReducible
+\family default
+.
+ (a) выполнено, поскольку 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\HM(r_{l^{*}})|\HM(r_{l_{*}})$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+.
+ Она может быть отброшена другими проверками:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+отбрасывание пунктом (b) соответствует проверке нормальной формы 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ для 
+\begin_inset Formula $\overline{u_{l}}\cdot r_{l^{*}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+отбрасывание пунктом (c) соответствует проверке 
+\family typewriter
+Rewritten?
+\family default
+ для 
+\begin_inset Formula $\overline{u_{l}}\cdot r_{l^{*}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+отбрасывание пунктом (d) означает, что один из многочленов 
+\begin_inset Formula $\overline{u_{l}}\cdot r_{l^{*}}$
+\end_inset
+
+ и 
+\begin_inset Formula $1\cdot r_{l_{*}}$
+\end_inset
+
+ может быть перезаписано другим, поэтому, если S-пара не была отброшена
+ проверкой (c), данный тип отбрасывания означает, что часть S-пары 
+\begin_inset Formula $1\cdot r_{i_{1}}$
+\end_inset
+
+ не проходит проверку 
+\family typewriter
+Rewritten?
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+S-пары, не отброшенные в 
+\family typewriter
+IsReducible
+\family default
+ возвращаются в 
+\family typewriter
+TopReduction
+\family default
+.
+ 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Сравнение сигнатур в 
+\family typewriter
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+TopReduction
+\family default
+ запрещает редукцию 
+\begin_inset Formula $r_{l_{*}}$
+\end_inset
+
+ по 
+\begin_inset Formula $r_{l^{*}}$
+\end_inset
+
+ и помещает вычисленный S-многочлен, соответствующий S-паре, в множество
+ 
+\begin_inset Formula $ToDo_{1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+процедура 
+\family typewriter
+Reduction
+\family default
+ добавляет этот многочлен в 
+\begin_inset Formula $ToDo$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+последний шаг совпадает для обоих путей обработки S-пар: на некоторой итерации
+ процедура 
+\family typewriter
+Reduction
+\family default
+ берёт S-многочлен из 
+\begin_inset Formula $ToDo$
+\end_inset
+
+, производит некоторые сигнатурные редукции и добавляет результат в 
+\begin_inset Formula $Done$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+Из путей обработки S-пар видно, что после окончания обработки каждая S-пара
+ или редуцирована и добавлена в 
+\begin_inset Formula $Done$
+\end_inset
+
+ или одна из частей S-пары была отброшена проверкой нормальной формы 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ или критерием 
+\family typewriter
+Rewritten?
+\family default
+.
+ Некоторые S-пары могут оказываться на путях обработки несколько раз, к
+ примеру это происходит на итерации в 
+\family typewriter
+AlgorithmF5
+\family default
+ со значением 
+\begin_inset Formula $d$
+\end_inset
+
+, не изменившимся с прошлой итерации.
+ Если S-пара была отброшена при первой попытке обработки, то она будет точно
+ также отброшена и на следующей попытке.
+ Если первая обработка добавила редуцированный многочлен в 
+\begin_inset Formula $Done$
+\end_inset
+
+, то пара будет отбрасываться при следующих попытках обработки проверкой
+\family typewriter
+ Rewritten?
+\family default
+ за счёт этого многочлена.
+ Поэтому все попытки обработки, кроме первой, не дают ничего нового.
+\end_layout
+
+\begin_layout Proof
+Путь обработки не является одной процедурой, и в случае, если алгоритм не
+ останавливается, некоторые S-пары всегда находятся в середине обработки,
+ при этом или соответствующая S-пара находится в очереди 
+\begin_inset Formula $P$
+\end_inset
+
+ или S-многочлен в очереди 
+\begin_inset Formula $ToDo$
+\end_inset
+
+.
+ Поэтому необходимо понять, обработка каких S-пар уже завершилась в рассматривае
+мый нами момент.
+ Элементы 
+\begin_inset Formula $P$
+\end_inset
+
+ и 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ извлекаются в процедурах 
+\family typewriter
+AlgorithmF5
+\family default
+ и 
+\family typewriter
+Reduction
+\family default
+ в порядке возрастания сигнатур.
+ S-пары с сигнатурами, меньшими 
+\begin_inset Formula $\Sig(g)$
+\end_inset
+
+, могут быть разделены на 3 класса:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+S-пары с сигнатурой 
+\begin_inset Formula $w$
+\end_inset
+
+, такой что 
+\begin_inset Formula $\sigidx(w)>\sigidx(\Sig(g))=1$
+\end_inset
+
+.
+ Они обрабатывались на предыдущих вызовах 
+\family typewriter
+AlgorithmF5
+\family default
+.
+\end_layout
+
+\begin_layout Itemize
+S-пары с сигнатурой 
+\begin_inset Formula $w$
+\end_inset
+
+, такой что 
+\begin_inset Formula $\sigidx(w)=\sigidx(\Sig(g))=1,\totaldeg(w)<\totaldeg(\Sig(g))$
+\end_inset
+
+.
+ Они обрабатывались на предыдущих итерациях цикла внутри того же вызова
+ 
+\family typewriter
+AlgorithmF5
+\family default
+, который обрабатывает 
+\begin_inset Formula $g$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+S-пары с сигнатурой 
+\begin_inset Formula $w$
+\end_inset
+
+, такой что 
+\begin_inset Formula $\sigidx(w)=\sigidx(\Sig(g))=1,\totaldeg(w)=\totaldeg(\Sig(g)),w\prec\Sig(g)$
+\end_inset
+
+.
+ Они обрабатывались на предыдущих итерациях цикла внутри того же вызова
+ 
+\family typewriter
+Reduce
+\family default
+, который обрабатывает 
+\begin_inset Formula $g$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+S-пары из этих классов не могут находиться в середине пути обработки, потому
+ что в рассматриваемом состоянии алгоритма обработка только что завершена
+ для 
+\begin_inset Formula $g$
+\end_inset
+
+, поэтому ни 
+\begin_inset Formula $P$
+\end_inset
+
+ ни 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ не содержат необработанных элементов с сигнатурами, меньшими 
+\begin_inset Formula $\Sig(g)$
+\end_inset
+
+.
+ Осталось показать, что для всех S-пар из утверждения теоремы обработка
+ начиналась хотя бы один раз.
+ Это просто проверить для первых двух классов: обработка соответствующих
+ S-пар была начата по крайней мере один раз путём вызова 
+\family typewriter
+CritPair
+\family default
+ в 
+\family typewriter
+AlgorithmF5
+\family default
+ непосредственно перед тем, как наибольший из порождающих S-пару был добавлен
+ в 
+\begin_inset Formula $G$
+\end_inset
+
+.
+ Для S-пар третьего класса ситуация зависит от полной степени её порождающих.
+ Если оба порождающих S-пары имеют полную степень 
+\begin_inset Formula $<\totaldeg(g)$
+\end_inset
+
+, то её обработка была начата в 
+\family typewriter
+CritPair
+\family default
+ аналогично S-парам первых двух классов.
+ Но некоторые S-пары третьего класса могут иметь старший по сигнатуре порождающи
+й 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+, такой что 
+\begin_inset Formula $\totaldeg(r_{l})=\totaldeg(g),\,\Sig(r_{l})\prec\Sig(g)$
+\end_inset
+
+.
+ Они обрабатываются вторым из рассмотренных путей обработки S-пар, поэтому
+ обработка таких S-пар ещё не стартовала к моменту последнего вызова 
+\family typewriter
+Reduction
+\family default
+.
+ Однако, их обработка начинается внутри 
+\family typewriter
+Reduction
+\family default
+ до изучаемого нами момента: процедура выбирает многочлены из 
+\begin_inset Formula $ToDo$
+\end_inset
+
+ в порядке возрастания сигнатуры, поэтому 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+ редуцируется до 
+\begin_inset Formula $g$
+\end_inset
+
+ и в процессе редукции 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+ непосредственно перед добавлением 
+\begin_inset Formula $r_{l}$
+\end_inset
+
+ в 
+\begin_inset Formula $Done$
+\end_inset
+
+ вызов 
+\family typewriter
+TopReduction
+\family default
+ начинает обработку всех таких S-пар.
+\end_layout
+
+\begin_layout Standard
+Понятия 
+\emph on
+удовлетворять критерию F5 
+\emph default
+и 
+\emph on
+удовлетворять критерию Перезаписи
+\emph default
+ могут быть расширены на произвольные умноженные на моном отмеченные многочлены
+ 
+\begin_inset Formula $sh,\, h\in G_{g}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Definition
+Умноженный на моном отмеченный многочлен  
+\begin_inset Formula $sr_{i},\, r_{i}\in G_{g}$
+\end_inset
+
+ называется 
+\emph on
+удовлетворяющим критерию F5
+\emph default
+, если 
+\begin_inset Formula $\varphi_{index(r_{i})+1}(s\Sig(r_{i}))\ne s\Sig(r_{i})$
+\end_inset
+
+, где 
+\begin_inset Formula $\varphi_{index(r_{i})+1}$
+\end_inset
+
+ -- оператор нормальной формы по отношению к 
+\begin_inset Formula $G_{index(r_{i})+1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Это определение эквивалентно тому, что 
+\begin_inset Formula $sr_{i}$
+\end_inset
+
+ является ненормализованным отмеченным многочленом с точки зрения определения
+ 2 в части 5 работы 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+Умноженный на моном отмеченный многочлен 
+\begin_inset Formula $sr_{i},\, r_{i}\in G_{g}$
+\end_inset
+
+ называется 
+\emph on
+удовлетворяющим критерию Перезаписи
+\emph default
+, если 
+\begin_inset Formula $\exists j>i$
+\end_inset
+
+ такое что 
+\begin_inset Formula $\Sig(r_{j})|s\Sig(r_{i})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+В случае, если 
+\begin_inset Formula $sr_{i}$
+\end_inset
+
+ является частью S-пары, эти определения эквиваленты проверкам, производимым
+ в алгоритме, в том смысле, что часть S-пары отбрасывается алгоритмом тогда
+ и только тогда, когда она удовлетворяет данному определению как умноженный
+ на моном отмеченный многочлен.
+ Для обоих критериев выполняется важное свойство, утверждающее, что если
+ 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $sr_{i}$
+\end_inset
+
+ удовлетворяет критерию, то то и дополнительно домноженный многочлен 
+\begin_inset Formula $s_{1}sr_{i}$
+\end_inset
+
+ также ему удовлетворяет.
+\end_layout
+
+\begin_layout Subsubsection
+Представления
+\end_layout
+
+\begin_layout Paragraph
+Определение
+\end_layout
+
+\begin_layout Standard
+Идея представлений, определённых ниже, приходит из 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5C"
+
+\end_inset
+
+, где подобный метод используется в доказательстве Теоремы 21.
+ Представления используются для описания способов, которыми многочлен 
+\begin_inset Formula $p$
+\end_inset
+
+ может быть записан как элемент идеала 
+\begin_inset Formula $\left(G_{g}\right)$
+\end_inset
+
+.
+ Одно представление соответствует записи отмеченного многочлена 
+\begin_inset Formula $p$
+\end_inset
+
+ в виде конечной суммы вида
+\begin_inset Formula 
+\begin{equation}
+p=\sum_{k}m_{k}\cdot b_{i_{k}},\; b_{i_{k}}\in G_{g}\label{eq:Gg-repr-def}
+\end{equation}
+
+\end_inset
+
+с коэффициентами 
+\begin_inset Formula $m_{k}=c_{k}t_{k}\in\mathcal{K}\times\mathbb{T}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Definition
+Сумма вида 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:Gg-repr-def"
+
+\end_inset
+
+, в которой все пары 
+\begin_inset Formula $\left(t_{k},b_{i_{k}}\right)$
+\end_inset
+
+ различны, называется 
+\emph on
+
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представлением
+\emph default
+ 
+\begin_inset Formula $p$
+\end_inset
+
+.
+ Символические произведения 
+\begin_inset Formula $m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+ называются 
+\emph on
+элементами
+\emph default
+ представления.
+ Если рассмотреть это символическое произведение как умножение многочленов,
+ то мы получим отмеченный многочлен 
+\begin_inset Formula $m_{k}b_{i_{k}}$
+\end_inset
+
+, соответствующий элементу представления.
+ Тогда 
+\begin_inset Formula $p$
+\end_inset
+
+ оказывается равным сумме отмеченных многочленов, соответствующих элементам
+ его представления.
+ Понятие 
+\emph on
+сигнатура элемента
+\emph default
+ будет использоваться для обозначения сигнатура многочлена, соответствующего
+ элементу.
+ Два представления равны, если наборы их элементов совпадают как множества.
+\end_layout
+
+\begin_layout Standard
+Большинство представлений, которые будут нам интересны также имеют следующее
+ свойство, ограничивающее сигнатуру элементов:
+\end_layout
+
+\begin_layout Definition
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представление 
+\begin_inset Formula $p$
+\end_inset
+
+ называется 
+\emph on
+сигнатурным
+\emph default
+, если 
+\begin_inset Formula $\forall k\,\Sig(m_{k}b_{i_{k}})\preccurlyeq\Sig(p)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph
+Примеры
+\end_layout
+
+\begin_layout Example
+Первый важный пример 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представления тривиален: отмеченный многочлен из 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ равен сумме одного слагаемого -- самого себя с единичным коэффициентом:
+ 
+\begin_inset Formula 
+\[
+b_{j}=1\cdot b_{j}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Это 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представление сигнатурно.
+ Запрет на наличие в представлении нескольких элементов, имеющих одинаковый
+ моном 
+\begin_inset Formula $t_{k}$
+\end_inset
+
+ и многочлен 
+\begin_inset Formula $b_{i_{k}}$
+\end_inset
+
+ гарантирует, что все элементы представления, отличающиеся только коэффициентом
+ из поля 
+\begin_inset Formula $c_{k}$
+\end_inset
+
+ скомбинированы вместе путём суммирования коэффициентов из поля.
+ Поэтому выражения вида 
+\begin_inset Formula $b_{j}=-1\cdot b_{j}+2\cdot b_{j}$
+\end_inset
+
+ и 
+\begin_inset Formula $b_{j}=2x\cdot b_{k}+1\cdot b_{j}-2x\cdot b_{k}$
+\end_inset
+
+ не являются корректными 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представлениями.
+\end_layout
+
+\begin_layout Example
+Отмеченный многочлен 
+\begin_inset Formula $b_{j}\in G_{g}$
+\end_inset
+
+, домноженный на произвольный многочлен 
+\begin_inset Formula $h$
+\end_inset
+
+ также имеет простое 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представление, получающееся из записи 
+\begin_inset Formula $h$
+\end_inset
+
+ в виде суммы термов: 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $h=\sum_{k}m_{k},\, m_{k}\in\mathcal{K}\times\mathbb{T}$
+\end_inset
+
+.
+ Это 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представление имеет форму 
+\begin_inset Formula 
+\begin{equation}
+b_{j}h=\sum_{k}m_{k}\cdot b_{j}\label{eq:repr-ex-2}
+\end{equation}
+
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+и также является сигнатурным.
+\end_layout
+
+\begin_layout Standard
+Отмеченный многочлен может иметь бесконечное множество различных представлений:
+ к любому представлению можно добавить элементы, соответствующие сизигии,
+ сгруппировать элементы с одновременно равными мономами и многочленами и
+ получить другое корректное представление.
+ Это будет представление того же многочлена, поскольку сумма многочленов,
+ соответствующих элементам сизигии равна 0.
+\end_layout
+
+\begin_layout Example
+Произведение двух многочленов из 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ имеет 2 представления вида 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:repr-ex-2"
+
+\end_inset
+
+, которые отличаются прибавлением сизигии:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+b_{j}b_{i}=\sum_{k}m_{i_{k}}\cdot b_{j}=\sum_{k}m_{i_{k}}\cdot b_{j}+0=\sum_{k}m_{i_{k}}\cdot b_{j}+\left(\sum_{k}m_{j_{k}}\cdot b_{i}-\sum_{k}m_{i_{k}}\cdot b_{j}\right)=\sum_{k}m_{j_{k}}\cdot b_{i},
+\]
+
+\end_inset
+
+где 
+\begin_inset Formula $m_{i_{k}}$
+\end_inset
+
+ -- термы 
+\begin_inset Formula $b_{i}$
+\end_inset
+
+, а 
+\begin_inset Formula $m_{j_{k}}$
+\end_inset
+
+ -- термы 
+\begin_inset Formula $b_{j}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Example
+Нулевой многочлен имеет пустое представление и представление, соответствующее
+ каждой сизигии:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+0=\sum_{\emptyset}\mbox{(empty sum)}=\sum_{k}m_{j_{k}}\cdot b_{i}+\sum_{k}(-m_{i_{k}})\cdot b_{j},
+\]
+
+\end_inset
+
+где 
+\begin_inset Formula $m_{i_{k}}$
+\end_inset
+
+ и 
+\begin_inset Formula $m_{j_{k}}$
+\end_inset
+
+ взяты из предыдущего примера.
+ Все непустые представления нулевого многочлена не сигнатурны.
+\end_layout
+
+\begin_layout Standard
+Другой важный пример 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представлений получается из определений сигнатуры и идеала.
+ Все отмеченные многочлены, вычисляемые алгоритмом, принадлежат идеалу 
+\begin_inset Formula $\left(f_{1},\ldots,f_{m}\right)$
+\end_inset
+
+.
+ Поэтому любой отмеченный многочлен 
+\begin_inset Formula $p$
+\end_inset
+
+ может быть записан в виде 
+\begin_inset Formula $\sum_{i}f_{i}g_{i}$
+\end_inset
+
+, где 
+\begin_inset Formula $g_{i}$
+\end_inset
+
+ -- однородные многочлены.
+ Все входные многочлены 
+\begin_inset Formula $f_{i}$
+\end_inset
+
+ принадлежат 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+, поэтому 
+\begin_inset Formula $f_{i}g_{i}$
+\end_inset
+
+ имеют 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представления вида 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:repr-ex-2"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Example
+Сумма этих представлений даёт следующее сигнатурное представление: 
+\begin_inset Formula 
+\[
+p=\sum_{k}m_{k}\cdot b_{i_{k}},\, m_{k}\in\mathcal{K}\times\mathbb{T},\, b_{i_{k}}\in\left\{ f_{1},\ldots,f_{m}\right\} \subset G_{g}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+Частный случай 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представления, при котором 
+\begin_inset Formula $b_{i_{k}}$
+\end_inset
+
+ ограничены лишь входными многочленами, будет называться 
+\emph on
+входным представлением
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Входные представления всегда имеют единственный элемент максимальной сигнатуры.
+ Произвольные 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представления не всегда обладают этим свойством, поскольку могут иметь
+ несколько разных элементов с одинаковой максимальной сигнатурой, так как
+ для них возможна ситуация 
+\begin_inset Formula $m_{1}\Sig(b_{i_{1}})=m_{2}\Sig(b_{i_{2}})$
+\end_inset
+
+ при 
+\begin_inset Formula $i_{1}\ne i_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Следующее утверждение устанавливает связь между входными представлениями
+ и понятием сигнатуры:
+\end_layout
+
+\begin_layout Claim
+Допустимый отмеченный многочлен 
+\begin_inset Formula $p$
+\end_inset
+
+ с известной сигнатурой 
+\begin_inset Formula $\Sig(p)$
+\end_inset
+
+ имеет входное представление, состоящее из элемента 
+\begin_inset Formula $c\Sig(p)\cdot f_{index(p)}$
+\end_inset
+
+ и некоторых других элементов с меньшими сигнатурами.
+\end_layout
+
+\begin_layout Proof
+Утверждение вытекает из определения допустимого многочлена в 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5"
+
+\end_inset
+
+, ссылающегося на функцию 
+\begin_inset Formula $v$
+\end_inset
+
+, которая соответствует суммированию элементов входного представления.
+\end_layout
+
+\begin_layout Standard
+Теорема 1 из 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5"
+
+\end_inset
+
+ утверждает, что все многочлены, порождаемые алгоритмом, допустимы, поэтому
+ мы будем применять предыдущее утверждение ко всем таким многочленам.
+\end_layout
+
+\begin_layout Example
+\begin_inset CommandInset label
+LatexCommand label
+name "example-of-having-gg-repr"
+
+\end_inset
+
+Последний пример восходит к S-парам с известным 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представлением.
+ S-многочлен, порождённый 
+\begin_inset Formula $b_{l^{*}}$
+\end_inset
+
+ и 
+\begin_inset Formula $b_{l_{*}}$
+\end_inset
+
+ из 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+, имеет вид 
+\begin_inset Formula $p=\overline{u_{l}}\poly(b_{l^{*}})-\underline{u_{l}}\poly(b_{l_{*}})$
+\end_inset
+
+.
+ Из процесса редукции вытекает, что 
+\begin_inset Formula $p$
+\end_inset
+
+ сигнатурно редуцируется и результат добавляется в 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ как некоторый отмеченный многочлен 
+\begin_inset Formula $b_{l}$
+\end_inset
+
+.
+ Отсюда его 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представление имеет вид:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p=\sum_{k}m_{k}\cdot b_{n_{k}}+1\cdot b_{l},
+\]
+
+\end_inset
+
+где сигнатуры элементов 
+\begin_inset Formula $m_{k}\cdot b_{n_{k}}$
+\end_inset
+
+ меньше чем 
+\begin_inset Formula $\Sig(b_{l})=\Sig(p)$
+\end_inset
+
+.
+ Значение 
+\begin_inset Formula $l$
+\end_inset
+
+ -- позиция 
+\begin_inset Formula $b_{l}$
+\end_inset
+
+ в упорядоченном списке 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+.
+ В данном представлении 
+\begin_inset Formula $l$
+\end_inset
+
+ больше чем 
+\begin_inset Formula $l^{*}$
+\end_inset
+
+ и 
+\begin_inset Formula $l_{*}$
+\end_inset
+
+, поскольку соответствующий отмеченный многочлен 
+\begin_inset Formula $b_{l}$
+\end_inset
+
+ был добавлен в 
+\begin_inset Formula $R$
+\end_inset
+
+ в момент подсчёта S-многочлена в процедурах 
+\family typewriter
+Spol
+\family default
+ или 
+\family typewriter
+TopReduction
+\family default
+, поэтому многочлены 
+\begin_inset Formula $b_{l^{*}}$
+\end_inset
+
+ и 
+\begin_inset Formula $b_{l_{*}}$
+\end_inset
+
+, использованные для его создания не отброшенной S-пары, уже присутствовали
+ в 
+\begin_inset Formula $R$
+\end_inset
+
+ к тому моменту, а порядок 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ соответствует порядку добавления элементов в 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph
+Порядок на представлениях
+\end_layout
+
+\begin_layout Definition
+Для введения порядка на 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представлениях мы начнём с 
+\emph on
+порядка на элементах представления
+\emph default
+ 
+\begin_inset Formula $\gtrdot_{1}$
+\end_inset
+
+: будем говорить, что 
+\begin_inset Formula $c_{i}t_{i}\cdot b_{i}\gtrdot_{1}c_{j}t_{j}\cdot b_{j}$
+\end_inset
+
+ если выполняется один из следующих случаев:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $t_{i}\Sig(b_{i})\succ t_{j}\Sig(b_{j})$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $t_{i}\Sig(b_{i})=t_{j}\Sig(b_{j})$
+\end_inset
+
+ и 
+\begin_inset Formula $i<j$
+\end_inset
+
+ (сравнение позиций -- в обратную сторону).
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Этот порядок основан лишь на сравнение сигнатур и позиций отмеченных многочленов
+ в упорядоченном списке 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+, но не зависит от коэффициента из поля.
+ Единственный случай, в котором два элемента не могут быть упорядочены --
+ одновременное равенство сигнатур 
+\begin_inset Formula $t_{i}\Sig(b_{i})=t_{j}\Sig(b_{j})$
+\end_inset
+
+ и позиций в списке 
+\begin_inset Formula $i=j$
+\end_inset
+
+.
+ Равенство позиций означает равенство многочленов 
+\begin_inset Formula $b_{i}=b_{j}$
+\end_inset
+
+, что вместе с равенством сигнатур даёт 
+\begin_inset Formula $t_{i}=t_{j}$
+\end_inset
+
+.
+ Поэтому любые два элемента, принадлежащие одному корректному 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ представлению являются сравнимыми с точки зрения порядка 
+\begin_inset Formula $\lessdot_{1}$
+\end_inset
+
+, поскольку они имеют различные 
+\begin_inset Formula $\left(t_{k},b_{k}\right)$
+\end_inset
+
+ по определению.
+ Ниже приведены некоторые примеры сравнений элементов по 
+\begin_inset Formula $\lessdot_{1}$
+\end_inset
+
+ для списка 
+\begin_inset Formula $G_{g}=\left\{ b_{1},\, b_{2},\, b_{3}\right\} $
+\end_inset
+
+ из 3-х элементов с порядком на сигнатурах 
+\begin_inset Formula $x\mathbf{F}_{i}\succ y\mathbf{F}_{i}$
+\end_inset
+
+ и сигнатурами 
+\begin_inset Formula $\Sig(b_{1})=\mathbf{F}_{1},\Sig(b_{2})=\mathbf{F}_{2},\Sig(b_{3})=x\mathbf{F}_{1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $y\cdot b_{1}\gtrdot_{1}100y\cdot b_{2}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ поскольку сигнатура левой части  
+\begin_inset Formula $\succ$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $x\cdot b_{1}\gtrdot_{1}y\cdot b_{1}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ поскольку сигнатура левой части 
+\begin_inset Formula $\succ$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $-x\cdot b_{1}$
+\end_inset
+
+ 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+и
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ 
+\begin_inset Formula $2x\cdot b_{1}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ не сравнимы, поскольку сигнатуры и позиции в списке равны
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $y^{2}\cdot b_{1}\lessdot_{1}y\cdot b_{3}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ поскольку сигнатура левой части
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ 
+\begin_inset Formula $\prec$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $x^{2}\cdot b_{1}\gtrdot_{1}x\cdot b_{3}$
+\end_inset
+
+ поскольку сигнатуры равны, а позиция в списке отмеченного многочлена левой
+ части равна 1, что меньше чем позиция многочлена правой части, равная 3.
+\end_layout
+
+\begin_layout Standard
+Для расширения этого порядка на 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представления целиком будем рассматривать 
+\emph on
+упорядоченную форму
+\emph default
+ представления, состоящую из всех его элементов, записанных в 
+\begin_inset Formula $\gtrdot_{1}$
+\end_inset
+
+-убывающий список.
+ Эта форма может быть использована для проверки на равенство, поскольку
+ представления равны тогда и только тогда, когда равны их упорядоченные
+ формы.
+\end_layout
+
+\begin_layout Definition
+При помощи упорядоченных форм введём 
+\emph on
+порядок на 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представлениях
+\emph default
+: представление 
+\begin_inset Formula $\sum_{k}m'_{k}\cdot b_{i'_{k}}$
+\end_inset
+
+ является 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-меньшим, чем 
+\begin_inset Formula $\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+, если упорядоченные формы для первого и второго представления удовлетворяют
+ лексикографически расширенному на формы отношению 
+\begin_inset Formula $\lessdot_{1}$
+\end_inset
+
+.
+ Для особого случая, когда упорядоченные формы отличаются лишь длиной, более
+ короткая форма будет называться 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-меньшей.
+ Если наибольшие различные элементы в упорядоченных формах двух представлений
+ отличаются лишь коэффициентов поля, то представления являются не сравнимыми.
+\end_layout
+
+\begin_layout Standard
+Далее даны некоторые примеры этого порядка для того же, трёх-элементного
+ списка 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+.
+ Все 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представления записаны в упорядоченных формах:
+\end_layout
+
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $x^{2}\cdot b_{1}+xy\cdot b_{1}+y^{2}b_{1}\gtrdot x^{2}\cdot b_{1}+100y^{2}\cdot b_{1}$
+\end_inset
+
+ поскольку 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $xy\cdot b_{1}\gtrdot_{1}y^{2}\cdot b_{1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $x^{2}\cdot b_{1}+100y^{2}\cdot b_{1}\gtrdot x^{2}\cdot b_{1}$
+\end_inset
+
+ поскольку правая часть является началом левой
+\end_layout
+
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $x^{2}\cdot b_{1}\gtrdot xy\cdot b_{1}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}$
+\end_inset
+
+ поскольку 
+\begin_inset Formula $x^{2}\cdot b_{1}\gtrdot_{1}xy\cdot b_{1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $xy\cdot b_{1}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}\gtrdot y\cdot b_{3}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}$
+\end_inset
+
+ поскольку 
+\begin_inset Formula $xy\cdot b_{1}\gtrdot_{1}y\cdot b_{3}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $y\cdot b_{3}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}$
+\end_inset
+
+ и 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $2y\cdot b_{3}+y^{2}\cdot b_{2}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ не сравнимы, поскольку наибольшие различные элементы -- это 
+\begin_inset Formula $y\cdot b_{3}$
+\end_inset
+
+ и 
+\begin_inset Formula $2y\cdot b_{3}$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+.
+\end_layout
+
+\begin_layout Standard
+Порядок на представлениях совместим с понятием сигнатурности представления:
+\end_layout
+
+\begin_layout Theorem
+Если для пары представлений отмеченного многочлена 
+\begin_inset Formula $p$
+\end_inset
+
+ выполняется отношение 
+\begin_inset Formula $\sum_{k}m'_{k}\cdot b_{i'_{k}}\lessdot\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+ и правое представление сигнатурно, то и левое представление сигнатурно.
+\end_layout
+
+\begin_layout Proof
+Теорема легко следует из того, что сигнатуры элементов 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-меньшего представления не могут быть 
+\begin_inset Formula $\succ$
+\end_inset
+
+-больше, чем максимальная сигнатура 
+\begin_inset Formula $\gtrdot$
+\end_inset
+
+-большего представления.
+\end_layout
+
+\begin_layout Standard
+Важным фактом, позволяющим брать 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-минимальный элемент, является вполне упорядоченность:
+\end_layout
+
+\begin_layout Theorem
+Представления вполне упорядочены порядком 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Количество различных отмеченных многочленов, входящих в элементы представления,
+ конечно, поскольку оно равно 
+\begin_inset Formula $|G_{g}|$
+\end_inset
+
+ для некоторого фиксированного 
+\begin_inset Formula $g$
+\end_inset
+
+.
+ Поэтому существование бесконечной 
+\begin_inset Formula $\gtrdot_{1}$
+\end_inset
+
+-убывающей последовательности элементов представлений привело бы к существованию
+ бесконечной 
+\begin_inset Formula $\succ$
+\end_inset
+
+-убывающей последовательности сигнатур.
+ Учитывая вполне упорядоченность сигнатур по 
+\begin_inset Formula $\prec$
+\end_inset
+
+ мы получаем доказательство вполне упорядоченности элементов представлений
+ по 
+\begin_inset Formula $\lessdot{}_{1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Прямое доказательство вполне упорядоченности представлений по 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+ на основе вполне упорядоченности их элементов по 
+\begin_inset Formula $\lessdot_{1}$
+\end_inset
+
+ не является очень сложным, однако дабы не вдаваться в детали, используем
+ теорему 2.5.5 книги 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Baader.Nipkow98Term"
+
+\end_inset
+
+.
+ Она утверждает вполне упорядоченность конечных наборов с порядком, являющимся
+ лексикографическим расширением порядка на элементах набора.
+ Это применимо к предмтавлениямм, так как они являются наборами своих элементов.
+\end_layout
+
+\begin_layout Paragraph
+Последовательность представлений
+\end_layout
+
+\begin_layout Standard
+Идея этой части состоит в построении конечной последовательности строго
+ 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-убывающих сигнатурных 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представлений для некоторого отмеченного многочлена 
+\begin_inset Formula $mh,\, m\in\mathcal{K}\times\mathbb{T},\, h\in G_{g}$
+\end_inset
+
+ со свойством 
+\begin_inset Formula $\Sig(mh)\prec\Sig(g)$
+\end_inset
+
+.
+ Первым сигнатурным представлением в последовательности является 
+\begin_inset Formula $mh=m\cdot h$
+\end_inset
+
+, а последнее представление имеет вид 
+\begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+ со свойствами, выполняющимися для 
+\begin_inset Formula $\forall k$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $m_{k}b_{i_{k}}$
+\end_inset
+
+ не удовлетворяет критерию F5.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $m_{k}b_{i_{k}}$
+\end_inset
+
+ не удовлетворяет критерию Перезаписи.
+\end_layout
+
+\begin_layout Enumerate
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $\HM(m_{k}b_{i_{k}})\leqslant\HM(mh)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Доказательство существования такой последовательности довольно похоже на
+ доказательство Теоремы 21 из 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5C"
+
+\end_inset
+
+ и основано на том, что если некоторое сигнатурное представление 
+\begin_inset Formula $mh$
+\end_inset
+
+ содержит не удовлетворяющий одному из свойств элемент 
+\begin_inset Formula $m_{K}\cdot b_{i_{K}}$
+\end_inset
+
+, то может быть найдено 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-меньшее представление.
+ Метод построения отличается для разных свойств, однако схема замены одинакова:
+\end_layout
+
+\begin_layout Itemize
+выбирается некоторый элемент 
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ в представлении 
+\begin_inset Formula $mh$
+\end_inset
+
+.
+ Следует отметить, что 
+\begin_inset Formula $K'$
+\end_inset
+
+ может как совпадать, так и отличаться от 
+\begin_inset Formula $K$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+строится некоторое представление 
+\begin_inset Formula $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
+\end_inset
+
+ для этого элемента
+\end_layout
+
+\begin_layout Itemize
+показывается, что построенное представление 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-меньше, чем представление 
+\begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Построение такого представления для 
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ позволяет применить следующую лемму:
+\end_layout
+
+\begin_layout Lemma
+Если элемент 
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ сигнатурного представления 
+\begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+ имеет представление 
+\begin_inset Formula $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
+\end_inset
+
+, 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-меньшее чем представление 
+\begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+, то 
+\begin_inset Formula $mh$
+\end_inset
+
+ имеет сигнатурное представление, 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-меньшее, чем 
+\begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Заменим элемент 
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ в представлении 
+\begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+ на 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\sum_{l}m_{l}\cdot b_{i_{l}}$
+\end_inset
+
+ и скомбинируем коэффициенты при элементах с одновременно одинаковыми мономами
+ и многочленами, получив таким образом изменённое представления для 
+\begin_inset Formula $mh$
+\end_inset
+
+.
+ Оно будет 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-меньше, чем 
+\begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+ поскольку: все элементы 
+\begin_inset Formula $\gtrdot_{1}$
+\end_inset
+
+-большие 
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ идентичны в исходном и изменённом представлениях; элемент 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ содержится в исходном, но не в изменённом представлении; все остальные
+ элементы в представлениях являются 
+\begin_inset Formula $\lessdot_{1}$
+\end_inset
+
+-меньшими, чем 
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ поэтому они не играют роли при сравнении.
+ Сравнение выполняется даже в случае, когда при комбинировании коэффициентов
+ все элементы обнулились.
+ Этот случай может возникнуть, если исходное представление было равно 
+\begin_inset Formula $mh=m_{K'}\cdot b_{i_{K'}}+\sum_{l}(-m_{l})\cdot b_{i_{l}}$
+\end_inset
+
+, что привело к изменённому представлению вообще не содержащему элементов:
+ 
+\begin_inset Formula $mh=0$
+\end_inset
+
+.
+ Оно является 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-меньшим, чем любое непустое представление.
+\end_layout
+
+\begin_layout Standard
+Теперь покажем, что представление элемента по вышеуказанной схеме может
+ быть построено, если исходное представление содержит элемент, не удовлетворяющи
+й по крайней мере одному из свойств.
+\end_layout
+
+\begin_layout Lemma
+Если сигнатурное 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представление 
+\begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+ содержит элемент, не удовлетворяющий свойству 1, то найдётся элемент 
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ обладающий 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представлением 
+\begin_inset Formula $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
+\end_inset
+
+ 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-меньшим, чем представление 
+\begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Элемент, не обладающий первым свойством, удовлетворяет критерию F5, что
+ позволяет позволяет использовать соображение о том, что 
+\begin_inset Formula $m_{K}\Sig(b_{i_{K}})$
+\end_inset
+
+ не является его сигнатурой 
+\begin_inset Formula $m_{K}b_{i_{K}}$
+\end_inset
+
+ аналогично теореме 20 работы 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5C"
+
+\end_inset
+
+.
+ Для этого случая берётся 
+\begin_inset Formula $K'=K$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Рассмотрим входное представление 
+\begin_inset Formula $m_{K}b_{i_{K}}$
+\end_inset
+
+ с сигнатурой 
+\begin_inset Formula $\gtrdot_{1}$
+\end_inset
+
+-максимального элемента, равной 
+\begin_inset Formula $m_{K}\Sig(b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+:
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula 
+\begin{equation}
+m_{K}b_{i_{K}}=c_{0}s_{0}\cdot f_{j_{0}}+\sum_{l}m_{l}\cdot f_{i_{l}}.\label{eq:input-repr-case1}
+\end{equation}
+
+\end_inset
+
+Из удовлетворения критерия F5 следует, что 
+\begin_inset Formula $s_{0}$
+\end_inset
+
+ может быть представлено как 
+\begin_inset Formula $s_{0}=s_{1}\HM(f_{j_{1}}),\, j_{1}>j_{0}$
+\end_inset
+
+, откуда 
+\begin_inset Formula $s_{0}f_{j_{0}}=s_{1}f_{j_{0}}f_{j_{1}}-s_{1}(f_{j_{1}}-\HM(f_{j_{1}}))f_{j_{0}}$
+\end_inset
+
+.
+ На основе этого выражения можно получить другое представление для 
+\begin_inset Formula $m_{K}b_{i_{K}}$
+\end_inset
+
+, обозначая за 
+\begin_inset Formula $m_{0i}$
+\end_inset
+
+ упорядоченные термы 
+\begin_inset Formula $f_{j_{0}}$
+\end_inset
+
+, за 
+\begin_inset Formula $m_{1i}$
+\end_inset
+
+ -- упорядоченные термы 
+\begin_inset Formula $f_{j_{1}}$
+\end_inset
+
+ и за 
+\begin_inset Formula $N_{0,}N_{1}$
+\end_inset
+
+ число термов в этих многочленах:
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula 
+\[
+m_{K}b_{i_{K}}=\sum_{i=1}^{N_{0}}c_{0}s_{1}m_{0i}\cdot f_{j_{1}}+\sum_{i=2}^{N_{1}}-c_{0}s_{1}m_{1i}\cdot f_{j_{0}}+\sum_{l}m_{l}\cdot f_{i_{l}}.
+\]
+
+\end_inset
+
+Это представление 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-меньше, чем 
+\begin_inset Formula $m_{K}\cdot b_{i_{K}}$
+\end_inset
+
+ поскольку сигнатуры всех его элементов меньше чем 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $s_{0}\mathbf{F}_{j_{0}}$
+\end_inset
+
+.
+ Для элементов третьей суммы 
+\begin_inset Formula $\sum_{l}m_{l}\cdot f_{i_{l}}$
+\end_inset
+
+ это следует из 
+\family default
+\series bold
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:input-repr-case1"
+
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+, где эти элементы являются меньшими элементами входного представления.
+ Для элементов первой суммы 
+\begin_inset Formula $\sum_{i=1}^{N_{0}}c_{0}s_{1}m_{0i}\cdot f_{j_{1}}$
+\end_inset
+
+ это следует из неравенства индексов сигнатур 
+\begin_inset Formula $j_{1}>j_{0}$
+\end_inset
+
+.
+ А для второй суммы используем совпадение порядка на сигнатурах и на термах:
+ все термы 
+\begin_inset Formula $m_{1i},\, i\geqslant2$
+\end_inset
+
+ меньше, чем 
+\begin_inset Formula $m_{11}$
+\end_inset
+
+, поэтому и выполняется неравенство для сигнатур: 
+\begin_inset Formula $s_{1}m_{1i}\mathbf{F}_{j_{0}}\prec s_{1}m_{11}\mathbf{F}_{j_{0}}=s_{0}\mathbf{F}_{j_{0}}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Lemma
+Если сигнатурное 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представление 
+\begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+ с 
+\begin_inset Formula $\Sig(mh)\prec\Sig(g)$
+\end_inset
+
+ содержит элемент, не удовлетворяющий свойству 2, то найдётся элемент 
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ обладающий 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представлением 
+\begin_inset Formula $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
+\end_inset
+
+ 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-меньшим, чем представление 
+\begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+.
+\end_layout
+
+\begin_layout Standard
+Для элементов, не удовлетворяющих критерию Перезаписи 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-меньшее представление сроится методом, аналогичным Предложению 17 из 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5C"
+
+\end_inset
+
+.
+ В этом случае также берётся 
+\begin_inset Formula $K'=K$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Предположим, что сигнатура 
+\begin_inset Formula $\Sig(m_{K}b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ и она перезаписывается отмеченным многочленом 
+\begin_inset Formula $b_{i'}$
+\end_inset
+
+ из 
+\begin_inset Formula $R$
+\end_inset
+
+.
+ Поскольку представление сигнатурно, мы имеем 
+\begin_inset Formula $\Sig(b_{i'})\preccurlyeq s_{0}\mathbf{F}_{j_{0}}\preccurlyeq\Sig(mh)\prec\Sig(g)$
+\end_inset
+
+.
+ Поэтому 
+\begin_inset Formula $b_{i'}$
+\end_inset
+
+ обрабатывался в процедуре 
+\family typewriter
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+TopReduction
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ раньше 
+\begin_inset Formula $g$
+\end_inset
+
+.
+ Значит 
+\begin_inset Formula $b_{i'}$
+\end_inset
+
+ был редуцирован и результат его редукции или был нулевым или присутствует
+ в 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+, поэтому он может использоваться как многочлен элемента 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представления.
+ Из критерия Перезаписи известно, что 
+\begin_inset Formula $i'>i_{K}$
+\end_inset
+
+ и существует 
+\begin_inset Formula $s'\in\mathbb{T}$
+\end_inset
+
+, такое что 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $s'\Sig(b_{i'})=s_{0}\mathbf{F}_{j_{0}}$
+\end_inset
+
+.
+ Для 
+\begin_inset Formula $m_{K}b_{i_{K}}$
+\end_inset
+
+ есть входное представление 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:input-repr-case1"
+
+\end_inset
+
+ а для 
+\begin_inset Formula $s'b_{i'}$
+\end_inset
+
+ входным представлением является:
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula 
+\[
+s'b_{i'}=c's_{0}\cdot f_{j_{0}}+\sum_{l'}m_{l'}\cdot f_{i_{l'}}.
+\]
+
+\end_inset
+
+Преобразованием этого выражения получим 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представление для 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $c_{0}s_{0}f_{j_{0}}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Proof
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula 
+\[
+c_{0}s_{0}f_{j_{0}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i_{l'}}.
+\]
+
+\end_inset
+
+Используя его для замены первого элемента в 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:input-repr-case1"
+
+\end_inset
+
+ получим желаемый результат:
+\begin_inset Formula 
+\[
+m_{K}b_{i_{K}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i_{l'}}+\sum_{l}m_{l}\cdot f_{i_{l}}
+\]
+
+\end_inset
+
+Он 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-меньше, чем 
+\begin_inset Formula $m_{K}b_{i_{K}}=m_{K}\cdot b_{i_{K}}$
+\end_inset
+
+ поскольку элементы обоих сумм имеют сигнатуры, меньшие 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $s_{0}\mathbf{F}_{j_{0}}$
+\end_inset
+
+, а для первого элемента, если 
+\begin_inset Formula $b_{i'}$
+\end_inset
+
+ не нулевой, имеем 
+\begin_inset Formula $\Sig(c'^{-1}c_{0}s'\cdot b_{i'})=\Sig(m_{K}\cdot b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$
+\end_inset
+
+ с 
+\begin_inset Formula $i'>i_{K}$
+\end_inset
+
+, откуда применяя правило 
+\begin_inset Formula $\lessdot_{1}$
+\end_inset
+
+-сравнения для равных сигнатур и различных позиций в списке, получаем, что
+ элемент 
+\begin_inset Formula $c'^{-1}c_{0}s'\cdot b_{i'}$
+\end_inset
+
+ также 
+\begin_inset Formula $\lessdot_{1}$
+\end_inset
+
+-меньше, чем 
+\begin_inset Formula $m_{K}\cdot b_{i_{K}}$
+\end_inset
+
+.
+ Если же 
+\begin_inset Formula $b_{i'}=0$
+\end_inset
+
+, то он отбрасывается, и желаемое представление состоит только из оставшихся
+ 2-х сумм.
+\end_layout
+
+\begin_layout Lemma
+Если все элементы сигнатурного представления 
+\begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+ с 
+\begin_inset Formula $\Sig(mh)\prec\Sig(g)$
+\end_inset
+
+ удовлетворяют свойствам 1 и 2, но один из них не удовлетворяет свойству
+ 3, то найдётся элемент 
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+, имеющий представление 
+\begin_inset Formula $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
+\end_inset
+
+ 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-меньшее, чем представление 
+\begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Существует по крайней мере один элемент 
+\begin_inset Formula $m_{K}\cdot b_{i_{K}}$
+\end_inset
+
+, не удовлетворяющий свойству 3.
+ Обозначим за 
+\begin_inset Formula $m_{\max}$
+\end_inset
+
+ максимальный 
+\begin_inset Formula $\HM$
+\end_inset
+
+ отмеченных многочленов, соответствующих элементам представления, и за 
+\begin_inset Formula $H_{\max}$
+\end_inset
+
+ список элементов, на котором 
+\begin_inset Formula $m_{\max}$
+\end_inset
+
+ достигается.
+ Возьмём в качестве 
+\begin_inset Formula $K'$
+\end_inset
+
+ номер элемента представления, являющегося 
+\begin_inset Formula $\gtrdot_{1}$
+\end_inset
+
+-максимальным в 
+\begin_inset Formula $H_{\max}$
+\end_inset
+
+.
+ Имеем 
+\begin_inset Formula $\HM(m_{K'}b_{i_{K'}})=m_{\max}\geqslant\HM(m_{K}b_{i_{K}})>\HM(mh)$
+\end_inset
+
+, поэтому 
+\begin_inset Formula $\HM$
+\end_inset
+
+ суммы всех элементов, кроме 
+\begin_inset Formula $K'$
+\end_inset
+
+-го равен 
+\begin_inset Formula $\HM(mh-m_{K'}b_{i_{K'}})=\HM(m_{K'}b_{i_{K'}})=m_{\max}$
+\end_inset
+
+, поэтому существует другой элемент 
+\begin_inset Formula $K''$
+\end_inset
+
+, обладающий 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\HM(m_{K''}b_{i_{K''}})=m_{\max}$
+\end_inset
+
+.
+ Отсюда 
+\begin_inset Formula $m_{K''}\cdot b_{i_{K''}}\in H_{\max}$
+\end_inset
+
+ и 
+\begin_inset Formula $m_{K''}\cdot b_{i_{K''}}\lessdot_{1}m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ поскольку 
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ 
+\begin_inset Formula $\gtrdot_{1}$
+\end_inset
+
+-максимален в 
+\begin_inset Formula $H_{\max}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Равенство 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\HM(m_{K''}b_{i_{K''}})=\HM(m_{K'}b_{i_{K'}})$
+\end_inset
+
+ означает, что S-пара 
+\begin_inset Formula $b_{i_{K'}}$
+\end_inset
+
+ и 
+\begin_inset Formula $b_{i_{K''}}$
+\end_inset
+
+ имеет вид 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $[m'^{-1}m_{\max},\, m'^{-1}m_{K'},\, b_{i_{K'}},\, m'^{-1}m_{K''},\, b_{i_{K''}}]$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ где 
+\begin_inset Formula $m'=\mbox{gcd}(m_{K'},m_{K''})$
+\end_inset
+
+.
+ Пусть 
+\begin_inset Formula $q$
+\end_inset
+
+ -- соответствующий S-многочлен.
+ Тогда 
+\begin_inset Formula $m'\Sig(q)\preccurlyeq\Sig(mh)\prec\Sig(g)$
+\end_inset
+
+ поскольку 
+\begin_inset Formula $m'\Sig(q)=\Sig(m_{K'}b_{i_{K'}})$
+\end_inset
+
+ и представление сигнатурно.
+ Части S-многочлена 
+\begin_inset Formula $m'^{-1}m_{K'}b_{i_{K'}}$
+\end_inset
+
+ и 
+\begin_inset Formula $m'^{-1}m_{K''}b_{i_{K''}}$
+\end_inset
+
+ не удовлетворяют критериям F5 и Перезаписи, поскольку они же, умноженные
+ на 
+\begin_inset Formula $m'$
+\end_inset
+
+ равны 
+\begin_inset Formula $m_{K'}b_{i_{K'}}$
+\end_inset
+
+ и 
+\begin_inset Formula $m_{K''}b_{i_{K''}}$
+\end_inset
+
+ -- отмеченным многочленам, соответствующим элементам, про которые известно,
+ что они не удовлетворяют критериям по предположению леммы.
+ Из 
+\begin_inset Formula $m'\Sig(q)\prec\Sig(g)$
+\end_inset
+
+ имеем 
+\begin_inset Formula $\Sig(q)\prec\Sig(g)$
+\end_inset
+
+, а значит можно применить теорему 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:Exist-gg-repr"
+
+\end_inset
+
+ и получить, что 
+\begin_inset Formula $(b_{i_{K'}},b_{i_{K''}})$
+\end_inset
+
+ -- S-пара с 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+известным
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представлением, что означает существование представления, описанного в
+ примере 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "example-of-having-gg-repr"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula 
+\[
+q=1\cdot b_{i'}+\sum_{l}m_{l}\cdot b_{i_{l}},
+\]
+
+\end_inset
+
+причём выполняются свойства, показанные после примера: 
+\begin_inset Formula $\Sig(q)=\Sig(b_{i'})$
+\end_inset
+
+, 
+\begin_inset Formula $\forall l\,\Sig(q)\succ\Sig(m_{l}b_{i_{l}})$
+\end_inset
+
+ и 
+\begin_inset Formula $i'>K'$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+С другой стороны по определению S-многочлена мы имеем 
+\begin_inset Formula $m'q=c_{0}m_{K'}b_{i_{K'}}-c_{1}m_{K''}b_{i_{K''}}$
+\end_inset
+
+, откуда получаем следующее представление:
+\begin_inset Formula 
+\[
+m_{K'}b_{i_{K'}}=c_{0}^{-1}c_{1}m_{K''}\cdot b_{i_{K''}}+c_{0}^{-1}m'\cdot b_{i'}+\sum_{l}c_{0}^{-1}m'm_{l}\cdot b_{i_{l}}.
+\]
+
+\end_inset
+
+Оно 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-меньше, чем 
+\begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+: 
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula $m_{K''}\cdot b_{i_{K''}}$
+\end_inset
+
+ уже сравнивалось с 
+\begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Proof
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $m'\cdot b_{i'}$
+\end_inset
+
+ имеет ту же сигнатуру, но больший номер позиции 
+\begin_inset Formula $i'>i_{K'}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+последняя сумма состоит из элементов с сигнатурами, меньшими чем 
+\begin_inset Formula $m'\Sig(b_{i'})=\Sig(m_{K'}\cdot b_{i_{K'}})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:exist-smaller-signature-safe-representation"
+
+\end_inset
+
+Или сигнатурное представление 
+\begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+ с 
+\begin_inset Formula $\Sig(mh)\prec\Sig(g)$
+\end_inset
+
+ удовлетворяет свойствам 1-3 или существует другое сигнатурное представление
+ 
+\begin_inset Formula $mh=\sum_{l}m_{l}\cdot b_{i_{l}}$
+\end_inset
+
+ 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-меньшее, чем 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Теорема немедленно следует из комбинации четырёх предыдущих лемм.
+\end_layout
+
+\begin_layout Standard
+Это привод нас к следующему ключевому результату:
+\end_layout
+
+\begin_layout Theorem
+Для любого многочлена 
+\begin_inset Formula $mh,\, m\in\mathcal{K}\times\mathbb{T},\, h\in G_{g}$
+\end_inset
+
+ с 
+\begin_inset Formula $\Sig(mh)\prec\Sig(g)$
+\end_inset
+
+ существует удовлетворяющее свойствам 1-3 сигнатурное 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представление 
+\begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+.
+\end_layout
+
+\begin_layout Proof
+Начнём с представления 
+\begin_inset Formula $mh=m\cdot h$
+\end_inset
+
+ и будем заменять текущее представление на 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-меньшее из теоремы 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:exist-smaller-signature-safe-representation"
+
+\end_inset
+
+ до тех пор пока текущее представление не будет удовлетворять свойствам
+ 1-3.
+ Конечность процесса гарантируется вполне упорядоченностью представлений
+ по 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Этот результат может представлять интерес сам по себе, однако для целей
+ доказательства остановки нужно лишь одно следствие из него:
+\end_layout
+
+\begin_layout Corollary
+\begin_inset CommandInset label
+LatexCommand label
+name "cor:all-needed-for-terminaton"
+
+\end_inset
+
+Рассмотрим произвольный многочлен 
+\begin_inset Formula $f$
+\end_inset
+
+ без ограничений на его сигнатуру.
+ Если существует сигнатурный редуктор 
+\begin_inset Formula $f'\in G_{g}$
+\end_inset
+
+ для 
+\begin_inset Formula $f$
+\end_inset
+
+ с 
+\begin_inset Formula $\Sig(f')\frac{\HM(f)}{\HM(f')}\prec\Sig(g)$
+\end_inset
+
+ то 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+ содержит сигнатурный редуктор для 
+\begin_inset Formula $f$
+\end_inset
+
+, который не отбрасывается критериями F5 и перезаписи.
+\end_layout
+
+\begin_layout Proof
+Пусть 
+\begin_inset Formula $mf',\, m=\frac{\HM(f)}{\HM(f')}\in\mathcal{K}\times\mathbb{T},\, f'\in G_{g}$
+\end_inset
+
+ умноженный редуктор с 
+\begin_inset Formula $\Sig(mf')\prec\Sig(g)$
+\end_inset
+
+.
+ Из предыдущей теоремы мы можем найти удовлетворяющее свойствам 1-3 представлени
+е 
+\begin_inset Formula $mf'=\sum_{k}m_{k}\cdot b_{i_{k}}$
+\end_inset
+
+.
+ Свойство 3 означает отсутствие элементов с 
+\begin_inset Formula $\HM$
+\end_inset
+
+, большим чем у 
+\begin_inset Formula $mf'$
+\end_inset
+
+, откуда, поскольку сумма всех элементов этого представления имеет 
+\begin_inset Formula $\HM$
+\end_inset
+
+ равный 
+\begin_inset Formula $\HM(mf')$
+\end_inset
+
+, существует элемент 
+\begin_inset Formula $K$
+\end_inset
+
+, на котором достигается равенство 
+\begin_inset Formula $\HM$
+\end_inset
+
+: 
+\begin_inset Formula $\HM(m_{K}\cdot b_{i_{K}})=\HM(mf')=\HM(f)$
+\end_inset
+
+.
+ Поскольку представление сигнатурно, имеем 
+\begin_inset Formula $\Sig(m_{K}\cdot b_{i_{K}})\preccurlyeq\Sig(mf')\prec\Sig(f)$
+\end_inset
+
+, а значит 
+\begin_inset Formula $m_{K}b_{i_{K}}$
+\end_inset
+
+ -- сигнатурный редуктор для 
+\begin_inset Formula $f$
+\end_inset
+
+ и выполнение свойств 1-2 гарантирует, что 
+\begin_inset Formula $m_{K}b_{i_{K}}$
+\end_inset
+
+ не отбрасывается критериями.
+\end_layout
+
+\begin_layout Subsubsection
+Обнаружение противоречия с учётом критериев
+\end_layout
+
+\begin_layout Standard
+Теперь мы можем вернуться к результату теоремы 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:f_g_3_props"
+
+\end_inset
+
+, утверждающей, что в случае.
+ если алгоритм не останавливается, существуют многочлены 
+\begin_inset Formula $f',f\in G$
+\end_inset
+
+, такие что 
+\begin_inset Formula $\HM(f')|\HM(f)$
+\end_inset
+
+, 
+\begin_inset Formula $\frac{\HM(f')}{\Sig(f')}>_{q}\frac{\HM(f)}{\Sig(f)}$
+\end_inset
+
+.
+ 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Используя этот результат и последнее следствие мы построим два многочлена,
+ приводящие к противоречию в случае отсутствия остановки алгоритма
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+.
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:always-exist-ok-reductor"
+
+\end_inset
+
+Если алгоритм не останавливается на некоторых входных данных, то найдётся
+ шаг, после которого конечное множество 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $G\cup Done$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ содержит пару отмеченных многочленов 
+\begin_inset Formula $f'_{1},f$
+\end_inset
+
+, для которых выполняется:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $f'_{1}$
+\end_inset
+
+ было добавлено в 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $G\cup Done$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ до 
+\begin_inset Formula $f$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $t_{1}f'_{1}$
+\end_inset
+
+ не удовлетворяет критериям F5 и Перезаписи, где 
+\begin_inset Formula $t_{1}=\frac{\HM(f)}{\HM(f'_{1})}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $f'_{1}$
+\end_inset
+
+ -- сигнатурный редуктор для 
+\begin_inset Formula $f$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Пусть 
+\begin_inset Formula $f',f$
+\end_inset
+
+ -- многочлены из теоремы
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:f_g_3_props"
+
+\end_inset
+
+ и
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\begin_inset Formula $t=\frac{\HM(f)}{\HM(f')}$
+\end_inset
+
+.
+ Многочлен 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $f\in G$
+\end_inset
+
+, поэтому построенная выше теория о представлениях может быть рассмотрена
+ применительно к случаю 
+\begin_inset Formula $g$
+\end_inset
+
+ равного 
+\begin_inset Formula $f$
+\end_inset
+
+, и можно говорить о множестве 
+\begin_inset Formula $G_{f}$
+\end_inset
+
+ и 
+\begin_inset Formula $G_{f}$
+\end_inset
+
+-представлениях.
+ Поскольку
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\begin_inset Formula $tf'$
+\end_inset
+
+ -- сигнатурный редуктор для 
+\begin_inset Formula $f$
+\end_inset
+
+ -- мы имеем 
+\begin_inset Formula $\Sig(f')t\prec\Sig(f)$
+\end_inset
+
+ и следствие 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cor:all-needed-for-terminaton"
+
+\end_inset
+
+ может быть применено для нахождения сигнатурного редуктора 
+\begin_inset Formula $t_{1}f'_{1}$
+\end_inset
+
+ для 
+\begin_inset Formula $f$
+\end_inset
+
+, который не удовлетворяет критериям.
+ Помимо этого известно, что он принадлежит 
+\begin_inset Formula $G_{f}$
+\end_inset
+
+, поэтому выполняется и первое свойство: в процессе работы алгоритма 
+\begin_inset Formula $f'_{1}$
+\end_inset
+
+ был добавлен в 
+\begin_inset Formula $G\cup Done$
+\end_inset
+
+ раньше 
+\begin_inset Formula $f$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Theorem
+Алгоритм F5, описанный в 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5"
+
+\end_inset
+
+, останавливается на любых входных данных.
+\end_layout
+
+\begin_layout Proof
+Покажем, что существование многочленов 
+\begin_inset Formula $f'_{1},f$
+\end_inset
+
+ из теоремы 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:always-exist-ok-reductor"
+
+\end_inset
+
+ приводит к противоречию.
+ Рассмотрим вызов 
+\family typewriter
+TopReduction
+\family default
+ после которого многочлен 
+\begin_inset Formula $f$
+\end_inset
+
+ был добавлен в 
+\begin_inset Formula $Done$
+\end_inset
+
+.
+ Этот вызов вернул многочлен 
+\begin_inset Formula $f$
+\end_inset
+
+ как первую половину значения, возвращаемого 
+\family typewriter
+TopReduction
+\family default
+, что означает что предшествующий вызов 
+\family typewriter
+IsReducible
+\family default
+ вернул пустое множество.
+ Это значит, что для каждого многочлена в 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $G\cup Done$
+\end_inset
+
+, в том числе
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ 
+\begin_inset Formula $f'_{1}$
+\end_inset
+
+, хотя бы одно из условий (a) - (d) не выполнилось.
+ Это невозможно, поскольку:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+(a) удовлетворяется, так как 
+\begin_inset Formula $f'_{1}$
+\end_inset
+
+ -- редуктор для 
+\begin_inset Formula $f$
+\end_inset
+
+ по теореме 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:always-exist-ok-reductor"
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+(b) и (c) удовлетворяются, поскольку 
+\begin_inset Formula $\frac{\HM(f)}{\HM(f'_{1})}f'_{1}$
+\end_inset
+
+ не удовлетворяет критериям F5 и Перезаписи по теореме 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:always-exist-ok-reductor"
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+(d) удовлетворяется, поскольку 
+\begin_inset Formula $f'_{1}$
+\end_inset
+
+ -- сигнатурный редуктор для 
+\begin_inset Formula $f$
+\end_inset
+
+ по теореме 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:always-exist-ok-reductor"
+
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
 \begin_layout Subsection
 Упрощение F5
 \end_layout
