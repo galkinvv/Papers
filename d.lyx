@@ -6659,7 +6659,7 @@ key "FaugereF5"
  корректно.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 Корректность определения проверяется явным нахождением 
 \begin_inset Formula $u$
 \end_inset
@@ -6768,7 +6768,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 Выводится из того, что умножение на 
 \begin_inset Formula $t$
 \end_inset
@@ -6805,7 +6805,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 Следует из того что оба утверждения равносильны 
 \begin_inset Formula $\SIG(h_{2})\succ_{0}\SIG(h_{1})\frac{\HM(h_{2})}{\HM(h_{1})}$
 \end_inset
@@ -6830,7 +6830,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 Следует из 
 \begin_inset Formula $\SIG(h_{1})=\SIG(h_{1}')$
 \end_inset
@@ -6873,7 +6873,7 @@ name "lem:greater-or-smaller"
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 Из условия леммы известно, что
 \begin_inset Formula 
 \begin{equation}
@@ -7270,7 +7270,7 @@ return
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 Элементы, формируемые до начала главного цикла, являются рассмотренными
  выше примерами отмеченных многочленов.
  Все остальные отмеченные многочлены в алгоритме формируются или умножением
@@ -7286,7 +7286,7 @@ return
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 Условия циклов, расширяющих 
 \begin_inset Formula $B$
 \end_inset
@@ -7345,7 +7345,7 @@ name "lem:exist-reductor"
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 Отмеченные многочлены добавляются в 
 \begin_inset Formula $B$
 \end_inset
@@ -7395,7 +7395,7 @@ reference "enu:-before-reduce"
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 На первой итерации алгоритма это выполняется, поскольку 
 \begin_inset Formula $\sigma=1$
 \end_inset
@@ -7460,7 +7460,7 @@ reference "enu:-after-reduce"
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 Вытекает из того, что цикл в 
 \begin_inset CommandInset ref
 LatexCommand nameref
@@ -7516,7 +7516,7 @@ reference "enu:-after-reduce"
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 В силу леммы 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -7581,7 +7581,7 @@ reference "par:SimpleSignatureGroebner"
  останавливается
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 Для доказательства остановки нужно показать, что все циклы 
 \series bold
 do
@@ -7622,7 +7622,7 @@ reference "par:ReduceCheckingSignatures:"
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 На каждом шаге основного цикла пополняется множество 
 \begin_inset Formula $R\subset\mathbb{T}_{0}\times P$
 \end_inset
@@ -7771,7 +7771,7 @@ name "lem:one-j-exact"
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 В качестве такого 
 \begin_inset Formula $j$
 \end_inset
@@ -7883,7 +7883,7 @@ name "lem:s-basis-and-no-reductions"
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 Из определения 
 \begin_inset Formula $H$
 \end_inset
@@ -8008,7 +8008,7 @@ reference "enu:-remove-from-B"
  с сохранением сигнатуры.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 Множество 
 \begin_inset Formula $R_{\sigma}=\left\{ r\in R\,|\,\SIG(r)|\sigma\right\} $
 \end_inset
@@ -8148,7 +8148,7 @@ reference "enu:-remove-from-B"
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 Предположим нарушение инварианта на какой-то итерации и рассмотрим 
 \begin_inset Formula $\prec_{0}$
 \end_inset
@@ -8293,7 +8293,7 @@ reference "lem:s-basis-and-no-reductions"
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 Для 
 \begin_inset Formula $\forall p\in I$
 \end_inset
@@ -8322,7 +8322,7 @@ reference "par:SimpleSignatureGroebner"
  возвращает базис Грёбнера
 \end_layout
 
-\begin_layout Standard
+\begin_layout Proof
 К моменту остановки 
 \begin_inset Formula $B=\varnothing$
 \end_inset
