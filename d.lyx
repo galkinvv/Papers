@@ -151,27 +151,555 @@ galkin-vv@ya.ru
 \end_layout
 
 \begin_layout Standard
-Рассмотрим кольцо многочленов 
-\begin_inset Formula $P=\mathcal{K}[x_{1},\dots,x_{n}]$
-\end_inset
+Для работы с базисами Грёбнера необходимо договориться об обозначениях,
+ которые будут использоваться на протяжении всего текста:
+\end_layout
 
- над полем 
+\begin_layout Itemize
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
-.
- Будем предполагать, что на моноиде его мономов 
+ -- некоторое поле
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $x_{1},\dots,x_{n}$
+\end_inset
+
+ -- абстрактное множество переменных
+\end_layout
+
+\begin_layout Itemize
 \begin_inset Formula $\mathbb{T}$
 \end_inset
 
- задан допустимый мономиальный порядок 
+ -- множество мономов, образуемых этими переменными.
+ Является коммутативным моноидом по операции умножения мономов
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathbb{T}_{0}=\mathbb{T}\cup\left\{ 0\right\} $
+\end_inset
+
+ -- формально расширенное нулём множество мономов.
+ Операция умножения расширяется как 
+\begin_inset Formula $\forall t\in\mathbb{T}_{0}\, t\cdot0=0$
+\end_inset
+
+.
+ Является коммутативной полугруппой по этой операции.
+ Понятие делимости в 
+\begin_inset Formula $\mathbb{T}_{0}$
+\end_inset
+
+ стандартно: 
+\begin_inset Formula $t_{1}|t_{2}\eqdef\exists t_{3}\, t_{1}\cdot t_{3}=t_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+ -- кольцо многочленов 
+\begin_inset Formula $\mathcal{K}[x_{1},\dots,x_{n}]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\totaldeg(t)\in\mathbb{Z}$
+\end_inset
+
+ -- полная степень монома 
+\begin_inset Formula $t\in\mathbb{T}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+Полный порядок 
+\begin_inset Formula $\prec$
+\end_inset
+
+ на 
+\begin_inset Formula $\mathbb{T}$
+\end_inset
+
+ называется 
+\emph on
+мономиальным
+\emph default
+, если он делает 
+\begin_inset Formula $\mathbb{T}$
+\end_inset
+
+ вполне упорядоченным, а также 
+\begin_inset Formula $\forall t_{1},t_{2},t_{3}\in\mathbb{T}$
+\end_inset
+
+ выполняется:
+\end_layout
+
+\begin_layout Definition
+\begin_inset Formula 
+\[
+t_{1}\prec t_{2}\Longrightarrow t_{1}t_{3}\prec t_{2}t_{3}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+\begin_inset Formula 
+\[
+1\preccurlyeq t_{1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\prec$
+\end_inset
+
+ -- зафиксированный мономиальный порядок на 
+\begin_inset Formula $\mathbb{T}$
+\end_inset
+
+.
+ Минимальным элементом является 
+\begin_inset Formula $1\in\mathbb{T}$
+\end_inset
+
+, то есть пустое произведение
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\prec_{0}$
+\end_inset
+
+ -- порядок 
+\begin_inset Formula $\prec$
+\end_inset
+
+, продолженный на 
+\begin_inset Formula $\mathbb{T}_{0}$
+\end_inset
+
+ заданием 
+\begin_inset Formula $1\succ_{0}0$
+\end_inset
+
+.
+ Легко показать, что он делает 
+\begin_inset Formula $\mathbb{T}_{0}$
+\end_inset
+
+ вполне упорядоченным
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\HM(p)\in\mathbb{T}_{0}$
+\end_inset
+
+ -- старший моном многочлена, определён для 
+\begin_inset Formula $\forall p\in\mathcal{P}$
+\end_inset
+
+; при 
+\begin_inset Formula $p\neq0$
+\end_inset
+
+ равен старшему по 
+\begin_inset Formula $\prec$
+\end_inset
+
+ моному, а для 
+\begin_inset Formula $p=0$
+\end_inset
+
+ определён как 
+\begin_inset Formula $\HM(0)=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\HC(p)\in\mathcal{K}$
+\end_inset
+
+ -- старший коэффициент многочлена, определён для 
+\begin_inset Formula $\forall p\in\mathcal{P}$
+\end_inset
+
+; при 
+\begin_inset Formula $p\neq0$
+\end_inset
+
+ равен коэффициенту при старшем по 
+\begin_inset Formula $\prec$
+\end_inset
+
+ моному, а для 
+\begin_inset Formula $p=0$
+\end_inset
+
+ определён как 
+\begin_inset Formula $\HC(0)=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\LCM(t_{1},t_{2})\in\mathbb{T}$
+\end_inset
+
+ -- наименьшее общее кратное мономов 
+\begin_inset Formula $t_{1},t_{2}\in\mathbb{T}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "gb-def-1"
+
+\end_inset
+
+Множество 
+\begin_inset Formula $G\subset I$
+\end_inset
+
+ называется 
+\emph on
+базисом Грёбнера
+\emph default
+ идеала 
+\begin_inset Formula $I$
+\end_inset
+
+ кольца 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+ для порядка 
+\begin_inset Formula $\prec$
+\end_inset
+
+, если
+\end_layout
+
+\begin_layout Definition
+\begin_inset Formula 
+\[
+\forall f\in I,f\neq0\exists g\in G:\HM(g)|\HM(f).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Для алгоритмов вычисления базиса Грёбнера будет полезна некоторая переформулиров
+ка этого определения, для которой вводятся понятия представлений отчасти
+ заимствованные из 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5C"
+
+\end_inset
+
+.
+ Представления используются для описания способов, которыми многочлен 
+\begin_inset Formula $p$
+\end_inset
+
+ может быть записан как комбинация многочленов из множества 
+\begin_inset Formula $G=\{g_{1},\dots,g_{m}\}\subset\mathcal{P}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+Для фиксированного множества 
+\begin_inset Formula $G\subset\mathcal{P}$
+\end_inset
+
+ назовём 
+\emph on
+
+\begin_inset Formula $G$
+\end_inset
+
+-представлением 
+\emph default
+многочлена 
+\begin_inset Formula $p\in\mathcal{P}$
+\end_inset
+
+ любую соответствующую верному равенству в 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+ запись вида
+\begin_inset Formula 
+\[
+p=\sum_{k}m_{k}\cdot g_{i_{k}},\; g_{i_{k}}\in G
+\]
+
+\end_inset
+
+с коэффициентами 
+\begin_inset Formula $m_{k}=c_{k}t_{k}\in\mathcal{K}\times\mathbb{T}$
+\end_inset
+
+, в которой все пары 
+\begin_inset Formula $\left(t_{k},g_{i_{k}}\right)$
+\end_inset
+
+ различны.
+ Символические произведения 
+\begin_inset Formula $m_{k}\cdot g_{i_{k}}$
+\end_inset
+
+ называются 
+\emph on
+элементами
+\emph default
+ представления.
+ Если рассмотреть это символическое произведение как умножение многочленов,
+ то мы получим многочлен 
+\begin_inset Formula $m_{k}g_{i_{k}}$
+\end_inset
+
+, соответствующий элементу представления.
+ Тогда 
+\begin_inset Formula $p$
+\end_inset
+
+ оказывается равным сумме отмеченных многочленов, соответствующих элементам
+ его представления.
+ Два представления равны, если наборы их элементов совпадают как множества.
+ Поскольку правая часть представления лежит в идеале 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+
+\begin_inset Formula $\left(G\right)$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang russian
+, представление может существовать лишь для 
+\begin_inset Formula $p\in\left(G\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Понятие представления не зависит от порядка 
 \begin_inset Formula $\prec$
 \end_inset
 
 .
- В этом кольце может быть поставлена задача вычисления базиса Грёбнера для
- произвольного идеала 
-\begin_inset Formula $\left(f_{1},\dots,f_{l}\right)$
+ Для базисов Грёбнера нужна следующая разновидность представлений, определение
+ которой уже зависит от порядка:
+\end_layout
+
+\begin_layout Definition
+\begin_inset Formula $G$
+\end_inset
+
+-представление 
+\begin_inset Formula $p=\sum_{k}m_{k}\cdot g_{i_{k}}$
+\end_inset
+
+ называется 
+\emph on
+степенным
+\emph default
+, если 
+\begin_inset Formula $\forall k\,\HM(m_{k}g_{i_{k}})\preccurlyeq\HM(p)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Дадим несколько примеров представлений над множеством 
+\begin_inset Formula $G=\{y,y^{2},x^{2}+y\}\subset\mathbb{R}[x,y]$
+\end_inset
+
+ с лексикографическим порядком, заданным 
+\begin_inset Formula $x\succ y$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $y=1\cdot y$
+\end_inset
+
+ -- степенное представление
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $y^{2}=y\cdot y$
+\end_inset
+
+ -- степенное представление
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $y^{2}=y\cdot(x^{2}+y)-x^{2}\cdot y$
+\end_inset
+
+ -- представление, не являющееся степенным
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $0=1\cdot y^{2}-y\cdot y$
+\end_inset
+
+ -- представление, не являющееся степенным
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $0=0$
+\end_inset
+
+ (сумма нуля элементов) -- степенное представление
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $x^{2}=1\cdot(x^{2}+y)-1\cdot y$
+\end_inset
+
+ -- степенное представление
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $x^{2}y=y\cdot y+y\cdot(x^{2}+y)-2y\cdot y$
+\end_inset
+
+ -- не является представлением, так как первый и последний элементы отличаются
+ лишь коэффициентом
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $x^{2}y+y^{2}=y\cdot y+y\cdot(x^{2}+y)-1\cdot y^{2}$
+\end_inset
+
+ -- степенное представление, так как первый и последний элементы отличаются
+ как пары, хотя и равны как многочлены.
+\end_layout
+
+\begin_layout Standard
+Теперь можно сформулировать эквивалентное определение для базиса Грёбнера:
+\end_layout
+
+\begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "gb-def-2"
+
+\end_inset
+
+Множество 
+\begin_inset Formula $G\subset I$
+\end_inset
+
+ называется 
+\emph on
+базисом Грёбнера
+\emph default
+ идеала 
+\begin_inset Formula $I$
+\end_inset
+
+ кольца 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+ для порядка 
+\begin_inset Formula $\prec$
+\end_inset
+
+, если 
+\begin_inset Formula $\forall f\in I$
+\end_inset
+
+ имеет степенное 
+\begin_inset Formula $G$
+\end_inset
+
+-представление.
+\end_layout
+
+\begin_layout Theorem
+Определения 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "gb-def-1"
+
+\end_inset
+
+ и 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "gb-def-2"
+
+\end_inset
+
+ эквивалентны
+\end_layout
+
+\begin_layout Proof
+я
+\end_layout
+
+\begin_layout Standard
+В кольце многочленов может быть поставлена задача вычисления базиса Грёбнера
+ для произвольного идеала 
+\begin_inset Formula $\left(f_{1},\dots,f_{l}\right)\subset\mathcal{P}$
 \end_inset
 
 .
@@ -223,7 +751,7 @@ galkin-vv@ya.ru
 \end_inset
 
  и 
-\begin_inset Formula $\exists i\, g_{i}\in\mathcal{K}\Rightarrow I=P$
+\begin_inset Formula $\exists i\, g_{i}\in\mathcal{K}\Rightarrow I=\mathcal{P}$
 \end_inset
 
  не представляют интереса, далее предполагается что 
@@ -3372,20 +3900,8 @@ key "FaugereF5"
 Представления
 \end_layout
 
-\begin_layout Paragraph
-Определение
-\end_layout
-
 \begin_layout Standard
-Идея представлений, определённых ниже, приходит из 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "F5C"
-
-\end_inset
-
-, где подобный метод используется в доказательстве Теоремы 21.
- Представления используются для описания способов, которыми многочлен 
+Для описания способов, которыми многочлен 
 \begin_inset Formula $p$
 \end_inset
 
@@ -3393,85 +3909,11 @@ key "F5C"
 \begin_inset Formula $\left(G_{g}\right)$
 \end_inset
 
-.
- Одно представление соответствует записи отмеченного многочлена 
-\begin_inset Formula $p$
-\end_inset
-
- в виде конечной суммы вида
-\begin_inset Formula 
-\begin{equation}
-p=\sum_{k}m_{k}\cdot b_{i_{k}},\; b_{i_{k}}\in G_{g}\label{eq:Gg-repr-def}
-\end{equation}
-
-\end_inset
-
-с коэффициентами 
-\begin_inset Formula $m_{k}=c_{k}t_{k}\in\mathcal{K}\times\mathbb{T}$
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Definition
-Сумма вида 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:Gg-repr-def"
-
-\end_inset
-
-, в которой все пары 
-\begin_inset Formula $\left(t_{k},b_{i_{k}}\right)$
-\end_inset
-
- различны, называется 
-\emph on
-
+ мы будем использовать 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--представлением
-\emph default
- 
-\begin_inset Formula $p$
-\end_inset
-
-.
- Символические произведения 
-\begin_inset Formula $m_{k}\cdot b_{i_{k}}$
-\end_inset
-
- называются 
-\emph on
-элементами
-\emph default
- представления.
- Если рассмотреть это символическое произведение как умножение многочленов,
- то мы получим отмеченный многочлен 
-\begin_inset Formula $m_{k}b_{i_{k}}$
-\end_inset
-
-, соответствующий элементу представления.
- Тогда 
-\begin_inset Formula $p$
-\end_inset
-
- оказывается равным сумме отмеченных многочленов, соответствующих элементам
- его представления.
- Понятие 
-\emph on
-сигнатура элемента
-\emph default
- будет использоваться для обозначения сигнатура многочлена, соответствующего
- элементу.
- Два представления равны, если наборы их элементов совпадают как множества.
-\end_layout
-
-\begin_layout Standard
-Большинство представлений, которые будут нам интересны также имеют следующее
- свойство, ограничивающее сигнатуру элементов:
+-представления.
 \end_layout
 
 \begin_layout Definition
@@ -3479,7 +3921,7 @@ reference "eq:Gg-repr-def"
 \end_inset
 
 -представление 
-\begin_inset Formula $p$
+\begin_inset Formula $p=\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
  называется 
@@ -6589,29 +7031,7 @@ key "FaugereF5"
 \end_layout
 
 \begin_layout Standard
-Введём обозначения: 
-\begin_inset Formula $\mathbb{T}_{0}=\mathbb{T}\cup\left\{ 0\right\} $
-\end_inset
-
- -- расширенный нулём моноид мономов.
- Порядок 
-\begin_inset Formula $\prec$
-\end_inset
-
- продолжается с сохранением вполне упорядоченности на 
-\begin_inset Formula $\mathbb{T}_{0}$
-\end_inset
-
- как 
-\begin_inset Formula $\prec_{0}$
-\end_inset
-
- определением 
-\begin_inset Formula $\forall t\in\mathbb{T}\, t\succ_{0}0$
-\end_inset
-
-.
- Понятие делимости также расширяется на 
+Понятие делимости также расширяется на 
 \begin_inset Formula $\mathbb{T}_{0}$
 \end_inset
 
@@ -6621,7 +7041,7 @@ key "FaugereF5"
 
 .
  Для 
-\begin_inset Formula $p\in P,p\neq0$
+\begin_inset Formula $p\in\mathcal{P},p\neq0$
 \end_inset
 
  старшие по 
@@ -6646,15 +7066,6 @@ key "FaugereF5"
 \end_inset
 
 .
- Наименьшее общее кратное 
-\begin_inset Formula $t_{1},t_{2}\in\mathbb{T}$
-\end_inset
-
- обозначим 
-\begin_inset Formula $\LCM(t_{1},t_{2})\in\mathbb{T}$
-\end_inset
-
-.
  Далее все определения даются для фиксированных 
 \begin_inset Formula $I_{0}$
 \end_inset
@@ -6672,11 +7083,11 @@ key "FaugereF5"
 Отмеченным многочленом
 \emph default
  называется пара 
-\begin_inset Formula $h=(\sigma,p)\in\mathbb{T}_{0}\times P$
+\begin_inset Formula $h=(\sigma,p)\in\mathbb{T}_{0}\times\mathcal{P}$
 \end_inset
 
 , удовлетворяющая условию корректности: 
-\begin_inset Formula $\exists u\in P\,\HM(u)=\sigma,uf\equiv p\pmod{I_{0}}.$
+\begin_inset Formula $\exists u\in\mathcal{P}\,\HM(u)=\sigma,uf\equiv p\pmod{I_{0}}.$
 \end_inset
 
  На отмеченные многочлены распространяются определения старшего монома 
@@ -6702,7 +7113,7 @@ key "FaugereF5"
 
 .
  Множество отмеченных многочленов обозначается за 
-\begin_inset Formula $H\subset\mathbb{T}_{0}\times P$
+\begin_inset Formula $H\subset\mathbb{T}_{0}\times\mathcal{P}$
 \end_inset
 
 .
@@ -7352,7 +7763,7 @@ return
 
 \begin_layout Lemma
 Все пары из 
-\begin_inset Formula $\mathbb{T}_{0}\times P$
+\begin_inset Formula $\mathbb{T}_{0}\times\mathcal{P}$
 \end_inset
 
  в алгоритме -- элементы 
@@ -7716,7 +8127,7 @@ reference "par:ReduceCheckingSignatures:"
 
 \begin_layout Proof
 На каждом шаге основного цикла пополняется множество 
-\begin_inset Formula $R\subset\mathbb{T}_{0}\times P$
+\begin_inset Formula $R\subset\mathbb{T}_{0}\times\mathcal{P}$
 \end_inset
 
 .
@@ -7725,7 +8136,7 @@ reference "par:ReduceCheckingSignatures:"
 \end_inset
 
  где 
-\begin_inset Formula $R_{*0}\subset\mathbb{T}\times\left\{ 0\right\} ,R_{0*}\subset\left\{ 0\right\} \times P\setminus\left\{ 0\right\} ,R_{**}\subset\mathbb{T}\times P\setminus\left\{ 0\right\} $
+\begin_inset Formula $R_{*0}\subset\mathbb{T}\times\left\{ 0\right\} ,R_{0*}\subset\left\{ 0\right\} \times\mathcal{P}\setminus\left\{ 0\right\} ,R_{**}\subset\mathbb{T}\times\mathcal{P}\setminus\left\{ 0\right\} $
 \end_inset
 
 .
@@ -7981,7 +8392,7 @@ name "lem:s-basis-and-no-reductions"
 \end_inset
 
  имеем 
-\begin_inset Formula $\exists u_{i}\in P\,\HM(u_{i})=\sigma,u_{i}f\equiv\poly(h_{i})\pmod{I_{0}},i=1,2.$
+\begin_inset Formula $\exists u_{i}\in\mathcal{P}\,\HM(u_{i})=\sigma,u_{i}f\equiv\poly(h_{i})\pmod{I_{0}},i=1,2.$
 \end_inset
 
  Значит некоторой линейной комбинации 
@@ -7995,7 +8406,7 @@ name "lem:s-basis-and-no-reductions"
  сигнатура: 
 \begin_inset Formula 
 \[
-\exists K\in\mathcal{K},v\in P\,\HM(v)=\sigma'\prec_{0}\sigma,vf\equiv\poly(h_{1})-K\poly(h_{2})\pmod{I_{0}},
+\exists K\in\mathcal{K},v\in\mathcal{P}\,\HM(v)=\sigma'\prec_{0}\sigma,vf\equiv\poly(h_{1})-K\poly(h_{2})\pmod{I_{0}},
 \]
 
 \end_inset
