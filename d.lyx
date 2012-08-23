@@ -3,15 +3,6 @@
 \begin_document
 \begin_header
 \textclass article
-\begin_preamble
-\newcommand{\Sig}{\mathcal{S}}
-\newcommand{\HM}{\mathrm{HM}}
-\newcommand{\HC}{\mathrm{HC}}
-\newcommand{\LCM}{\mathrm{LCM}}
-\newcommand{\totaldeg}{\mathrm{deg}}
-\newcommand{\poly}{\mathrm{poly}}
-\newcommand{\sigidx}{\mathrm{index}}
-\end_preamble
 \use_default_options true
 \begin_modules
 theorems-ams
@@ -113,6 +104,62 @@ figs-within-sections
 \begin_layout Standard
 \begin_inset FormulaMacro
 \newcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\Sig}{\mathcal{S}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\HM}{\mathrm{HM}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\HC}{\mathrm{HC}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\LCM}{\mathrm{LCM}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\totaldeg}{\mathrm{deg}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\poly}{\mathrm{poly}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\sigidx}{\mathrm{index}}
 \end_inset
 
 
@@ -544,11 +591,11 @@ key "F5C"
 
  назовём 
 \emph on
-
+представлением над 
 \begin_inset Formula $G$
 \end_inset
 
--представлением 
+ 
 \emph default
 многочлена 
 \begin_inset Formula $p\in\mathcal{P}$
@@ -645,11 +692,12 @@ p=\sum_{k}m_{k}\cdot g_{i_{k}},\; g_{i_{k}}\in G
 \end_layout
 
 \begin_layout Definition
-\begin_inset Formula $G$
+Представление 
+\begin_inset Formula $p=\sum_{k}m_{k}\cdot g_{i_{k}}$
 \end_inset
 
--представление 
-\begin_inset Formula $p=\sum_{k}m_{k}\cdot g_{i_{k}}$
+ над 
+\begin_inset Formula $G$
 \end_inset
 
  называется 
@@ -768,11 +816,11 @@ name "gb-def-2"
 \begin_inset Formula $\forall f\in I$
 \end_inset
 
- имеет степенное 
+ имеет степенное представление над 
 \begin_inset Formula $G$
 \end_inset
 
--представление.
+.
 \end_layout
 
 \begin_layout Theorem
@@ -928,6 +976,137 @@ reference "gb-def-2"
 
 \begin_layout Section
 Алгоритм Бухбергера
+\end_layout
+
+\begin_layout Standard
+Простейшим алгоритмом вычисления базиса Грёбнера является алгоритм Бухбергера.
+ Мы не будем подробно останавливаться на нём, однако дадим некоторые теоретическ
+ие сведения, которые будут использоваться и в других алгоритмах, и опишем
+ наиболее простую его версию без каких-либо оптимизаций.
+\end_layout
+
+\begin_layout Definition
+
+\emph on
+S-парой
+\emph default
+ ненулевых многочленов 
+\begin_inset Formula $g_{1}$
+\end_inset
+
+ и 
+\begin_inset Formula $g_{2}$
+\end_inset
+
+ называется пара произведений:
+\begin_inset Formula 
+\[
+\left(\frac{\HM(g_{2})\HC(g_{2})}{\LCM(\HM(g_{1}),\HM(g_{2}))}\cdot g_{1};\frac{\HM(g_{1})\HC(g_{1})}{\LCM(\HM(g_{1}),\HM(g_{2}))}\cdot g_{2}\right).
+\]
+
+\end_inset
+
+Каждое из произведений называется 
+\emph on
+частью S-пары
+\emph default
+.
+ Части S-пары могут рассматриваться как символические произведения монома
+ на многочлен, или как многочлены, равные этим произведениям.
+ При последней трактовке у частей S-пары оказывается одинаковый старший
+ моном, называемый 
+\emph on
+сокращаемым мономом S-пары
+\emph default
+, и одинаковый старший коэффициент.
+ Поэтому при вычитании второй части S-пары из первой происходит сокращение
+ старших мономов.
+ Получаемая разность называется 
+\emph on
+S-многочленом
+\emph default
+, соответствующим S-паре, или просто S-многочленом 
+\begin_inset Formula $g_{1}$
+\end_inset
+
+ и 
+\begin_inset Formula $g_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Theorem
+Пусть задано конечное множество ненулевых многочленов 
+\begin_inset Formula $G=\{g_{1},\dots,g_{m}\}\subset\mathcal{P}$
+\end_inset
+
+, и известно что любой S-многочлен элементов 
+\begin_inset Formula $G$
+\end_inset
+
+ имеет степенное представление 
+\begin_inset Formula $G$
+\end_inset
+
+.
+ Тогда любой элемент идеала 
+\begin_inset Formula $\left(G\right)$
+\end_inset
+
+ имеет степенное представление над 
+\begin_inset Formula $G$
+\end_inset
+
+, и таким образом 
+\begin_inset Formula $G$
+\end_inset
+
+ является базисом Грёбнера идеала 
+\begin_inset Formula $\left(G\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Эта теорема является главной теоремой, показывающей корректность алгоритма
+ Бухбергера, однако вместо неё будет доказана более общая версия, применимая
+ далее для алгоритмов, основанных на сигнатурах.
+ Следующее определение формулируется для любых объектов, с которыми можно
+ проводить операции сравнения на равенство, умножения на моном и взятия
+ старшего монома 
+\begin_inset Formula $\HM$
+\end_inset
+
+.
+ При всех использованиях этого понятия таким объектом будет являться многочлен
+ из 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+, возможно с некоторыми дополнительно ассоциированными с ним данными, поэтому
+ в тексте определения мы будем использовать термин 
+\begin_inset Quotes fld
+\end_inset
+
+обобщённый многочлен
+\begin_inset Quotes frd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+Условием на редукцию обобщённого многочлена 
+\begin_inset Formula $f$
+\end_inset
+
+ по 
+\begin_inset Formula $g$
+\end_inset
+
+ называется
 \end_layout
 
 \begin_layout Standard
