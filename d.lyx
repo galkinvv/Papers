@@ -474,6 +474,30 @@ t_{1}\prec t_{2}\Longrightarrow t_{1}t_{3}\prec t_{2}t_{3}
 \end_inset
 
 .
+ Многочлен называется 
+\emph on
+нередуцируемым
+\emph default
+ по множеству, если ни один из элементов множества не редуцирует его.
+ 
+\emph on
+Результатом редукции многочлена 
+\emph default
+
+\begin_inset Formula $f$
+\end_inset
+
+
+\emph on
+ по множеству 
+\emph default
+
+\begin_inset Formula $G\subset\mathcal{P}$
+\end_inset
+
+ называется последний элемент в последовательности редукций, которую нельзя
+ продолжить.
+ Результат редукции по множеству нередуцируем по нему.
 \end_layout
 
 \begin_layout Standard
@@ -1037,6 +1061,12 @@ S-многочленом
 \end_layout
 
 \begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:Simple-spoly"
+
+\end_inset
+
 Пусть задано конечное множество ненулевых многочленов 
 \begin_inset Formula $G=\{g_{1},\dots,g_{m}\}\subset\mathcal{P}$
 \end_inset
@@ -1045,7 +1075,7 @@ S-многочленом
 \begin_inset Formula $G$
 \end_inset
 
- имеет степенное представление 
+ имеет степенное представление над 
 \begin_inset Formula $G$
 \end_inset
 
@@ -1098,19 +1128,633 @@ S-многочленом
 \end_layout
 
 \begin_layout Definition
-Условием на редукцию обобщённого многочлена 
-\begin_inset Formula $f$
+
+\emph on
+Условием представления
+\emph default
+ обобщённого многочлена 
+\begin_inset Formula $p\in\mathcal{P}$
 \end_inset
 
- по 
-\begin_inset Formula $g$
+ через обобщённый многочлен 
+\begin_inset Formula $g\in\mathcal{P}$
 \end_inset
 
- называется
+ называется булева функция 
+\begin_inset Formula $\beta(p,g)$
+\end_inset
+
+, удовлетворяющая следующим условиям:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\beta(p,p)=\mbox{TRUE}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Если 
+\begin_inset Formula $\beta(p,g)=\mbox{TRUE}$
+\end_inset
+
+, то 
+\begin_inset Formula $\forall m\in\mathbb{T}$
+\end_inset
+
+ будет 
+\begin_inset Formula $\beta(mp,mg)=\mbox{TRUE}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Если 
+\begin_inset Formula $\beta(p,g)=\mbox{TRUE}$
+\end_inset
+
+, то 
+\begin_inset Formula $\forall k\in\mathcal{K},k\ne0$
+\end_inset
+
+ будет 
+\begin_inset Formula $\beta(kp,g)=\beta(p,kg)=\mbox{TRUE}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Если 
+\begin_inset Formula $\beta(p,g)=\mbox{TRUE}$
+\end_inset
+
+ и 
+\begin_inset Formula $\beta(g,h)=\mbox{TRUE}$
+\end_inset
+
+, то 
+\begin_inset Formula $\beta(p,h)=\mbox{TRUE}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Простейшим примером условия представления является 
+\begin_inset Formula $\beta_{\HM}$
+\end_inset
+
+, определённое как 
+\begin_inset Formula $\beta_{\HM}(p,g)=\mbox{TRUE}$
+\end_inset
+
+ тогда и только тогда, когда 
+\begin_inset Formula $\HM(g)\preccurlyeq\HM(p)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+Представление 
+\begin_inset Formula $p=\sum_{k}m_{k}\cdot g_{i_{k}}$
+\end_inset
+
+ над 
+\begin_inset Formula $G$
+\end_inset
+
+ называется 
+\emph on
+удовлетворяющим условию 
+\begin_inset Formula $\beta$
+\end_inset
+
+
+\emph default
+, если 
+\begin_inset Formula $\forall k\,\beta(p,m_{k}g_{i_{k}})=\mbox{TRUE}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-[определения S-пар, простейший вариант]
+В соответствии с этим определением представление является степенным тогда
+ и только тогда, когда удовлетворяет условию 
+\begin_inset Formula $\beta_{\HM}$
+\end_inset
+
+.
+ Теперь можно сформулировать теорему, которая в частном случае тождественно
+ истинной функции 
+\begin_inset Formula $\beta_{2}$
+\end_inset
+
+ совпадает с теоремой 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:Simple-spoly"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Theorem
+Пусть зафиксировано некоторое условие представления 
+\begin_inset Formula $\beta_{2}$
+\end_inset
+
+ и задано конечное множество ненулевых многочленов 
+\begin_inset Formula $G=\{g_{1},\dots,g_{m}\}\subset\mathcal{P}$
+\end_inset
+
+, про которое известно, что любой S-многочлен элементов 
+\begin_inset Formula $G$
+\end_inset
+
+ имеет представление над 
+\begin_inset Formula $G$
+\end_inset
+
+, одновременно удовлетворяющее условиям 
+\begin_inset Formula $\beta_{\HM}$
+\end_inset
+
+ и 
+\begin_inset Formula $\beta_{2}$
+\end_inset
+
+.
+ Пусть также любой элемент идеала 
+\begin_inset Formula $\left(G\right)$
+\end_inset
+
+ имеет представление над 
+\begin_inset Formula $G$
+\end_inset
+
+, удовлетворяющее условию 
+\begin_inset Formula $\beta_{2}$
+\end_inset
+
+.
+ Тогда любой элемент идеала 
+\begin_inset Formula $\left(G\right)$
+\end_inset
+
+ имеет представление одновременно удовлетворяющее условиям 
+\begin_inset Formula $\beta_{\HM}$
+\end_inset
+
+ и 
+\begin_inset Formula $\beta_{2}$
+\end_inset
+
+, и таким образом 
+\begin_inset Formula $G$
+\end_inset
+
+ является базисом Грёбнера идеала 
+\begin_inset Formula $\left(G\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Предположим противное и рассмотрим некоторый многочлен 
+\begin_inset Formula $p\in\left(G\right)$
+\end_inset
+
+, не имеющий представления одновременно удовлетворяющего условиям 
+\begin_inset Formula $\beta_{\HM}$
+\end_inset
+
+ и 
+\begin_inset Formula $\beta_{2}$
+\end_inset
+
+.
+ Среди его представлений, удовлетворяющих 
+\begin_inset Formula $\beta_{2}$
+\end_inset
+
+ найдём минимум значения 
+\begin_inset Formula $\max_{k}\HM(m_{k}g_{i_{k}})$
+\end_inset
+
+ и обозначим его за 
+\begin_inset Formula $M$
+\end_inset
+
+.
+ Далее зафиксируем среди представлений, на которых этот минимум достигается,
+ представление 
+\begin_inset Formula $p=\sum_{k}m_{k}\cdot g_{i_{k}}$
+\end_inset
+
+ с минимальным количеством элементов, обладающих старшим мономом 
+\begin_inset Formula $M$
+\end_inset
+
+.
+ В силу предположенного оно не может удовлетворять 
+\begin_inset Formula $\beta_{\HM}$
+\end_inset
+
+, а значит 
+\begin_inset Formula $M\succ\HM(p)$
+\end_inset
+
+.
+ Отсюда вытекает, что в представлении есть как минимум 2 элемента со старшим
+ мономом 
+\begin_inset Formula $M$
+\end_inset
+
+, поскольку при суммировании в 
+\begin_inset Formula $p$
+\end_inset
+
+ он должен сократиться.
+ Для простоты будем полагать, что это элементы с индексами 1 и 2: 
+\begin_inset Formula $c_{1}t_{1}\cdot g_{i_{1}}$
+\end_inset
+
+ и 
+\begin_inset Formula $c_{2}t_{2}\cdot g_{i_{2}}$
+\end_inset
+
+.
+ При этом 
+\begin_inset Formula $i_{1}\ne i_{2}$
+\end_inset
+
+, так как иначе из равенства их 
+\begin_inset Formula $\HM$
+\end_inset
+
+ следовало бы равенство 
+\begin_inset Formula $t_{1}=t_{2}$
+\end_inset
+
+, что вместе с 
+\begin_inset Formula $i_{1}=i_{2}$
+\end_inset
+
+ противоречит неповторяемости элементов в представлении.
+ S-пара 
+\begin_inset Formula $g_{i_{1}}$
+\end_inset
+
+ и 
+\begin_inset Formula $g_{i_{2}}$
+\end_inset
+
+ имеет вид 
+\begin_inset Formula $\left(c_{1}'t_{1}'\cdot g_{i_{1}};c_{2}'t_{2}'\cdot g_{i_{2}}\right)$
+\end_inset
+
+, причём 
+\begin_inset Formula $\exists t_{m}\in\mathbb{T},c_{m}\in\mathcal{K}$
+\end_inset
+
+ для которых 
+\begin_inset Formula $c_{1}'t_{1}'c_{m}t_{m}=c_{1}t_{1}$
+\end_inset
+
+.
+ S-многочлен 
+\begin_inset Formula $c_{1}'t_{1}'\cdot g_{i_{1}}-c_{2}'t_{2}'\cdot g_{i_{2}}$
+\end_inset
+
+ имеет представление, удовлетворяющее 
+\begin_inset Formula $\beta_{\HM}$
+\end_inset
+
+ и 
+\begin_inset Formula $\beta_{2}$
+\end_inset
+
+.
+ В силу свойств условий представления отсюда следует, что после умножения
+ его на 
+\begin_inset Formula $c_{m}t_{m}$
+\end_inset
+
+ он тоже будет иметь представление над 
+\begin_inset Formula $G$
+\end_inset
+
+, удовлетворяющее 
+\begin_inset Formula $\beta_{\HM}$
+\end_inset
+
+ и 
+\begin_inset Formula $\beta_{2}$
+\end_inset
+
+.
+ Обозначим это представление за 
+\begin_inset Formula $\sum_{l}m_{l}\cdot g_{i_{l}}$
+\end_inset
+
+.
+ Тогда выражение 
+\begin_inset Formula 
+\[
+p=\sum_{l}m_{l}\cdot g_{i_{l}}+(c_{2}+c_{m}c_{2}')t_{2}\cdot g_{i_{2}}+\sum_{k>2}m_{k}\cdot g_{i_{k}}
+\]
+
+\end_inset
+
+после группировки подобных при их наличии даст удовлетворяющее 
+\begin_inset Formula $\beta_{2}$
+\end_inset
+
+ представление, с меньшим количеством элементов, обладающих старшим мономом
+ 
+\begin_inset Formula $M$
+\end_inset
+
+, что приводит к противоречию.
+\end_layout
+
+\begin_layout Standard
+Теперь сформулируем простейший вариант алгоритма Бухбергера в виде одноэтапного
+ алгоритма
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Вход: многочлены 
+\begin_inset Formula $\{f_{1},\dots,f_{m}\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Переменные: 
+\begin_inset Formula $P\subset\mathcal{P}$
+\end_inset
+
+ -- множество вычисленных S-многочленов.
+ 
+\begin_inset Formula $G\subset\mathcal{P}$
+\end_inset
+
+ -- получаемый базис Грёбнера.
+ 
+\begin_inset Formula $p\in\mathcal{P}$
+\end_inset
+
+ -- многочлен текущего шага
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Результат: базис Грёбнера идеала 
+\begin_inset Formula $I=\left(f_{1},\dots,f_{m}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+\begin_inset CommandInset label
+LatexCommand label
+name "par:Buchberger"
+
+\end_inset
+
+Buchberger
+\begin_inset Formula $\left(\left\{ f_{1},\dots,f_{m}\right\} \right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $G\leftarrow\{f_{1},\dots,f_{m}\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $P\leftarrow\{$
+\end_inset
+
+S-многочлены всех пар 
+\begin_inset Formula $(f_{i},f_{j}),i<j\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+while 
+\begin_inset Formula $P\ne\varnothing$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $p\leftarrow$
+\end_inset
+
+ любой элемент 
+\begin_inset Formula $P$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $P\leftarrow P\setminus\{p\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $p\leftarrow$
+\end_inset
+
+ результат редукции 
+\begin_inset Formula $p$
+\end_inset
+
+ по 
+\begin_inset Formula $G$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+if
+\series default
+ 
+\begin_inset Formula $p\not=0$
+\end_inset
+
+
+\series bold
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $P\leftarrow P\cup\{$
+\end_inset
+
+S-многочлены всех пар 
+\begin_inset Formula $(p,g),g\in G\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+\begin_inset Formula $G\leftarrow G\cup\{p\}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+return
+\series default
+ 
+\begin_inset Formula $G$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Для доказательства правильности любого алгоритма вычисления базисов Грёбнера
+ нужно показать его остановку за конечное число шагов и корректность результата.
+ Для алгоритма Бухбергера это показывают две следующие известные теоремы.
+\end_layout
+
+\begin_layout Theorem
+Алгоритм 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Buchberger"
+
+\end_inset
+
+ останавливается на любых входных данных
+\end_layout
+
+\begin_layout Proof
+Каждый новый элемент добавляемый в 
+\begin_inset Formula $G$
+\end_inset
+
+ нередуцируем по нему,а значит расширяет идеал моноида, порождаемый старшими
+ элементами многочленов 
+\begin_inset Formula $G$
+\end_inset
+
+.
+ Этот процесс не может быть бесконечен по лемме Диксона.
+ Значит, после некоторого шага все результаты редукции нулевые и 
+\begin_inset Formula $P$
+\end_inset
+
+ перестаёт пополняться.
+ После этого оно исчерпается за конечное число итераций и алгоритм завершится
+\end_layout
+
+\begin_layout Theorem
+Алгоритм 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Buchberger"
+
+\end_inset
+
+ возвращает базис Грёбнера идеала 
+\begin_inset Formula $\left(f_{1},\dots,f_{m}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Все S-пары элементов 
+\begin_inset Formula $G$
+\end_inset
+
+ были добавлены в 
+\begin_inset Formula $P$
+\end_inset
+
+, и редуцированы.
+ Вне зависимости от того произошла ли редукция к нулю, или в 
+\begin_inset Formula $G$
+\end_inset
+
+ был добавлен новый элемент, после окончания итерации цикла рассматриваемый
+ S-многочлен имеет степенное представление над 
+\begin_inset Formula $G$
+\end_inset
+
+.
+ Отсюда по теореме 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:Simple-spoly"
+
+\end_inset
+
+ следует, что 
+\begin_inset Formula $G$
+\end_inset
+
+ -- базис Грёбнера 
+\begin_inset Formula $(G)$
+\end_inset
+
+.
+ С другой стороны 
+\begin_inset Formula $(G)=\left(f_{1},\dots,f_{m}\right)$
+\end_inset
+
+, поскольку 
+\begin_inset Formula $f_{1},\dots,f_{m}$
+\end_inset
+
+ были добавлены в 
+\begin_inset Formula $G$
+\end_inset
+
+ на первом шаге и все вычисления производились лишь внутри идеала.
 \end_layout
 
 \begin_layout Section
