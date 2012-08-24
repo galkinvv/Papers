@@ -645,7 +645,11 @@ p=\sum_{k}m_{k}\cdot g_{i_{k}},\; g_{i_{k}}\in G
 \begin_inset Formula $\left(t_{k},g_{i_{k}}\right)$
 \end_inset
 
- различны.
+ различны и коэффициенты 
+\begin_inset Formula $c_{k}\ne0$
+\end_inset
+
+.
  Символические произведения 
 \begin_inset Formula $m_{k}\cdot g_{i_{k}}$
 \end_inset
@@ -973,6 +977,15 @@ reference "gb-def-2"
 \end_inset
 
 .
+ При формулировке шага входные данные будут обозначаться просто как 
+\begin_inset Formula $f$
+\end_inset
+
+ и 
+\begin_inset Formula $G$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -1206,18 +1219,22 @@ name "thm:Simple-spoly"
 \end_deeper
 \begin_layout Standard
 Простейшим примером условия представления является 
+\emph on
+условие на старший моном
+\emph default
+ 
 \begin_inset Formula $\beta_{\HM}$
 \end_inset
 
 , определённое как 
-\begin_inset Formula $\beta_{\HM}(p,g)=\mbox{TRUE}$
+\begin_inset Formula 
+\[
+\beta_{\HM}(p,g)=\mbox{TRUE}\Longleftrightarrow\HM(g)\preccurlyeq\HM(p).
+\]
+
 \end_inset
 
- тогда и только тогда, когда 
-\begin_inset Formula $\HM(g)\preccurlyeq\HM(p)$
-\end_inset
 
-.
 \end_layout
 
 \begin_layout Definition
@@ -1762,9 +1779,533 @@ reference "thm:Simple-spoly"
 \end_layout
 
 \begin_layout Standard
-[Определения сигнатур, правил редукции, S-представлений]
+Понятие сигнатуры связано с понятием представлений: сигнатура многочлена
+ содержит информацию о максимальном в определённом смысле элементе представления
+ этого многочлена.
+ Поэтому для её определения необходимо зафиксировать множество, над которым
+ рассматривается представление.
+ Вопрос единственности сигнатуры после этой фиксации зависит от того выбирается
+ ли среди представлений какое-то одно.
+ В работах 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5,SignatureBasedGBs"
+
+\end_inset
+
+ сигнатура определяется для многочлена однозначно, при помощи выбора минимальног
+о в определённом смысле представления.
+ В работах 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5C,GVW,G2V,F5InBBStyle,HuangConception"
+
+\end_inset
+
+ и в данной работе представление не фиксируется и один многочлен может иметь
+ неограниченное число сигнатур.
+ Таким образом, в понятие сигнатуры зависит не только от многочлена, но
+ и от того над каким множеством рассматриваются его представления и даже
+ от самого представления.
+ Для одноэтапных алгоритмов представления рассматриваются над множеством
+ 
+\begin_inset Formula $f_{1},\dots,f_{m}$
+\end_inset
+
+, а для инкрементальных -- на каждом шаге берётся соответствующее этому
+ шагу множество 
+\begin_inset Formula $G_{i}\cup f_{i+1}$
+\end_inset
+
+.
 \end_layout
 
+\begin_layout Standard
+Сначала введём определение сигнатуры для элемента представления в одноэтапном
+ и инкрементальном случаях.
+\end_layout
+
+\begin_layout Definition
+Для одноэтапного алгоритма 
+\emph on
+сигнатурой элемента представления
+\emph default
+ 
+\begin_inset Formula $ct\cdot f_{i}$
+\end_inset
+
+ называется пара 
+\begin_inset Formula $(t;i)\in\mathbf{T}=\mathbb{T}\times\mathbb{N}$
+\end_inset
+
+.
+ В этой паре 
+\begin_inset Formula $i$
+\end_inset
+
+ называется 
+\emph on
+индексом сигнатуры
+\emph default
+, а 
+\begin_inset Formula $t$
+\end_inset
+
+ -- 
+\emph on
+мономом сигнатуры
+\emph default
+.
+ Умножение такой сигнатуры на моном определяется как 
+\begin_inset Formula $t_{1}(t;i)\eqdef(t_{1}t,i)$
+\end_inset
+
+, что соответствует умножению на моном элемента представления.
+ Для сравнения сигнатур обычно используется порядок 
+\begin_inset Formula $\prec_{P}$
+\end_inset
+
+, сравнивающий вначале индексы, а потом мономы:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left(t_{1},i_{1}\right)\prec_{P}\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & i_{1}<i_{2}\\
+ & i{}_{1}=i_{2},t_{1}\prec t_{2}
+\end{aligned}
+\right.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+Для
+\emph on
+ 
+\emph default
+инкрементального алгоритма 
+\emph on
+сигнатурой элемента представления
+\emph default
+ 
+\begin_inset Formula $ct\cdot p$
+\end_inset
+
+ называется 
+\begin_inset Formula $t\in\mathbb{T}_{0}$
+\end_inset
+
+, если 
+\begin_inset Formula $p=f$
+\end_inset
+
+ и 
+\begin_inset Formula $0\in\mathbb{T}_{0}$
+\end_inset
+
+, если 
+\begin_inset Formula $p\in G$
+\end_inset
+
+.
+ В этом случае понятие 
+\emph on
+монома сигнатуры
+\emph default
+ совпадает с понятием сигнатуры.
+ Для их сравнения используется порядок 
+\begin_inset Formula $\prec_{0}$
+\end_inset
+
+, уже заданный на 
+\begin_inset Formula $\mathbb{T}_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Следующие определения не зависят от типа алгоритма, поэтому в них будем
+ подразумевать под 
+\begin_inset Formula $\tau$
+\end_inset
+
+ множество сигнатур соответствующее 
+\begin_inset Formula $\mathbf{T}$
+\end_inset
+
+ или 
+\begin_inset Formula $\mathbb{T}_{0}$
+\end_inset
+
+, а под 
+\begin_inset Formula $\prec_{\tau}$
+\end_inset
+
+ порядок на нём.
+\end_layout
+
+\begin_layout Definition
+
+\emph on
+Представлением 
+\begin_inset Formula $p$
+\end_inset
+
+ сигнатуры 
+\begin_inset Formula $\sigma$
+\end_inset
+
+
+\emph default
+ называется представление 
+\begin_inset Formula $p$
+\end_inset
+
+, в котором 
+\begin_inset Formula $\prec_{\tau}$
+\end_inset
+
+-максимальная сигнатура элементов в точности равна 
+\begin_inset Formula $\sigma$
+\end_inset
+
+.
+ 
+\emph on
+Отмеченным многочленом
+\emph default
+ называется пара 
+\begin_inset Formula $h=(\sigma,p)\in\tau\times\mathcal{P}$
+\end_inset
+
+, удовлетворяющая условию корректности: существует представление 
+\begin_inset Formula $p$
+\end_inset
+
+ сигнатуры 
+\begin_inset Formula $\sigma$
+\end_inset
+
+.
+ На отмеченные многочлены распространяются определения старшего монома 
+\begin_inset Formula $\HM(h)\eqdef\HM(p)$
+\end_inset
+
+ и коэффициента 
+\begin_inset Formula $\HC(h)\eqdef\HC(p)$
+\end_inset
+
+.
+ Также определяются 
+\emph on
+сигнатура
+\emph default
+ 
+\begin_inset Formula $\Sig(h)\eqdef\sigma$
+\end_inset
+
+ и вводится обозначение многочлена -- второго элемента пары: 
+\begin_inset Formula $\poly(h)\eqdef p$
+\end_inset
+
+.
+ Множество отмеченных многочленов обозначается за 
+\begin_inset Formula $H\subset\tau\times\mathcal{P}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Lemma
+Результат умножения отмеченного многочлена 
+\begin_inset Formula $h\in H$
+\end_inset
+
+ на моном 
+\begin_inset Formula $t\in\mathbb{T}$
+\end_inset
+
+, заданного как 
+\begin_inset Formula $th\eqdef(t\sigma,tp),$
+\end_inset
+
+ лежит в 
+\begin_inset Formula $H$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Необходимо проверить условие корректности: представление 
+\begin_inset Formula $tp$
+\end_inset
+
+ сигнатуры 
+\begin_inset Formula $t\sigma$
+\end_inset
+
+ может быть получено умножением на 
+\begin_inset Formula $t$
+\end_inset
+
+ представления 
+\begin_inset Formula $p$
+\end_inset
+
+ сигнатуры 
+\begin_inset Formula $\sigma$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Definition
+
+\emph on
+Сигнатурное условие представления
+\emph default
+ 
+\begin_inset Formula $\beta_{\Sig}$
+\end_inset
+
+ для отмеченных многочленов 
+\begin_inset Formula $p,g\in H$
+\end_inset
+
+ определяется как
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\beta_{\Sig}(p,g)=\mbox{TRUE}\Longleftrightarrow\Sig(g)\preccurlyeq_{\tau}\Sig(p).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+Представление, удовлетворяющее условиям 
+\begin_inset Formula $\beta_{\Sig}$
+\end_inset
+
+ и 
+\begin_inset Formula $\beta_{\HM}$
+\end_inset
+
+, называется сигнатурным представлением.
+\end_layout
+
+\begin_layout Standard
+Следующее определение вводит понятие сигнатурной редукции отмеченных многочленов
+, соответствующее сигнатурному представлению.
+ 
+\end_layout
+
+\begin_layout Definition
+Если для некоторых
+\emph on
+ 
+\begin_inset Formula $h'_{1},h_{2}\in H,t\in\mathbb{T}$
+\end_inset
+
+
+\emph default
+ выполняется 
+\begin_inset Formula $\Sig(h'_{1})\succ_{\tau}\Sig(th_{2}),\HM(h'{}_{1})=\HM(th{}_{2})\neq0,$
+\end_inset
+
+ то возможна 
+\emph on
+сигнатурная редукция 
+\begin_inset Formula $h'_{1}$
+\end_inset
+
+ по 
+\begin_inset Formula $h_{2}$
+\end_inset
+
+ 
+\emph default
+, дающая в результате отмеченный многочлен 
+\begin_inset Formula $h_{1}\in H$
+\end_inset
+
+, равный: 
+\begin_inset Formula 
+\[
+h_{1}=\left(\Sig(h'_{1}),\poly(h'_{1})+Kt\poly(h_{2})\right),
+\]
+
+\end_inset
+
+где коэффициент 
+\begin_inset Formula $K\in\mathcal{K}$
+\end_inset
+
+ взят так, чтобы при сложении сократились старшие мономы и выполнилось 
+\begin_inset Formula $\HM(h{}_{1})\prec_{0}\HM(h'{}_{1})$
+\end_inset
+
+.
+ По сути такая редукция представляет из себя обычную редукцию многочлена
+ с сокращением старшего монома, дополненную требованием того, что сигнатура
+ редуктора меньше сигнатуры редуцируемого.
+ Корректность проверяется взятием представления для 
+\begin_inset Formula $\poly(h'_{1})+Kt\poly(h_{2})$
+\end_inset
+
+, равного соответствующей линейной комбинации представлений 
+\begin_inset Formula $\poly(h'_{1})$
+\end_inset
+
+ и 
+\begin_inset Formula $\poly(h_{2})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Remark
+Последовательность таких сигнатурных редукций по некоторому множеству отмеченных
+ многочленов, заканчивающаяся нулём, определяет сигнатурное представление
+ над этим множеством, состоящее из редуцирующих элементов.
+\end_layout
+
+\begin_layout Standard
+В дальнейшем мы не будем одновременно работать с сигнатурами двух видов,
+ подразумевая сигнатуры из 
+\begin_inset Formula $\mathbf{T}$
+\end_inset
+
+ в случае одноэтапных алгоритмов и сигнатуры из 
+\begin_inset Formula $\mathbb{T}_{0}$
+\end_inset
+
+ для инкрементальных.
+\end_layout
+
+\begin_layout Example
+Простейшие отмеченные многочлены для одноэтапного случая:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\left(\left(\HM(p),i\right),pf_{i}\right),p\in\mathcal{P},i\in\mathbb{N}$
+\end_inset
+
+.
+ Соответствует представлению вида 
+\begin_inset Formula $pf_{i}=\sum_{m_{p}\in p}m_{p}\cdot f_{i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\left(\left(t\HM(f_{i}),j\right),0\right)$
+\end_inset
+
+ для 
+\begin_inset Formula $i<j\in\mathbb{N},t\in\mathbb{T}$
+\end_inset
+
+.
+ Соответствует представлению, получаемому для нуля из разбиения 
+\begin_inset Formula $f_{i}$
+\end_inset
+
+ и 
+\begin_inset Formula $f_{j}$
+\end_inset
+
+ на составляющие их мономы: 
+\begin_inset Formula 
+\[
+0=t(f_{i}f_{j}-f_{j}f_{i})=\sum_{m_{f_{i}}\in f_{i}}m_{f_{i}}\cdot f_{j}-\sum_{m_{f_{j}}\in f_{j}}m_{f_{j}}\cdot f_{i}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Example
+Простейшие отмеченные многочлены для инкрементального случая:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\left(\HM(p),pf\right),p\in\mathcal{P}$
+\end_inset
+
+.
+ Соответствует представлению вида 
+\begin_inset Formula $pf=\sum_{m_{p}\in p}m_{p}\cdot f$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\left(0,g\right)$
+\end_inset
+
+ для 
+\begin_inset Formula $g\in\left(G\right)$
+\end_inset
+
+.
+ Соответствует любому представлению 
+\begin_inset Formula $g$
+\end_inset
+
+ над 
+\begin_inset Formula $G$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\left(\HM(g),0\right)$
+\end_inset
+
+ для 
+\begin_inset Formula $g\in\left(G\right)$
+\end_inset
+
+.
+ Соответствует представлению, получаемому для нуля из разбиения 
+\begin_inset Formula $g$
+\end_inset
+
+ и 
+\begin_inset Formula $f$
+\end_inset
+
+ на составляющие их мономы: 
+\begin_inset Formula 
+\[
+0=gf-fg=\sum_{m_{g}\in g}m_{g}\cdot f-\sum_{m_{f}\in f}m_{f}\cdot g.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \begin_layout Subsection
 Алгоритм F5 в формулировке Фожера
 \end_layout
@@ -8005,202 +8546,6 @@ key "FaugereF5"
 
 \begin_layout Subsection
 Определения
-\end_layout
-
-\begin_layout Standard
-Понятие делимости также расширяется на 
-\begin_inset Formula $\mathbb{T}_{0}$
-\end_inset
-
-: 
-\begin_inset Formula $t_{1}|t_{2}\eqdef\exists t_{3}\, t_{1}t_{3}=t_{2}$
-\end_inset
-
-.
- Для 
-\begin_inset Formula $p\in\mathcal{P},p\neq0$
-\end_inset
-
- старшие по 
-\begin_inset Formula $\prec$
-\end_inset
-
- моном и коэффициент обозначим 
-\begin_inset Formula $\HM(p)\in\mathbb{T}$
-\end_inset
-
- и 
-\begin_inset Formula $\HC(p)\in\mathcal{K}$
-\end_inset
-
-.
- Для нуля -- 
-\begin_inset Formula $\HM(0)\eqdef0\in\mathbb{T}_{0}$
-\end_inset
-
-, 
-\begin_inset Formula $\HC(0)\eqdef0\in\mathcal{K}$
-\end_inset
-
-.
- Далее все определения даются для фиксированных 
-\begin_inset Formula $I_{0}$
-\end_inset
-
- и 
-\begin_inset Formula $f$
-\end_inset
-
-:
-\end_layout
-
-\begin_layout Definition
-
-\emph on
-Отмеченным многочленом
-\emph default
- называется пара 
-\begin_inset Formula $h=(\sigma,p)\in\mathbb{T}_{0}\times\mathcal{P}$
-\end_inset
-
-, удовлетворяющая условию корректности: 
-\begin_inset Formula $\exists u\in\mathcal{P}\,\HM(u)=\sigma,uf\equiv p\pmod{I_{0}}.$
-\end_inset
-
- На отмеченные многочлены распространяются определения старшего монома 
-\begin_inset Formula $\HM(h)\eqdef\HM(p)$
-\end_inset
-
- и коэффициента 
-\begin_inset Formula $\HC(h)\eqdef\HC(p)$
-\end_inset
-
-.
- Также определяются 
-\emph on
-сигнатура
-\emph default
- 
-\begin_inset Formula $\Sig(h)\eqdef\sigma$
-\end_inset
-
- и вводится обозначение многочлена -- второго элемента пары: 
-\begin_inset Formula $\poly(h)\eqdef p$
-\end_inset
-
-.
- Множество отмеченных многочленов обозначается за 
-\begin_inset Formula $H\subset\mathbb{T}_{0}\times\mathcal{P}$
-\end_inset
-
-.
- Тривиальными примерами отмеченных многочленов являются 
-\begin_inset Formula $\left(1,f\right)$
-\end_inset
-
- и 
-\begin_inset Formula $\left(0,g\right)$
-\end_inset
-
- для 
-\begin_inset Formula $g\in I_{0}$
-\end_inset
-
-.
- Другим примером отмеченного многочлена является 
-\begin_inset Formula $\left(\HM(g),0\right)$
-\end_inset
-
- для 
-\begin_inset Formula $g\in I_{0}$
-\end_inset
-
-.
- Он корректен, поскольку в качестве 
-\begin_inset Formula $u$
-\end_inset
-
- можно взять 
-\begin_inset Formula $g$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Lemma
-Умножение для 
-\begin_inset Formula $h\in H,t\in\mathbb{T}$
-\end_inset
-
-, заданное как 
-\begin_inset Formula $th\eqdef(t\sigma,tp)\in H,$
-\end_inset
-
- корректно.
-\end_layout
-
-\begin_layout Proof
-Корректность определения проверяется явным нахождением 
-\begin_inset Formula $u$
-\end_inset
-
- для 
-\begin_inset Formula $th$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Definition
-Если для некоторых
-\emph on
- 
-\begin_inset Formula $h'_{1},h_{2}\in H,t\in\mathbb{T}$
-\end_inset
-
-
-\emph default
- выполняется 
-\begin_inset Formula $\Sig(h'_{1})\succ_{0}\Sig(th_{2}),\HM(h'{}_{1})=\HM(th{}_{2})\neq0,$
-\end_inset
-
- то возможна 
-\emph on
-редукция 
-\begin_inset Formula $h'_{1}$
-\end_inset
-
- по 
-\begin_inset Formula $h_{2}$
-\end_inset
-
- с сохранением сигнатуры
-\emph default
-, дающая в результате многочлен 
-\begin_inset Formula $h_{1}\in H$
-\end_inset
-
-, равный: 
-\begin_inset Formula 
-\[
-h_{1}=\left(\Sig(h'_{1}),\poly(h'_{1})+Kt\poly(h_{2})\right),
-\]
-
-\end_inset
-
-где коэффициент 
-\begin_inset Formula $K\in\mathcal{K}$
-\end_inset
-
- взят так, чтобы при сложении сократились старшие мономы и выполнилось 
-\begin_inset Formula $\HM(h{}_{1})\prec_{0}\HM(h'{}_{1})$
-\end_inset
-
-.
- По сути такая редукция представляет из себя обычную редукцию многочлена
- с сокращением старшего монома, дополненную требованием того, что сигнатура
- редуктора меньше сигнатуры редуцируемого.
- Корректность проверяется как и выше.
 \end_layout
 
 \begin_layout Standard
