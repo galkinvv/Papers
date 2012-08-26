@@ -1,0 +1,265 @@
+<html>
+	<head>
+	<title>Псевдокод реализации параллельной блочной версии метода Гаусса для разреженных матриц</title>
+</head>
+<body>
+		<h3>Псевдокод реализации параллельной блочной версии метода Гаусса для разреженных матриц</h3>
+
+		Описание используемых внешних функций:
+		<ul>
+			<li>SendMatrixToProcessor(matrix, processor) - отправляет матрицу matrix на процессор processor средствами библиотеки MPI</li>
+			<li>RecieveMatrixFromProcessor(processor) - возвращает матрицу, полученную с процессора processor средствами библиотеки MPI</li>
+			<li>BroadCastMatrix(matrix, processor, setOfProcessors) - отправляет (и получает) матрицу matrix c процессора processor средствами библиотеки MPI на все остальные процессоры из множества setOfProcessors</li>
+			<li>FullAutoReduce(matrix) - проводит непараллельную версию прямого и обратного хода метода Гаусса для matrix. В результате её строки становятся авторедуцированы.</li>
+		</ul>
+		<br>
+		Функция MPIDiagonalForm принимает 2 аргумента - первый матрица, которую нужно редуцировать и на место которой записывается полученный ответ, а второй указывает на необходимость проведения авторедукции (обратного хода метода Гаусса).
+		<pre>
+function MPIDiagonalForm(matrix, doAutoReduce)
+	thisProcessor&larr;номер данного процессора в MPI
+	numberOfProcesses&larr;число процессоров в MPI
+	numOfUsefulProcesses&larr;getNumOfUsefulProcesses(matrix, numberOfProcesses)
+	//Вычисления следует проводить только на таком количестве поцессоров, где это даёт реальное ускорение
+	if thisProcessor&lt;=numOfUsefulProcesses
+		if <span class="parameter">вычисление матрицы проводилось только на первом процессоре</span> then
+			if thisProcessor=1 then
+				for each i in (2..numOfUsefulProcesses) do
+					othermat&larr;
+						строки из matrix, с номерами равными i
+						по модулю numOfUsefulProcesses
+					SendMatrixToProcessor(othermat, i)
+				end for
+				mymat&larr;
+					строки из matrix, с номерами равными 1
+					по модулю numOfUsefulProcesses
+			else
+				mymat=RecieveMatrixFromProcessor(1)
+			end if
+		else
+			mymat&larr;
+				строки из matrix, с номерами равными thisProcessor
+				по модулю numOfUsefulProcesses
+		end if
+
+		matrix&larr;&empty;
+
+		//Список матриц
+		resultmatrices&larr;&empty;
+		while сумма числа строк mymat по всем процессорам &gt; 0 do
+			resultProcessor&larr;getNextProcessor(<span class="parameter">порядок циркуляции процессоров</span>, numOfUsefulProcesses)
+			if <span class="parameter">выбор процессора</span> or resultProcessor=thisProcessor then
+				sort(mymat, <span class="parameter">способ выбора строк</span>)
+			end if
+			if <span class="parameter">выбор процессора</span> then
+				getFromProcessor&larr;Процессор, у которого первая строка
+					наиболее оптимальна по критерию <span class="parameter">способ выбора строк</span>	
+			else
+				getFromProcessor&larr;thisProcessor
+			end if
+			if getFromProcessor=thisProcessor then
+				//Перенесём из mymat в extramat несколько первых строк
+				extramat&larr;mymat[:<span class="parameter">размер блока внешнего цикла</span>]
+				mymat&larr;mymat\extramat
+				
+				//Проведём для небольшой матрицы extramat прямой и обратный ход обычного метода Гаусса
+				FullAutoReduce(extramat)
+			end if
+			
+			//разошлём extramat на все процессоры
+			BroadCastMatrix(extramat, getFromProcessor, [1..numOfUsefulProcesses])
+
+			//Эта процедура редуцирует каждую из строк mymat по каждой из строк extramat
+			ReduceMatrixByMatrix(mymat, extramat)
+
+			if thisProcessor=resultProcessor then
+				resultmatrices&larr;resultmatrices, extramat
+			end if
+
+			if getFromProcessor&ne;resultProcessor then
+				//нужно нормализовать число строк на разных процессорах:
+				//перместить часть строк с resultProcessor на getFromProcessor
+				if thisProcessor=getFromProcessor then
+					othermat&larr;RecieveMatrixFromProcessor(resultProcessor)
+					mymat&larr;mymat&cup;othermat
+				else if thisProcessor=resultProcessor then
+					//Перенесём из mymat в othermat несколько первых строк
+					othermat&larr;mymat[:<span class="parameter">размер блока внешнего цикла</span>]
+					mymat&larr;mymat\othermat
+					SendMatrixToProcessor(othermat, getFromProcessor)
+				end if
+			end if
+		end while
+		if doAutoReduce then
+			//Обратный ход
+			while сумма числа строк mymat по всем процессорам &gt; 0 do
+				getFromProcessor&larr;resultProcessor
+				if thisProcessor=getFromProcessor then
+					extramat&larr;последняя матрица в resultmatrices
+					выкинуть из resultmatrices последнюю матрицу
+				end if
+
+				//разошлём extramat на все процессоры
+				BroadCastMatrix(extramat, getFromProcessor, [1..numOfUsefulProcesses])
+				
+				for each mat in resultmatrices do
+					ReduceMatrixByMatrix(mat, extramat)
+				end for
+				if thisProcessor=resultProcessor then
+					mymat&larr;mymat&cap;extramat
+				end if
+				resultProcessor&larr;
+					getPreviousProcessor(<span class="parameter">порядок циркуляции процессоров</span>, numOfUsefulProcesses)
+			end while
+		else
+			for each mat in resultmatrices do
+				mymat&larr;mymat&cap;mat
+			end for
+		end if
+	//Рассылать результат сожет быть необходимо уже на все процессоры,
+	//в зависимости от параметра <span class="parameter">вычисление матрицы проводилось только на первом процессоре</span>
+	end if
+
+	if <span class="parameter">вычисление матрицы проводилось только на первом процессоре</span> then
+		if thisProcessor&gt;numOfUsefulProcesses return;
+		if thisProcessor=1 then
+			for each i in (2..numOfUsefulProcesses) do
+				othermat=RecieveMatrixFromProcessor(i)
+				matrix&larr;matrix&cap;othermat
+			end for
+			matrix&larr;matrix&cap;mymat
+		else
+			SendMatrixToProcessor(mymat, 1)
+		end if
+	else
+		for each i in (1..numberOfProcesses) do
+			if thisProcessor=i then
+				othermat=mymat
+			end if
+			BroadCastMatrix(othermat, i, [1..numberOfProcesses])
+			matrix&larr;matrix&cap;othermat
+		end for
+	end if
+end function
+		</pre>
+		<p>Функции getNextProcessor(circulationMethod, setOfProcessors) и getPreviousProcessor(circulationMethod, setOfProcessors) порождают последовательность номеров процессоров из setOfProcessors на основе метода выбора следующего процессора circulationMethod (параметр <span class="parameter">порядок циркуляции процессоров</span>), и общего внутреннего состояния этих двух функций. При прямом ходе метода Гаусса перебор элементов последовательности происходит в одном направлении (с помощью getNextProcessor) начиная с первого процессора, а при обратном ходе &mdash; в противоположном (с помощью getPreviousProcessor) начиная с того процессора, на котром закончился прямой ход, и, как следствие лежит последнее множество редуцированных относительно всех предыдущих строк.</p>
+		<p>Функция getNumOfUsefulProcesses(matrix, numberOfProcesses) определяет какое число процессоров имеет использовать для минимизации времени редукции matrix. Для очень больших матриц максимальная производительность достигается на всех процессорах, однако для маленьких потери времени за счёт пересылок превосходят выигрыш за счёт распараллеливания. В текущей реализации для матриц, содержащих более 2000 строк используются все numberOfProcesses процессоров, для матриц содержащих от 200 до 2000 строк &mdash; 2 процессора, а для меньших матриц - один процессор.</p>
+		<p>Функция ReduceMatrixByMatrix(matrixToReduce, matrixBy) редуцирует каждую из строк матрицы matrixToReduce по каждой из строк matrixBy. В общем времени приведения матрицы к ступенчатому виду эта функция занимает бóльшую часть. Она работает параллельно на разных процессорах с различными аргументами, поэтому её распараллеливание не требуется &mdash; реализация является последовательной и не использует библиотеку MPI.
+		<ul>
+			<li>
+			<b>Предусловие для функции</b>: matrixBy должна быть авторедуцирована. Это условие требуется для того, чтоб коэффициенты редукции легко определялись из элементов в столбцах matrixToReduce, соответствующих ведущим элементам строк matrixBy, независимо от элементов других столюцов.</li>
+			<li>
+			<b>Постусловие для функции</b>: каждая из строк matrixToReduce редуцировна по всем строкам MatrixBy, нулевые строки полученные в результате редукции выкинуты.
+			</li>
+		</ul>
+		В программу включены 2 различных реализации этой функции: обычный и блочный варианты. Выбор между ними осуществяется с помощью параметра <span class="parameter">размер блока</span>, задающегося опцией --block командной строки. Если она не указана, или её значение равно 1, то используется обычный вариант, при больших значениях используется блочный вариант с заданным размером блока. Оптимальный выбор той или иной реализации для достижения наибольшей эффективности значительно зависит от конкретного процессора и используемого компилятора.
+		</p>
+		<p>Псевдокод обычного варианта (классический Гаусс для разреженных матриц):
+		<pre>
+function ReduceMatrixByMatrix(matrixToReduce, matrixBy)
+	for each lineToReduce in matrixToReduce do
+		for each reducingLine in matrixBy do
+			coeff&larr;элемент lineToReduce в столбце, содержащим ведущий элемент reducingLine
+
+			//в силу разреженности матрицы этот коэффициент очень часто оказывается равным 0
+			if coeff&ne;0 then
+				//При вычитании вычисляются элементы только тех столбцов
+				//которые ненулевые в lineToReduce или reducingLine
+				lineToReduce&larr;lineToReduce-reducingLine*coeff
+			end if
+		end for		
+	end for
+	matrixToReduce=ненулевые строки из matrixToReduce
+end function
+		</pre>
+		Для оценки времени работы будем считать, что заполненность матрицы в процессе работы алгоритам меняется, но никогда не превосходит постоянной c (отношение числа ненулевых элементов к числу всех элементов).
+		Положим размеры матриц matrixToReduce и matrixBy равными m<sub>1</sub> &times; n и m<sub>2</sub> &times; n соответственно.
+		Тогда время работы такого алгоритма можно оценить примерно как O(m<sub>1</sub>m<sub>2</sub>nс) при n&gt;&gt;m<sub>i</sub>.
+		</p>
+		<p>
+		При реализации блочного варианта метода Гаусса для сильно разреженной матрицы возникает проблема связанная с тем, что блочные операции, используемые блочной редукцией предусматривают работу с элементами столбца во многих строках одновременно.
+		В силу разреженности матрицы бóльшая часть из них оказывается нулями, которые не оказывают никакого влияния на результат.
+		Поэтому если делать для каждого столбца полный перебор строк с проверкой на неравенство 0, то число операций будет значительно превышать число операций для неблочного варианта: будет порядка m<sub>1</sub>m<sub>2</sub>n в независимости от заполненности (при n&gt;&gt;m<sub>i</sub>). Для достижения лучшего результата используется специальный алгоритм перехода от одного ненулевого элемента к другому, так что его время работы вообще не завсиит от числа нулей, обеспечивая оценку времени работы порядка
+		<div >O(nc((m<sub>1</sub> + m<sub>2</sub>) &middot; log(m<sub>1</sub> + m<sub>2</sub>) + m<sub>1</sub>(1 + cm<sub>2</sub>))) при n&gt;&gt;m<sub>i</sub>.</div>
+		Здесь c &mdash; максимальная изначальная заполненность матриц matrixToReduce и matrixBy. Оценка приблизительна, поскольку предоставить точную оценку без знания структуры разреженности (которая бывает разная) невозможно.
+		Псевдокод блочного варианта для разреженных матриц (функции <code>CMatrix&lt;Field&gt;::fastreducesubbysub</code> в исходном коде):
+		<pre>
+function ReduceMatrixByMatrix(matrixToReduce, matrixBy)
+	firstLine&larr;1
+	matrixBySize&larr;число строк в matrixBy
+	reducedMatrix&larr;&empty;
+	while firstLine&lt;число строк в matrixToReduce do
+		//внутри этого цикла происходит блочная операция - все используемые одновременно данные находтся
+		//в двух наборах строк размеров <span class="parameter">размер блока</span> и matrixBySize.
+		//Для каждой строки доступ к элементам происходит строго последовательно &mdash;
+		//Всё это позволяет оптимально использовать кэш процессора
+		
+		//блок из строк исходной матрицы
+		setOfLineNumbersToReduce&larr;[firstLine..firstLine+<span class="parameter">размер блока</span>]
+
+		results&larr;
+			матрица, состоящая из <span class="parameter">размер блока</span> пустых строк,
+			в которые будет записываться результат
+		heap&larr;
+			куча, содержащая пары (номер столбца в стоке; ссылка на строку),
+			с сортировкой только по номеру столбца
+			инициализируется набором пар (номер столбца с ведущим элементом; ссылка на строку)
+			взятыми для всех строк из обеих матриц
+		
+		//матрица опредеяющая, с какими коэффициентами входят в ответ строки
+		//матрицы matrixBy к редуцируемым
+		coeffsMatrix&larr;
+			массив, из matrixBySize пустых множеств
+			(будут содержать пары (коэффициент; ссылка на строку овета))
+		for each reducingLine in 1..matrixBySize do
+			leadColumn&larr;столбец содержащий ведущий элемент строки matrixBy[reducingLine]
+			invertedLeadingCoeff&larr;-1/ведущий элемент строки matrixBy[reducingLine]
+			for each lineToReduce in setOfLineNumbersToReduce do
+				coeff&larr;элемент строки matrixToReduce[lineToReduce] из в столбце leadColumn 
+				//в каждом множестве coeffsMatrix[reducingLine] окажется порядка сm<sub>1</sub> элементов
+				if coeff&ne;0 then
+					coeffsMatrix[reducingLine]&larr;
+						coeffsMatrix[reducingLine]&cup;(coeff*invertedLeadingCoeff; lineToReduce-firstLine)
+				end if
+			end for
+		end for
+
+		//основной цикл - бóльшую часть времени программа проводит тут
+		//число итераций порядка n&middot;c(m<sub>1</sub> + m<sub>2</sub>)
+		//(по подной итерации на каждый элемент исходных матриц)
+		while heap&ne;&empty; do
+			//Пара, содержащая текущий обрабатываемый столбец и строку в которой в этом столбец есть ненулевой элемент
+			//log(m<sub>1</sub> + m<sub>2</sub>) операций
+			(cureentColNum, line)&larr;вынуть наименьший элемент из кучи heap
+			
+			//Если строка кончилась и условие ниже не выполняется, то число элементов кучи сократится -
+			//за счёт этого и произойдёт остановка основного цикла
+			if cureentColNum не последний элемент строки line then
+				//log(m<sub>1</sub> + m<sub>2</sub>) операций
+				добавить в кучу heap пару (столбец со следующим ненулём в line; line)
+			end if
+			
+			//Это условие выполнится в примерно cnm<sub>2</sub> итерациях основного цикла
+			if line &isin; matrixBy
+				sourceIdx&larr;номер строки line в matrixBy
+				//вложенный цикл с порядка cm<sub>1</sub> итераций
+				for each (coeff; resultIdx) in coeffsMatrix[sourceIdx]
+					results[resultIdx][cureentColNum]&larr;
+						results[resultIdx][cureentColNum] + coeff * line[cureentColNum]
+				end for
+			//И не выполнится в остальных примерно cnm<sub>1</sub> итерациях
+			else
+				resultIdx&larr;номер строки результата, соответствующий line
+				results[resultIdx][cureentColNum]&larr;
+					results[resultIdx][cureentColNum] + line[cureentColNum]
+			endif
+		end while
+		reducedMatrix&larr;reducedMatrix&cup;ненулевые строки из results
+		firstLine&larr;firstLine+<span class="parameter">размер блока</span>
+	end while
+	matrixToReduce&larr;reducedMatrix
+end function
+		</pre>
+		Сложив времена работы во основном цикле, и умножив на число его итераций получим заявленную выше оценку на время работы алгоритма.
+		</p>
+	
+

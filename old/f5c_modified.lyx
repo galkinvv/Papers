@@ -1,0 +1,2633 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass report
+\begin_preamble
+\usepackage{verbatim}
+\theoremstyle{plain}
+\newtheorem{theo}{Теорема}
+\renewenvironment{thm}{\begin{theo}}{\end{theo}}
+\begin{comment}
+\theoremstyle{definition}
+\newtheorem{defi}{Определение}
+\renewenvironment{defn}{\begin{defi}}{\end{defi}}
+\newtheorem{coro}{Corollaire}
+\renewenvironment{cor}{\begin{coro}}{\end{coro}}
+\newtheorem{lemm}{Lemme}
+\renewenvironment{lem}{\begin{lemm}}{\end{lemm}}
+\newtheorem{propo}{Proposition}
+\renewenvironment{prop}{\begin{propo}}{\end{propo}}
+\newtheorem{conje}{Conjecture}
+\renewenvironment{conjecture}{\begin{conje}}{\end{conje}}
+\newtheorem{crit}{Critère}
+\renewenvironment{criterion}{\begin{crit}}{\end{crit}}
+\newtheorem{algo}{Algorithme}
+\renewenvironment{algorithm}{\begin{algo}}{\end{algo}}
+\newtheorem{facte}{Fait}
+\renewenvironment{fact}{\begin{facte}}{\end{facte}}
+\newtheorem{axi}{Axiome}
+\renewenvironment{ax}{\begin{axi}}{\end{axi}}
+\newtheorem{exa}{Exemple}
+\renewenvironment{example}{\begin{exa}}{\end{exa}}
+\newtheorem{prob}{Problème}
+\renewenvironment{problem}{\begin{prob}}{\end{prob}}
+\newtheorem{condi}{Condition}
+\renewenvironment{condition}{\begin{condi}}{\end{condi}}
+\newtheorem{exer}{Exercice}
+\renewenvironment{xca}{\begin{exer}}{\end{exer}}
+\newtheorem{rema}{Remarque}
+\renewenvironment{rem}{\begin{rema}}{\end{rema}}
+\newtheorem{claime}{Assertion}
+\renewenvironment{claim}{\begin{claime}}{\end{claime}}
+\newtheorem{nota}{Renseignement}
+\renewenvironment{note}{\begin{nota}}{\end{nota}}
+\newtheorem{notat}{Notation}
+\renewenvironment{notation}{\begin{notat}}{\end{notat}}
+\newtheorem{suma}{Résumé}
+\renewenvironment{summary}{\begin{suma}}{\end{suma}}
+\newtheorem{ackno}{Action de grâce}
+\renewenvironment{acknowledgement}{\begin{ackno}}{\end{ackno}}
+\newtheorem{casa}{Cas}
+\renewenvironment{casa}{\begin{casa}}{\end{casa}}
+\newtheorem{conc}{Conclusion}
+\renewenvironment{conclusion}{\begin{conc}}{\end{conc}}
+
+\end{comment}
+
+\DeclareMathOperator{\LCM}{HOK}
+\DeclareMathOperator{\HM}{HM}
+\DeclareMathOperator{\HT}{HT}
+\DeclareMathOperator{\HC}{HC}
+\DeclareMathOperator{\GB}{MRGB}
+\DeclareMathOperator{\LL}{L}
+\DeclareMathOperator{\lL}{l}
+\DeclareMathOperator{\SP}{SPair}
+\newcommand{\Red}[3]{#1 \xrightarrow[#2]{} #3}
+
+\sloppy
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+theorems-ams-extended
+\end_modules
+\maintain_unincluded_children false
+\language russian
+\language_package default
+\inputencoding utf8x
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format pdf2
+\output_sync 1
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen true
+\pdf_bookmarksopenlevel 12
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize a4paper
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Предметный указатель
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 1.5cm
+\rightmargin 2cm
+\bottommargin 3.5cm
+\secnumdepth -1
+\tocdepth 5
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language french
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\bullet 0 0 0 -1
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Инвариант алгоритма F5
+\end_layout
+
+\begin_layout Standard
+В данной статье рассматривается F5-подобный итеративный алгоритм нахождения
+ базиса Грёбнера.
+ Он формулируется в следующих условиях:
+\end_layout
+
+\begin_layout Itemize
+Задано поле 
+\begin_inset Formula $\mathbb{F}$
+\end_inset
+
+, множество переменных 
+\begin_inset Formula $x_{1}\dots x_{a}$
+\end_inset
+
+, рассматриваются кольцо многочленов 
+\begin_inset Formula $\mathbb{H}=\mathbb{F}[x_{1}\dots x_{a}]$
+\end_inset
+
+ над этим полем.
+\end_layout
+
+\begin_layout Itemize
+Для конечного множества многочленов 
+\begin_inset Formula $H\subset\mathbb{H}$
+\end_inset
+
+ задача состоит в нахождении редуцированного базиса Грёбнера 
+\begin_inset Formula $\GB(H)$
+\end_inset
+
+ относительно заданного упорядочивания 
+\begin_inset Formula $\prec$
+\end_inset
+
+ на мономах.
+ Старший моном многочлена обозначается 
+\begin_inset Formula $\HM$
+\end_inset
+
+, 
+\begin_inset Formula $\HM(0)$
+\end_inset
+
+ определим равным 0.
+ Порядок 
+\begin_inset Formula $\prec$
+\end_inset
+
+ удовлетворяет свойству обрыва убывающих цепочек.
+\end_layout
+
+\begin_layout Itemize
+Также зафиксирован некоторый дополнительный мономиальный порядок 
+\begin_inset Formula $\prec_{L}$
+\end_inset
+
+, для которого выполняется условие обрыва убывающих цепочек.
+ Старший моном с точки зрения такого порядка обозначим 
+\begin_inset Formula $\HM_{L}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Сам алгоритм работает итеративно: поиск базиса Грёбнера идеала 
+\begin_inset Formula $\left\langle H\right\rangle =\left\langle \{h_{1}\dots h_{K}\}\right\rangle $
+\end_inset
+
+ происходит последовательным переходом от редуцированного 
+\begin_inset Formula $\GB(\{h_{1}\dots h_{k}\})$
+\end_inset
+
+ к 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\GB(\{h_{1}\dots h_{k+1}\})$
+\end_inset
+
+.
+ То есть на каждой итерации на вход алгоритма поступает 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+редуцированный 
+\begin_inset Formula $\GB(\{h_{1}\dots h_{k}\})$
+\end_inset
+
+, представленный набором многочленов 
+\begin_inset Formula $G=\{g_{1}\dots g_{n}\}$
+\end_inset
+
+ и многочлен 
+\begin_inset Formula $f=h_{k+1}$
+\end_inset
+
+.
+ При этом на начальной нулевой итерации 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $G=\emptyset$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Определения
+\end_layout
+
+\begin_layout Standard
+Вводимая ниже терминология имеет некоторые семантические отличия от понятий
+ сигнатуры и её индекса, принятых в работах в области алгоритма F5, поэтому
+ вместо индекса здесь намеренно используется другой термин.
+ Определения вводятся в предположении, что некоторый алгоритм строит множество
+ многочленов путём добавления вычисляемых элементов в конец упорядоченного
+ списка, равного на начальном этапе 
+\begin_inset Formula $(g_{n};\dots;g_{1};f)$
+\end_inset
+
+, причём каждый из добавляемых элементов 
+\begin_inset Formula $f_{j}$
+\end_inset
+
+ лежит в идеале 
+\begin_inset Formula $\left\langle G\cup\left\{ f\right\} \right\rangle $
+\end_inset
+
+.
+ Поскольку каждый многочлен 
+\begin_inset Formula $q$
+\end_inset
+
+ идеала представляется в виде 
+\begin_inset Formula 
+\begin{equation}
+p=q_{0}\cdot f+\sum_{i=1}^{n}q_{i}\cdot g_{i}\label{eq:ideal}
+\end{equation}
+
+\end_inset
+
+ хотя бы одним способом, для него можно ввести следующее
+\end_layout
+
+\begin_layout Definition
+
+\emph on
+Мономом сигнатуры
+\emph default
+ для многочлена p называется любой моном 
+\begin_inset Formula $L$
+\end_inset
+
+, которому соответствует представление вида 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ideal"
+
+\end_inset
+
+, такое что 
+\begin_inset Formula $\HM_{L}(q_{0})=L$
+\end_inset
+
+.
+ Множество всех мономов сигнатуры для p обозначается 
+\begin_inset Formula $\LL(p)$
+\end_inset
+
+.
+ Это соответствует моному сигнатуры в обычной для F5 терминологии, рассматриваем
+ому только для случая индекса 1.
+ Для элементов 
+\begin_inset Formula $\left\langle G\right\rangle $
+\end_inset
+
+ в множестве мономов сигнатуры лежит 0, т.к.
+ для них есть представление с 
+\begin_inset Formula $q_{0}=0$
+\end_inset
+
+.
+ При домножении многочлена на моном выполняется свойство 
+\begin_inset Formula $\LL(mp)\supset m\LL(p)$
+\end_inset
+
+, поэтому знание хотя бы одного монома сигнатуры для 
+\begin_inset Formula $p$
+\end_inset
+
+ даёт знание некоторого монома сигнатуры для 
+\begin_inset Formula $mp$
+\end_inset
+
+, но не наоборот.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+Каждому многочлену, находящемуся в упорядоченном списке присвоим понятие
+ 
+\emph on
+уровня
+\emph default
+: первому многочлену списка присвоим уровень 
+\begin_inset Formula $n$
+\end_inset
+
+, а каждому следующему на 1 меньше и введём для него обозначение 
+\begin_inset Formula $\lL(q).$
+\end_inset
+
+ В принятой терминологии уровень соответствует понятию индекса сигнатуры,
+ расширенному отрицательными значениями на вновь добавляемые в список элементы.
+\end_layout
+
+\begin_layout Standard
+В соответствии с этими определениями будем сопоставлять каждому многочлену
+ из списка пару, содержащую некоторый из его мономов сигнатуры и уровень.
+ Для многочленов 
+\begin_inset Formula $g_{i}$
+\end_inset
+
+ это будет 
+\begin_inset Formula $(0;i)$
+\end_inset
+
+, для 
+\begin_inset Formula $f$
+\end_inset
+
+ получится 
+\begin_inset Formula $\left(1;0\right)$
+\end_inset
+
+, а для последовательно добавляемых в базис многочленов 
+\begin_inset Formula $f_{j}$
+\end_inset
+
+ -- пары из найденного алгоритмом монома сигнатуры 
+\begin_inset Formula $L\succ_{L}$
+\end_inset
+
+1 и уровня 
+\begin_inset Formula $-j$
+\end_inset
+
+.
+ На основе этого сопоставления моном сигнатуры и уровень могут быть поставлены
+ в соответствие любому многочлену, записанному как 
+\begin_inset Formula $mp$
+\end_inset
+
+, где 
+\begin_inset Formula $m$
+\end_inset
+
+ -- моном, а 
+\begin_inset Formula $p$
+\end_inset
+
+ -- многочлен из упорядоченного списка.
+ Именно такие мономы сигнатуры и будут рассматриваться в дальнейшем, если
+ не будет явно сказано, что рассматривается любой из мономов сигнатуры многочлен
+а.
+\end_layout
+
+\begin_layout Definition
+
+\emph on
+S-парой 
+\emph default
+2-х многочленов из списка 
+\begin_inset Formula $\SP(p_{1},p_{2})$
+\end_inset
+
+ будем называть выражение вида 
+\begin_inset Formula $(m_{1}p_{1};m_{2}p_{2}),$
+\end_inset
+
+ где 
+\begin_inset Formula $m_{i}$
+\end_inset
+
+ - мономы, НОД
+\begin_inset Formula $(m_{1},m_{2})=1$
+\end_inset
+
+ и 
+\begin_inset Formula $\HM(m_{1}p_{1})=\HM(m_{2}p_{2})$
+\end_inset
+
+.
+ Мономом сигнатуры S-пары будем называть наибольший с точки зрения 
+\begin_inset Formula $\prec_{L}$
+\end_inset
+
+ из мономов сигнатуры 
+\begin_inset Formula $m_{i}p_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Представим структурную схема алгоритма в виде одной процедуры.
+\end_layout
+
+\begin_layout Enumerate
+Алгоритм выполняется итеративно, на каждой итерации на вход поступает редуцирова
+нный базис предыдущего шага 
+\begin_inset Formula $G$
+\end_inset
+
+ и новый многочлен 
+\begin_inset Formula $f$
+\end_inset
+
+, добавляемый к базису.
+ Сама итерация вычисляет базис следующим образом:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Список-многочленов 
+\begin_inset Formula $G':=(g_{n};\dots;g_{1};f)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Очередь-S-пар := 
+\begin_inset Formula $\left\{ \left(f,g_{i}\right)\right\} ,\, i=1\dots n$
+\end_inset
+
+ -- все S-пары, образованные новым многочленом и многочленами старого базиса
+\end_layout
+
+\begin_layout Enumerate
+Пока Очередь-S-пар не пуста, будем брать из неё S-пару, наименьшую по порядку
+ 
+\begin_inset Formula $\prec_{L}$
+\end_inset
+
+ на мономах сигнатуры - S-пару 
+\begin_inset Formula $(m_{1}p_{1};m_{2}p_{2})$
+\end_inset
+
+.
+ Пусть её моном сигнатуры равен 
+\begin_inset Formula $L_{m}$
+\end_inset
+
+ .Для этой S-пары:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:Criteria"
+
+\end_inset
+
+Проверим, разрешено ли домножение многочлена 
+\begin_inset Formula $p_{1}$
+\end_inset
+
+ (из новых элементов базиса) на 
+\begin_inset Formula $m_{1}$
+\end_inset
+
+ критериями минимальности монома сигнатуры и Перезаписи.
+ Если проверка не пройдена -- отбросим S-пару и перейдём к следующей итерации
+ цикла.
+ В качестве критериев минимальности монома сигнатуры рассматриваются критерий
+ Фужера и критерий делимости на моном сигнатуры редуцировавшегося к нулю
+ многочлена из алгоритма G2V.
+\end_layout
+
+\begin_layout Enumerate
+Если 
+\begin_inset Formula $p_{2}$
+\end_inset
+
+ - многочлен из новых элементов базиса - применим к нему такую же проверку.
+ Иначе проверим что разрешено его домножение на 
+\begin_inset Formula $p_{2}$
+\end_inset
+
+ критерием Бухбергера, сформулированном для элементов прошлого базиса.
+ Следует отметить, что критерий Фожера не может быть применён для части
+ S-полинома, соответствующей элементу старого базиса 
+\begin_inset Formula $p_{2}$
+\end_inset
+
+, поскольку из редуцированности 
+\begin_inset Formula $p_{1}$
+\end_inset
+
+ относительно базиса предыдущего шага следует то что 
+\begin_inset Formula $\HM(p_{1})$
+\end_inset
+
+ не делится ни на один из элементов прошлого базиса, а значит это справедливо
+ и для 
+\begin_inset Formula $m_{2}$
+\end_inset
+
+, поскольку 
+\begin_inset Formula $m_{2}|\HM(p_{1})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:Criteria2"
+
+\end_inset
+
+Рассмотрим многочлен, соответствующий неотброшенной S-паре.
+ Будем проводить его редукции относительно элементов прошлого и нового базисов,
+ в тех случаях когда сигнатура редуктора меньше сигнатуры редуцируемого
+ и, в случае редуктора из нового базиса, дополнительно проверяя критерии
+ из пункта 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:Criteria"
+
+\end_inset
+
+.
+ Аналога редукции, возвращающей 2 элемента, которая присутствует в алгоритме
+ F5 при редукции с увеличением сигнатуры нет, поскольку все такие случаи
+ автоматически учитываются позже, при формировании S-пар.
+\end_layout
+
+\begin_layout Enumerate
+После окончания редукций может получиться ненулевой или нулевой многочлен,
+ моном сигнатуры которого равен 
+\begin_inset Formula $L_{m}$
+\end_inset
+
+.
+ В обоих случаях добавим его к списку 
+\begin_inset Formula $G'$
+\end_inset
+
+, а для ненулевого помимо этого в очередь S-пар добавляются S-пары, образованные
+ вновь полученным и всеми предыдущими многочленами нового и старого базисов.
+ Для нулевого многочлена это производится для сохранения в базисе его сигнатуры.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Как только очередь-S-пар стала пуста можно утверждать, что множество, образованн
+ое списком многочленов является базисом Грёбнера 
+\begin_inset Formula $\left\langle G\cup\left\{ f\right\} \right\rangle $
+\end_inset
+
+.
+ Для нахождения минимального редуцированного базиса произведём его полную
+ авторедукцию.
+\end_layout
+
+\end_deeper
+\begin_layout Definition
+
+\emph on
+Представлением 
+\emph default
+многочлена 
+\begin_inset Formula $f\in\left\langle F\right\rangle $
+\end_inset
+
+ относительно множества 
+\begin_inset Formula $F=\left\{ f_{i}\right\} $
+\end_inset
+
+ называется выражение 
+\begin_inset Formula $f$
+\end_inset
+
+ через его элементы с конкретными полиномиальными коэффициентами:
+\emph on
+ 
+\emph default
+
+\begin_inset Formula $f=\sum_{i}m_{i}\cdot f_{i},\, f_{i}\in F$
+\end_inset
+
+.
+ Представление называется 
+\emph on
+S-представлением
+\emph default
+, если 
+\begin_inset Formula $\forall i\,\HM(m_{i}f_{i})\preceq\HM(f)$
+\end_inset
+
+, т.е.
+ 
+\begin_inset Formula $f$
+\end_inset
+
+ редуцируется к нулю путём вычитания домноженных базисных элементов, при
+ этом старший моном вычитаемого не больше старшего монома уменьшаемого.
+ Базисом Грёбнера согласно этому определению является множество 
+\begin_inset Formula $F$
+\end_inset
+
+, такое что для любого элемента из 
+\begin_inset Formula $\left\langle F\right\rangle $
+\end_inset
+
+ существует S-представление.
+\end_layout
+
+\begin_layout Subsection
+Инвариант
+\end_layout
+
+\begin_layout Standard
+Теперь сформулируем инвариант, выполняющийся после каждой внутренней итерации
+ цикла алгоритма:
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:invariant"
+
+\end_inset
+
+Пусть минимальная S-пара, находящаяся в очереди S-пар имеет моном сигнатуры
+ 
+\begin_inset Formula $L_{S}.$
+\end_inset
+
+ Тогда для всех многочленов 
+\begin_inset Formula $h$
+\end_inset
+
+, лежащих в 
+\begin_inset Formula $\left\langle G\cup\left\{ f\right\} \right\rangle $
+\end_inset
+
+, обладающих меньшими мономами сигнатуры -- т.е.
+ для которых 
+\begin_inset Formula $\exists L\in\LL(h),\, L\prec_{L}L_{S}$
+\end_inset
+
+, существует S-представление относительно текущего списка 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $G'$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+.
+ Если очередь пуста, то существует представление для любого многочлена из
+ 
+\begin_inset Formula $\left\langle G\cup\left\{ f\right\} \right\rangle $
+\end_inset
+
+.
+ В таком случае примем условно 
+\begin_inset Formula $L_{S}=\infty_{L}$
+\end_inset
+
+, где 
+\begin_inset Formula $\infty_{L}\succ_{L}L$
+\end_inset
+
+ для любого монома 
+\begin_inset Formula $L$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Изначально про многочлен известно, что он представляется в виде 
+\begin_inset Formula $h=h_{0}\cdot f+\sum_{i=1}^{n}h_{i}\cdot g_{i},\,\HM_{L}(h_{0})\prec_{L}L_{S}$
+\end_inset
+
+.
+ Это представление над 
+\begin_inset Formula $G\cup\left\{ f\right\} $
+\end_inset
+
+ можно рассматривать как представление над бо́льшим множеством 
+\begin_inset Formula $G\cup\left\{ f\right\} \cup\left\{ f_{i}\right\} $
+\end_inset
+
+, которое как множество совпадает с набором элементом 
+\begin_inset Formula $G'$
+\end_inset
+
+.
+ В дальнейшем будем называть это представлением над 
+\begin_inset Formula $G'$
+\end_inset
+
+ и записывать в виде сумм элементов 
+\begin_inset Formula $G'$
+\end_inset
+
+, домноженных на мономы с коэффициентами 
+\begin_inset Formula $h=\sum_{i}c_{i}m_{i}\cdot p_{i},\, p_{i}\in G'$
+\end_inset
+
+.
+ Наличия в сумме 2-х вхождений с одновременно равными мономами 
+\begin_inset Formula $m_{i}$
+\end_inset
+
+ и многочленами 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $p_{i}$
+\end_inset
+
+ не допускается -- такие элементы представляются как одно слагаемое с суммарным
+ коэффициентом.
+ Следует отметить, что представление над 
+\begin_inset Formula $G\cup\left\{ f\right\} $
+\end_inset
+
+ записывалось как сумма с полиномиальными коэффициентами, поэтому в представлени
+и над 
+\begin_inset Formula $G'$
+\end_inset
+
+ 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+каждому слагаемому исходной суммы будет соответствовать несколько.
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+Каждому слагаемому такого представления сопоставляется 3 важных значения:
+ моном сигнатуры 
+\begin_inset Formula $\LL(m_{i}p_{i})$
+\end_inset
+
+, уровень 
+\begin_inset Formula $\lL(p_{i})$
+\end_inset
+
+ и старший моном 
+\begin_inset Formula $\HM(m_{i}p_{i})$
+\end_inset
+
+.
+ Обозначим моном сигнатуры 
+\begin_inset Formula $\HM_{L}(h_{0})\prec_{L}L_{S}$
+\end_inset
+
+ исходного представления за 
+\begin_inset Formula $L_{\max}\prec_{L}L_{S}$
+\end_inset
+
+.
+ Тогда получится что все элементы преобразованного представления имеют моном
+ сигнатуры не более 
+\begin_inset Formula $\text{}$
+\end_inset
+
+
+\begin_inset Formula $L_{\max}$
+\end_inset
+
+.
+ Доказательство основано на том, что при условии ограниченности всех мономов
+ сигнатуры слагаемых значением 
+\begin_inset Formula $L_{\max}$
+\end_inset
+
+, можно построить другое представление строго меньшее в некотором смысле.
+\end_layout
+
+\begin_layout Subsection
+Порядок на представлениях
+\end_layout
+
+\begin_layout Standard
+Для этого понадобится определение порядка на представлениях.
+ Рассматриваемое упорядочивание комбинирует обычное сравнение сигнатур из
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Faugere"
+
+\end_inset
+
+и сравнение с использованием старших мономов из работы 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hashemi"
+
+\end_inset
+
+.
+ Вначале введём сравнение для отдельных слагаемых: будем говорить, что 
+\begin_inset Formula $m_{1}p_{1}\gtrdot m_{2}p_{2}$
+\end_inset
+
+, если:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\left[\begin{aligned}\LL(m_{1}p_{1})\succ_{L}\LL(m_{2}p_{2})\\
+\LL(m_{1}p_{1})=\LL(m_{2}p_{2})=0\,\text{и}\,\HM(m_{1}p_{1})\succ\HM(m_{2}p_{2})\\
+\LL(m_{1}p_{1})=\LL(m_{2}p_{2})=0\,\text{и}\,\HM(m_{1}p_{1})=\HM(m_{2}p_{2})\,\text{и}\,\lL(p_{1})>\lL(p_{2})\\
+\LL(m_{1}p_{1})=\LL(m_{2}p_{2})\succ_{L}0\,\text{и}\,\lL(p_{1})>\lL(p_{2})
+\end{aligned}
+\right.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Т.е.
+ в первую очередь, сравниваются мономы сигнатуры, потом, если они оба равны
+ нулю, сравниваются старшие мономы многочлена, и последними сравниваются
+ уровни.
+ При этом при равенстве мономов сигнатуры друг другу, но не нулю, сравнения
+ старших мономов не происходит.
+ Любые 2 элемента сравнимы, поскольку для разных пар 
+\begin_inset Formula $m_{i}p_{i}$
+\end_inset
+
+ невозможно одновременно равенство уровня и монома сигнатуры, т.к.
+ из равенства уровней следует 
+\begin_inset Formula $p_{1}=p_{2}$
+\end_inset
+
+, а при этом условии равенство мономов сигнатуры повлечёт равенство 
+\begin_inset Formula $m_{1}=m_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Чтоб расширить этот порядок на представления над 
+\begin_inset Formula $G'$
+\end_inset
+
+ будем рассматривать все слагаемые представления многочлена 
+\begin_inset Formula $h$
+\end_inset
+
+ в упорядоченном виде в соответствии с введённым порядком на слагаемых,
+ начиная с наибольшего.
+ Запишем это как 
+\begin_inset Formula $\left(m_{1}p_{1};\, m_{2}p_{2};\,\dots;m_{b}p_{b}\right)$
+\end_inset
+
+, подразумевая что слагаемые были перенумерованы в соответствии с порядком
+ и что существуют некоторые коэффициенты из 
+\begin_inset Formula $\mathbb{F}$
+\end_inset
+
+, просуммировав с которыми эти слагаемые получится 
+\begin_inset Formula $h$
+\end_inset
+
+.
+ В качестве порядка на представлениях возьмём лексикографическое расширение
+ порядка на слагаемых на эти упорядоченные записи.
+ Если запись одного представление является началом записи другого, будем
+ полагать большим представление с более длинной записью.
+ В частности, любое представление больше представления нуля нулевой длины
+ 
+\begin_inset Formula $"()"$
+\end_inset
+
+.
+ Коэффициенты представления при сравнении никак не учитываются.
+ Различные представления могут оказаться несравнимыми, только если они отличаютс
+я лишь коэффициентами.
+ Обозначать этот порядок будем символом 
+\begin_inset Formula $\gtrdot$
+\end_inset
+
+.
+ Докажем его важное свойство:
+\end_layout
+
+\begin_layout Theorem
+Введённый порядок на представлениях обладает свойством обрыва убывающих
+ цепочек.
+ 
+\end_layout
+
+\begin_layout Standard
+Вначале докажем это свойство для цепочек из отдельных слагаемых.
+ Действительно, предположив существование бесконечной убывающей цепочки
+ 
+\begin_inset Formula $m_{i}p_{i}$
+\end_inset
+
+, получим бесконечную невозрастающую цепочку мономов сигнатуры им соответствующи
+х.
+ В силу свойства обрыва убывающих цепочек для 
+\begin_inset Formula $\prec_{L}$
+\end_inset
+
+ можно утверждать, что начиная с определённого элемента 
+\begin_inset Formula $j$
+\end_inset
+
+ моном сигнатуры будет постоянный.
+ Теперь рассмотрим 
+\begin_inset Formula $j$
+\end_inset
+
+-хвост цепочки, состоящий из элементов с номерами 
+\begin_inset Formula $\geqslant j$
+\end_inset
+
+.
+ Они все имеют один моном сигнатуры, и если он ненулевой, то число элементов
+ в хвосте не может превышать число различных уровней, т.к.
+ для ненулевых мономов сигнатуры сравнение производится по ним.
+ Число различных уровней ограничено длиной конечного списка 
+\begin_inset Formula $G'$
+\end_inset
+
+.
+ Если же моном сигнатуры 
+\begin_inset Formula $j$
+\end_inset
+
+-хвоста последовательности нулевой, то 
+\begin_inset Formula $j$
+\end_inset
+
+-хвосту последовательности будет соответствовать невозрастающая последовательнос
+ть старших мономов, которая тоже удовлетворяет свойству обрыва, и значит
+ существует 
+\begin_inset Formula $(j+k)$
+\end_inset
+
+-[хвост с одинаковыми старшими мономами.
+ Для него снова выполняется ограничение числа элементов числом уровней,
+ т.е.
+ в любом случае цепочка оказывается конечной.
+ Условие обрыва убывающих цепочек на представлениях следует из того, что
+ порядок на них является лексикографическим расширением порядка на слагаемых.
+\end_layout
+
+\begin_layout Subsection
+Критерии отброса S-пар
+\end_layout
+
+\begin_layout Standard
+Все критерии отбрасывания S-пар, формируются в терминах частей S-пары --
+ если хотя бы одна из частей S-пары 
+\begin_inset Formula $m_{i}p_{i},\, i=1,2$
+\end_inset
+
+ удовлетворяет критерию отбрасывания, то S-пара отбрасывается.
+ Благодаря этому эти же критерии могут применяться к потенциальным редукторам,
+ записанным в виде домноженного многочлена 
+\begin_inset Formula $mp$
+\end_inset
+
+, где 
+\begin_inset Formula $p$
+\end_inset
+
+ - многочлен из списка 
+\begin_inset Formula $G'$
+\end_inset
+
+ с приписанным ему уровнем и мономом сигнатуры, что и делается на шаге алгоритма
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:Criteria2"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Из условия 
+\begin_inset Formula $p\in G'$
+\end_inset
+
+ следует существование 2-х представлений многочлена 
+\begin_inset Formula $mp$
+\end_inset
+
+ над 
+\begin_inset Formula $G'$
+\end_inset
+
+.
+ Первое из них -- это представление 
+\begin_inset Formula $mp=m\cdot p$
+\end_inset
+
+ над 
+\begin_inset Formula $G'$
+\end_inset
+
+, а второе представление получается из определения монома сигнатуры: 
+\begin_inset Formula 
+\begin{equation}
+mp=a\LL(mp)\cdot f+q\cdot f+\sum_{i=1}^{n}h_{i}\cdot g_{i},\, a\in\mathbb{F},\, q,h_{i}\in\mathbb{H},\,\HM_{L}(q)\prec_{L}\LL(mp).\label{eq:predst2}
+\end{equation}
+
+\end_inset
+
+Это представление есть представление над над 
+\begin_inset Formula $G\cup\left\{ f\right\} $
+\end_inset
+
+, но оно же может рассматриваться как представление над 
+\begin_inset Formula $G'$
+\end_inset
+
+.
+ 
+\begin_inset Formula $ $
+\end_inset
+
+В этой главе для упрощения изложения будем полагать, что каждый многочлен
+ 
+\begin_inset Formula $p$
+\end_inset
+
+ с ненулевым мономом сигнатуры 
+\begin_inset Formula $\LL(p)$
+\end_inset
+
+ при добавлении в 
+\begin_inset Formula $G'$
+\end_inset
+
+ умножаются на такой коэффициент из 
+\begin_inset Formula $\mathbb{F}$
+\end_inset
+
+, чтоб в записи второго представления коэффициент 
+\begin_inset Formula $a$
+\end_inset
+
+ оказался равен единице, хотя непосредственно при работе алгоритма это свойство
+ не обязательно и расчёт коэффициентов не производится.
+ Мономы сигнатуры этих 2-х представлений совпадают, т.к.
+ 
+\begin_inset Formula $\LL(\LL(mp)\cdot f)=\LL(mp)\LL(f)=\LL(mp)\cdot1=\LL(m\cdot p)$
+\end_inset
+
+.
+ При этом с точки зрения порядка 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+ второе представление может быть больше первого из-за отличия уровней: 
+\begin_inset Formula $0=\lL(f)\geqslant\lL(p)$
+\end_inset
+
+.
+ Критерии отброса приводимые ниже направлены на то, чтоб при выполнении
+ некоторого условия построить для многочлена 
+\begin_inset Formula $mp$
+\end_inset
+
+ представление над 
+\begin_inset Formula $G'$
+\end_inset
+
+ меньшее по 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+, чем 
+\begin_inset Formula $mp=m\cdot p$
+\end_inset
+
+.
+ Также следует отметить, что все критерии выдерживают домножение на моном
+ -- если 
+\begin_inset Formula $mp$
+\end_inset
+
+ удовлетворяет одному из приведённых ниже критериев, то и 
+\begin_inset Formula $(m'm)p$
+\end_inset
+
+ также будет ему удовлетворять.
+\end_layout
+
+\begin_layout Standard
+Вначале сформулируем критерии сигнатуры для многочленов 
+\begin_inset Formula $p$
+\end_inset
+
+ неположительных уровней, т.е.
+ не входящих в 
+\begin_inset Formula $G$
+\end_inset
+
+, и покажем что при выполнении каждого из них существует сизигия с сигнатурой
+ делящей 
+\begin_inset Formula $\LL(mp)$
+\end_inset
+
+, откуда будет следовать не минимальность:
+\end_layout
+
+\begin_layout Itemize
+Домноженный многочлен 
+\begin_inset Formula $mp$
+\end_inset
+
+ неположительного уровня удовлетворяет 
+\emph on
+критерию Фожера
+\emph default
+, если 
+\begin_inset Formula $\exists i_{0},\,\HM_{L}(g_{i_{0}})|\LL(mp)$
+\end_inset
+
+, иными словами моном сигнатуры делится на один из старших с точки зрения
+ 
+\begin_inset Formula $\prec_{L}$
+\end_inset
+
+ коэффициентов многочленов 
+\begin_inset Formula $G$
+\end_inset
+
+.
+ В этом случае существует сизигия 
+\begin_inset Formula 
+\[
+\HM_{L}(g_{i_{0}})\cdot f+(\frac{1}{c}g_{i_{0}}-\HM_{L}(g_{i_{0}}))\cdot f+\frac{1}{c}f\cdot g_{i_{0}},
+\]
+
+\end_inset
+
+где 
+\begin_inset Formula $c$
+\end_inset
+
+ -- коэффициент при 
+\begin_inset Formula $\HM_{L}(g_{i_{0}})$
+\end_inset
+
+ многочлена 
+\begin_inset Formula $g_{i_{0}}$
+\end_inset
+
+.
+ Моном сигнатуры сизигии равен 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\HM_{L}(g_{i_{0}})$
+\end_inset
+
+, поскольку моном сигнатуры у второго слагаемого меньше, а у 3-го -- нулевой.
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ 
+\end_layout
+
+\begin_layout Itemize
+Домноженный многочлен 
+\begin_inset Formula $mp$
+\end_inset
+
+ неположительного уровня удовлетворяет 
+\emph on
+критерию G2V
+\emph default
+, если 
+\begin_inset Formula $\exists j,\,\LL(f_{j})|\LL(mp),\, f_{j}=0$
+\end_inset
+
+, т.е.
+ моном сигнатуры делится на моном сигнатуры редуцировавшегося к нулю многочлена.
+ В этом случае знание ненулевой сигнатуры нулевого многочлена даёт информацию
+ о сизигии 
+\begin_inset Formula 
+\[
+\LL(f_{j})\cdot f+q\cdot f+\sum_{i=1}^{n}h_{i}\cdot g_{i}=0
+\]
+
+\end_inset
+
+
+\begin_inset Formula $ $
+\end_inset
+
+с мономом сигнатуры 
+\begin_inset Formula $\LL(f_{j})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Для обоих критериев показано наличие сизигии -- т.е.
+ существование представления нуля вида 
+\begin_inset Formula $0=L_{0}\cdot f+q\cdot f+\sum_{i=1}^{n}h_{i}\cdot g_{i}$
+\end_inset
+
+ с мономом сигнатуры, выражающемся в виде 
+\begin_inset Formula $L_{0}=\frac{\LL(mp)}{d}$
+\end_inset
+
+ для некоторого монома 
+\begin_inset Formula $d$
+\end_inset
+
+.
+ Теперь нужно найти для 
+\begin_inset Formula $mp$
+\end_inset
+
+ представление с меньшим мономом сигнатуры.
+ Если из представления 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:predst2"
+
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ над 
+\begin_inset Formula $G\cup\left\{ f\right\} $
+\end_inset
+
+ вычесть домноженное известное представление нуля вида 
+\begin_inset Formula $0=cd0=cd(L_{0}\cdot f+q\cdot f+\sum_{i=1}^{n}h_{i}\cdot g_{i})$
+\end_inset
+
+, где 
+\begin_inset Formula $c$
+\end_inset
+
+ -- коэффициент, подобранный так, чтоб при вычитании сократились старшие
+ члены, отвечающие 
+\begin_inset Formula $\LL(mp)\cdot f$
+\end_inset
+
+, то получится представление для многочлена 
+\begin_inset Formula $mp-0=mp$
+\end_inset
+
+ с меньшим мономом сигнатуры.
+ Найденное представление над 
+\begin_inset Formula $G\cup\left\{ f\right\} $
+\end_inset
+
+ автоматически является представлением над 
+\begin_inset Formula $G'.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Вторым критерием, применяемым для многочленов неположительных уровней является
+ критерий перезаписи:
+\end_layout
+
+\begin_layout Itemize
+Домноженный многочлен 
+\begin_inset Formula $mp$
+\end_inset
+
+ неположительного уровня удовлетворяет 
+\emph on
+критерию перезаписи
+\emph default
+, если 
+\begin_inset Formula $\exists j_{0},\,\LL(f_{j_{0}})|\LL(mp)\,\mbox{и}\,\lL(f_{j_{0}})<\lL(p)$
+\end_inset
+
+, т.е.
+ в списке существует многочлен меньшего уровня, моном сигнатуры которого
+ делит 
+\begin_inset Formula $\LL(mp)$
+\end_inset
+
+.
+ Положим 
+\begin_inset Formula $d=\frac{\LL(mp)}{\LL(f_{j_{0}})}$
+\end_inset
+
+.
+ Для 
+\begin_inset Formula $df_{j_{0}}$
+\end_inset
+
+ существует представление вида 
+\begin_inset Formula $df_{j_{0}}=\LL(df_{j_{0}})\cdot f+r\cdot f+\sum_{i=1}^{n}s_{i}\cdot g_{i}$
+\end_inset
+
+.
+ Учитывая равенство 
+\begin_inset Formula $\LL(df_{j_{0}})=\LL(mp)$
+\end_inset
+
+ мы можем найти представление многочлена 
+\begin_inset Formula $\LL(mp)f=d\cdot f_{j_{0}}-r\cdot f-\sum_{i=1}^{n}s_{i}\cdot g_{i}$
+\end_inset
+
+ и подставить это выражение в известное представление для 
+\begin_inset Formula $mp$
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+mp=\LL(mp)\cdot f+q\cdot f+\sum_{i=1}^{n}h_{i}\cdot g_{i}=d\cdot f_{j_{0}}-r\cdot f-\sum_{i=1}^{n}s_{i}\cdot g_{i}+q\cdot f+\sum_{i=1}^{n}h_{i}\cdot g_{i},
+\]
+
+\end_inset
+
+которое будет меньше с точки зрения порядка 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+ чем 
+\begin_inset Formula $mp=m\cdot p$
+\end_inset
+
+, поскольку 
+\begin_inset Formula $\LL(mp)=\LL(df_{j_{0}})\not=0$
+\end_inset
+
+, 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\lL(p)>\lL(f_{j_{0}})$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+, а остальные члены имеют меньший моном сигнатуры.
+\end_layout
+
+\begin_layout Standard
+Для многочленов положительных уровней применяется критерий Бухбергера:
+\end_layout
+
+\begin_layout Itemize
+Домноженный многочлен 
+\begin_inset Formula $mp$
+\end_inset
+
+ положительного уровня удовлетворяет 
+\emph on
+второму критерию Бухбергера
+\emph default
+, если 
+\begin_inset Formula $\exists g_{i_{0}}\HM(g_{i_{0}})|\HM(mp)\,\text{и}\,\lL(p)>\lL(g_{i_{0}})>0$
+\end_inset
+
+.
+ Согласно этому определению критерий отбрасывает такие домноженные многочлены
+ из 
+\begin_inset Formula $G$
+\end_inset
+
+, имеющие старший моном, порождаемый также домножением некоторого другого
+ многочлена из 
+\begin_inset Formula $G$
+\end_inset
+
+ меньшего уровня.
+ Меньшее представления для 
+\begin_inset Formula $mp$
+\end_inset
+
+ может быть найдено благодаря тому что над 
+\begin_inset Formula $G$
+\end_inset
+
+ существует S-представление 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\sum_{i=1}^{n}h_{i}\cdot g_{i}$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ для многочлена 
+\begin_inset Formula $mp-cdg_{i_{0}}\in\left\langle G\right\rangle ,\, d=\frac{mp}{g_{i_{0}}}$
+\end_inset
+
+, где коэффициент 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $c$
+\end_inset
+
+ взят так, чтоб сократились старшие мономы.
+ Его существование следует из того что 
+\begin_inset Formula $G$
+\end_inset
+
+ -- базис Грёбнера.
+ Получаемое представление имеет вид:
+\begin_inset Formula 
+\[
+mp=cdg_{i_{0}}+mp-cdg_{i_{0}}=cd\cdot g_{i_{0}}+\sum_{i=1}^{n}h_{i}\cdot g_{i}.
+\]
+
+\end_inset
+
+Оно будет меньше представления 
+\begin_inset Formula $mp=m\cdot p$
+\end_inset
+
+, т.к.
+ все мономы сигнатуры равны 0, 
+\begin_inset Formula $\HM(m\cdot p)=\HM(d\cdot g_{i_{0}})$
+\end_inset
+
+, 
+\begin_inset Formula $\forall i\HM(h_{i}\cdot g_{i})\prec\HM(d\cdot g_{i_{0}})$
+\end_inset
+
+ и 
+\begin_inset Formula $\lL(p)>\lL(g_{i_{0}})$
+\end_inset
+
+.
+ В исходном алгоритме Фожера множество 
+\begin_inset Formula $G$
+\end_inset
+
+ не являлось минимальным базисом Грёбнера, и поэтому там для его элементов
+ применялись более сложные критерии, аналогичные приведённым здесь критериям
+ для многочленов неположительных уровней.
+ Однако при использование более сложных критериев подобного типа при условии
+ минимальности базиса 
+\begin_inset Formula $G$
+\end_inset
+
+ не представляется эффективным, поскольку может быть показано, что более
+ сложные критерии срабатывают только в случаях, когда для домноженного многочлен
+а с определённым старшим мономом может быть найдено другое домножение, дающее
+ этот же старший моном, а свойство минимальности обеспечивает то, что все
+ такие случаи уже отбрасываются критерием Бухбергера (
+\family default
+\series bold
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+TODO: показать это более строго+ упомянуть изучение этого вопроса в работе
+ Perry
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+).
+\end_layout
+
+\begin_layout Subsection
+Представления для неотброшенных S-пар
+\end_layout
+
+\begin_layout Standard
+S-паре 
+\begin_inset Formula $\SP(m_{1}p_{1};m_{2}p_{2})$
+\end_inset
+
+, не отброшенной ни по одному из критериев, можно сопоставить S-полином
+ вида 
+\begin_inset Formula $ $
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $m_{1}p_{1}-cm_{2}p_{2}$
+\end_inset
+
+, где 
+\begin_inset Formula $c\in\mathbb{F}$
+\end_inset
+
+ выбран так, чтоб равные старшие мономы слагаемых сократились.
+ Будем считать, что 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $m_{1}p_{1}\gtrdot m_{2}p_{2}$
+\end_inset
+
+, в противном случае просто перенумеруем части S-пары.
+ Покажем, что в условиях теоремы 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:invariant"
+
+\end_inset
+
+ для любой неотброшенной по критериям S-пары существует представление, меньшее
+ по 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $\lessdot$
+\end_inset
+
+, чем 
+\begin_inset Formula $m_{1}p_{1}-cm_{2}p_{2}=m_{1}\cdot p_{1}-cm_{2}\cdot p_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Если 
+\begin_inset Formula $\LL(m_{1}p_{1})=0$
+\end_inset
+
+, то и 
+\begin_inset Formula $\LL(m_{2}p_{2})=0$
+\end_inset
+
+, откуда рассматриваемый многочлен это S-полином 2-х элементов 
+\begin_inset Formula $G$
+\end_inset
+
+.
+ Значит для него существует S-представление 
+\begin_inset Formula $m_{1}p_{1}-cm_{2}p_{2}=\sum_{i=1}^{n}h_{i}\cdot g_{i}$
+\end_inset
+
+, меньшее по 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+, т.к.
+ 
+\begin_inset Formula $\forall i\HM(h_{i}\cdot g_{i})\prec\HM(m_{1}\cdot p_{1})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Если 
+\begin_inset Formula $\LL(m_{1}p_{1})\succ_{L}0$
+\end_inset
+
+, то, т.к.
+ ни одна из частей не была отброшена и по условию теоремы 
+\begin_inset Formula $L_{S}\succ_{L}\LL(m_{1}p_{1})$
+\end_inset
+
+ эта S-пара уже была редуцирована алгоритмом при помощи вычитания домноженных
+ многочленов с меньшим мономом сигнатуры и результат был добавлен в список
+ 
+\begin_inset Formula $G'$
+\end_inset
+
+ в качестве многочлена 
+\begin_inset Formula $p'$
+\end_inset
+
+.
+ Отсюда следует существование представления
+\begin_inset Formula 
+\[
+m_{1}p_{1}-cm_{2}p_{2}=a\cdot p'+\sum_{j}h_{j}\cdot q_{j},\, a\in\mathbb{F}
+\]
+
+\end_inset
+
+Это представление будет меньше по 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $\lessdot$
+\end_inset
+
+, т.к.
+ 
+\begin_inset Formula $\LL(h_{j}q{}_{j})\prec_{L}\LL(p')$
+\end_inset
+
+ и 
+\begin_inset Formula $\LL(m_{1}p_{1})=\LL(p'),\,\lL(p_{1})>\lL(p')$
+\end_inset
+
+, где неравенство уровней следует из того, что многочлен 
+\begin_inset Formula $p'$
+\end_inset
+
+ был добавлен после 
+\begin_inset Formula $p_{1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Доказательство инварианта
+\end_layout
+
+\begin_layout Standard
+Предположим существование многочлена в 
+\begin_inset Formula $\left\langle G\cup\left\{ f\right\} \right\rangle $
+\end_inset
+
+ со мономом сигнатуры меньшим 
+\begin_inset Formula $L_{S}$
+\end_inset
+
+, не имеющего S-представления относительно 
+\begin_inset Formula $G'$
+\end_inset
+
+.
+ В таком случае множество представлений над 
+\begin_inset Formula $G'$
+\end_inset
+
+, состоящих из элементов со мономами сигнатуры меньшими 
+\begin_inset Formula $L_{S}$
+\end_inset
+
+, и соответствующее многочленам не имеющих S-представлений не пусто.
+ По свойству обрыва убывающих цепочек существует минимальное по 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+ представление, соответствующее некоторому такому многочлену 
+\begin_inset Formula $h$
+\end_inset
+
+.
+ Поскольку оно не является S-представлением, то в нём существуют слагаемые
+ старший моном которых больше 
+\begin_inset Formula $\HM(h)$
+\end_inset
+
+.
+ Максимальный из старших мономов всех слагаемых представления обозначим
+ за 
+\begin_inset Formula $H\succ\HM(h)$
+\end_inset
+
+.
+ Слагаемых со старшим мономом 
+\begin_inset Formula $H$
+\end_inset
+
+ существует как минимум 2, так как при суммировании старшие мономы должны
+ сократиться.
+ Выберем среди таких слагаемых 2 наибольших по 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+, пусть это будут 
+\begin_inset Formula $c_{1}m_{1}\cdot p_{1}\gtrdot c_{2}m_{2}\cdot p_{2},\, H=\HM(m_{1}p_{1})=\HM(m_{2}p_{2})$
+\end_inset
+
+.
+ Из условия на все слагаемые представления известно, что 
+\begin_inset Formula $L_{S}\succ_{L}L_{\max}\succeq_{L}\LL(m_{1}p_{1})\succeq_{L}\LL(m_{2}p_{2})$
+\end_inset
+
+.
+ Также можно утверждать, что 
+\begin_inset Formula $p_{1}$
+\end_inset
+
+ и 
+\begin_inset Formula $p_{2}$
+\end_inset
+
+ -- различные многочлены.
+ Действительно, если бы они были равны, то из равенства обоих старших мономов
+ 
+\begin_inset Formula $H$
+\end_inset
+
+ следовало бы равенство 
+\begin_inset Formula $m_{1}=m_{2}$
+\end_inset
+
+, что противоречило бы запрету на наличие в представлении 2-х одинаковых
+ пар 
+\begin_inset Formula $m_{i}p_{i}$
+\end_inset
+
+.
+ Поэтому пронумеруем их так, чтоб выполнялось 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $m_{2}p_{2}\lessdot m_{1}p_{1}$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+.
+ Для простоты изложения домножим 
+\begin_inset Formula $h$
+\end_inset
+
+ на коэффициент 
+\begin_inset Formula $\frac{1}{c_{1}}$
+\end_inset
+
+, делая единичным коэффициент при 
+\begin_inset Formula $m_{1}p_{1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Покажем теперь, что можно построить замену, позволяющую найти меньшее представле
+ние.
+ В случае, если 
+\begin_inset Formula $m_{1}p_{1}$
+\end_inset
+
+ или 
+\begin_inset Formula $m_{2}p_{2}$
+\end_inset
+
+ удовлетворяют одному из критериев отброса S-пар, меньшее представление
+ может быть получено путём замены части S-пары на её меньшее по 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+ представление, полученное для каждого из критериев.
+ Если ни одна из частей не удовлетворяет критериям отброса, то из равенства
+ старших мономов следует то что 
+\begin_inset Formula $m_{1}p_{1}+c_{2}m_{2}p_{2}$
+\end_inset
+
+ представляется как сумма домноженного на некоторый моном 
+\begin_inset Formula $d$
+\end_inset
+
+ S-полинома многочленов 
+\begin_inset Formula $p_{1}$
+\end_inset
+
+ и 
+\begin_inset Formula $p_{2}$
+\end_inset
+
+ вида 
+\begin_inset Formula $d\left(\frac{m_{1}}{d}p_{1}+c_{3}\frac{m_{2}}{d}p_{2}\right)$
+\end_inset
+
+ и оставшегося члена 
+\begin_inset Formula $(c_{2}-c_{3})m_{2}p_{2}$
+\end_inset
+
+.
+ Ни одна из частей S-полинома не может удовлетворять критериям отброса,
+ т.к.
+ критериям отброса не удовлетворяют даже его части домноженные на 
+\begin_inset Formula $d$
+\end_inset
+
+.
+ Поэтому из результата о неотброшенных S-парах следует, что для S-полинома
+ существует меньшее по 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+ представление.
+ Домножив его на 
+\begin_inset Formula $d$
+\end_inset
+
+ и добавив 
+\begin_inset Formula $(c_{2}-c_{3})m_{2}\cdot p_{2}$
+\end_inset
+
+ получим замену для 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $m_{1}\cdot p_{1}+c_{2}m_{2}\cdot p_{2}$
+\end_inset
+
+, все части которой 
+\begin_inset Formula $\lessdot m_{1}\cdot p_{1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+В результате замены получается новое представление для 
+\begin_inset Formula $h$
+\end_inset
+
+, меньшее предыдущего по 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+, что противоречит предположению о минимальности.
+ Отсюда следует, что гипотеза о существовании многочлена без S-представления
+ неверна и корректность инварианта доказана.
+\end_layout
+
+\begin_layout Subsection
+Получение базиса Грёбнера за конечное число шагов
+\end_layout
+
+\begin_layout Standard
+В дальнейшем изложении будем предполагать, что порядок 
+\begin_inset Formula $\prec_{L}$
+\end_inset
+
+ помимо свойства обрыва убывающих цепочек, удовлетворяет свойству обрыва
+ ограниченных возрастающих цепочек.
+ При выполнении этого свойства верна следующая
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:iter_limit"
+
+\end_inset
+
+Для любого фиксированного монома сигнатуры 
+\begin_inset Formula $L$
+\end_inset
+
+ существует итерация алгоритма 
+\begin_inset Formula $k$
+\end_inset
+
+, после которой все многочлены множество мономов сигнатуры которых содержит
+ элемент 
+\begin_inset Formula $L'\preccurlyeq_{L}L$
+\end_inset
+
+ имеют S-представление относительно списка многочленов 
+\begin_inset Formula $G'$
+\end_inset
+
+, получившегося после 
+\begin_inset Formula $k$
+\end_inset
+
+-й итерации.
+\end_layout
+
+\begin_layout Standard
+Для этого достаточно показать, что последовательность, образованная минимальными
+ мономами сигнатуры очереди-S-пар, взятыми на каждом шаге алгоритма не убывает
+ и не может иметь бесконечного константного хвоста, хотя и может оборваться,
+ если очередь станет пуста.
+ То что последовательность не убывает можно заключить из того, что если
+ на шаге 
+\begin_inset Formula $k$
+\end_inset
+
+ минимальным мономом сигнатуры S-пары был моном 
+\begin_inset Formula $L_{m}$
+\end_inset
+
+, то после того как соответствующая S-пара была извлечена из очереди, и,
+ возможно, обработана, в очереди-S-пар будут находиться пары двух классов:
+ те которые там уже были на момент начала шага 
+\begin_inset Formula $k$
+\end_inset
+
+ и новые, порождённые новым многочленом сигнатуры 
+\begin_inset Formula $L_{m}$
+\end_inset
+
+, добавленным в список.
+ И те и другие не могут иметь моном сигнатуры меньше 
+\begin_inset Formula $L_{m}$
+\end_inset
+
+, и значит последовательность не возрастает.
+\end_layout
+
+\begin_layout Standard
+Чтоб доказать что последовательность не стабилизируется, покажем что в список
+ 
+\begin_inset Formula $G'$
+\end_inset
+
+ не может быть добавлено более одного многочлена одинаковой сигнатуры.
+ Из этого будет следовать, что пока минимальный моном сигнатуры в очереди-S-пар
+ постоянен, в список 
+\begin_inset Formula $G'$
+\end_inset
+
+ может быть добавлен лишь один многочлен, при этом в очередь-S-пар добавятся
+ какие-то элементы.
+ После его добавления ни список 
+\begin_inset Formula $G'$
+\end_inset
+
+, ни очередь-S-пар пополняться не будут до тех пор пока из очереди-S-пар
+ не будет извлечён элемент с другой сигнатурой.
+ Если в очереди-S-пар элемента с большей сигнатурой не будет -- очередь
+ исчерпается и алгоритм завершится.
+\end_layout
+
+\begin_layout Standard
+Теперь покажем невозможность добавления в 
+\begin_inset Formula $G'$
+\end_inset
+
+ 2-x элементов одной сигнатуры.
+ Основную роль в этом играет критерий перезаписи.
+ После добавления в 
+\begin_inset Formula $G'$
+\end_inset
+
+ многочлена 
+\begin_inset Formula $f_{k}$
+\end_inset
+
+ с мономом сигнатуры 
+\begin_inset Formula $L_{m}$
+\end_inset
+
+ все части 
+\begin_inset Formula $m_{1}p_{1}$
+\end_inset
+
+ S-пар с такой сигнатурой, кроме частей вида 
+\begin_inset Formula $1f_{k}$
+\end_inset
+
+ будут отброшены, т.к.
+ 
+\begin_inset Formula $L_{m}=\LL(f_{k})|\LL(m_{1}p_{1})=L_{m},\,\lL(p_{1})>\lL(f_{k})$
+\end_inset
+
+ в силу минимальности уровня только что добавленного многочлена.
+ С другой стороны появление S-пары с частью 
+\begin_inset Formula $1f_{k}$
+\end_inset
+
+, которая при этом является строго старшей частью S-пары с точки зрения
+ монома сигнатуры, а другая часть 
+\begin_inset Formula $m_{2}p_{2}$
+\end_inset
+
+ не отбрасывается ни по одному из критериев, невозможно -- в таком случае
+ была бы проведена соответствующая редукция 
+\begin_inset Formula $f_{k}$
+\end_inset
+
+ вычитанием 
+\begin_inset Formula $cm_{2}p_{2}$
+\end_inset
+
+ до добавления 
+\begin_inset Formula $f_{k}$
+\end_inset
+
+ в список.
+ Если 
+\begin_inset Formula $1f_{k}$
+\end_inset
+
+ оказывается строго младшей по 
+\begin_inset Formula $\prec_{L}$
+\end_inset
+
+ частью S-пары, то S-пара имеет больший чем 
+\begin_inset Formula $L_{m}$
+\end_inset
+
+ моном сигнатуры.
+ В оставшемся случае, когда помимо 
+\begin_inset Formula $1f_{k}$
+\end_inset
+
+ в S-паре есть часть
+\series bold
+ 
+\series default
+
+\begin_inset Formula $m_{2}p_{2}$
+\end_inset
+
+ с равной сигнатурой опять произойдёт отбрасывание по критерию перезаписи
+ поскольку 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $\lL(p_{2})>\lL(f_{k})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Таким образом доказано, что последовательность минимальных мономов сигнатуры
+ очереди-S-пар не убывает, но не может стабилизироваться.
+ А значит для фиксированного монома 
+\begin_inset Formula $L$
+\end_inset
+
+ на некоторой итерации 
+\begin_inset Formula $k$
+\end_inset
+
+ будет достигнут или больший элемент последовательности или её конец, соответств
+ующий окончанию алгоритма.
+ В обоих случаях может быть применено утверждение теоремы об инварианте
+ алгоритма и сделано заключение о наличии S-представления для многочленов
+ с мономом сигнатуры не более 
+\begin_inset Formula $L$
+\end_inset
+
+ относительно множества 
+\begin_inset Formula $G'$
+\end_inset
+
+ полученного после 
+\begin_inset Formula $k$
+\end_inset
+
+-го шага.
+ Теорема доказана.
+\end_layout
+
+\begin_layout Standard
+Из этого результата получается вытекает теорема о том что базис Грёбнера
+ будет получен алгоритмом за конечное число шагов:
+\end_layout
+
+\begin_layout Theorem
+При условии обрыва ограниченных возрастающих цепочек для 
+\begin_inset Formula $\prec_{L}$
+\end_inset
+
+ после некоторой итерации алгоритма 
+\begin_inset Formula $k$
+\end_inset
+
+ список 
+\begin_inset Formula $G'$
+\end_inset
+
+ будет содержать базис Грёбнера идеала 
+\begin_inset Formula $\left\langle G\cup\left\{ f\right\} \right\rangle $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Рассмотрим некоторый конечный базис Грёбнера 
+\begin_inset Formula $J$
+\end_inset
+
+ идеала 
+\begin_inset Formula $\left\langle G\cup\left\{ f\right\} \right\rangle $
+\end_inset
+
+.
+ Поскольку каждый из элементов 
+\begin_inset Formula $j_{i}\in J$
+\end_inset
+
+ лежит в идеале, каждому из них можно сопоставить некоторый моном сигнатуры
+ 
+\begin_inset Formula $L_{i}$
+\end_inset
+
+.
+ Возьмём максимальный моном сигнатуры 
+\begin_inset Formula 
+\[
+L:=\max_{i,\succ_{L}}L_{i}
+\]
+
+\end_inset
+
+и выберем итерацию 
+\begin_inset Formula $k$
+\end_inset
+
+ на основании теоремы 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:iter_limit"
+
+\end_inset
+
+ для 
+\begin_inset Formula $L$
+\end_inset
+
+.
+ Далее, поскольку элементы базиса Грёбнера 
+\begin_inset Formula $J$
+\end_inset
+
+ обладают S-представлениями над 
+\begin_inset Formula $G'$
+\end_inset
+
+, о множестве 
+\begin_inset Formula $G'$
+\end_inset
+
+ можно сделать два заключения: во-первых, 
+\begin_inset Formula $G'$
+\end_inset
+
+ порождает 
+\begin_inset Formula $J$
+\end_inset
+
+, а значит и 
+\begin_inset Formula $\left\langle G\cup\left\{ f\right\} \right\rangle $
+\end_inset
+
+ т.е.
+ 
+\begin_inset Formula $G'$
+\end_inset
+
+ является базисом.
+ Во-вторых, для каждого элемента 
+\begin_inset Formula $j_{k}\in J$
+\end_inset
+
+ есть элемент 
+\begin_inset Formula $p_{k}\in G'$
+\end_inset
+
+ со свойством 
+\begin_inset Formula $\HM(p_{k})|\HM(j_{k})$
+\end_inset
+
+, т.е.
+ идеал старших мономов 
+\begin_inset Formula $\HM(\left\langle G'\right\rangle )$
+\end_inset
+
+ порождает 
+\begin_inset Formula $\HM(\left\langle J\right\rangle )$
+\end_inset
+
+ откуда вытекает, что 
+\begin_inset Formula $G'$
+\end_inset
+
+ является базисом Грёбнера.
+ Теорема доказана.
+\end_layout
+
+\begin_layout Subsection
+Явный критерий остановки
+\end_layout
+
+\begin_layout Standard
+Несмотря на то что базис Грёбнера гарантированно будет получен алгоритмом
+ за конечное число шагов, алгоритм может продолжать свою работу и после
+ этого, до тех пор пока очередь-S-пар не пуста.
+ В работе 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Perry-Termination"
+
+\end_inset
+
+ рассматриваются методы дополнения алгоритма дополнительными проверками,
+ гарантирующими остановку алгоритма через конечное число итераций после
+ нахождения базиса Грёбнера.
+ В упомянутой работе приведён критерий остановки F5+ для систем однородных
+ многочленов, основанный на выделении в 
+\begin_inset Formula $G'$
+\end_inset
+
+ конечного множества GB-критических многочленов, для которых рассматриваются
+ все S-пары и применяется критерий завершения, основанный на втором критерии
+ Бухбергера и определении максимальной однородной степени до которой нужно
+ проводить вычисления.
+ В этой статье предлагается метод, основывающейся на этом же множестве S-пар,
+ но с другим критерием завершения, применимым к неоднородным системам и
+ основанным на введённом инварианте алгоритма.
+\end_layout
+
+\begin_layout Definition
+Многочлен 
+\begin_inset Formula $f_{i}$
+\end_inset
+
+ из списка 
+\begin_inset Formula $G'$
+\end_inset
+
+, с 
+\begin_inset Formula $\lL(f_{i})=-i$
+\end_inset
+
+ называется 
+\emph on
+GB-критическим
+\emph default
+, если не существует многочлена 
+\begin_inset Formula $p$
+\end_inset
+
+ с уровнем 
+\begin_inset Formula $\lL(p)>\lL(f_{i})$
+\end_inset
+
+, т.ч.
+ 
+\begin_inset Formula $\HM(p)|\HM(f_{i})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Таким образом, GB-критическими являются только те многочлены, которые в
+ момент добавления в базис расширили идеал старших мономов.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+TODO:
+\series default
+Идея доработки завершаемости алгоритма - для нелишних на момент добавления
+ многочленов находим мономы сигнатуры соответствующих S-пар.
+ Критерии при этом проверять не нужно и запоминать только максимальный из
+ таких мономов сигнатуры.
+ Когда наименьший моном в очереди станет больше наибольшего из таких запомненных
+ мономов - базис Грёбнера найден.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring Библиография
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Faugere"
+
+\end_inset
+
+Jean-Charles Faugère.
+ A new efﬁcient algorithm for computing Gröbner bases without reduction
+ to zero (F
+\begin_inset Formula $_{5}$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring Библиография
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Perry-F5C"
+
+\end_inset
+
+Christian Eder, John Perry.
+ F5C: a variant of Faugère's F5 algorithm with reduced Gröbner bases
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring Библиография
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Perry-Termination"
+
+\end_inset
+
+Christian Eder, Justin Gash, and John Perry.
+ Modifying Faugère’S F5 algorithm to ensure termination
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring Библиография
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "G2V"
+
+\end_inset
+
+Shuhong Gao, Yinhua Guan, Frank Volny IV.
+ A New Incremental Algorithm for Computing Groebner Bases
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring Библиография
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Perry-Common-Algo"
+
+\end_inset
+
+Christian Eder, John Perry.
+ Signature-based algorithms to compute Gröbner bases
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring Библиография
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Hashemi"
+
+\end_inset
+
+Gwénolé Ars, Amir Hashemi.
+ Extended F
+\begin_inset Formula $_{5}$
+\end_inset
+
+ criteria
+\end_layout
+
+\end_body
+\end_document

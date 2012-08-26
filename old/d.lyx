@@ -1,0 +1,5206 @@
+#LyX 1.6.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass report
+\begin_preamble
+\usepackage{verbatim}
+\theoremstyle{plain}
+\newtheorem{theo}{Теорема}
+\renewenvironment{thm}{\begin{theo}}{\end{theo}}
+\theoremstyle{definition}
+\newtheorem{defi}{Определение}
+\renewenvironment{defn}{\begin{defi}}{\end{defi}}
+
+\begin{comment}
+\newtheorem{coro}{Corollaire}
+\renewenvironment{cor}{\begin{coro}}{\end{coro}}
+\newtheorem{lemm}{Lemme}
+\renewenvironment{lem}{\begin{lemm}}{\end{lemm}}
+\newtheorem{propo}{Proposition}
+\renewenvironment{prop}{\begin{propo}}{\end{propo}}
+\newtheorem{conje}{Conjecture}
+\renewenvironment{conjecture}{\begin{conje}}{\end{conje}}
+\newtheorem{crit}{Critère}
+\renewenvironment{criterion}{\begin{crit}}{\end{crit}}
+\newtheorem{algo}{Algorithme}
+\renewenvironment{algorithm}{\begin{algo}}{\end{algo}}
+\newtheorem{facte}{Fait}
+\renewenvironment{fact}{\begin{facte}}{\end{facte}}
+\newtheorem{axi}{Axiome}
+\renewenvironment{ax}{\begin{axi}}{\end{axi}}
+\newtheorem{exa}{Exemple}
+\renewenvironment{example}{\begin{exa}}{\end{exa}}
+\newtheorem{prob}{Problème}
+\renewenvironment{problem}{\begin{prob}}{\end{prob}}
+\newtheorem{condi}{Condition}
+\renewenvironment{condition}{\begin{condi}}{\end{condi}}
+\newtheorem{exer}{Exercice}
+\renewenvironment{xca}{\begin{exer}}{\end{exer}}
+\newtheorem{rema}{Remarque}
+\renewenvironment{rem}{\begin{rema}}{\end{rema}}
+\newtheorem{claime}{Assertion}
+\renewenvironment{claim}{\begin{claime}}{\end{claime}}
+\newtheorem{nota}{Renseignement}
+\renewenvironment{note}{\begin{nota}}{\end{nota}}
+\newtheorem{notat}{Notation}
+\renewenvironment{notation}{\begin{notat}}{\end{notat}}
+\newtheorem{suma}{Résumé}
+\renewenvironment{summary}{\begin{suma}}{\end{suma}}
+\newtheorem{ackno}{Action de grâce}
+\renewenvironment{acknowledgement}{\begin{ackno}}{\end{ackno}}
+\newtheorem{casa}{Cas}
+\renewenvironment{casa}{\begin{casa}}{\end{casa}}
+\newtheorem{conc}{Conclusion}
+\renewenvironment{conclusion}{\begin{conc}}{\end{conc}}
+
+\end{comment}
+
+\DeclareMathOperator{\LCM}{HOK}
+\DeclareMathOperator{\HM}{HM}
+\DeclareMathOperator{\HT}{HT}
+\DeclareMathOperator{\HC}{HC}
+\DeclareMathOperator{\len}{len}
+\newcommand{\Red}[3]{#1 \xrightarrow[#2]{} #3}
+
+\sloppy
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+theorems-ams-extended
+\end_modules
+\language russian
+\inputencoding utf8x
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen true
+\pdf_bookmarksopenlevel 5
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize a4paper
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\leftmargin 2cm
+\topmargin 1.5cm
+\rightmargin 2cm
+\bottommargin 3.5cm
+\secnumdepth -1
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language french
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\bullet 0 0 0 -1
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{titlepage}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\align center
+
+\size large
+Московский Государственный Университет им.
+\begin_inset space \thinspace{}
+\end_inset
+
+М.
+\begin_inset space \thinspace{}
+\end_inset
+
+В.
+\begin_inset space \thinspace{}
+\end_inset
+
+Ломоносова
+\begin_inset Newline linebreak
+\end_inset
+
+Механико-математический факультет
+\begin_inset Newline linebreak
+\end_inset
+
+Кафедра высшей алгебры
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace*{
+\backslash
+stretch{1.5}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size large
+\begin_inset Graphics
+	filename mmlogo.pdf
+	width 4cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace*{
+\backslash
+stretch{1.5}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+\size giant
+Дипломная работа
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size large
+студента 508 группы
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size large
+Галкина Василия Витальевича
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace*{
+\backslash
+stretch{0.3}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size larger
+Параллельная матричная версия алгоритма F4 вычисления базиса Грёбнера над
+ конечными полями.
+\end_layout
+
+\begin_layout Standard
+\align right
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace*{
+\backslash
+stretch{2}}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\align right
+
+\size large
+Научный руководитель:
+\end_layout
+
+\begin_layout Standard
+\align right
+
+\size large
+к.ф.-м.н.
+\end_layout
+
+\begin_layout Standard
+\align right
+
+\size large
+Зобнин Алексей Игоревич
+\end_layout
+
+\begin_layout Standard
+\align right
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace*{
+\backslash
+stretch{1}}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size large
+Москва, 2009 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{titlepage}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Введение
+\end_layout
+
+\begin_layout Standard
+Задачи исследования систем уравнений полиномиального типа, часто решаемые
+ с помощью базисов Грёбнера, возникают в различных теоретических и прикладных
+ разделах математики, механики, криптографии и
+\begin_inset space ~
+\end_inset
+
+т.
+\begin_inset space ~
+\end_inset
+
+п.
+ Вопросы, которые можно ставить о таких системах, не обязательно требуют
+ поиска всех ее решений; они могут быть связаны с размерностью пространства
+ решений, с исключением из системы определенных неизвестных, с приведением
+ системы к более удобному виду и
+\begin_inset space ~
+\end_inset
+
+т.
+\begin_inset space ~
+\end_inset
+
+д.
+ Традиционный инструмент для конструктивного исследования таких систем
+\begin_inset space ~
+\end_inset
+
+--- базис Грёбнера
+\begin_inset space ~
+\end_inset
+
+--- позволяет теоретически дать ответ на поставленные задачи, но его практическо
+е вычисление обычно сопряжено с колоссальными вычислительными затратами.
+ В силу высокой сложности вычисления базисов Грёбнера, важным является создание
+ реализации, позволяющей находить его за как можно меньшее время.
+\end_layout
+
+\begin_layout Standard
+Данная работа посвящена задаче нахождения базисов Грёбнера в кольце многочленов
+ над простым конечным полем.
+ В качестве алгоритма вычисления базиса выбран алгоритм F4 в специальной
+ матричной записи, дающей возможность провести эффективное распараллеливание
+ матричных операций.
+ Рассматривается параллельная реализация алгоритма F4, позволяющая вычислять
+ базисы Грёбнера для конечных полей на кластерах с распределённой памятью.
+ Меньшее время вычислений по сравнению с классическим алгоритмом Бухбергера
+ достигается за счёт двух факторов: использования более эффективного алгоритма
+ F4 и благодаря распараллеливанию.
+ Оба они основаны на том, что процесс редукции формулируется не в терминах
+ многочленов, а переводится на линейно-алгебраический язык и сводится к
+ задаче приведения большой неравномерно-разреженной матрицы к ступенчатому
+ виду.
+ В работе проведён анализ матричной записи F4, наиболее подходящей для распаралл
+еливания и непосредственно описание применённого метода распараллеливания
+ редукции матрицы особого вида.
+\end_layout
+
+\begin_layout Section
+Базисы Грёбнера и алгоритмы их вычисления
+\end_layout
+
+\begin_layout Standard
+Мы будем рассматривать идеалы в кольце многочленов 
+\begin_inset Formula $F[x_{1},\ldots,x_{n}]$
+\end_inset
+
+, где 
+\begin_inset Formula $F$
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+--- конечное поле 
+\begin_inset Formula $F_{p}$
+\end_inset
+
+ из 
+\begin_inset Formula $p$
+\end_inset
+
+ элементов.
+ Мы называем мономом выражение 
+\begin_inset Formula $x_{1}^{a_{1}}\ldots x_{n}^{a_{n}}$
+\end_inset
+
+, где 
+\begin_inset Formula $a_{i}\geqslant0$
+\end_inset
+
+, а термом
+\begin_inset space ~
+\end_inset
+
+--- моном с коэффициентом (одночлен).
+ Через 
+\begin_inset Formula $\preccurlyeq$
+\end_inset
+
+ мы будем обозначать мономиальное упорядочение
+\begin_inset space ~
+\end_inset
+
+--- линейный порядок на множестве мономов, удовлетворяющий следующим свойствам
+ для произвольных мономов 
+\begin_inset Formula $M$
+\end_inset
+
+, 
+\begin_inset Formula $N$
+\end_inset
+
+ и 
+\begin_inset Formula $Q$
+\end_inset
+
+: 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $M\prec N\;\iff\; M\cdot Q\,\prec\, N\cdot Q$
+\end_inset
+
+; 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $M\succcurlyeq1$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Будем предполагать, что переменные упорядочены так, что 
+\begin_inset Formula $x_{1}\succ x_{2}\succ\ldots\succ x_{n}$
+\end_inset
+
+.
+ Классические примеры мономиальных упорядочений
+\begin_inset space ~
+\end_inset
+
+--- лексикографическое (Lex), степенное лексикографическое (DegLex) и степенное
+ обратное лексикографическое (DegRevLex).
+ Пусть 
+\begin_inset Formula $M=\prod\limits _{i=1}^{n}x_{i}^{a_{i}}$
+\end_inset
+
+ и 
+\begin_inset Formula $N=\prod\limits _{i=1}^{n}x_{i}^{b_{i}}$
+\end_inset
+
+.
+ Тогда 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $M\prec_{{\rm Lex}}N\;\Longleftrightarrow\;(a_{1},\ldots,a_{n})<_{{\rm Lex}}(b_{1},\ldots,b_{n})$
+\end_inset
+
+,
+\begin_inset Newline newline
+\end_inset
+
+ то есть, 
+\begin_inset Formula $a_{1}<b_{1}$
+\end_inset
+
+, или 
+\begin_inset Formula $a_{1}=b_{1}$
+\end_inset
+
+ и 
+\begin_inset Formula $a_{2}<b_{2}$
+\end_inset
+
+, или 
+\begin_inset Formula $a_{1}=b_{1},a_{2}=b_{2}$
+\end_inset
+
+ и 
+\begin_inset Formula $a_{3}<b_{3}$
+\end_inset
+
+ и
+\begin_inset space ~
+\end_inset
+
+т.
+\begin_inset space ~
+\end_inset
+
+д.; 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula ${\displaystyle M\prec_{DegLex}N\;\Longleftrightarrow\;(\sum_{i=1}^{n}a_{i},\, a_{1},\ldots,a_{n})<_{{\rm Lex}}(\sum_{j=1}^{n}b_{j},\, b_{1},\ldots,b_{n})}$
+\end_inset
+
+; 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula ${\displaystyle M\prec_{{\rm DegRevLex}}N\;\Longleftrightarrow\;(\sum_{i=1}^{n}a_{i},\, b_{n},\ldots,b_{1})<_{{\rm Lex}}(\sum_{j=1}^{n}b_{j},\, a_{n},\ldots,a_{1})}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Если зафиксировано мономиальное упорядочение, то можно вычислить старший
+ моном 
+\begin_inset Formula $\HM(f)$
+\end_inset
+
+, старший коэффициент 
+\begin_inset Formula $\HC(f)$
+\end_inset
+
+ и старший терм 
+\begin_inset Formula $\HT(f)$
+\end_inset
+
+ многочлена 
+\begin_inset Formula $f$
+\end_inset
+
+.
+ Более того, можно ввести понятие алгоритма редукции многочлена 
+\begin_inset Formula $f$
+\end_inset
+
+ по множеству многочленов
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $G$
+\end_inset
+
+.
+ Редукция последовательно заменяет очередное подходящее слагаемое 
+\begin_inset Formula $c\cdot M$
+\end_inset
+
+ многочлена на многочлен вида 
+\begin_inset Formula $c\cdot M-hg$
+\end_inset
+
+, где 
+\begin_inset Formula $g\in G$
+\end_inset
+
+, 
+\begin_inset Formula $h\in F[x_{1},\ldots,x_{n}]$
+\end_inset
+
+ и 
+\begin_inset Formula $\HT(hg)=c\cdot M$
+\end_inset
+
+.
+ Результатом редукции может быть либо 
+\begin_inset Formula $0$
+\end_inset
+
+, либо многочлен 
+\begin_inset Formula $f'$
+\end_inset
+
+, старший моном которого не больше 
+\begin_inset Formula $\HM(f)$
+\end_inset
+
+.
+ Будем записывать это так: 
+\begin_inset Formula $\Red{f}{G}{f'}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+Множество 
+\begin_inset Formula $G\subset I$
+\end_inset
+
+ называется базисом Грёбнера идеала 
+\begin_inset Formula $I$
+\end_inset
+
+, если любой 
+\begin_inset Formula $f\in I$
+\end_inset
+
+ редуцируется к нулю относительно 
+\begin_inset Formula $G$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Имеет место теорема Гильберта о базисе, утверждающая, что кольцо многочленов
+ нетерово (то есть каждый идеал в нем имеет конечный набор образующих).
+ Именно этот факт позволяет алгоритмически вычислить базис Грёбнера за конечное
+ число шагов.
+ Каждый нетривиальный идеал при фиксированном упорядочении обладает бесконечным
+ множеством базисов Грёбнера.
+ Однако можно ввести понятие минимального и редуцированного базиса Грёбнера.
+ Редуцированный базис уже однозначно определяется идеалом и мономиальным
+ упорядочением.
+ Его можно получить из любого базиса Грёбнера с помощью процесса авторедукции
+ (замены слагаемых на эквивалентные им по модулю идеала выражения с меньшими
+ мономами с помощью вычитания многочленов с подходящими старшими мономами)
+ и последующей нормировкой старших коэффициентов.
+\end_layout
+
+\begin_layout Standard
+Большинство традиционных алгоритмов вычисления базисов Грёбнера, в частности
+ алгоритм Бухбергера и алгоритм F4, работают с понятием S-полинома
+\begin_inset space ~
+\end_inset
+
+--- специального многочленами, построенного по исходным образующим.
+ Основное время тратится на редукцию этих S-полиномов; если в результате
+ получается ненулевой остаток, то он добавляется к промежуточному базису.
+\end_layout
+
+\begin_layout Definition
+Пусть зафиксирован мономиальный порядок.
+ S-полиномом многочленов 
+\begin_inset Formula $f$
+\end_inset
+
+ и 
+\begin_inset Formula $g$
+\end_inset
+
+ называется многочлен 
+\begin_inset Formula \[
+S(f,g):=\frac{\LCM(\HM(f),\HM(g))}{\HT(f)}f-\frac{\LCM(\HM(f),\HM(g))}{\HT(g)}g.\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+Алгоритм Бухбергера основан на основном утверждении теории базисов Грёбнера:
+ 
+\end_layout
+
+\begin_layout Theorem
+Набор многочленов 
+\begin_inset Formula $f_{1},f_{2},\dots,f_{n}$
+\end_inset
+
+ является базисом Грёбнера идеала 
+\begin_inset Formula $(f_{1},f_{2},\dots,f_{n})$
+\end_inset
+
+, тогда и только тогда, когда для любой пары 
+\begin_inset Formula $(f_{i},f_{j})$
+\end_inset
+
+ S-полином 
+\begin_inset Formula $S(f_{i},f_{j})$
+\end_inset
+
+ редуцируется относительно этого набора к нулю.
+ 
+\end_layout
+
+\begin_layout Standard
+Отсюда и получается сам алгоритм: до тех пор, пока есть нерассмотренные
+ пары многочленов, выбираем одну из них, строим для нее S-полином, редуцируем
+ его по множеству текущих образующих идеала и, если получился не ноль, то
+ добавляем результат к множеству образующих.
+ При каждом пополнении множества образующих увеличивается строго возрастающая
+ цепочка идеалов их старших мономов.
+\end_layout
+
+\begin_layout Standard
+Алгоритм F4 был предложен французским математиком Ж.-Ш.
+\begin_inset space ~
+\end_inset
+
+Фожером в 1999 году.
+ Основная идея алгоритма F4 по сравнению с классическим алгоритмом Бухбергера
+\begin_inset space ~
+\end_inset
+
+--- заменить шаг редукции S-полинома по множеству многочленов шагом редукции
+ 
+\shape italic
+множества
+\shape default
+ S-полиномов по множеству многочленов.
+ Это позволяет свести вычисление очередных результатов редукций S-полиномов
+ к линейно-алгебраической задаче: приведению большой разреженной матрицы
+ к ступенчатому виду.
+ Строки этой матрицы соответствуют многочленам редуцируемого множества 
+\begin_inset Formula $X$
+\end_inset
+
+ (S-полиномы) и того множества 
+\begin_inset Formula $Y$
+\end_inset
+
+, по которому производится редукция (все строки собираются вместе).
+ Поскольку операции над строками данной матрицы соответствуют линейным комбинаци
+ям исходных многочленов с коэффициентами в основном поле (нельзя брать комбинаци
+и с полиномиальными коэффициентами), то для моделирования полиномиальной
+ редукции приходится использовать так называемый 
+\shape italic
+препроцессинг
+\shape default
+.
+ Эта операция состоит в добавлении к множеству 
+\begin_inset Formula $X\cup Y$
+\end_inset
+
+ многочленов этого же множества, домноженных на подходящие мономы (если
+ старший моном такого домноженного многочлена потенциально может быть использова
+н при редукции).
+ Эта процедура выполняется сравнительно быстро.
+\end_layout
+
+\begin_layout Standard
+Алгоритм F4 предполагает некоторый произвол в выборе редуцируемого за один
+ раз на каждом шаге множества 
+\begin_inset Formula $X$
+\end_inset
+
+ S-полиномов.
+ Так, если на каждом шаге выбирается один S-полином, то он повторяет классически
+й алгоритм Бухбергера.
+ Другая крайность
+\begin_inset space ~
+\end_inset
+
+--- когда на очередном шаге редуцируется множество всех имеющихся S-полиномов.
+ Это тоже не очень эффективно из-за больших размеров матриц.
+ Автор алгоритма Ж.-Ш.
+\begin_inset space ~
+\end_inset
+
+Фожер предложил 
+\shape italic
+нормальную стратегию
+\shape default
+ выбора S-полиномов для редукции, согласно которой выбираются S-полиномы
+ с наименьшей степенью левых и правых частей.
+ Она дает хорошие эмпирические результаты для упорядочения 
+\begin_inset Formula ${\rm DegRevLex}$
+\end_inset
+
+ и ее выбор является естественным для однородных идеалов.
+\end_layout
+
+\begin_layout Standard
+Непосредственно матрица строится как объединение всех многочленов из 
+\begin_inset Formula $X\cup Y$
+\end_inset
+
+, представленных в виде её строк.
+ При этом столбцы матрицы соответствуют мономам, которые встречаются в коэффицие
+нтах многочленов, а элементами являются коэффициенты при соответствующих
+ мономах.
+ Большое время занимает приведение матрицы к ступенчатому виду (по которому
+ можно восстановить результаты редукции в виде многочленов), так как размеры
+ матрицы могут быть колоссально большими (из-за препроцессинга).
+ Смысл перехода к матричной записи и состоит в ускорении процесса редукции
+ за счёт того что при работе с числами, являющимися номерами столбцов, существен
+но быстрее происходит сравнение на равенство, чем для мономов, им соответствующи
+х, особенно это заметно для нетривиальных упорядочиваний.
+ Также уменьшение времени работы достигается за счёт того, что методы работы
+ с разреженными матрицами изучены намного лучше, чем методы работы с множеством
+ многочленов и могут быть реализованы эффективнее.
+ Поэтому время работы алгоритма F4 во многом зависит от того, какими методами
+ линейной алгебры матрица приводится к ступенчатому виду.
+ Эти методы подробно рассматриваются ниже.
+\end_layout
+
+\begin_layout Standard
+Как и в классическом алгоритме Бухбергера вычисления базиса Грёбнера, в
+ алгоритме F4 можно применять критерии Бухбергера для отсеивания заведомо
+ ненужных S-полиномов:
+\end_layout
+
+\begin_layout Enumerate
+если старшие мономы многочленов 
+\begin_inset Formula $f_{i}$
+\end_inset
+
+ и 
+\begin_inset Formula $f_{j}$
+\end_inset
+
+ взаимно просты, то 
+\begin_inset Formula $S(f_{i},f_{j})$
+\end_inset
+
+ редуцируется к нулю по множеству 
+\begin_inset Formula $\{f_{i},f_{j}\}$
+\end_inset
+
+ и эту пару рассматривать не нужно (первый критерий Бухбергера); 
+\end_layout
+
+\begin_layout Enumerate
+если существует тройка многочленов 
+\begin_inset Formula $f_{i},f_{j},f_{k}$
+\end_inset
+
+, такая, что 
+\begin_inset Formula $\HM(f_{k})\,\mid\,\LCM(\HM(f_{i}),\HM(f_{j}))$
+\end_inset
+
+ и пары 
+\begin_inset Formula $(f_{i},f_{k})$
+\end_inset
+
+ и 
+\begin_inset Formula $(f_{k},f_{j})$
+\end_inset
+
+ уже рассмотрены, то пару 
+\begin_inset Formula $(f_{i},f_{j})$
+\end_inset
+
+ можно не рассматривать (второй критерий Бухбергера).
+\end_layout
+
+\begin_layout Standard
+Эти два критерия существенно уменьшают количество рассматриваемых критических
+ пар и на порядки ускоряют алгоритм.
+\end_layout
+
+\begin_layout Section
+Реализация алгоритма F4
+\end_layout
+
+\begin_layout Subsection
+Псевдокод алгоритма F4
+\end_layout
+
+\begin_layout Standard
+Алгоритм F4, строящий по множеству многочленов 
+\family typewriter
+givenPolynomials
+\family default
+ его базис Грёбнера 
+\family typewriter
+result
+\family default
+, имеет вид:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "basicstyle={\small\ttfamily},extendedchars=true,keywordstyle={\normalfont\bfseries},morekeywords={while, do, end}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+(basis, sPairs) := Update({}, {}, givenPolynomials)
+\end_layout
+
+\begin_layout Plain Layout
+
+while sPairs != {} do
+\end_layout
+
+\begin_layout Plain Layout
+
+	selectedPairs := SelectSPairs(sPairs)
+\end_layout
+
+\begin_layout Plain Layout
+
+	sPairs := sPairs
+\backslash
+selectedPairs
+\end_layout
+
+\begin_layout Plain Layout
+
+	newElements := Reduce(selectedPairs, basis)
+\end_layout
+
+\begin_layout Plain Layout
+
+	(basis, sPairs) := Update(basis, sPairs, newElements)
+\end_layout
+
+\begin_layout Plain Layout
+
+end while
+\end_layout
+
+\begin_layout Plain Layout
+
+result := Autoreduce(basis)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Функция 
+\family typewriter
+Update: (basis, sPairs, newElements)→(newBasis, newSPairs)
+\family default
+ строит на основании текущего промежуточного базиса 
+\family typewriter
+basis
+\family default
+, множества нерассмотренных S-пар 
+\family typewriter
+sPairs
+\family default
+ и множества 
+\family typewriter
+newElements
+\family default
+ 
+\begin_inset Quotes fld
+\end_inset
+
+новых
+\begin_inset Quotes frd
+\end_inset
+
+ (не рассматривавшихся ранее) элементов идеала новый промежуточный базис
+ 
+\family typewriter
+newBasis
+\family default
+ и множество S-пар для рассмотрения (
+\family typewriter
+newSPairs
+\family default
+) с учетом критериев Бухбергера.
+\end_layout
+
+\begin_layout Subsection
+Входные данные и результат для процедуры 
+\family typewriter
+Reduce
+\end_layout
+
+\begin_layout Standard
+Наиболее трудоемкой частью алгоритма F4 с вычислительной точки зрения является
+ процедура редукции набора S-пар 
+\family typewriter
+selectedSPairs
+\family default
+ по множеству многочленов 
+\family typewriter
+basis
+\family default
+.
+ Про множество редукторов при этом дополнительно известно, что оно топ-авторедуц
+ировано (то есть никакие два элемента множества старших мономов многочленов
+ из 
+\family typewriter
+basis
+\family default
+ не делятся друг на друга), и что S-пары порождены тем же множеством 
+\family typewriter
+basis
+\family default
+, по которому происходит редукция.
+\end_layout
+
+\begin_layout Standard
+Сформулируем спецификацию процедуры 
+\family typewriter
+Reduce
+\family default
+ на алгебраическом языке.
+ Пусть 
+\begin_inset Formula $M=\texttt{selectedSPairs}$
+\end_inset
+
+ (можно считать, что это набор левых и правых частей S-полиномов) и 
+\begin_inset Formula $B=\texttt{basis}$
+\end_inset
+
+.
+ Положим 
+\begin_inset Formula ${\displaystyle Q=\max_{f\in M}\HM f}$
+\end_inset
+
+.
+ Рассмотрим множество 
+\begin_inset Formula \[
+\bar{B}=\{mb\,\mid\, m\in M,\; m\preccurlyeq Q,\; b\in B\},\]
+
+\end_inset
+
+представляющее собой базисные многочлены, домноженные на мономы.
+ Для каждого старшего монома элемента 
+\begin_inset Formula $\bar{B}$
+\end_inset
+
+ выберем каким-либо способом одного представителя из 
+\begin_inset Formula $\bar{B}$
+\end_inset
+
+ с таким же старшим мономом и составим из этих представителей множество
+ редукторов
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $R$
+\end_inset
+
+.
+ Таким образом, 
+\begin_inset Formula $\HM R=\HM\bar{B}$
+\end_inset
+
+ и старшие мономы различных элементов 
+\begin_inset Formula $R$
+\end_inset
+
+ не совпадают.
+ Далее в векторном пространстве 
+\begin_inset Formula $\langle M\cup R\rangle\subset F[x_{1},\ldots,x_{n}]$
+\end_inset
+
+ выберем базис 
+\begin_inset Formula $\{g_{i}\}$
+\end_inset
+
+ с условием, что все старшие мономы 
+\begin_inset Formula $\HM g_{i}$
+\end_inset
+
+ различны.
+ Выделим подмножество базисных элементов 
+\begin_inset Formula \[
+G=\{g_{i}\,\mid\,\HM g_{i}\text{ не делится ни на какой моном из множества }\HM\left(B\cup\{g_{j}\}_{j\ne i}\right)\}.\]
+
+\end_inset
+
+ Это и есть новые многочлены, которые следует добавить на очередном шаге
+ к промежуточному базису, которые должна вернуть процедура 
+\family typewriter
+Reduce
+\family default
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Итак, в алгоритме F4 в качестве редукторов используются только элементы
+ заранее подготовленного множества 
+\begin_inset Formula $R=\{mb\}$
+\end_inset
+
+, 
+\begin_inset Formula $b\in B$
+\end_inset
+
+, все старшие мономы которого различны.
+ После начала преобразований никакие элементы в него уже не добавляются.
+ Этот подход и называется препроцессингом.
+ Он делает информацию о мультипликативных свойствах мономов ненужной в основном
+ цикле преобразований.
+ Перед началом преобразований можно перенумеровать все встречающиеся мономы
+ по убыванию (чтобы старшим мономам соответствовали первые столбцы матрицы).
+ После получения результата мультипликативные свойства вновь становятся
+ нужны, поэтому перед выдачей ответа нужно провести обратную замену номеров
+ столбцов на мономы.
+ Выигрыш от замены мономов на номера состоит исключительно в повышении эффективн
+ости
+\begin_inset space ~
+\end_inset
+
+--- как с точки зрения памяти, так и с точки зрения производительности.
+\end_layout
+
+\begin_layout Subsection
+Возможности варьирования результата
+\end_layout
+
+\begin_layout Standard
+Вообще говоря, искомое множество 
+\begin_inset Formula $G$
+\end_inset
+
+ не единственно.
+ Это объясняется тем, что, хотя редуктор 
+\begin_inset Formula $mb$
+\end_inset
+
+ с заданным старшим мономом единственен в течение всей редукции, он может
+ быть изначально выбран разными способами.
+ Рассмотрим пример, где 
+\begin_inset Formula $M$
+\end_inset
+
+ соответствует единственной S-паре образованной первыми двумя многочленами
+ из 
+\begin_inset Formula $B$
+\end_inset
+
+ (порядок на мономах лексикографический, 
+\begin_inset Formula $a>b>c>d>e$
+\end_inset
+
+): 
+\begin_inset Formula \[
+B=\{a^{2}+1,\, ab+de,\, ad-de,\, ad-b,\, ae-1\},\; M=\{ade-b\}.\]
+
+\end_inset
+
+ В качестве редуктора можно взять как 
+\begin_inset Formula $e(ad-b)$
+\end_inset
+
+, так и 
+\begin_inset Formula $d(ae-1)$
+\end_inset
+
+.
+ В первом случае получится 
+\begin_inset Formula $be-b$
+\end_inset
+
+, во втором 
+\begin_inset Formula $-b+d$
+\end_inset
+
+.
+ В обоих случаях полученные многочлены не редуцируются дальше по 
+\begin_inset Formula $B$
+\end_inset
+
+, и, следовательно, уже образуют результирующие множество 
+\begin_inset Formula $G$
+\end_inset
+
+.
+ Из этого примера видно, что набор старших мономов 
+\begin_inset Formula $G$
+\end_inset
+
+ неоднозначен.
+ Более того, если бы в 
+\begin_inset Formula $B$
+\end_inset
+
+ был еще и многочлен 
+\begin_inset Formula $be-b$
+\end_inset
+
+, то в первом случае произошла бы редукция до нуля, в то время как во втором
+ редукции до 
+\begin_inset Formula $0$
+\end_inset
+
+ не произошло бы.
+ Таким образом, неоднозначно определено даже то, есть ли в 
+\begin_inset Formula $G$
+\end_inset
+
+ ненулевые элементы.
+\end_layout
+
+\begin_layout Standard
+Постановка задачи оставляет свободными 4 параметра: 
+\end_layout
+
+\begin_layout Itemize
+способ формирования множества редуцируемых многочленов 
+\begin_inset Formula $M$
+\end_inset
+
+ по набору S-пар; 
+\end_layout
+
+\begin_layout Itemize
+способ выбора множества редукторов 
+\begin_inset Formula $R$
+\end_inset
+
+; 
+\end_layout
+
+\begin_layout Itemize
+порядок, в котором происходят разрешенные преобразования; 
+\end_layout
+
+\begin_layout Itemize
+проведение дополнительных преобразований (например, авторедукции).
+ 
+\end_layout
+
+\begin_layout Standard
+Рассмотрим их подробнее.
+\end_layout
+
+\begin_layout Subsubsection
+Формирование множества редуцируемых многочленов 
+\begin_inset Formula $M$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Частным случаем множества 
+\begin_inset Formula $M$
+\end_inset
+
+ является множество 
+\begin_inset Formula $M_{0}$
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+--- просто набор разностей левых и правых частей S-пар.
+ В общем случае 
+\begin_inset Formula $M$
+\end_inset
+
+ обязано обладать следующими двумя свойствами: 
+\end_layout
+
+\begin_layout Itemize
+все элементы 
+\begin_inset Formula $M_{0}$
+\end_inset
+
+ выражаются через элементы 
+\begin_inset Formula $M$
+\end_inset
+
+ с помощью линейных преобразований; 
+\end_layout
+
+\begin_layout Itemize
+все многочлены из 
+\begin_inset Formula $M$
+\end_inset
+
+ принадлежат идеалу, порожденному 
+\begin_inset Formula $B$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Первое условие необходимо для того, чтобы результирующее 
+\begin_inset Formula $G$
+\end_inset
+
+ содержало те многочлены (с точностью до линейных преобразований), которые
+ появились бы, если бы вместо 
+\begin_inset Formula $M$
+\end_inset
+
+ рассматривалось 
+\begin_inset Formula $M_{0}$
+\end_inset
+
+.
+ Второе
+\begin_inset space ~
+\end_inset
+
+--- для того, чтобы все полученные после редукции многочлены также принадлежали
+ идеалу, порожденному 
+\begin_inset Formula $B$
+\end_inset
+
+.
+ На практике в качестве 
+\begin_inset Formula $M$
+\end_inset
+
+ берется или множество разностей правых и левых частей 
+\begin_inset Formula $M_{0}$
+\end_inset
+
+, или же в два раза большее множество, содержащее отдельно левые и отдельно
+ правые части S-пар.
+ Далее, при сравнительном анализе этих двух способов, будет показано, что
+ ни один из них не имеет решающего преимущества по времени работы.
+\end_layout
+
+\begin_layout Subsubsection
+Способ выбора множества редукторов 
+\begin_inset Formula $R$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Можно использовать два подхода к выбору 
+\begin_inset Formula $R$
+\end_inset
+
+.
+ Первый подход
+\begin_inset space ~
+\end_inset
+
+--- добавлять в 
+\begin_inset Formula $R$
+\end_inset
+
+ новые элементы (если подходящие многочлены существуют) всякий раз, когда
+ в нем не находится редуктора с заданным старшим мономом (то есть, добавлять
+ редукторы по мере необходимости).
+ Так работает классический алгоритм Бухбергера.
+ Второй подход
+\begin_inset space ~
+\end_inset
+
+--- заранее вычислять и помещать в 
+\begin_inset Formula $R$
+\end_inset
+
+ множество всех многочленов, которые могут потенциально пригодиться при
+ редукции, то есть проводить препроцессинг.
+ Этот подход применяется в классическом алгоритме F4.
+ В обоих случаях, если в 
+\begin_inset Formula $R$
+\end_inset
+
+ уже есть многочлен с рассматриваемым старшим мономом, то для редукции его
+ и следует использовать.
+\end_layout
+
+\begin_layout Standard
+Фиксирование множества редукторов 
+\begin_inset Formula $R$
+\end_inset
+
+ позволяет практически полностью избавиться от неоднозначности.
+ В самом деле, для фиксированных множеств 
+\begin_inset Formula $M$
+\end_inset
+
+ и 
+\begin_inset Formula $R$
+\end_inset
+
+ и количество многочленов, полученных в результате редукции, и их старшие
+ мономы определены однозначно.
+ В свою очередь, при фиксированном 
+\begin_inset Formula $R$
+\end_inset
+
+ выбором 
+\begin_inset Formula $M$
+\end_inset
+
+ можно пытаться получить в результате редукции некоторые дополнительные
+ многочлены по сравнению с теми, что получились бы при взятии 
+\begin_inset Formula $M_{0}$
+\end_inset
+
+.
+ Поскольку над элементами множества 
+\begin_inset Formula $M$
+\end_inset
+
+ разрешены линейные преобразования, то существенную роль с точки зрения
+ возможного результата играет не само 
+\begin_inset Formula $M$
+\end_inset
+
+, а лишь его линейная оболочка.
+ Но на объем вычислений может влиять и конкретный выбранный набор векторов,
+ порождающий векторное пространство 
+\begin_inset Formula $\langle M\rangle$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Порядок преобразований и авторедукция
+\end_layout
+
+\begin_layout Standard
+При заданных 
+\begin_inset Formula $M$
+\end_inset
+
+ и 
+\begin_inset Formula $R$
+\end_inset
+
+ на набор старших мономов результата уже ничего не влияет, и все преобразования
+ имеют вид 
+\begin_inset Formula $a\leftarrow a+mb$
+\end_inset
+
+, где 
+\begin_inset Formula $a$
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+--- многочлен из преобразуемого множества, 
+\begin_inset Formula $m$
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+--- элемент поля, а 
+\begin_inset Formula $b$
+\end_inset
+
+ может быть как из преобразуемого множества 
+\begin_inset Formula $M$
+\end_inset
+
+, так и из 
+\begin_inset Formula $R$
+\end_inset
+
+.
+ Хотя результат от порядка проведения этих преобразований существенно не
+ зависит, последовательность выполнения операций может существенно влиять
+ на объем вычислений из-за большой разреженности.
+ Единственное, что все еще неоднозначно определено в результате,
+\begin_inset space ~
+\end_inset
+
+--- это мономы многочлена, следующие после ведущего (мономы 
+\begin_inset Quotes ard
+\end_inset
+
+хвоста
+\begin_inset Quotes ald
+\end_inset
+
+).
+ Могут существовать не старшие мономы, совпадающие с ведущими элементами
+ какого-то другого многочлена.
+ Они могут быть редуцированы (обнулён коэффициент) с помощью вычитания этого
+ многочлена.
+ Такое преобразование называется 
+\shape italic
+авторедукцией
+\shape default
+.
+ В зависимости от порядка проводимых операций, часть авторедукций может
+ быть уже неявно проведена (отсюда и возникает несущественная неоднозначность
+ результата).
+ Можно дополнительно применить авторедукции к множеству, которое уже удовлетворя
+ет требованию на результат о неделимости старших мономов 
+\begin_inset Formula $G$
+\end_inset
+
+ на старшие мономы 
+\begin_inset Formula $B$
+\end_inset
+
+.
+ Если провести все возможные авторедукции элементов 
+\begin_inset Formula $M$
+\end_inset
+
+ по элементам 
+\begin_inset Formula $M$
+\end_inset
+
+ и 
+\begin_inset Formula $R$
+\end_inset
+
+ (
+\shape italic
+полную авторедукцию
+\shape default
+), то результат будет удовлетворять усиленному требованию
+\begin_inset space ~
+\end_inset
+
+--- теперь 
+\series bold
+все
+\series default
+ его мономы не будут делиться ни на старшие мономы 
+\begin_inset Formula $B$
+\end_inset
+
+, ни на старшие мономы результата.
+ Такой 
+\shape italic
+авторедуцированный вид
+\shape default
+ будет строго единственен при фиксированных множествах 
+\begin_inset Formula $M$
+\end_inset
+
+ и 
+\begin_inset Formula $R$
+\end_inset
+
+.
+ Смысл проведения авторедукций состоит в том, что, несмотря на увеличение
+ объема вычислений на данном шаге, другой вид младших мономов результата
+ может существенно снизить объем вычислений на последующих шагах F4.
+\end_layout
+
+\begin_layout Subsection
+Сведение задачи к преобразованию матрицы
+\end_layout
+
+\begin_layout Standard
+Поскольку, как было отмечено выше, при редукции мультипликативные свойства
+ мономов не требуются, после замены мономов на их номера получается структура,
+ идентичная матрице.
+ Номер монома при коэффициенте совпадает с номером столбца в соответствующей
+ матрице.
+ Так как старшие мономы должны соответствовать меньшим номерам столбцов
+ в матрице, перед ее построением необходимо построить соответствие между
+ мономами и номерами столбцов матрицы, таким образом, чтобы порядок на мономах
+ соответствовал обратному порядку столбцов.
+ Для этого строится упорядоченное множество мономов всех многочленов из
+ 
+\begin_inset Formula $R$
+\end_inset
+
+ и 
+\begin_inset Formula $M$
+\end_inset
+
+, в соответствии с которым производится замена мономов на номера столбцов
+ при преобразование многочленов в матрицу.
+ Оно сохраняется до окончания редукции матрицы, поскольку будет использоваться
+ и для обратного преобразования.
+ Исходная задача редукции многочленов теперь свелась к задаче редукции матрицы
+ 
+\begin_inset Formula $M$
+\end_inset
+
+ (соответствующей S-парам) по матрице 
+\begin_inset Formula $R$
+\end_inset
+
+ (соответствующей редукторам).
+\end_layout
+
+\begin_layout Standard
+Благодаря тому, что по построению все многочлены множества 
+\begin_inset Formula $R$
+\end_inset
+
+ имеют различные старшие мономы (то есть матрица 
+\begin_inset Formula $R$
+\end_inset
+
+ имеет ступенчатый вид), эта задача эквивалентна нахождению ступенчатого
+ вида для объединенной матрицы, составленной из строк 
+\begin_inset Formula $M$
+\end_inset
+
+ и 
+\begin_inset Formula $R$
+\end_inset
+
+.
+ Из полученного результата нужно выкинуть строки, у которых старшие мономы
+ совпадают со старшими мономами 
+\begin_inset Formula $R$
+\end_inset
+
+, так как эти строки результата соответствуют исходной 
+\begin_inset Formula $R$
+\end_inset
+
+, результат редукции которой интереса не представляет.
+ Заметим, что благодаря предварительному препроцессингу в окончательном
+ результате вычислений не могут появиться строки, старший моном которых
+ делится на какой-то старший моном редуктора из 
+\begin_inset Formula $R$
+\end_inset
+
+, но не равен никакому старшему моному редуктора.
+\end_layout
+
+\begin_layout Standard
+В итоге задача упростилась до нахождения ступенчатого вида одной матрицы
+ (объединения 
+\begin_inset Formula $R$
+\end_inset
+
+ и 
+\begin_inset Formula $M$
+\end_inset
+
+).
+ Поскольку в исходных многочленах присутствовали далеко не все мономы, эта
+ матрица обладает большой разреженностью
+\begin_inset space ~
+\end_inset
+
+--- большинство ее элементов равно
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $0$
+\end_inset
+
+.
+ На практике очень часто заполнение составляет порядка 
+\begin_inset Formula $0.3-3\%$
+\end_inset
+
+, хотя в отдельных случаях оно падает до 
+\begin_inset Formula $0.1\%$
+\end_inset
+
+ или даже увеличивается до 
+\begin_inset Formula $20\%$
+\end_inset
+
+.
+ Для эффективного использования такой большой разреженности требуется учитывать
+ ее при хранении строк и в реализации метода Гаусса.
+ Представление строк реализовано по аналогии с многочленами с заменой монома
+ на номер столбца: строка является массивом, содержащим только ненулевые
+ коэффициенты и соответствующие им номера столбцов.
+ Элементы массива упорядочены по возрастанию номеров столбцов, так чтобы
+ элемент с наименьшим номером (ведущий) оказался в начале.
+ В этом случае доступ к нему будет наиболее эффективен, что важно, поскольку
+ ведущий элемент строк при работе алгоритма редукции просматривается чаще
+ остальных.
+\end_layout
+
+\begin_layout Standard
+В итоге псевдокод реализации функции редукции множества многочленов 
+\family typewriter
+Reduce
+\family default
+, реализованной на основе функции редукции матриц 
+\family typewriter
+ReduceMatrix(matrix)
+\family default
+ имеет вид:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "basicstyle={\footnotesize\ttfamily},extendedchars=true,keywordstyle={\normalfont\bfseries},morekeywords={while, if, then, function, return, mod, not }"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+function Reduce(selectedSPairs, basis) {
+\end_layout
+
+\begin_layout Plain Layout
+
+	unitedPolysToReduce := Preprocess(selectedSPairs, basis)
+\end_layout
+
+\begin_layout Plain Layout
+
+	matrix := PolyToMatrix(unitedPolysToReduce)
+\end_layout
+
+\begin_layout Plain Layout
+
+	reducedMatrix := ReduceMatrix(matrix)
+\end_layout
+
+\begin_layout Plain Layout
+
+	newElemetns := MatrixToPoly(reducedMatrix)
+\end_layout
+
+\begin_layout Plain Layout
+
+	return SelectPolysNewHMs(newElements, unitedPolysToReduce)
+\end_layout
+
+\begin_layout Plain Layout
+
+} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Кроме 
+\family typewriter
+ReduceMatrix
+\family default
+, подробно описанной ниже, в псевдокоде использованы следующие процедуры:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+Preprocess(selectedSPairs, basis)
+\family default
+ --- возвращает набор многочленов, полученных из 
+\family typewriter
+selectedSPairs
+\family default
+ путём дополнения их домноженными на мономы многочленами из 
+\family typewriter
+basis
+\family default
+, добавленными в препроцессинге .
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+PolyToMatrix(polynomSet)
+\family default
+ --- преобразует множество многочленов в соответствующую ему матрицу (заменяет
+ мономы на номера столбцов и сохраняет соответствие между ними).
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+MatrixToPoly(matrix)
+\family default
+ --- преобразует матрицу в многочлены, заменяя номера столбцов на мономы
+ по сохранённому ранее соответствию.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+SelectPolysNewHMs(newPolynomSet, oldPolynomSet)
+\family default
+ --- возвращает те многочлены из 
+\family typewriter
+newPolynomSet
+\family default
+, старшие мономы которых не делятся ни на один старших мономов 
+\family typewriter
+oldPolynomSet
+\family default
+.
+\end_layout
+
+\begin_layout Section
+Идеи распараллеливания и реализация
+\end_layout
+
+\begin_layout Standard
+Непосредственно распараллеливание применяется к задаче нахождения ступенчатого
+ вида одной матрицы, поскольку она занимает основную часть времени работы
+ последовательной версии алгоритма.
+ В основе алгоритма лежит записанный в блочном виде метод Гаусса.
+ Однако не все вариации его распараллеливания могут быть применены к данной
+ задаче, поскольку исходная матрица не является ни квадратной ни невырожденной,
+ и имеет строго определённый порядок столбцов, индуцированный порядком на
+ мономах, который не позволяет проводить преобразования столбцов.
+ Изначально происходит равномерное распределение набора строк матрицы по
+ процессорам путем разделения всего набора строк на блоки и рассылки их
+ на разные процессоры.
+ Далее применяется блочный метод Гаусса, работа в котором идет в терминах
+ блоков строк, и операции редукции блоков, находящихся на разных процессорах,
+ выполняются параллельно.
+ Операция редукции одного блока по другому оптимизирована с учетом большой
+ разреженности матриц.
+ 
+\end_layout
+
+\begin_layout Standard
+Из-за разреженности и наличия большого числа строк с различными ведущими
+ столбцами, большое внимание было уделено достижению относительно равномерной
+ загрузки процессоров при выполнении алгоритма
+\begin_inset space ~
+\end_inset
+
+--- это одно из необходимых требований для достижения эффективности распараллели
+вания.
+ Равномерность загрузки определяется двумя основными факторами: близким
+ числом строк на разных процессорах (оно может меняться в процессе работы
+ за счёт обнуления некоторых строк, так как изначально матрица вырождена)
+ и равномерным распределением строк по процессорам с точки зрения номеров
+ ведущих элементов (это особенность разреженного случая).
+ Попытки применения эвристик для балансировки в процессе работы алгоритма
+ показали, что подобные методы хоть и дают большую равномерность распределения,
+ однако временные затраты на синхронизацию для выявления необходимой перебаланси
+ровки приводят лишь к увеличению общего времени.
+ Поэтому используется алгоритм, при котором все разделения строк на блоки
+ и по процессорам рассчитываются единожды до начала редукции.
+ Все последующие шаги проводятся строго в соответствии с этим разделением,
+ а в процессе вычислений перебалансировки между процессорами не проводятся.
+ Для того, чтобы при этом не происходило потери равномерности в процессе
+ работы, применяется следующее распределение строк матрицы: множество всех
+ строк матрицы, отсортированных по номеру столбца ведущего элемента, разделяется
+ на равные по числу строк блоки.
+ Эти блоки рассылаются по всем процессорам, с циклическим перебором номера
+ процессора-получателя, то есть процессор с номером 
+\begin_inset Formula $k$
+\end_inset
+
+ (при 
+\begin_inset Formula $n$
+\end_inset
+
+ процессорах всего) получает блоки, номера которых равны 
+\begin_inset Formula $k$
+\end_inset
+
+ по модулю 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ Разделение должно быть таким, чтобы в каждом блоке оказалось достаточно
+ много строк (и была получена эффективность от блочных операций), а также,
+ одновременно с этим, самих блоков должно быть достаточно много (чтобы время
+ обработки одного шага на процессорах, содержащих на 1 блок больше, чем
+ другие, отличалось незначительно и доля времени простоя, вызванного разным
+ числом блоков на процессорах, была невелика).
+ Именно этим объясняется то, что хорошие коэффициенты распараллеливания
+ достигаются начиная с матриц, содержащих несколько тысяч строк.
+\end_layout
+
+\begin_layout Standard
+Кроме того, несмотря на свою разреженность, матрицы, возникающие при вычислении
+ базисов Грёбнера, имеют особую структуру, полученную в результате специальной
+ процедуры формирования матрицы
+\begin_inset space ~
+\end_inset
+
+--- препроцессинга.
+ Так, приведение случайной матрицы к ступенчатому виду с таким же коэффициентом
+ разреженности может оказаться в среднем эффективней, чем приведение матрицы,
+ реально появившейся в алгоритме.
+ Поэтому после стадии рассылки блоков все вычисления ведутся уже строго
+ в терминах этих блоков
+\begin_inset space ~
+\end_inset
+
+--- то есть используется классическая блочная запись метода Гаусса с тем
+ отличием, что разбиение на блоки зафиксировано изначально на стадии рассылки
+ и не меняется в процессе работы
+\begin_inset space ~
+\end_inset
+
+--- перераспределения строк не происходит не только между процессорами,
+ но и между блоками на одном процессоре.
+ Иначе, в пределах одного блока могли бы возникнуть строки с сильно различающими
+ся ведущими столбцами, что привело бы к потере равномерности после редукции
+ по нему.
+ Если какие-то строки блока обнулились в процессе редукции, то они выкидываются,
+ а число строк в блоке уменьшается (вплоть до 0).
+ Заимствования из других блоков того же процессора никогда не происходит.
+ В остальном алгоритм соответствует блочно-параллельному методу Гаусса:
+ на каждом шаге выполняются одновременно операции редукции блоков, находящихся
+ на разных процессорах по одному и тому же заранее выбранному и переданному
+ на все процессоры авторедуцированному блоку.
+\end_layout
+
+\begin_layout Standard
+Приведем в самом общем виде псевдокод реализованного блочно-параллельного
+ алгоритма нахождения ступенчатого вида разреженной матрицы.
+\end_layout
+
+\begin_layout Standard
+В алгоритме используются следующий переменные: 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+Finished
+\family default
+ --- множество уже отредуцированных строк 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+Processing
+\family default
+ --- множество блоков строк, находящихся в обработке 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+Current_block
+\family default
+ --- блок строк, по которому производится редукция на данном шаге.
+ Это множество совпадает на всех процессорах после вызова функции 
+\family typewriter
+send_set_to_all_from_processor
+\family default
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+Current_processor
+\family default
+ --- процессор, содержащий блок, по которому ведётся редукция на данной
+ итерации.
+ Значение совпадает на всех процессорах, поскольку переменная одинаково
+ меняется на каждой итерации цикла.
+ 
+\end_layout
+
+\begin_layout Standard
+Также для взаимодействия используются следующие коммуникационные функции:
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+this_processor()
+\family default
+ --- возвращает номер процессора на котором она вызвана (т.е.
+ 
+\begin_inset Quotes ard
+\end_inset
+
+этот
+\begin_inset Quotes ald
+\end_inset
+
+ процессор) в множестве всех процессоров, используемых в алгоритме (процессоры
+ нумеруются последовательно, начиная с 0) 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+total_processors()
+\family default
+ --- суммарное число процессоров в системе 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+is_empty_all_processors(set)
+\family default
+ --- булева синхронная функция, которая вызывается одновременно на всех
+ процессорах.
+ Её возвращаемое значение также везде одинаково --- она даёт Истину тогда,
+ и только тогда, когда на все множества переданные ей в качестве аргумента
+ на всех процессорах пусты.
+ Если хоть на одном процессоре 
+\family typewriter
+set
+\family default
+ будет не пусто, функция вернёт Ложь на всех 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+send_set_to_all_from_processor(set, processor_sender)
+\family default
+ --- синхронная процедура, которая, будучи вызвана одновременно на всех
+ процессорах с одинаковым аргументом 
+\family typewriter
+processor_sender
+\family default
+, запишет в переменную 
+\family typewriter
+set
+\family default
+ значение, содержащееся в этой переменной на 
+\family typewriter
+processor_sender
+\family default
+.
+ То есть после вызова этой процедуры значение переменной 
+\family typewriter
+set
+\family default
+ на всех процессорах будет одинаково 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+unite_all_processors(set)
+\family default
+ --- синхронная функция, возвращающая на каждом из процессорах множество,
+ являющееся объединением аргументов 
+\family typewriter
+set
+\family default
+ по всем процессорам 
+\end_layout
+
+\begin_layout Standard
+Прочие процедуры, не являющиеся коммуникационными (выполняются на каждом
+ из процессоров независимо): 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+select_line_blocks_for_processor(matrix, processor)
+\family default
+ --- возвращает подмножество блоков строк 
+\family typewriter
+matrix
+\family default
+, попадающих на 
+\family typewriter
+processor
+\family default
+ при начальном разделении 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+take_line_block(set_of_line_blocks)
+\family default
+ --- возвращает блок строк, содержащийся в 
+\family typewriter
+set_of_line_blocks
+\family default
+, убирая его оттуда 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+full_reduce(matrix)
+\family default
+ --- производит приведение матрицы к сильно ступенчатому виду (последовательная
+ версия) 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+reduce_matrix_by_matrix(matrix_to_reduce, reductor)
+\family default
+ --- производит редукцию всех строк матрицы 
+\family typewriter
+matrix_to_reduce
+\family default
+ по всем строкам 
+\family typewriter
+reductor
+\family default
+ (последовательная версия, учитывающая разреженность) 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+add_line_block_to_set(block, set_of_line_blocks)
+\family default
+ --- добавляет блок строк к заданному множеству.
+ 
+\end_layout
+
+\begin_layout Standard
+Следующий код параллельно исполняется на всех процессорах с одним и тем
+ же аргументом 
+\family typewriter
+Matrix
+\family default
+, согласование поведения происходит за счёт вызываемых коммуникационных
+ процедур:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "basicstyle={\footnotesize\ttfamily},extendedchars=true,keywordstyle={\normalfont\bfseries},morekeywords={while, if, then, function, return, mod, not }"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+function ReduceMatrix(Matrix) {
+\end_layout
+
+\begin_layout Plain Layout
+
+ 	Processing := select_line_blocks_for_processor (Matrix, this_processor())
+\end_layout
+
+\begin_layout Plain Layout
+
+ 	Finished := []
+\end_layout
+
+\begin_layout Plain Layout
+
+ 	Current_processor := 0
+\end_layout
+
+\begin_layout Plain Layout
+
+ 	while not is_empty_all_processors(Processing) {
+\end_layout
+
+\begin_layout Plain Layout
+
+ 		if this_processor() == Current_processor then {
+\end_layout
+
+\begin_layout Plain Layout
+
+ 			Current_block := take_line_block(Processing)
+\end_layout
+
+\begin_layout Plain Layout
+
+ 			full_reduce(Current_block)
+\end_layout
+
+\begin_layout Plain Layout
+
+ 		}
+\end_layout
+
+\begin_layout Plain Layout
+
+ 		send_set_to_all_from_processor(Current_block, Current_processor)
+\end_layout
+
+\begin_layout Plain Layout
+
+ 		reduce_matrix_by_matrix(Processing, Current_block)
+\end_layout
+
+\begin_layout Plain Layout
+
+ 		if this_processor() == Current_processor then {
+\end_layout
+
+\begin_layout Plain Layout
+
+ 			add_line_block_to_set(Current_block, Finished)
+\end_layout
+
+\begin_layout Plain Layout
+
+ 		}
+\end_layout
+
+\begin_layout Plain Layout
+
+ 		Current_processor := (Current_processor + 1) mod (total_processors())
+\end_layout
+
+\begin_layout Plain Layout
+
+ 	}
+\end_layout
+
+\begin_layout Plain Layout
+
+ 	return unite_all_processors(Finished)
+\end_layout
+
+\begin_layout Plain Layout
+
+ } 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Была создана библиотека программных средств F4mpi (на языке C++ с использованием
+ интерфейса MPI), позволяющая производить параллельные матричные вычисления
+ базисов Грёбнера при различных порядках на мономах над конечными полями.
+ Также алгоритм имеет дополнительные параметры настройки, такие как: указание
+ стратегии выбора редуцирующих строк, явное задание размеров блоков при
+ редукции матриц и набор параметров, отвечающих за настройку MPI-подсистемы.
+ Библиотека была протестирована на многопроцессорных кластерах с распределенной
+ памятью.
+ В качестве тестовых примеров использовались стандартные системы из набора
+ PoSSo и ряд систем, возникающих в прикладных задачах.
+ Некоторые результаты тестирования приведены в таблицах.
+ В каждой ячейке указано общее время работы программы (в секундах), время
+ приведения матриц к ступенчатому виду и общее ускорение относительно запуска
+ на одном процессоре.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="9" columns="5">
+<features>
+<column alignment="left" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Пример 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1 процессор 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2 процессора 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3 процессора 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4 процессора 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Cyclic8 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+222/199 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+136/113 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+96/73 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+81/58 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(поле 
+\begin_inset Formula $F_{31013}$
+\end_inset
+
+) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.63 раз 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.30 раз 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.72 раз 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Eco12 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+366/336 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+207/181 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+116/90 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+93/67 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(поле 
+\begin_inset Formula $F_{2}$
+\end_inset
+
+) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.76 раз 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.14 раз 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.92 раз 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Hf855 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+117/106 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+63/53 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+31/20 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+27/16 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(поле 
+\begin_inset Formula $F_{31013}$
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.83 раз 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.74 раз 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.26 раз 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Noon8 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2185/2071 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1369/1296 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+649/587 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+387/325 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(поле 
+\begin_inset Formula $F_{31013}$
+\end_inset
+
+) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.60 раз 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.36 раз 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.64 раз 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="6">
+<features>
+<column alignment="left" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Пример 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+24 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+48
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+процессор 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+процессоров 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+процессоров 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+процессора 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+процессоров 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Eco12 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1350/1249 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+208/147 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+175/116 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+154/96 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+137/80
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(поле 
+\begin_inset Formula $F_{31013}$
+\end_inset
+
+) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6.48 раз 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7.71 раз 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8.72 раз 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9.83 раз
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Katsura10 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+516/492 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+92/67 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+79/55 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+72/48 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+69/45
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(поле 
+\begin_inset Formula $F_{31013}$
+\end_inset
+
+) 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5.59 раз 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6.46 раз 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7.07 раз 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7.42 раз 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Noon8 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3299/3247 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+357/306 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+255/204 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+204/152 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+153/101
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(поле 
+\begin_inset Formula $F_{31013}$
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9.22 раз 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12.90 раз 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16.13 раз 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+21.44 раз
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Теоретический анализ эффективности вычислений
+\end_layout
+
+\begin_layout Subsection
+Анализ структуры матриц
+\end_layout
+
+\begin_layout Standard
+Существует как минимум два способа формирования набора строк матрицы 
+\begin_inset Formula $M$
+\end_inset
+
+ из множества S-пар: можно добавлять в матрицу отдельно правую и левую части
+ S-пары, или же только их разность.
+ В первом случае в матрице будет в два раза больше строк, что может несколько
+ увеличить объем вычислений при проведений редукций не по ведущему столбцу.
+ Полученные после редукции матрицы строки, старший моном которых совпадает
+ с изначальным, будут отброшены, поскольку он делится на старший моном исходного
+ многочлена.
+ В случае добавления отдельно правых и левых частей S-пары отброшенных строк
+ может оказаться почти половина
+\begin_inset space ~
+\end_inset
+
+--- отредуцироваться по строкам, добавленным в препроцессинге, они не смогут
+ (потому что там не будет добавлено строк с таким ведущим элементом, см.
+\begin_inset space ~
+\end_inset
+
+ниже).
+ Редукция же друг по другу произойдет только в случае, если у двух различных
+ S-пар будут одинаковые 
+\begin_inset Formula $\LCM$
+\end_inset
+
+ старших мономов элементов пары (назовем его старшим мономом S-пары).
+ За счет этого же, при добавлении частей S-пары отдельно, после редукции
+ могут быть получены строки, которые не получились бы при редукции только
+ разностей (эти строки были бы все равно получены на одной из следующих/предыдущ
+их итераций основного цикла F4, когда рассматривалась бы соответствующая
+ перекрестная S-пара).
+\end_layout
+
+\begin_layout Standard
+Таким образом, эффективность добавления частей S-пары отдельно или в виде
+ разности зависит от того, насколько много S-пар с одинаковыми старшими
+ мономами
+\begin_inset space ~
+\end_inset
+
+--- если их нет, то быстрее будет добавлять сразу разности.
+ Отдельные части S-пар почти ничего нового в результаты редукции не добавят.
+ Если же таких пар много, то может иметь смысл добавлять отдельно левые
+ и правые части.
+ Количество таких пар с равными старшими мономами зависит от способа выбора
+ подмножества S-пар для каждой итерации цикла F4 и от конкретной задачи.
+\end_layout
+
+\begin_layout Standard
+Поясним, почему в случае добавления отдельно правой и левой частей S-пары
+ в препроцессинге не следует добавлять в 
+\begin_inset Formula $R$
+\end_inset
+
+ строку, со старшим мономом, равным старшему моному S-пары.
+ Сами эти части уже имеют вид строк добавляемых в препроцессинге: они являются
+ исходными многочленами промежуточного базиса, домноженными на некоторый
+ моном.
+ Добавлять те же самые строки уже не как редуцируемые строки из 
+\begin_inset Formula $M$
+\end_inset
+
+, а как редукторы из 
+\begin_inset Formula $R$
+\end_inset
+
+ не имеет смысла.
+\end_layout
+
+\begin_layout Standard
+После редукции интересны только те строки, старшие мономы которых не делятся
+ ни на какие старшие мономы многочленов промежуточного базиса.
+ Благодаря тому, что все строки, добавленные в препроцессинге, имеют различные
+ старшие мономы, можно проводить редукцию так, чтобы столбец их ведущего
+ элемента не менялся: единственный случай, когда при редукции может поменяться
+ ведущий элемент какой-то строки
+\begin_inset space ~
+\end_inset
+
+--- это редукция одной строки по другой с тем же старшим мономом.
+ Но в таком случае хотя бы одна из этих строк будет из 
+\begin_inset Formula $M$
+\end_inset
+
+, поэтому редукцию можно провести, заменив строку из 
+\begin_inset Formula $M$
+\end_inset
+
+ на разность двух строк с нужным коэффициентом, а строку, добавленную в
+ препроцессинге (то есть строку из 
+\begin_inset Formula $R$
+\end_inset
+
+), оставить.
+ При таком проведении редукции матрицы все старшие мономы строк 
+\begin_inset Formula $R$
+\end_inset
+
+ сохранятся, то есть и после редукции их старшие мономы будут делиться на
+ старшие мономы некоторого многочлена исходного множества.
+ Поэтому их окончательный вид (они все же могут измениться при редукции
+ по элементам не ведущего столбца) не влияет на результат и его вычислять
+ необязательно.
+ Также при параллельной реализации редукции в конце алгоритма измененную
+ матрицу 
+\begin_inset Formula $R$
+\end_inset
+
+ не нужно пересылать ни на какие процессоры (даже на те, где будет обрабатыватьс
+я ответ).
+\end_layout
+
+\begin_layout Standard
+Для строк матрицы 
+\begin_inset Formula $M$
+\end_inset
+
+, построенных не в виде произведения исходного многочлена на моном, после
+ редукции возможно две ситуации: такая строка может или редуцироваться до
+ нуля (и, соответственно, должна быть проигнорирована) или же остаются ненулевые
+ элементы.
+ При этом ведущий элемент не будет делиться ни на один из старших мономов
+ исходного множества.
+ Если бы он делился, то среди строк, добавленных в препроцессинге, нашлась
+ бы и строка с таким же старшим мономом по которой он был бы отредуцирован
+ (что невозможно, поскольку мы рассматриваем строку, полученную после редукции
+ по 
+\begin_inset Formula $R$
+\end_inset
+
+).
+ Таким образом, если результат редукции подобных строк оказывается ненулевым,
+ то он гарантированно попадает в результирующее множество, и проводить проверку
+ старшего монома на делимость на имеющиеся не нужно.
+ Если при построении первой части матрицы из S-пар в матрицу добавлялись
+ разности, то все строки 
+\begin_inset Formula $M$
+\end_inset
+
+ относятся именно к такому типу.
+ Тогда результат редукции будет делиться на те же 
+\begin_inset Formula $2$
+\end_inset
+
+ части 
+\begin_inset Formula $M$
+\end_inset
+
+ и 
+\begin_inset Formula $R$
+\end_inset
+
+, что и исходная матрица
+\begin_inset space ~
+\end_inset
+
+--- всю первую часть (кроме получившихся нулей) следует добавить в промежуточное
+ множество, а всю вторую часть
+\begin_inset space ~
+\end_inset
+
+--- проигнорировать.
+\end_layout
+
+\begin_layout Standard
+Получается, что добавление S-пар по частям имеет единственное преимущество:
+ возможно появление некоторых дополнительных многочленов в результате.
+ Его недостаток же состоит в том, что при этом значительно увеличивается
+ количество обрабатываемой информации: в исходной матрице 
+\begin_inset Formula $M$
+\end_inset
+
+ будет больше строк и часть результата будет отброшена, поскольку будет
+ иметь старшие мономы, делящиеся на старшие мономы уже присутствующих в
+ промежуточном базисе многочленов.
+ Преимущество проявляется только при совпадении старших мономов частей различных
+ S-пар (довольно редко бывает на реальных задачах, особенно для многочленов
+ от большого числа переменных), а вот почти что удвоение количества обрабатываем
+ой информации (часть из которой в результате выкидывается) отрицательно
+ сказывается на общем времени вычисления результата редукции.
+ Поэтому на практике немного более эффективным оказывается построение матрицы
+ 
+\begin_inset Formula $M$
+\end_inset
+
+ уже из разностей правых и левых частей S-пар, а не взятие частей по отдельности.
+\end_layout
+
+\begin_layout Subsection
+Эффективность авторедукции строк матрицы 
+\begin_inset Formula $R$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Строки, добавленные в матрицу 
+\begin_inset Formula $R$
+\end_inset
+
+ в результате препроцессинга, в свою очередь можно разделить на 2 группы:
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $A$
+\end_inset
+
+: строки, у которых старший моном встречается среди мономов матрицы 
+\begin_inset Formula $M$
+\end_inset
+
+ (полученной из S-пар); 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $B$
+\end_inset
+
+: строки, старший моном которых встречается в 
+\begin_inset Formula $R$
+\end_inset
+
+, но не в 
+\begin_inset Formula $M$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Отличия между этими группами проявляются при проведении авторедукции строк
+ 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Для оценки эффективности временных затрат на авторедукцию положим, что прибавлен
+ие к строке длины 
+\begin_inset Formula $m$
+\end_inset
+
+ строки длины 
+\begin_inset Formula $n$
+\end_inset
+
+ занимает 
+\begin_inset Formula $r(m,n)$
+\end_inset
+
+ операций.
+ Для простейшей реализации склеиванием двух упорядоченных массивов 
+\begin_inset Formula $r(m,n)=O(m+n)$
+\end_inset
+
+.
+ Также для большинства реализаций (тех, где можно разбить строку на 
+\begin_inset Formula $2$
+\end_inset
+
+ отдельные части за константное число действий) будет выполнено соотношение
+ 
+\begin_inset Formula $r(m,n_{1}+n_{2})\le r(m,n_{1})+r(m,n_{2})$
+\end_inset
+
+, потому что длинную строку можно прибавлять по частям.
+ Предположим также монотонность по обоим аргументам: при 
+\begin_inset Formula $N\ge n$
+\end_inset
+
+, 
+\begin_inset Formula $M\ge m$
+\end_inset
+
+ будет выполнено 
+\begin_inset Formula $r(m,N)\ge r(m,n)$
+\end_inset
+
+ и 
+\begin_inset Formula $r(M,n)\ge r(m,n)$
+\end_inset
+
+ (вообще, можно считать функцию 
+\begin_inset Formula $r$
+\end_inset
+
+ симметричной).
+ Эти соотношения будут использоваться ниже при оценке времени работы при
+ различном порядке операций.
+ За 
+\begin_inset Formula $\len(x)$
+\end_inset
+
+ обозначим число ненулевых элементов в строке 
+\begin_inset Formula $x$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Рассмотрим редукцию 
+\begin_inset Formula $\Red{x}{b}{y}$
+\end_inset
+
+ строки 
+\begin_inset Formula $x$
+\end_inset
+
+ с ненулевым элементом в столбце 
+\begin_inset Formula $c$
+\end_inset
+
+ по строке 
+\begin_inset Formula $b\in B$
+\end_inset
+
+ с ведущим элементом в столбце 
+\begin_inset Formula $c$
+\end_inset
+
+ до строки 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ Тогда по построению матрицы 
+\begin_inset Formula $R$
+\end_inset
+
+ ведущие элементы у строк 
+\begin_inset Formula $x$
+\end_inset
+
+ и 
+\begin_inset Formula $y$
+\end_inset
+
+ совпадают.
+ Пусть 
+\begin_inset Formula $U\subset M$
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+--- некоторый набор строк из верхней части матрицы, которые нужно отредуцировать
+ по 
+\begin_inset Formula $x$
+\end_inset
+
+ (и по 
+\begin_inset Formula $y$
+\end_inset
+
+).
+ Заметим, что при редукции 
+\begin_inset Formula $\Red{u}{y}{u'}$
+\end_inset
+
+ в столбце 
+\begin_inset Formula $c$
+\end_inset
+
+ появляется ненулевой элемент, а при редукции 
+\begin_inset Formula $\Red{u}{x}{u'}$
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+--- не появляется.
+ Число операций при редукции всех строк из 
+\begin_inset Formula $U$
+\end_inset
+
+ по 
+\begin_inset Formula $x$
+\end_inset
+
+ и 
+\begin_inset Formula $b$
+\end_inset
+
+ при проведении предварительной редукции 
+\begin_inset Formula $\Red{x}{b}{y}$
+\end_inset
+
+ равно 
+\begin_inset Formula \[
+r(\len(x),\len(b))+\sum_{u\in U}r(\len(u),\len(y)).\]
+
+\end_inset
+
+ Без проведения предварительной редукции 
+\begin_inset Formula $\Red{x}{b}{y}$
+\end_inset
+
+ получаем следующий результат: 
+\begin_inset Formula \[
+\sum_{u\in U}(r(\len(u),\len(x))+r(\len(u'),\len(b))),\]
+
+\end_inset
+
+ где 
+\begin_inset Formula $\Red{u}{x}{u'}$
+\end_inset
+
+.
+ Сравним эти выражения.
+ Одиночным слагаемым 
+\begin_inset Formula $r(\len(x),\len(b))$
+\end_inset
+
+ можно пренебречь.
+ Для оставшихся слагаемых при условии 
+\begin_inset Formula $\len(u')\ge\len(u)$
+\end_inset
+
+ будет выполнена следующая цепочка неравенств: 
+\begin_inset Formula \begin{gather*}
+{r(\len(u),\len(x))+r(\len(u'),\len(b))\ge r(\len(u),\len(x))+r(\len(u),\len(b))\ge}\\
+\ge r(\len(u),\len(x)+\len(b))\ge r(\len(u),\len(y)).\end{gather*}
+
+\end_inset
+
+ Условие на длины 
+\begin_inset Formula $u'$
+\end_inset
+
+ и 
+\begin_inset Formula $u$
+\end_inset
+
+ будет выполнено практически во всех случаях из-за разреженности матрицы:
+ при добавлении 
+\begin_inset Formula $x$
+\end_inset
+
+ к 
+\begin_inset Formula $u$
+\end_inset
+
+ вероятнее добавление новых ненулевых элементов, нежели сокращение старых.
+ Также соотношение 
+\begin_inset Formula $\len(x)+\len(b)\ge\len(y)$
+\end_inset
+
+ будет всегда выполнено, поскольку в 
+\begin_inset Formula $y$
+\end_inset
+
+, являющимся линейной комбинацией 
+\begin_inset Formula $x$
+\end_inset
+
+ и 
+\begin_inset Formula $b$
+\end_inset
+
+, не может быть больше ненулевых элементов, чем в 
+\begin_inset Formula $x$
+\end_inset
+
+ и 
+\begin_inset Formula $b$
+\end_inset
+
+ вместе взятых.
+ Таким образом, от редукции строки 
+\begin_inset Formula $x$
+\end_inset
+
+ по строке 
+\begin_inset Formula $b\in B$
+\end_inset
+
+ всегда имеется положительный эффект с точки зрения производительности.
+\end_layout
+
+\begin_layout Standard
+Рассмотрим теперь другой случай, когда вместо строки 
+\begin_inset Formula $b\in B$
+\end_inset
+
+ используется строка 
+\begin_inset Formula $a\in A$
+\end_inset
+
+ с ведущим элементом в столбце
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $c$
+\end_inset
+
+.
+ Пусть 
+\begin_inset Formula $\Red{x}{a}{y}$
+\end_inset
+
+.
+ Снова по построению множества 
+\begin_inset Formula $R$
+\end_inset
+
+ получаем, что 
+\begin_inset Formula $c$
+\end_inset
+
+ не является ведущим столбцом строки 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ Покажем, что если большое количество строк 
+\begin_inset Formula $u\in U$
+\end_inset
+
+ содержат в столбце 
+\begin_inset Formula $c$
+\end_inset
+
+ ненулевой элемент, то предварительная редукция 
+\begin_inset Formula $\Red{x}{a}{y}$
+\end_inset
+
+ может привести к увеличению объема вычислений.
+ Здесь, в отличие от предыдущей ситуации, после редукции вида 
+\begin_inset Formula $\Red{u}{x}{u'}$
+\end_inset
+
+ в столбце 
+\begin_inset Formula $c$
+\end_inset
+
+ могут по-прежнему остаться ненулевые элементы.
+ Это произойдет независимо от того, была ли строка 
+\begin_inset Formula $x$
+\end_inset
+
+ редуцирована по 
+\begin_inset Formula $a$
+\end_inset
+
+ или нет, так как изначально значение, содержащееся в столбце 
+\begin_inset Formula $c$
+\end_inset
+
+ строки 
+\begin_inset Formula $u$
+\end_inset
+
+, в некотором смысле 
+\begin_inset Quotes ard
+\end_inset
+
+случайно
+\begin_inset Quotes ald
+\end_inset
+
+, и вероятность его обнулить, редуцировав по 
+\begin_inset Formula $x$
+\end_inset
+
+, мала.
+ То есть, такую строку 
+\begin_inset Formula $u$
+\end_inset
+
+ придется в любом случае редуцировать вначале по 
+\begin_inset Formula $x$
+\end_inset
+
+ (или 
+\begin_inset Formula $y$
+\end_inset
+
+), а потом по 
+\begin_inset Formula $a$
+\end_inset
+
+.
+ Конечный результат редукции не будет зависеть от того, была ли проведена
+ авторедукция 
+\begin_inset Formula $x$
+\end_inset
+
+ до 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ Для оценки зависимости объема вычислений в случаях проведения и непроведения
+ предварительной редукции 
+\begin_inset Formula $x$
+\end_inset
+
+ до 
+\begin_inset Formula $y$
+\end_inset
+
+ от числа ненулевых элементов матрицы 
+\begin_inset Formula $M$
+\end_inset
+
+ в столбце 
+\begin_inset Formula $c$
+\end_inset
+
+ выпишем приближенное число операций для обоих случаев.
+ Пусть 
+\begin_inset Formula $\Red{u}{x}{u'}$
+\end_inset
+
+ и 
+\begin_inset Formula $\Red{u}{y}{u''}$
+\end_inset
+
+.
+ Оценка на число действий при проведении предварительной редукции 
+\begin_inset Formula $\Red{x}{a}{y}$
+\end_inset
+
+ такова: 
+\begin_inset Formula \[
+r(\len(x),\len(a))+\sum_{u\in K_{1}}(r(\len(u),\len(y))+r(\len(u''),\len(a)))+\sum_{K_{2}}r(\len(u),\len(y)).\]
+
+\end_inset
+
+ Без проведения редукции получаем 
+\begin_inset Formula \[
+\sum_{u\in{L_{1}}}(r(\len(u),\len(x))+r(\len(u'),\len(a)))+\sum_{u\in L_{2}}r(\len(u),\len(x)).\]
+
+\end_inset
+
+ Здесь 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $K_{1}$
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+--- множество строк 
+\begin_inset Formula $M$
+\end_inset
+
+ с ненулевым элементом в столбце 
+\begin_inset Formula $c$
+\end_inset
+
+, которые редуцируются по 
+\begin_inset Formula $x$
+\end_inset
+
+; 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $K_{2}$
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+--- множество строк 
+\begin_inset Formula $M$
+\end_inset
+
+, которые редуцируются по 
+\begin_inset Formula $x$
+\end_inset
+
+, но содержат 
+\begin_inset Formula $0$
+\end_inset
+
+ в столбце 
+\begin_inset Formula $c$
+\end_inset
+
+; 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $L_{1}$
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+--- множество строк 
+\begin_inset Formula $M$
+\end_inset
+
+, которые после редукции по 
+\begin_inset Formula $x$
+\end_inset
+
+ содержат ненулевой элемент в столбце
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $c$
+\end_inset
+
+; 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $L_{2}$
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+--- множество строк 
+\begin_inset Formula $M$
+\end_inset
+
+, которые после редукции по 
+\begin_inset Formula $x$
+\end_inset
+
+ содержат 
+\begin_inset Formula $0$
+\end_inset
+
+ в столбце 
+\begin_inset Formula $c$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Для них выполнены следующие соотношения: 
+\begin_inset Formula \begin{gather*}
+K_{1}\cup K_{2}=L_{1}\cup L_{2}=U,\\
+K_{1}\cap K_{2}=L_{1}\cap L_{2}=\varnothing,\\
+L_{1}\supset K_{2}\text{ и }L_{2}\subset K_{1}.\end{gather*}
+
+\end_inset
+
+ При вычислении над полями вычетов с большой характеристикой множество 
+\begin_inset Formula $L_{2}$
+\end_inset
+
+ будет практически пусто, поскольку 
+\begin_inset Quotes ard
+\end_inset
+
+случайное
+\begin_inset Quotes ald
+\end_inset
+
+ появление нуля маловероятно.
+ Однако при вычислениях по модулю 
+\begin_inset Formula $2$
+\end_inset
+
+ проявляется противоположный эффект: 
+\begin_inset Formula $L_{1}=K_{2}$
+\end_inset
+
+, 
+\begin_inset Formula $L_{2}=K_{1}$
+\end_inset
+
+, потому что в этом случае редукция по 
+\begin_inset Formula $x$
+\end_inset
+
+ всегда заменяет значение в столбце 
+\begin_inset Formula $c$
+\end_inset
+
+ на противоположное.
+ При большом числе строк в множестве 
+\begin_inset Formula $U=K_{1}\cup K_{2}$
+\end_inset
+
+ первым слагаемым, отвечающим за редукцию 
+\begin_inset Formula $\Red{x}{a}{y}$
+\end_inset
+
+, можно пренебречь.
+ Далее, 
+\begin_inset Formula $\len(y)$
+\end_inset
+
+ превосходит 
+\begin_inset Formula $\len(x)$
+\end_inset
+
+, поэтому для 
+\begin_inset Formula $i=1,2$
+\end_inset
+
+ затраты на один элемент 
+\begin_inset Formula $K_{i}$
+\end_inset
+
+ больше, чем на элемент 
+\begin_inset Formula $L_{i}$
+\end_inset
+
+.
+ Но поскольку в обоих случаях затраты для элемента первого множества превышают
+ затраты для второго, решающую роль оказывает распределение элементов по
+ множествам.
+ Рассмотрим наиболее простой случай 
+\begin_inset Formula $r(a,b)=a+b$
+\end_inset
+
+ и предположим, что разреженность достаточно велика для того, чтобы у любых
+ двух строк было пренебрежимо мало общих ненулевых столбцов.
+ Тогда можно положить 
+\begin_inset Formula \begin{gather*}
+\len(y)=\len(x)+\len(a),\\
+\len(u')=\len(u)+\len(x),\\
+\len(u'')=\len(u)+\len(x)+\len(a).\end{gather*}
+
+\end_inset
+
+ Затраты при проведении предварительной редукции 
+\begin_inset Formula $\Red{x}{a}{y}$
+\end_inset
+
+ будут равны 
+\begin_inset Formula \[
+\sum_{u\in K_{1}}(2\len(u)+3\len(a)+2\len(x))+\sum_{u\in K_{2}}(\len(u)+\len(a)+\len(x)).\]
+
+\end_inset
+
+ Без проведения предварительной редукции получаем такую оценку на затраты:
+ 
+\begin_inset Formula \[
+\sum_{u\in L_{1}}(2\len(u)+\len(a)+2\len(x))+\sum_{u\in L_{2}}(\len(u)+\len(x)).\]
+
+\end_inset
+
+ Их разность, с учетом того, что 
+\begin_inset Formula $L_{1}\supset K_{2}$
+\end_inset
+
+ и 
+\begin_inset Formula $L_{2}\subset K_{1}$
+\end_inset
+
+, дает 
+\begin_inset Formula \[
+\sum_{u\in K_{2}}(-\len(u)-\len(x))+\sum_{u\in L_{1}\cap K_{1}}2\len(a)+\sum_{u\in L_{2}}(\len(u)+3\len(a)+\len(x)).\]
+
+\end_inset
+
+ В случае большой характеристики поля последним слагаемым можно пренебречь
+ (так как 
+\begin_inset Formula $L_{2}$
+\end_inset
+
+ почти пусто), и редукцию 
+\begin_inset Formula $\Red{x}{a}{y}$
+\end_inset
+
+ стоит проводить только если число элементов 
+\begin_inset Formula $K_{2}$
+\end_inset
+
+ 
+\begin_inset Quotes ard
+\end_inset
+
+заметно
+\begin_inset Quotes ald
+\end_inset
+
+ на фоне 
+\begin_inset Formula $K_{1}$
+\end_inset
+
+.
+ Если же 
+\begin_inset Formula $K_{2}$
+\end_inset
+
+ значительно меньше 
+\begin_inset Formula $K_{1}$
+\end_inset
+
+, то разность будет положительна, и редукцию проводить не следует.
+ В случае характеристики 
+\begin_inset Formula $2$
+\end_inset
+
+ обнуляется второе слагаемое разности.
+ Условие получается по сути то же самое
+\begin_inset space ~
+\end_inset
+
+--- проводить редукцию только если 
+\begin_inset Formula $K_{2}$
+\end_inset
+
+ больше 
+\begin_inset Formula $K_{1}$
+\end_inset
+
+ (
+\begin_inset Formula $=L_{2}$
+\end_inset
+
+ в случае модуля 
+\begin_inset Formula $2$
+\end_inset
+
+), но здесь 
+\begin_inset Formula $K_{1}$
+\end_inset
+
+ входит с большим весовым коэффициентом, чем в случае большого модуля.
+ В обоих случаях конкретные числовые коэффициенты, на основе которых следует
+ принимать решение о необходимости редукции 
+\begin_inset Formula $x$
+\end_inset
+
+ по 
+\begin_inset Formula $a$
+\end_inset
+
+ нужно выбирать в зависимости от средней длины 
+\begin_inset Formula $u$
+\end_inset
+
+, 
+\begin_inset Formula $\len(a)$
+\end_inset
+
+, 
+\begin_inset Formula $\len(x)$
+\end_inset
+
+ и мощности 
+\begin_inset Formula $K_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Для тех строк 
+\begin_inset Formula $M$
+\end_inset
+
+, которые нужно редуцировать по 
+\begin_inset Formula $x$
+\end_inset
+
+, но у которых стоит 
+\begin_inset Formula $0$
+\end_inset
+
+ в столбце 
+\begin_inset Formula $c$
+\end_inset
+
+, было бы эффективней использовать редуцированную строку 
+\begin_inset Formula $x$
+\end_inset
+
+ в любом случае.
+ Но для реализации подобного метода, где часть строк редуцируются непосредственн
+о 
+\begin_inset Formula $x$
+\end_inset
+
+, а некоторые
+\begin_inset space ~
+\end_inset
+
+--- строками, полученными из 
+\begin_inset Formula $x$
+\end_inset
+
+, придется хранить и вычислять для каждой исходной строки 
+\begin_inset Formula $x$
+\end_inset
+
+ много вариантов 
+\begin_inset Formula $y$
+\end_inset
+
+ (результатов частичной редукции по различным поднаборам строк 
+\begin_inset Formula $A$
+\end_inset
+
+).
+ Их построение и выбор нужного варианта займет существенно больше времени,
+ чем будет выиграно за счет чуть более эффективного проведения авторедукций.
+ Из этого следует, что для принятия точного решения о проведении авторедукции
+ нужно заключение о том, окажется ли множество 
+\begin_inset Formula $K_{2}$
+\end_inset
+
+ больше 
+\begin_inset Formula $K_{1}$
+\end_inset
+
+.
+ Подобное заключение можно дать лишь при некотором дополнительном предположении
+ о структуре матриц, например, оно выполнено при равномерном распределении
+ ненулевых элементов для матриц с малой заполненностью (потому что строк
+ у которых будут одновременно ненулевые элементы как в ведущем столбце строки
+ 
+\begin_inset Formula $x$
+\end_inset
+
+, так и в столбце 
+\begin_inset Formula $c$
+\end_inset
+
+, окажется немного).
+ В общем же случае ничего подобного утверждать нельзя, и вопрос эффективности
+ проведения авторедукции матрицы существенно зависит от каждой конкретной
+ матрицы.
+ На практике несколько более эффективным обычно оказывается проведение предварит
+ельной авторедукции.
+\end_layout
+
+\begin_layout Section
+Применение базисов Грёбнера над конечными полями для определения носителя
+ базиса над полем нулевой характеристики
+\end_layout
+
+\begin_layout Subsection
+Зависимость структуры базиса Грёбнера от поля и коэффициентов
+\end_layout
+
+\begin_layout Standard
+Рассмотрим множество многочленов 
+\begin_inset Formula $M$
+\end_inset
+
+ из кольца 
+\begin_inset Formula $F[x_{1},\ldots,x_{n}]$
+\end_inset
+
+, где 
+\begin_inset Formula $F$
+\end_inset
+
+ -- произвольное поле, с набором коэффициентов 
+\begin_inset Formula $a_{1},\ldots,a_{k}$
+\end_inset
+
+.
+ Для 
+\begin_inset Formula $M$
+\end_inset
+
+ определён единственным образом его наименьший авторедуцированный базис
+ Грёбнера.
+ Поскольку базис не зависит от алгоритма, используемого для его вычисления,
+ для определения зависимости коэффициентов базиса от коэффициентов исходных
+ многочленов можно взять любой, например, простейший алгоритм Бухбергера.
+ В нём над коэффициентами проводится по сути лишь 2 основные операции.
+ При вычитании многочленов, домноженных на терм, делается взятие полиномиального
+ выражения от коэффициентов вычитаемых многочленов, а для определения старшего
+ монома анализируется то, какие из полученных коэффициентов разности являются
+ ненулевыми.
+ Взятие полиномиального выражения никак не зависит ни от конкретных значений
+ 
+\begin_inset Formula $a_{1},\ldots,a_{k}$
+\end_inset
+
+, ни даже от поля 
+\begin_inset Formula $F$
+\end_inset
+
+ -- каждый коэффициент всегда выражается одним и тем же полиномом над 
+\begin_inset Formula $a_{1},\ldots,a_{k}$
+\end_inset
+
+.
+ Вопрос о том, окажется ли какой-то коэффициент нулевым более сложен.
+ Для любого монома 
+\begin_inset Formula $w$
+\end_inset
+
+, присутствующего в записи вычитаемых многочленов с ненулевыми коэффициентами
+ 
+\begin_inset Formula $v_{i}=v_{i}(a_{1},\ldots,a_{k}),\, i=1,2$
+\end_inset
+
+ после вычитания может произойти 
+\emph on
+обнуление
+\emph default
+, если окажется, что 
+\begin_inset Formula $v_{1}=v_{2}.$
+\end_inset
+
+ Но происходить оно может происходить по двум различным причинам: от того
+ что совпали сами полиномиальные выражения 
+\begin_inset Formula $v_{1}(a_{1},\ldots,a_{k})\equiv v_{2}(a_{1},\ldots,a_{k})$
+\end_inset
+
+, или от того что при рассматриваемых 
+\begin_inset Formula $a_{1},\ldots,a_{k}$
+\end_inset
+
+ совпали их значения --
+\begin_inset Formula $v_{1}=v_{2},\, v_{1}(a_{1},\ldots,a_{k})\not\equiv v_{2}(a_{1},\ldots,a_{k}).$
+\end_inset
+
+ На основе этого замечания введём классификацию обнулений: тождественное
+ равенство 0 коэффициента при 
+\begin_inset Formula $w$
+\end_inset
+
+ в разности назовём 
+\emph on
+обнулением первого рода
+\emph default
+, а случай обнуления при подстановке конкретных значений из поля 
+\begin_inset Formula $F$
+\end_inset
+
+ 
+\emph on
+-- обнулением второго рода
+\emph default
+.
+ Для первой причины обнуление будет происходить вне зависимости от поля
+ и коэффициентов, тогда как второй случай будет приводить к различным результата
+м в зависимости от значений коэффициентов.
+\end_layout
+
+\begin_layout Standard
+Разберём случай применения алгоритма Бухбергера к двум различным наборам
+ многочленов, полученных на основе одного множества 
+\begin_inset Formula $M$
+\end_inset
+
+ подстановкой конкретных коэффициентов из конкретных полей.
+ Единственным отличием в ходе алгоритма над разными наборами может стать
+ проявление обнуления второго рода для коэффициента при старшем мономе,
+ приводящее к разнице в том, какой моном оказывается старшим.
+ После такой ситуации дальнейший ход алгоритма будет различаться принципиально,
+ а не только в коэффициентах.
+ Это происходит от того, что изменение старшего монома для какого-то многочлена
+ может повлечь появление S-пар, которые бы иначе не рассматривались, и в
+ итоге в ответе окажутся многочлены с совершенно другими мономами.
+ Однако, до тех пор, пока такого обнуления второго рода не произошло, все
+ полиномиальные выражения коэффициентов промежуточных многочленов и ответа
+ через 
+\begin_inset Formula $a_{1},\ldots,a_{k}$
+\end_inset
+
+ будут абсолютно одинаковы для всех полей и коэффициентов.
+ В случае, если при проведении алгоритма для двух различных наборов отличий
+ в обнулениях второго рода вообще не будет (например, их не произойдёт ни
+ для одного из наборов), то и результирующие базисы будут отличаться лишь
+ значениями ненулевых коэффициентов.
+ А набор мономов, при которых будут не нули (носитель) и полиномиальное
+ выражение коэффициентов базиса через исходные 
+\begin_inset Formula $a_{1},\ldots,a_{k}$
+\end_inset
+
+ будет одинаково для обоих наборов.
+\end_layout
+
+\begin_layout Standard
+Если известно, что коэффициенты 
+\begin_inset Formula $a_{1},\ldots,a_{k}$
+\end_inset
+
+ есть фиксированные полиномиальные выражения от каких-то параметров 
+\begin_inset Formula $a_{j}=a_{j}(b_{1},\ldots,b_{m})$
+\end_inset
+
+, то следует рассмотреть зависимость структуры базиса уже от выбора значений
+ и полей этих параметров.
+ Идентичность структуры будет достигаться в том случае, если не будет обнулений
+ второго рода относительно новых переменных 
+\begin_inset Formula $b_{1},\ldots,b_{m}$
+\end_inset
+
+, то есть при рассмотрении полиномиальных выражений для коэффициентов все
+ обнуления будут первого рода -- соответствовать тождественно нулевому над
+ 
+\begin_inset Formula $b_{1},\ldots,b_{m}$
+\end_inset
+
+ многочлену.
+ При этом понятно, что тождественно нулевые многочлены над 
+\begin_inset Formula $a_{1},\ldots,a_{k}$
+\end_inset
+
+ будут тождественно нулевыми и над 
+\begin_inset Formula $b_{1},\ldots,b_{m}$
+\end_inset
+
+, хотя обратное верно не всегда.
+ Это соответствует тому, что при рассмотрении двух исходных множеств многочленов
+ с зафиксированными исходными коэффициентами 
+\begin_inset Formula $a_{1},\ldots,a_{k}=c_{i1},\ldots,c_{ik},i=1,2$
+\end_inset
+
+, связанными дополнительными соотношениями (представленными как выражения
+ их через определённые значения параметров 
+\begin_inset Formula $b_{1},\ldots,b_{m}=d_{i1},\ldots,d_{im},i=1,2$
+\end_inset
+
+ в виде 
+\begin_inset Formula $c_{ij}=a_{j}(d_{i1},\ldots,d_{im})$
+\end_inset
+
+), часть обнулений второго рода над 
+\begin_inset Formula $a_{1},\ldots,a_{k}$
+\end_inset
+
+ можно будет интерпретировать как обнуления первого рода над 
+\begin_inset Formula $b_{1},\ldots,b_{m}$
+\end_inset
+
+.
+ В этом случае совпадение структуры базисов для этих двух наборов коэффициентов
+ уже не будет случайностью, при которой все обнуления второго рода 
+\begin_inset Quotes fld
+\end_inset
+
+случайно
+\begin_inset Quotes frd
+\end_inset
+
+ оказались одинаковыми.
+ Совпадение структуры можно будет рассматривать как следствие дополнительного
+ соотношения, в результате которого все произошедшие обнуления являются
+ обнулениями первого рода.
+\end_layout
+
+\begin_layout Standard
+Таким образом, чтоб найти второй набор коэффициентов с тем же носителем
+ базиса, что и у данного набора 
+\begin_inset Formula $a_{1},\ldots,a_{k}$
+\end_inset
+
+, удовлетворяющего полиномиальным соотношениям, имеет смысл сузить множество
+ рассматриваемых наборов.
+ То есть брать не произвольные наборы, а лишь наборы для которых выполнены
+ те же самые соотношения, и подбирать значения 
+\begin_inset Formula $b_{1},\ldots,b_{m}$
+\end_inset
+
+, а не самих коэффициентов 
+\begin_inset Formula $a_{1},\ldots,a_{k}$
+\end_inset
+
+.
+ Поэтому в дальнейших рассуждениях для системы многочленов всегда будет
+ рассматриваться набор параметров 
+\begin_inset Formula $b_{1},\ldots,b_{m}$
+\end_inset
+
+ из поля 
+\begin_inset Formula $F$
+\end_inset
+
+, через который выражаются коэффициенты многочленов.
+ В случае, если никаких соотношений на коэффициенты многочленов нет, то
+ сам набор 
+\begin_inset Formula $a_{1},\ldots,a_{k}$
+\end_inset
+
+ можно считать набором параметров с тождественным выражением через себя.
+ Для независимости от поля выражение коэффициентов через параметры должно
+ быть записано в форме, не использующей констант специфичных для поля (разрешены
+ только целые числа, которые в смысле суммы 
+\begin_inset Formula $n$
+\end_inset
+
+ единиц присутствуют в любом поле).
+ Дробей в записи быть не должно, однако это ограничение не является существенным
+, так как от них можно избавиться домножив на НОК всех знаменателей в коэффициен
+тах конкретного многочлена.
+ После этого дроби исчезнут, а многочлен домножится на константу, что никак
+ не повлияет на задачу вычисления базиса.
+\end_layout
+
+\begin_layout Subsection
+Обнуления второго рода
+\end_layout
+
+\begin_layout Standard
+Появление обнуления второго рода для коэффициента, полиномиально выражающегося
+ как многочлен 
+\begin_inset Formula $f(b_{1},\ldots,b_{n})$
+\end_inset
+
+, будет равносильно тому, что выбранный набор значений параметров является
+ корнем этого многочлена.
+ Многочлен 
+\begin_inset Formula $f$
+\end_inset
+
+ не может оказаться тождественно нулевым в силу того что рассматривается
+ обнуление именно второго рода, а не первого.
+ Поскольку такой многочлен 
+\begin_inset Formula $f$
+\end_inset
+
+, а тем более его степень 
+\begin_inset Formula $r=\deg(f)$
+\end_inset
+
+, никак не зависит от поля 
+\begin_inset Formula $F$
+\end_inset
+
+, может быть исследован вопрос о том, как от 
+\begin_inset Formula $F$
+\end_inset
+
+ зависят его корни.
+ Для того, чтоб понять произошло ли хоть одно обнуление второго рода в ходе
+ алгоритма Бухбергера при заданных значениях 
+\begin_inset Formula $b_{1},\ldots,b_{n}$
+\end_inset
+
+, нужно определить есть ли среди всех многочленов 
+\begin_inset Formula $f_{1},\ldots,f_{m}$
+\end_inset
+
+, являющихся выражениями для коэффициентов, многочлен для которого 
+\begin_inset Formula $b_{1},\ldots,b_{n}$
+\end_inset
+
+ будет корнем.
+ Условие того, что ни один из этих многочленов не обнулится на наборе 
+\begin_inset Formula $b_{1},\ldots,b_{n}$
+\end_inset
+
+ равносильно тому что не обнулится многочлен 
+\begin_inset Formula ${\displaystyle G=\prod_{i=1}^{m}f_{i}}$
+\end_inset
+
+ степени 
+\begin_inset Formula ${\displaystyle R=\sum_{i=1}^{m}r_{i}}$
+\end_inset
+
+.
+ Он не тождественно нулевой, поскольку каждый из сомножителей не является
+ тождественно нулевым.
+ Здесь и далее тождественное равенство нулю понимается в формально-символическом
+ смысле без учёта конкретного поля и его уравнений -- то есть нулевым многочлено
+м является только многочлен без слагаемых, но не многочлен с некоторым набором
+ мономов, сумма которых обнуляется при подстановке любого набора параметров
+ из конкретного поля.
+\end_layout
+
+\begin_layout Standard
+Рассмотрим случай поля 
+\begin_inset Formula $F=\mathbb{R}$
+\end_inset
+
+.
+ Благодаря тому, что 
+\begin_inset Formula $G$
+\end_inset
+
+ является полиномом, будет выполнено утверждение: в пространстве параметров
+ 
+\begin_inset Formula $\mathbb{R}^{n}$
+\end_inset
+
+ в любой сколь угодно малой окрестности заданной точки, существует набор
+ параметров, для которого не произойдёт обнулений второго рода.
+ Это следует из того, что не может существовать окрестности, в которой 
+\begin_inset Formula $G$
+\end_inset
+
+ будет всюду обращаться в 0.
+ Данный факт может быть полезен в том случае, если, к примеру, исходные
+ параметры в 
+\begin_inset Formula $\mathbb{R}^{n}$
+\end_inset
+
+ получены из какого-то физического эксперимента и имеют некоторую ограниченную
+ точность измерения.
+ Тогда при рассмотрении задачи нахождения базиса Грёбнера для системы с
+ экспериментально полученными 
+\begin_inset Formula $b_{1},\ldots,b_{n}$
+\end_inset
+
+, можно будет путём малых 
+\begin_inset Quotes fld
+\end_inset
+
+шевелений
+\begin_inset Quotes frd
+\end_inset
+
+ найденных 
+\begin_inset Formula $b_{1},\ldots,b_{n}$
+\end_inset
+
+ свести задачу к такой, где при вычислении базиса не будет обнулений второго
+ рода, и при этом порядок точности исходных измерений не изменится.
+ 
+\end_layout
+
+\begin_layout Standard
+Покажем, что и в случае некоторых конечных полей существуют наборы параметров,
+ при которых не будет обнулений второго рода.
+ Для любого многочлена над конченым 
+\begin_inset Formula $p$
+\end_inset
+
+-элементным полем 
+\begin_inset Formula $F$
+\end_inset
+
+ можно взять отношение числа наборов значений переменных, обнуляющих многочлен,
+ к числу всех возможных наборов.
+ Рассмотрим максимум этого отношения по всем ненулевым многочленам от 
+\begin_inset Formula $n$
+\end_inset
+
+ переменных степени не выше 
+\begin_inset Formula $r$
+\end_inset
+
+: 
+\begin_inset Formula \[
+u(r,p,n):=\max_{\{g\in F[x_{1},\ldots,x_{n}]:\deg(g)\leqslant r,g\not\equiv0\}}\frac{|\{(b_{1},\ldots,b_{n})\in F^{n}:g(b_{1},\ldots,b_{n})=0\}|}{p^{n}}\]
+
+\end_inset
+
+Максимальное число различных наборов, являющихся корнем для одного многочлена
+ степени не выше 
+\begin_inset Formula $r$
+\end_inset
+
+, запишется как 
+\begin_inset Formula $u(r,p,n)\cdot p^{n}$
+\end_inset
+
+.
+ Для случая 
+\begin_inset Formula $n=1$
+\end_inset
+
+ будет выполнено соотношение 
+\begin_inset Formula $u(r,p,1)\leqslant\frac{r}{p}$
+\end_inset
+
+, поскольку число корней многочлена от одной переменной не превышает его
+ степени.
+ Для больших 
+\begin_inset Formula $n$
+\end_inset
+
+ оценим 
+\begin_inset Formula $u$
+\end_inset
+
+ по индукции: выделим одну из переменных 
+\begin_inset Formula $x=x_{1}$
+\end_inset
+
+ и разложим многочлен по её степеням: 
+\begin_inset Formula \[
+g=x^{r}g_{0}+x^{r-1}g_{1}(x_{2},x_{3},\ldots,x_{n})+\ldots+g_{r}(x_{2},x_{3},\ldots,x_{n}),\deg(g_{i})\leqslant i\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Будем рассматривать 
+\begin_inset Formula $g$
+\end_inset
+
+ при фиксированных значениях 
+\begin_inset Formula $x_{2},x_{3},\ldots,x_{n}$
+\end_inset
+
+.
+ Обозначим за 
+\begin_inset Formula $k$
+\end_inset
+
+ число таких наборов 
+\begin_inset Formula $x_{2},x_{3},\ldots,x_{n}$
+\end_inset
+
+, при подстановке которых многочлен 
+\begin_inset Formula $g$
+\end_inset
+
+ относительно 
+\begin_inset Formula $x$
+\end_inset
+
+ обращается в тождественный 0, (
+\begin_inset Formula $g_{0}=0$
+\end_inset
+
+ и 
+\begin_inset Formula $\forall i:g_{i}(x_{2},x_{3},\ldots,x_{n})=0$
+\end_inset
+
+).
+ Поскольку для обнуления всего многочлена нужно обнуление всех многочленов
+ 
+\begin_inset Formula $g_{i}$
+\end_inset
+
+, среди которых должен быть как минимум один не тождественно нулевой, число
+ наборов обнуляющих весь многочлен будет удовлетворять условию 
+\begin_inset Formula $k\leqslant u(r,p,n-1)\cdot p^{n-1}$
+\end_inset
+
+.
+ Для этих наборов все 
+\begin_inset Formula $p$
+\end_inset
+
+ возможных значений 
+\begin_inset Formula $x$
+\end_inset
+
+ будут обнулять 
+\begin_inset Formula $g$
+\end_inset
+
+.
+ Для остальных же наборов, где многочлен тождественно не обнуляется относительно
+ 
+\begin_inset Formula $x$
+\end_inset
+
+, у него будет не более 
+\begin_inset Formula $r$
+\end_inset
+
+ корней относительно 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ В итоге имеем следующую оценку на количество всех наборов, обнуляющих многочлен
+ 
+\begin_inset Formula $g$
+\end_inset
+
+: 
+\begin_inset Formula \[
+u(r,p,n)\cdot p^{n}\leqslant kp+(p^{n-1}-k)\cdot r\leqslant u(r,p,n-1)\cdot p^{n}+p^{n-1}\cdot r,\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+откуда
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula \[
+u(r,p,n)\leqslant u(r,p,n-1)+\frac{r}{p}.\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Из этого соотношения и известного ограничения при 
+\begin_inset Formula $n=1$
+\end_inset
+
+ получим что 
+\begin_inset Formula $u(r,p,n)\leqslant\frac{rn}{p}$
+\end_inset
+
+.
+ Таким образом, вероятность того, что случайно, с равномерным распределением,
+ взятый набор коэффициентов 
+\begin_inset Formula $b_{1},\ldots,b_{n}$
+\end_inset
+
+ из 
+\begin_inset Formula $p$
+\end_inset
+
+-элементного поля даст хоть одно обнуление второго рода для фиксированной
+ задачи, падает с ростом 
+\begin_inset Formula $p$
+\end_inset
+
+ асимптотически не медленнее, чем 
+\begin_inset Formula $\frac{1}{p}$
+\end_inset
+
+.
+ Поэтому, рассматривая при достаточно больших 
+\begin_inset Formula $p$
+\end_inset
+
+ несколько различных случайных наборов, дающих одинаковую структуру базиса,
+ можно с очень высокой вероятностью полагать, что именно она соответствует
+ структуре базиса без обнулений второго рода для заданного множества 
+\begin_inset Formula $M$
+\end_inset
+
+.
+ Несмотря на то, что анализ проводился для алгоритма Бухбергера, вывод об
+ оценке малости вероятности получения базиса с ошибочной структурой остаётся
+ верен для любого алгоритма, так как базис, получаемый для конкретного 
+\begin_inset Formula $p$
+\end_inset
+
+, определён однозначно и от алгоритма вычисления не зависит.
+ 
+\end_layout
+
+\begin_layout Subsection
+Случай вырождения базиса в конечном поле.
+ Эксперименты.
+\end_layout
+
+\begin_layout Standard
+Полученная оценка на число наборов, не обнуляющих 
+\begin_inset Formula $G$
+\end_inset
+
+, верна только для случая, когда 
+\begin_inset Formula $G$
+\end_inset
+
+ над полем 
+\begin_inset Formula $F$
+\end_inset
+
+ ненулевой характеристики не является тождественно нулевым  с учётом характерист
+ики поля.
+ (Тождественное обнуление при переходе к конкретному полю может произойти,
+ например, для многочлена вида 
+\begin_inset Formula $3x_{1}+6x_{2}+3$
+\end_inset
+
+ в поле 
+\begin_inset Formula $\mathbb{Z}_{3}$
+\end_inset
+
+).
+ Если же такое вырождение 
+\begin_inset Formula $G$
+\end_inset
+
+ произошло, то никакие значения параметров не будут давать базис со структурой,
+ совпадающей с невырожденным случаем.
+ Более того, возможно что большая часть наборов параметров из этого поля
+ будет давать одинаковый, специфичный для выбранного поля, носитель базиса.
+ 
+\end_layout
+
+\begin_layout Standard
+Покажем, что такая ситуация может произойти лишь для полей, удовлетворяющих
+ определённому критерию.
+ Поскольку многочлен 
+\begin_inset Formula $G$
+\end_inset
+
+ не является тождественно нулевым при рассмотрении над полем нулевой характерист
+ики, то в записи над 
+\begin_inset Formula $\mathbb{Z}$
+\end_inset
+
+ существует по крайней мере один моном с ненулевым коэффициентом 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ Коэффициент при этом мономе будет обнуляться лишь в тех полях, характеристика
+ которых делит 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ А значит и для всего многочлена 
+\begin_inset Formula $G$
+\end_inset
+
+ среди полей 
+\begin_inset Formula $\mathbb{Z}_{p}$
+\end_inset
+
+ будет лишь конечное число таких, на которых он тождественно обнулится.
+ Получается, что для повышения вероятности нахождения именно носителя базиса
+ для случая ненулевого 
+\begin_inset Formula $G$
+\end_inset
+
+ (соответствующего отсутствию обнулений второго рода), следует рассматривать
+ случайные наборы параметров не над одним, а над различными полями конечной
+ характеристики.
+\end_layout
+
+\begin_layout Standard
+Тождественное обнуление многочлена 
+\begin_inset Formula $G$
+\end_inset
+
+ над полем характеристики 
+\begin_inset Formula $p$
+\end_inset
+
+ требует обнуления всех коэффициентов 
+\begin_inset Formula $G$
+\end_inset
+
+, что равносильно делимости на 
+\begin_inset Formula $p$
+\end_inset
+
+ НОДа всех коэффициентов 
+\begin_inset Formula $G$
+\end_inset
+
+.
+ Поэтому тождественное обнуление в каком-то поле более вероятно для случаев,
+ когда в 
+\begin_inset Formula $G$
+\end_inset
+
+ немного коэффициентов.
+ Предельным видом такой ситуации является безпараметрический случай 
+\begin_inset Formula $n=0$
+\end_inset
+
+, в котором 
+\begin_inset Formula $G$
+\end_inset
+
+ состоит из единственного слагаемого -- свободного члена.
+ Безпараметрический случай соответствует рассмотрению над различными полями
+ задачи нахождения носителя базиса для системы многочленов, в которой все
+ коэффициенты зафиксированы.
+ Примерами таких задач являются классические тесты для тестирования систем
+ вычислений базисов Грёбнера, такие как Cyclic-
+\begin_inset Formula $n$
+\end_inset
+
+, и т.д.
+\end_layout
+
+\begin_layout Standard
+Были проведены эксперименты по вычислению базисов безпараметрических задач
+ над полями различных характеристик и сравнение полученных в результате
+ носителей базисов с известными носителями для поля характеристики 0.
+ Результаты показали что с увеличением модуля, по которому ведутся вычисления,
+ доля модулей, дающих носитель, идентичный случаю нулевой характеристики,
+ постепенно возрастает от 0 до 1 (доля здесь рассматривается в смысле доли
+ среди, скажем, 10 следующих за данным простых чисел).
+ Это вполне соответствует теоретически обоснованному факту о том, что лишь
+ конечное число модулей обнулит 
+\begin_inset Formula $G$
+\end_inset
+
+.
+ Для эффективности такого метода определения носителя необходимо чтобы модули,
+ носитель для которых совпадает с искомым, были не слишком велики.
+ Для задач на которых проводилось тестирование рассмотрение простых модулей
+ уже порядка 
+\begin_inset Formula $10^{6}$
+\end_inset
+
+ давало только искомый носитель.
+ На меньших модулях носители иногда получались другие, но среди них не нашлось
+ двух одинаковых.
+ Имея несколько различных модулей, дающих одинаковый носитель, можно с очень
+ высокой вероятностью утверждать, что именно этот носитель совпадает с результат
+ом для поля нулевой характеристики.
+\end_layout
+
+\begin_layout Standard
+Для каждой задачи можно примерно определить величину 
+\begin_inset Quotes fld
+\end_inset
+
+хорошего
+\begin_inset Quotes frd
+\end_inset
+
+ модуля, начиная с которого, в среднем хотя бы половина из вычислений по
+ любым большим его 10 соседним простым числам даёт нужный носитель базиса.
+ Эксперименты показали, что величина такого 
+\begin_inset Quotes fld
+\end_inset
+
+хорошего
+\begin_inset Quotes frd
+\end_inset
+
+ модуля практически линейно зависит от времени вычислений, затрачиваемых
+ на задачу.
+ При этом при фиксированной задаче время вычислений от модуля не зависит
+ -- это следствие того, что для разных модулей разница только в конкретных
+ коэффициентах, но не в структуре.
+ Отсюда можно предположить, что для задач, имеющих практически разумное
+ время расчёта по одному простому модулю, будет достаточно вычислений по
+ модулям, не превышающим 
+\begin_inset Formula $2^{32}$
+\end_inset
+
+.
+ Они могут быть эффективно реализованы на современных ЭВМ, и с вероятностью
+ очень близкой к 1 позволят найти несколько модулей, дающих один и тот же
+ носитель базиса.
+ Его и следует рассматривать как носитель искомого базиса для характеристики
+ 0.
+ Вероятность нахождения ошибочного базиса исчезающе мала, поскольку мала
+ вероятность нахождения нескольких различных модулей с совпадающим, но ошибочным
+ базисом.
+\end_layout
+
+\begin_layout Section
+Заключение
+\end_layout
+
+\begin_layout Standard
+В результате исследования была сформулирована матричная запись алгоритма
+ F4, сводящая 90% времени вычислений к нахождению авторедуцированного вида
+ отдельных матриц, за счёт чего и стало возможным эффективное распараллеливание.
+ Разработаны специальные методы параллельного приведения сильно разреженной
+ матрицы к ступенчатому виду с учётом её структуры.
+ Для этого пришлось преодолеть ряд сложностей.
+ Во-первых, столбцы матриц, возникающих в алгоритме, соответствуют мономам
+ исходных многочленов.
+ Они должны быть упорядочены согласно выбранному мономиальному порядку,
+ поэтому элементарные преобразования столбцов матрицы запрещены.
+ Из-за этого многие специальные параллельные матричные алгоритмы оказываются
+ неприменимыми.
+ Кроме того при распараллеливании были учтены особенности структуры разреженных
+ матриц, возникающих после препроцессинга.
+ В результате был создан настраиваемый параллельный блочный метод, в котором
+ элементарные преобразования производятся не относительно отдельной строки,
+ а сразу относительно специально на начальном этапе выбранного блока.
+ Распараллеливание осуществлялось с использованием программного интерфейса
+ MPI.
+ Была создана специальная библиотека libF4mpi на языке программирования
+ C++.
+ Тестирование реализации на кластерах с распределённой памятью показало
+ хорошие коэффициенты распараллеливания для задач, требующих большого объёма
+ вычислений.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Buchberger"
+
+\end_inset
+
+ Buchberger B.
+ Grobner Bases: an Algorithmic Method in Polynomial Ideal Theory // Multidimensi
+onal Systems Theory, pp.
+ 184-–232.
+ U.
+ Reidel Publishing Company, 1985.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Pearce"
+
+\end_inset
+
+Pearce R.
+ and Monagan M.
+ A Maple Implementation of F4 // RICAM Special Semester on Groebner Bases
+ 2006, Linz, Austria
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "FaugereParallel"
+
+\end_inset
+
+ Faugere J.C.
+ Parallelization of Grobner Bases // Proceedings of PASCO 1994, World Scientific
+ Publ.
+ Comp.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "F4"
+
+\end_inset
+
+ Faugère J.-C.
+ A new efficient algorithm for computing Grobner bases (F4) // Journal of
+ Pure and Applied Algebra, 139 (1--3): 61--88, 1999.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "HFE"
+
+\end_inset
+
+ Kipnis A.
+ and Shamir A.
+ Cryptanalysis of the HFE Public Key Cryptosystem by Relinearization //
+ Advances in Cryptology
+\begin_inset space ~
+\end_inset
+
+--- Crypto'99, vol.
+ 1666 of LNCS, pp.
+ 19--30.
+ Springer-Verlag, 1999.
+\end_layout
+
+\end_body
+\end_document
