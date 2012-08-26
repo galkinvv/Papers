@@ -1,0 +1,3544 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\@ifundefined{definecolor}
+ {\usepackage{color}}{}
+\usepackage{babel}
+% This file was converted to LaTeX by Writer2LaTeX ver. 1.0.2
+% see http://writer2latex.sourceforge.net for more info
+
+\usepackage[russian]{babel}
+\usepackage[noenc]{tipa}\usepackage{tipx}\usepackage[geometry,weather,misc,clock]{ifsym}\usepackage{pifont}\usepackage{eurosym}\usepackage{wasysym}\usepackage{amsfonts}\@ifundefined{definecolor}{\usepackage{color}}{}
+\usepackage{array}\usepackage{hhline}\newcommand{\textsubscript}[1]{\ensuremath{{}_{\text{#1}}}}
+% Page layout (geometry)
+\setlength{\voffset}{-1in}
+\setlength{\hoffset}{-1in}
+\setlength{\topmargin}{0.7874in}
+\setlength{\oddsidemargin}{0.7874in}
+\setlength{\textheight}{10.118099in}
+\setlength{\textwidth}{6.6932993in}
+\setlength{\footskip}{0.0cm}
+\setlength{\headheight}{0cm}
+\setlength{\headsep}{0cm}
+% Footnote rule
+\setlength{\skip\footins}{0.0469in}
+\renewcommand{\footnoterule}{\vspace*{-0.0071in}\setlength\leftskip{0pt}\setlength\rightskip{0pt plus 1fil}\noindent\textcolor{black}{\rule{0.25\columnwidth}{0.0071in}}\vspace*{0.0398in}}
+% Pages styles
+
+\newcommand{\ps@Standard}{
+  \renewcommand\@oddhead{}
+  \renewcommand\@evenhead{}
+  \renewcommand\@oddfoot{}
+  \renewcommand\@evenfoot{}
+  \renewcommand\thepage{\arabic{page}}
+}
+\newcommand{\ps@HTML}{
+  \renewcommand\@oddhead{}
+  \renewcommand\@evenhead{}
+  \renewcommand\@oddfoot{}
+  \renewcommand\@evenfoot{}
+  \renewcommand\thepage{\arabic{page}}
+}
+
+
+\title{}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language russian
+\language_package default
+\inputencoding latin1
+\fontencoding T2A,T3,T1
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref section
+\pdf_pdfusetitle true
+\pdf_quoted_options "pdftex,linkcolor=blue,citecolor=blue,filecolor=blue,urlcolor=blue,pdftitle="
+\papersize a4paper
+\use_geometry false
+\use_amsmath 2
+\use_esint 1
+\use_mhchem 0
+\use_mathdots 0
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Предметный указатель
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language french
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Paragraph*
+
+\family sans
+\series bold
+Reset simplification rules 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\series bold
+Input
+\series default
+: 
+\shape italic
+
+\begin_inset Formula $m$
+\end_inset
+
+ 
+\shape default
+the number of polynomials 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+for 
+\series default
+\shape italic
+
+\begin_inset Formula $i:=1,2,...,m$
+\end_inset
+
+ 
+\series bold
+\shape default
+do 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+Rule[
+\begin_inset Formula $i$
+\end_inset
+
+] := 
+\begin_inset Formula $\varnothing$
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Paragraph*
+
+\family sans
+\series bold
+Add Rule
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\series bold
+Input
+\series default
+: (
+\begin_inset Formula $r_{k}=(p,tF_{i})\in R$
+\end_inset
+
+) 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+Rule[
+\shape italic
+
+\begin_inset Formula $i$
+\end_inset
+
+
+\shape default
+] := 
+\shape italic
+concat
+\shape default
+([[
+\shape italic
+
+\begin_inset Formula $t$
+\end_inset
+
+, 
+\shape default
+
+\begin_inset Formula $k$
+\end_inset
+
+]]
+\shape italic
+, 
+\shape default
+Rule[
+\begin_inset Formula $i$
+\end_inset
+
+]) 
+\end_layout
+
+\begin_layout Paragraph*
+
+\family sans
+\series bold
+Rewritten 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\series bold
+Input
+\series default
+: (
+\shape italic
+u 
+\shape default
+
+\begin_inset Formula ${\in}$
+\end_inset
+
+ 
+\shape italic
+T 
+\shape default
+a term, 
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+k 
+\end_layout
+
+\end_inset
+
+= (
+\shape italic
+p, t
+\shape default
+F
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i 
+\end_layout
+
+\end_inset
+
+) 
+\begin_inset Formula ${\in}$
+\end_inset
+
+ 
+\shape italic
+R
+\shape default
+) 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+L 
+\shape default
+:= Rule[
+\shape italic
+i
+\shape default
+] = [[
+\begin_inset Formula $t_{1},k_{1}$
+\end_inset
+
+ ]
+\shape italic
+, .
+ .
+ .
+ , 
+\shape default
+[
+\shape italic
+t
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+r 
+\end_layout
+
+\end_inset
+
+
+\shape italic
+, k
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+r 
+\end_layout
+
+\end_inset
+
+]] 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+for 
+\series default
+\shape italic
+i 
+\shape default
+= 1
+\shape italic
+, .
+ .
+ .
+ , r 
+\series bold
+\shape default
+do 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+if 
+\series default
+\shape italic
+ut 
+\shape default
+divisible by 
+\shape italic
+t
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i 
+\end_layout
+
+\end_inset
+
+
+\series bold
+then 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+( 
+\begin_inset Formula $\frac{ut}{t_{i}},r_{k_{i}}$
+\end_inset
+
+ ) 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+(
+\shape italic
+u, r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+k 
+\end_layout
+
+\end_inset
+
+) 
+\end_layout
+
+\begin_layout Paragraph*
+
+\family sans
+\series bold
+Rewritten? 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\series bold
+Input
+\series default
+: (
+\shape italic
+u 
+\shape default
+
+\begin_inset Formula ${\in}$
+\end_inset
+
+ 
+\shape italic
+T 
+\shape default
+a term, 
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+k 
+\end_layout
+
+\end_inset
+
+= (
+\shape italic
+p, t
+\shape default
+F
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i 
+\end_layout
+
+\end_inset
+
+) 
+\begin_inset Formula ${\in}$
+\end_inset
+
+ 
+\shape italic
+R
+\shape default
+) 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+(
+\shape italic
+v , r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+l 
+\end_layout
+
+\end_inset
+
+) := Rewritten(
+\shape italic
+u, r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+k 
+\end_layout
+
+\end_inset
+
+) 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+\shape italic
+
+\begin_inset Formula $l\ne k$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Paragraph*
+
+\family sans
+\series bold
+Algorithm incremental 
+\series default
+\shape italic
+F
+\shape default
+5 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\series bold
+Input
+\series default
+: 
+\shape italic
+F 
+\shape default
+= (
+\shape italic
+f
+\shape default
+1 
+\shape italic
+, .
+ .
+ .
+ , f
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+m 
+\end_layout
+
+\end_inset
+
+) a list of homogeneous polynomials and an admissible ordering 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+N 
+\shape default
+:= 
+\shape italic
+m 
+\shape default
+(the number of polynomials 
+\begin_inset Formula $r_{1}$
+\end_inset
+
+ 
+\shape italic
+, .
+ .
+ .
+ , r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+N 
+\end_layout
+
+\end_inset
+
+occurring in the algorithm) 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+Reset simplification rules (
+\shape italic
+m
+\shape default
+).
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+m 
+\end_layout
+
+\end_inset
+
+:= (F
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+m 
+\end_layout
+
+\end_inset
+
+
+\shape italic
+, f
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+m 
+\end_layout
+
+\end_inset
+
+) 
+\begin_inset Formula ${\in}$
+\end_inset
+
+ 
+\shape italic
+R
+\shape default
+, 
+\shape italic
+G
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+m 
+\end_layout
+
+\end_inset
+
+:= [
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+m 
+\end_layout
+
+\end_inset
+
+] 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+for 
+\series default
+\shape italic
+i 
+\shape default
+:= (
+\shape italic
+m 
+\shape default
+
+\begin_inset Formula $-$
+\end_inset
+
+ 1)
+\shape italic
+, .
+ .
+ .
+ , 
+\shape default
+1 (in that order) 
+\series bold
+do 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+G
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i 
+\end_layout
+
+\end_inset
+
+:= 
+\shape italic
+AlgorithmF
+\shape default
+5 (
+\shape italic
+i, f
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i 
+\end_layout
+
+\end_inset
+
+
+\shape italic
+, G
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i
+\end_layout
+
+\end_inset
+
++1 ) 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+poly(
+\shape italic
+G
+\shape default
+) = [
+\begin_inset Formula $poly(r)|r\in G_{1}$
+\end_inset
+
+ ] 
+\end_layout
+
+\begin_layout Paragraph*
+
+\family sans
+\series bold
+Algorithm 
+\series default
+\shape italic
+F
+\shape default
+5 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\series bold
+Input
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\shape italic
+i 
+\shape default
+an integer and 
+\shape italic
+f
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i 
+\end_layout
+
+\end_inset
+
+a polynomial 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\shape italic
+G
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i
+\end_layout
+
+\end_inset
+
++1 a finite subset of R
+\shape italic
+, 
+\shape default
+such that poly(
+\shape italic
+G
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i
+\end_layout
+
+\end_inset
+
++1 ) is a Grobner basis of Id(
+\shape italic
+f
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i
+\end_layout
+
+\end_inset
+
++1 
+\shape italic
+, .
+ .
+ .
+ , f
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+m 
+\end_layout
+
+\end_inset
+
+) 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i 
+\end_layout
+
+\end_inset
+
+:= (F
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i 
+\end_layout
+
+\end_inset
+
+
+\shape italic
+, f
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i 
+\end_layout
+
+\end_inset
+
+) 
+\begin_inset Formula ${\in}$
+\end_inset
+
+ 
+\shape italic
+R 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $\varphi_{i+1}$
+\end_inset
+
+
+\shape default
+ = NF(
+\shape italic
+., poly 
+\shape default
+(
+\shape italic
+G
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i
+\end_layout
+
+\end_inset
+
++1 )) 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+G
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i 
+\end_layout
+
+\end_inset
+
+:= 
+\shape italic
+G
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i
+\end_layout
+
+\end_inset
+
++1 
+\begin_inset Formula ${\cup}$
+\end_inset
+
+ {
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i
+\end_layout
+
+\end_inset
+
+} 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+P 
+\shape default
+:= Sort [CritPair(
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i 
+\end_layout
+
+\end_inset
+
+
+\shape italic
+, r, i, 
+\begin_inset Formula $\varphi_{i+1}$
+\end_inset
+
+
+\shape default
+ ) | 
+\shape italic
+r 
+\shape default
+
+\begin_inset Formula ${\in}$
+\end_inset
+
+ 
+\shape italic
+G
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i
+\end_layout
+
+\end_inset
+
++1 ]) by degree 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+while 
+\series default
+
+\begin_inset Formula $P\ne\varnothing$
+\end_inset
+
+ 
+\series bold
+do 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+d 
+\shape default
+:= 
+\shape italic
+deg 
+\shape default
+(
+\shape italic
+f irst
+\shape default
+(
+\shape italic
+P 
+\shape default
+)) 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+P
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+d 
+\end_layout
+
+\end_inset
+
+:= {
+\shape italic
+p 
+\shape default
+
+\begin_inset Formula ${\in}$
+\end_inset
+
+ 
+\shape italic
+P 
+\shape default
+| 
+\shape italic
+deg 
+\shape default
+(
+\shape italic
+p
+\shape default
+) = 
+\shape italic
+d
+\shape default
+} 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+P 
+\shape default
+:= 
+\shape italic
+P 
+\shape default
+
+\backslash
+
+\shape italic
+P
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+d 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+F 
+\shape default
+:= 
+\shape italic
+Spol
+\shape default
+(
+\shape italic
+P
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+d 
+\end_layout
+
+\end_inset
+
+) 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+R
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+d 
+\end_layout
+
+\end_inset
+
+:= 
+\shape italic
+Reduction
+\shape default
+(
+\shape italic
+F, G
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i 
+\end_layout
+
+\end_inset
+
+
+\shape italic
+, i, 
+\begin_inset Formula $\varphi$
+\end_inset
+
+
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i
+\end_layout
+
+\end_inset
+
++1 ) 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+for 
+\series default
+\shape italic
+r 
+\shape default
+
+\begin_inset Formula ${\in}$
+\end_inset
+
+ 
+\shape italic
+R
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+d 
+\end_layout
+
+\end_inset
+
+
+\series bold
+do 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+P 
+\shape default
+:= 
+\shape italic
+P 
+\shape default
+
+\begin_inset Formula ${\cup}$
+\end_inset
+
+ {CritPair(
+\shape italic
+r, p, i, 
+\begin_inset Formula $\varphi$
+\end_inset
+
+
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i
+\end_layout
+
+\end_inset
+
++1 ) | 
+\shape italic
+p 
+\shape default
+
+\begin_inset Formula ${\in}$
+\end_inset
+
+ 
+\shape italic
+G
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i 
+\end_layout
+
+\end_inset
+
+]) 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+G
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i 
+\end_layout
+
+\end_inset
+
+:= 
+\shape italic
+G
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula ${\cup}$
+\end_inset
+
+ {
+\shape italic
+r
+\shape default
+} 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+P 
+\shape default
+:= Sort 
+\shape italic
+P 
+\shape default
+for the degree 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+\shape italic
+G
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+
+\family sans
+\series bold
+Algorithm CritPair 
+\series default
+(
+\shape italic
+r
+\shape default
+1 
+\shape italic
+, r
+\shape default
+2 
+\shape italic
+, k, 
+\begin_inset Formula $\varphi$
+\end_inset
+
+
+\shape default
+) 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\series bold
+Input
+\series default
+: 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\shape italic
+k 
+\shape default
+an integer 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\shape italic
+r
+\shape default
+1 
+\shape italic
+, r
+\shape default
+2 polynomials in 
+\shape italic
+R 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\shape italic
+\begin_inset Formula $\varphi$
+\end_inset
+
+ 
+\shape default
+a normal Form 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+p
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i 
+\end_layout
+
+\end_inset
+
+:= poly(
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i 
+\end_layout
+
+\end_inset
+
+) for 
+\shape italic
+i 
+\shape default
+= 1
+\shape italic
+, 
+\shape default
+2 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+t 
+\shape default
+:= 
+\shape italic
+lcm
+\shape default
+(HT(
+\shape italic
+p
+\shape default
+1 )
+\shape italic
+, 
+\shape default
+HT(
+\shape italic
+p
+\shape default
+2 )) 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+u
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i 
+\end_layout
+
+\end_inset
+
+:= 
+\shape italic
+
+\begin_inset Formula $\frac{t}{HT(p_{i})}$
+\end_inset
+
+ 
+\shape default
+for 
+\shape italic
+i 
+\shape default
+= 1
+\shape italic
+, 
+\shape default
+2 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+if 
+\series default
+\shape italic
+u
+\shape default
+1S (
+\shape italic
+r
+\shape default
+1) 
+\begin_inset Formula ${\prec}$
+\end_inset
+
+ 
+\shape italic
+u
+\shape default
+2S (
+\shape italic
+r
+\shape default
+2) 
+\series bold
+then 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+CritPair (
+\shape italic
+r
+\shape default
+2 
+\shape italic
+, r
+\shape default
+1 
+\shape italic
+, k, 
+\begin_inset Formula $\varphi$
+\end_inset
+
+
+\shape default
+) 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+t
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i
+\end_layout
+
+\end_inset
+
+F
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+k
+\end_layout
+
+\end_inset
+
+i := S (
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i
+\end_layout
+
+\end_inset
+
+) for 
+\shape italic
+i 
+\shape default
+= 1
+\shape italic
+, 
+\shape default
+2 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+if 
+\series default
+\shape italic
+k
+\shape default
+1 
+\shape italic
+> k 
+\series bold
+\shape default
+then
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+
+\begin_inset Formula $\varnothing$
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+if 
+\series default
+\shape italic
+
+\begin_inset Formula $\varphi$
+\end_inset
+
+
+\shape default
+(
+\shape italic
+u
+\shape default
+1 
+\shape italic
+t
+\shape default
+1 ) 
+\begin_inset Formula $\ne$
+\end_inset
+
+ 
+\shape italic
+u
+\shape default
+1 
+\shape italic
+t
+\shape default
+1 
+\series bold
+then
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+
+\begin_inset Formula $\varnothing$
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+if 
+\series default
+\shape italic
+k
+\shape default
+2 = 
+\shape italic
+k 
+\shape default
+and 
+\shape italic
+
+\begin_inset Formula $\varphi$
+\end_inset
+
+
+\shape default
+(
+\shape italic
+u
+\shape default
+2 
+\shape italic
+t
+\shape default
+2 ) 
+\family default
+
+\begin_inset Formula $\ne$
+\end_inset
+
+
+\family sans
+ 
+\shape italic
+u
+\shape default
+2 
+\shape italic
+t
+\shape default
+2 
+\series bold
+then
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+
+\begin_inset Formula $\varnothing$
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+[
+\shape italic
+t, u
+\shape default
+1 
+\shape italic
+, r
+\shape default
+1 
+\shape italic
+, u
+\shape default
+2 
+\shape italic
+, r
+\shape default
+2 ] 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\series bold
+Algorithm Spol 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\series bold
+Input
+\series default
+: 
+\shape italic
+P 
+\shape default
+= [
+\shape italic
+p
+\shape default
+1 
+\shape italic
+, .
+ .
+ .
+ , p
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+h 
+\end_layout
+
+\end_inset
+
+] a list of critical pairs 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\shape italic
+\begin_inset Formula $\varphi$
+\end_inset
+
+ 
+\shape default
+a normal Form 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+Let 
+\shape italic
+p
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+l 
+\end_layout
+
+\end_inset
+
+= [
+\shape italic
+t
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+l 
+\end_layout
+
+\end_inset
+
+
+\shape italic
+, u
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+l 
+\end_layout
+
+\end_inset
+
+
+\shape italic
+, r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i
+\end_layout
+
+\end_inset
+
+l 
+\shape italic
+, v
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+l 
+\end_layout
+
+\end_inset
+
+
+\shape italic
+, r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+j
+\end_layout
+
+\end_inset
+
+l ] for 
+\shape italic
+l 
+\shape default
+= 1
+\shape italic
+, .
+ .
+ .
+ , h 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+F 
+\shape default
+:= 
+\begin_inset Formula $\varnothing$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+for 
+\series default
+\shape italic
+l 
+\series bold
+\shape default
+from 
+\series default
+1 
+\series bold
+to 
+\series default
+\shape italic
+h 
+\series bold
+\shape default
+do 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+if 
+\series default
+(not Rewritten?(
+\shape italic
+u
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+l 
+\end_layout
+
+\end_inset
+
+
+\shape italic
+, r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i
+\end_layout
+
+\end_inset
+
+l )) and (not Rewritten?(
+\shape italic
+v
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+l 
+\end_layout
+
+\end_inset
+
+
+\shape italic
+, r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+j
+\end_layout
+
+\end_inset
+
+l )) 
+\series bold
+then
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+N 
+\shape default
+:= 
+\shape italic
+N 
+\shape default
++ 1 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+N 
+\end_layout
+
+\end_inset
+
+:= (
+\shape italic
+u
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+l
+\end_layout
+
+\end_inset
+
+S (
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i
+\end_layout
+
+\end_inset
+
+l )
+\shape italic
+, u
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+l 
+\end_layout
+
+\end_inset
+
+poly(
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i
+\end_layout
+
+\end_inset
+
+l ) 
+\begin_inset Formula $-$
+\end_inset
+
+ 
+\shape italic
+v
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+l 
+\end_layout
+
+\end_inset
+
+poly(
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+j
+\end_layout
+
+\end_inset
+
+l )) 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+Add Rule (
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+N 
+\end_layout
+
+\end_inset
+
+) 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+F 
+\shape default
+:= 
+\shape italic
+F 
+\shape default
+
+\begin_inset Formula ${\cup}$
+\end_inset
+
+ {
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+N 
+\end_layout
+
+\end_inset
+
+} 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+F 
+\shape default
+:= Sort 
+\shape italic
+F 
+\shape default
+by increasing S 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+\shape italic
+F 
+\end_layout
+
+\begin_layout Paragraph*
+
+\family sans
+\series bold
+Algorithm Reduction 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\series bold
+Input
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\shape italic
+T oDo 
+\shape default
+a finite list of polynomials 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\shape italic
+G 
+\shape default
+a list of polynomials of 
+\shape italic
+R 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\shape italic
+k 
+\shape default
+an integer 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\shape italic
+\begin_inset Formula $\varphi$
+\end_inset
+
+ 
+\shape default
+a normal Form 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\shape italic
+Done 
+\shape default
+:= 
+\begin_inset Formula $\varnothing$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+while 
+\series default
+\shape italic
+T oDo 
+\family default
+\shape default
+
+\begin_inset Formula $\ne$
+\end_inset
+
+
+\family sans
+ 
+\begin_inset Formula $\varnothing$
+\end_inset
+
+ 
+\series bold
+do 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+h 
+\shape default
+:= the minimal of 
+\shape italic
+T oDo 
+\shape default
+for S 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+T oDo 
+\shape default
+:= 
+\shape italic
+T oDo
+\shape default
+
+\backslash
+{
+\shape italic
+h
+\shape default
+} 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+(
+\shape italic
+h
+\shape default
+1 
+\shape italic
+, T oDo
+\shape default
+1 ) := 
+\shape italic
+T opReduction
+\shape default
+(
+\shape italic
+
+\begin_inset Formula $\varphi$
+\end_inset
+
+
+\shape default
+(
+\shape italic
+h
+\shape default
+)
+\shape italic
+, G 
+\shape default
+
+\begin_inset Formula ${\cup}$
+\end_inset
+
+ 
+\shape italic
+Done, k, 
+\begin_inset Formula $\varphi$
+\end_inset
+
+
+\shape default
+) 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+Done 
+\shape default
+:= 
+\shape italic
+Done 
+\shape default
+
+\begin_inset Formula ${\cup}$
+\end_inset
+
+ 
+\shape italic
+h
+\shape default
+1 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+T oDo 
+\shape default
+:= 
+\shape italic
+T oDo 
+\shape default
+
+\begin_inset Formula ${\cup}$
+\end_inset
+
+ 
+\shape italic
+T oDo
+\shape default
+1 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+\shape italic
+Done 
+\end_layout
+
+\begin_layout Paragraph*
+
+\family sans
+\series bold
+Algorithm IsReducible 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\series bold
+Input
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\begin_inset Formula $r_{i_{0}}$
+\end_inset
+
+ a polynomial of 
+\shape italic
+R 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\shape italic
+G 
+\shape default
+= [
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i
+\end_layout
+
+\end_inset
+
+1 
+\shape italic
+, .
+ .
+ .
+ , g
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i
+\end_layout
+
+\end_inset
+
+r ] where 
+\shape italic
+g
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula ${\in}$
+\end_inset
+
+ 
+\shape italic
+R 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\shape italic
+k 
+\shape default
+an integer 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\shape italic
+\begin_inset Formula $\varphi$
+\end_inset
+
+ 
+\shape default
+a normal Form 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+t
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+j 
+\end_layout
+
+\end_inset
+
+F
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+k
+\end_layout
+
+\end_inset
+
+j := S (
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i
+\end_layout
+
+\end_inset
+
+j ) 
+\shape italic
+j 
+\shape default
+= 0
+\shape italic
+, 
+\shape default
+1
+\shape italic
+, .
+ .
+ .
+ , r 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+for j from 1 to r do 
+\series bold
+if 
+\series default
+the following 4 conditions are true 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\begin_inset Formula $u=\frac{HT(r_{i_{0}})}{HT(r_{i_{j}})}$
+\end_inset
+
+ is a term (i.e.
+ 
+\shape italic
+u 
+\shape default
+
+\begin_inset Formula ${\in}$
+\end_inset
+
+ 
+\shape italic
+T 
+\shape default
+) 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $\varphi$
+\end_inset
+
+
+\shape default
+(
+\shape italic
+u t
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+j 
+\end_layout
+
+\end_inset
+
+) = 
+\shape italic
+u t
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+j 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+not Rewritten?(
+\shape italic
+u, r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+i
+\end_layout
+
+\end_inset
+
+j ) 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+ut
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+j 
+\end_layout
+
+\end_inset
+
+F
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+k
+\end_layout
+
+\end_inset
+
+j 
+\family default
+
+\begin_inset Formula $\ne$
+\end_inset
+
+
+\family sans
+ 
+\shape italic
+t
+\shape default
+0F
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+k
+\end_layout
+
+\end_inset
+
+0 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+then return 
+\series default
+
+\begin_inset Formula $r_{i_{j}}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+
+\begin_inset Formula $\varnothing$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Paragraph
+
+\family sans
+\series bold
+Algorithm TopReduction 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\series bold
+Input
+\series default
+: 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\begin_inset Formula $r_{k_{0}}$
+\end_inset
+
+ a polynomial of 
+\shape italic
+R 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\shape italic
+G 
+\shape default
+a list of polynomials of 
+\shape italic
+R 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\shape italic
+k 
+\shape default
+an integer 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\shape italic
+\begin_inset Formula $\varphi$
+\end_inset
+
+ 
+\shape default
+a normal Form 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+if 
+\series default
+poly(
+\begin_inset Formula $r_{k_{0}}$
+\end_inset
+
+) = 0 
+\series bold
+then 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+Warning 
+\series default
+
+\begin_inset Quotes eld
+\end_inset
+
+the system is not a regular sequence” 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+(
+\begin_inset Formula $\varnothing$
+\end_inset
+
+
+\shape italic
+, 
+\shape default
+
+\begin_inset Formula $\varnothing$
+\end_inset
+
+) 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+r'
+\shape default
+ = 
+\shape italic
+IsReducible
+\shape default
+(
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+k
+\end_layout
+
+\end_inset
+
+0 
+\shape italic
+, G, k, 
+\begin_inset Formula $\varphi$
+\end_inset
+
+
+\shape default
+) 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+if 
+\series default
+\shape italic
+r'
+\shape default
+ = 
+\begin_inset Formula $\varnothing$
+\end_inset
+
+ 
+\series bold
+then 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\begin_inset Formula $\left(\frac{1}{HC(r_{k_{0}})}r_{k_{0}},\varnothing\right)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+else 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $r_{k_{1}}=r'$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\begin_inset Formula $u=\frac{HM(r_{k_{0}})}{HM(r_{k_{1}})}\in T$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+if 
+\series default
+\shape italic
+u 
+\shape default
+S (
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+k
+\end_layout
+
+\end_inset
+
+1 ) 
+\begin_inset Formula ${\prec}$
+\end_inset
+
+ S (
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+k
+\end_layout
+
+\end_inset
+
+0 ) 
+\series bold
+then 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+poly(
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+k
+\end_layout
+
+\end_inset
+
+0 ) = poly(
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+k
+\end_layout
+
+\end_inset
+
+0 ) 
+\begin_inset Formula $-$
+\end_inset
+
+ 
+\shape italic
+u 
+\shape default
+poly(
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+k
+\end_layout
+
+\end_inset
+
+1 ) 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+(
+\begin_inset Formula $\varnothing$
+\end_inset
+
+
+\shape italic
+, 
+\shape default
+{
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+k
+\end_layout
+
+\end_inset
+
+0 }) 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+else 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+N 
+\shape default
+:= 
+\shape italic
+N 
+\shape default
++ 1 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+N 
+\end_layout
+
+\end_inset
+
+= (
+\shape italic
+u 
+\shape default
+S (
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+k
+\end_layout
+
+\end_inset
+
+1 )
+\shape italic
+, u 
+\shape default
+poly(
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+k
+\end_layout
+
+\end_inset
+
+1 ) 
+\begin_inset Formula $-$
+\end_inset
+
+ poly(
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+k
+\end_layout
+
+\end_inset
+
+0 )) 
+\begin_inset Formula ${\in}$
+\end_inset
+
+ 
+\shape italic
+R 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+Add Rule (
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+N 
+\end_layout
+
+\end_inset
+
+) 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+return (
+\begin_inset Formula $\varnothing$
+\end_inset
+
+
+\shape italic
+, 
+\shape default
+{
+\shape italic
+r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+N 
+\end_layout
+
+\end_inset
+
+
+\shape italic
+, r
+\shape default
+
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+k
+\end_layout
+
+\end_inset
+
+0 }) 
+\family default
+ 
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_body
+\end_document
