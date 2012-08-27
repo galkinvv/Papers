@@ -2367,8 +2367,11 @@ key "FaugereF5"
 \end_layout
 
 \begin_layout Standard
-С более подробным сравнением шага алгоритма F5 с алгоритмом Бухбергера можно
- ознакомиться в работе 
+Помимо этого F5 добавляет требование однородности всех входных многочленов
+ и проводит вычисления таким образом, что все получаемые многочлены также
+ однородны.
+ С более подробным сравнением шага алгоритма F5 с алгоритмом Бухбергера
+ можно ознакомиться в работе 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "F5InBBStyle"
@@ -2380,15 +2383,19 @@ key "F5InBBStyle"
 
 \begin_layout Standard
 Для удобства дальнейших рассуждений об остановке алгоритма приведём здесь
- полный псевдокод F5, соответствующий исходной формулировке во всём, кроме
- порядка обработки входных многочленов -- приводимая версия обрабатывает
- многочлены начиная с первого, в то время как в первоисточнике многочлены
- обрабатываются, начиная с последнего, что вызвано противоположным направлением
- сравнения индексов в определении порядка на множестве сигнатур 
+ полный псевдокод F5, основанный на исходной формулировке.
+ Алгоритмически он эквивалентен ей во всём, кроме порядка обработки входных
+ многочленов -- приводимая версия обрабатывает многочлены начиная с первого,
+ в то время как в первоисточнике многочлены обрабатываются, начиная с последнего
+, что вызвано противоположным направлением сравнения индексов в определении
+ порядка на множестве сигнатур 
 \begin_inset Formula $\mathbf{T}$
 \end_inset
 
 .
+ Остальные отличия приводимого псевдокода от исходного носят лишь характер
+ упрощения символики и самого псевдокода, но не вносят никаких изменений
+ в сам алгоритм.
  Большинство используемых обозначений, включая названия этапов алгоритма,
  взято из первоисточника.
 \end_layout
@@ -2399,18 +2406,11 @@ key "F5InBBStyle"
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-\begin_inset Formula $m$
-\end_inset
-
- Число многочленов, полученных на вход алгоритма
-\end_layout
-
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
 \begin_inset Formula $R$
 \end_inset
 
- Пополняемый массив отмеченных многочленов.
+ Пополняемый массив отмеченных многочленов, нумеруемый числовыми индексами,
+ начинающимися с единичного.
  Большая часть процедур оперирует не с отмеченными многочленами, а с их
  индексами в этом массиве.
  При редукции, многочлен уже однажды добавленный в 
@@ -2471,11 +2471,19 @@ Rule Массив правил перезаписи, содержащий
  пустых массивов, которые в процессе работы пополняется со стороны начала
 \end_layout
 
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $\prec$
+\end_inset
+
+ Используемый мономиальный порядок
+\end_layout
+
 \begin_layout Paragraph*
 
-\family sans
-\series bold
-Add Rule
+\family typewriter
+\series medium
+AddRule
 \end_layout
 
 \begin_layout Labeling
@@ -2517,8 +2525,8 @@ Add Rule
 
 \begin_layout Paragraph*
 
-\family sans
-\series bold
+\family typewriter
+\series medium
 Rewritten?
 \end_layout
 
@@ -2652,202 +2660,85 @@ return false
 
 \begin_layout Paragraph*
 
+\family typewriter
+\series medium
+incrementalF5
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
 \family sans
+Вход:
 \series bold
-incremental
-\series default
-\shape italic
-\emph on
-F5
-\shape default
  
-\end_layout
-
-\begin_layout Standard
-
-\family sans
-\series bold
-Input
 \series default
-: 
-\shape italic
-F 
-\shape default
-= (
-\shape italic
-f
-\shape default
-1 
-\shape italic
-, .
- .
- .
- , f
-\shape default
 
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-m 
-\end_layout
-
+\begin_inset Formula $F=[f_{1},\dots,f_{m}]$
 \end_inset
 
-) a list of homogeneous polynomials and an admissible ordering 
+ -- упорядоченный массив однородных многочленов
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 
 \family sans
-\shape italic
-N 
-\shape default
-:= 
-\shape italic
-m 
-\shape default
-(the number of polynomials 
-\begin_inset Formula $r_{1}$
-\end_inset
-
- 
-\shape italic
-, .
- .
- .
- , r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-N 
-\end_layout
-
-\end_inset
-
-occurring in the algorithm) 
-\end_layout
-
-\begin_layout Enumerate
-
-\family sans
-\series bold
-for 
-\series default
-\shape italic
-
-\begin_inset Formula $i:=1,2,...,m$
-\end_inset
-
- 
-\series bold
-\shape default
-do 
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-
-\family sans
-Rule[
+Переменные: 
 \begin_inset Formula $i$
 \end_inset
 
-] := 
-\begin_inset Formula $\varnothing$
+ -- этап алгоритма,
+\begin_inset Formula $G_{i}$
 \end_inset
 
- 
+ -- множество индексов отмеченных многочленов в 
+\begin_inset Formula $R$
+\end_inset
+
+, образующих базис Грёбнера идеала 
+\begin_inset Formula $(f_{1},\dots,f_{i})$
+\end_inset
+
+
 \end_layout
 
-\end_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Результат:
+\series bold
+ 
+\series default
+множество, образующее базис Грёбнера идеала 
+\begin_inset Formula $(f_{1},\dots,f_{m})$
+\end_inset
+
+ с точки зрения порядка 
+\begin_inset Formula $\prec$
+\end_inset
+
+
+\end_layout
+
 \begin_layout Enumerate
 
 \family sans
 \shape italic
-r
-\shape default
+\begin_inset Formula $R\leftarrow[((1,1),f_{1})]$
+\end_inset
 
-\begin_inset script subscript
 
-\begin_layout Plain Layout
-
-\family sans
-m 
 \end_layout
 
-\end_inset
-
-:= (F
-\begin_inset script subscript
-
-\begin_layout Plain Layout
+\begin_layout Enumerate
 
 \family sans
-m 
-\end_layout
-
+\begin_inset Formula $G_{1}\leftarrow\{1\}$
 \end_inset
 
 
-\shape italic
-, f
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-m 
-\end_layout
-
-\end_inset
-
-) 
-\begin_inset Formula ${\in}$
-\end_inset
-
- 
-\shape italic
-R
-\shape default
-, 
-\shape italic
-G
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-m 
-\end_layout
-
-\end_inset
-
-:= [
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-m 
-\end_layout
-
-\end_inset
-
-] 
 \end_layout
 
 \begin_layout Enumerate
@@ -2855,83 +2746,24 @@ m
 \family sans
 \series bold
 for 
-\series default
-\shape italic
-i 
-\shape default
-:= (
-\shape italic
-m 
-\shape default
-
-\begin_inset Formula $-$
+\begin_inset Formula $i=2,\dots,m$
 \end_inset
 
- 1)
-\shape italic
-, .
- .
- .
- , 
-\shape default
-1 (in that order) 
-\series bold
-do 
+ do
 \end_layout
 
 \begin_deeper
 \begin_layout Enumerate
 
 \family sans
-\shape italic
-G
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i 
-\end_layout
-
+\begin_inset Formula $G_{i}\leftarrow$
 \end_inset
 
-:= 
-\shape italic
-AlgorithmF
-\shape default
-5 (
-\shape italic
-i, f
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i 
-\end_layout
-
+ AlgorithmF5 
+\begin_inset Formula $(((1,i),f_{i}),G_{i-1})$
 \end_inset
 
 
-\shape italic
-, G
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i
-\end_layout
-
-\end_inset
-
-+1 ) 
 \end_layout
 
 \end_deeper
@@ -2941,324 +2773,166 @@ i
 \series bold
 return 
 \series default
-poly(
-\shape italic
-G
-\shape default
-) = [
-\begin_inset Formula $poly(r)|r\in G_{1}$
+
+\begin_inset Formula $\left\{ poly(R[r])|r\in G_{m}\right\} $
 \end_inset
 
- ] 
+
 \end_layout
 
 \begin_layout Paragraph*
 
+\family typewriter
+\series medium
+AlgorithmF5
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
 \family sans
+Вход:
 \series bold
-Algorithm 
+ 
 \series default
-\shape italic
-F
-\shape default
-5 
-\end_layout
 
-\begin_layout Standard
-
-\family sans
-\series bold
-Input
-\series default
-:
-\end_layout
-
-\begin_layout Standard
-
-\family sans
-\shape italic
-i 
-\shape default
-an integer and 
-\shape italic
-f
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i 
-\end_layout
-
+\begin_inset Formula $((1,i),f_{i})$
 \end_inset
 
-a polynomial 
-\end_layout
-
-\begin_layout Standard
-
-\family sans
-\shape italic
-G
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i
-\end_layout
-
+ -- отмеченный многочлен, 
+\begin_inset Formula $G_{i-1}$
 \end_inset
 
-+1 a finite subset of R
-\shape italic
+ -- множество индексов отмеченных многочленов в 
+\begin_inset Formula $R$
+\end_inset
+
+, образующих базис Грёбнера некоторого идеала 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Переменные: 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ -- функция нормальной формы на 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
 , 
-\shape default
-such that poly(
-\shape italic
-G
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i
-\end_layout
-
+\begin_inset Formula $d$
 \end_inset
 
-+1 ) is a Grobner basis of Id(
-\shape italic
-f
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i
-\end_layout
-
+ -- число, соответствующее минимальной степени оставшихся S-пар, 
+\begin_inset Formula $P$
 \end_inset
 
-+1 
-\shape italic
-, .
- .
- .
- , f
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-m 
-\end_layout
-
+ -- упорядоченный список S-пар отмеченных многочленов, 
+\begin_inset Formula $P_{d}$
 \end_inset
 
-) 
-\end_layout
-
-\begin_layout Enumerate
-
-\family sans
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i 
-\end_layout
-
+ -- подмножество S-пар фиксированной степени, 
+\begin_inset Formula $F_{d},R_{d}$
 \end_inset
 
-:= (F
-\begin_inset script subscript
+ -- некоторые множества индексов 
+\begin_inset Formula $R$
+\end_inset
 
-\begin_layout Plain Layout
+, соответствующие многочленам фиксированной степени, 
+\begin_inset Formula $r,p$
+\end_inset
 
-\family sans
-i 
+ -- индексы элементов в 
+\begin_inset Formula $R$
+\end_inset
+
+, используемые при итерировании
 \end_layout
 
-\end_inset
-
-
-\shape italic
-, f
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 
 \family sans
-i 
-\end_layout
-
-\end_inset
-
-) 
-\begin_inset Formula ${\in}$
-\end_inset
-
+Результат:
+\series bold
  
-\shape italic
-R 
+\series default
+
+\begin_inset Formula $G_{i}$
+\end_inset
+
+ -- множество индексов отмеченных многочленов в 
+\begin_inset Formula $R$
+\end_inset
+
+, образующих базис Грёбнера идеала 
+\begin_inset Formula $\left(\left\{ poly(R[r])|r\in G_{i-1}\right\} \cup f_{i}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Добавить 
+\begin_inset Formula $((1,i),f_{i})$
+\end_inset
+
+ в конец 
+\begin_inset Formula $R$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
 
 \family sans
 \shape italic
-\begin_inset Formula $\varphi_{i+1}$
+\begin_inset Formula $G_{i}=G_{i-1}\cup\left\{ \#R\right\} $
 \end_inset
 
 
-\shape default
- = NF(
-\shape italic
-., poly 
-\shape default
-(
-\shape italic
-G
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i
-\end_layout
-
-\end_inset
-
-+1 )) 
 \end_layout
 
 \begin_layout Enumerate
 
 \family sans
 \shape italic
-G
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i 
-\end_layout
-
-\end_inset
-
-:= 
-\shape italic
-G
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i
-\end_layout
-
-\end_inset
-
-+1 
-\begin_inset Formula ${\cup}$
-\end_inset
-
- {
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i
-\end_layout
-
-\end_inset
-
-} 
-\end_layout
-
-\begin_layout Enumerate
-
-\family sans
-\shape italic
-P 
-\shape default
-:= Sort [CritPair(
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i 
-\end_layout
-
-\end_inset
-
-
-\shape italic
-, r, i, 
-\begin_inset Formula $\varphi_{i+1}$
+\begin_inset Formula $\varphi\leftarrow$
 \end_inset
 
 
 \shape default
- ) | 
-\shape italic
-r 
-\shape default
-
-\begin_inset Formula ${\in}$
-\end_inset
-
+Оператор нормальной формы, производящий полную редукцию по множеству многочленов
  
-\shape italic
-G
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i
-\end_layout
-
+\begin_inset Formula $\left\{ poly(R[r])|r\in G_{i-1}\right\} $
 \end_inset
 
-+1 ]) by degree 
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $P\leftarrow$
+\end_inset
+
+
+\shape default
+Отсортированный по возрастанию сокращаемого монома список 
+\family typewriter
+{CritPair
+\family sans
+
+\begin_inset Formula $(\#R,r,i,\varphi)|r\in G_{i-1}$
+\end_inset
+
+}
 \end_layout
 
 \begin_layout Enumerate
@@ -3281,92 +2955,20 @@ do
 
 \family sans
 \shape italic
-d 
-\shape default
-:= 
-\shape italic
-deg 
-\shape default
-(
-\shape italic
-f irst
-\shape default
-(
-\shape italic
-P 
-\shape default
-)) 
+\begin_inset Formula $d\leftarrow\totaldeg(P[1])$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
 
 \family sans
-\shape italic
-P
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-d 
-\end_layout
-
+\begin_inset Formula $P_{d}\leftarrow\{p\in P|\totaldeg$
 \end_inset
 
-:= {
-\shape italic
-p 
-\shape default
-
-\begin_inset Formula ${\in}$
-\end_inset
-
- 
-\shape italic
-P 
-\shape default
-| 
-\shape italic
-deg 
-\shape default
-(
-\shape italic
-p
-\shape default
-) = 
-\shape italic
-d
-\shape default
-} 
-\end_layout
-
-\begin_layout Enumerate
-
-\family sans
-\shape italic
-P 
-\shape default
-:= 
-\shape italic
-P 
-\shape default
-
-\backslash
-
-\shape italic
-P
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-d 
-\end_layout
-
+сокращаемого монома равна
+\begin_inset Formula $d\}$
 \end_inset
 
 
@@ -3376,86 +2978,48 @@ d
 
 \family sans
 \shape italic
-F 
-\shape default
-:= 
+\begin_inset Formula $P\leftarrow P\setminus P_{d}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
 \shape italic
+\begin_inset Formula $F_{d}\leftarrow$
+\end_inset
+
+
+\family typewriter
+\shape default
 Spol
-\shape default
-(
-\shape italic
-P
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
 \family sans
-d 
-\end_layout
 
+\begin_inset Formula $(P_{d})$
 \end_inset
 
-) 
+
 \end_layout
 
 \begin_layout Enumerate
 
 \family sans
 \shape italic
-R
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-d 
-\end_layout
-
+\begin_inset Formula $R_{d}\leftarrow$
 \end_inset
 
-:= 
-\shape italic
+
+\family typewriter
+\shape default
 Reduction
-\shape default
-(
-\shape italic
-F, G
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
 \family sans
-i 
-\end_layout
 
+\begin_inset Formula $(F,G_{i},\varphi)$
 \end_inset
 
 
-\shape italic
-, i, 
-\begin_inset Formula $\varphi$
-\end_inset
-
-
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i
-\end_layout
-
-\end_inset
-
-+1 ) 
 \end_layout
 
 \begin_layout Enumerate
@@ -3465,30 +3029,14 @@ i
 for 
 \series default
 \shape italic
-r 
-\shape default
 
-\begin_inset Formula ${\in}$
-\end_inset
-
- 
-\shape italic
-R
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-d 
-\end_layout
-
+\begin_inset Formula $r\in R_{d}$
 \end_inset
 
 
 \series bold
-do 
+\shape default
+ do 
 \end_layout
 
 \begin_deeper
@@ -3496,116 +3044,40 @@ do
 
 \family sans
 \shape italic
-P 
-\shape default
-:= 
-\shape italic
-P 
-\shape default
-
-\begin_inset Formula ${\cup}$
-\end_inset
-
- {CritPair(
-\shape italic
-r, p, i, 
-\begin_inset Formula $\varphi$
+\begin_inset Formula $P\leftarrow P\cup\{$
 \end_inset
 
 
+\family typewriter
 \shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
+CritPair
 \family sans
-i
-\end_layout
 
+\begin_inset Formula $(r,p,i,\varphi)|p\in G_{i}\}$
 \end_inset
 
-+1 ) | 
-\shape italic
-p 
-\shape default
 
-\begin_inset Formula ${\in}$
-\end_inset
-
- 
-\shape italic
-G
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i 
-\end_layout
-
-\end_inset
-
-]) 
 \end_layout
 
 \begin_layout Enumerate
 
 \family sans
 \shape italic
-G
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i 
-\end_layout
-
-\end_inset
-
-:= 
-\shape italic
-G
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i 
-\end_layout
-
+\begin_inset Formula $G_{i}\leftarrow G_{i}\cup\left\{ r\right\} $
 \end_inset
 
 
-\begin_inset Formula ${\cup}$
-\end_inset
-
- {
-\shape italic
-r
-\shape default
-} 
 \end_layout
 
 \end_deeper
 \begin_layout Enumerate
 
 \family sans
-\shape italic
-P 
-\shape default
-:= Sort 
-\shape italic
-P 
-\shape default
-for the degree 
+Отсортировать 
+\begin_inset Formula $P$
+\end_inset
+
+ по возрастанию сокращаемого монома 
 \end_layout
 
 \end_deeper
@@ -3614,19 +3086,20 @@ for the degree
 \family sans
 \series bold
 return 
-\series default
-\shape italic
-G
-\shape default
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
 
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i 
-\end_layout
-
+\begin_inset Formula $G_{i}$
 \end_inset
 
 
@@ -3634,204 +3107,127 @@ i
 
 \begin_layout Paragraph*
 
+\family typewriter
+\series medium
+CritPair
 \family sans
+ 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Вход:
 \series bold
-Algorithm CritPair 
+ 
 \series default
-(
-\shape italic
-r
-\shape default
-1 
-\shape italic
-, r
-\shape default
-2 
-\shape italic
-, k, 
+
+\begin_inset Formula $r_{1},r_{2}$
+\end_inset
+
+ -- индексы отмеченных многочленов в 
+\begin_inset Formula $R$
+\end_inset
+
+, 
+\begin_inset Formula $k$
+\end_inset
+
+ -- число, обозначающее индекс сигнатур, для которого проверяется нормальная
+ форма, 
 \begin_inset Formula $\varphi$
 \end_inset
 
+ -- функция нормальной формы на 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
 
-\shape default
-) 
+
 \end_layout
 
-\begin_layout Standard
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Переменные: 
+\begin_inset Formula $t,t_{1},t_{2},u_{1},u_{2}$
+\end_inset
+
+ -- мономы
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Результат:
+\series bold
+ 
+\series default
+множество S-пар отмеченных многочленов, содержащее не более одного элемента
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\begin_inset Formula $t\leftarrow\LCM(\HM(R[r_{1}]),\HM(R[r_{2}])$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
 
 \family sans
 \series bold
-Input
-\series default
-: 
-\end_layout
-
-\begin_layout Standard
-
-\family sans
-\shape italic
-k 
-\shape default
-an integer 
-\end_layout
-
-\begin_layout Standard
-
-\family sans
-\shape italic
-r
-\shape default
-1 
-\shape italic
-, r
-\shape default
-2 polynomials in 
-\shape italic
-R 
-\end_layout
-
-\begin_layout Standard
-
-\family sans
-\shape italic
-\begin_inset Formula $\varphi$
-\end_inset
-
- 
-\shape default
-a normal Form 
-\end_layout
-
-\begin_layout Enumerate
-
-\family sans
-\shape italic
-p
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i 
-\end_layout
-
-\end_inset
-
-:= poly(
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i 
-\end_layout
-
-\end_inset
-
-) for 
-\shape italic
-i 
-\shape default
-= 1
-\shape italic
-, 
-\shape default
-2 
-\end_layout
-
-\begin_layout Enumerate
-
-\family sans
-\shape italic
-t 
-\shape default
-:= 
-\shape italic
-lcm
-\shape default
-(HT(
-\shape italic
-p
-\shape default
-1 )
-\shape italic
-, 
-\shape default
-HT(
-\shape italic
-p
-\shape default
-2 )) 
-\end_layout
-
-\begin_layout Enumerate
-
-\family sans
-\shape italic
-u
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i 
-\end_layout
-
-\end_inset
-
-:= 
-\shape italic
-
-\begin_inset Formula $\frac{t}{HT(p_{i})}$
-\end_inset
-
- 
-\shape default
 for 
+\series default
 \shape italic
-i 
+
+\begin_inset Formula $i=1,2$
+\end_inset
+
+
+\series bold
 \shape default
-= 1
-\shape italic
-, 
-\shape default
-2 
+ do 
 \end_layout
 
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $u_{i}\leftarrow\frac{t}{HT(R[r_{i}])}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $t_{i}\leftarrow$
+\end_inset
+
+моном сигнатуры 
+\begin_inset Formula $R[r_{i}]$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \begin_layout Enumerate
 
 \family sans
 \series bold
 if 
 \series default
-\shape italic
-u
-\shape default
-1S (
-\shape italic
-r
-\shape default
-1) 
-\begin_inset Formula ${\prec}$
+
+\begin_inset Formula $u_{1}\Sig(R[r_{1}])\prec u_{2}\Sig(R[r_{2}])$
 \end_inset
 
  
-\shape italic
-u
-\shape default
-2S (
-\shape italic
-r
-\shape default
-2) 
 \series bold
 then 
 \end_layout
@@ -3842,95 +3238,30 @@ then
 \family sans
 \series bold
 return 
+\family typewriter
 \series default
-CritPair (
-\shape italic
-r
-\shape default
-2 
-\shape italic
-, r
-\shape default
-1 
-\shape italic
-, k, 
-\begin_inset Formula $\varphi$
+CritPair
+\family sans
+ 
+\begin_inset Formula $(r_{2},r_{1},k,\varphi)$
 \end_inset
 
 
-\shape default
-) 
 \end_layout
 
 \end_deeper
 \begin_layout Enumerate
 
 \family sans
-\shape italic
-t
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i
-\end_layout
-
-\end_inset
-
-F
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-k
-\end_layout
-
-\end_inset
-
-i := S (
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i
-\end_layout
-
-\end_inset
-
-) for 
-\shape italic
-i 
-\shape default
-= 1
-\shape italic
-, 
-\shape default
-2 
-\end_layout
-
-\begin_layout Enumerate
-
-\family sans
 \series bold
 if 
 \series default
-\shape italic
-k
-\shape default
-1 
-\shape italic
-> k 
+
+\begin_inset Formula $\varphi(u_{1}t_{1})\ne u_{1}t_{1}$
+\end_inset
+
+ 
 \series bold
-\shape default
 then
 \end_layout
 
@@ -3957,97 +3288,16 @@ if
 \series default
 \shape italic
 
-\begin_inset Formula $\varphi$
-\end_inset
-
-
-\shape default
-(
-\shape italic
-u
-\shape default
-1 
-\shape italic
-t
-\shape default
-1 ) 
-\begin_inset Formula $\ne$
+\begin_inset Formula $\sigidx(R[r_{2}])=k$
 \end_inset
 
  
-\shape italic
-u
-\shape default
-1 
-\shape italic
-t
-\shape default
-1 
-\series bold
-then
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-
-\family sans
-\series bold
-return 
-\series default
-
-\begin_inset Formula $\varnothing$
-\end_inset
-
- 
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-
-\family sans
-\series bold
-if 
-\series default
-\shape italic
-k
-\shape default
-2 = 
-\shape italic
-k 
 \shape default
 and 
-\shape italic
-
-\begin_inset Formula $\varphi$
+\begin_inset Formula $\varphi(u_{2}t_{2})\ne u_{2}t_{2}$
 \end_inset
 
-
-\shape default
-(
-\shape italic
-u
-\shape default
-2 
-\shape italic
-t
-\shape default
-2 ) 
-\family default
-
-\begin_inset Formula $\ne$
-\end_inset
-
-
-\family sans
  
-\shape italic
-u
-\shape default
-2 
-\shape italic
-t
-\shape default
-2 
 \series bold
 then
 \end_layout
@@ -4073,195 +3323,73 @@ return
 \series bold
 return 
 \series default
-[
-\shape italic
-t, u
-\shape default
-1 
-\shape italic
-, r
-\shape default
-1 
-\shape italic
-, u
-\shape default
-2 
-\shape italic
-, r
-\shape default
-2 ] 
+
+\begin_inset Formula $\left\{ \left(u_{1}\cdot R[r_{1}],u_{2}\cdot R[r_{2}]\right)\right\} $
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 
-\family sans
-\series bold
-Algorithm Spol 
+\family typewriter
+Spol
 \end_layout
 
-\begin_layout Standard
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 
 \family sans
+Вход:
 \series bold
-Input
+ 
 \series default
-: 
-\shape italic
-P 
-\shape default
-= [
-\shape italic
-p
-\shape default
-1 
-\shape italic
-, .
- .
- .
- , p
-\shape default
 
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-h 
-\end_layout
-
+\begin_inset Formula $P=\left\{ p_{1},\dots,p_{h}\right\} $
 \end_inset
 
-] a list of critical pairs 
+ -- множество S-пар фиксированной степени
 \end_layout
 
-\begin_layout Standard
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 
 \family sans
-\shape italic
-\begin_inset Formula $\varphi$
+Переменные: 
+\begin_inset Formula $(u\cdot R[r_{i}],v\cdot R[r_{j}])$
 \end_inset
 
+ -- S-пара отмеченных многочленов
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Результат:
+\series bold
  
-\shape default
-a normal Form 
-\end_layout
+\series default
 
-\begin_layout Enumerate
-
-\family sans
-Let 
-\shape italic
-p
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-l 
-\end_layout
-
+\begin_inset Formula $F$
 \end_inset
 
-= [
-\shape italic
-t
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-l 
-\end_layout
-
+ -- множество индексов 
+\begin_inset Formula $R$
 \end_inset
 
-
-\shape italic
-, u
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-l 
-\end_layout
-
-\end_inset
-
-
-\shape italic
-, r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i
-\end_layout
-
-\end_inset
-
-l 
-\shape italic
-, v
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-l 
-\end_layout
-
-\end_inset
-
-
-\shape italic
-, r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-j
-\end_layout
-
-\end_inset
-
-l ] for 
-\shape italic
-l 
-\shape default
-= 1
-\shape italic
-, .
- .
- .
- , h 
+, соответствующих отмеченным многочленам, полученным из входных S-пар как
+ S-многочлены
 \end_layout
 
 \begin_layout Enumerate
 
 \family sans
 \shape italic
-F 
-\shape default
-:= 
-\begin_inset Formula $\varnothing$
+\begin_inset Formula $F\leftarrow\varnothing$
 \end_inset
 
- 
+
 \end_layout
 
 \begin_layout Enumerate
@@ -4269,292 +3397,87 @@ F
 \family sans
 \series bold
 for 
-\series default
-\shape italic
-l 
-\series bold
-\shape default
-from 
-\series default
-1 
-\series bold
-to 
-\series default
-\shape italic
-h 
-\series bold
-\shape default
-do 
+\begin_inset Formula $l=1,\dots,h$
+\end_inset
+
+ do 
 \end_layout
 
 \begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $(u\cdot R[r_{i}],v\cdot R[r_{j}])\leftarrow P[l]$
+\end_inset
+
+
+\end_layout
+
 \begin_layout Enumerate
 
 \family sans
 \series bold
 if 
 \series default
-(not Rewritten?(
-\shape italic
-u
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
+(not 
+\family typewriter
+Rewritten?
 \family sans
-l 
-\end_layout
 
+\begin_inset Formula $(u,r_{i})$
 \end_inset
 
-
-\shape italic
-, r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
+) and (not 
+\family typewriter
+Rewritten?
 \family sans
-i
-\end_layout
 
+\begin_inset Formula $(v,r_{j})$
 \end_inset
 
-l )) and (not Rewritten?(
-\shape italic
-v
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-l 
-\end_layout
-
-\end_inset
-
-
-\shape italic
-, r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-j
-\end_layout
-
-\end_inset
-
-l )) 
+) 
 \series bold
 then
 \end_layout
 
 \begin_deeper
 \begin_layout Enumerate
-
+Добавить 
 \family sans
-\shape italic
-N 
-\shape default
-:= 
-\shape italic
-N 
-\shape default
-+ 1 
+
+\begin_inset Formula $(u\Sig(R[r_{i}]),u\poly(R[r_{i}])-v\poly(R[r_{j}]))$
+\end_inset
+
+
+\family default
+ в конец 
+\begin_inset Formula $R$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
 
+\family typewriter
+AddRule
 \family sans
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-N 
-\end_layout
-
-\end_inset
-
-:= (
-\shape italic
-u
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-l
-\end_layout
-
-\end_inset
-
-S (
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i
-\end_layout
-
-\end_inset
-
-l )
-\shape italic
-, u
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-l 
-\end_layout
-
-\end_inset
-
-poly(
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i
-\end_layout
-
-\end_inset
-
-l ) 
-\begin_inset Formula $-$
-\end_inset
-
  
-\shape italic
-v
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-l 
-\end_layout
-
+\begin_inset Formula $\left(\#R\right)$
 \end_inset
 
-poly(
-\shape italic
-r
-\shape default
 
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-j
-\end_layout
-
-\end_inset
-
-l )) 
 \end_layout
 
 \begin_layout Enumerate
 
 \family sans
-Add Rule (
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-N 
-\end_layout
-
+\begin_inset Formula $F\leftarrow F\cup\left\{ \#R\right\} $
 \end_inset
 
-) 
-\end_layout
 
-\begin_layout Enumerate
-
-\family sans
-\shape italic
-F 
-\shape default
-:= 
-\shape italic
-F 
-\shape default
-
-\begin_inset Formula ${\cup}$
-\end_inset
-
- {
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-N 
-\end_layout
-
-\end_inset
-
-} 
 \end_layout
 
 \end_deeper
 \end_deeper
-\begin_layout Enumerate
-
-\family sans
-\shape italic
-F 
-\shape default
-:= Sort 
-\shape italic
-F 
-\shape default
-by increasing S 
-\end_layout
-
 \begin_layout Enumerate
 
 \family sans
@@ -4562,77 +3485,108 @@ by increasing S
 return 
 \series default
 \shape italic
-F 
+
+\begin_inset Formula $F$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Paragraph*
 
+\family typewriter
+\series medium
+Reduction
 \family sans
-\series bold
-Algorithm Reduction 
+ 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 
 \family sans
+Вход:
 \series bold
-Input
+ 
 \series default
-:
-\end_layout
+ToDo,
+\begin_inset Formula $G$
+\end_inset
 
-\begin_layout Standard
+ -- множества индексов 
+\begin_inset Formula $R$
+\end_inset
 
-\family sans
-\shape italic
-T oDo 
-\shape default
-a finite list of polynomials 
-\end_layout
-
-\begin_layout Standard
-
-\family sans
-\shape italic
-G 
-\shape default
-a list of polynomials of 
-\shape italic
-R 
-\end_layout
-
-\begin_layout Standard
-
-\family sans
-\shape italic
-k 
-\shape default
-an integer 
-\end_layout
-
-\begin_layout Standard
-
-\family sans
-\shape italic
+, соответствующих отмеченным многочленам, 
 \begin_inset Formula $\varphi$
 \end_inset
 
- 
-\shape default
-a normal Form 
-\end_layout
-
-\begin_layout Standard
-
-\family sans
-\shape italic
-Done 
-\shape default
-:= 
-\begin_inset Formula $\varnothing$
+ -- функция нормальной формы на 
+\begin_inset Formula $\mathcal{P}$
 \end_inset
 
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Переменные: 
+\begin_inset Formula $h$
+\end_inset
+
+ -- индекс отмеченных многочленов в 
+\begin_inset Formula $R$
+\end_inset
+
+, Done
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+1
+\end_layout
+
+\end_inset
+
+, ToDo
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+1
+\end_layout
+
+\end_inset
+
+ -- множества индексов 
+\begin_inset Formula $R$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Результат:
+\series bold
  
+\series default
+Done -- множество индексов 
+\begin_inset Formula $R$
+\end_inset
+
+, соответствующих отмеченным многочленам из ToDo, редуцированным по многочленам
+ из 
+\begin_inset Formula $G$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
@@ -4641,18 +3595,8 @@ Done
 \series bold
 while 
 \series default
-\shape italic
-T oDo 
-\family default
-\shape default
-
-\begin_inset Formula $\ne$
-\end_inset
-
-
-\family sans
- 
-\begin_inset Formula $\varnothing$
+ToDo
+\begin_inset Formula $\ne\varnothing$
 \end_inset
 
  
@@ -4662,75 +3606,104 @@ do
 
 \begin_deeper
 \begin_layout Enumerate
+\begin_inset Formula $h\leftarrow$
+\end_inset
+
 
 \family sans
-\shape italic
-h 
-\shape default
-:= the minimal of 
-\shape italic
-T oDo 
-\shape default
-for S 
+индекс из ToDo
+\family default
+,
+\family sans
+ соответствующий многочлену с минимальной по 
+\begin_inset Formula $\prec_{\tau}$
+\end_inset
+
+ среди ToDo сигнатурой
 \end_layout
 
 \begin_layout Enumerate
 
 \family sans
+ToDo
 \shape italic
-T oDo 
-\shape default
-:= 
-\shape italic
-T oDo
-\shape default
-
-\backslash
-{
-\shape italic
-h
-\shape default
-} 
-\end_layout
-
-\begin_layout Enumerate
-
-\family sans
-(
-\shape italic
-h
-\shape default
-1 
-\shape italic
-, T oDo
-\shape default
-1 ) := 
-\shape italic
-T opReduction
-\shape default
-(
-\shape italic
-
-\begin_inset Formula $\varphi$
-\end_inset
-
-
-\shape default
-(
-\shape italic
-h
-\shape default
-)
-\shape italic
-, G 
-\shape default
-
-\begin_inset Formula ${\cup}$
-\end_inset
-
  
+\family default
+\shape default
+
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+
+\family sans
+ ToDo
+\begin_inset Formula $\setminus\left\{ h\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $R[h]\leftarrow\left(\Sig(R[h]),\varphi(\poly(R[h]))\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
 \shape italic
-Done, k, 
+\begin_inset Formula $($
+\end_inset
+
+
+\shape default
+Done
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+1
+\end_layout
+
+\end_inset
+
+, ToDo
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+1
+\end_layout
+
+\end_inset
+
+) 
+\family default
+
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+
+\family sans
+ 
+\family typewriter
+TopReduction
+\family sans
+(
+\shape italic
+
+\begin_inset Formula $h,G\cup$
+\end_inset
+
+
+\shape default
+Done
+\shape italic
+,
 \begin_inset Formula $\varphi$
 \end_inset
 
@@ -4742,43 +3715,63 @@ Done, k,
 \begin_layout Enumerate
 
 \family sans
-\shape italic
-Done 
-\shape default
-:= 
-\shape italic
-Done 
-\shape default
+Done
+\family default
 
-\begin_inset Formula ${\cup}$
+\begin_inset Formula $\leftarrow$
 \end_inset
 
- 
+
+\family sans
+ Done
 \shape italic
-h
+ 
 \shape default
-1 
+
+\begin_inset Formula $\cup$
+\end_inset
+
+ Done
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+1
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
 
 \family sans
-\shape italic
-T oDo 
-\shape default
-:= 
-\shape italic
-T oDo 
-\shape default
+ToDo
+\family default
 
-\begin_inset Formula ${\cup}$
+\begin_inset Formula $\leftarrow$
 \end_inset
 
- 
-\shape italic
-T oDo
-\shape default
-1 
+
+\family sans
+ ToDo 
+\begin_inset Formula $\cup$
+\end_inset
+
+ ToDo
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+1
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
@@ -4788,250 +3781,159 @@ T oDo
 \series bold
 return 
 \series default
+Done
 \shape italic
-Done 
+ 
 \end_layout
 
 \begin_layout Paragraph*
 
+\family typewriter
+\series medium
+IsReducible
 \family sans
-\series bold
-Algorithm IsReducible 
-\end_layout
-
-\begin_layout Standard
-
-\family sans
-\series bold
-Input
-\series default
-:
-\end_layout
-
-\begin_layout Standard
-
-\family sans
-\begin_inset Formula $r_{i_{0}}$
-\end_inset
-
- a polynomial of 
-\shape italic
-R 
-\end_layout
-
-\begin_layout Standard
-
-\family sans
-\shape italic
-G 
-\shape default
-= [
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i
-\end_layout
-
-\end_inset
-
-1 
-\shape italic
-, .
- .
- .
- , g
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i
-\end_layout
-
-\end_inset
-
-r ] where 
-\shape italic
-g
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i 
-\end_layout
-
-\end_inset
-
-
-\begin_inset Formula ${\in}$
-\end_inset
-
  
-\shape italic
-R 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 
 \family sans
-\shape italic
-k 
-\shape default
-an integer 
-\end_layout
+Вход:
+\series bold
+ 
+\series default
 
-\begin_layout Standard
+\begin_inset Formula $r_{0}$
+\end_inset
 
-\family sans
-\shape italic
+ -- индекс отмеченного многочлена в 
+\begin_inset Formula $R$
+\end_inset
+
+, для которого выполняется поиск возможных сигнатурных редукций,
+\begin_inset Formula $G$
+\end_inset
+
+ -- множество индексов 
+\begin_inset Formula $R$
+\end_inset
+
+, соответствующих потенциальным редукторам, 
 \begin_inset Formula $\varphi$
 \end_inset
 
- 
-\shape default
-a normal Form 
-\end_layout
-
-\begin_layout Enumerate
-
-\family sans
-\shape italic
-t
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-j 
-\end_layout
-
+ -- функция нормальной формы на 
+\begin_inset Formula $\mathcal{P}$
 \end_inset
 
-F
-\begin_inset script subscript
 
-\begin_layout Plain Layout
-
-\family sans
-k
 \end_layout
 
-\end_inset
-
-j := S (
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 
 \family sans
-i
-\end_layout
-
+Переменные: 
+\begin_inset Formula $u$
 \end_inset
 
-j ) 
-\shape italic
-j 
-\shape default
-= 0
-\shape italic
+ -- моном, 
+\begin_inset Formula $r_{j}$
+\end_inset
+
+ -- индекс в 
+\begin_inset Formula $R$
+\end_inset
+
+, для итерирования по 
+\begin_inset Formula $G$
+\end_inset
+
 , 
-\shape default
-1
-\shape italic
-, .
- .
- .
- , r 
+\begin_inset Formula $t_{j}$
+\end_inset
+
+ -- моном сигнатуры
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Результат:
+\series bold
+ 
+\series default
+множество индексов 
+\begin_inset Formula $R$
+\end_inset
+
+, соответствующих возможным редукторам, содержащее не более одного элемента
 \end_layout
 
 \begin_layout Enumerate
 
 \family sans
-for j from 1 to r do 
+\series bold
+for
+\series default
+ 
+\begin_inset Formula $r_{i}\in G$
+\end_inset
+
+
+\series bold
+ do:
+\series default
+ 
 \series bold
 if 
 \series default
-the following 4 conditions are true 
+одновременно выполнены 4 нижеследующих условия
 \end_layout
 
 \begin_deeper
 \begin_layout Enumerate
 
 \family sans
-\begin_inset Formula $u=\frac{HT(r_{i_{0}})}{HT(r_{i_{j}})}$
+\begin_inset Formula $u=\frac{HT(R[r_{0}])}{HT(R[r_{\text{j}}])}$
 \end_inset
 
- is a term (i.e.
- 
-\shape italic
-u 
-\shape default
-
-\begin_inset Formula ${\in}$
+ -- корректный моном из 
+\begin_inset Formula $\mathbb{T}$
 \end_inset
 
- 
-\shape italic
-T 
-\shape default
-) 
+, т.е.
+ числитель делится на знаменатель
 \end_layout
 
 \begin_layout Enumerate
 
 \family sans
-\shape italic
-\begin_inset Formula $\varphi$
+\begin_inset Formula $\varphi(ut_{j})=ut_{j}$
 \end_inset
 
-
-\shape default
-(
-\shape italic
-u t
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-j 
-\end_layout
-
+, где 
+\begin_inset Formula $t_{j}$
 \end_inset
 
-) = 
-\shape italic
-u t
-\shape default
+ моном сигнатуры 
+\begin_inset Formula $\Sig(R[r_{j}])$
+\end_inset
 
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-j 
+.
 \end_layout
 
+\begin_layout Enumerate
+
+\family sans
+not 
+\family typewriter
+Rewritten?
+\family sans
+
+\begin_inset Formula $(u,r_{j})$
 \end_inset
 
 
@@ -5040,76 +3942,10 @@ j
 \begin_layout Enumerate
 
 \family sans
-not Rewritten?(
-\shape italic
-u, r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-i
-\end_layout
-
-\end_inset
-
-j ) 
-\end_layout
-
-\begin_layout Enumerate
-
-\family sans
-\shape italic
-ut
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-j 
-\end_layout
-
-\end_inset
-
-F
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-k
-\end_layout
-
-\end_inset
-
-j 
-\family default
-
-\begin_inset Formula $\ne$
+\begin_inset Formula $u\Sig(R[r_{j}])\ne\Sig(R[r_{0}])$
 \end_inset
 
 
-\family sans
- 
-\shape italic
-t
-\shape default
-0F
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-k
-\end_layout
-
-\end_inset
-
-0 
 \end_layout
 
 \begin_deeper
@@ -5120,7 +3956,7 @@ k
 then return 
 \series default
 
-\begin_inset Formula $r_{i_{j}}$
+\begin_inset Formula $\left\{ r_{j}\right\} $
 \end_inset
 
 
@@ -5143,61 +3979,88 @@ return
 
 \begin_layout Paragraph
 
-\family sans
-\series bold
-Algorithm TopReduction 
+\family typewriter
+\series medium
+TopReduction
 \end_layout
 
-\begin_layout Standard
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 
 \family sans
+Вход:
 \series bold
-Input
+ 
 \series default
-: 
-\end_layout
 
-\begin_layout Standard
-
-\family sans
-\begin_inset Formula $r_{k_{0}}$
+\begin_inset Formula $r_{0}$
 \end_inset
 
- a polynomial of 
-\shape italic
-R 
-\end_layout
+ -- индекс отмеченного многочлена в 
+\begin_inset Formula $R$
+\end_inset
 
-\begin_layout Standard
+, для которого выполняется редукция,
+\begin_inset Formula $G$
+\end_inset
 
-\family sans
-\shape italic
-G 
-\shape default
-a list of polynomials of 
-\shape italic
-R 
-\end_layout
+ -- множество индексов 
+\begin_inset Formula $R$
+\end_inset
 
-\begin_layout Standard
-
-\family sans
-\shape italic
-k 
-\shape default
-an integer 
-\end_layout
-
-\begin_layout Standard
-
-\family sans
-\shape italic
+, соответствующих многочленам, используемых в качестве редукторов, 
 \begin_inset Formula $\varphi$
 \end_inset
 
+ -- функция нормальной формы на 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Переменные: 
+\begin_inset Formula $r'$
+\end_inset
+
+ -- множество индексов элементов 
+\begin_inset Formula $R$
+\end_inset
+
+, являющихся потенциальными редукторами, 
+\begin_inset Formula $r_{1}$
+\end_inset
+
+ -- конкретный его элемент, 
+\begin_inset Formula $u$
+\end_inset
+
+ -- моном
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Результат:
+\series bold
  
-\shape default
-a normal Form 
+\series default
+Редуцированный многочлен перезаписывает 
+\begin_inset Formula $R[r_{0}]$
+\end_inset
+
+.
+ Возвращаемое значение -- пара множеств (ToDo, Done) содержащих индексы
+ 
+\begin_inset Formula $R$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
@@ -5206,11 +4069,11 @@ a normal Form
 \series bold
 if 
 \series default
-poly(
-\begin_inset Formula $r_{k_{0}}$
+
+\begin_inset Formula $\poly(R[r_{0}])=0$
 \end_inset
 
-) = 0 
+ 
 \series bold
 then 
 \end_layout
@@ -5226,7 +4089,7 @@ Warning
 \begin_inset Quotes eld
 \end_inset
 
-the system is not a regular sequence” 
+На вход алгоритма подана нерегулярная последовательность” 
 \end_layout
 
 \begin_layout Enumerate
@@ -5235,426 +4098,243 @@ the system is not a regular sequence”
 \series bold
 return 
 \series default
-(
-\begin_inset Formula $\varnothing$
-\end_inset
-
-
-\shape italic
-, 
-\shape default
-
-\begin_inset Formula $\varnothing$
-\end_inset
-
-) 
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-
-\family sans
-\shape italic
-r'
-\shape default
- = 
-\shape italic
-IsReducible
-\shape default
-(
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-k
-\end_layout
-
-\end_inset
-
-0 
-\shape italic
-, G, k, 
-\begin_inset Formula $\varphi$
-\end_inset
-
-
-\shape default
-) 
-\end_layout
-
-\begin_layout Enumerate
-
-\family sans
-\series bold
-if 
-\series default
-\shape italic
-r'
-\shape default
- = 
-\begin_inset Formula $\varnothing$
-\end_inset
-
- 
-\series bold
-then 
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-
-\family sans
-\series bold
-return 
-\begin_inset Formula $\left(\frac{1}{HC(r_{k_{0}})}r_{k_{0}},\varnothing\right)$
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-
-\family sans
-\series bold
-else 
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-
-\family sans
-\shape italic
-\begin_inset Formula $r_{k_{1}}=r'$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-
-\family sans
-\begin_inset Formula $u=\frac{HM(r_{k_{0}})}{HM(r_{k_{1}})}\in T$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-
-\family sans
-\series bold
-if 
-\series default
-\shape italic
-u 
-\shape default
-S (
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-k
-\end_layout
-
-\end_inset
-
-1 ) 
-\begin_inset Formula ${\prec}$
-\end_inset
-
- S (
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-k
-\end_layout
-
-\end_inset
-
-0 ) 
-\series bold
-then 
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-
-\family sans
-poly(
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-k
-\end_layout
-
-\end_inset
-
-0 ) = poly(
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-k
-\end_layout
-
-\end_inset
-
-0 ) 
-\begin_inset Formula $-$
-\end_inset
-
- 
-\shape italic
-u 
-\shape default
-poly(
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-k
-\end_layout
-
-\end_inset
-
-1 ) 
-\end_layout
-
-\begin_layout Enumerate
-
-\family sans
-\series bold
-return 
-\series default
-(
-\begin_inset Formula $\varnothing$
-\end_inset
-
-
-\shape italic
-, 
-\shape default
-{
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-k
-\end_layout
-
-\end_inset
-
-0 }) 
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-
-\family sans
-\series bold
-else 
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-
-\family sans
-\shape italic
-N 
-\shape default
-:= 
-\shape italic
-N 
-\shape default
-+ 1 
-\end_layout
-
-\begin_layout Enumerate
-
-\family sans
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-N 
-\end_layout
-
-\end_inset
-
-= (
-\shape italic
-u 
-\shape default
-S (
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-k
-\end_layout
-
-\end_inset
-
-1 )
-\shape italic
-, u 
-\shape default
-poly(
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-k
-\end_layout
-
-\end_inset
-
-1 ) 
-\begin_inset Formula $-$
-\end_inset
-
- poly(
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-k
-\end_layout
-
-\end_inset
-
-0 )) 
-\begin_inset Formula ${\in}$
-\end_inset
-
- 
-\shape italic
-R 
-\end_layout
-
-\begin_layout Enumerate
-
-\family sans
-Add Rule (
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-N 
-\end_layout
-
-\end_inset
-
-) 
-\end_layout
-
-\begin_layout Enumerate
-
-\family sans
-return (
-\begin_inset Formula $\varnothing$
-\end_inset
-
-
-\shape italic
-, 
-\shape default
-{
-\shape italic
-r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-N 
-\end_layout
-
-\end_inset
-
-
-\shape italic
-, r
-\shape default
-
-\begin_inset script subscript
-
-\begin_layout Plain Layout
-
-\family sans
-k
-\end_layout
-
-\end_inset
-
-0 }) 
+(Done
 \family default
+
+\begin_inset Formula $\leftarrow\varnothing$
+\end_inset
+
+
+\family sans
+,ToDo
+\shape italic
  
+\family default
+\shape default
+
+\begin_inset Formula $\leftarrow\varnothing$
+\end_inset
+
+
+\family sans
+) 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset Formula $R[r_{0}]\leftarrow\left(\Sig(R[r_{0}]),\frac{\poly(R[r_{0}])}{\HC(R[r_{0}])}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+\begin_inset Formula $r'\leftarrow$
+\end_inset
+
+IsReducible
+\family sans
+(
+\begin_inset Formula $h,G,\varphi$
+\end_inset
+
+) 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+if 
+\series default
+\shape italic
+
+\begin_inset Formula $r'=\varnothing$
+\end_inset
+
+
+\series bold
+\shape default
+ then 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+(Done
+\family default
+
+\begin_inset Formula $\leftarrow\left\{ r_{0}\right\} $
+\end_inset
+
+
+\family sans
+,ToDo
+\shape italic
+ 
+\family default
+\shape default
+
+\begin_inset Formula $\leftarrow\varnothing$
+\end_inset
+
+
+\family sans
+) 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+else 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $r_{1}\leftarrow$
+\end_inset
+
+
+\shape default
+любой элемент 
+\begin_inset Formula $r'$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\begin_inset Formula $u\leftarrow\frac{HM(R[r_{0}])}{HM(R[r_{1}])}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+if 
+\series default
+
+\begin_inset Formula $u\Sig(R[r_{1}])\prec_{\tau}\Sig(R[r_{1}])$
+\end_inset
+
+ 
+\series bold
+then 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\begin_inset Formula $R[r_{0}]\leftarrow\left(\Sig(R[r_{0}]),\poly(R[r_{0}])-u\poly(R[r_{1}])\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+(Done 
+\family default
+
+\begin_inset Formula $\leftarrow\varnothing$
+\end_inset
+
+
+\family sans
+ ,ToDo
+\shape italic
+ 
+\family default
+\shape default
+
+\begin_inset Formula $\leftarrow\left\{ r_{0}\right\} $
+\end_inset
+
+)
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+else 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Добавить 
+\family sans
+
+\begin_inset Formula $(u\Sig(R[r_{1}]),\poly(R[r_{0}])-u\poly(R[r_{1}])$
+\end_inset
+
+
+\family default
+ в конец 
+\begin_inset Formula $R$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+AddRule
+\family sans
+ 
+\begin_inset Formula $\left(\#R\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+(Done 
+\family default
+
+\begin_inset Formula $\leftarrow\varnothing$
+\end_inset
+
+
+\family sans
+ ,ToDo
+\shape italic
+ 
+\family default
+\shape default
+
+\begin_inset Formula $\leftarrow\left\{ r_{0},\#R\right\} $
+\end_inset
+
+)
 \end_layout
 
 \end_deeper
