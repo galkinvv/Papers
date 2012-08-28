@@ -2019,6 +2019,15 @@ key "F5C,GVW,G2V,F5InBBStyle,HuangConception"
 \end_inset
 
 .
+ Полная степень монома сигнатуры 
+\begin_inset Formula $s\in\tau$
+\end_inset
+
+ обозначается 
+\begin_inset Formula $\totaldeg(s)$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Lemma
@@ -2430,7 +2439,11 @@ key "F5InBBStyle"
 \begin_inset Formula $R$
 \end_inset
 
- -- пустой массив, а в процессе работы пополняется со стороны конца
+ заполняется входными многочленами, которые всегда являются первыми 
+\begin_inset Formula $m$
+\end_inset
+
+ элементами, а в процессе работы пополняется со стороны конца
 \end_layout
 
 \begin_layout Labeling
@@ -2768,7 +2781,7 @@ IncrementalF5
 
 \family sans
 \shape italic
-\begin_inset Formula $R\leftarrow[((1,1),f_{1})]$
+\begin_inset Formula $R\leftarrow[((1,1),f_{1}),((1,2),f_{2}),\dots,((1,m),f_{m})]$
 \end_inset
 
 
@@ -2932,22 +2945,10 @@ AlgorithmF5
 \end_layout
 
 \begin_layout Enumerate
-Добавить 
-\begin_inset Formula $((1,i),f_{i})$
-\end_inset
-
- в конец 
-\begin_inset Formula $R$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
 
 \family sans
 \shape italic
-\begin_inset Formula $G_{i}=G_{i-1}\cup\left\{ \#R\right\} $
+\begin_inset Formula $G_{i}=G_{i-1}\cup\left\{ i\right\} $
 \end_inset
 
 
@@ -2984,7 +2985,7 @@ AlgorithmF5
 {CritPair
 \family sans
 
-\begin_inset Formula $(\#R,r,i,\varphi)|r\in G_{i-1}$
+\begin_inset Formula $(i,r,i,\varphi)|r\in G_{i-1}$
 \end_inset
 
 }
@@ -5439,21 +5440,13 @@ reference "par:AlgorithmF5"
 
 \end_inset
 
- , обрабатывающий последний элемент входного набора многочленов 
+, обрабатывающий последний элемент входного набора многочленов 
 \begin_inset Formula $f_{m}$
 \end_inset
 
 .
  Вначале покажем несколько общих утверждений о многочленах в множествах
- 
-\begin_inset Formula $ToDo$
-\end_inset
-
- и 
-\begin_inset Formula $Rule$
-\end_inset
-
- в процессе 
+ ToDo и Rule в процессе 
 \begin_inset Formula $j$
 \end_inset
 
@@ -5467,86 +5460,77 @@ reference "par:AlgorithmF5"
 .
  Старшая по сигнатуре часть S-пары всех критических пар, добавляемых функцией
  
-\family typewriter
-CritPair
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:CritPair"
+
+\end_inset
+
  вначале выполнения 
-\family typewriter
-AlgorithmF5
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
+\end_inset
+
 , обладает индексом сигнатуры, равным 
-\begin_inset Formula $1$
+\begin_inset Formula $m$
 \end_inset
 
 .
  Все прочие критические пары порождаются с индексом сигнатуры, соответствующим
- некоторому отмеченному многочлену, перемещённому из множества 
-\begin_inset Formula $ToDo$
+ некоторому отмеченному многочлену, перемещённому из множества ToDo в множество
+ Done.
+ В свою очередь все элементы ToDo создаются или на основе критических пар
+ или внутри процедуры 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
 \end_inset
 
- в множество 
-\begin_inset Formula $Done$
-\end_inset
-
-.
- В свою очередь все элементы 
-\begin_inset Formula $ToDo$
-\end_inset
-
- создаются или на основе критических пар или внутри процедуры 
-\family typewriter
-TopReduction
-\family default
 .
  Многочлены, генерируемые 
-\family typewriter
-TopReduction
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
  имеют сигнатуру, превышающую сигнатуру многочлена, который редуцирует данный
- вызов процедуры, и который является элементом 
-\begin_inset Formula $ToDo$
-\end_inset
-
-.
+ вызов процедуры, и который является элементом ToDo.
  Поэтому многочлен или критическая пара с индексом сигнатуры, отличным от
- 1 не могут появиться в рассматриваемом вызове 
-\family typewriter
-AlgorithmF5
-\family default
-.
- С другой стороны, все многочлены в 
-\begin_inset Formula $ToDo$
+ 
+\begin_inset Formula $m$
 \end_inset
 
- имеют одну и ту же полную степень 
+ не могут появиться в рассматриваемом вызове 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
+\end_inset
+
+.
+ С другой стороны, все многочлены в ToDo имеют одну и ту же полную степень
+ 
 \begin_inset Formula $d_{j}$
 \end_inset
 
 .
- Вместе с единичностью индексов это позволяет заключить, что полная степень
+ Вместе с равенством индексов это позволяет заключить, что полная степень
  мономов сигнатур равна 
-\begin_inset Formula $d_{j}-\totaldeg(f_{1})$
+\begin_inset Formula $d_{j}-\totaldeg(f_{m})$
 \end_inset
 
- для всех элементов 
-\begin_inset Formula $ToDo$
-\end_inset
-
-.
+ для всех элементов ToDo.
 \end_layout
 
 \begin_layout Proof
-Каждое добавление элемента в массив 
-\begin_inset Formula $Rule$
-\end_inset
-
- соответствует добавлению в множество 
-\begin_inset Formula $ToDo$
-\end_inset
-
-.
- Поэтому, элементы добавляемые в 
-\begin_inset Formula $Rule$
+Каждое добавление элемента в массив Rule соответствует добавлению в множество
+ ToDo.
+ Поэтому, элементы добавляемые в начало Rule
+\begin_inset Formula $[m]$
 \end_inset
 
  на итерации 
@@ -5566,94 +5550,66 @@ AlgorithmF5
 \begin_inset Formula $j$
 \end_inset
 
--ой итерации все элементы 
-\begin_inset Formula $Rule$
+-ой итерации все элементы Rule с индексом сигнатуры 
+\begin_inset Formula $m$
 \end_inset
 
- с индексом сигнатуры 1 имеют полную степень 
+ имеют полную степень 
 \begin_inset Formula $\leqslant d_{j}$
 \end_inset
 
  и полную степень монома сигнатуры 
-\begin_inset Formula $\leqslant d_{j}-\totaldeg(f_{1})$
+\begin_inset Formula $\leqslant d_{j}-\totaldeg(f_{m})$
 \end_inset
 
 .
- Также это даёт информацию о порядке элементов 
-\begin_inset Formula $Rule$
-\end_inset
-
- с сигнатурой 1: их полная степень не убывает.
+ Также это даёт следующий факт:
 \end_layout
 
 \begin_deeper
-\begin_layout Definition
-Редукция отмеченного многочлена 
-\begin_inset Formula $r_{k}$
+\begin_layout Fact
+Полная степень элементов Rule
+\begin_inset Formula $[m]$
 \end_inset
 
- по отмеченному многочлену 
-\begin_inset Formula $r_{m}$
-\end_inset
-
- называется
-\emph on
- сигнатурной редукцией,
-\emph default
- если 
-\begin_inset Formula $\Sig(r_{k})\succ t\cdot\Sig(r_{m})$
-\end_inset
-
-, где 
-\begin_inset Formula $t=\frac{\HM(r_{k})}{\HM(r_{m})}$
-\end_inset
-
- -- моном, на который умножается редуктор.
- Редуктор, соответствующий такой редукции называется 
-\emph on
-сигнатурным редуктором
-\emph default
-.
- 
+ не возрастает.
 \end_layout
 
 \end_deeper
 \begin_layout Proof
 Алгоритм производит только сигнатурные редукции: процедура 
-\family typewriter
-TopReduction
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
  производит редукцию по неотброшенному редуктору, если он сигнатурный, и
- добавляет элемент в 
-\begin_inset Formula $ToDo$
+ добавляет элемент в ToDo в противном случае.
+ Элементы ToDo обрабатываются в порядке возрастания сигнатур, поэтому ни
+ один из элементов 
+\begin_inset Formula $G\cup$
 \end_inset
 
- в противном случае.
- Элементы 
-\begin_inset Formula $ToDo$
-\end_inset
-
- обрабатываются в порядке возрастания сигнатур, поэтому ни один из элементов
- 
-\begin_inset Formula $G\cup Done$
-\end_inset
-
- не может иметь сигнатуры, превышающей сигнатуру многочлена 
-\begin_inset Formula $r_{k}$
+Done не может иметь сигнатуры, превышающей сигнатуру многочлена 
+\begin_inset Formula $R\left[r_{k}\right]$
 \end_inset
 
 , редуцируемого в 
-\family typewriter
-TopReduction
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
 .
  Рассмотрим неотброшенный проверками редуктор 
-\begin_inset Formula $r_{m}$
+\begin_inset Formula $R\left[r_{q}\right]$
 \end_inset
 
 .
  Если он имеет полную степень 
-\begin_inset Formula $\totaldeg(r_{m})=\totaldeg(r_{k})$
+\begin_inset Formula $\totaldeg(R\left[r_{q}\right])=\totaldeg(R\left[r_{k}\right])$
 \end_inset
 
 , мы получаем свойства 
@@ -5661,90 +5617,124 @@ TopReduction
 \end_inset
 
  и 
-\begin_inset Formula $\Sig(r_{k})\succ\Sig(r_{m})$
+\begin_inset Formula $\Sig(R\left[r_{k}\right])\succ\Sig(R\left[r_{q}\right])$
 \end_inset
 
 , гарантирующие что редукция по нему будет сигнатурной.
  Случай 
-\begin_inset Formula $\Sig(r_{k})=\Sig(r_{m})$
+\begin_inset Formula $\Sig(R\left[r_{k}\right])=\Sig(R\left[r_{q}\right])$
 \end_inset
 
- невозможен, поскольку такие редукторы отбрасываются в правиле (d) процедуры
- 
-\family typewriter
-IsReducible
-\family default
+ невозможен, поскольку такие редукторы отбрасываются в правиле 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:IsRed-d"
+
+\end_inset
+
+ процедуры 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IsReducible"
+
+\end_inset
+
 .
  Таким образом, ситуация 
-\begin_inset Formula $\Sig(r_{k})\prec t\cdot\Sig(r_{m})$
+\begin_inset Formula $\Sig(R\left[r_{k}\right])\prec t\cdot\Sig(R\left[r_{q}\right])$
 \end_inset
 
  возможна только при 
-\begin_inset Formula $\totaldeg(r_{m})<\totaldeg(r_{k})$
+\begin_inset Formula $\totaldeg(R\left[r_{q}\right])<\totaldeg(R\left[r_{k}\right])$
 \end_inset
 
- и все добавления в 
-\begin_inset Formula $ToDo$
+ и все добавления в ToDo в процессе 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
 \end_inset
 
- в процессе 
-\family typewriter
-TopReduction
-\family default
  соответствуют этому случаю.
  Моном сигнатуры многочлена, добавляемого таким образом, равен 
-\begin_inset Formula $t\cdot\Sig(r_{m})$
+\begin_inset Formula $t\cdot\Sig(R\left[r_{q}\right])$
 \end_inset
 
  и тот факт что 
-\begin_inset Formula $r_{m}$
+\begin_inset Formula $r_{q}$
 \end_inset
 
  не был отброшен проверкой правила 
-\family typewriter
-Rewritten?
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Rewritten?"
+
+\end_inset
+
  внутри 
-\family typewriter
-IsReducible
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IsReducible"
+
+\end_inset
+
  гарантирует, что ни одного многочлена с сигнатурой 
-\begin_inset Formula $t\Sig(r_{m})$
+\begin_inset Formula $t\Sig(R\left[r_{q}\right])$
 \end_inset
 
  не было порождено, потому что иначе такой многочлен имел бы связанное с
- ним правило в 
-\begin_inset Formula $Rule$
-\end_inset
-
- с большей полной степенью, чем правило, соответствующее 
-\begin_inset Formula $r_{m}$
+ ним правило в Rule с большей полной степенью, чем правило, соответствующее
+ 
+\begin_inset Formula $r_{q}$
 \end_inset
 
 , и 
-\begin_inset Formula $r_{m}$
+\begin_inset Formula $r_{q}$
 \end_inset
 
  был бы отброшен в 
-\family typewriter
-IsReducible
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IsReducible"
+
+\end_inset
+
 .
- 
+ Таким образом показан вспомогательный факт
 \end_layout
 
+\begin_deeper
+\begin_layout Fact
+Добавление в ToDo элемента с сигнатурой 
+\begin_inset Formula $t\in\mathbf{T}$
+\end_inset
+
+ внутри 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
+ возможно только если элемент с такой сигнатурой не добавлялся в ToDo ранее.
+\end_layout
+
+\end_deeper
 \begin_layout Proof
 Мы хотим показать, что единственная возможность отсутствия остановки алгоритма
- соответствует случая неограниченного возрастания 
+ соответствует случаю неограниченного возрастания 
 \begin_inset Formula $d_{j}$
 \end_inset
 
 .
  Мы показали, что отсутствие остановки алгоритма происходит в случае, когда
  не завершается вызов 
-\family typewriter
-AlgorithmF5
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
+\end_inset
+
 , и что он не может зациклиться обрабатывая бесконечное число итераций итерации
  с одним и тем же значением 
 \begin_inset Formula $d$
@@ -5758,9 +5748,12 @@ AlgorithmF5
  и зацикливание внутри одной из итераций с фиксированным значением.
  Далее показано, что такое зацикливание невозможно.
  Процедура 
-\family typewriter
-AlgorithmF5
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
+\end_inset
+
  содержит 3 цикла помимо главного:
 \end_layout
 
@@ -5771,9 +5764,12 @@ AlgorithmF5
 for
 \series default
 -цикл внутри 
-\family typewriter
-Spol
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Spol"
+
+\end_inset
+
  завершается, поскольку число его итераций ограничено числом критических
  пар к моменту начала выполнения цикла;
 \end_layout
@@ -5784,9 +5780,12 @@ Spol
 for
 \series default
 -цикл внутри 
-\family typewriter
-AlgorithmF5
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
+\end_inset
+
  проходит по элементам 
 \begin_inset Formula $R_{d}$
 \end_inset
@@ -5805,105 +5804,105 @@ while
 \series default
 -циклу внутри 
 \family typewriter
-процедуры Reduction
+процедуры 
 \family default
-, который выполняется до тех пор, пока множество 
-\begin_inset Formula $ToDo$
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Reduction"
+
 \end_inset
 
- не станет пустым.
- Множество 
-\begin_inset Formula $ToDo$
+, который выполняется до тех пор, пока множество ToDo не станет пустым.
+ Множество ToDo изначально заполняется процедурой 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Spol"
+
 \end_inset
 
- изначально заполняется процедурой 
-\family typewriter
-Spol
-\family default
  и потом дополняется новыми элементами в процессе выполнения 
-\family typewriter
-TopReduction
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
 .
  Процедура 
-\family typewriter
-Spol
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Spol"
+
+\end_inset
+
  порождает конечное число элементов, поскольку она завершается, а все элементы
  добавляемые 
-\family typewriter
-TopReduction
-\family default
- имеют различные сигнатуры индекса 1, поэтому их число ограничено числом
- различных сигнатур полной степени 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
+ имеют различные сигнатуры индекса 
+\begin_inset Formula $m$
+\end_inset
+
+, поэтому их число ограничено числом различных сигнатур полной степени 
 \begin_inset Formula $d_{j}-\totaldeg(f_{1})$
 \end_inset
 
-, поэтому в 
-\begin_inset Formula $ToDo$
+, поэтому в ToDo добавляется лишь конечное число элементов.
+ Теперь мы покажем, что все типы шагов, происходящих внутри 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Reduction"
+
 \end_inset
 
- добавляется лишь конечное число элементов.
- Теперь мы покажем, что все типы шагов, происходящих внутри 
-\family typewriter
-Reduction
-\family default
  могут быть выполнены лишь конечное число раз:
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 шаг, на котором 
-\family typewriter
-IsReducible
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IsReducible"
+
+\end_inset
+
  возвращает пустое множество, соответствует переносу элемента множества
- 
-\begin_inset Formula $ToDo$
-\end_inset
-
- в 
-\begin_inset Formula $Done$
-\end_inset
-
- и число таких шагов ограничено числом элементов, добавляемых в 
-\begin_inset Formula $ToDo$
-\end_inset
-
-
+ ToDo в Done и число таких шагов ограничено числом элементов, добавляемых
+ в ToDo
 \end_layout
 
 \begin_layout Itemize
 шаг, на котором 
-\family typewriter
-IsReducible
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IsReducible"
+
+\end_inset
+
  возвращает не сигнатурный редуктор, соответствует добавлению нового элемента
- в 
-\begin_inset Formula $ToDo$
-\end_inset
-
- и число таких шагов ограничено числом возможных добавлений
+ в ToDo и число таких шагов ограничено числом возможных добавлений
 \end_layout
 
 \begin_layout Itemize
 шаг, на котором 
-\family typewriter
-IsReducible
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IsReducible"
+
+\end_inset
+
  возвращает сигнатурный редуктор, соответствует редукции одного из элементов
- 
-\begin_inset Formula $ToDo$
-\end_inset
-
-.
- Это может произойти лишь конечное число раз, поскольку в 
-\begin_inset Formula $ToDo$
-\end_inset
-
- добавляется конечное число многочленов и не может существовать бесконечной
- цепочки редукций для одного многочлена, поскольку в процессе редукции его
- старший моном 
+ ToDo.
+ Это может произойти лишь конечное число раз, поскольку в ToDo добавляется
+ конечное число многочленов и не может существовать бесконечной цепочки
+ редукций для одного многочлена, поскольку в процессе редукции его старший
+ моном 
 \begin_inset Formula $\HM$
 \end_inset
 
@@ -5922,9 +5921,12 @@ IsReducible
 \end_deeper
 \begin_layout Proof
 Мы получили, что все циклы внутри процедуры 
-\family typewriter
-AlgorithmF5
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
+\end_inset
+
 , кроме главного, завершаются, что доказывает утверждение 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -5991,13 +5993,16 @@ reference "d-does-grow"
 \end_inset
 
 .
- То есть, в этом случае алгоритм порождает бесконечную последовательность
- отмеченных многочленов 
-\begin_inset Formula $\left\{ r_{1},r_{2},\ldots,r_{m},\ldots,r_{l},\ldots\right\} $
+ То есть, в этом случае алгоритм порождает в 
+\begin_inset Formula $R$
+\end_inset
+
+ бесконечную последовательность отмеченных многочленов 
+\begin_inset Formula $\left\{ R[1],\ldots,R[m],\ldots,R[l],\ldots\right\} $
 \end_inset
 
 , в которой 
-\begin_inset Formula $r_{1},\ldots,r_{m}$
+\begin_inset Formula $R[1],\ldots,R[m]$
 \end_inset
 
  соответствуют 
@@ -6005,16 +6010,22 @@ reference "d-does-grow"
 \end_inset
 
  исходным многочленам, а остальные были получены в процедурах 
-\family typewriter
-Spol
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Spol"
+
+\end_inset
+
  и 
-\family typewriter
-TopReduction
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
 .
  В обоих случаях новый элемент 
-\begin_inset Formula $r_{l}$
+\begin_inset Formula $R[l]$
 \end_inset
 
  порождается как S-многочлен двух уже ранее добавленных в последовательность
@@ -6045,52 +6056,55 @@ TopReduction
 \end_inset
 
  соответствует части с большей сигнатурой: 
-\begin_inset Formula $\poly(r_{l})=\overline{u_{l}}\poly(r_{l^{*}})-\underline{u_{l}}\poly(r_{l_{*}})$
+\begin_inset Formula $\poly(R[l])=\overline{u_{l}}\poly(R[l^{*}])-\underline{u_{l}}\poly(R[l_{*}])$
 \end_inset
 
  и 
-\begin_inset Formula $\Sig(r_{l})=\overline{u_{l}}\Sig(r_{l^{*}})\succ\underline{u_{l}}\Sig(r_{l_{*}})$
+\begin_inset Formula $\Sig(R[l])=\overline{u_{l}}\Sig(R[l^{*}])\succ\underline{u_{l}}\Sig(R[l_{*}])$
 \end_inset
 
 .
  Значение 
-\begin_inset Formula $\poly(r_{l})$
+\begin_inset Formula $\poly(R[l])$
 \end_inset
 
  может меняться в процедуре 
-\family typewriter
-TopReduction
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
  на многочлен с меньшим 
 \begin_inset Formula $\HM$
 \end_inset
 
 , но 
-\begin_inset Formula $\Sig(r_{l})$
+\begin_inset Formula $\Sig(R[l])$
 \end_inset
 
  нигде далее не меняется после добавления многочлена в последовательность.
  Далее, будем пытаться найти бесконечную подпоследовательность 
-\begin_inset Formula $\left\{ r_{k_{1}},r_{k_{2}},\ldots,r_{k_{n}},\ldots\right\} $
+\begin_inset Formula $\left\{ R[k_{1}],R[k_{2}],\ldots,R[k_{n}],\ldots\right\} $
 \end_inset
 
  в этой последовательности, обладающую свойством, что 
-\begin_inset Formula $r_{k_{n}}$
+\begin_inset Formula $R[k_{n}]$
 \end_inset
 
  является S-многочленом 
-\begin_inset Formula $r_{k_{n-1}}=r_{k_{n}^{*}}$
+\begin_inset Formula $R[k_{n-1}]=R[k_{n}^{*}]$
 \end_inset
 
  и некоторого другого многочлена меньшей сигнатуры.
  То есть 
-\begin_inset Formula $\Sig(r_{k_{n}})=\overline{u_{k_{n}}}\Sig(r_{k_{n-1}})$
+\begin_inset Formula $\Sig(R[k_{n}])=\overline{u_{k_{n}}}\Sig(R[k_{n-1}])$
 \end_inset
 
 , откуда вытекает делимость: 
 \begin_inset Formula 
 \begin{equation}
-\Sig(r_{k_{n-1}})|\Sig(r_{k_{n}}).\label{eq:s-pair-chain-def}
+\Sig(R[k_{n-1}])|\Sig(R[k_{n}]).\label{eq:s-pair-chain-def}
 \end{equation}
 
 \end_inset
@@ -6099,8 +6113,11 @@ TopReduction
 \end_layout
 
 \begin_layout Definition
-Конечную или бесконечную последовательность, соседние элементы которой удовлетво
-ряют свойству 
+Конечную или бесконечную последовательность отмеченных многочленов из 
+\begin_inset Formula $H$
+\end_inset
+
+, соседние элементы которой удовлетворяют свойству 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:s-pair-chain-def"
@@ -6116,33 +6133,34 @@ reference "eq:s-pair-chain-def"
 
 \begin_layout Standard
 Каждый порождаемый многочлен 
-\begin_inset Formula $r_{l}$
+\begin_inset Formula $R[l]$
 \end_inset
 
  имеет конечную цепь S-пар, оканчивающуюся этим многочленом.
  Эта цепь может быть последовательно построена, начиная с последнего элемента
-\begin_inset Formula $r_{l}$
+ 
+\begin_inset Formula $R[l]$
 \end_inset
 
 , если на каждом шаге переходить от текущего многочлена 
-\begin_inset Formula $r_{n}$
+\begin_inset Formula $R[n]$
 \end_inset
 
  к многочлену 
-\begin_inset Formula $r_{n^{*}}$
+\begin_inset Formula $R[n^{*}]$
 \end_inset
 
 , который использовался при генерации 
-\begin_inset Formula $r_{n}$
+\begin_inset Formula $R[n]$
 \end_inset
 
  как S-многочлена.
  Результирующая цепь S-пар имеет вид 
-\begin_inset Formula $\{r_{q},\ldots,r_{l^{**}},r_{l^{*}},r_{l}\}$
+\begin_inset Formula $\{R[q],\ldots,R[l^{**}],R[l^{*}],R[l]\}$
 \end_inset
 
 , где все многочлены имеют одинаковый индекс сигнатуры 
-\begin_inset Formula $q=\sigidx(r_{l})$
+\begin_inset Formula $q=\sigidx(R[l])$
 \end_inset
 
  и первый элемент является входным многочленом этого индекса.
@@ -6160,43 +6178,60 @@ reference "eq:s-pair-chain-def"
 
 \begin_layout Proof
 Алгоритм 
-\family typewriter
-AlgorithmF5
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
+\end_inset
+
  считает S-многочлены в двух местах: процедуре 
-\family typewriter
-SPol
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Spol"
+
+\end_inset
+
  и процедуре 
-\family typewriter
-TopReduction
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
 .
  Важно заметить, что в обоих случаях проверка 
-\family typewriter
-Rewritten?
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Rewritten?"
+
+\end_inset
+
  для части S-многочлена с большей сигнатурой выполняется непосредственно
  перед созданием S-многочлена.
  В первом случае такая проверка производится в самой 
-\family typewriter
-SPol
-\family default
-, а в 
-\family typewriter
-TopReduction
-\family default
- проверка присутствует в вызове 
-\family typewriter
-IsReducible
-\family default
-.
- И в обоих случаях получаемый S-многочлен немедленно добавляется в список
- 
-\begin_inset Formula $Rule$
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Spol"
+
 \end_inset
 
- последним элементом.
+, а в 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
+ проверка присутствует в вызове 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IsReducible"
+
+\end_inset
+
+.
+ И в обоих случаях получаемый S-многочлен немедленно добавляется в список
+ Rule последним элементом.
  Поэтому, в момент построения S-многочлена с сигнатурой 
 \begin_inset Formula $s$
 \end_inset
@@ -6206,11 +6241,7 @@ IsReducible
 \begin_inset Formula $s$
 \end_inset
 
- -- она даже может быть найдена исходя лишь из списка 
-\begin_inset Formula $Rule$
-\end_inset
-
- и сигнатуры 
+ -- она даже может быть найдена исходя лишь из списка Rule и сигнатуры 
 \begin_inset Formula $s$
 \end_inset
 
@@ -6219,24 +6250,24 @@ IsReducible
 
 \begin_layout Proof
 Рассмотрим произвольный отмеченный многочлен 
-\begin_inset Formula $r_{L}$
+\begin_inset Formula $R[L]$
 \end_inset
 
  с сигнатурой 
-\begin_inset Formula $\Sig(r_{L})=s$
+\begin_inset Formula $\Sig(R[L])=s$
 \end_inset
 
  и упорядоченное по порядку добавления подмножество 
-\begin_inset Formula $\{r_{l_{1}},\ldots,r_{l_{i}},\ldots\}$
+\begin_inset Formula $\{R[l_{1}],\ldots,R[l_{i}],\ldots\}$
 \end_inset
 
  отмеченных многочленов с сигнатурами удовлетворяющими условию 
-\begin_inset Formula $\Sig(r_{l_{i}})=v_{i}\Sig(r_{L})$
+\begin_inset Formula $\Sig(R[l_{i}])=v_{i}\Sig(R[L])$
 \end_inset
 
 .
  С точки зрения делимости любая из потенциально бесконечного числа пар 
-\begin_inset Formula $\{r_{L},r_{l_{i}}\}$
+\begin_inset Formula $\{R[L],R[l_{i}]\}$
 \end_inset
 
  может быть цепью S-пар длины 2.
@@ -6267,15 +6298,15 @@ IsReducible
 \end_inset
 
  последовательность 
-\begin_inset Formula $\{r_{L},r_{l_{i}}\}$
+\begin_inset Formula $\{R[L],R[l_{i}]\}$
 \end_inset
 
  не может являться цепью S-пар, поскольку 
-\begin_inset Formula $\Sig(r_{L})\cdot v_{i}$
+\begin_inset Formula $\Sig(R[L])\cdot v_{i}$
 \end_inset
 
  перезаписывается 
-\begin_inset Formula $\Sig(r_{l_{j}})\cdot\frac{v_{i}}{v_{j}}$
+\begin_inset Formula $\Sig(R[l_{j}])\cdot\frac{v_{i}}{v_{j}}$
 \end_inset
 
  и существует не более чем 
@@ -6283,7 +6314,7 @@ IsReducible
 \end_inset
 
  цепей S-пар длины 2, начинающихся с многочлена 
-\begin_inset Formula $r_{L}$
+\begin_inset Formula $R[L]$
 \end_inset
 
 .
@@ -6291,7 +6322,7 @@ IsReducible
 
 \begin_layout Definition
 Конечное множество концов цепей S-пар длины 2, начинающихся с 
-\begin_inset Formula $r_{L}$
+\begin_inset Formula $R[L]$
 \end_inset
 
  будет называться 
@@ -6299,7 +6330,7 @@ IsReducible
 множеством S-порождённых
 \emph default
  
-\begin_inset Formula $r_{L}$
+\begin_inset Formula $R[L]$
 \end_inset
 
 .
@@ -6322,7 +6353,7 @@ IsReducible
 \begin_deeper
 \begin_layout Definition
 Отмеченный многочлен 
-\begin_inset Formula $r_{l}$
+\begin_inset Formula $R[l]$
 \end_inset
 
  называется 
@@ -6331,7 +6362,7 @@ IsReducible
 \emph default
 , если существует бесконечное множество различных конечных цепей S-пар,
  начинающихся с 
-\begin_inset Formula $r_{l}$
+\begin_inset Formula $R[l]$
 \end_inset
 
 .
@@ -6340,19 +6371,26 @@ IsReducible
 \end_deeper
 \begin_layout Proof
 Если алгоритм не останавливается, то многочлен входного множества 
-\begin_inset Formula $r_{1}=(1\mathbf{F}_{1},f_{1})$
+\begin_inset Formula $R[m]=((1,m),f_{m})$
 \end_inset
 
  является генератором цепи S-пар, поскольку каждый многочлен 
-\begin_inset Formula $r_{l}$
+\begin_inset Formula $R[l]$
 \end_inset
 
 , порождаемый в последнем не завершающемся вызове 
-\family typewriter
-AlgorithmF5
-\family default
- имеет индекс сигнатуры 1 и является концом цепи S-пар
-\begin_inset Formula $\{r_{1},\ldots,r_{l^{**}},r_{l^{*}},r_{l}\}$
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
+\end_inset
+
+ имеет индекс сигнатуры 
+\begin_inset Formula $m$
+\end_inset
+
+ и является концом цепи S-пар
+\begin_inset Formula $\{R[m],\ldots,R[l^{**}],R[l^{*}],R[l]\}$
 \end_inset
 
 .
@@ -6360,28 +6398,28 @@ AlgorithmF5
 
 \begin_layout Proof
 Теперь предположим, что про некоторый отмеченный многочлен 
-\begin_inset Formula $r_{l}$
+\begin_inset Formula $R[l]$
 \end_inset
 
  известно, что он является генератором цепи S-пар.
  Один из конечного множества S-порождённых 
-\begin_inset Formula $r_{l}$
+\begin_inset Formula $R[l]$
 \end_inset
 
  также должен являться генератором цепи S-пар, поскольку в противном случае
  число различных цепей, исходящих из 
-\begin_inset Formula $r_{l}$
+\begin_inset Formula $R[l]$
 \end_inset
 
 , было бы ограничено конечной суммой конечных количеств цепей, выходящих
  из S-порождённых плюс конечным количеством цепей длины 2, выходящих из
  
-\begin_inset Formula $r_{l}$
+\begin_inset Formula $R[l]$
 \end_inset
 
 .
  Поэтому, если отмеченный многочлен 
-\begin_inset Formula $r_{l}$
+\begin_inset Formula $R[l]$
 \end_inset
 
  является генератором цепи S-пар, среди его S-порождённых всегда может быть
@@ -6415,7 +6453,7 @@ name "thm:f_g_3_props"
 \begin_inset Formula $G$
 \end_inset
 
- содержит пару отмеченных многочленов 
+ содержит индексы пары отмеченных многочленов 
 \begin_inset Formula $f',f$
 \end_inset
 
@@ -6467,20 +6505,13 @@ name "thm:f_g_3_props"
 При работе с цепями S-пар является важным тот факт, что многочлен никогда
  не редуцируется дальше, после того как он был использован для создания
  S-пары в качестве старшей по сигнатуре части.
- Факт выполняется, поскольку все многочлены, которые ещё могут быть подвергнуты
- редукции находятся в множестве 
-\begin_inset Formula $ToDo$
-\end_inset
-
-, а все многочлены, используемые как старшая часть S-пары, находятся в 
+ Факт выполняется, поскольку индексы всех многочлены, которые ещё могут
+ быть подвергнуты редукции находятся в множестве ToDo, а индексы многочленов,
+ используемых как старшая часть S-пары, находятся в 
 \begin_inset Formula $G$
 \end_inset
 
- или в 
-\begin_inset Formula $Done$
-\end_inset
-
-.
+ или в Done.
  Поэтому многочлен 
 \begin_inset Formula $h_{n}$
 \end_inset
@@ -6502,7 +6533,7 @@ name "thm:f_g_3_props"
 
 \end_inset
 
-, где 
+где 
 \begin_inset Formula $g_{n}$
 \end_inset
 
@@ -6624,7 +6655,7 @@ reference "eq:spair-chain"
 \uwave default
 \noun default
 \color inherit
-
+ 
 \begin_inset Formula $\HM$
 \end_inset
 
@@ -6715,11 +6746,27 @@ key "TheF5Revised"
 \end_layout
 
 \begin_layout Fact
-Если никакие многочлены не были отброшены проверками критериев (b) и (c)
+Если никакие многочлены не были отброшены проверками критериев 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "enu:IsRed-b"
+
+\end_inset
+
+ и 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "enu:IsRed-c"
+
+\end_inset
+
  в 
-\family typewriter
-IsReducible
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IsReducible"
+
+\end_inset
+
 , рассматриваемый алгоритм завершается.
 \end_layout
 
@@ -6731,8 +6778,15 @@ reference "thm:f_g_3_props"
 
 \end_inset
 
- не опирается на соответствие между порядками на сигнатурах и мономах многочлено
-в.
+ не опирается на соответствие между порядком 
+\begin_inset Formula $\succ_{P}$
+\end_inset
+
+ на сигнатурах и порядком 
+\begin_inset Formula $\succ$
+\end_inset
+
+ на мономах многочленов.
  Но алгоритм F5 использует один и тот же порядок в обоих случаях, и теперь
  мы можем воспользоваться этим фактом и переформулировать отношение на частных
  мономов из теоремы 
@@ -6745,7 +6799,7 @@ reference "thm:f_g_3_props"
  в отношение на сигнатурах: 
 \begin_inset Formula 
 \[
-\Sig(f)\succ t\cdot\Sig(f'),\mbox{ где }t=\frac{\HM(f)}{\HM(f')}\in\mathbb{T}.
+\Sig(f)\succ_{P}t\cdot\Sig(f'),\mbox{ где }t=\frac{\HM(f)}{\HM(f')}\in\mathbb{T}.
 \]
 
 \end_inset
@@ -6763,16 +6817,49 @@ reference "thm:f_g_3_props"
 \end_inset
 
  в 
-\family typewriter
-TopReduction
-\family default
- с точки зрения сигнатуры -- он проходит проверки (a) и (d) внутри 
-\family typewriter
-IsReducible
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
+ с точки зрения сигнатуры -- он проходит проверки 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "enu:IsRed-a"
+
+\end_inset
+
+ и 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "enu:IsRed-d"
+
+\end_inset
+
+ внутри 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IsReducible"
+
+\end_inset
+
  и его сигнатура меньше.
- При отсутствии проверки критериев (b) и (c) это напрямую приводило бы к
- противоречию, так как в момент добавления 
+ При отсутствии проверки критериев 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "enu:IsRed-b"
+
+\end_inset
+
+ и 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "enu:IsRed-c"
+
+\end_inset
+
+ это напрямую приводило бы к противоречию, так как в момент добавления 
 \begin_inset Formula $f$
 \end_inset
 
@@ -6785,9 +6872,12 @@ IsReducible
 \end_inset
 
  уже был там и процедура 
-\family typewriter
-TopReduction
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
  должна была бы редуцировать 
 \begin_inset Formula $f$
 \end_inset
@@ -6804,10 +6894,27 @@ TopReduction
 \begin_inset Formula $tf'$
 \end_inset
 
- отбрасывается проверками (b) или (c) процедуры 
-\family typewriter
-IsReducible
-\family default
+ отбрасывается проверками 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "enu:IsRed-b"
+
+\end_inset
+
+ или 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "enu:IsRed-c"
+
+\end_inset
+
+ процедуры 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IsReducible"
+
+\end_inset
+
 .
  Идея дальнейших рассуждений состоит в том, чтобы показать что в этом случае
  может быть найден другой сигнатурный редуктор 
@@ -6831,35 +6938,34 @@ S-пары с сигнатурами, меньшими
 \begin_inset Formula $g$
 \end_inset
 
- подразумевается некоторым фиксированным многочленом с индексом сигнатуры
- 1, добавленным на некоторой итерации алгоритма в 
-\begin_inset Formula $Done$
+ подразумевается некоторым фиксированным отмеченным многочленом с индексом
+ сигнатуры 
+\begin_inset Formula $m$
 \end_inset
 
-.
+, индекс которого добавлен на некоторой итерации алгоритма в Done.
  Мы будем анализировать состояние алгоритма в момент непосредственно предшествую
 щий добавлению 
 \begin_inset Formula $g$
 \end_inset
 
- в 
-\begin_inset Formula $Done$
+ в Done в вызове 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
 \end_inset
 
- в вызове 
-\family typewriter
-AlgorithmF5
-\family default
  с 
-\begin_inset Formula $i=1$
+\begin_inset Formula $i=m$
 \end_inset
 
 .
  Рассмотрим в этот момент конечное множество 
-\begin_inset Formula $G_{1}\cup Done$
+\begin_inset Formula $G_{m}\cup$
 \end_inset
 
-.
+Done.
  Оно состоит из чисел, являющихся позициями отмеченных многочленов в 
 \begin_inset Formula $R$
 \end_inset
@@ -6882,7 +6988,7 @@ AlgorithmF5
  Необходимо отметить, что этот порядок соответствует порядку отмеченных
  многочленов в последовательности, получаемой склеиванием массивов правил
  
-\begin_inset Formula $Rule[m]:Rule[m-1]:\cdots:Rule[1]$
+\begin_inset Formula $\mbox{Rule}[m]:\mbox{Rule}[m-1]:\cdots:\mbox{Rule}[1]$
 \end_inset
 
 , поскольку добавление нового многочлена в 
@@ -6892,26 +6998,29 @@ AlgorithmF5
  всегда сопровождается добавлением соответствующего правила.
  Но этот порядок может отличаться от порядка в котором многочлены добавлялись
  в множество 
-\begin_inset Formula $G_{1}\cup Done$
+\begin_inset Formula $G_{m}\cup$
 \end_inset
 
-, поскольку многочлены одной полной степени добавляются в 
-\begin_inset Formula $Done$
-\end_inset
-
- в порядке возрастания сигнатуры, при том что добавление многочленов одной
- полной степени в 
+Done, поскольку многочлены одной полной степени добавляются в Done в порядке
+ возрастания сигнатуры, при том что добавление многочленов одной полной
+ степени в 
 \begin_inset Formula $R$
 \end_inset
 
  производится в довольно случайном порядке в процедурах 
-\family typewriter
-Spol
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Spol"
+
+\end_inset
+
  и 
-\family typewriter
-TopReduction
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
 .
  Далее для простоты мы будем говорить о отмеченных многочленах 
 \begin_inset Formula $b_{j}$
@@ -6960,7 +7069,7 @@ TopReduction
 \end_inset
 
 , поскольку они присутствуют в 
-\begin_inset Formula $G_{1}$
+\begin_inset Formula $G_{m}$
 \end_inset
 
  в момент его создания.
@@ -6991,11 +7100,7 @@ name "thm:Exist-gg-repr"
 \begin_inset Formula $g$
 \end_inset
 
- в 
-\begin_inset Formula $Done$
-\end_inset
-
- каждая S-пара элементов 
+ в Done каждая S-пара элементов 
 \begin_inset Formula $G_{g}$
 \end_inset
 
@@ -7013,13 +7118,19 @@ S-пара имеет часть, которая была отброшена к�
 \end_inset
 
  (в 
-\family typewriter
-CritPair
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:CritPair"
+
+\end_inset
+
  или в 
-\family typewriter
-IsReducible
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IsReducible"
+
+\end_inset
+
 ).
  Такие S-пары будут называться 
 \emph on
@@ -7031,17 +7142,26 @@ S-парами с частью, удовлетворяющей критерию 
 
 \begin_layout Enumerate
 S-пара имеет часть, которая была отброшена проверкой 
-\family typewriter
-Rewritten?
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Rewritten?"
+
+\end_inset
+
  (в 
-\family typewriter
-SPol
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Spol"
+
+\end_inset
+
  или в 
-\family typewriter
-IsReducible
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IsReducible"
+
+\end_inset
+
 ).
  Такие S-пары будут называться 
 \emph on
@@ -7086,13 +7206,19 @@ S-пары элементов
 \begin_deeper
 \begin_layout Itemize
 в процедуре 
-\family typewriter
-AlgorithmF5
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
+\end_inset
+
  они рассматриваются функцией 
-\family typewriter
-CritPair
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:CritPair"
+
+\end_inset
+
  при перемещении элементов 
 \begin_inset Formula $G_{i}$
 \end_inset
@@ -7102,7 +7228,7 @@ CritPair
 \end_inset
 
  и при обработке входного многочлена 
-\begin_inset Formula $r_{i}$
+\begin_inset Formula $f_{i}$
 \end_inset
 
 
@@ -7110,9 +7236,12 @@ CritPair
 
 \begin_layout Itemize
 функция 
-\family typewriter
-CritPair
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:CritPair"
+
+\end_inset
+
  или отбрасывает пару после проверки нормальной формы 
 \begin_inset Formula $\varphi$
 \end_inset
@@ -7130,21 +7259,32 @@ S-пара извлекается из
 \end_inset
 
  и передаётся в функцию 
-\family typewriter
-SPol
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Spol"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 функция 
-\family typewriter
-SPol
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Spol"
+
+\end_inset
+
  или отбрасывает пару после проверки 
-\family typewriter
-Rewritten?
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Rewritten?"
+
+\end_inset
+
  или добавляет S-многочлен в 
-\begin_inset Formula $F=ToDo$
+\begin_inset Formula $F_{d}=ToDo$
 \end_inset
 
 
@@ -7152,18 +7292,14 @@ Rewritten?
 
 \begin_layout Itemize
 на некоторой итерации процедура 
-\family typewriter
-Reduction
-\family default
- берёт S-многочлен из 
-\begin_inset Formula $ToDo$
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Reduction"
+
 \end_inset
 
-, производит некоторые сигнатурные редукции и добавляет результат в 
-\begin_inset Formula $Done$
-\end_inset
-
-.
+ берёт S-многочлен из ToDo, производит некоторые сигнатурные редукции и
+ добавляет результат в Done.
 \end_layout
 
 \end_deeper
@@ -7171,19 +7307,19 @@ Reduction
 Второй путь обработки используется для S-пар, соответствующих редукциям,
  запрещённым алгоритмом -- соответствующие S-пары порождаются многочленами
  
-\begin_inset Formula $r_{l^{*}}$
+\begin_inset Formula $R[l^{*}]$
 \end_inset
 
  и 
-\begin_inset Formula $r_{l_{*}}$
+\begin_inset Formula $R[l_{*}]$
 \end_inset
 
 , такими что 
-\begin_inset Formula $\HM(r_{l^{*}})|\HM(r_{l_{*}})$
+\begin_inset Formula $\HM(R[l^{*}])|\HM(R[l_{*}])$
 \end_inset
 
 , и S-многочлен им соответствующий имеет вид 
-\begin_inset Formula $\overline{u_{l}}\cdot\poly(r_{l^{*}})-1\cdot\poly(r_{l_{*}})$
+\begin_inset Formula $\overline{u_{l}}\cdot\poly(R[l^{*}])-1\cdot\poly(R[l_{*}])$
 \end_inset
 
 .
@@ -7192,21 +7328,27 @@ Reduction
 \end_inset
 
  редукция 
-\begin_inset Formula $r_{l_{*}}$
+\begin_inset Formula $R[l_{*}]$
 \end_inset
 
  по 
-\begin_inset Formula $r_{l^{*}}$
+\begin_inset Formula $R[l^{*}]$
 \end_inset
 
  была запрещена сравнением сигнатур в 
-\family typewriter
-TopReduction
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
  или проверками в 
-\family typewriter
-IsReducible
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IsReducible"
+
+\end_inset
+
 .
  Для этого случая порядок 
 \begin_inset Quotes fld
@@ -7222,15 +7364,25 @@ IsReducible
 \begin_deeper
 \begin_layout Itemize
 часть S-пары 
-\begin_inset Formula $\overline{u_{l}}\cdot r_{l^{*}}$
+\begin_inset Formula $\overline{u_{l}}\cdot R[l^{*}]$
 \end_inset
 
  проверяется в 
-\family typewriter
-IsReducible
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IsReducible"
+
+\end_inset
+
 .
- (a) выполнено, поскольку 
+ 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "enu:IsRed-a"
+
+\end_inset
+
+ выполнено, поскольку 
 \family roman
 \series medium
 \shape up
@@ -7243,7 +7395,7 @@ IsReducible
 \noun off
 \color none
 
-\begin_inset Formula $\HM(r_{l^{*}})|\HM(r_{l_{*}})$
+\begin_inset Formula $\HM(R[l^{*}])|\HM(R[l_{*}])$
 \end_inset
 
 
@@ -7264,58 +7416,100 @@ IsReducible
 
 \begin_deeper
 \begin_layout Itemize
-отбрасывание пунктом (b) соответствует проверке нормальной формы 
+отбрасывание пунктом 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "enu:IsRed-b"
+
+\end_inset
+
+ соответствует проверке нормальной формы 
 \begin_inset Formula $\varphi$
 \end_inset
 
  для 
-\begin_inset Formula $\overline{u_{l}}\cdot r_{l^{*}}$
+\begin_inset Formula $\overline{u_{l}}\cdot R[l^{*}]$
 \end_inset
 
 
 \end_layout
 
 \begin_layout Itemize
-отбрасывание пунктом (c) соответствует проверке 
-\family typewriter
-Rewritten?
-\family default
+отбрасывание пунктом 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "enu:IsRed-c"
+
+\end_inset
+
+ соответствует проверке 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Rewritten?"
+
+\end_inset
+
  для 
-\begin_inset Formula $\overline{u_{l}}\cdot r_{l^{*}}$
+\begin_inset Formula $\overline{u_{l}}\cdot R[l^{*}]$
 \end_inset
 
 
 \end_layout
 
 \begin_layout Itemize
-отбрасывание пунктом (d) означает, что один из многочленов 
-\begin_inset Formula $\overline{u_{l}}\cdot r_{l^{*}}$
+отбрасывание пунктом 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "enu:IsRed-d"
+
+\end_inset
+
+ означает, что один из многочленов 
+\begin_inset Formula $\overline{u_{l}}\cdot R[l^{*}]$
 \end_inset
 
  и 
-\begin_inset Formula $1\cdot r_{l_{*}}$
+\begin_inset Formula $1\cdot R[l_{*}]$
 \end_inset
 
  может быть перезаписано другим, поэтому, если S-пара не была отброшена
- проверкой (c), данный тип отбрасывания означает, что часть S-пары 
-\begin_inset Formula $1\cdot r_{i_{1}}$
+ проверкой 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "enu:IsRed-c"
+
+\end_inset
+
+, данный тип отбрасывания означает, что часть S-пары 
+\begin_inset Formula $1\cdot R[l_{*}]$
 \end_inset
 
  не проходит проверку 
-\family typewriter
-Rewritten?
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Rewritten?"
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
 S-пары, не отброшенные в 
-\family typewriter
-IsReducible
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IsReducible"
+
+\end_inset
+
  возвращаются в 
-\family typewriter
-TopReduction
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
 .
  
 \family roman
@@ -7330,7 +7524,7 @@ TopReduction
 \noun off
 \color none
 Сравнение сигнатур в 
-\family typewriter
+\family default
 \series default
 \shape default
 \size default
@@ -7341,19 +7535,29 @@ TopReduction
 \uwave default
 \noun default
 \color inherit
-TopReduction
-\family default
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
  запрещает редукцию 
-\begin_inset Formula $r_{l_{*}}$
+\begin_inset Formula $R[l_{*}]$
 \end_inset
 
  по 
-\begin_inset Formula $r_{l^{*}}$
+\begin_inset Formula $R[l^{*}]$
 \end_inset
 
  и помещает вычисленный S-многочлен, соответствующий S-паре, в множество
- 
-\begin_inset Formula $ToDo_{1}$
+ ToDo
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+1
+\end_layout
+
 \end_inset
 
 
@@ -7361,54 +7565,52 @@ TopReduction
 
 \begin_layout Itemize
 процедура 
-\family typewriter
-Reduction
-\family default
- добавляет этот многочлен в 
-\begin_inset Formula $ToDo$
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Reduction"
+
 \end_inset
 
-
+ добавляет этот многочлен в ToDo
 \end_layout
 
 \begin_layout Itemize
 последний шаг совпадает для обоих путей обработки S-пар: на некоторой итерации
  процедура 
-\family typewriter
-Reduction
-\family default
- берёт S-многочлен из 
-\begin_inset Formula $ToDo$
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Reduction"
+
 \end_inset
 
-, производит некоторые сигнатурные редукции и добавляет результат в 
-\begin_inset Formula $Done$
-\end_inset
-
-.
+ берёт S-многочлен из ToDo, производит некоторые сигнатурные редукции и
+ добавляет результат в Done.
 \end_layout
 
 \end_deeper
 \begin_layout Proof
 Из путей обработки S-пар видно, что после окончания обработки каждая S-пара
- или редуцирована и добавлена в 
-\begin_inset Formula $Done$
-\end_inset
-
- или одна из частей S-пары была отброшена проверкой нормальной формы 
+ или редуцирована и добавлена в Done или одна из частей S-пары была отброшена
+ проверкой нормальной формы 
 \begin_inset Formula $\varphi$
 \end_inset
 
  или критерием 
-\family typewriter
-Rewritten?
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Rewritten?"
+
+\end_inset
+
 .
  Некоторые S-пары могут оказываться на путях обработки несколько раз, к
  примеру это происходит на итерации в 
-\family typewriter
-AlgorithmF5
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
+\end_inset
+
  со значением 
 \begin_inset Formula $d$
 \end_inset
@@ -7416,14 +7618,18 @@ AlgorithmF5
 , не изменившимся с прошлой итерации.
  Если S-пара была отброшена при первой попытке обработки, то она будет точно
  также отброшена и на следующей попытке.
- Если первая обработка добавила редуцированный многочлен в 
-\begin_inset Formula $Done$
+ Если первая обработка добавила редуцированный многочлен в Done, то пара
+ будет отбрасываться при следующих попытках обработки проверкой
+\family typewriter
+ 
+\family default
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Rewritten?"
+
 \end_inset
 
-, то пара будет отбрасываться при следующих попытках обработки проверкой
-\family typewriter
- Rewritten?
-\family default
  за счёт этого многочлена.
  Поэтому все попытки обработки, кроме первой, не дают ничего нового.
 \end_layout
@@ -7435,29 +7641,27 @@ AlgorithmF5
 \begin_inset Formula $P$
 \end_inset
 
- или S-многочлен в очереди 
-\begin_inset Formula $ToDo$
-\end_inset
-
-.
+ или S-многочлен в очереди ToDo.
  Поэтому необходимо понять, обработка каких S-пар уже завершилась в рассматривае
 мый нами момент.
  Элементы 
 \begin_inset Formula $P$
 \end_inset
 
- и 
-\begin_inset Formula $ToDo$
+ и ToDo извлекаются в процедурах 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
 \end_inset
 
- извлекаются в процедурах 
-\family typewriter
-AlgorithmF5
-\family default
  и 
-\family typewriter
-Reduction
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Reduction"
+
+\end_inset
+
  в порядке возрастания сигнатур.
  S-пары с сигнатурами, меньшими 
 \begin_inset Formula $\Sig(g)$
@@ -7478,9 +7682,12 @@ S-пары с сигнатурой
 
 .
  Они обрабатывались на предыдущих вызовах 
-\family typewriter
-AlgorithmF5
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
+\end_inset
+
 .
 \end_layout
 
@@ -7496,9 +7703,12 @@ S-пары с сигнатурой
 .
  Они обрабатывались на предыдущих итерациях цикла внутри того же вызова
  
-\family typewriter
-AlgorithmF5
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
+\end_inset
+
 , который обрабатывает 
 \begin_inset Formula $g$
 \end_inset
@@ -7518,9 +7728,12 @@ S-пары с сигнатурой
 .
  Они обрабатывались на предыдущих итерациях цикла внутри того же вызова
  
-\family typewriter
-Reduce
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Reduction"
+
+\end_inset
+
 , который обрабатывает 
 \begin_inset Formula $g$
 \end_inset
@@ -7540,11 +7753,7 @@ S-пары из этих классов не могут находиться в 
 \begin_inset Formula $P$
 \end_inset
 
- ни 
-\begin_inset Formula $ToDo$
-\end_inset
-
- не содержат необработанных элементов с сигнатурами, меньшими 
+ ни ToDo не содержат необработанных элементов с сигнатурами, меньшими 
 \begin_inset Formula $\Sig(g)$
 \end_inset
 
@@ -7553,13 +7762,19 @@ S-пары из этих классов не могут находиться в 
  начиналась хотя бы один раз.
  Это просто проверить для первых двух классов: обработка соответствующих
  S-пар была начата по крайней мере один раз путём вызова 
-\family typewriter
-CritPair
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:CritPair"
+
+\end_inset
+
  в 
-\family typewriter
-AlgorithmF5
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
+\end_inset
+
  непосредственно перед тем, как наибольший из порождающих S-пару был добавлен
  в 
 \begin_inset Formula $G$
@@ -7572,58 +7787,63 @@ AlgorithmF5
 \end_inset
 
 , то её обработка была начата в 
-\family typewriter
-CritPair
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:CritPair"
+
+\end_inset
+
  аналогично S-парам первых двух классов.
  Но некоторые S-пары третьего класса могут иметь старший по сигнатуре порождающи
 й 
-\begin_inset Formula $r_{l}$
+\begin_inset Formula $R[l]$
 \end_inset
 
 , такой что 
-\begin_inset Formula $\totaldeg(r_{l})=\totaldeg(g),\,\Sig(r_{l})\prec\Sig(g)$
+\begin_inset Formula $\totaldeg(R[l])=\totaldeg(g),\,\Sig(R[l])\prec\Sig(g)$
 \end_inset
 
 .
  Они обрабатываются вторым из рассмотренных путей обработки S-пар, поэтому
  обработка таких S-пар ещё не стартовала к моменту последнего вызова 
-\family typewriter
-Reduction
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Reduction"
+
+\end_inset
+
 .
  Однако, их обработка начинается внутри 
-\family typewriter
-Reduction
-\family default
- до изучаемого нами момента: процедура выбирает многочлены из 
-\begin_inset Formula $ToDo$
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Reduction"
+
 \end_inset
 
- в порядке возрастания сигнатуры, поэтому 
-\begin_inset Formula $r_{l}$
+ до изучаемого нами момента: процедура выбирает многочлены из ToDo в порядке
+ возрастания сигнатуры, поэтому 
+\begin_inset Formula $R[l]$
 \end_inset
 
- редуцируется до 
+ редуцируется перед 
 \begin_inset Formula $g$
 \end_inset
 
  и в процессе редукции 
-\begin_inset Formula $r_{l}$
+\begin_inset Formula $R[l]$
 \end_inset
 
  непосредственно перед добавлением 
-\begin_inset Formula $r_{l}$
+\begin_inset Formula $R[l]$
 \end_inset
 
- в 
-\begin_inset Formula $Done$
+ в Done вызов 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
 \end_inset
 
- вызов 
-\family typewriter
-TopReduction
-\family default
  начинает обработку всех таких S-пар.
 \end_layout
 
@@ -7654,15 +7874,15 @@ TopReduction
 удовлетворяющим критерию F5
 \emph default
 , если 
-\begin_inset Formula $\varphi_{index(r_{i})+1}(s\Sig(r_{i}))\ne s\Sig(r_{i})$
+\begin_inset Formula $\varphi(s\Sig(r_{i}))\ne s\Sig(r_{i})$
 \end_inset
 
 , где 
-\begin_inset Formula $\varphi_{index(r_{i})+1}$
+\begin_inset Formula $\varphi$
 \end_inset
 
  -- оператор нормальной формы по отношению к 
-\begin_inset Formula $G_{index(r_{i})+1}$
+\begin_inset Formula $G_{index(r_{i})-1}$
 \end_inset
 
 .
@@ -7730,7 +7950,7 @@ key "FaugereF5"
 \begin_inset Formula $sr_{i}$
 \end_inset
 
- удовлетворяет критерию, то то и дополнительно домноженный многочлен 
+ удовлетворяет критерию, то и дополнительно домноженный многочлен 
 \begin_inset Formula $s_{1}sr_{i}$
 \end_inset
 
@@ -7750,30 +7970,15 @@ key "FaugereF5"
 \begin_inset Formula $\left(G_{g}\right)$
 \end_inset
 
- мы будем использовать 
+ мы будем использовать сигнатурные представления над 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--представления.
-\end_layout
-
-\begin_layout Definition
+, называемые также сигнатурными 
 \begin_inset Formula $G_{g}$
 \end_inset
 
--представление 
-\begin_inset Formula $p=\sum_{k}m_{k}\cdot b_{i_{k}}$
-\end_inset
-
- называется 
-\emph on
-сигнатурным
-\emph default
-, если 
-\begin_inset Formula $\forall k\,\Sig(m_{k}b_{i_{k}})\preccurlyeq\Sig(p)$
-\end_inset
-
-.
+-представлениями.
 \end_layout
 
 \begin_layout Paragraph
@@ -7957,7 +8162,7 @@ b_{j}b_{i}=\sum_{k}m_{i_{k}}\cdot b_{j}=\sum_{k}m_{i_{k}}\cdot b_{j}+0=\sum_{k}m
 \begin_layout Standard
 \begin_inset Formula 
 \[
-0=\sum_{\emptyset}\mbox{(empty sum)}=\sum_{k}m_{j_{k}}\cdot b_{i}+\sum_{k}(-m_{i_{k}})\cdot b_{j},
+0=\sum_{\varnothing}\mbox{(empty sum)}=\sum_{k}m_{j_{k}}\cdot b_{i}+\sum_{k}(-m_{i_{k}})\cdot b_{j},
 \]
 
 \end_inset
@@ -8077,7 +8282,7 @@ p=\sum_{k}m_{k}\cdot b_{i_{k}},\, m_{k}\in\mathcal{K}\times\mathbb{T},\, b_{i_{k
 \end_layout
 
 \begin_layout Claim
-Допустимый отмеченный многочлен 
+Отмеченный многочлен 
 \begin_inset Formula $p$
 \end_inset
 
@@ -8093,18 +8298,8 @@ p=\sum_{k}m_{k}\cdot b_{i_{k}},\, m_{k}\in\mathcal{K}\times\mathbb{T},\, b_{i_{k
 \end_layout
 
 \begin_layout Proof
-Утверждение вытекает из определения допустимого многочлена в 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "FaugereF5"
-
-\end_inset
-
-, ссылающегося на функцию 
-\begin_inset Formula $v$
-\end_inset
-
-, которая соответствует суммированию элементов входного представления.
+Утверждение вытекает из условия корректности в определении отмеченного многочлен
+а.
 \end_layout
 
 \begin_layout Standard
@@ -8115,8 +8310,18 @@ key "FaugereF5"
 
 \end_inset
 
- утверждает, что все многочлены, порождаемые алгоритмом, допустимы, поэтому
- мы будем применять предыдущее утверждение ко всем таким многочленам.
+ утверждает, что все многочлены, порождаемые алгоритмом, допустимы, а определени
+е допустимости ссылается на функцию 
+\begin_inset Formula $v$
+\end_inset
+
+, которая соответствует суммированию элементов входного представления --
+ поэтому в силу этой теоремы все элементы 
+\begin_inset Formula $R$
+\end_inset
+
+ удовлетворяют условию корректности допустимых многочленов, и мы будем применять
+ предыдущее утверждение ко всем таким многочленам.
 \end_layout
 
 \begin_layout Example
@@ -8219,13 +8424,19 @@ p=\sum_{k}m_{k}\cdot b_{n_{k}}+1\cdot b_{l},
 \end_inset
 
  в момент подсчёта S-многочлена в процедурах 
-\family typewriter
-Spol
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Spol"
+
+\end_inset
+
  или 
-\family typewriter
-TopReduction
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
 , поэтому многочлены 
 \begin_inset Formula $b_{l^{*}}$
 \end_inset
@@ -8276,7 +8487,7 @@ TopReduction
 
 \begin_deeper
 \begin_layout Itemize
-\begin_inset Formula $t_{i}\Sig(b_{i})\succ t_{j}\Sig(b_{j})$
+\begin_inset Formula $t_{i}\Sig(b_{i})\succ_{P}t_{j}\Sig(b_{j})$
 \end_inset
 
  
@@ -8369,7 +8580,7 @@ TopReduction
 \noun off
 \color none
  поскольку сигнатура левой части  
-\begin_inset Formula $\succ$
+\begin_inset Formula $\succ_{P}$
 \end_inset
 
 
@@ -8392,7 +8603,7 @@ TopReduction
 \noun off
 \color none
  поскольку сигнатура левой части 
-\begin_inset Formula $\succ$
+\begin_inset Formula $\succ_{P}$
 \end_inset
 
 
@@ -8474,7 +8685,7 @@ TopReduction
 \noun default
 \color inherit
  
-\begin_inset Formula $\prec$
+\begin_inset Formula $\prec_{P}$
 \end_inset
 
 
@@ -8759,7 +8970,7 @@ TopReduction
 \end_inset
 
 -меньшего представления не могут быть 
-\begin_inset Formula $\succ$
+\begin_inset Formula $\succ_{P}$
 \end_inset
 
 -больше, чем максимальная сигнатура 
@@ -8802,12 +9013,12 @@ TopReduction
 
 -убывающей последовательности элементов представлений привело бы к существованию
  бесконечной 
-\begin_inset Formula $\succ$
+\begin_inset Formula $\succ_{P}$
 \end_inset
 
 -убывающей последовательности сигнатур.
  Учитывая вполне упорядоченность сигнатур по 
-\begin_inset Formula $\prec$
+\begin_inset Formula $\prec_{P}$
 \end_inset
 
  мы получаем доказательство вполне упорядоченности элементов представлений
@@ -8838,7 +9049,7 @@ key "Baader.Nipkow98Term"
 .
  Она утверждает вполне упорядоченность конечных наборов с порядком, являющимся
  лексикографическим расширением порядка на элементах набора.
- Это применимо к предмтавлениямм, так как они являются наборами своих элементов.
+ Это применимо к представлениям, так как они являются наборами своих элементов.
 \end_layout
 
 \begin_layout Paragraph
@@ -8860,7 +9071,7 @@ key "Baader.Nipkow98Term"
 \end_inset
 
  со свойством 
-\begin_inset Formula $\Sig(mh)\prec\Sig(g)$
+\begin_inset Formula $\Sig(mh)\prec_{P}\Sig(g)$
 \end_inset
 
 .
@@ -9235,7 +9446,7 @@ key "F5C"
 \end_inset
 
 -максимального элемента, равной 
-\begin_inset Formula $m_{K}\Sig(b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$
+\begin_inset Formula $m_{K}\Sig(b_{i_{K}})=(s_{0},j_{0})\in\mathbf{T}$
 \end_inset
 
 
@@ -9266,7 +9477,7 @@ m_{K}b_{i_{K}}=c_{0}s_{0}\cdot f_{j_{0}}+\sum_{l}m_{l}\cdot f_{i_{l}}.\label{eq:
 \end_inset
 
  может быть представлено как 
-\begin_inset Formula $s_{0}=s_{1}\HM(f_{j_{1}}),\, j_{1}>j_{0}$
+\begin_inset Formula $s_{0}=s_{1}\HM(f_{j_{1}}),\, j_{1}<j_{0}$
 \end_inset
 
 , откуда 
@@ -9330,7 +9541,7 @@ m_{K}b_{i_{K}}=\sum_{i=1}^{N_{0}}c_{0}s_{1}m_{0i}\cdot f_{j_{1}}+\sum_{i=2}^{N_{
 \noun off
 \color none
 
-\begin_inset Formula $s_{0}\mathbf{F}_{j_{0}}$
+\begin_inset Formula $(s_{0},j_{0})$
 \end_inset
 
 .
@@ -9375,7 +9586,7 @@ reference "eq:input-repr-case1"
 \end_inset
 
  это следует из неравенства индексов сигнатур 
-\begin_inset Formula $j_{1}>j_{0}$
+\begin_inset Formula $j_{1}<j_{0}$
 \end_inset
 
 .
@@ -9389,7 +9600,7 @@ reference "eq:input-repr-case1"
 \end_inset
 
 , поэтому и выполняется неравенство для сигнатур: 
-\begin_inset Formula $s_{1}m_{1i}\mathbf{F}_{j_{0}}\prec s_{1}m_{11}\mathbf{F}_{j_{0}}=s_{0}\mathbf{F}_{j_{0}}$
+\begin_inset Formula $s_{1}(m_{1i},j_{0})\prec_{P}s_{1}(m_{11},j_{0})=(s_{0},j_{0})$
 \end_inset
 
 .
@@ -9406,7 +9617,7 @@ reference "eq:input-repr-case1"
 \end_inset
 
  с 
-\begin_inset Formula $\Sig(mh)\prec\Sig(g)$
+\begin_inset Formula $\Sig(mh)\prec_{P}\Sig(g)$
 \end_inset
 
  содержит элемент, не удовлетворяющий свойству 2, то найдётся элемент 
@@ -9449,7 +9660,7 @@ reference "eq:input-repr-case1"
 \begin_inset Formula $\lessdot$
 \end_inset
 
--меньшее представление сроится методом, аналогичным Предложению 17 из 
+-меньшее представление строится методом, аналогичным Предложению 17 из 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "F5C"
@@ -9466,7 +9677,7 @@ key "F5C"
 
 \begin_layout Proof
 Предположим, что сигнатура 
-\begin_inset Formula $\Sig(m_{K}b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$
+\begin_inset Formula $\Sig(m_{K}b_{i_{K}})=(s_{0},j_{0})$
 \end_inset
 
 
@@ -9491,7 +9702,7 @@ key "F5C"
 
 .
  Поскольку представление сигнатурно, мы имеем 
-\begin_inset Formula $\Sig(b_{i'})\preccurlyeq s_{0}\mathbf{F}_{j_{0}}\preccurlyeq\Sig(mh)\prec\Sig(g)$
+\begin_inset Formula $\Sig(b_{i'})\preccurlyeq_{P}(s_{0},j_{0})\preccurlyeq_{P}\Sig(mh)\prec_{P}\Sig(g)$
 \end_inset
 
 .
@@ -9500,7 +9711,7 @@ key "F5C"
 \end_inset
 
  обрабатывался в процедуре 
-\family typewriter
+\family default
 \series default
 \shape default
 \size default
@@ -9511,7 +9722,14 @@ key "F5C"
 \uwave default
 \noun default
 \color inherit
-TopReduction
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
+
 \family roman
 \series medium
 \shape up
@@ -9563,7 +9781,7 @@ TopReduction
 \noun default
 \color inherit
 
-\begin_inset Formula $s'\Sig(b_{i'})=s_{0}\mathbf{F}_{j_{0}}$
+\begin_inset Formula $s'\Sig(b_{i'})=(s_{0},j_{0})$
 \end_inset
 
 .
@@ -9684,7 +9902,7 @@ m_{K}b_{i_{K}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i
 \noun off
 \color none
 
-\begin_inset Formula $s_{0}\mathbf{F}_{j_{0}}$
+\begin_inset Formula $(s_{0},j_{0})$
 \end_inset
 
 , а для первого элемента, если 
@@ -9692,7 +9910,7 @@ m_{K}b_{i_{K}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i
 \end_inset
 
  не нулевой, имеем 
-\begin_inset Formula $\Sig(c'^{-1}c_{0}s'\cdot b_{i'})=\Sig(m_{K}\cdot b_{i_{K}})=s_{0}\mathbf{F}_{j_{0}}$
+\begin_inset Formula $\Sig(c'^{-1}c_{0}s'\cdot b_{i'})=\Sig(m_{K}\cdot b_{i_{K}})=(s_{0},j_{0})$
 \end_inset
 
  с 
@@ -9731,7 +9949,7 @@ m_{K}b_{i_{K}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i
 \end_inset
 
  с 
-\begin_inset Formula $\Sig(mh)\prec\Sig(g)$
+\begin_inset Formula $\Sig(mh)\prec_{P}\Sig(g)$
 \end_inset
 
  удовлетворяют свойствам 1 и 2, но один из них не удовлетворяет свойству
@@ -9914,7 +10132,7 @@ m_{K}b_{i_{K}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i
 
  -- соответствующий S-многочлен.
  Тогда 
-\begin_inset Formula $m'\Sig(q)\preccurlyeq\Sig(mh)\prec\Sig(g)$
+\begin_inset Formula $m'\Sig(q)\preccurlyeq_{P}\Sig(mh)\prec_{P}\Sig(g)$
 \end_inset
 
  поскольку 
@@ -10016,7 +10234,7 @@ q=1\cdot b_{i'}+\sum_{l}m_{l}\cdot b_{i_{l}},
 \end_inset
 
 , 
-\begin_inset Formula $\forall l\,\Sig(q)\succ\Sig(m_{l}b_{i_{l}})$
+\begin_inset Formula $\forall l\,\Sig(q)\succ_{P}\Sig(m_{l}b_{i_{l}})$
 \end_inset
 
  и 
@@ -10104,7 +10322,7 @@ name "thm:exist-smaller-signature-safe-representation"
 \end_inset
 
  с 
-\begin_inset Formula $\Sig(mh)\prec\Sig(g)$
+\begin_inset Formula $\Sig(mh)\prec_{P}\Sig(g)$
 \end_inset
 
  удовлетворяет свойствам 1-3 или существует другое сигнатурное представление
@@ -10144,12 +10362,12 @@ name "thm:exist-smaller-signature-safe-representation"
 \end_layout
 
 \begin_layout Theorem
-Для любого многочлена 
+Для любого отмеченного многочлена 
 \begin_inset Formula $mh,\, m\in\mathcal{K}\times\mathbb{T},\, h\in G_{g}$
 \end_inset
 
  с 
-\begin_inset Formula $\Sig(mh)\prec\Sig(g)$
+\begin_inset Formula $\Sig(mh)\prec_{P}\Sig(g)$
 \end_inset
 
  существует удовлетворяющее свойствам 1-3 сигнатурное 
@@ -10227,7 +10445,7 @@ name "cor:all-needed-for-terminaton"
 \end_inset
 
  с 
-\begin_inset Formula $\Sig(f')\frac{\HM(f)}{\HM(f')}\prec\Sig(g)$
+\begin_inset Formula $\Sig(f')\frac{\HM(f)}{\HM(f')}\prec_{P}\Sig(g)$
 \end_inset
 
  то 
@@ -10247,7 +10465,7 @@ name "cor:all-needed-for-terminaton"
 \end_inset
 
  умноженный редуктор с 
-\begin_inset Formula $\Sig(mf')\prec\Sig(g)$
+\begin_inset Formula $\Sig(mf')\prec_{P}\Sig(g)$
 \end_inset
 
 .
@@ -10287,7 +10505,7 @@ name "cor:all-needed-for-terminaton"
 
 .
  Поскольку представление сигнатурно, имеем 
-\begin_inset Formula $\Sig(m_{K}\cdot b_{i_{K}})\preccurlyeq\Sig(mf')\prec\Sig(f)$
+\begin_inset Formula $\Sig(m_{K}\cdot b_{i_{K}})\preccurlyeq_{P}\Sig(mf')\prec_{P}\Sig(f)$
 \end_inset
 
 , а значит 
@@ -10319,10 +10537,14 @@ reference "thm:f_g_3_props"
 
 , утверждающей, что в случае.
  если алгоритм не останавливается, существуют многочлены 
-\begin_inset Formula $f',f\in G$
+\begin_inset Formula $f',f$
 \end_inset
 
-, такие что 
+, с индексами в 
+\begin_inset Formula $G_{m}$
+\end_inset
+
+ такие что 
 \begin_inset Formula $\HM(f')|\HM(f)$
 \end_inset
 
@@ -10380,10 +10602,10 @@ name "thm:always-exist-ok-reductor"
 \noun off
 \color none
 
-\begin_inset Formula $G\cup Done$
+\begin_inset Formula $G_{m}\cup$
 \end_inset
 
-
+Done
 \family default
 \series default
 \shape default
@@ -10420,10 +10642,10 @@ name "thm:always-exist-ok-reductor"
 \noun off
 \color none
 
-\begin_inset Formula $G\cup Done$
+\begin_inset Formula $G_{m}\cup$
 \end_inset
 
-
+Done
 \family default
 \series default
 \shape default
@@ -10518,7 +10740,7 @@ reference "thm:f_g_3_props"
 \end_inset
 
 .
- Многочлен 
+ Индекс многочлена 
 \family default
 \series default
 \shape default
@@ -10531,7 +10753,11 @@ reference "thm:f_g_3_props"
 \noun default
 \color inherit
 
-\begin_inset Formula $f\in G$
+\begin_inset Formula $f$
+\end_inset
+
+ лежит в 
+\begin_inset Formula $G$
 \end_inset
 
 , поэтому построенная выше теория о представлениях может быть рассмотрена
@@ -10601,10 +10827,10 @@ reference "cor:all-needed-for-terminaton"
 \end_inset
 
  был добавлен в 
-\begin_inset Formula $G\cup Done$
+\begin_inset Formula $G_{m}\cup$
 \end_inset
 
- раньше 
+Done раньше 
 \begin_inset Formula $f$
 \end_inset
 
@@ -10636,30 +10862,35 @@ reference "thm:always-exist-ok-reductor"
 
  приводит к противоречию.
  Рассмотрим вызов 
-\family typewriter
-TopReduction
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
  после которого многочлен 
 \begin_inset Formula $f$
 \end_inset
 
- был добавлен в 
-\begin_inset Formula $Done$
-\end_inset
-
-.
+ был добавлен в Done.
  Этот вызов вернул многочлен 
 \begin_inset Formula $f$
 \end_inset
 
  как первую половину значения, возвращаемого 
-\family typewriter
-TopReduction
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
 , что означает что предшествующий вызов 
-\family typewriter
-IsReducible
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IsReducible"
+
+\end_inset
+
  вернул пустое множество.
  Это значит, что для каждого многочлена в 
 \family roman
@@ -10674,10 +10905,10 @@ IsReducible
 \noun off
 \color none
 
-\begin_inset Formula $G\cup Done$
+\begin_inset Formula $G_{m}\cup$
 \end_inset
 
-, в том числе
+Done, в том числе
 \family default
 \series default
 \shape default
@@ -10693,13 +10924,33 @@ IsReducible
 \begin_inset Formula $f'_{1}$
 \end_inset
 
-, хотя бы одно из условий (a) - (d) не выполнилось.
+, хотя бы одно из условий 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "enu:IsRed-a"
+
+\end_inset
+
+ - 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "enu:IsRed-d"
+
+\end_inset
+
+ не выполнилось.
  Это невозможно, поскольку:
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-(a) удовлетворяется, так как 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "enu:IsRed-a"
+
+\end_inset
+
+удовлетворяется, так как 
 \begin_inset Formula $f'_{1}$
 \end_inset
 
@@ -10718,7 +10969,20 @@ reference "thm:always-exist-ok-reductor"
 \end_layout
 
 \begin_layout Itemize
-(b) и (c) удовлетворяются, поскольку 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "enu:IsRed-b"
+
+\end_inset
+
+и 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "enu:IsRed-c"
+
+\end_inset
+
+ удовлетворяются, поскольку 
 \begin_inset Formula $\frac{\HM(f)}{\HM(f'_{1})}f'_{1}$
 \end_inset
 
@@ -10733,7 +10997,13 @@ reference "thm:always-exist-ok-reductor"
 \end_layout
 
 \begin_layout Itemize
-(d) удовлетворяется, поскольку 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "enu:IsRed-d"
+
+\end_inset
+
+удовлетворяется, поскольку 
 \begin_inset Formula $f'_{1}$
 \end_inset
 
