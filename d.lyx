@@ -2311,8 +2311,8 @@ h_{1}=\left(\Sig(h'_{1}),\poly(h'_{1})+Kt\poly(h_{2})\right),
 \end_layout
 
 \begin_layout Standard
-Первым сигнатурным алгоритмом, получившим широкое распространение стал алгоритм
- F5, сформулированный в работе 
+Первым сигнатурным алгоритмом, получившим широкое распространение, стал
+ алгоритм F5, сформулированный в работе 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "FaugereF5"
@@ -2344,8 +2344,8 @@ key "FaugereF5"
 \end_inset
 
 , поэтому сформулируем здесь лишь главные из них.
- Объектами, над которыми работает алгоритм в большинстве случаев являются
- не просто многочлены, а только отмеченные многочлены, над которыми производятся
+ Объектами, над которыми работает алгоритм, в большинстве случаев являются
+ не просто многочлены, а отмеченные многочлены, над которыми производятся
  сигнатурные редукции, и арифметические операции, дающие результат с известной
  сигнатурой.
  Каждый инкрементальный шаг алгоритма соответствует алгоритму Бухбергера
@@ -2361,7 +2361,7 @@ key "FaugereF5"
 \end_layout
 
 \begin_layout Itemize
-при образовании S-пар, построении S-полиномов и выборе редуктора для редукции
+при образовании S-пар, построении S-многочленов и выборе редуктора для редукции
  проверяются критерии, которым должен удовлетворять домноженный многочлен,
  чтобы не быть отброшенным.
 \end_layout
@@ -2388,7 +2388,11 @@ key "F5InBBStyle"
  многочленов -- приводимая версия обрабатывает многочлены начиная с первого,
  в то время как в первоисточнике многочлены обрабатываются, начиная с последнего
 , что вызвано противоположным направлением сравнения индексов в определении
- порядка на множестве сигнатур 
+ порядка 
+\begin_inset Formula $\prec_{P}$
+\end_inset
+
+ на множестве сигнатур 
 \begin_inset Formula $\mathbf{T}$
 \end_inset
 
@@ -2476,13 +2480,39 @@ Rule Массив правил перезаписи, содержащий
 \begin_inset Formula $\prec$
 \end_inset
 
- Используемый мономиальный порядок
+ Мономиальный порядок, используемый при определении 
+\begin_inset Formula $\HM$
+\end_inset
+
+ и 
+\begin_inset Formula $\HC$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $\prec_{P}$
+\end_inset
+
+ Используемый порядок на множестве сигнатур 
+\begin_inset Formula $\mathbf{T}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Paragraph*
 
 \family typewriter
 \series medium
+\begin_inset CommandInset label
+LatexCommand label
+name "par:AddRule"
+
+\end_inset
+
 AddRule
 \end_layout
 
@@ -2527,6 +2557,12 @@ AddRule
 
 \family typewriter
 \series medium
+\begin_inset CommandInset label
+LatexCommand label
+name "par:Rewritten?"
+
+\end_inset
+
 Rewritten?
 \end_layout
 
@@ -2542,9 +2578,9 @@ Rewritten?
 \begin_inset Formula $u$
 \end_inset
 
- -- моном 
+ -- моном, 
 \series bold
-,
+
 \begin_inset Formula $k$
 \end_inset
 
@@ -2594,7 +2630,7 @@ Rewritten?
 \begin_inset Formula $r\leftarrow$
 \end_inset
 
-число элементов 
+ число элементов 
 \begin_inset Formula $L$
 \end_inset
 
@@ -2662,7 +2698,13 @@ return false
 
 \family typewriter
 \series medium
-incrementalF5
+\begin_inset CommandInset label
+LatexCommand label
+name "par:IncrementalF5"
+
+\end_inset
+
+IncrementalF5
 \end_layout
 
 \begin_layout Labeling
@@ -2759,7 +2801,14 @@ for
 \begin_inset Formula $G_{i}\leftarrow$
 \end_inset
 
- AlgorithmF5 
+ 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
+\end_inset
+
+
 \begin_inset Formula $(((1,i),f_{i}),G_{i-1})$
 \end_inset
 
@@ -2784,6 +2833,12 @@ return
 
 \family typewriter
 \series medium
+\begin_inset CommandInset label
+LatexCommand label
+name "par:AlgorithmF5"
+
+\end_inset
+
 AlgorithmF5
 \end_layout
 
@@ -2955,7 +3010,7 @@ do
 
 \family sans
 \shape italic
-\begin_inset Formula $d\leftarrow\totaldeg(P[1])$
+\begin_inset Formula $d\leftarrow\totaldeg\left(\HM\left(P[1]\right)\right)$
 \end_inset
 
 
@@ -2964,11 +3019,11 @@ do
 \begin_layout Enumerate
 
 \family sans
-\begin_inset Formula $P_{d}\leftarrow\{p\in P|\totaldeg$
+\begin_inset Formula $P_{d}\leftarrow\{p\in P|\totaldeg($
 \end_inset
 
-сокращаемого монома равна
-\begin_inset Formula $d\}$
+сокращаемого монома
+\begin_inset Formula $)=d\}$
 \end_inset
 
 
@@ -2994,7 +3049,14 @@ do
 
 \family typewriter
 \shape default
-Spol
+ 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Spol"
+
+\end_inset
+
+
 \family sans
 
 \begin_inset Formula $(P_{d})$
@@ -3011,12 +3073,16 @@ Spol
 \end_inset
 
 
-\family typewriter
 \shape default
-Reduction
-\family sans
+ 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Reduction"
 
-\begin_inset Formula $(F,G_{i},\varphi)$
+\end_inset
+
+
+\begin_inset Formula $(F_{d},G_{i},\varphi)$
 \end_inset
 
 
@@ -3048,10 +3114,14 @@ for
 \end_inset
 
 
-\family typewriter
 \shape default
-CritPair
-\family sans
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:CritPair"
+
+\end_inset
+
 
 \begin_inset Formula $(r,p,i,\varphi)|p\in G_{i}\}$
 \end_inset
@@ -3109,6 +3179,12 @@ return
 
 \family typewriter
 \series medium
+\begin_inset CommandInset label
+LatexCommand label
+name "par:CritPair"
+
+\end_inset
+
 CritPair
 \family sans
  
@@ -3209,7 +3285,7 @@ for
 \begin_inset Formula $t_{i}\leftarrow$
 \end_inset
 
-моном сигнатуры 
+ моном сигнатуры 
 \begin_inset Formula $R[r_{i}]$
 \end_inset
 
@@ -3224,7 +3300,7 @@ for
 if 
 \series default
 
-\begin_inset Formula $u_{1}\Sig(R[r_{1}])\prec u_{2}\Sig(R[r_{2}])$
+\begin_inset Formula $u_{1}\Sig(R[r_{1}])\prec_{P}u_{2}\Sig(R[r_{2}])$
 \end_inset
 
  
@@ -3240,9 +3316,16 @@ then
 return 
 \family typewriter
 \series default
-CritPair
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:CritPair"
+
+\end_inset
+
+
 \family sans
- 
+
 \begin_inset Formula $(r_{2},r_{1},k,\varphi)$
 \end_inset
 
@@ -3292,8 +3375,11 @@ if
 \end_inset
 
  
+\series bold
 \shape default
-and 
+and
+\series default
+ 
 \begin_inset Formula $\varphi(u_{2}t_{2})\ne u_{2}t_{2}$
 \end_inset
 
@@ -3330,9 +3416,15 @@ return
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Paragraph*
 
 \family typewriter
+\begin_inset CommandInset label
+LatexCommand label
+name "par:Spol"
+
+\end_inset
+
 Spol
 \end_layout
 
@@ -3417,17 +3509,43 @@ for
 \series bold
 if 
 \series default
-(not 
+(
+\series bold
+not
+\series default
+ 
 \family typewriter
-Rewritten?
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Rewritten?"
+
+\end_inset
+
+
 \family sans
 
 \begin_inset Formula $(u,r_{i})$
 \end_inset
 
-) and (not 
+) 
+\series bold
+and
+\series default
+ (
+\series bold
+not
+\series default
+ 
 \family typewriter
-Rewritten?
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Rewritten?"
+
+\end_inset
+
+
 \family sans
 
 \begin_inset Formula $(v,r_{j})$
@@ -3458,9 +3576,15 @@ then
 \begin_layout Enumerate
 
 \family typewriter
-AddRule
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AddRule"
+
+\end_inset
+
+
 \family sans
- 
+
 \begin_inset Formula $\left(\#R\right)$
 \end_inset
 
@@ -3496,6 +3620,12 @@ return
 
 \family typewriter
 \series medium
+\begin_inset CommandInset label
+LatexCommand label
+name "par:Reduction"
+
+\end_inset
+
 Reduction
 \family sans
  
@@ -3509,7 +3639,7 @@ Reduction
 \series bold
  
 \series default
-ToDo,
+ToDo, 
 \begin_inset Formula $G$
 \end_inset
 
@@ -3595,7 +3725,7 @@ Done -- множество индексов
 \series bold
 while 
 \series default
-ToDo
+ToDo 
 \begin_inset Formula $\ne\varnothing$
 \end_inset
 
@@ -3611,12 +3741,12 @@ do
 
 
 \family sans
-индекс из ToDo
+ индекс из ToDo
 \family default
 ,
 \family sans
  соответствующий многочлену с минимальной по 
-\begin_inset Formula $\prec_{\tau}$
+\begin_inset Formula $\prec_{P}$
 \end_inset
 
  среди ToDo сигнатурой
@@ -3690,9 +3820,12 @@ Done
 
 \family sans
  
-\family typewriter
-TopReduction
-\family sans
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
 (
 \shape italic
 
@@ -3703,7 +3836,7 @@ TopReduction
 \shape default
 Done
 \shape italic
-,
+, 
 \begin_inset Formula $\varphi$
 \end_inset
 
@@ -3717,7 +3850,7 @@ Done
 \family sans
 Done
 \family default
-
+ 
 \begin_inset Formula $\leftarrow$
 \end_inset
 
@@ -3750,7 +3883,7 @@ Done
 \family sans
 ToDo
 \family default
-
+ 
 \begin_inset Formula $\leftarrow$
 \end_inset
 
@@ -3790,6 +3923,12 @@ Done
 
 \family typewriter
 \series medium
+\begin_inset CommandInset label
+LatexCommand label
+name "par:IsReducible"
+
+\end_inset
+
 IsReducible
 \family sans
  
@@ -3897,6 +4036,13 @@ if
 \begin_layout Enumerate
 
 \family sans
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:IsRed-a"
+
+\end_inset
+
+
 \begin_inset Formula $u=\frac{HT(R[r_{0}])}{HT(R[r_{\text{j}}])}$
 \end_inset
 
@@ -3911,6 +4057,13 @@ if
 \begin_layout Enumerate
 
 \family sans
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:IsRed-b"
+
+\end_inset
+
+
 \begin_inset Formula $\varphi(ut_{j})=ut_{j}$
 \end_inset
 
@@ -3918,7 +4071,7 @@ if
 \begin_inset Formula $t_{j}$
 \end_inset
 
- моном сигнатуры 
+ -- моном сигнатуры 
 \begin_inset Formula $\Sig(R[r_{j}])$
 \end_inset
 
@@ -3928,10 +4081,22 @@ if
 \begin_layout Enumerate
 
 \family sans
-not 
-\family typewriter
-Rewritten?
-\family sans
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:IsRed-c"
+
+\end_inset
+
+not
+\series default
+ 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Rewritten?"
+
+\end_inset
+
 
 \begin_inset Formula $(u,r_{j})$
 \end_inset
@@ -3942,6 +4107,13 @@ Rewritten?
 \begin_layout Enumerate
 
 \family sans
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:IsRed-d"
+
+\end_inset
+
+
 \begin_inset Formula $u\Sig(R[r_{j}])\ne\Sig(R[r_{0}])$
 \end_inset
 
@@ -3981,6 +4153,12 @@ return
 
 \family typewriter
 \series medium
+\begin_inset CommandInset label
+LatexCommand label
+name "par:TopReduction"
+
+\end_inset
+
 TopReduction
 \end_layout
 
@@ -4106,7 +4284,7 @@ return
 
 
 \family sans
-,ToDo
+, ToDo
 \shape italic
  
 \family default
@@ -4134,8 +4312,15 @@ return
 \begin_inset Formula $r'\leftarrow$
 \end_inset
 
-IsReducible
+
 \family sans
+ 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IsReducible"
+
+\end_inset
+
 (
 \begin_inset Formula $h,G,\varphi$
 \end_inset
@@ -4175,7 +4360,7 @@ return
 
 
 \family sans
-,ToDo
+, ToDo
 \shape italic
  
 \family default
@@ -4262,7 +4447,7 @@ return
 
 
 \family sans
- ,ToDo
+ , ToDo
 \shape italic
  
 \family default
@@ -4302,9 +4487,15 @@ else
 \begin_layout Enumerate
 
 \family typewriter
-AddRule
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AddRule"
+
+\end_inset
+
+
 \family sans
- 
+
 \begin_inset Formula $\left(\#R\right)$
 \end_inset
 
@@ -4325,7 +4516,7 @@ return
 
 
 \family sans
- ,ToDo
+ , ToDo
 \shape italic
  
 \family default
@@ -4408,8 +4599,8 @@ key "Modifying-for-termination,Ars05applicationsdes,Gash:2008:ECG,Hashemi-ExtF5,
  чтобы он являлся представителем этого семейства.
  Основная проблема этого подхода появляется в процессе переформулировки:
  описание F5 в других терминах может привести к незаметному внесению различий
- в поведение алгоритма, которые требуют дополнительных рассуждений для доказател
-ьства эквивалентности с F5.
+ в поведение алгоритма, которые потребуют дополнительных рассуждений для
+ доказательства эквивалентности с F5.
  К примеру, 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -4430,11 +4621,8 @@ key "HuangConception"
  автору в процессе плодотворных дискуссий с Джоном Перри, имеет два существенных
  отличия от F5.
  Первое отличие -- другая схема построения правил, приводящая в конце концов
- к тому, что в процессе выполнения TRB-F5 правила в массивах 
-\begin_inset Formula $Rule$
-\end_inset
-
- оказываются отсортированными по возрастанию сигнатуры.
+ к тому, что в процессе выполнения TRB-F5 правила в массивах Rule оказываются
+ отсортированными по возрастанию сигнатуры.
  Второе отличие -- отсутствие в TRB-F5 применения оператора нормальной формы
  
 \begin_inset Formula $\varphi$
@@ -4442,31 +4630,19 @@ key "HuangConception"
 
  перед редукцией, что приводит к эффекту противоположному отличиям F5 от
  F5GEN: алгоритм TRB-F5 при выборе редуктора проверяет критерии для элементов
- с 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-б
-\backslash
-'{о}льшими
-\end_layout
-
-\end_inset
-
- индексами сигнатуры, которые в F5 используются неявно в операторе нормальной
- формы и за счёт этого не подвергаются проверки критериев.
+ с индексами сигнатуры, отличными от текущего, которые в F5 используются
+ неявно в операторе нормальной формы и за счёт этого не подвергаются проверки
+ критериев.
  Предположительно, эти алгоритмы могут быть изменены таким образом, чтобы
  в точности повторять поведение алгоритма F5, а доказательство остановки
  может быть перенесено на изменённые версии.
- Однако подход с алгоритмами, эквивалентными F5 имеет недостаток: он усложняет
- понимание того, как теоремы, используемые для доказательства остановки
- отражают поведение исходного алгоритма F5.
+ Однако подход с алгоритмами, эквивалентными F5 имеет и другой недостаток:
+ он усложняет понимание того, как теоремы, используемые для доказательства
+ остановки, отражают поведение исходного алгоритма F5.
 \end_layout
 
 \begin_layout Standard
-Подход к доказательству остановки, предлагаемый в данной работе, применяется
+Подход к доказательству остановки, представляемый в данной работе, применяется
  к F5 без каких-либо модификаций.
  Первый шаг доказательства основан на предлагаемой ниже идее цепей S-пар.
  Второй шаг основывается на методе, использованном в теореме 21 работы 
@@ -4476,11 +4652,11 @@ key "F5C"
 
 \end_inset
 
- для доказательства корректности алгоритма F5C: представление S-многочлена
- в виде суммы домноженных многочленов из множества, вычисленного F5C может
- быть модифицировано последовательностью замен S-пар и их отброшенных частей,
- и за конечное число таких шагов приведено к состоянию, когда выполняются
- определённые 
+ для доказательства корректности алгоритма F5C: сигнатурное представление
+ S-многочлена над множеством, вычисленным F5C, может быть модифицировано
+ последовательностью замен S-пар и их отброшенных частей, и за конечное
+ число таких шагов приведено к состоянию, когда выполняются определённые
+ 
 \begin_inset Quotes fld
 \end_inset
 
@@ -4502,7 +4678,14 @@ key "F5C"
 \begin_layout Paragraph
 Процедура 
 \family typewriter
-AlgorithmF5
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
+\end_inset
+
+
 \family default
 : увеличение 
 \begin_inset Formula $d$
@@ -4524,7 +4707,14 @@ while
 \series default
  внутри процедуры 
 \family typewriter
-AlgorithmF5
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
+\end_inset
+
+
 \family default
  выполняется бесконечное число раз, то значение 
 \begin_inset Formula $d$
@@ -4539,24 +4729,34 @@ AlgorithmF5
 \end_inset
 
  в кольце 
-\begin_inset Formula $\mathcal{K}[x_{1},\ldots,x_{n}]$
+\begin_inset Formula $\mathcal{P}$
 \end_inset
 
  для которой алгоритм F5 не завершается.
  Без ограничение общности будем считать что это самая короткая последовательност
 ь такого рода -- алгоритм завершается на более короткой последовательности
  
-\begin_inset Formula $\left\{ f_{2},\ldots,f_{m}\right\} $
+\begin_inset Formula $\left\{ f_{1},\ldots,f_{m-1}\right\} $
 \end_inset
 
 .
  Это означает, что не завершается последняя итерация цикла внутри 
-\family typewriter
-incrementalF5
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IncrementalF5"
+
+\end_inset
+
 , то есть не завершается последний вызов процедуры 
 \family typewriter
-AlgorithmF5
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
+\end_inset
+
+
 \family default
 .
  Для исследования данной ситуации необходимо понять, как ведёт себя значение
@@ -4566,7 +4766,14 @@ AlgorithmF5
 
  в процессе выполнения цикла внутри процедуры 
 \family typewriter
-AlgorithmF5
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
+\end_inset
+
+
 \family default
 .
  Обозначим за 
@@ -4607,8 +4814,7 @@ AlgorithmF5
 \begin_inset Formula $d_{j-1}$
 \end_inset
 
-, и поэтому все вновь создаваемые критические пары имеют степень не менее
- 
+, и поэтому все вновь создаваемые S-пары имеют степень не менее 
 \begin_inset Formula $d_{j-1}$
 \end_inset
 
@@ -4617,7 +4823,7 @@ AlgorithmF5
 \begin_inset Formula $j$
 \end_inset
 
- фиксированный номер некоторой итерации.
+ -- фиксированный номер некоторой итерации.
  В начале итерации 
 \begin_inset Formula $j$
 \end_inset
@@ -4633,13 +4839,20 @@ AlgorithmF5
 .
  После вызова процедуры 
 \family typewriter
-Reduction
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Reduction"
+
+\end_inset
+
+
 \family default
  в 
 \begin_inset Formula $P$
 \end_inset
 
- добавляются некоторые новые критические пары в цикле, итерирующем по 
+ добавляются некоторые новые S-пары в цикле, итерирующем по 
 \begin_inset Formula $R_{d}$
 \end_inset
 
@@ -4656,15 +4869,15 @@ Reduction
 \end_layout
 
 \begin_layout Proof
-Для каждой из критических пар 
-\begin_inset Formula $[t,u_{1},r_{1},u_{2,}r_{2}]$
+Для каждой из S-пар 
+\begin_inset Formula $\left(u_{1}\cdot R\left[r_{1}\right],u_{2}\cdot R\left[r_{2}\right]\right)$
 \end_inset
 
- порождённых на итерации 
+, порождённых на итерации 
 \begin_inset Formula $j$
 \end_inset
 
- как минимум один из многочленов пары принадлежит 
+, как минимум один из многочленов пары принадлежит 
 \begin_inset Formula $R_{d}$
 \end_inset
 
@@ -4679,61 +4892,80 @@ Reduction
 
  генерируются процедурой 
 \family typewriter
-Reduction
-\family default
- путём добавления по одному многочлену к множеству 
-\begin_inset Formula $Done$
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Reduction"
+
 \end_inset
 
-.
+
+\family default
+ путём добавления по одному многочлену к множеству Done.
  Поэтому, среди одного или двух многочленов критической пары, принадлежащих
  
 \begin_inset Formula $R_{d}$
 \end_inset
 
-, мы можем выбрать многочлен 
+, мы можем выбрать индекс многочлена 
 \begin_inset Formula $r_{k}$
 \end_inset
 
- добавленный в 
-\begin_inset Formula $Done$
-\end_inset
-
- позже.
- Тогда про другой многочлен S-пары 
+ добавленный в Done позже.
+ Тогда про другой индекс многочлен S-пары 
 \begin_inset Formula $r_{3-k}$
 \end_inset
 
  можно утверждать, что он уже присутствовал в 
-\begin_inset Formula $G\cup Done$
+\begin_inset Formula $G\cup$
 \end_inset
 
- к моменту добавления 
+Done к моменту добавления 
 \begin_inset Formula $r_{k}$
 \end_inset
 
- в 
-\begin_inset Formula $Done$
-\end_inset
-
-.
+ в Done.
  Поэтому процедура 
-\family typewriter
-TopReduction
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
  пыталась редуцировать 
-\begin_inset Formula $r_{k}$
+\begin_inset Formula $R\left[r_{k}\right]$
 \end_inset
 
  по 
-\begin_inset Formula $r_{3-k}$
+\begin_inset Formula $R\left[r_{3-k}\right]$
 \end_inset
 
 , но не сделала этого, поскольку в функции 
 \family typewriter
-IsReducible
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IsReducible"
+
+\end_inset
+
+
 \family default
- одна из проверок (a) - (d) запретила это.
+ одна из проверок 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:IsRed-a"
+
+\end_inset
+
+ - 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:IsRed-d"
+
+\end_inset
+
+ запретила использование редуктора.
 \end_layout
 
 \begin_layout Proof
@@ -4747,7 +4979,7 @@ IsReducible
 
 , поскольку полная степень критической пары равна полной степени её челна
  
-\begin_inset Formula $r_{k}$
+\begin_inset Formula $\totaldeg\left(\HM\left(R\left[r_{k}\right]\right)\right)$
 \end_inset
 
 .
@@ -4756,63 +4988,133 @@ IsReducible
 \end_inset
 
  равно 
-\begin_inset Formula $\frac{\HM(r_{k})}{\HM(r_{3-k})}$
+\begin_inset Formula $\frac{\HM(R\left[r_{k}\right])}{\HM(R\left[r_{3-k}\right])}$
 \end_inset
 
 , поэтому в 
 \family typewriter
-IsReducible
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IsReducible"
+
+\end_inset
+
+
 \family default
- правило (a) разрешает редукцию 
-\begin_inset Formula $r_{k}$
+ правило 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:IsRed-a"
+
+\end_inset
+
+ разрешает редукцию 
+\begin_inset Formula $R\left[r_{k}\right]$
 \end_inset
 
  по 
-\begin_inset Formula $r_{3-k}$
+\begin_inset Formula $R\left[r_{3-k}\right]$
 \end_inset
 
 .
- Получается, что только правила (b) - (d) могли запретить редукцию.
+ Получается, что только правила 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:IsRed-b"
+
+\end_inset
+
+ - 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:IsRed-d"
+
+\end_inset
+
+ могли запретить редукцию.
 \end_layout
 
 \begin_layout Proof
-Предположим, что редукция была запрещена правилом (b).
+Предположим, что редукция была запрещена правилом 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:IsRed-b"
+
+\end_inset
+
+.
  Это означает, что в 
-\begin_inset Formula $G_{i+1}$
+\begin_inset Formula $G_{i-1}$
 \end_inset
 
  существует многочлен, редуцирующий 
-\begin_inset Formula $u_{3-k}\Sig(r_{3-k})$
+\begin_inset Formula $u_{3-k}t_{3-k}$
+\end_inset
+
+, где 
+\begin_inset Formula $t_{3-k}$
+\end_inset
+
+ -- моном сигнатуры 
+\begin_inset Formula $\Sig\left(R\left[r_{3-k}\right]\right)$
 \end_inset
 
 .
  Для нашего случая отсюда следовало бы, что в функции 
 \family typewriter
-CritPair
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:CritPair"
+
+\end_inset
+
+
 \family default
  эквивалентная проверка 
-\begin_inset Formula $\varphi(u_{3-k}\Sig(r_{3-k}))=u_{3-k}\Sig(r_{3-k})$
+\begin_inset Formula $\varphi(u_{3-k}t_{3-k})=u_{3-k}t_{3-k}$
 \end_inset
 
  запретила бы создание критической пары.
- Получается, что правило (b) также не могло запретить редукцию.
+ Получается, что правило 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:IsRed-b"
+
+\end_inset
+
+ также не могло запретить редукцию.
 \end_layout
 
 \begin_layout Proof
-Предположим, что редукция была запрещена правилом (c).
+Предположим, что редукция была запрещена правилом 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:IsRed-c"
+
+\end_inset
+
+.
  Это означает существование перезаписи для домноженного редуктора.
  В нашем случае это значит, что 
-\family typewriter
-Rewritten?
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Rewritten?"
+
+\end_inset
+
 
 \begin_inset Formula $\left(u_{3-k},r_{3-k}\right)$
 \end_inset
 
  показала наличие перезаписи в процессе выполнения 
-\family typewriter
-TopReduction
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
 , и будет продолжать возвращать значение 
 \begin_inset Quotes fld
 \end_inset
@@ -4826,67 +5128,15 @@ TopReduction
 \end_layout
 
 \begin_layout Proof
-Предположим, что редукция была запрещена правилом (d).
- Псевдокод в 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "FaugereF5"
+Предположим, что редукция была запрещена правилом 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:IsRed-d"
 
 \end_inset
 
- несколько неясен в этом месте, но исходный код процедуры 
-\family typewriter
-FindReductor
-\family default
-, приложенный к 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "F5-revisited"
-
-\end_inset
-
- достаточно ясен и утверждает, что редуктор отбрасывается, если одновременно
- моном и индекс сигнатуры совпадают для редуктора и редуцируемого многочлена
- (в коде 
-\family typewriter
-r[k0][1]
-\family default
- -- моном сигнатуры, а 
-\family typewriter
-r[k0][2]
-\family default
- -- её индекс):
-\end_layout
-
-\begin_layout Proof
-\begin_inset listings
-lstparams "basicstyle={\ttfamily},tabsize=4"
-inline false
-status open
-
-\begin_layout Plain Layout
-
-if (ut eq r[k0][1]) and (r[j][2] eq r[k0][2]) then
-\end_layout
-
-\begin_layout Plain Layout
-
-	// discard reductor by criterion (d)
-\end_layout
-
-\begin_layout Plain Layout
-
-	continue;
-\end_layout
-
-\begin_layout Plain Layout
-
-end if;
-\end_layout
-
-\end_inset
-
-В нашем случае это обозначает, что сигнатуры 
+.
+ Это обозначает, что сигнатуры 
 \begin_inset Formula $r_{k}$
 \end_inset
 
@@ -4896,9 +5146,12 @@ end if;
 
  равны.
  Значит вызов 
-\family typewriter
-Rewritten?
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Rewritten?"
+
+\end_inset
+
 
 \begin_inset Formula $\left(u_{3-k},r_{3-k}\right)$
 \end_inset
@@ -4916,18 +5169,28 @@ Rewritten?
 \end_inset
 
 , поскольку 
-\begin_inset Formula $u_{3-k}\cdot r_{3-k}$
+\begin_inset Formula $\left(u_{3-k},r_{3-k}\right)$
 \end_inset
 
  перезаписывается 
-\begin_inset Formula $1\cdot r_{k}$
+\begin_inset Formula $\left(1,r_{k}\right)$
 \end_inset
 
 .
- Получается, что как и в случае с правилом (c), 
-\family typewriter
-Rewritten?
-\family default
+ Получается, что как и в случае с правилом 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:IsRed-c"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Rewritten?"
+
+\end_inset
+
 
 \begin_inset Formula $\left(u_{3-k},r_{3-k}\right)$
 \end_inset
@@ -4941,22 +5204,32 @@ Rewritten?
 \end_inset
 
  при выполнении 
-\family typewriter
-TopReduction
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
  и позже.
 \end_layout
 
 \begin_layout Proof
 Теперь рассмотрим функцию 
-\family typewriter
-Spol
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Spol"
+
+\end_inset
+
 , выполняемую для некоторой S-пары полной степени 
 \begin_inset Formula $d_{j}$
 \end_inset
 
-, сгенерированной на итерации 
+, добавленной в 
+\begin_inset Formula $P$
+\end_inset
+
+ на итерации 
 \begin_inset Formula $j$
 \end_inset
 
@@ -4966,30 +5239,56 @@ Spol
 \end_inset
 
  итерации цикла в 
-\family typewriter
-AlgorithmF5
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
+\end_inset
+
 , то есть уже после того, как закончилось выполнение 
-\family typewriter
-TopReduction
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
  для 
 \begin_inset Formula $r_{k}$
 \end_inset
 
 .
- Поэтому для случаев (c) и (d) вызов 
-\family typewriter
-Rewritten?
-\family default
+ Поэтому для случаев 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:IsRed-c"
+
+\end_inset
+
+ и 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:IsRed-d"
+
+\end_inset
+
+ вызов 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Rewritten?"
+
+\end_inset
+
 
 \begin_inset Formula $\left(u_{3-k},r_{3-k}\right)$
 \end_inset
 
  внутри 
-\family typewriter
-Spol
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Spol"
+
+\end_inset
+
  вернёт 
 \begin_inset Quotes fld
 \end_inset
@@ -5008,7 +5307,7 @@ Spol
 \end_inset
 
  не добавит многочлена в 
-\begin_inset Formula $F$
+\begin_inset Formula $F_{d}$
 \end_inset
 
 .
@@ -5034,7 +5333,7 @@ Spol
 
 .
  В этом случае 
-\begin_inset Formula $F$
+\begin_inset Formula $F_{d}$
 \end_inset
 
  оказывается пустым на итерации 
@@ -5088,14 +5387,13 @@ reference "iterations-d_grow"
 
 \begin_layout Paragraph
 Процедура 
-\family typewriter
-Reduction
-\family default
-: конечность 
-\begin_inset Formula $ToDo$
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Reduction"
+
 \end_inset
 
-
+: конечность ToDo
 \end_layout
 
 \begin_layout Claim
@@ -5106,31 +5404,43 @@ name "Every_cycle_iteration_finish"
 \end_inset
 
 Каждая итерация цикла внутри процедуры 
-\family typewriter
-AlgorithmF5
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
+\end_inset
+
  останавливается, в частности останавливаются все вызовы процедуры 
-\family typewriter
-Reduction
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Reduction"
+
+\end_inset
+
 .
 \end_layout
 
 \begin_layout Proof
 Факт остановки известен для вызовов 
-\family typewriter
-AlgorithmF5
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
+\end_inset
+
 , соответствующих многочленам 
-\begin_inset Formula $f_{2},\dots,f_{m}$
+\begin_inset Formula $f_{1},\dots,f_{m-1}$
 \end_inset
 
 , поэтому будет рассматриваться лишь один оставшийся вызов 
-\family typewriter
-AlgorithmF5
-\family default
-, обрабатывающий первый элемент входного набора многочленов 
-\begin_inset Formula $f_{1}$
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
+\end_inset
+
+ , обрабатывающий последний элемент входного набора многочленов 
+\begin_inset Formula $f_{m}$
 \end_inset
 
 .
@@ -5148,9 +5458,12 @@ AlgorithmF5
 \end_inset
 
 -ой итераций цикла внутри этого вызова 
-\family typewriter
-AlgorithmF5
-\family default
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
+\end_inset
+
 .
  Старшая по сигнатуре часть S-пары всех критических пар, добавляемых функцией
  
