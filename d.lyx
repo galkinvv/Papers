@@ -809,6 +809,59 @@ p=\sum_{k}m_{k}\cdot g_{i_{k}},\; g_{i_{k}}\in G
  как пары, хотя и равны как многочлены.
 \end_layout
 
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:Exist-hm-in-deg-repr"
+
+\end_inset
+
+В степенном представлении 
+\begin_inset Formula $p=\sum_{k}m_{k}\cdot g_{i_{k}}$
+\end_inset
+
+ существует элемент 
+\begin_inset Formula $m_{K}\cdot g_{i_{K}}$
+\end_inset
+
+, для которого 
+\begin_inset Formula $\HM(p)=\HM(m_{K}g_{i_{K}})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Выберем любой из элементов представления с 
+\begin_inset Formula $\succ$
+\end_inset
+
+-максимальным среди элементов старшим мономом 
+\begin_inset Formula $m$
+\end_inset
+
+.
+ Из определения степенного представления имеем 
+\begin_inset Formula $m\preccurlyeq\HM(p)$
+\end_inset
+
+.
+ С другой стороны, поскольку сумма всех элементов даёт 
+\begin_inset Formula $p$
+\end_inset
+
+, хотя бы один из них обязан иметь старший моном не меньше 
+\begin_inset Formula $\HM(p)$
+\end_inset
+
+.
+ Таким образом 
+\begin_inset Formula $m=\HM(p)$
+\end_inset
+
+ и выбранный элемент -- искомый.
+\end_layout
+
 \begin_layout Standard
 Теперь можно сформулировать эквивалентное определение для базиса Грёбнера:
 \end_layout
@@ -1025,6 +1078,12 @@ reference "gb-def-2"
 \begin_layout Definition
 
 \emph on
+\begin_inset CommandInset label
+LatexCommand label
+name "def:S-pair-nosig"
+
+\end_inset
+
 S-парой
 \emph default
  ненулевых многочленов 
@@ -1547,6 +1606,8 @@ p=\sum_{l}m_{l}\cdot g_{i_{l}}+(c_{2}+c_{m}c_{2}')t_{2}\cdot g_{i_{2}}+\sum_{k>2
 \end_layout
 
 \begin_layout Paragraph*
+
+\family typewriter
 \begin_inset CommandInset label
 LatexCommand label
 name "par:Buchberger"
@@ -2188,6 +2249,61 @@ h_{1}=\left(\Sig(h'_{1}),\poly(h'_{1})+Kt\poly(h_{2})\right),
 Последовательность таких сигнатурных редукций по некоторому множеству отмеченных
  многочленов, заканчивающаяся нулём, определяет сигнатурное представление
  над этим множеством, состоящее из редуцирующих элементов.
+\end_layout
+
+\begin_layout Definition
+
+\emph on
+S-пара отмеченных многочленов
+\emph default
+ 
+\begin_inset Formula $h_{1},h_{2}\in H$
+\end_inset
+
+ определяется аналогично простой S-паре путём подстановки 
+\begin_inset Formula $h_{1},h_{2}$
+\end_inset
+
+ на место обычных многочленов 
+\begin_inset Formula $g_{1},g_{2}$
+\end_inset
+
+ в определении 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "def:S-pair-nosig"
+
+\end_inset
+
+.
+ При этом каждая из частей S-пары 
+\begin_inset Formula $\left(k_{1}u_{1}\cdot h_{1},k_{2}u_{2}\cdot h_{2}\right)$
+\end_inset
+
+ отмеченных многочленов имеет соответствующую ей сигнатуру 
+\begin_inset Formula $\Sig(u_{i}h_{i})$
+\end_inset
+
+.
+ Если сигнатуры частей различны, то часть с большей сигнатурой называется
+ 
+\emph on
+старшей частью S-пары
+\emph default
+, а часть с меньшей -- 
+\emph on
+младшей частью S-пары
+\emph default
+.
+ При равенстве сигнатур частей такого разделения нет, но в этом случае нельзя
+ определить сигнатуру S-многочлена, так как невозможно проверить условие
+ корректности.
+ При различии сигнатур частей S-многочлен 
+\begin_inset Formula $k_{1}u_{1}\cdot h_{1}-k_{2}u_{2}\cdot h_{2}$
+\end_inset
+
+ является результатом сигнатурной редукции старшей части по младшей и имеет
+ сигнатуру равную сигнатуре старшей части.
 \end_layout
 
 \begin_layout Standard
@@ -10362,6 +10478,12 @@ name "thm:exist-smaller-signature-safe-representation"
 \end_layout
 
 \begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:Exists-Gg-repr"
+
+\end_inset
+
 Для любого отмеченного многочлена 
 \begin_inset Formula $mh,\, m\in\mathcal{K}\times\mathbb{T},\, h\in G_{g}$
 \end_inset
@@ -10420,8 +10542,8 @@ reference "thm:exist-smaller-signature-safe-representation"
 \end_layout
 
 \begin_layout Standard
-Этот результат может представлять интерес сам по себе, однако для целей
- доказательства остановки нужно лишь одно следствие из него:
+Этот результат представляет интерес сам по себе, однако для целей доказательства
+ остановки нужно лишь одно следствие из него:
 \end_layout
 
 \begin_layout Corollary
@@ -11027,20 +11149,868 @@ reference "thm:always-exist-ok-reductor"
 \end_layout
 
 \begin_layout Standard
-[доказательство единственности выбираемого редуктора]
+Приведённая исходная формулировка алгоритма F5 сильно разнесена по процедурам,
+ что приводит к довольно сложному порядку обработки S-пар, описанному в
+ доказательстве остановки.
+ Для построения более простого аналога будем действовать следующим образом:
+ сформулируем некоторые свойства, которыми обладает алгоритм F5, и попытаемся
+ построить наиболее простой алгоритм, обладающий этими же свойствами.
+ Такой подход не позволяет сделать заключение ни о корректности построенного
+ алгоритма, ни об его эквивалентности F5, поэтому его корректность будет
+ доказана отдельно.
 \end_layout
 
 \begin_layout Standard
-[отсуствие добавления S-пар до окончания редукции - краткое объяснение,
- и ссылка на L.Huang (перепроверить правильность)]
+Определим, какими свойствами должна обладать старшая часть S-пары, чтоб
+ быть рассмотренной в алгоритме.
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:high-sp-part"
+
+\end_inset
+
+Если 
+\begin_inset Formula $s$
+\end_inset
+
+ -- сигнатура старшей части некоторой S-пары, она не отбрасывается в F5
+ тогда и только тогда, когда не удовлетворяет критерию F5 и образована многочлен
+ом максимальным по индексу в 
+\begin_inset Formula $R$
+\end_inset
+
+ из множества многочленов с 
+\begin_inset Formula $\Sig(R[r])|s$
+\end_inset
+
+, взятого на момент обработки S-многочлена сигнатуры 
+\begin_inset Formula $s$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Проверки в процедурах 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "par:CritPair"
+
+\end_inset
+
+ и 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "par:Spol"
+
+\end_inset
+
+ приводят к тому что рассматриваются S-пары, со старшей частью, не отбрасываемой
+ критериями F5 и перезаписи.
+ Если S-пара отбрасывается критерием F5, то все S-пары будут им отбрасываться,
+ поскольку известно, что многочлен такой сигнатуры имеет сигнатурное представлен
+ие, в котором все элементы имеют меньшую сигнатуру, и поэтому редуцируется
+ к нулю относительно текущего множества 
+\begin_inset Formula $G\cup$
+\end_inset
+
+Done.
+ Если же часть S-пары 
+\begin_inset Formula $u\cdot R[r]$
+\end_inset
+
+ отбрасывается критерием перезаписи, то существует элемент 
+\begin_inset Formula $r'>r,\Sig(R[r'])|u\Sig(R[r])$
+\end_inset
+
+.
+ То есть по сигнатуре 
+\begin_inset Formula $s$
+\end_inset
+
+ и множеству 
+\begin_inset Formula $R$
+\end_inset
+
+ на момент обработки S-многочлена сигнатуры 
+\begin_inset Formula $s$
+\end_inset
+
+, можно определить единственно возможную не перезаписываемую часть S-пары
+ сигнатуры 
+\begin_inset Formula $s$
+\end_inset
+
+, что доказывает утверждение.
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:low-sp-part"
+
+\end_inset
+
+Если старшая часть 
+\begin_inset Formula $u_{1}\cdot R[r_{1}]$
+\end_inset
+
+ некоторой S-пары, появляющейся в алгоритме F5, не отбрасывается, то будет
+ редуцирована ровно одна S-пара с такой старшей частью, при этом младшая
+ часть будет образована многочленом 
+\begin_inset Formula $R[r_{3}]$
+\end_inset
+
+ из множества 
+\begin_inset Formula $R$
+\end_inset
+
+ на момент обработки S-многочлена сигнатуры 
+\begin_inset Formula $\Sig\left(u_{1}\cdot R[r_{1}]\right)$
+\end_inset
+
+, таким что 
+\begin_inset Formula $\Sig(u_{3}\cdot R[r_{3}])\preccurlyeq_{P}\Sig(u_{*}\cdot R[r_{*}])$
+\end_inset
+
+ для всех 
+\begin_inset Formula $u_{*},r_{*}$
+\end_inset
+
+, удовлетворяющих 
+\begin_inset Formula $\HM(u_{*}\cdot R[r_{*}])=\HM(u_{1}\cdot R[r_{1}])$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Предположим что в алгоритме обрабатываются две пары с различными младшими
+ частями 
+\begin_inset Formula $(u_{1}\cdot R[r_{1}],u'_{2}\cdot R[r'_{2}])$
+\end_inset
+
+ и 
+\begin_inset Formula $(u_{1}\cdot R[r_{1}],u''_{2}\cdot R[r''_{2}])$
+\end_inset
+
+.
+ Тогда S-пара 
+\begin_inset Formula $R[r'_{2}]$
+\end_inset
+
+ и 
+\begin_inset Formula $R[r''_{2}]$
+\end_inset
+
+ имеет вид 
+\begin_inset Formula $(\frac{u'_{2}}{v}\cdot R[r'_{2}],\frac{u''_{2}}{v}\cdot R[r''_{2}])$
+\end_inset
+
+, 
+\begin_inset Formula $ $
+\end_inset
+
+была рассмотрена и отброшена или редуцирована.
+ Если она была отброшена критериями, то они же отбросят 
+\begin_inset Formula $u'_{2}\cdot R[r'_{2}]$
+\end_inset
+
+ или 
+\begin_inset Formula $u''_{2}\cdot R[r''_{2}]$
+\end_inset
+
+.
+ Если она была редуцирована, то результат редукции будет иметь сигнатуру,
+ перезаписывающую 
+\begin_inset Formula $u'_{2}\cdot R[r'_{2}]$
+\end_inset
+
+ или 
+\begin_inset Formula $u''_{2}\cdot R[r''_{2}]$
+\end_inset
+
+.
+ В обоих случаях одна из младших частей будет отброшена, что показывает
+ единственность не отбрасываемой S-пары со старшей частью 
+\begin_inset Formula $u_{1}\cdot R[r_{1}]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Для доказательства существования рассмотрим обрабатываемую в алгоритме S-пару
+ с сокращаемым мономом 
+\begin_inset Formula $t$
+\end_inset
+
+, младшей частью 
+\begin_inset Formula $u_{2}\cdot R[r_{2}]$
+\end_inset
+
+ и не отброшенной старшей частью 
+\begin_inset Formula $u_{1}\cdot R[r_{1}]$
+\end_inset
+
+.
+ Поскольку сигнатура 
+\begin_inset Formula $u_{2}\cdot R[r_{2}]$
+\end_inset
+
+ меньше текущей обрабатываемой, к 
+\begin_inset Formula $u_{2}\cdot R[r_{2}]$
+\end_inset
+
+ можно применить теорему 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:Exists-Gg-repr"
+
+\end_inset
+
+ и выбрать из этого представления по теореме 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:Exist-hm-in-deg-repr"
+
+\end_inset
+
+ элемент 
+\begin_inset Formula $u_{3}\cdot R[r_{3}]$
+\end_inset
+
+ с 
+\begin_inset Formula $\Sig(u_{3}\cdot R[r_{3}])\preccurlyeq_{P}\Sig(u_{2}\cdot R[r_{2}])$
+\end_inset
+
+ и 
+\begin_inset Formula $\HM(u_{3}\cdot R[r_{3}])=\HM(u_{2}\cdot R[r_{2}])$
+\end_inset
+
+, проходящий критерии.
+ При этом может оказаться, что 
+\begin_inset Formula $r_{3}=r_{2}.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Сокращаемый моном 
+\begin_inset Formula $t'$
+\end_inset
+
+ S-пары многочленов 
+\begin_inset Formula $R[r_{1}]$
+\end_inset
+
+ и 
+\begin_inset Formula $R[r_{3}]$
+\end_inset
+
+ делит 
+\begin_inset Formula $t$
+\end_inset
+
+.
+ Предположим, что он имеет меньшую полную степень -- в этом случае соответствующ
+ая S-пара была бы уже рассмотрена.
+ Она не была бы отброшена, поскольку дополнительно домноженные на 
+\begin_inset Formula $\frac{t}{t'}$
+\end_inset
+
+ её части имеют вид 
+\begin_inset Formula $u_{1}\cdot R[r_{1}]$
+\end_inset
+
+ и 
+\begin_inset Formula $u_{3}\cdot R[r_{3}]$
+\end_inset
+
+ проходят критерии.
+ В силу этого она была бы редуцирована, дав в результате многочлен сигнатуры
+ делящей 
+\begin_inset Formula $\Sig\left(u_{1}\cdot R[r_{1}]\right)$
+\end_inset
+
+, который привёл бы к отбрасыванию 
+\begin_inset Formula $u_{1}\cdot R[r_{1}]$
+\end_inset
+
+ по критерию перезаписи, что невозможно.
+ Поэтому 
+\begin_inset Formula $t'=t$
+\end_inset
+
+, что доказывает существование не отбрасываемой алгоритмом S-пары 
+\begin_inset Formula $(u_{1}\cdot R[r_{1}],u_{3}\cdot R[r_{3}])$
+\end_inset
+
+, а из свойства 
+\begin_inset Formula $\Sig(u_{3}\cdot R[r_{3}])\preccurlyeq_{P}\Sig(u_{2}\cdot R[r_{2}])$
+\end_inset
+
+ вытекает утверждаемая теоремой минимальность сигнатуры.
 \end_layout
 
 \begin_layout Standard
-[переформулировка критериев в стиле, близком к SSG]
+Из доказанных теорем вытекает следующее заключение, описывающее работу алгоритма
+ с S-парами.
+\end_layout
+
+\begin_layout Claim
+\begin_inset CommandInset label
+LatexCommand label
+name "clm:how-sigs"
+
+\end_inset
+
+По любой сигнатуре 
+\begin_inset Formula $s$
+\end_inset
+
+ и множеству 
+\begin_inset Formula $R$
+\end_inset
+
+ можно единственным образом определить потенциально проходящую критерии
+ S-пару сигнатуры 
+\begin_inset Formula $s$
+\end_inset
+
+.
+ Старшая часть S-пары определяется по сигнатуре согласно теореме 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:high-sp-part"
+
+\end_inset
+
+, откуда по сокращаемому моному можно однозначно определить младшую часть
+ S-пары по теореме 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:low-sp-part"
+
+\end_inset
+
+.
+ При этом если алгоритм F5 хотя бы один раз создал S-пару с подходящей старшей
+ частью для сигнатуры 
+\begin_inset Formula $s$
+\end_inset
+
+ -- то для этой сигнатуры существует проходящая критерии S-пара и алгоритм
+ будет проводить редукцию этой S-пары.
+ Описанные S-пары покрывают все S-пары, редуцируемые алгоритмом.
 \end_layout
 
 \begin_layout Standard
-[Формулировка списка фактов, натолкнувших на идею SSG]
+Теперь рассмотрим работу алгоритма при редукции.
+ При выборе редуктора процедура 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IsReducible"
+
+\end_inset
+
+ может вернуть как многочлен, выступающий в роли редуктора, так и многочлен
+ большей сигнатуры, используемый при создании S-пары.
+ Покажем, что порядок обхода множества 
+\begin_inset Formula $G$
+\end_inset
+
+ в 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IsReducible"
+
+\end_inset
+
+ не играет роли.
+\end_layout
+
+\begin_layout Claim
+\begin_inset CommandInset label
+LatexCommand label
+name "clm:how-reds"
+
+\end_inset
+
+К моменту вызова 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IsReducible"
+
+\end_inset
+
+ не более чем один многочлен из 
+\begin_inset Formula $R$
+\end_inset
+
+ может быть сигнатурным редуктором, удовлетворяющего критериям.
+ При этом, если множество сигнатурных редукторов непусто, удовлетворять
+ критериям будет многочлен с наименьшей домноженной сигнатурой.
+\end_layout
+
+\begin_layout Proof
+Предположим наличие двух потенциальных редукторов, записываемых в домноженном
+ виде как 
+\begin_inset Formula $u'_{2}\cdot R[r'_{2}]$
+\end_inset
+
+ и 
+\begin_inset Formula $u''_{2}\cdot R[r''_{2}]$
+\end_inset
+
+.
+ У них равные 
+\begin_inset Formula $\HM$
+\end_inset
+
+ и сигнатуры, меньшие текущей рассматриваемой, поэтому можно рассмотреть
+ их S-пару и поступая аналогично доказательству единственности в теореме
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:low-sp-part"
+
+\end_inset
+
+ получить, что один из них не проходит критерии.
+ Единственность доказана.
+\end_layout
+
+\begin_layout Proof
+Второе утверждение немедленно вытекает из теорем 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:Exists-Gg-repr"
+
+\end_inset
+
+ и 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:Exist-hm-in-deg-repr"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Таким образом получается, что правило выбора проходящего критерии редуктора
+ идентично правилу выбора подходящей критерии младшей части S-пары.
+\end_layout
+
+\begin_layout Standard
+Одной из особенностей исходного алгоритма F5, отличающей его от большинства
+ порождённых на его основе является генерация S-пар одновременно с процессом
+ редукции в случае, если 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IsReducible"
+
+\end_inset
+
+ вернула редуктор, не являющийся сигнатурным редуктором.
+ Оказывается, что этого можно не делать: если при поиске редукторов для
+ многочлена 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $R[r{}_{1}]$
+\end_inset
+
+ в множестве 
+\begin_inset Formula $G$
+\end_inset
+
+ одновременно присутствуют сигнатурный редуктор 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $u'_{2}\cdot R[r'_{2}]$
+\end_inset
+
+ и редуктор 
+\begin_inset Formula $u''_{2}\cdot R[r''_{2}]$
+\end_inset
+
+, не являющийся сигнатурным, то добавление S-пары 
+\begin_inset Formula $R[r{}_{2}'']$
+\end_inset
+
+ и 
+\begin_inset Formula $R[r{}_{1}]$
+\end_inset
+
+ является излишним, поскольку её младшая часть 
+\begin_inset Formula $R[r{}_{1}]$
+\end_inset
+
+ имеет большую сигнатуру, чем имеющий тот же старший моном домноженный многочлен
+ 
+\begin_inset Formula $u'_{2}\cdot R[r'_{2}]$
+\end_inset
+
+, а значит добавленной ранее S-пары 
+\begin_inset Formula $R[r{}_{2}'']$
+\end_inset
+
+ и 
+\begin_inset Formula $R[r'_{2}]$
+\end_inset
+
+ достаточно.
+ Более строгое доказательство этого факта дано в Предложении 6 работы 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HuangConception"
+
+\end_inset
+
+.Добавление S-пар после того как сигнатурные редукции закончились остаётся
+ необходимым.
+\end_layout
+
+\begin_layout Standard
+Перечисленные утверждения позволяют предположить что упрощённая версия F5
+ может быть сформулирована в следующем виде:
+\end_layout
+
+\begin_layout Paragraph*
+
+\family typewriter
+\series medium
+\begin_inset CommandInset label
+LatexCommand label
+name "par:SimplifiedF5"
+
+\end_inset
+
+SimplifiedF5
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Вход:
+\series bold
+ 
+\series default
+
+\begin_inset Formula $((1,i),f_{i})$
+\end_inset
+
+ -- отмеченный многочлен, 
+\begin_inset Formula $G_{i-1}$
+\end_inset
+
+ -- множество индексов отмеченных многочленов в 
+\begin_inset Formula $R$
+\end_inset
+
+, образующих базис Грёбнера некоторого идеала 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Переменные: 
+\begin_inset Formula $P$
+\end_inset
+
+ -- упорядоченный список старших частей S-пар отмеченных многочленов, 
+\begin_inset Formula $p$
+\end_inset
+
+ -- некоторая старшая часть S-пары, 
+\begin_inset Formula $h\in H$
+\end_inset
+
+ -- отмеченный многочлен, 
+\begin_inset Formula $r$
+\end_inset
+
+ -- индекс элементов в 
+\begin_inset Formula $R$
+\end_inset
+
+, используемый при итерировании
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Результат:
+\series bold
+ 
+\series default
+
+\begin_inset Formula $G_{i}$
+\end_inset
+
+ -- множество индексов отмеченных многочленов в 
+\begin_inset Formula $R$
+\end_inset
+
+, образующих базис Грёбнера идеала 
+\begin_inset Formula $\left(\left\{ poly(R[r])|r\in G_{i-1}\right\} \cup f_{i}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $G_{i}=G_{i-1}\cup\left\{ i\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $P\leftarrow$
+\end_inset
+
+
+\shape default
+ Отсортированные по сигнатуре старшие части S-пар, образуемых 
+\family typewriter
+{
+\family sans
+
+\begin_inset Formula $(R[i],R[r])|r\in G_{i-1}$
+\end_inset
+
+}
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+while 
+\series default
+
+\begin_inset Formula $P\ne\varnothing$
+\end_inset
+
+ 
+\series bold
+do 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $p\leftarrow P[1]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $P\leftarrow P\setminus\left\{ p\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+if 
+\begin_inset Formula $p$
+\end_inset
+
+ 
+\family sans
+\series default
+является подходящей старшей частью S-пары для своей сигнатуры в терминах
+ утверждения 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "clm:how-sigs"
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $h\leftarrow$
+\end_inset
+
+ 
+\family sans
+многочлен, получаемый перемножением 
+\family default
+
+\begin_inset Formula $p$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $h\leftarrow$
+\end_inset
+
+ 
+\family sans
+пока в 
+\begin_inset Formula $G$
+\end_inset
+
+ есть сигнатурные редукторы для 
+\family default
+
+\begin_inset Formula $h$
+\end_inset
+
+
+\family sans
+, редуцировать его относительно сигнатурного редуктора наименьшей домноженной
+ степени в терминах утверждения 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "clm:how-reds"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Добавить 
+\begin_inset Formula $h$
+\end_inset
+
+ в конец 
+\begin_inset Formula $R$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $P\leftarrow P\cup$
+\end_inset
+
+
+\shape default
+ старшие части S-пар, образуемых 
+\family typewriter
+{
+\family sans
+
+\begin_inset Formula $(R[\#R],R[r])|r\in G_{i}$
+\end_inset
+
+}
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $G_{i}\leftarrow G_{i}\cup\left\{ \#R\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+Отсортировать 
+\begin_inset Formula $P$
+\end_inset
+
+ по возрастанию сокращаемого монома 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+
+\begin_inset Formula $G_{i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Данный алгоритм не совсем эквивалентен F5, поскольку может иметь отличный
+ от него порядок добавления элементов в 
+\begin_inset Formula $R$
+\end_inset
+
+, что может вызывать другую работу правил перезаписи, выражаемых в этом
+ алгоритме в правиле проверки старшей части S-пары.
+ 
+\end_layout
+
+\begin_layout Standard
+Мы также оставляем открытым вопрос корректности этого алгоритма, рассматривая
+ в следующем разделе вместо него другой алгоритм, в котором правило проверки
+ старшей части S-пары сформулировано в терминах старших мономов и сигнатур
+ и не использует порядок добавления.
+ Сравнение этих двух правил описано в главе 7 работы 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "2012GrbTermination"
+
+\end_inset
+
+, но не является необходимым для формулировки доказательства нижеследующего
+ алгоритма.
 \end_layout
 
 \begin_layout Section
@@ -11433,6 +12403,8 @@ name "par:SimpleSignatureGroebner"
 
 \end_inset
 
+
+\family typewriter
 SimpleSignatureGroebner
 \begin_inset Formula $\left(\left\{ g_{1},\dots,g_{m}\right\} ,f\right)$
 \end_inset
@@ -11626,6 +12598,8 @@ name "par:ReduceCheckingSignatures:"
 
 \end_inset
 
+
+\family typewriter
 ReduceCheckingSignatures
 \begin_inset Formula $\left(\sigma,p,R\right)$
 \end_inset
