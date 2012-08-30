@@ -2320,6 +2320,12 @@ reference "def:S-pair-nosig"
 \end_layout
 
 \begin_layout Example
+\begin_inset CommandInset label
+LatexCommand label
+name "example:labeled-polys"
+
+\end_inset
+
 Простейшие отмеченные многочлены для одноэтапного случая:
 \end_layout
 
@@ -11173,7 +11179,7 @@ name "thm:high-sp-part"
 \end_inset
 
 Если 
-\begin_inset Formula $s$
+\begin_inset Formula $\sigma$
 \end_inset
 
  -- сигнатура старшей части некоторой S-пары, она не отбрасывается в F5
@@ -11183,11 +11189,11 @@ name "thm:high-sp-part"
 \end_inset
 
  из множества многочленов с 
-\begin_inset Formula $\Sig(R[r])|s$
+\begin_inset Formula $\Sig(R[r])|\sigma$
 \end_inset
 
 , взятого на момент обработки S-многочлена сигнатуры 
-\begin_inset Formula $s$
+\begin_inset Formula $\sigma$
 \end_inset
 
 .
@@ -11232,7 +11238,7 @@ Done.
 
 .
  То есть по сигнатуре 
-\begin_inset Formula $s$
+\begin_inset Formula $\sigma$
 \end_inset
 
  и множеству 
@@ -11240,12 +11246,12 @@ Done.
 \end_inset
 
  на момент обработки S-многочлена сигнатуры 
-\begin_inset Formula $s$
+\begin_inset Formula $\sigma$
 \end_inset
 
 , можно определить единственно возможную не перезаписываемую часть S-пары
  сигнатуры 
-\begin_inset Formula $s$
+\begin_inset Formula $\sigma$
 \end_inset
 
 , что доказывает утверждение.
@@ -11474,7 +11480,7 @@ name "clm:how-sigs"
 \end_inset
 
 По любой сигнатуре 
-\begin_inset Formula $s$
+\begin_inset Formula $\sigma$
 \end_inset
 
  и множеству 
@@ -11483,7 +11489,7 @@ name "clm:how-sigs"
 
  можно единственным образом определить потенциально проходящую критерии
  S-пару сигнатуры 
-\begin_inset Formula $s$
+\begin_inset Formula $\sigma$
 \end_inset
 
 .
@@ -11505,7 +11511,7 @@ reference "thm:low-sp-part"
 .
  При этом если алгоритм F5 хотя бы один раз создал S-пару с подходящей старшей
  частью для сигнатуры 
-\begin_inset Formula $s$
+\begin_inset Formula $\sigma$
 \end_inset
 
  -- то для этой сигнатуры существует проходящая критерии S-пара и алгоритм
@@ -11992,8 +11998,8 @@ return
 \begin_inset Formula $R$
 \end_inset
 
-, что может вызывать другую работу правил перезаписи, выражаемых в этом
- алгоритме в правиле проверки старшей части S-пары.
+, что влияет на работу правил перезаписи, выражаемых в этом алгоритме в
+ правиле проверки старшей части S-пары.
  
 \end_layout
 
@@ -12009,7 +12015,7 @@ key "2012GrbTermination"
 
 \end_inset
 
-, но не является необходимым для формулировки доказательства нижеследующего
+, однако не является необходимым для формулировки доказательства нижеследующего
  алгоритма.
 \end_layout
 
@@ -12018,93 +12024,27 @@ key "2012GrbTermination"
 \end_layout
 
 \begin_layout Standard
-Рассмотрим кольцо многочленов 
-\begin_inset Formula $P=\mathcal{K}[x_{1},\dots,x_{n}]$
-\end_inset
-
- над полем 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
-.
- Будем предполагать, что на моноиде его мономов 
-\begin_inset Formula $\mathbb{T}$
-\end_inset
-
- задан допустимый мономиальный порядок 
-\begin_inset Formula $\prec$
-\end_inset
-
-.
- В этом кольце может быть поставлена задача вычисления базиса Грёбнера для
- произвольного идеала 
-\begin_inset Formula $\left(f_{1},\dots,f_{l}\right)$
-\end_inset
-
-.
- Один из способов её решения инкрементальный: последовательно вычисляются
- базисы идеалов 
-\begin_inset Formula $\left(f_{1},\dots,f_{i}\right),i=2\dots l$
-\end_inset
-
- на основе уже вычисленного для идеала 
-\begin_inset Formula $\left(f_{1},\dots,f_{i-1}\right)$
-\end_inset
-
- базиса 
-\begin_inset Formula $R_{i-1}$
-\end_inset
-
- и многочлена 
-\begin_inset Formula $f_{i}$
-\end_inset
-
-.
- Представляемый алгоритм позволяет выполнить шаг такого вычисления.
- Таким образом, входные данные для алгоритма -- это некоторый многочлен
- 
-\begin_inset Formula $f$
-\end_inset
-
- и множество многочленов, обозначаемое 
-\begin_inset Formula $\left\{ g_{1},\dots,g_{m}\right\} $
-\end_inset
-
-, являющееся базисом Грёбнера идеала 
-\begin_inset Formula $I_{0}=\left(g_{1},\dots,g_{m}\right)$
-\end_inset
-
-.
- В качестве результата своей работы алгоритм должен построить множество
- многочленов 
-\begin_inset Formula $R$
-\end_inset
-
-, являющееся базисом Грёбнера идеала 
-\begin_inset Formula $I=\left(g_{1},\dots,g_{m},f\right)$
-\end_inset
-
-.
+Предлагаемый ниже алгоритм формулируется в виде шага инкрементального алгоритма
+ вычисления базиса Грёбнера.
  Поскольку случаи 
-\begin_inset Formula $f=0\Rightarrow I=I_{0}$
+\begin_inset Formula $f=0\Rightarrow\left(G\cup f\right)=\left(G\right)$
 \end_inset
 
  и 
-\begin_inset Formula $\exists i\, g_{i}\in\mathcal{K}\Rightarrow I=P$
+\begin_inset Formula $\exists k\ne0\, k\in\mathcal{K}\cap G\Rightarrow\left(G\right)=\left(G\cup f\right)=\mathcal{P}=\left(1\right)$
 \end_inset
 
- не представляют интереса, далее предполагается что 
-\begin_inset Formula $f\neq0,\forall i\, g_{i}\notin\mathcal{K}.$
+ не представляют вычислительной сложности, далее предполагается что 
+\begin_inset Formula $f\neq0$
 \end_inset
 
- Заметим, что в отличии от алгоритма F5, описанного в 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "FaugereF5"
-
+ и 
+\begin_inset Formula $G=\left\{ g_{1},\dots,g_{m}\right\} ,g_{i}\notin\mathcal{K}$
 \end_inset
 
-, однородность многочленов не требуется.
+.
+ Заметим, что в отличии от исходного алгоритма F5, однородность входных
+ многочленов не требуется.
 \end_layout
 
 \begin_layout Subsection
@@ -12112,18 +12052,189 @@ key "FaugereF5"
 \end_layout
 
 \begin_layout Standard
-Введём частичный порядок 
+Множество сигнатур 
+\begin_inset Formula $\mathbf{T}$
+\end_inset
+
+ для одноэтапного случая может быть расширено нулём по аналогии с 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $\mathbb{T}_{0}$
+\end_inset
+
+: 
+\begin_inset Formula $\mathbf{T}_{0}\eqdef\mathbf{T}\cup\{0\}$
+\end_inset
+
+.
+ При этом заданный на 
+\begin_inset Formula $\mathbf{T}$
+\end_inset
+
+ порядок расширяется с сохранением линейно-упорядоченности так, что ноль
+ оказывается наименьшим элементом.
+\end_layout
+
+\begin_layout Standard
+Введём несколько определений, применимых для понятия сигнатуры из множества
+ 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $\tau_{0}$
+\end_inset
+
+, соответствующего 
+\begin_inset Formula $\mathbf{T}_{0}$
+\end_inset
+
+ или 
+\begin_inset Formula $\mathbb{T}_{0}$
+\end_inset
+
+, и линейного порядка 
+\begin_inset Formula $\prec_{\tau0}$
+\end_inset
+
+ на нём.
+ В этом множестве определено умножение на ненулевые мономы 
+\begin_inset Formula $\mathbb{T}$
+\end_inset
+
+, сохраняющее порядок, а также умножение на элементы 
+\begin_inset Formula $\mathbb{T}_{0}$
+\end_inset
+
+, не сохраняющее порядок.
+\end_layout
+
+\begin_layout Standard
+Ключевым понятием для данного алгоритма является порядок на отмеченных многочлен
+ах, определяемый по аналогии с порядками 
+\begin_inset Formula $\prec_{p}$
+\end_inset
+
+ из работы 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HuangConception"
+
+\end_inset
+
+ и 
+\begin_inset Formula $\prec_{l}$
+\end_inset
+
+ из работы 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "2012GrbTermination"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Definition
+Зададим частичный порядок 
 \begin_inset Formula $\GVWl$
 \end_inset
 
- на 
+ на множестве отмеченных многочленов 
 \begin_inset Formula $H$
 \end_inset
 
 : 
 \begin_inset Formula 
 \[
-h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_{2}\prec_{0}\HM(p_{2})\sigma_{1}.
+h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_{2}\prec_{\tau0}\HM(p_{2})\sigma_{1},
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+где последнее неравенство рассматривается в 
+\begin_inset Formula $\tau_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Для неравных элементов 
+\begin_inset Formula $(\sigma_{1},p_{1})\ne(\sigma_{2},p_{2})$
+\end_inset
+
+ выполняется ровно одно из отношений 
+\begin_inset Formula $<_{H},>_{H}$
+\end_inset
+
+ во всех случаях кроме следующих:
+\end_layout
+
+\begin_layout Itemize
+Один из них равен 
+\begin_inset Formula $(0,0)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p_{1}=p_{2}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\sigma_{1}=\sigma_{2}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $(\sigma_{1},p_{1})=(t\sigma_{2},tp_{2})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+В указанных случаях элементы несравнимы.
+\end_layout
+
+\begin_layout Remark
+\begin_inset CommandInset label
+LatexCommand label
+name "remark:follows-from-lessH"
+
+\end_inset
+
+Из определения следует, что 
+\begin_inset Formula $(\sigma_{1},p_{1})<_{H}(\sigma_{2},p_{2})$
+\end_inset
+
+ возможно только тогда, когда 
+\begin_inset Formula $0\ne\HM(p_{2})\sigma_{1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Согласно этому определению элементы с нулевым старшим мономом оказываются
+ нестрогими экстремумами:
+\begin_inset Formula 
+\[
+\forall\sigma_{1},\sigma_{2},p_{2}\,\left(\sigma_{1},0\right)\not\GVWg\left(\sigma_{2},p_{2}\right).
 \]
 
 \end_inset
@@ -12132,10 +12243,14 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \end_layout
 
 \begin_layout Standard
-Элементы с нулевой сигнатурой и старшим мономом оказываются экстремумами:
+Для случая инкрементального алгоритма с порядком 
+\begin_inset Formula $\prec_{0}$
+\end_inset
+
+ элементы с нулевой сигнатурой -- также нестрогие экстремумы:
 \begin_inset Formula 
 \[
-\forall\sigma_{1},\sigma_{2},p_{1},p_{2}\,\left(0,p_{1}\right)\not\GVWl\left(\sigma_{2},p_{2}\right),\,\left(\sigma_{1},0\right)\not\GVWg\left(\sigma_{2},p_{2}\right).
+\forall\sigma_{2},p_{1},p_{2}\in\mathbb{T}_{0}\,\left(0,p_{1}\right)\not\GVWl\left(\sigma_{2},p_{2}\right).
 \]
 
 \end_inset
@@ -12178,7 +12293,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \end_inset
 
 .
- Тогда редукция 
+ Тогда сигнатурная редукция 
 \begin_inset Formula $h_{2}$
 \end_inset
 
@@ -12186,7 +12301,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \begin_inset Formula $h_{1}$
 \end_inset
 
- с сохранением сигнатуры возможна если и только если 
+ возможна если и только если 
 \begin_inset Formula $h_{1}\GVWg h_{2}$
 \end_inset
 
@@ -12194,11 +12309,41 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \end_layout
 
 \begin_layout Proof
-Следует из того что оба утверждения равносильны 
-\begin_inset Formula $\Sig(h_{2})\succ_{0}\Sig(h_{1})\frac{\HM(h_{2})}{\HM(h_{1})}$
+Следует из того что оба утверждения равносильны неравенству 
+\begin_inset Formula $\Sig(h_{2})\succ_{\tau}\Sig(h_{1})\frac{\HM(h_{2})}{\HM(h_{1})}$
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Definition
+Порядок на сигнатурах 
+\begin_inset Formula $\prec_{\tau}$
+\end_inset
+
+ называется 
+\emph on
+согласованным с порядком на мономах
+\emph default
+ 
+\begin_inset Formula $\prec$
+\end_inset
+
+, если 
+\begin_inset Formula $\forall t_{1},t_{2}\in\mathbb{T},\sigma\in\tau\, t_{1}\prec t_{2}\Longleftrightarrow t_{1}\sigma\prec_{\tau}t_{2}\sigma$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Все конкретные порядки на сигнатурах, рассматриваемые в данной работе являются
+ согласованными с порядком на мономах.
+ Поэтому во всех последующих утверждениях на порядок 
+\begin_inset Formula $\prec_{\tau}$
+\end_inset
+
+ накладывается требование согласованности.
 \end_layout
 
 \begin_layout Lemma
@@ -12206,11 +12351,11 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \begin_inset Formula $h_{1}\in H$
 \end_inset
 
- -- результат редукции 
+ -- результат сигнатурной редукции 
 \begin_inset Formula $h_{1}'$
 \end_inset
 
- с сохранением сигнатур по некоторому многочлену.
+ по некоторому многочлену.
  Тогда 
 \begin_inset Formula $h_{1}\GVWl h_{1}'$
 \end_inset
@@ -12265,12 +12410,19 @@ name "lem:greater-or-smaller"
 Из условия леммы известно, что
 \begin_inset Formula 
 \begin{equation}
-\HM(h_{1})\Sig(h_{2})\prec_{0}\HM(h_{2})\Sig(h_{1})\label{eq:gvw-order-3}
+\HM(h_{1})\Sig(h_{2})\prec_{\tau}\HM(h_{2})\Sig(h_{1})\label{eq:gvw-order-3}
 \end{equation}
 
 \end_inset
 
-откуда 
+откуда по замечанию 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "remark:follows-from-lessH"
+
+\end_inset
+
+ 
 \begin_inset Formula $\HM(h_{2})\neq0,\Sig(h_{1})\neq0$
 \end_inset
 
@@ -12306,21 +12458,25 @@ reference "eq:gvw-order-3"
 : 
 \begin_inset Formula 
 \begin{equation}
-\HM(h_{3})\Sig(h_{3})\HM(h_{1})\Sig(h_{2})\prec_{0}\HM(h_{3})\Sig(h_{3})\HM(h_{2})\Sig(h_{1}).\label{eq:left-or-right-monom}
+\HM(h_{3})\Sig(h_{3})\HM(h_{1})\Sig(h_{2})\prec_{\tau0}\HM(h_{3})\Sig(h_{3})\HM(h_{2})\Sig(h_{1}).\label{eq:left-or-right-monom}
 \end{equation}
 
 \end_inset
 
-Поэтому 
+Поскольку 
+\begin_inset Formula $\succ_{\tau0}$
+\end_inset
+
+ -- линейный порядок, 
 \begin_inset Formula $\HM(h_{3})^{2}\Sig(h_{2})\Sig(h_{1})\in\mathbb{T}_{0}$
 \end_inset
 
  будет или 
-\begin_inset Formula $\succ_{0}$
+\begin_inset Formula $\succ_{\tau0}$
 \end_inset
 
  левой или 
-\begin_inset Formula $\prec_{0}$
+\begin_inset Formula $\prec_{\tau0}$
 \end_inset
 
  правой части неравенства 
@@ -12337,13 +12493,45 @@ reference "eq:left-or-right-monom"
 Алгоритм
 \end_layout
 
+\begin_layout Standard
+Сформулируем шаг инкрементального алгоритма базиса Грёбнера, подразумевая
+ под 
+\begin_inset Formula $<_{H}$
+\end_inset
+
+ отношение отмеченных многочленов, индуцированное порядком 
+\begin_inset Formula $\prec_{0}$
+\end_inset
+
+ на сигнатурах 
+\begin_inset Formula $\mathbb{T}_{0}$
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
+\begin_inset CommandInset label
+LatexCommand label
+name "par:SimpleSignatureGroebner"
+
+\end_inset
+
+
+\family typewriter
+SimpleSignatureGroebner
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
 Вход: многочлены 
 \begin_inset Formula $\{g_{1},\dots,g_{m}\}$
 \end_inset
 
-, образующие базис Грёбнера; многочлен 
+, образующие базис Грёбнера, многочлен 
 \begin_inset Formula $f$
 \end_inset
 
@@ -12352,6 +12540,8 @@ reference "eq:left-or-right-monom"
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
+
+\family sans
 Переменные: 
 \begin_inset Formula $R$
 \end_inset
@@ -12364,15 +12554,15 @@ reference "eq:left-or-right-monom"
 \begin_inset Formula $H$
 \end_inset
 
-; 
+, 
 \begin_inset Formula $(\sigma,p')\in H$
 \end_inset
 
- -- отмеченный многочлен текущего шага до редукции; 
+ -- отмеченный многочлен текущего шага до редукции, 
 \begin_inset Formula $(\sigma,p)$
 \end_inset
 
- -- он же после редукции; 
+ -- он же после редукции, 
 \begin_inset Formula $r,b$
 \end_inset
 
@@ -12389,24 +12579,10 @@ reference "eq:left-or-right-monom"
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
+
+\family sans
 Результат: базис Грёбнера идеала 
 \begin_inset Formula $I=\left(g_{1},\dots,g_{m},f\right)$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Paragraph*
-\begin_inset CommandInset label
-LatexCommand label
-name "par:SimpleSignatureGroebner"
-
-\end_inset
-
-
-\family typewriter
-SimpleSignatureGroebner
-\begin_inset Formula $\left(\left\{ g_{1},\dots,g_{m}\right\} ,f\right)$
 \end_inset
 
 
@@ -12451,8 +12627,8 @@ name "enu:-before-reduce"
 \begin_inset Formula $p\leftarrow$
 \end_inset
 
-ReduceCheckingSignatures(
-\begin_inset Formula $\sigma,p',R$
+ReduceCheckingSignatures((
+\begin_inset Formula $\sigma,p'),R$
 \end_inset
 
 )
@@ -12600,8 +12776,63 @@ name "par:ReduceCheckingSignatures:"
 
 
 \family typewriter
+\series medium
 ReduceCheckingSignatures
+\end_layout
+
+\begin_layout Paragraph*
+
+\family typewriter
 \begin_inset Formula $\left(\sigma,p,R\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Вход: 
+\begin_inset Formula $(\sigma,p)$
+\end_inset
+
+ -- отмеченный многочлен, 
+\begin_inset Formula $R$
+\end_inset
+
+ -- подмножество 
+\begin_inset Formula $H$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Переменные: 
+\begin_inset Formula $r$
+\end_inset
+
+ -- элемент 
+\begin_inset Formula $R$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Результат: 
+\begin_inset Formula $p$
+\end_inset
+
+ -- многочлен, сигнатурно редуцированный по 
+\begin_inset Formula $R$
 \end_inset
 
 
@@ -12664,7 +12895,14 @@ return
 
 \begin_layout Proof
 Элементы, формируемые до начала главного цикла, являются рассмотренными
- выше примерами отмеченных многочленов.
+ в примере 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "example:labeled-polys"
+
+\end_inset
+
+ отмеченными многочленами.
  Все остальные отмеченные многочлены в алгоритме формируются или умножением
  на 
 \begin_inset Formula $t\in\mathbb{T}$
@@ -12717,6 +12955,14 @@ return
 
 \begin_layout Subsection
 Остановка алгоритма
+\end_layout
+
+\begin_layout Standard
+Дадим теоретическое обоснование представленного алгоритма.
+ Для этого покажем его остановку и корректность результата.
+ Данные результаты показаны без использования фактов, полученных ранее при
+ доказательстве остановки F5, поскольку приведённый алгоритм позволяет дать
+ значительно более простое обоснование без ссылок на них.
 \end_layout
 
 \begin_layout Lemma
@@ -13108,77 +13354,6 @@ reference "lem:adds-really-new"
 Корректность результата
 \end_layout
 
-\begin_layout Definition
-
-\emph on
-S-представлением
-\emph default
- 
-\begin_inset Formula $h\in H$
-\end_inset
-
- над множеством 
-\begin_inset Formula $\left\{ r_{i}\right\} \subset H$
-\end_inset
-
- будем называть выражение 
-\begin_inset Formula $\poly(h)=\sum_{j}K_{j}t_{j}\poly(r_{i_{j}}),$
-\end_inset
-
- 
-\begin_inset Formula $K_{j}\in\mathcal{K},t_{j}\in\mathbb{T},i_{j}\in\mathbb{N}$
-\end_inset
-
-, такое что 
-\begin_inset Formula $\forall j\,\HM(h)\succcurlyeq_{0}\HM(t_{j}r_{i_{j}}),\Sig(h)\succcurlyeq_{0}\Sig(t_{j}r_{i_{j}})$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Lemma
-\begin_inset CommandInset label
-LatexCommand label
-name "lem:one-j-exact"
-
-\end_inset
-
-Пусть 
-\begin_inset Formula $\poly(h)=\sum_{j}K_{j}t_{j}\poly(r_{i_{j}})$
-\end_inset
-
- -- S-представление для 
-\begin_inset Formula $h$
-\end_inset
-
-.
- Тогда для хотя бы одного 
-\begin_inset Formula $j$
-\end_inset
-
- достигается 
-\begin_inset Formula $\HM(h)=\HM(t_{j}r_{i_{j}})$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Proof
-В качестве такого 
-\begin_inset Formula $j$
-\end_inset
-
- можно взять то, на котором достигается 
-\begin_inset Formula $\succ$
-\end_inset
-
--максимум 
-\begin_inset Formula $\HM(t_{j}r_{i_{j}})$
-\end_inset
-
-.
-\end_layout
-
 \begin_layout Standard
 Следующее определение расширяет понятие S-базиса из работы 
 \begin_inset CommandInset citation
@@ -13219,7 +13394,7 @@ S
 \emph on
  
 \emph default
-имеют S-представление
+имеют сигнатурное представление
 \emph on
  
 \emph default
@@ -13255,11 +13430,11 @@ name "lem:s-basis-and-no-reductions"
 \begin_inset Formula $h_{1},h_{2}\in H,\Sig(h_{i})=\sigma$
 \end_inset
 
-, которые не редуцируются по 
+, которые нельзя сигнатурно редуцировать по 
 \begin_inset Formula $R$
 \end_inset
 
- с сохранением сигнатуры.
+.
  Тогда 
 \begin_inset Formula $\HM(h_{1})=\HM(h_{2})$
 \end_inset
@@ -13268,7 +13443,7 @@ name "lem:s-basis-and-no-reductions"
 \begin_inset Formula $h_{1}$
 \end_inset
 
- есть S-представление над 
+ есть сигнатурное представление над 
 \begin_inset Formula $R\cup\left\{ h_{2}\right\} $
 \end_inset
 
@@ -13281,7 +13456,7 @@ name "lem:s-basis-and-no-reductions"
 \end_inset
 
  имеем 
-\begin_inset Formula $\exists u_{i}\in\mathcal{P}\,\HM(u_{i})=\sigma,u_{i}f\equiv\poly(h_{i})\pmod{I_{0}},i=1,2.$
+\begin_inset Formula $\exists u_{i}\in\mathcal{P}\,\HM(u_{i})=\sigma,u_{i}f\equiv\poly(h_{i})\pmod{\left(G\right)},i=1,2.$
 \end_inset
 
  Значит некоторой линейной комбинации 
@@ -13295,7 +13470,7 @@ name "lem:s-basis-and-no-reductions"
  сигнатура: 
 \begin_inset Formula 
 \[
-\exists K\in\mathcal{K},v\in\mathcal{P}\,\HM(v)=\sigma'\prec_{0}\sigma,vf\equiv\poly(h_{1})-K\poly(h_{2})\pmod{I_{0}},
+\exists K\in\mathcal{K},v\in\mathcal{P}\,\HM(v)=\sigma'\prec_{0}\sigma,vf\equiv\poly(h_{1})-K\poly(h_{2})\pmod{\left(G\right)},
 \]
 
 \end_inset
@@ -13334,7 +13509,7 @@ name "lem:s-basis-and-no-reductions"
 \begin_inset Formula $h_{i}$
 \end_inset
 
- с сохранением сигнатуры.
+ сигнатурно.
  Значит, 
 \begin_inset Formula $\HM(h_{i})$
 \end_inset
@@ -13348,15 +13523,15 @@ name "lem:s-basis-and-no-reductions"
 \end_inset
 
 .
- S-представление 
+ Сигнатурное представление 
 \begin_inset Formula $h_{1}$
 \end_inset
 
  получается добавлением 
-\begin_inset Formula $K\poly(h_{2})$
+\begin_inset Formula $K\cdot\poly(h_{2})$
 \end_inset
 
- к S-представлению 
+ к сигнатурному представлению 
 \begin_inset Formula $\left(\sigma',p'\right)$
 \end_inset
 
@@ -13393,11 +13568,11 @@ reference "enu:-remove-from-B"
 \begin_inset Formula $t_{\sigma}r_{\sigma}$
 \end_inset
 
- не редуцируется по 
+ не редуцируется сигнатурно по 
 \begin_inset Formula $R$
 \end_inset
 
- с сохранением сигнатуры.
+.
 \end_layout
 
 \begin_layout Proof
@@ -13533,7 +13708,7 @@ reference "enu:-remove-from-B"
 \begin_inset Formula $B$
 \end_inset
 
-, имеет S-представление над 
+, имеет сигнатурное представление над 
 \begin_inset Formula $R$
 \end_inset
 
@@ -13567,11 +13742,15 @@ reference "enu:-remove-from-B"
 
 \emph default
 -базис.
- 
-\begin_inset Formula $\forall g\in I_{0}\,\left(0,g\right)$
+ Для 
+\begin_inset Formula $\forall g\in\left(G\right)$
 \end_inset
 
- имеют S-представления над 
+ соответствующие отмеченные многочлены 
+\begin_inset Formula $\left(0,g\right)$
+\end_inset
+
+ имеют сигнатурные представления над 
 \begin_inset Formula $\{(0,g_{1}),...,(0,g_{m})\}\subset R$
 \end_inset
 
@@ -13645,7 +13824,7 @@ reference "lem:s-basis-and-no-reductions"
 \begin_inset Formula $v_{\sigma}$
 \end_inset
 
- имеет S-представление над 
+ имеет сигнатурное представление над 
 \begin_inset Formula $R\cup\{w_{\sigma}\}$
 \end_inset
 
@@ -13694,10 +13873,10 @@ reference "lem:s-basis-and-no-reductions"
 \begin_inset Formula $h=\left(\sigma,p\right)\in H$
 \end_inset
 
- и применить лемму 
+ и применить теорему 
 \begin_inset CommandInset ref
-LatexCommand ref
-reference "lem:one-j-exact"
+LatexCommand eqref
+reference "thm:Exist-hm-in-deg-repr"
 
 \end_inset
 
@@ -13730,7 +13909,7 @@ reference "thm:has-s-repr"
 \begin_inset Formula $R$
 \end_inset
 
- -- S-базис.
+ -- S-базис, а значит и базис Грёбнера.
 \end_layout
 
 \begin_layout Subsection
@@ -13739,17 +13918,10 @@ reference "thm:has-s-repr"
 
 \begin_layout Standard
 Представленный алгоритм принадлежит к семейству алгоритмов вычисления базисов
- Грёбнера, использующих сигнатуры, которые вычисляют S-базис и в той или
- иной степени являются модификациями алгоритма F5 из 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "FaugereF5"
-
-\end_inset
-
-.
- Одно из основных направлений его модификации -- упрощение теоретических
- обоснований и расширение области применимости -- представлено в 
+ Грёбнера, которые вычисляют S-базис и в той или иной степени являются развитием
+ алгоритма F5.
+ Одно из основных направлений его развития -- упрощение теоретических обосновани
+й и расширение области применимости -- представлено в 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "GermanF5Proof,ZobninGeneralization,F5InBBStyle"
@@ -13788,17 +13960,52 @@ key "HuangConception,PracticalGB"
 \end_layout
 
 \begin_layout Standard
-Во всех упомянутых алгоритмах, включая немодифицированный F5, формулируется
- два типа критериев отброса: критерии, связанные с сизигиями, и критерии
- перезаписи, корректность каждого из которых доказывается независимо.
- Также, даже в алгоритмах, не вычисляющих S-полиномы явно, теоретическое
- обоснование корректности алгоритма на них опирается.
+Определённое подтверждение эффективности приведённого алгоритма среди алгоритмов
+, вычисляющих S-базис, заключается в следующем утверждении.
+\end_layout
+
+\begin_layout Theorem
+S-базис, вычисляемый 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:SimpleSignatureGroebner"
+
+\end_inset
+
+ -- минимален
+\end_layout
+
+\begin_layout Proof
+Предположим, что Все алгоритмы, применяющие сигнатурные редукции[TODO]
 \end_layout
 
 \begin_layout Standard
-Данная работа описывает алгоритм вычисляющий минимальный S-базис и осуществляющи
-й отброс вычислений не менее эффективно, чем в TRB-MJ, но использующий лишь
- единственный критерий отброса на шаге 
+Во всех упомянутых алгоритмах, включая исходный F5, формулируется два типа
+ критериев отброса: критерии, связанные с сизигиями, называемые в этой работе
+ также 
+\begin_inset Quotes fld
+\end_inset
+
+критериями F5
+\begin_inset Quotes frd
+\end_inset
+
+, и критерии перезаписи, корректность каждого из которых доказывается независимо.
+ Также, даже в алгоритмах, не вычисляющих S-многочлены в процессе работы,
+ теоретическое обоснование корректности алгоритма на них опирается.
+\end_layout
+
+\begin_layout Standard
+Описанный алгоритм 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:SimpleSignatureGroebner"
+
+\end_inset
+
+ вычисляет минимальный S-базис и осуществляет отброс вычислений не менее
+ эффективно, чем в TRB-MJ, но использует лишь единственный критерий отброса
+ на шаге 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:-remove-from-B"
@@ -13829,8 +14036,8 @@ reference "par:ReduceCheckingSignatures:"
 
  и совпадает для случая однородных многочленов со способом выбора, применявшемся
  в алгоритме F5.
- Теоретическое обоснование сформулировано без S-полиномов и позволяет применять
- к нему простую алгебраическую интерпретацию из 
+ Теоретическое обоснование сформулировано без S-многочленов и позволяет
+ применять к нему простую алгебраическую интерпретацию из 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ZobninGeneralization"
@@ -13843,18 +14050,20 @@ key "ZobninGeneralization"
 \begin_layout Standard
 Упрощение формулировки алгоритма повлекло значительное уменьшение времени
  на его реализацию и отладку на компьютере по сравнению с аналогами, как
- за счёт меньшего количества множеств, так и за счёт общего для критериев
- отбрасывания и процедуры редукции порядка.
+ за счёт меньшего количества множеств, так и за счёт общего порядка 
+\begin_inset Formula $<_{H}$
+\end_inset
+
+ для критериев отбрасывания и процедуры редукции.
  Простота реализации и нетребовательность к структурам данных позволяет
  за небольшое время внедрять эффективную версию алгоритма в любую систему
  компьютерной алгебры.
  Реализация, упоминаемая ниже, была создана автором за 8 часов, что на порядок
  меньше, чем время, затраченное автором на экспериментальные реализации
  других алгоритмов в подобных условиях.
- Доказательство, основанное на инвариантах в терминах S-представлений, позволило
- сделать работу алгоритма более прозрачной с алгебраической точки зрения
- и потенциально расширяемым на объекты, обобщающие кольцо многочленов над
- полем.
+ Доказательство, основанное на инвариантах в терминах сигнатурных представлений,
+ позволило сделать работу алгоритма более прозрачной с алгебраической точки
+ зрения.
 \end_layout
 
 \begin_layout Standard
@@ -13880,18 +14089,26 @@ target "https://github.com/galkinvv/Singular-f5-like/blob/ssg/kernel/kstd2.cc"
 \end_layout
 
 \begin_layout Standard
-Сравнение реализации SimpleSignatureGroebner с другими алгоритмами вычисления
+Эмпирическое сравнение данной реализации с другими алгоритмами вычисления
  базисов Грёбнера, реализованных Кристианом Эдером подтвердили следующие
  соображения:
 \end_layout
 
 \begin_layout Itemize
-алгоритм SimpleSignatureGroebner корректно вычисляет базис Грёбнера;
+алгоритм 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:SimpleSignatureGroebner"
+
+\end_inset
+
+ корректно вычисляет базис Грёбнера;
 \end_layout
 
 \begin_layout Itemize
 результат содержит не большее число многочленов, чем результат других инкремента
-льных алгоритмов, возвращающих S-базис;
+льных алгоритмов, возвращающих S-базис, что согласуется с утверждением о
+ минимальности S-базиса;
 \end_layout
 
 \begin_layout Itemize
