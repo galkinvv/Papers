@@ -12761,7 +12761,7 @@ else: break
 return
 \series default
  
-\begin_inset Formula $\{\poly(r)\,|\, r\in R\}$
+\begin_inset Formula $\{\poly(r)\,|\, r\in R,\poly(r)\ne0\}$
 \end_inset
 
 
@@ -13961,7 +13961,8 @@ key "HuangConception,PracticalGB"
 
 \begin_layout Standard
 Определённое подтверждение эффективности приведённого алгоритма среди алгоритмов
-, вычисляющих S-базис, заключается в следующем утверждении.
+, вычисляющих S-базис, заключается в отсутствии вычислений лишних элементов
+ S-базиса.
 \end_layout
 
 \begin_layout Theorem
@@ -13972,11 +13973,77 @@ reference "par:SimpleSignatureGroebner"
 
 \end_inset
 
- -- минимален
+, -- минимален
 \end_layout
 
 \begin_layout Proof
-Предположим, что Все алгоритмы, применяющие сигнатурные редукции[TODO]
+Предположим, что S-базис не минимален.
+ Это означает, что один из элементов 
+\begin_inset Formula $\left(\sigma,p\right),p\ne0$
+\end_inset
+
+, добавленный в 
+\begin_inset Formula $R$
+\end_inset
+
+ на шаге 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-after-reduce"
+
+\end_inset
+
+ имеет сигнатурное представление над остальными элементами.
+ Элементы, добавляемые в 
+\begin_inset Formula $R$
+\end_inset
+
+ после него, имеют сигнатуры 
+\begin_inset Formula $\succ_{0}\sigma$
+\end_inset
+
+, поэтому в таком представлении используются только элементы, добавленные
+ в 
+\begin_inset Formula $R$
+\end_inset
+
+ ранее.
+ По теореме 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:Exist-hm-in-deg-repr"
+
+\end_inset
+
+ в этом представлении есть элемент 
+\begin_inset Formula $m_{1}\cdot h_{1},h_{1}\in R$
+\end_inset
+
+ c 
+\begin_inset Formula $\HM(h_{1})|\HM(p)$
+\end_inset
+
+.
+ В силу сигнатурности 
+\begin_inset Formula $m_{1}\Sig(h_{1})\preccurlyeq_{0}\sigma$
+\end_inset
+
+.
+ При этом строгое неравенство невозможно в силу леммы 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:r-gvw-big"
+
+\end_inset
+
+, а равенство -- в силу леммы 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:adds-really-new"
+
+\end_inset
+
+, что даёт противоречие.
 \end_layout
 
 \begin_layout Standard
@@ -13991,21 +14058,8 @@ reference "par:SimpleSignatureGroebner"
 \end_inset
 
 , и критерии перезаписи, корректность каждого из которых доказывается независимо.
- Также, даже в алгоритмах, не вычисляющих S-многочлены в процессе работы,
- теоретическое обоснование корректности алгоритма на них опирается.
-\end_layout
-
-\begin_layout Standard
-Описанный алгоритм 
-\begin_inset CommandInset ref
-LatexCommand nameref
-reference "par:SimpleSignatureGroebner"
-
-\end_inset
-
- вычисляет минимальный S-базис и осуществляет отброс вычислений не менее
- эффективно, чем в TRB-MJ, но использует лишь единственный критерий отброса
- на шаге 
+ Описанный алгоритм несколько проще: он использует лишь единственный критерий
+ отброса на шаге 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:-remove-from-B"
@@ -14020,24 +14074,47 @@ reference "enu:-remove-from-B"
 \begin_inset Formula $R$
 \end_inset
 
-.
- Вопрос наиболее эффективного способа выбора редуктора в 
+, сохраняя при этом гарантию минимальности S-базиса.
+ Однако вопрос наиболее эффективного способа выбора редуктора в 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "par:ReduceCheckingSignatures:"
 
 \end_inset
 
- является открытым.
- Представленный в этой работе способ выбора основан на всё том же упорядочении
+ является в какой-то степени открытым.
+ Представленный в описании алгоритма способ выбора продиктован утверждением
  
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "clm:how-reds"
+
+\end_inset
+
+ о работе исходного алгоритма F5, и использует всё то же 
+\begin_inset Formula $\GVWl$
+\end_inset
+
+-упорядочение 
 \begin_inset Formula $R$
 \end_inset
 
- и совпадает для случая однородных многочленов со способом выбора, применявшемся
- в алгоритме F5.
- Теоретическое обоснование сформулировано без S-многочленов и позволяет
- применять к нему простую алгебраическую интерпретацию из 
+.
+\end_layout
+
+\begin_layout Standard
+Также, даже в алгоритмах, не вычисляющих S-многочлены в процессе работы,
+ теоретическое обоснование корректности алгоритма на них как правило опирается.
+ Приведённое доказательство алгоритма 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:ReduceCheckingSignatures:"
+
+\end_inset
+
+ не использует S-многочлены и доказывает алгебраические инварианты, выполняющиес
+я в процессе работы алгоритма, что позволяет применять к нему почти без
+ изменений простую алгебраическую интерпретацию из 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ZobninGeneralization"
@@ -14048,9 +14125,9 @@ key "ZobninGeneralization"
 \end_layout
 
 \begin_layout Standard
-Упрощение формулировки алгоритма повлекло значительное уменьшение времени
- на его реализацию и отладку на компьютере по сравнению с аналогами, как
- за счёт меньшего количества множеств, так и за счёт общего порядка 
+Упрощение формулировки алгоритма по сравнению с аналогами повлекло значительное
+ уменьшение времени на его написание и отладку на компьютере, как за счёт
+ меньшего количества множеств, так и за счёт общего порядка 
 \begin_inset Formula $<_{H}$
 \end_inset
 
@@ -14061,9 +14138,7 @@ key "ZobninGeneralization"
  Реализация, упоминаемая ниже, была создана автором за 8 часов, что на порядок
  меньше, чем время, затраченное автором на экспериментальные реализации
  других алгоритмов в подобных условиях.
- Доказательство, основанное на инвариантах в терминах сигнатурных представлений,
- позволило сделать работу алгоритма более прозрачной с алгебраической точки
- зрения.
+ 
 \end_layout
 
 \begin_layout Standard
