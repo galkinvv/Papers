@@ -82,7 +82,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\GVWl}{<_{\text{H}}}
+\newcommand{\GVWl}{<_{\text{H}}}
 \end_inset
 
 
@@ -90,7 +90,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\GVWg}{>_{\text{\textnormal{H}}}}
+\newcommand{\GVWg}{>_{\text{\textnormal{H}}}}
 \end_inset
 
 
@@ -98,7 +98,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
+\newcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
 \end_inset
 
 
@@ -106,7 +106,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
+\newcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
 \end_inset
 
 
@@ -114,7 +114,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\Sig}{\mathcal{S}}
+\newcommand{\Sig}{\mathcal{S}}
 \end_inset
 
 
@@ -122,7 +122,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\HM}{\mathrm{HM}}
+\newcommand{\HM}{\mathrm{HM}}
 \end_inset
 
 
@@ -130,7 +130,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\HC}{\mathrm{HC}}
+\newcommand{\HC}{\mathrm{HC}}
 \end_inset
 
 
@@ -138,7 +138,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\LCM}{\mathrm{LCM}}
+\newcommand{\LCM}{\mathrm{LCM}}
 \end_inset
 
 
@@ -146,7 +146,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\totaldeg}{\mathrm{deg}}
+\newcommand{\totaldeg}{\mathrm{deg}}
 \end_inset
 
 
@@ -154,7 +154,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\poly}{\mathrm{poly}}
+\newcommand{\poly}{\mathrm{poly}}
 \end_inset
 
 
@@ -162,7 +162,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\sigidx}{\mathrm{index}}
+\newcommand{\sigidx}{\mathrm{index}}
 \end_inset
 
 
@@ -1925,7 +1925,31 @@ key "F5C,GVW,G2V,F5InBBStyle,HuangConception"
 \end_inset
 
 , что соответствует умножению на моном элемента представления.
- Для сравнения сигнатур обычно используется порядок 
+ Делимость элементов 
+\begin_inset Formula $t',t''\in\mathbf{T}$
+\end_inset
+
+ определяется в соответствии с этим определением умножения:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+t'|t''\equivdef\exists t_{1}\in\mathbb{T},t''=t_{1}t'
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Для сравнения сигнатур из 
+\begin_inset Formula $\mathbf{T}$
+\end_inset
+
+ могут использоваться различные порядки.
+ Обычно используется порядок 
 \begin_inset Formula $\prec_{P}$
 \end_inset
 
@@ -1938,7 +1962,7 @@ key "F5C,GVW,G2V,F5InBBStyle,HuangConception"
 \left(t_{1},i_{1}\right)\prec_{P}\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & i_{1}<i_{2}\\
  & i{}_{1}=i_{2},t_{1}\prec t_{2}
 \end{aligned}
-\right.
+\right..
 \]
 
 \end_inset
@@ -8336,7 +8360,11 @@ b_{j}b_{i}=\sum_{k}m_{i_{k}}\cdot b_{j}=\sum_{k}m_{i_{k}}\cdot b_{j}+0=\sum_{k}m
 \begin_inset Formula $G_{g}$
 \end_inset
 
-, поэтому 
+, 
+\end_layout
+
+\begin_layout Standard
+поэтому 
 \begin_inset Formula $f_{i}g_{i}$
 \end_inset
 
@@ -12629,7 +12657,14 @@ name "enu:-before-reduce"
 \begin_inset Formula $p\leftarrow$
 \end_inset
 
-ReduceCheckingSignatures((
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:ReduceCheckingSignatures"
+
+\end_inset
+
+((
 \begin_inset Formula $\sigma,p'),R$
 \end_inset
 
@@ -12744,7 +12779,7 @@ if
 \end_inset
 
  с 
-\begin_inset Formula $\prec$
+\begin_inset Formula $\prec_{0}$
 \end_inset
 
 -минимальной сигнатурой
@@ -12772,7 +12807,7 @@ return
 \begin_layout Paragraph*
 \begin_inset CommandInset label
 LatexCommand label
-name "par:ReduceCheckingSignatures:"
+name "par:ReduceCheckingSignatures"
 
 \end_inset
 
@@ -12855,11 +12890,11 @@ do while
 \begin_inset Formula $p\leftarrow$
 \end_inset
 
-редуцировать 
+ сигнатурно редуцировать 
 \begin_inset Formula $p$
 \end_inset
 
- с сохранением сигнатуры по 
+ по 
 \begin_inset Formula $\GVWg$
 \end_inset
 
@@ -13104,7 +13139,7 @@ reference "enu:-after-reduce"
 Вытекает из того, что цикл в 
 \begin_inset CommandInset ref
 LatexCommand nameref
-reference "par:ReduceCheckingSignatures:"
+reference "par:ReduceCheckingSignatures"
 
 \end_inset
 
@@ -13230,7 +13265,7 @@ do
  В 
 \begin_inset CommandInset ref
 LatexCommand nameref
-reference "par:ReduceCheckingSignatures:"
+reference "par:ReduceCheckingSignatures"
 
 \end_inset
 
@@ -14080,7 +14115,7 @@ reference "enu:-remove-from-B"
  Однако вопрос наиболее эффективного способа выбора редуктора в 
 \begin_inset CommandInset ref
 LatexCommand nameref
-reference "par:ReduceCheckingSignatures:"
+reference "par:ReduceCheckingSignatures"
 
 \end_inset
 
@@ -14110,7 +14145,7 @@ reference "clm:how-reds"
  Приведённое доказательство алгоритма 
 \begin_inset CommandInset ref
 LatexCommand nameref
-reference "par:ReduceCheckingSignatures:"
+reference "par:ReduceCheckingSignatures"
 
 \end_inset
 
@@ -14194,12 +14229,333 @@ reference "par:SimpleSignatureGroebner"
 \end_layout
 
 \begin_layout Subsection
-Вариант без итераций
+Одноэтапный вариант
 \end_layout
 
 \begin_layout Standard
-[Построение варианта без итераций и доказательство корректности работы с
- произвольным порядком на сигнатурах]
+В работе 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Eder2012inhomogeneous"
+
+\end_inset
+
+ показано, что шаг большинства инкрементальных алгоритмов, основанных на
+ сигнатурах, включая исходный F5, может быть легко модифицирован для использован
+ия в виде одноэтапного алгоритма при использовании множества сигнатур 
+\begin_inset Formula $\mathbf{T}$
+\end_inset
+
+ и определённого порядка на нём, называемого порядком Schreyer.
+ Однако, поскольку данный порядок не исчерпывает все возможные согласованные
+ порядки на сигнатурах, мы сформулируем одноэтапную версию алгоритма для
+ произвольного порядка 
+\begin_inset Formula $\prec_{a}$
+\end_inset
+
+ на 
+\begin_inset Formula $\mathbf{T}$
+\end_inset
+
+, согласованного с порядком на мономах, и покажем её корректность.
+ Конкретные порядки будут рассмотрены позже.
+\end_layout
+
+\begin_layout Paragraph*
+\begin_inset CommandInset label
+LatexCommand label
+name "par:SingleStepSignatureGroebner"
+
+\end_inset
+
+
+\family typewriter
+SingleStepSignatureGroebner
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Вход: многочлены 
+\begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} $
+\end_inset
+
+,
+\family default
+ согласованный с мономиальным порядка 
+\begin_inset Formula $\prec_{a}$
+\end_inset
+
+ на 
+\begin_inset Formula $\mathbf{T}$
+\end_inset
+
+, индуцированный им частичный порядок 
+\begin_inset Formula $<_{H}$
+\end_inset
+
+ на 
+\begin_inset Formula $H$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Переменные: 
+\begin_inset Formula $R$
+\end_inset
+
+ и 
+\begin_inset Formula $B$
+\end_inset
+
+ -- подмножества 
+\begin_inset Formula $H$
+\end_inset
+
+, 
+\begin_inset Formula $(\sigma,p')\in H$
+\end_inset
+
+ -- отмеченный многочлен текущего шага до редукции, 
+\begin_inset Formula $(\sigma,p)$
+\end_inset
+
+ -- он же после редукции, 
+\begin_inset Formula $r,b$
+\end_inset
+
+ -- элементы 
+\begin_inset Formula $R$
+\end_inset
+
+ и 
+\begin_inset Formula $B$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Результат: базис Грёбнера идеала 
+\begin_inset Formula $I=\left(f_{1},\dots,f_{m}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $R\leftarrow\cup_{1\leqslant i<j\leqslant m}\left\{ \left(\max_{\prec_{a}}\left(\left(\HM(f_{i}),j\right),\left(\HM(f_{j}),i\right)\right),0\right)\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $B\leftarrow\{((1,1),f_{1}),((1,2),f_{2}),\dots,((1,m),f_{m})\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+do while 
+\begin_inset Formula $B\neq\varnothing$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $(\sigma,p')\leftarrow$
+\end_inset
+
+ элемент 
+\begin_inset Formula $B$
+\end_inset
+
+ с 
+\begin_inset Formula $\prec_{a}$
+\end_inset
+
+-минимальной сигнатурой
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:-before-reduce-sstep"
+
+\end_inset
+
+
+\begin_inset Formula $p\leftarrow$
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:ReduceCheckingSignatures"
+
+\end_inset
+
+((
+\begin_inset Formula $\sigma,p'),R$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:-after-reduce-sstep"
+
+\end_inset
+
+
+\begin_inset Formula $R\leftarrow R\cup\left\{ \left(\sigma,p\right)\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+if
+\series default
+ 
+\begin_inset Formula $p\not=0$
+\end_inset
+
+
+\series bold
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+for 
+\series default
+
+\begin_inset Formula $\{r\in R\,|\, r\GVWl\left(\sigma,p\right),\HM(r)\neq0\}$
+\end_inset
+
+
+\series bold
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(r)}r\}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+for 
+\series default
+
+\begin_inset Formula $\{r\in R\,|\, r\GVWg\left(\sigma,p\right)\}$
+\end_inset
+
+
+\series bold
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(p)}\left(\sigma,p\right)\}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:-remove-from-B-sstep"
+
+\end_inset
+
+
+\begin_inset Formula $B\leftarrow B\setminus\{b\in B\,|\,\exists r\in R\, r\GVWl b\wedge\Sig(r)|\Sig(b)\}$
+\end_inset
+
+, где под делимостью сигнатур, подразумевается делимость определённая для
+ 
+\begin_inset Formula $\mathbf{T}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+return
+\series default
+ 
+\begin_inset Formula $\{\poly(r)\,|\, r\in R,\poly(r)\ne0\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series medium
+Код процедуры 
+\series default
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:ReduceCheckingSignatures"
+
+\end_inset
+
+
+\series medium
+ не меняется по сравнению с инкрементальной версией, и выполняется для отмеченны
+х многочленов с сигнатурами из 
+\begin_inset Formula $\mathbf{T}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+[доказательство корректности работы -- отличия от инкрементального случая
+ -- показать что все многочлены нормальные, придумать и доказать аналоги
+ 75,82, учитывающие первоначальное заполнение 
+\begin_inset Formula $B$
+\end_inset
+
+.
+ ]
 \end_layout
 
 \begin_layout Subsection
