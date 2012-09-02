@@ -12934,7 +12934,7 @@ return
 Элементы, формируемые до начала главного цикла, являются рассмотренными
  в примере 
 \begin_inset CommandInset ref
-LatexCommand eqref
+LatexCommand ref
 reference "example:labeled-polys"
 
 \end_inset
@@ -13246,6 +13246,12 @@ reference "lem:r-gvw-big"
 \end_layout
 
 \begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:SSG-stop"
+
+\end_inset
+
 Алгоритм 
 \begin_inset CommandInset ref
 LatexCommand nameref
@@ -14173,8 +14179,8 @@ key "ZobninGeneralization"
  за небольшое время внедрять эффективную версию алгоритма в любую систему
  компьютерной алгебры.
  Реализация, упоминаемая ниже, была создана автором за 8 часов, что на порядок
- меньше, чем время, затраченное автором на экспериментальные реализации
- других алгоритмов в подобных условиях.
+ меньше, чем время, затраченное поскольку автором на экспериментальные реализаци
+и других алгоритмов в подобных условиях.
  
 \end_layout
 
@@ -14259,6 +14265,26 @@ key "Eder2012inhomogeneous"
 
 , согласованного с порядком на мономах, и покажем её корректность.
  Конкретные порядки будут рассмотрены позже.
+ Как и в случае инкрементального алгоритма случаи, когда среди входных многочлен
+ов 
+\begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} $
+\end_inset
+
+ есть элемент из 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+, не представляют интереса: если он ненулевой, то 
+\begin_inset Formula $\left(f_{1},\ldots,f_{m}\right)=\left(1\right)=\mathcal{P}$
+\end_inset
+
+, а если нулевой, то его можно выкинуть из входного множества без влияния
+ на результат.
+ Поэтому далее предполагается, что алгоритм применяется только при 
+\begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} \cap\mathcal{K}=\varnothing$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Paragraph*
@@ -14545,6 +14571,493 @@ reference "par:ReduceCheckingSignatures"
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Lemma
+Все пары из 
+\begin_inset Formula $\mathbf{T}\times\mathcal{P}$
+\end_inset
+
+ в алгоритме -- отмеченные многочлены.
+ При это среди элементов 
+\begin_inset Formula $R$
+\end_inset
+
+ до первого выполнения шага 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-after-reduce-sstep"
+
+\end_inset
+
+ нет элементов с единичным мономом сигнатуры.
+\end_layout
+
+\begin_layout Proof
+Элементы, формирующие 
+\begin_inset Formula $R$
+\end_inset
+
+ и 
+\begin_inset Formula $B$
+\end_inset
+
+ до начала главного цикла, являются рассмотренными в примере 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "example:labeled-polys"
+
+\end_inset
+
+ отмеченными многочленами.
+ Все остальные отмеченные многочлены в алгоритме формируются или умножением
+ на 
+\begin_inset Formula $t\in\mathbb{T}$
+\end_inset
+
+ или редукцией с сохранением сигнатуры, поэтому они корректны и лежат в
+ 
+\begin_inset Formula $H$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Мономы сигнатуры элементов 
+\begin_inset Formula $R$
+\end_inset
+
+ до шага 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-after-reduce-sstep"
+
+\end_inset
+
+ являются старшими мономами одного из исходных многочленов, и не являются
+ единичными, поскольку 
+\begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} \cap\mathcal{K}=\varnothing$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Доказательства корректности и остановки основаны на той же схеме, что и
+ доказательства для шага инкрементального алгоритма, однако сильно отличаются
+ в деталях, поэтому приведём изменившиеся утверждения.
+\end_layout
+
+\begin_layout Subsubsection
+Остановка
+\end_layout
+
+\begin_layout Standard
+В отличии от леммы 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:exist-reductor"
+
+\end_inset
+
+ в одноэтапном алгоритме возможность редукции утверждается лишь для многочленов
+ с неединичными мономами сигнатуры.
+\end_layout
+
+\begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:exist-reductor-not1-sstep"
+
+\end_inset
+
+В любой момент работы алгоритма 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:SingleStepSignatureGroebner"
+
+\end_inset
+
+ любой отмеченный многочлен из 
+\begin_inset Formula $B$
+\end_inset
+
+, моном сигнатуры которого не равен 1, может быть редуцирован с сохранением
+ сигнатуры по некоторому элементу 
+\begin_inset Formula $R.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Отмеченные многочлены c не равным 1 мономом сигнатуры добавляются в 
+\begin_inset Formula $B$
+\end_inset
+
+ таким образом, чтобы иметь хотя бы один подходящий редуктор.
+ 
+\begin_inset Formula $(\sigma,p)\in R$
+\end_inset
+
+ является таким редуктором при добавлении в первом цикле 
+\series bold
+for
+\series default
+, 
+\begin_inset Formula $r\in R$
+\end_inset
+
+ -- во втором.
+\end_layout
+
+\begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:r-gvw-small-sstep"
+
+\end_inset
+
+До редукции многочлена 
+\begin_inset Formula $p'$
+\end_inset
+
+, то есть на шаге 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-before-reduce-sstep"
+
+\end_inset
+
+ любой итерации алгоритма, сигнатуры элементов 
+\begin_inset Formula $\left\{ r\in R\,|\, r\GVWl(\sigma,p')\right\} $
+\end_inset
+
+ не делят 
+\begin_inset Formula $\sigma$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+На первой итерации алгоритма это выполняется, поскольку все мономы сигнатур
+ равны 1, а все элементы 
+\begin_inset Formula $R$
+\end_inset
+
+ имеют сигнатуры, не равные 1.
+ На последующих итерациях это выполнено, поскольку если бы в 
+\begin_inset Formula $R$
+\end_inset
+
+ существовали такие элементы, то 
+\begin_inset Formula $\left(\sigma,p'\right)$
+\end_inset
+
+ был бы убран из 
+\begin_inset Formula $B$
+\end_inset
+
+ в предыдущей итерации на шаге 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-remove-from-B-sstep"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:r-gvw-big-sstep"
+
+\end_inset
+
+После редукции многочлена 
+\begin_inset Formula $p'$
+\end_inset
+
+ до 
+\begin_inset Formula $p$
+\end_inset
+
+, на шаге 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-after-reduce-sstep"
+
+\end_inset
+
+ любой итерации алгоритма, старшие мономы элементов 
+\begin_inset Formula $\left\{ r\in R\,|\, r\GVWg(\sigma,p)\right\} $
+\end_inset
+
+ не делят 
+\begin_inset Formula $\HM(p)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Полностью идентично лемме 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:r-gvw-big"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:adds-really-new-sstep"
+
+\end_inset
+
+После редукции многочлена 
+\begin_inset Formula $p'$
+\end_inset
+
+ до 
+\begin_inset Formula $p$
+\end_inset
+
+, на шаге 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-after-reduce"
+
+\end_inset
+
+ любой итерации алгоритма, элементы 
+\begin_inset Formula $R$
+\end_inset
+
+ не могут одновременно иметь старшие мономы, делящие 
+\begin_inset Formula $\HM(p)$
+\end_inset
+
+, и сигнатуры, делящие 
+\begin_inset Formula $\sigma$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Для элементов с мономом сигнатуры, отличным от 1, В силу леммы 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:exist-reductor-not1-sstep"
+
+\end_inset
+
+ будет произведена хотя бы одна редукция 
+\begin_inset Formula $p'$
+\end_inset
+
+, поэтому 
+\begin_inset Formula $(\sigma,p')\GVWg(\sigma,p)$
+\end_inset
+
+.
+ Отсюда по лемме 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:greater-or-smaller"
+
+\end_inset
+
+ для 
+\begin_inset Formula $\forall r\in R$
+\end_inset
+
+ имеем 
+\begin_inset Formula $r\GVWg(\sigma,p)$
+\end_inset
+
+ или 
+\begin_inset Formula $r\GVWl(\sigma,p')$
+\end_inset
+
+.
+ Выполнение одного из неравенств позволяет применить одну из лемм 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:r-gvw-small-sstep"
+
+\end_inset
+
+ и 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:r-gvw-big-sstep"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Для элементов с мономом сигнатуры 1 на шаге 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-after-reduce"
+
+\end_inset
+
+ в 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $R$
+\end_inset
+
+ не может быть делящих сигнатуру элементов, поскольку все элементы добавленные
+ изначально имеют не равные 1 мономы сигнатуры, а среди добавляемых позже
+ элементов 
+\begin_inset Formula $\left(\sigma,p\right)=\left(\left(1,\sigidx(\sigma)\right),p\right)$
+\end_inset
+
+ -- это первый элемент с индексом 
+\begin_inset Formula $\sigidx(\sigma)$
+\end_inset
+
+, который не может иметь делителей сигнатуры .
+\end_layout
+
+\begin_layout Theorem
+Алгоритм 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:SingleStepSignatureGroebner"
+
+\end_inset
+
+ останавливается
+\end_layout
+
+\begin_layout Proof
+Для доказательства остановки нужно показать, что все циклы 
+\series bold
+do
+\series default
+ выполняются лишь конечное число раз.
+ Остановка 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:ReduceCheckingSignatures"
+
+\end_inset
+
+ показана в доказательстве теоремы 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:SSG-stop"
+
+\end_inset
+
+.
+ На каждом шаге основного цикла 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:SingleStepSignatureGroebner"
+
+\end_inset
+
+ пополняется множество 
+\begin_inset Formula $R\subset P=\mathbf{T}\times\mathcal{P}$
+\end_inset
+
+.
+ Оно может быть разбито как 
+\begin_inset Formula 
+\[
+\bigcup_{i=1,\dots,m}R_{i0}\cup R_{i*},
+\]
+
+\end_inset
+
+ где 
+\begin_inset Formula $R_{i0}\subset\left\{ (\sigma,i),\sigma\in\mathbb{T}\right\} \times\left\{ 0\right\} ,R_{i*}\subset\left\{ (\sigma,i),\sigma\in\mathbb{T}\right\} \times\mathcal{P}\setminus\left\{ 0\right\} $
+\end_inset
+
+.
+ Для 
+\begin_inset Formula $R_{i0}$
+\end_inset
+
+ и 
+\begin_inset Formula $R_{i*}$
+\end_inset
+
+ применим подход, аналогичный теореме 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:SSG-stop"
+
+\end_inset
+
+.
+ Рассмотрим следующие множества, являющиеся идеалами моноидов: 
+\begin_inset Formula $L_{i0}=\left(\left\{ \sigma\,|\,((\sigma,i),0)\in R_{i0}\right\} \right)\subset\mathbb{T}$
+\end_inset
+
+ и 
+\begin_inset Formula $L_{i*}=\left(\left\{ (\sigma,t)\,|\,\exists((\sigma,i),p)\in R_{**}\, t=\HM(p)\right\} \right)\subset\mathbb{T}\times\mathbb{T}$
+\end_inset
+
+.
+ В силу леммы 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:adds-really-new-sstep"
+
+\end_inset
+
+ добавляемые в 
+\begin_inset Formula $R$
+\end_inset
+
+ элементы расширяют на каждом шаге одно из 
+\begin_inset Formula $L_{*0}$
+\end_inset
+
+ или 
+\begin_inset Formula $L_{**}$
+\end_inset
+
+.
+ Поскольку моноиды 
+\begin_inset Formula $\mathbb{T}$
+\end_inset
+
+ и 
+\begin_inset Formula $\mathbb{T}\times\mathbb{T}$
+\end_inset
+
+ изоморфны 
+\begin_inset Formula $\mathbb{N}^{n}$
+\end_inset
+
+ и 
+\begin_inset Formula $\mathbb{N}^{2n}$
+\end_inset
+
+, к их идеалам может быть применена лемма Диксона, которая и утверждает,
+ что расширение может происходить лишь конечное число раз.
+\end_layout
+
+\begin_layout Subsubsection
+Корректность
 \end_layout
 
 \begin_layout Standard
