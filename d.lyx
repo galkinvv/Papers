@@ -13425,12 +13425,16 @@ S
 
 -базисом
 \emph default
-), если все элементы 
-\begin_inset Formula $H$
+) идеала отмеченных многочленов 
+\begin_inset Formula $I\subset H$
+\end_inset
+
+, если все элементы 
+\begin_inset Formula $I$
 \end_inset
 
  (соответственно 
-\begin_inset Formula $\left\{ h\in H\,|\,\Sig(h)\prec_{0}\sigma\right\} $
+\begin_inset Formula $\left\{ h\in I\,|\,\Sig(h)\prec_{0}\sigma\right\} $
 \end_inset
 
 )
@@ -13576,6 +13580,51 @@ name "lem:s-basis-and-no-reductions"
 
  к сигнатурному представлению 
 \begin_inset Formula $\left(\sigma',p'\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:S-basis-is-a-basis"
+
+\end_inset
+
+Если 
+\begin_inset Formula $R$
+\end_inset
+
+ -- S-базис идеала 
+\begin_inset Formula $I$
+\end_inset
+
+, то 
+\begin_inset Formula $\{\poly(r)\,|\, r\in R\}$
+\end_inset
+
+ является базисом Грёбнера идеала 
+\begin_inset Formula $I$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Для 
+\begin_inset Formula $\forall p\in I$
+\end_inset
+
+ можно взять некоторый 
+\begin_inset Formula $h=\left(\sigma,p\right)\in H$
+\end_inset
+
+ и применить теорему 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:Exist-hm-in-deg-repr"
+
 \end_inset
 
 .
@@ -13889,41 +13938,6 @@ reference "lem:s-basis-and-no-reductions"
 \end_inset
 
 , что приводит к противоречию.
-\end_layout
-
-\begin_layout Lemma
-Если 
-\begin_inset Formula $R$
-\end_inset
-
- -- S-базис, то 
-\begin_inset Formula $\{\poly(r)\,|\, r\in R\}$
-\end_inset
-
- является базисом Грёбнера идеала 
-\begin_inset Formula $I$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Proof
-Для 
-\begin_inset Formula $\forall p\in I$
-\end_inset
-
- можно взять некоторый 
-\begin_inset Formula $h=\left(\sigma,p\right)\in H$
-\end_inset
-
- и применить теорему 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "thm:Exist-hm-in-deg-repr"
-
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Theorem
@@ -14416,6 +14430,20 @@ do while
 \end_inset
 
 -минимальной сигнатурой
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:-remove-sigma-from-B-sstep"
+
+\end_inset
+
+
+\begin_inset Formula $B\leftarrow B\setminus\{b\in B,\Sig(b)=\sigma\}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
@@ -15028,11 +15056,11 @@ reference "lem:adds-really-new-sstep"
 \end_inset
 
  элементы расширяют на каждом шаге одно из 
-\begin_inset Formula $L_{*0}$
+\begin_inset Formula $L_{i0}$
 \end_inset
 
  или 
-\begin_inset Formula $L_{**}$
+\begin_inset Formula $L_{i*}$
 \end_inset
 
 .
@@ -15060,15 +15088,286 @@ reference "lem:adds-really-new-sstep"
 Корректность
 \end_layout
 
-\begin_layout Standard
-[доказательство корректности работы -- отличия от инкрементального случая
- -- показать что все многочлены нормальные, придумать и доказать аналоги
- 75,82, учитывающие первоначальное заполнение 
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:exist-r-sigma-sstep"
+
+\end_inset
+
+На каждой итерации алгоритма после шага 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-remove-from-B-sstep"
+
+\end_inset
+
+ выполнен инвариант: для 
+\begin_inset Formula $\forall\sigma\in\mathbf{T},\sigma\prec_{a}$
+\end_inset
+
+ сигнатур элементов 
 \begin_inset Formula $B$
 \end_inset
 
+, найдутся 
+\begin_inset Formula $r_{\sigma}\in R,t_{\sigma}\in\mathbb{T}:\Sig(t_{\sigma}r_{\sigma})=\sigma$
+\end_inset
+
+ и 
+\begin_inset Formula $t_{\sigma}r_{\sigma}$
+\end_inset
+
+ не редуцируется сигнатурно по 
+\begin_inset Formula $R$
+\end_inset
+
 .
- ]
+\end_layout
+
+\begin_layout Proof
+До начала итераций множество 
+\begin_inset Formula $B$
+\end_inset
+
+ содержит элементы с сигнатурой 
+\begin_inset Formula $\left(1,i\right)$
+\end_inset
+
+ для всех индексов сигнатуры 
+\begin_inset Formula $i=1,\dots,m$
+\end_inset
+
+.
+ В процессе работы алгоритма элемент c сигнатурой 
+\begin_inset Formula $\left(1,i\right)$
+\end_inset
+
+ не может быть удалён из 
+\begin_inset Formula $B$
+\end_inset
+
+ на шаге 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-remove-from-B-sstep"
+
+\end_inset
+
+, поскольку 
+\begin_inset Formula $R$
+\end_inset
+
+ изначально не содержит элементов с единичной сигнатурой, а для исключения
+ такого элемента нужен элемент 
+\begin_inset Formula $R$
+\end_inset
+
+ с такой же сигнатурой.
+ Когда какой-то из элементов с сигнатурой 
+\begin_inset Formula $\left(1,i\right)$
+\end_inset
+
+ исключается на шаге 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-remove-sigma-from-B-sstep"
+
+\end_inset
+
+, то после этого производится его редукция и сохранение в 
+\begin_inset Formula $R$
+\end_inset
+
+.
+ Таким образом получается, что если 
+\begin_inset Formula $\sigma\prec_{a}$
+\end_inset
+
+ сигнатур элементов 
+\begin_inset Formula $B$
+\end_inset
+
+, то в 
+\begin_inset Formula $R$
+\end_inset
+
+ есть элемент 
+\begin_inset Formula $r_{0}$
+\end_inset
+
+ с 
+\begin_inset Formula $\Sig(r_{0})=\left(1,\sigidx(\sigma)\right)$
+\end_inset
+
+ и можно утверждать что множество 
+\begin_inset Formula $R_{\sigma}=\left\{ r\in R\,|\,\Sig(r)|\sigma\right\} $
+\end_inset
+
+ непусто, так как содержит элемент 
+\begin_inset Formula $r_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Дальнейшее доказательство совпадает с окончанием доказательства теоремы
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:exist-r-sigma"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:has-s-repr-sstep"
+
+\end_inset
+
+На каждой итерации алгоритма после шага 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-remove-from-B-sstep"
+
+\end_inset
+
+ выполнен инвариант: 
+\begin_inset Formula $\forall h\in H,\Sig(h)\prec$
+\end_inset
+
+ сигнатур элементов 
+\begin_inset Formula $B$
+\end_inset
+
+, имеет сигнатурное представление над 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Предположим нарушение инварианта на какой-то итерации и рассмотрим 
+\begin_inset Formula $\prec_{a}$
+\end_inset
+
+-минимальную 
+\begin_inset Formula $\sigma$
+\end_inset
+
+, для которой непусто 
+\begin_inset Formula $V_{\sigma}\eqdef\{h\in H\,|\, h\mbox{ нарушает инвариант},\Sig(h)=\sigma\}$
+\end_inset
+
+.
+ Тогда 
+\begin_inset Formula $R$
+\end_inset
+
+ -- S
+\emph on
+
+\begin_inset Formula $_{\sigma}$
+\end_inset
+
+
+\emph default
+-базис.
+ Из определения 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $V_{\sigma}$
+\end_inset
+
+ вытекает, что многочленов с нулевым 
+\begin_inset Formula $\HM$
+\end_inset
+
+ в нём нет.
+ Выберем 
+\begin_inset Formula $v_{\sigma}$
+\end_inset
+
+ -- один из элементов 
+\begin_inset Formula $V_{\sigma}$
+\end_inset
+
+ с 
+\begin_inset Formula $\prec$
+\end_inset
+
+-наименьшим 
+\begin_inset Formula $\HM$
+\end_inset
+
+.
+ Он не может быть редуцирован с сохранением сигнатуры по 
+\begin_inset Formula $R$
+\end_inset
+
+, поскольку результат редукции 
+\begin_inset Formula $v_{1}$
+\end_inset
+
+ был бы элементом 
+\begin_inset Formula $V_{\sigma}$
+\end_inset
+
+ с 
+\begin_inset Formula $\HM(v_{1})\prec\HM(v_{\sigma})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Дальнейшее доказательство совпадает с окончанием доказательства теоремы
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:has-s-repr"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:SingleStepSignatureGroebner"
+
+\end_inset
+
+ возвращает базис Грёбнера
+\end_layout
+
+\begin_layout Proof
+Доказательство полностью аналогично инкрементальному случаю: к моменту остановки
+ 
+\begin_inset Formula $B=\varnothing$
+\end_inset
+
+, значит по теореме 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:has-s-repr-sstep"
+
+\end_inset
+
+ 
+\begin_inset Formula $R$
+\end_inset
+
+ -- S-базис, а значит и базис Грёбнера.
 \end_layout
 
 \begin_layout Subsection
