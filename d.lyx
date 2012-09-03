@@ -39,12 +39,12 @@ figs-within-sections
 \spacing single
 \use_hyperref true
 \pdf_bookmarks true
-\pdf_bookmarksnumbered false
+\pdf_bookmarksnumbered true
 \pdf_bookmarksopen true
-\pdf_bookmarksopenlevel 2
+\pdf_bookmarksopenlevel 7
 \pdf_breaklinks false
-\pdf_pdfborder false
-\pdf_colorlinks true
+\pdf_pdfborder true
+\pdf_colorlinks false
 \pdf_backref false
 \pdf_pdfusetitle true
 \papersize default
@@ -64,7 +64,7 @@ figs-within-sections
 \color #008000
 \end_index
 \secnumdepth 3
-\tocdepth 3
+\tocdepth 5
 \paragraph_separation indent
 \paragraph_indentation default
 \quotes_language french
@@ -1652,7 +1652,7 @@ p=\sum_{l}m_{l}\cdot g_{i_{l}}+(c_{2}+c_{m}c_{2}')t_{2}\cdot g_{i_{2}}+\sum_{k>2
 
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Paragraph
 
 \family typewriter
 \begin_inset CommandInset label
@@ -2606,7 +2606,7 @@ key "F5InBBStyle"
  взято из первоисточника.
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Paragraph
 Глобальные переменные:
 \end_layout
 
@@ -2709,7 +2709,7 @@ Rule Массив правил перезаписи, содержащий
 
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Paragraph
 
 \family typewriter
 \series medium
@@ -2759,7 +2759,7 @@ AddRule
 ] 
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Paragraph
 
 \family typewriter
 \series medium
@@ -2900,7 +2900,7 @@ return
 return false
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Paragraph
 
 \family typewriter
 \series medium
@@ -3035,7 +3035,7 @@ return
 
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Paragraph
 
 \family typewriter
 \series medium
@@ -3369,7 +3369,7 @@ return
 
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Paragraph
 
 \family typewriter
 \series medium
@@ -3610,7 +3610,7 @@ return
 
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Paragraph
 
 \family typewriter
 \begin_inset CommandInset label
@@ -3810,7 +3810,7 @@ return
 
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Paragraph
 
 \family typewriter
 \series medium
@@ -4113,7 +4113,7 @@ Done
  
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Paragraph
 
 \family typewriter
 \series medium
@@ -11771,7 +11771,7 @@ key "HuangConception"
  может быть сформулирована в следующем виде:
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Paragraph
 
 \family typewriter
 \series medium
@@ -12632,7 +12632,7 @@ reference "eq:left-or-right-monom"
 .
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Paragraph
 \begin_inset CommandInset label
 LatexCommand label
 name "par:SimpleSignatureGroebner"
@@ -12895,7 +12895,7 @@ return
 
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Paragraph
 \begin_inset CommandInset label
 LatexCommand label
 name "par:ReduceCheckingSignatures"
@@ -14072,7 +14072,7 @@ reference "thm:has-s-repr"
 й и расширение области применимости -- представлено в 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "GermanF5Proof,ZobninGeneralization,F5InBBStyle"
+key "F5InBBStyle,GermanF5Proof_ru,ZobninGeneralization_ru"
 
 \end_inset
 
@@ -14265,7 +14265,7 @@ reference "par:ReduceCheckingSignatures"
  изменений простую алгебраическую интерпретацию из 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "ZobninGeneralization"
+key "ZobninGeneralization_ru"
 
 \end_inset
 
@@ -14392,7 +14392,7 @@ key "Eder2012inhomogeneous"
 .
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Paragraph
 \begin_inset CommandInset label
 LatexCommand label
 name "par:SingleStepSignatureGroebner"
