@@ -317,6 +317,50 @@ t_{1}\prec t_{2}\Longrightarrow t_{1}t_{3}\prec t_{2}t_{3}
 
 \end_layout
 
+\begin_layout Lemma
+Для мономиального порядка 
+\begin_inset Formula $\forall t_{1},t_{2},t_{3}\in\mathbb{T}$
+\end_inset
+
+ выполняется: 
+\begin_inset Formula 
+\[
+t_{1}\prec t_{2}\Longleftrightarrow t_{1}t_{3}\prec t_{2}t_{3}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Заметим, что поскольку порядок полный, из неравенства 
+\begin_inset Formula $t_{1}t_{3}\prec t_{2}t_{3}$
+\end_inset
+
+ вытекает что 
+\begin_inset Formula $t_{1}\ne t_{2}$
+\end_inset
+
+ и значит
+\begin_inset Formula 
+\[
+\left[\begin{array}{c}
+t_{1}\prec t_{2}\\
+t_{1}\succ t_{2}
+\end{array}\right..
+\]
+
+\end_inset
+
+Второе при этом невозможно, поскольку тогда из определения бы следовало,
+ что 
+\begin_inset Formula $t_{1}t_{3}\succ t_{2}t_{3}$
+\end_inset
+
+
+\end_layout
+
 \begin_layout Itemize
 \begin_inset Formula $\prec$
 \end_inset
@@ -12347,6 +12391,18 @@ name "remark:follows-from-lessH"
 .
 \end_layout
 
+\begin_layout Standard
+Следующее определение эквивалентно определению согласованности порядков
+ из 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HuangConception"
+
+\end_inset
+
+:
+\end_layout
+
 \begin_layout Definition
 Порядок на сигнатурах 
 \begin_inset Formula $\prec_{\tau}$
@@ -12365,6 +12421,41 @@ name "remark:follows-from-lessH"
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:precP_compatible"
+
+\end_inset
+
+Порядок 
+\begin_inset Formula $\prec_{P}$
+\end_inset
+
+ согласован с порядком 
+\begin_inset Formula $\prec$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Пусть 
+\begin_inset Formula $\sigma=(s,i)\in\mathbf{T}$
+\end_inset
+
+.
+ Тогда
+\begin_inset Formula 
+\[
+t_{1}\sigma\prec_{P}t_{2}\sigma\Longleftrightarrow\left(t_{1}s,i\right)\prec_{P}\left(t_{2}s,i\right)\Longleftrightarrow t_{1}s\prec t_{2}s\Longleftrightarrow t_{1}\prec t_{2}
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -14548,9 +14639,9 @@ for
 \end_deeper
 \end_deeper
 \begin_layout Enumerate
-\begin_inset CommandInset label
-LatexCommand label
-name "enu:-remove-from-B-sstep"
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "enu:-remove-from-B-sstep"
 
 \end_inset
 
@@ -14599,6 +14690,95 @@ reference "par:ReduceCheckingSignatures"
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Standard
+Как и алгоритм 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:SimpleSignatureGroebner"
+
+\end_inset
+
+, представленная версия алгоритма оказывается похожей на несколько известных
+ алгоритмов.
+ Алгоритм GVW описан в работе 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GVW"
+
+\end_inset
+
+ похожим псевдокодом, но имеет принципиальное отличие в работе: обобщённый
+ критерий отбрасывания шага 
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:-remove-from-B-sstep"
+
+\end_inset
+
+ с учётом делимости сигнатур применяется там лишь для многочленов редуцировавших
+ся к нулю, в то время как для остальных многочленов GVW применяет более
+ слабый критерий на шаге 3b.iii, не гарантирующий получение минимального
+ S-базиса.
+ Работа 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "TheF5Revised"
+
+\end_inset
+
+ содержит неименованный 
+\begin_inset Quotes fld
+\end_inset
+
+алгоритм 6
+\begin_inset Quotes frd
+\end_inset
+
+, псевдокод которого также очень похож на приведённый.
+ Его отличие с вычислительной точки зрения в состоит в том что 
+\begin_inset Quotes fld
+\end_inset
+
+алгоритм 6
+\begin_inset Quotes frd
+\end_inset
+
+ производит вычисление старших мономов S-многочленов до применения критериев.
+ Это зачастую приводит к лишним вычислениям, поскольку вычисление старшего
+ монома линейной комбинации многочленов в случае сокращения мономов может
+ оказаться также трудоёмко как полное вычисление линейной комбинации, а
+ результат этого вычисления алгоритм может отбросить по критериям.
+\end_layout
+
+\begin_layout Standard
+С другой стороны, алгоритмы TRB-MJ и SB, описанные в
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HuangConception,PracticalGB"
+
+\end_inset
+
+, псевдокод которых формулируется менее похожим образом, по сути производят
+ вычисления совпадающие с вычислениями алгоритма 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:SingleStepSignatureGroebner"
+
+\end_inset
+
+ и также дают минимальный S-базис в качестве результата.
+ Отличие приведённого здесь алгоритма проявляется не с точки зрения сложности
+ вычислений, а сточки зрения обоснования -- унифицированная формулировка
+ критерия отбрасывания на шаге 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "enu:-remove-from-B-sstep"
+
+\end_inset
+
+ приводит к упрощению доказательства.
 \end_layout
 
 \begin_layout Lemma
@@ -15375,7 +15555,206 @@ reference "thm:has-s-repr-sstep"
 \end_layout
 
 \begin_layout Standard
-[Общее определение, порядок Schreyer]
+Формулировка алгоритма приведённая выше не фиксировала конкретный порядок
+ 
+\begin_inset Formula $\prec_{a}$
+\end_inset
+
+ на 
+\begin_inset Formula $\mathbf{T}$
+\end_inset
+
+, требую лишь от него согласованность с мономиальным порядком.
+ Определения и сравнение эффективности различных согласованных порядков
+ можно найти в параграфе Term Orders работы
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GVW"
+
+\end_inset
+
+.
+ Среди приведённых там порядков остановимся на двух: POT (position over
+ term) и 
+\series bold
+g
+\series default
+2, называемом также порядком Schreyer 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Eder2012inhomogeneous"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Порядок POT определён в начале этой работы как 
+\begin_inset Formula $\prec_{P}$
+\end_inset
+
+ и является согласованным по лемме 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:precP_compatible"
+
+\end_inset
+
+.
+ По сути его использование превращает многие одноэтапные алгоритмы в инкрементал
+ьные, поскольку следующий входной многочлен не рассматривается до тех пор,
+ пока не завершится вычисление для предыдущих.
+ Алгоритм GVW с порядком 
+\begin_inset Formula $\prec_{P}$
+\end_inset
+
+ превращается в алгоритм G2V из 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "G2V"
+
+\end_inset
+
+, а 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:SingleStepSignatureGroebner"
+
+\end_inset
+
+ с порядком 
+\begin_inset Formula $\prec_{P}$
+\end_inset
+
+ даёт в точности алгоритм 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:SimpleSignatureGroebner"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Для второго порядка понадобится формулировка в обобщённом виде:
+\end_layout
+
+\begin_layout Definition
+Взвешенным порядком на множестве сигнатур 
+\begin_inset Formula $\mathbf{T}$
+\end_inset
+
+ для одноэтапного вычисления с 
+\begin_inset Formula $m$
+\end_inset
+
+ входными многочленами называется порядок 
+\begin_inset Formula $\prec_{w}$
+\end_inset
+
+ с параметром 
+\begin_inset Formula $w=(w_{1},\dots,w_{m})\in\mathbb{T}^{m}$
+\end_inset
+
+, определяемый как
+\end_layout
+
+\begin_layout Definition
+\begin_inset Formula 
+\[
+\left(t_{1},i_{1}\right)\prec_{w}\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & t_{1}w_{i_{1}}\prec t_{2}w_{i_{2}}\\
+ & t_{1}w_{i_{1}}=t_{2}w_{i_{2}},i{}_{1}<i_{2}
+\end{aligned}
+\right..
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Взвешенный порядок с любым значением параметра является согласованным с
+ мономиальным порядком 
+\begin_inset Formula $\prec$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Пусть Пусть 
+\begin_inset Formula $\sigma=(s,i)\in\mathbf{T}$
+\end_inset
+
+.
+ Тогда 
+\begin_inset Formula 
+\[
+t_{1}\sigma\prec_{w}t_{2}\sigma\Longleftrightarrow\left(t_{1}s,i\right)\prec_{w}\left(t_{2}s,i\right)\Longleftrightarrow t_{1}sw_{i}\prec t_{2}sw_{i}\Longleftrightarrow t_{1}\prec t_{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+Порядком Schreyer на множестве сигнатур 
+\begin_inset Formula $\mathbf{T}$
+\end_inset
+
+ для одноэтапного вычисления с входными многочленами 
+\begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} $
+\end_inset
+
+ называется взвешенный порядок 
+\begin_inset Formula $\prec_{w}$
+\end_inset
+
+ со значением параметра 
+\begin_inset Formula $w=(\HM(f_{1}),\dots,\HM(f_{m}))$
+\end_inset
+
+.
+ Этот порядок будем обозначать как 
+\begin_inset Formula $\prec_{S}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Эмпирические эксперименты в 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GVW"
+
+\end_inset
+
+ показали, что одноэтапные алгоритмы вычислений базисов Грёбнера с порядком
+ 
+\begin_inset Formula $\prec_{s}$
+\end_inset
+
+ в среднем оказываются как минимум не менее эффективными, чем вычисления
+ с другими известными порядками на сигнатурах, совместимыми с порядком на
+ мономах.
+ Поэтому в качестве базового алгоритма вычисления базиса Грёбнера в следующей
+ части будет рассматриваться алгоритм 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:SingleStepSignatureGroebner"
+
+\end_inset
+
+ с порядком 
+\begin_inset Formula $\prec_{s}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Part
