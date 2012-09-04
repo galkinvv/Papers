@@ -15762,6 +15762,55 @@ reference "par:SingleStepSignatureGroebner"
 \end_layout
 
 \begin_layout Standard
+Одним из методов решения систем полиномиальных уравнений является метод,
+ основанный на использовании собственных чисел и собственных векторов матрицы
+ действий умножением или просто матрицей действий, доказанный в Предложении
+ 4.7 главы 2 книги 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "UsingAlgebraicGeometry"
+
+\end_inset
+
+.
+ Данный метод применим только в случае, если все собственные подпространства
+ полученной матрицы действий имеют единичную размерность.
+\end_layout
+
+\begin_layout Standard
+Для вычислений матрицы действия достаточно построить краевой базис, строгое
+ определение которого даётся в 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "NumericalPolynomialAlgebra"
+
+\end_inset
+
+, являющийся более общим понятием по сравнению с базисом Грёбнера.
+ Работы 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FastStablePolySolving,ComputingBorderBases"
+
+\end_inset
+
+ предлагают различные алгоритмы его вычисления, в частности оптимизированные
+ для численных задач, однако эти алгоритмы не используют сигнатурных методов,
+ показавших свою эффективность при вычислении базисов Грёбнера.
+ Работа 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GroebnerInExtFields"
+
+\end_inset
+
+ предлагает адаптацию F5 для численного вычисления Базисов Грёбнера, однако
+ имеет недостаток -- после обнаружения каждого из нулей, входная система
+ модифицируется и алгоритм запускается заново, теряя таким образом все полученны
+е ранее результаты.
+\end_layout
+
+\begin_layout Standard
 [Метод использующий, матрицу линейного оператора и базис краёв]
 \end_layout
 
