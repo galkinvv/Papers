@@ -12908,15 +12908,6 @@ name "par:ReduceCheckingSignatures"
 ReduceCheckingSignatures
 \end_layout
 
-\begin_layout Paragraph*
-
-\family typewriter
-\begin_inset Formula $\left(\sigma,p,R\right)$
-\end_inset
-
-
-\end_layout
-
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
 
@@ -15762,10 +15753,28 @@ reference "par:SingleStepSignatureGroebner"
 \end_layout
 
 \begin_layout Standard
-Одним из методов решения систем полиномиальных уравнений является метод,
- основанный на использовании собственных чисел и собственных векторов матрицы
- действий умножением или просто матрицей действий, доказанный в Предложении
- 4.7 главы 2 книги 
+Задачи решения систем уравнений, образованных многочленами 
+\begin_inset Formula $f_{1},\ldots,f_{m}$
+\end_inset
+
+ из кольца
+\begin_inset Formula $\mathcal{P}=\mathcal{K}\left[x_{1},\dots,x_{n}\right]$
+\end_inset
+
+, возникают в различных областях науки, в частности криптографии и алгоритмах
+ компьютерного зрения.
+ Для решения таких систем могут применяться общие методы решения систем
+ уравнений заданных аналитическими функциями, в частности итерационные методы.
+ Такие методы не всегда позволяют найти все решения рассматриваемой системы.
+ Однако тот факт, что уравнения заданы многочленами, позволяет применять
+ специализированные методы решения систем полиномиальных уравнений.
+\end_layout
+
+\begin_layout Standard
+Наиболее простым методом этого типа является метод, основанный на вычислении
+ базиса Грёбнера относительно лексикографического порядка на мономах с последующ
+им последовательным исключением переменных путём решения одномерных задач.
+ Этот метод рассматривается в 1-м параграфе главы 2 книги 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "UsingAlgebraicGeometry"
@@ -15773,13 +15782,276 @@ key "UsingAlgebraicGeometry"
 \end_inset
 
 .
- Данный метод применим только в случае, если все собственные подпространства
- полученной матрицы действий имеют единичную размерность.
+ Его недостатком является необходимость вычислять базис Грёбнера именно
+ относительно лексикографического порядка, что может оказаться значительно
+ более трудоёмкой задачей, нежели вычисление с другими мономиальными порядками.
 \end_layout
 
 \begin_layout Standard
-Для вычислений матрицы действия достаточно построить краевой базис, строгое
- определение которого даётся в 
+Другой метод решения основан на собственных векторах линейного оператора
+ в векторном пространстве 
+\begin_inset Formula $\mathcal{A}=\mathcal{P}/\left(f_{1},\ldots,f_{m}\right)$
+\end_inset
+
+, задаваемого матрицей действий умножением, называемой также просто матрицей
+ действий.
+ Данный метод описывается и доказывается в предложении 4.7 главы 2 книги
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "UsingAlgebraicGeometry"
+
+\end_inset
+
+.
+ Его схема такова:
+\end_layout
+
+\begin_layout Enumerate
+находится набор образующих радикала 
+\begin_inset Formula $I'=\sqrt{I}$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+строится базис Грёбнера 
+\begin_inset Formula $G$
+\end_inset
+
+ идеала 
+\begin_inset Formula $I=\left(f_{1},\ldots,f_{m}\right)$
+\end_inset
+
+ относительно произвольного мономиального порядка 
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:use-basis-for-radical"
+
+\end_inset
+
+образующие радикала находятся на основе нормальной формы относительно базиса
+ Грёбнера 
+\begin_inset Formula $G$
+\end_inset
+
+ с использованием метода описанного в параграфе 2 той же главы
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+вычисляется матрица 
+\begin_inset Formula $m_{F}$
+\end_inset
+
+ линейного оператора в пространстве 
+\begin_inset Formula $\mathcal{A}=\mathcal{P}/I'$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+строится базис Грёбнера 
+\begin_inset Formula $G'$
+\end_inset
+
+ идеала 
+\begin_inset Formula $I'$
+\end_inset
+
+ относительно произвольного мономиального порядка
+\end_layout
+
+\begin_layout Enumerate
+фиксируется базис 
+\begin_inset Formula $B=\left\{ b_{1},\dots,b_{l}\right\} \subset\mathcal{A}$
+\end_inset
+
+, образованный мономами, не являющимися старшими мономами многочленов 
+\begin_inset Formula $I'$
+\end_inset
+
+.
+ Если оказывается, что множество таких мономов бесконечно, то множество
+ решений системы содержит бесконечно много точек и рассматриваемый алгоритм
+ неприменим к данному случаю.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:selecting-ci"
+
+\end_inset
+
+выбирается произвольный набор ненулевых случайных констант 
+\begin_inset Formula $c_{1},\dots,c_{n}\in\mathcal{K}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+рассматривается оператор умножения на многочлен 
+\begin_inset Formula $F=\sum_{i=1}^{n}c_{i}x_{i}\in\mathcal{P}$
+\end_inset
+
+ как линейный оператор в 
+\begin_inset Formula $\mathcal{A}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:use-basis-for-matrix"
+
+\end_inset
+
+строится матрица этого оператора, являющаяся 
+\begin_inset Formula $l\times l$
+\end_inset
+
+ матрицей с элементами из 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
+ При этом 
+\begin_inset Formula $G'$
+\end_inset
+
+ используется для вычисления нормальной формы многочлена, являющейся однозначным
+ представителем класса в 
+\begin_inset Formula $\mathcal{A}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Находится 
+\begin_inset Formula $l$
+\end_inset
+
+ различных собственных векторов матрицы 
+\begin_inset Formula $m_{F}$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+при помощи метода поиска собственных значений матрицы для 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ определяются собственные значения матрицы 
+\begin_inset Formula $m_{F}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+если число различных собственных значений оказывается меньше 
+\begin_inset Formula $l$
+\end_inset
+
+, выполняется возврат к шагу 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:selecting-ci"
+
+\end_inset
+
+, где выбираются другие случайные константы.
+ На практике возникновение такой ситуации крайне маловероятно.
+\end_layout
+
+\begin_layout Enumerate
+путём решения системы линейных уравнений над 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ находятся левые вектора-строки, отвечающие собственным значениям
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Находятся значения 
+\begin_inset Formula $x_{1},\dots,x_{n}$
+\end_inset
+
+, соответствующие каждому собственному вектору
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+значения собственного вектора трактуются как значения базисных элементов
+ 
+\begin_inset Formula $b_{1},\dots,b_{l}$
+\end_inset
+
+ в точке, являющейся решением исходной системы.
+\end_layout
+
+\begin_layout Enumerate
+находятся значения 
+\begin_inset Formula $x_{j}\in B$
+\end_inset
+
+ путём выбора их из найденных значений базисных элементов
+\end_layout
+
+\begin_layout Enumerate
+находятся значения 
+\begin_inset Formula $x_{i}\notin B$
+\end_inset
+
+ путём подстановки в многочлены 
+\begin_inset Formula $p_{i}\in G',\HM(p_{i})=x_{i}$
+\end_inset
+
+ найденных значений
+\begin_inset Formula $x_{j}\in B$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Приведённый алгоритм использует базис Грёбнера на шагах 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:use-basis-for-matrix"
+
+\end_inset
+
+ и 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:use-basis-for-radical"
+
+\end_inset
+
+ для нахождения нормальной формы и это единственное, что требуется от базиса.
+ Таким образом описанный алгоритм не накладывает никакого ограничения на
+ мономиальный порядок, относительно которого считается базис Грёбнера.
+ Также допустимы модификации данного алгоритма, вычисляющие не базис Грёбнера,
+ а краевой базис, строгое определение которого даётся в 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "NumericalPolynomialAlgebra"
@@ -15797,21 +16069,7 @@ key "FastStablePolySolving,ComputingBorderBases"
  предлагают различные алгоритмы его вычисления, в частности оптимизированные
  для численных задач, однако эти алгоритмы не используют сигнатурных методов,
  показавших свою эффективность при вычислении базисов Грёбнера.
- Работа 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "GroebnerInExtFields"
-
-\end_inset
-
- предлагает адаптацию F5 для численного вычисления Базисов Грёбнера, однако
- имеет недостаток -- после обнаружения каждого из нулей, входная система
- модифицируется и алгоритм запускается заново, теряя таким образом все полученны
-е ранее результаты.
-\end_layout
-
-\begin_layout Standard
-[Метод использующий, матрицу линейного оператора и базис краёв]
+ 
 \end_layout
 
 \begin_layout Section
@@ -15819,7 +16077,59 @@ key "GroebnerInExtFields"
 \end_layout
 
 \begin_layout Standard
+При этом, если вычисление проходит в 
+\begin_inset Formula $\mathcal{K}=\mathbb{C}$
+\end_inset
+
+, входные данные могут быть заданы с некоторой погрешностью.
+ Опишем рассматриваемую задачу более формально:
+\end_layout
+
+\begin_layout Standard
+Приведём более строгую формулировку формулировку задачи, которую будем рассматри
+вать.
+\end_layout
+
+\begin_layout Definition
+Назовём интервалом 
+\end_layout
+
+\begin_layout Standard
+Теперь можно построить формальный многочлен с такими коэффициентами.
+\end_layout
+
+\begin_layout Definition
+Приближённым многочленом в 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+ Для заданного конечного набора 
+\begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} $
+\end_inset
+
+ многочленов в кольце многочленов 
+\begin_inset Formula $\mathcal{P}=\mathbb{C}\left[x_{1},\dots,x_{n}\right]$
+\end_inset
+
+ определить конечность множества решений.
+\end_layout
+
+\begin_layout Standard
 [Символический метод, приближённая арифметика, интервальная арифметика]
+\end_layout
+
+\begin_layout Standard
+Работа 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GroebnerInExtFields"
+
+\end_inset
+
+ предлагает адаптацию алгоритмов Бухбергера и F5 для численного вычисления
+ Базисов Грёбнера, однако имеет недостаток -- после обнаружения каждого
+ из нулей, входная система модифицируется и алгоритм запускается заново,
+ теряя таким образом все результаты, вычисленные ранее.
 \end_layout
 
 \begin_layout Section
