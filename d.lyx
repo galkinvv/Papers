@@ -15829,8 +15829,18 @@ key "UsingAlgebraicGeometry"
 \end_layout
 
 \begin_layout Enumerate
-образующие радикала находятся на основе базиса Грёбнера с использованием
- метода описанного в параграфе 2 той же главы
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:use-basis-for-radical"
+
+\end_inset
+
+образующие радикала находятся на основе нормальной формы относительно базиса
+ Грёбнера 
+\begin_inset Formula $G$
+\end_inset
+
+ с использованием метода описанного в параграфе 2 той же главы
 \end_layout
 
 \end_deeper
@@ -15903,7 +15913,7 @@ name "enu:selecting-ci"
 \begin_layout Enumerate
 \begin_inset CommandInset label
 LatexCommand label
-name "enu:use-basis-for-norm"
+name "enu:use-basis-for-matrix"
 
 \end_inset
 
@@ -16023,8 +16033,25 @@ reference "enu:selecting-ci"
 
 \end_deeper
 \begin_layout Standard
-Этот алгоритм Для вычислений матрицы действия достаточно построить краевой
- базис, строгое определение которого даётся в 
+Приведённый алгоритм использует базис Грёбнера на шагах 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:use-basis-for-matrix"
+
+\end_inset
+
+ и 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:use-basis-for-radical"
+
+\end_inset
+
+ для нахождения нормальной формы и это единственное, что требуется от базиса.
+ Таким образом описанный алгоритм не накладывает никакого ограничения на
+ мономиальный порядок, относительно которого считается базис Грёбнера.
+ Также допустимы модификации данного алгоритма, вычисляющие не базис Грёбнера,
+ а краевой базис, строгое определение которого даётся в 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "NumericalPolynomialAlgebra"
@@ -16042,22 +16069,7 @@ key "FastStablePolySolving,ComputingBorderBases"
  предлагают различные алгоритмы его вычисления, в частности оптимизированные
  для численных задач, однако эти алгоритмы не используют сигнатурных методов,
  показавших свою эффективность при вычислении базисов Грёбнера.
- , позволяющим использовать базис Грёбнера относительно любого порядка на
- мономах Работа 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "GroebnerInExtFields"
-
-\end_inset
-
- предлагает адаптацию F5 для численного вычисления Базисов Грёбнера, однако
- имеет недостаток -- после обнаружения каждого из нулей, входная система
- модифицируется и алгоритм запускается заново, теряя таким образом все полученны
-е ранее результаты.
-\end_layout
-
-\begin_layout Standard
-[Метод использующий, матрицу линейного оператора и базис краёв]
+ 
 \end_layout
 
 \begin_layout Section
@@ -16070,7 +16082,12 @@ key "GroebnerInExtFields"
 \end_inset
 
 , входные данные могут быть заданы с некоторой погрешностью.
- Приведём формулировку задачи, которую будем рассматривать.
+ Опишем рассматриваемую задачу более формально:
+\end_layout
+
+\begin_layout Standard
+Приведём более строгую формулировку формулировку задачи, которую будем рассматри
+вать.
 \end_layout
 
 \begin_layout Definition
@@ -16098,8 +16115,21 @@ key "GroebnerInExtFields"
 \end_layout
 
 \begin_layout Standard
-[Символический метод, приближённая арифметика, интервальная арифметика,
- переход к радикалу]
+[Символический метод, приближённая арифметика, интервальная арифметика]
+\end_layout
+
+\begin_layout Standard
+Работа 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GroebnerInExtFields"
+
+\end_inset
+
+ предлагает адаптацию алгоритмов Бухбергера и F5 для численного вычисления
+ Базисов Грёбнера, однако имеет недостаток -- после обнаружения каждого
+ из нулей, входная система модифицируется и алгоритм запускается заново,
+ теряя таким образом все результаты, вычисленные ранее.
 \end_layout
 
 \begin_layout Section
