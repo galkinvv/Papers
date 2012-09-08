@@ -16077,41 +16077,137 @@ key "FastStablePolySolving,ComputingBorderBases"
 \end_layout
 
 \begin_layout Standard
-При этом, если вычисление проходит в 
+Если вычисление проходит в 
 \begin_inset Formula $\mathcal{K}=\mathbb{C}$
 \end_inset
 
 , входные данные могут быть заданы с некоторой погрешностью.
- Опишем рассматриваемую задачу более формально:
-\end_layout
-
-\begin_layout Standard
-Приведём более строгую формулировку формулировку задачи, которую будем рассматри
-вать.
+ Опишем рассматриваемую задачу более формально.
 \end_layout
 
 \begin_layout Definition
-Назовём интервалом 
-\end_layout
+Назовём 
+\emph on
+приближённым комплексным числом
+\emph default
+ пару 
+\begin_inset Formula $\left(a,\varepsilon\right)$
+\end_inset
 
-\begin_layout Standard
-Теперь можно построить формальный многочлен с такими коэффициентами.
-\end_layout
+, где 
+\begin_inset Formula $a\in\mathbb{C},0\leqslant\varepsilon\in\mathbb{R}$
+\end_inset
 
-\begin_layout Definition
-Приближённым многочленом в 
+.
+ Множество 
+\begin_inset Formula $\left\{ a+e|e\in\mathbb{C},\left|e\right|\leqslant\varepsilon\right\} \subset\mathbb{C}$
+\end_inset
+
+ называется 
+\emph on
+множеством вариаций
+\emph default
+ приближённого комплексного числа.
+ Формальный многочлен с такими коэффициентами называется 
+\emph on
+приближённым многочленом
+\emph default
+ над 
 \begin_inset Formula $\mathbb{C}$
 \end_inset
 
- Для заданного конечного набора 
-\begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} $
+.
+ Многочлены, получаемые подстановкой коэффициентов из множества вариаций,
+ называются 
+\emph on
+вариациями приближённого многочлена
+\emph default
+.
+ Аналогично определяется 
+\emph on
+приближённая система полиномиальных уравнений
+\emph default
+ и 
+\emph on
+вариации системы
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Множество вариаций системы изоморфно декартову произведению конечного числа
+ множеств вариаций коэффициентов и является топологическим пространством.
+ Элементы 
+\begin_inset Formula $\mathbb{C}$
 \end_inset
 
- многочленов в кольце многочленов 
-\begin_inset Formula $\mathcal{P}=\mathbb{C}\left[x_{1},\dots,x_{n}\right]$
+ могут рассматриваться как приближённые числа с 
+\begin_inset Formula $\varepsilon=0$
 \end_inset
 
- определить конечность множества решений.
+.
+\end_layout
+
+\begin_layout Definition
+Система уравнений, заданная набором приближённых многочленов, называется
+ 
+\emph on
+системой с конечным непрерывным решением,
+\emph default
+ если для любой её вариации она имеет конечное множество корней в 
+\begin_inset Formula $\mathbb{C}^{n}$
+\end_inset
+
+, каждый из которых является непрерывной функции от вариации, где непрерывность
+ подразумевается в смысле топологического пространства и совпадает с понятием
+ непрерывности вектор функции 
+\begin_inset Quotes fld
+\end_inset
+
+решения системы в 
+\begin_inset Formula $\mathbb{C}^{n}$
+\end_inset
+
+
+\begin_inset Quotes frd
+\end_inset
+
+ по 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+-параметрам, соответствующим изменениям вариации приближённых комплексных
+ значений.
+\end_layout
+
+\begin_layout Standard
+Теперь можно сформулировать общую постановку задачи:
+\end_layout
+
+\begin_layout Problem
+Для заданной над 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+ приближённой системы уравнений 
+\begin_inset Formula $\left\{ f_{1}=0,\ldots,f_{m}=0\right\} $
+\end_inset
+
+ определить, является ли она системой с конечным непрерывным решением, и
+ если является -- найти множества значений её решения.
+\end_layout
+
+\begin_layout Standard
+[Ограничения - алгебраичность, невозможность установить непрерывность решения.
+ Формулировка ограничений 
+\begin_inset Quotes fld
+\end_inset
+
+постройить алгоритм, который или говорит не знаю, или даёт решения
+\begin_inset Quotes frd
+\end_inset
+
+].
 \end_layout
 
 \begin_layout Standard
@@ -16130,6 +16226,14 @@ key "GroebnerInExtFields"
  Базисов Грёбнера, однако имеет недостаток -- после обнаружения каждого
  из нулей, входная система модифицируется и алгоритм запускается заново,
  теряя таким образом все результаты, вычисленные ранее.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "NumericalComputationGB"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
