@@ -82,7 +82,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\GVWl}{<_{\text{H}}}
+\newcommand{\GVWl}{<_{\text{H}}}
 \end_inset
 
 
@@ -90,7 +90,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\GVWg}{>_{\text{\textnormal{H}}}}
+\newcommand{\GVWg}{>_{\text{\textnormal{H}}}}
 \end_inset
 
 
@@ -98,7 +98,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
+\newcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
 \end_inset
 
 
@@ -106,7 +106,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
+\newcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
 \end_inset
 
 	
@@ -114,7 +114,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\Sig}{\mathcal{S}}
+\newcommand{\Sig}{\mathcal{S}}
 \end_inset
 
 
@@ -122,7 +122,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\HM}{\mathrm{HM}}
+\newcommand{\HM}{\mathrm{HM}}
 \end_inset
 
 
@@ -130,7 +130,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\HC}{\mathrm{HC}}
+\newcommand{\HC}{\mathrm{HC}}
 \end_inset
 
 
@@ -138,7 +138,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\LCM}{\mathrm{LCM}}
+\newcommand{\LCM}{\mathrm{LCM}}
 \end_inset
 
 
@@ -146,7 +146,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\totaldeg}{\mathrm{deg}}
+\newcommand{\totaldeg}{\mathrm{deg}}
 \end_inset
 
 
@@ -154,7 +154,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\poly}{\mathrm{poly}}
+\newcommand{\poly}{\mathrm{poly}}
 \end_inset
 
 
@@ -162,7 +162,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\sigidx}{\mathrm{index}}
+\newcommand{\sigidx}{\mathrm{index}}
 \end_inset
 
 
@@ -3175,7 +3175,16 @@ AlgorithmF5
 \shape default
 Отсортированный по возрастанию сокращаемого монома список 
 \family typewriter
-{CritPair
+{
+\family default
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:CritPair"
+
+\end_inset
+
+
 \family sans
 
 \begin_inset Formula $(i,r,i,\varphi)|r\in G_{i-1}$

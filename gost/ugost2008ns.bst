@@ -1144,6 +1144,7 @@ FUNCTION {output.bibitem}
     { "english" 'curlanguage := }
     {language  'curlanguage := }
   if$
+  newline$
   "\selectlanguageifdefined" curlanguage bracify * write$
   newline$
   ""
