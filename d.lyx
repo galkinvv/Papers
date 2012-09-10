@@ -82,7 +82,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\GVWl}{<_{\text{H}}}
+\renewcommand{\GVWl}{<_{\text{H}}}
 \end_inset
 
 
@@ -90,7 +90,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\GVWg}{>_{\text{\textnormal{H}}}}
+\renewcommand{\GVWg}{>_{\text{\textnormal{H}}}}
 \end_inset
 
 
@@ -98,7 +98,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
+\renewcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
 \end_inset
 
 
@@ -106,7 +106,15 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
+\renewcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
+\end_inset
+
+	
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\renewcommand{\Sig}{\mathcal{S}}
 \end_inset
 
 
@@ -114,7 +122,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\Sig}{\mathcal{S}}
+\renewcommand{\HM}{\mathrm{HM}}
 \end_inset
 
 
@@ -122,7 +130,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\HM}{\mathrm{HM}}
+\renewcommand{\HC}{\mathrm{HC}}
 \end_inset
 
 
@@ -130,7 +138,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\HC}{\mathrm{HC}}
+\renewcommand{\LCM}{\mathrm{LCM}}
 \end_inset
 
 
@@ -138,7 +146,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\LCM}{\mathrm{LCM}}
+\renewcommand{\totaldeg}{\mathrm{deg}}
 \end_inset
 
 
@@ -146,7 +154,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\totaldeg}{\mathrm{deg}}
+\renewcommand{\poly}{\mathrm{poly}}
 \end_inset
 
 
@@ -154,15 +162,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\poly}{\mathrm{poly}}
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset FormulaMacro
-\newcommand{\sigidx}{\mathrm{index}}
+\renewcommand{\sigidx}{\mathrm{index}}
 \end_inset
 
 
@@ -16165,6 +16165,11 @@ key "ArtificialDiscontinuities"
 Множество специализаций системы изоморфно декартову произведению конечного
  числа множеств специализаций коэффициентов и является топологическим пространст
 вом.
+ Далее множество специализаций будет обозначаться за 
+\begin_inset Formula $E$
+\end_inset
+
+.
  Элементы 
 \begin_inset Formula $\mathbb{C}$
 \end_inset
@@ -16182,31 +16187,33 @@ key "ArtificialDiscontinuities"
 \emph on
 системой с конечным непрерывным решением,
 \emph default
- если для любой её специализации она имеет одинаковое с учётом кратностей
- конечное множество корней в 
+ если множество решений любой её специализации является конечным набором
+ элементов 
 \begin_inset Formula $\mathbb{C}^{n}$
 \end_inset
 
-, каждый из которых является непрерывной функции от вариации, где непрерывность
- подразумевается в смысле топологического пространства и совпадает с понятием
- непрерывности вектор функции 
-\begin_inset Quotes fld
+, содержащим не более 
+\begin_inset Formula $l$
 \end_inset
 
-решения системы в 
-\begin_inset Formula $\mathbb{C}^{n}$
+ элементов, который представляется как непрерывная вектор-функция 
+\begin_inset Formula $E\rightarrow\mathbb{C}^{n\cdot l}$
 \end_inset
 
-
-\begin_inset Quotes frd
+.
+ Непрерывность подразумевается в смысле топологического пространства 
+\begin_inset Formula $E$
 \end_inset
 
- по 
+ и совпадает с понятием непрерывности по набору 
 \begin_inset Formula $\mathbb{C}$
 \end_inset
 
--параметрам, соответствующим изменениям вариации приближённых комплексных
- значений.
+-параметров 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+, соответствующим изменениям вариаций приближённых комплексных значений.
 \end_layout
 
 \begin_layout Standard
@@ -16279,14 +16286,14 @@ key "ArtificialDiscontinuities"
 \end_inset
 
 .
- Работа 
+ Например в 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "NumericalComputationGB"
 
 \end_inset
 
- показывает, как можно минимизировать вероятность появления таких многочленов
+ показано, как можно минимизировать вероятность появления таких многочленов
  путём сохранения  в мономе информации о размере коэффициентов.
 \end_layout
 
@@ -16298,18 +16305,16 @@ key "NumericalComputationOfGBVarSubsttution,ArtificialDiscontinuities,GroebnerIn
 
 \end_inset
 
- предлагает частичное решение рассматриваемой задачи, использующее базис
- Грёбнера идеала в кольце многочленов с расширенным набором переменных и
- 
+ предлагает частичное решение рассматриваемой задачи, использующее кольцо
+ многочленов с расширенным набором переменных и 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "par:action-matrix-method"
 
 \end_inset
 
- .
- Базис Грёбнера используется для построения нормальной формы, необходимой
- в этом методе.
+, в котором нормальная форма строится на основе Базиса Грёбнера, рассчитанного
+ в таком кольце.
  При этом, если система не является системой с конечным непрерывным решением,
  процедура расширения идеала никогда не завершится.
  Если же система обладает конечным непрерывным решением, то завершение процедуры
@@ -16317,10 +16322,10 @@ reference "par:action-matrix-method"
  Однако на практике метод достаточно быстро завершается для многих произвольных
  приближённых задач.
  Поэтому алгоритм искусственно ограничивают константным числом операций
- расширения, и если по их завершению базис расширенного идеала не находится
+ расширения, и, если по их завершению базис расширенного идеала не находится,
  алгоритм завершается с сообщением о его неприменимости к данной задаче.
  В случае же успешного завершения алгоритма найденный базис Грёбнера позволяет
- находить нормальную форму и таким образом при решения системы.
+ находить нормальную форму и таким образом решения системы.
 \end_layout
 
 \begin_layout Standard
