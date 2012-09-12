@@ -16203,6 +16203,52 @@ key "ArtificialDiscontinuities"
 .
 \end_layout
 
+\begin_layout Standard
+Обозначим множество всех конечных наборов элементов 
+\begin_inset Formula $\mathbb{C}^{n}$
+\end_inset
+
+ за 
+\begin_inset Formula $D$
+\end_inset
+
+.
+ На множестве 
+\begin_inset Formula $D$
+\end_inset
+
+ можно ввести структуру топологического пространства, основываясь на геометричес
+кой топологии 
+\begin_inset Formula $\mathbb{C}^{n}$
+\end_inset
+
+: подмножество 
+\begin_inset Formula $D'\subset D$
+\end_inset
+
+ входит в базу топологии 
+\begin_inset Formula $D$
+\end_inset
+
+, если 
+\begin_inset Formula $\exists d'\subset\mathbb{C}^{n}$
+\end_inset
+
+, являющееся открытым, такое что , 
+\begin_inset Formula $d\in D'\Longleftrightarrow$
+\end_inset
+
+ все элементы 
+\begin_inset Formula $d$
+\end_inset
+
+ лежат в 
+\begin_inset Formula $d'$
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Definition
 Система уравнений, заданная набором приближённых многочленов, называется
  
@@ -16218,29 +16264,62 @@ key "ArtificialDiscontinuities"
 \begin_inset Formula $l$
 \end_inset
 
- элементов, который представляется как ограниченная непрерывная вектор-функция
- 
-\begin_inset Formula $E\rightarrow\mathbb{C}^{n\cdot l}$
-\end_inset
-
-.
- Непрерывность подразумевается в смысле топологического пространства 
+ элементов, который представляется как ограниченная непрерывная функция.
+ Ограниченность здесь подразумевает наличие шара, содержащего все решения
+ всех специализаций.
+ Непрерывность подразумевается как непрерывность функции из топологического
+ пространства 
 \begin_inset Formula $E$
 \end_inset
 
- и совпадает с понятием непрерывности по набору 
-\begin_inset Formula $\mathbb{C}$
+ в топологическое пространство 
+\begin_inset Formula $D$
 \end_inset
 
--параметров 
-\begin_inset Formula $\varepsilon$
+.
+\end_layout
+
+\begin_layout Example
+С точки зрения приведённого определения уравнение 
+\begin_inset Formula $x^{2}-p_{1}$
 \end_inset
 
-, соответствующим изменениям вариаций приближённых комплексных значений.
+ будет являться системой с конечным непрерывным решением при любом приближённом
+ числе 
+\begin_inset Formula $p_{1}$
+\end_inset
+
+, поскольку отображение комплексный корень 
+\begin_inset Formula $\sqrt{*}:E\rightarrow D$
+\end_inset
+
+ в любой точке является непрерывным отображением с точки зрения введённой
+ топологии в 
+\begin_inset Formula $D$
+\end_inset
+
+.
+ Заметим, что такую непрерывность нельзя интерпретировать как непрерывность
+ вектор-функции 
+\begin_inset Formula $E\rightarrow\mathbb{C}^{2}$
+\end_inset
+
+, задающей упорядоченный список 
+\begin_inset Formula $2$
+\end_inset
+
+ возможно повторяющихся значений, так как комплексный корень можно бесконечным
+ числом способов записать в виде функции 
+\begin_inset Formula $E\rightarrow\mathbb{C}^{2}$
+\end_inset
+
+, но все они будут иметь точки разрыва в любой окрестности нуля.
+ 
 \end_layout
 
 \begin_layout Standard
-Дадим примеры систем удовлетворяющих и не удовлетворяющих данному определению
+Дадим примеры более сложных систем удовлетворяющих и не удовлетворяющих
+ данному определению
 \end_layout
 
 \begin_layout Example
@@ -16331,14 +16410,63 @@ y^{2}-p_{1} & =0
 \begin_inset Formula $P_{1}=1$
 \end_inset
 
- даёт бесконечное множество решений.
+ даёт бесконечное множество решений вида 
+\begin_inset Formula $\left(x_{1},-1\right),x_{1}\in\mathbb{C}$
+\end_inset
+
+.
  Это также вызвано изменением степени возникающего при решении многочлена,
  в котором обнуляется единственный ненулевой моном.
 \end_layout
 
 \begin_layout Standard
-Прмер непр.
- системы с комплексными корнями]
+С другой стороны, если при изменении специализации исчезает моном, не являющийся
+ мономом с наибольшей степенью, решение остаётся непрерывным.
+\end_layout
+
+\begin_layout Example
+Рассмотрим систему с двумя приближёнными числами 
+\begin_inset Formula $p_{1},p_{2}\in E$
+\end_inset
+
+.
+ 
+\begin_inset Formula 
+\[
+\left\{ \begin{array}{cc}
+x^{2}+xy+p_{2} & =0\\
+y^{2}-p_{1} & =0
+\end{array}\right..
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Она является системой с конечным непрерывным решением, поскольку при любых
+ выбранных приближённых числах 
+\begin_inset Formula $p_{1},p_{2}$
+\end_inset
+
+ решения системы будут выражаться на всём множестве специализаций одними
+ и теми же формулами, дающими решения квадратных уравнений с единичным старшим
+ коэффициентом, которые являются непрерывными отображениями 
+\begin_inset Formula $E\rightarrow D$
+\end_inset
+
+.
+ В силу определения топологии на 
+\begin_inset Formula $D$
+\end_inset
+
+ непрерывность сохраняется и в точке, где специализации обоих параметров
+ равны нулю и единственным решением системы является точка 
+\begin_inset Formula $\left(0,0\right)$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
