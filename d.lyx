@@ -16135,6 +16135,15 @@ key "ArtificialDiscontinuities"
 \end_inset
 
  -- радиусом вариации.
+ Приближённое число 
+\begin_inset Formula $\left(a,\varepsilon\right)$
+\end_inset
+
+ будем также записывать как 
+\begin_inset Formula $_{\varepsilon}a$
+\end_inset
+
+.
  Множество 
 \begin_inset Formula $\left\{ a+e|e\in\mathbb{C},\left|e\right|\leqslant\varepsilon\right\} \subset\mathbb{C}$
 \end_inset
@@ -16179,12 +16188,16 @@ key "ArtificialDiscontinuities"
 \end_inset
 
 .
- Элементы 
+ Точно известные 
 \begin_inset Formula $\mathbb{C}$
 \end_inset
 
- могут рассматриваться как приближённые числа с 
-\begin_inset Formula $\varepsilon=0$
+-коэффициенты 
+\begin_inset Formula $_{0}a$
+\end_inset
+
+ будут записываться просто как 
+\begin_inset Formula $a$
 \end_inset
 
 .
@@ -16205,7 +16218,8 @@ key "ArtificialDiscontinuities"
 \begin_inset Formula $l$
 \end_inset
 
- элементов, который представляется как непрерывная вектор-функция 
+ элементов, который представляется как ограниченная непрерывная вектор-функция
+ 
 \begin_inset Formula $E\rightarrow\mathbb{C}^{n\cdot l}$
 \end_inset
 
@@ -16230,18 +16244,101 @@ key "ArtificialDiscontinuities"
 \end_layout
 
 \begin_layout Example
-Система
+Рассмотрим систему
 \begin_inset Formula 
 \[
 \left\{ \begin{array}{cc}
- & =0\\
- & =0
-\end{array}\right.,
+x^{2}y+x^{2}+x & =0\\
+y^{2}-p_{1} & =0
+\end{array}\right.,p_{1}=_{0,2}0,9\in E.
 \]
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Она допускает простое решение методом исключения переменных, позволяющее
+ заключить, что она не является системой с конечным непрерывным решением.
+ Это вытекает из того, что для специализаций 
+\begin_inset Formula $P_{1}\in\mathbb{R},P_{1}\ne1$
+\end_inset
+
+ система имеет корень 
+\begin_inset Formula 
+\[
+\left\{ \begin{array}{ccc}
+y & = & -\sqrt{P_{1}}\\
+x & = & \frac{1}{\sqrt{P_{1}}-1}
+\end{array}\right.,
+\]
+
+\end_inset
+
+который нельзя непрерывно продолжить при 
+\begin_inset Formula $P_{1}=1$
+\end_inset
+
+, поскольку выражающая его функция не является ограниченной при 
+\begin_inset Formula $P_{1}\rightarrow1$
+\end_inset
+
+.
+ Эта же система с параметром 
+\begin_inset Formula $p_{1}=_{0,2}0,7$
+\end_inset
+
+ или 
+\begin_inset Formula $p_{1}=_{0,01}0,9$
+\end_inset
+
+ является системой с конечным непрерывным решением, поскольку все выражающие
+ решения функции непрерывны.
+ Значение параметра 
+\begin_inset Formula $p_{1}=_{0,01}1$
+\end_inset
+
+ снова даёт отсутствие непрерывности решений.
+\end_layout
+
+\begin_layout Standard
+Заметим, что отсутствие непрерывности функции решения происходит из-за обнуления
+ старшего коэффициента уравнения, возникающего в процессе исключения переменных,
+ приводящего к изменению степени и как следствие количества решений этого
+ уравнения.
+ Приведём ещё один пример подобной ситуации.
+\end_layout
+
+\begin_layout Example
+Рассмотрим систему
+\begin_inset Formula 
+\[
+\left\{ \begin{array}{cc}
+xy+x & =0\\
+y^{2}-p_{1} & =0
+\end{array}\right.,p_{1}=_{0,2}0,9\in E.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Она не является системой с конечным непрерывным решением, поскольку специализаци
+я 
+\begin_inset Formula $P_{1}=1$
+\end_inset
+
+ даёт бесконечное множество решений.
+ Это также вызвано изменением степени возникающего при решении многочлена,
+ в котором обнуляется единственный ненулевой моном.
+\end_layout
+
+\begin_layout Standard
+Прмер непр.
+ системы с комплексными корнями]
 \end_layout
 
 \begin_layout Standard
@@ -16327,7 +16424,8 @@ reference "par:action-matrix-method"
  При этом, если система не является системой с конечным непрерывным решением,
  процедура расширения идеала никогда не завершится.
  Если же система обладает конечным непрерывным решением, то завершение процедуры
- строго доказано лишь для задач с одним приближённым числом.
+ строго доказано лишь для определённого класса задач с одним приближённым
+ числом.
  Однако на практике метод достаточно быстро завершается для многих произвольных
  приближённых задач.
  Поэтому алгоритм искусственно ограничивают константным числом операций
