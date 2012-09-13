@@ -12639,6 +12639,12 @@ reference "eq:left-or-right-monom"
 \end_inset
 
 .
+ Для простоты дальнейших рассуждений будем предполагать, что входные многочлены
+ имеют 
+\begin_inset Formula $\HC=1$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Paragraph
@@ -12663,6 +12669,10 @@ SimpleSignatureGroebner
 
 , образующие базис Грёбнера, многочлен 
 \begin_inset Formula $f$
+\end_inset
+
+, 
+\begin_inset Formula $\HC(g_{i})=\HC(f)=1$
 \end_inset
 
 .
@@ -12963,7 +12973,7 @@ ReduceCheckingSignatures
 \begin_inset Formula $R$
 \end_inset
 
-
+ нормализованный единичным старшим коэффициентом
 \end_layout
 
 \begin_layout Enumerate
@@ -12994,6 +13004,29 @@ do while
 \end_inset
 
  среди указанных в условии цикла
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+if 
+\series default
+
+\begin_inset Formula $p\ne0$
+\end_inset
+
+
+\series bold
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $p\leftarrow\frac{p}{\HC(p)}$
+\end_inset
+
+
 \end_layout
 
 \end_deeper
@@ -14410,6 +14443,10 @@ SingleStepSignatureGroebner
 \family sans
 Вход: многочлены 
 \begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} $
+\end_inset
+
+ с 
+\begin_inset Formula $\HC(f_{i})=1$
 \end_inset
 
 ,
@@ -16153,6 +16190,11 @@ key "ArtificialDiscontinuities"
 множеством специализаций
 \emph default
  приближённого комплексного числа.
+ Множество приближённых комплексных чисел будет обозначаться 
+\begin_inset Formula $\tilde{\mathbb{C}}$
+\end_inset
+
+.
  Формальный многочлен с такими коэффициентами называется 
 \emph on
 приближённым многочленом
@@ -16492,12 +16534,14 @@ y^{2}-p_{1} & =0
 \begin_inset Formula $\mathbb{C}^{n}$
 \end_inset
 
-, такой что каждая специализация системы имеет 
-\begin_inset Formula $l$
+, такой что каждая специализация системы имеет решения, являющихся специализация
+ми точек этого множества.
+ Менее формально это можно выразить как задачу нахождения окрестностей в
+ 
+\begin_inset Formula $\mathbb{C}^{n}$
 \end_inset
 
- решений, являющихся специализациями точек этого множества.
- содержащий её решения для всех специализаций.
+, содержащих решения системы уравнений для всех специализаций.
  
 \end_layout
 
@@ -16601,7 +16645,159 @@ reference "par:SingleStepSignatureGroebner"
 \end_layout
 
 \begin_layout Standard
-[Влияние нулей на процесс вычисления]
+Одним из способов решения задачи с приближёнными комплексными числами является
+ применение алгоритма базиса Грёбнера к многочленам непосредственно в интервальн
+ой записи.
+ Опишем подробнее этот процесс.
+ Прежде всего определим какой смысл должны иметь приближённые многочлены
+ получаемые в процессе вычислений.
+ При вычислении базиса Грёбнера над полем про каждый промежуточный многочлен
+ 
+\begin_inset Formula $p$
+\end_inset
+
+ известно, что он лежит в идеале порождаемом входными многочленами.
+ В случае приближённых чисел выполняется более слабый инвариант.
+ 
+\end_layout
+
+\begin_layout Fact
+Пусть 
+\begin_inset Formula $p$
+\end_inset
+
+ -- промежуточный многочлен в вычислении базиса Грёбнера, а 
+\begin_inset Formula $I'$
+\end_inset
+
+ -- идеал порождаемый некоторой специализацией входных данных.
+ Тогда существует специализация 
+\begin_inset Formula $p$
+\end_inset
+
+, лежащая в 
+\begin_inset Formula $I'$
+\end_inset
+
+.
+ Обратное выполняться не обязано -- могут существовать специализации 
+\begin_inset Formula $p$
+\end_inset
+
+, не соответствующие ни одной из специализаций входных данных.
+\end_layout
+
+\begin_layout Standard
+Применяя данное свойство к выданному алгоритмом набору ответу -- набору
+ нормализованных многочленов -- мы получим, что для любой специализации
+ входных данных существует специализация каждого из многочленов набора,
+ лежащая в соответствующем идеале 
+\begin_inset Formula $I'$
+\end_inset
+
+.
+ Свойство набора быть базисом Грёбнера не зависит от коэффициентов, поэтому
+ оно будет выполняться для всех специализаций при том условии, что структура
+ идеала мономов, порождаемого старшими мономами 
+\begin_inset Formula $I'$
+\end_inset
+
+ остаётся неизменной для всех специализаций.
+ К вопросу о том, при каких условиях получаемая специализация набора является
+ базисом Грёбнера мы вернёмся позже, а сейчас определим операции над приближённы
+ми многочленами так, чтоб выполнялся инвариант и таким образом получаемая
+ специализация лежала в идеале.
+\end_layout
+
+\begin_layout Standard
+Арифметические операции над приближёнными числами определяются следующим
+ образом:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $(a_{1},\varepsilon_{1})+(a_{2},\varepsilon_{2})=(a_{1}+a_{2},\varepsilon_{1}+\varepsilon_{2})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $(a_{1},\varepsilon_{1})\times(a_{2},\varepsilon_{2})=(a_{1}a_{2},\varepsilon_{1}a_{2})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Для алгоритма 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:SingleStepSignatureGroebner"
+
+\end_inset
+
+ необходимы две операции над многочленами, требующие арифметических операций
+ над коэффициентами, причём обе они применяются в процедуре 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:ReduceCheckingSignatures"
+
+\end_inset
+
+.
+ Это редукция многочлена по многочлену с единичным старшим коэффициентом
+ и нормализация старшего коэффициента.
+ Редукцию многочлена 
+\begin_inset Formula $p$
+\end_inset
+
+ по нормализованному многочлену 
+\begin_inset Formula $r$
+\end_inset
+
+ определим стандартным образом -- из 
+\begin_inset Formula $p$
+\end_inset
+
+ вычтем 
+\begin_inset Formula $r$
+\end_inset
+
+ домноженный на 
+\begin_inset Formula $\HC(p)$
+\end_inset
+
+ и удалим сокращаемый моном, несмотря на то что в интервальной арифметике
+ его радиус вариации будет ненулевой.
+ необходимо 
+\begin_inset Quotes fld
+\end_inset
+
+рассмотреть
+\begin_inset Quotes frd
+\end_inset
+
+ все возможные специализации 
+\begin_inset Formula $\HC(p)$
+\end_inset
+
+.
+ Для этого 
+\begin_inset Formula $r$
+\end_inset
+
+ поэлементно умножается на 
+\begin_inset Formula $\HC(p)$
+\end_inset
+
+, что даёт приближённый многочлен про который известно умножить происходит
+ по формуле Для этого нужны 3 арифметические операции Получается, что на
+ каждом шаге алгоритма переход совершается не к равносильной системе, а
+ к более общей, множество решений которой при различных специализациях содержит
+ множество решений исходной системы, то есть осуществляется переход к следствию.
+ Для реализации исходная система уравнений рассматривается как одна совокупность
+на каждом шаге происходит переход от вычислений [Влияние нулей на процесс
+ вычисления]
 \end_layout
 
 \begin_layout Subsection
