@@ -16657,11 +16657,17 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  известно, что он лежит в идеале порождаемом входными многочленами.
- В случае приближённых чисел выполняется более слабый инвариант.
+ В случае приближённых чисел будем требовать выполнения более слабого инварианта.
  
 \end_layout
 
-\begin_layout Fact
+\begin_layout Claim
+\begin_inset CommandInset label
+LatexCommand label
+name "needed-poly-prop"
+
+\end_inset
+
 Пусть 
 \begin_inset Formula $p$
 \end_inset
@@ -16709,23 +16715,219 @@ reference "par:SingleStepSignatureGroebner"
  специализация лежала в идеале.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Definition
 Арифметические операции над приближёнными числами определяются следующим
  образом:
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Сложение 
 \begin_inset Formula $(a_{1},\varepsilon_{1})+(a_{2},\varepsilon_{2})=(a_{1}+a_{2},\varepsilon_{1}+\varepsilon_{2})$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Itemize
-\begin_inset Formula $(a_{1},\varepsilon_{1})\times(a_{2},\varepsilon_{2})=(a_{1}a_{2},\varepsilon_{1}a_{2})$
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Умножение 
+\begin_inset Formula $(a_{1},\varepsilon_{1})\times(a_{2},\varepsilon_{2})=(a_{1}a_{2},\varepsilon_{1}\left|a_{2}\right|+\varepsilon_{2}\left|a_{1}\right|+\varepsilon_{1}\varepsilon_{2})$
+\end_inset
+
+, в частности 
+\begin_inset Formula $(a_{1},\varepsilon_{1})\times(a_{2},0)=(a_{1}a_{2},\varepsilon_{1}\left|a_{2}\right|)$
 \end_inset
 
 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Вычитание получается на основе сложения и умножения на 
+\begin_inset Formula $-1$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+(a_{1},\varepsilon_{1})-(a_{2},\varepsilon_{2})=(a_{1},\varepsilon_{1})+((a_{2},\varepsilon_{2})\times_{0}-1)=(a_{1}-a_{2},\varepsilon_{1}+\varepsilon_{2})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Обращение определяется только для приближённых чисел, для которых 0 не является
+ специализацией, что эквивалентно 
+\begin_inset Formula $\left|a\right|-\varepsilon>0$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula 
+\[
+\frac{1}{(a,\varepsilon)}=\left(\frac{1}{a},\frac{\varepsilon}{\left|a\right|\left(\left|a\right|-\varepsilon\right)}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Заданные таким образом арифметические операции обладают следующим свойством:
+ численный 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+-результат арифметической операции над любым набором специализаций операндов
+ равен некоторой специализации результата операции в 
+\begin_inset Formula $\tilde{\mathbb{C}}$
+\end_inset
+
+.
+ Обратное выполняется только для сложения и вычитания: любая специализация
+ результата операции сложения/вычитания в 
+\begin_inset Formula $\tilde{\mathbb{C}}$
+\end_inset
+
+ является результатом соответствующей операции в 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+ над некоторыми специализациями операндов.
+\end_layout
+
+\begin_layout Proof
+Для сложение и вычитания прямое и обратное утверждения доказываются прямой
+ проверкой.
+ Для умножения следует из того, что 
+\begin_inset Formula 
+\[
+\left|(a_{1}+e_{1})(a_{2}+e_{2})-a_{1}a_{2}\right|=\left|e_{1}a_{2}+e_{2}a_{1}+e_{1}e_{2}\right|\leqslant\varepsilon_{1}\left|a_{2}\right|+\varepsilon_{2}\left|a_{1}\right|+\varepsilon_{1}\varepsilon_{2}.
+\]
+
+\end_inset
+
+Для обращения:
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula 
+\[
+\left|\frac{1}{a+e}-\frac{1}{a}\right|=\left|\frac{a-(a+e)}{a\left(a+e\right)}\right|=\left|\frac{e}{a\left(a+e\right)}\right|\leqslant\frac{\varepsilon}{\left|a\left(a+e\right)\right|}\leqslant\frac{\varepsilon}{\left|a\right|\left(\left|a\right|-\varepsilon\right)}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+На основе сложения чисел определим сложение приближённых многочленов, а
+ на основе операции умножения -- операцию умножения многочлена на элемент
+ 
+\begin_inset Formula $\tilde{\mathbb{C}}$
+\end_inset
+
+.
+ Умножение на моном определяется без использования арифметических операций.
+ 
+\end_layout
+
+\begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:linear-comb"
+
+\end_inset
+
+Если приближённые многочлены 
+\begin_inset Formula $p_{1},p_{2}$
+\end_inset
+
+ удовлетворяют утверждению 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "needed-poly-prop"
+
+\end_inset
+
+, то 
+\begin_inset Formula $\forall\left(a,\varepsilon\right)\in\tilde{\mathbb{C}},t\in\mathbb{T}$
+\end_inset
+
+ приближённый многочлен 
+\begin_inset Formula $p_{1}+\left(a,\varepsilon\right)t\cdot p_{2}$
+\end_inset
+
+ тоже ему удовлетворяет.
+ Более того, если при фиксированных входных данных, дающих идеал 
+\begin_inset Formula $I'$
+\end_inset
+
+ зафиксировать лежащие в 
+\begin_inset Formula $I'$
+\end_inset
+
+ специализации 
+\begin_inset Formula $p_{1}',p_{2}'$
+\end_inset
+
+ дополнительно зафиксировать для 
+\begin_inset Formula $\left(a,\varepsilon\right)$
+\end_inset
+
+ зафиксировать произвольную специализацию 
+\begin_inset Formula $a+e$
+\end_inset
+
+, то 
+\begin_inset Formula $p_{1}'+\left(a+e\right)tp_{2}'$
+\end_inset
+
+ даёт специализацию 
+\begin_inset Formula $p_{1}+\left(a,\varepsilon\right)t\cdot p_{2}$
+\end_inset
+
+ которая лежит в 
+\begin_inset Formula $I'$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Из предыдущей леммы вытекает, что 
+\begin_inset Formula $p_{1}'+\left(a+e\right)tp_{2}'$
+\end_inset
+
+ есть специализация приближённого многочлена.
+ Кроме того она лежит в 
+\begin_inset Formula $I'$
+\end_inset
+
+, поскольку есть мономиальная комбинация элементов идеала.
+ Это означает что взяв любую специализацию для 
+\begin_inset Formula $\left(a,\varepsilon\right)$
+\end_inset
+
+ мы получаем специализацию многочлена, необходимую для выполнения утверждения
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "needed-poly-prop"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -16736,8 +16938,8 @@ reference "par:SingleStepSignatureGroebner"
 
 \end_inset
 
- необходимы две операции над многочленами, требующие арифметических операций
- над коэффициентами, причём обе они применяются в процедуре 
+ необходимы две операции над многочленами, причём обе они применяются в
+ процедуре 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "par:ReduceCheckingSignatures"
@@ -16747,7 +16949,7 @@ reference "par:ReduceCheckingSignatures"
 .
  Это редукция многочлена по многочлену с единичным старшим коэффициентом
  и нормализация старшего коэффициента.
- Редукцию многочлена 
+ Если редукцию многочлена 
 \begin_inset Formula $p$
 \end_inset
 
@@ -16755,48 +16957,181 @@ reference "par:ReduceCheckingSignatures"
 \begin_inset Formula $r$
 \end_inset
 
- определим стандартным образом -- из 
-\begin_inset Formula $p$
+ с 
+\begin_inset Formula $\HC(r)=_{0}1$
 \end_inset
 
- вычтем 
-\begin_inset Formula $r$
+ определить стандартным образом -- как 
+\begin_inset Formula $p-\left(a,\varepsilon\right)\frac{\HM(p)}{\HM(r)}\cdot r$
 \end_inset
 
- домноженный на 
-\begin_inset Formula $\HC(p)$
+, где 
+\begin_inset Formula $\left(a,\varepsilon\right)=\HC(p)$
 \end_inset
 
- и удалим сокращаемый моном, несмотря на то что в интервальной арифметике
- его радиус вариации будет ненулевой.
- необходимо 
-\begin_inset Quotes fld
-\end_inset
+, мы получим многочлен, удовлетворяющий утверждению 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "needed-poly-prop"
 
-рассмотреть
-\begin_inset Quotes frd
-\end_inset
-
- все возможные специализации 
-\begin_inset Formula $\HC(p)$
 \end_inset
 
 .
- Для этого 
+ Но при этом его старший моном с коэффициентом будет равен 
+\begin_inset Formula $(0,2\varepsilon)\HM(p)$
+\end_inset
+
+, поскольку сокращение не произойдёт.
+ Обозначим за 
+\begin_inset Formula $p'$
+\end_inset
+
+ специализацию 
+\begin_inset Formula $p,$
+\end_inset
+
+ лежащую в 
+\begin_inset Formula $I'$
+\end_inset
+
+.
+ Тогда, если применить предыдущую лемму взяв в качестве фиксированной специализа
+ции 
+\begin_inset Formula $\left(a,\varepsilon\right)$
+\end_inset
+
+ число равное 
+\begin_inset Formula $\HC(p')$
+\end_inset
+
+, будет получена специализация 
+\begin_inset Formula $p-\HC(p)\frac{\HM(p)}{\HM(r)}\cdot r$
+\end_inset
+
+ лежащая в 
+\begin_inset Formula $I'$
+\end_inset
+
+ со старшим мономом 
+\begin_inset Formula $\prec_{0}$
+\end_inset
+
+
+\begin_inset Formula $\HM(p)$
+\end_inset
+
+, поскольку в ней произойдёт сокращение.
+ Обозначим за 
+\family typewriter
+ApproxReduce
+\family default
+
+\begin_inset Formula $(p,r)$
+\end_inset
+
+ процедуру, возвращающую многочлен 
+\begin_inset Formula $p-\HC(p)\frac{\HM(p)}{\HM(r)}\cdot r$
+\end_inset
+
+ с отброшенным старшим мономом 
+\begin_inset Formula $\HM(p)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Lemma
+Для любой фиксированной специализации входных данных, дающей идеал 
+\begin_inset Formula $I'$
+\end_inset
+
+ и пары удовлетворяющих утверждению 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "needed-poly-prop"
+
+\end_inset
+
+ многочленов 
+\begin_inset Formula $p,r$
+\end_inset
+
+ с 
+\begin_inset Formula $\HM(r)|\HM(p),\HC(r)=_{0}1$
+\end_inset
+
+ существует специализация многочлена 
+\family typewriter
+\emph on
+ApproxReduce
+\family default
+\emph default
+
+\begin_inset Formula $(p,r)$
+\end_inset
+
+ лежащая в 
+\begin_inset Formula $I'$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Из леммы 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:linear-comb"
+
+\end_inset
+
+ следует существование специализаций, лежащих в 
+\begin_inset Formula $I'$
+\end_inset
+
+, для приближённого многочлена, являющегося мономиальной комбинацией 
+\begin_inset Formula $p$
+\end_inset
+
+ и 
 \begin_inset Formula $r$
 \end_inset
 
- поэлементно умножается на 
-\begin_inset Formula $\HC(p)$
+ с неотброшенным старшим мономом.
+ Выше показано что среди них есть специализация с нулевым коэффициентом
+ при мономе
+\begin_inset Formula $\HM(p)$
 \end_inset
 
-, что даёт приближённый многочлен про который известно умножить происходит
- по формуле Для этого нужны 3 арифметические операции Получается, что на
- каждом шаге алгоритма переход совершается не к равносильной системе, а
- к более общей, множество решений которой при различных специализациях содержит
- множество решений исходной системы, то есть осуществляется переход к следствию.
+.
+ Она лежит в 
+\begin_inset Formula $I'$
+\end_inset
+
+ и при этом будет являться и специализацией и укороченного многочлена 
+\family typewriter
+ApproxReduce
+\family default
+
+\begin_inset Formula $(p,r)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+[Нормализация старшего коээфициента]
+\end_layout
+
+\begin_layout Standard
+Получается, что на каждом шаге алгоритма переход совершается не к равносильной
+ системе, а к более общей, множество решений которой при различных специализация
+х содержит множество решений исходной системы, то есть осуществляется переход
+ к следствию.
  Для реализации исходная система уравнений рассматривается как одна совокупность
-на каждом шаге происходит переход от вычислений [Влияние нулей на процесс
+ на каждом шаге происходит переход от вычислений [Влияние нулей на процесс
  вычисления]
 \end_layout
 
