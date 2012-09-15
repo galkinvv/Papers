@@ -16517,6 +16517,12 @@ y^{2}-p_{1} & =0
 \end_layout
 
 \begin_layout Problem
+\begin_inset CommandInset label
+LatexCommand label
+name "problem:approx-poly-system"
+
+\end_inset
+
 Для заданной над 
 \begin_inset Formula $\mathbb{C}$
 \end_inset
@@ -16672,7 +16678,8 @@ name "needed-poly-prop"
 \begin_inset Formula $p$
 \end_inset
 
- -- промежуточный многочлен в вычислении базиса Грёбнера, а 
+ -- промежуточный приближённый многочлен в вычислении базиса Грёбнера, а
+ 
 \begin_inset Formula $I'$
 \end_inset
 
@@ -16694,10 +16701,10 @@ name "needed-poly-prop"
 \end_layout
 
 \begin_layout Standard
-Применяя данное свойство к выданному алгоритмом набору ответу -- набору
- нормализованных многочленов -- мы получим, что для любой специализации
- входных данных существует специализация каждого из многочленов набора,
- лежащая в соответствующем идеале 
+Применяя данное свойство к выданному алгоритмом ответу -- набору нормализованных
+ многочленов -- мы получим, что для любой специализации входных данных существуе
+т специализация каждого из многочленов набора, лежащая в соответствующем
+ идеале 
 \begin_inset Formula $I'$
 \end_inset
 
@@ -16742,8 +16749,7 @@ name "needed-poly-prop"
 
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
+\begin_layout Standard
 Вычитание получается на основе сложения и умножения на 
 \begin_inset Formula $-1$
 \end_inset
@@ -16769,8 +16775,7 @@ name "needed-poly-prop"
 :
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
+\begin_layout Standard
 \begin_inset Formula 
 \[
 \frac{1}{(a,\varepsilon)}=\left(\frac{1}{a},\frac{\varepsilon}{\left|a\right|\left(\left|a\right|-\varepsilon\right)}\right)
@@ -16881,11 +16886,11 @@ reference "needed-poly-prop"
 \begin_inset Formula $p_{1}',p_{2}'$
 \end_inset
 
- дополнительно зафиксировать для 
+ и дополнительно зафиксировать для 
 \begin_inset Formula $\left(a,\varepsilon\right)$
 \end_inset
 
- зафиксировать произвольную специализацию 
+ произвольную специализацию 
 \begin_inset Formula $a+e$
 \end_inset
 
@@ -17042,18 +17047,7 @@ ApproxReduce
 \end_layout
 
 \begin_layout Lemma
-Для любой фиксированной специализации входных данных, дающей идеал 
-\begin_inset Formula $I'$
-\end_inset
-
- и пары удовлетворяющих утверждению 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "needed-poly-prop"
-
-\end_inset
-
- многочленов 
+Если пара приближённых многочленов 
 \begin_inset Formula $p,r$
 \end_inset
 
@@ -17061,7 +17055,14 @@ reference "needed-poly-prop"
 \begin_inset Formula $\HM(r)|\HM(p),\HC(r)=_{0}1$
 \end_inset
 
- существует специализация многочлена 
+ удовлетворяет утверждению 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "needed-poly-prop"
+
+\end_inset
+
+, то многочлен 
 \family typewriter
 \emph on
 ApproxReduce
@@ -17071,26 +17072,28 @@ ApproxReduce
 \begin_inset Formula $(p,r)$
 \end_inset
 
- лежащая в 
+ также ему удовлетворяет.
+\end_layout
+
+\begin_layout Proof
+Рассмотрим фиксированную специализацию входных данных, дающую идеал 
 \begin_inset Formula $I'$
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Proof
-Из леммы 
+ Из леммы 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lem:linear-comb"
 
 \end_inset
 
- следует существование специализаций, лежащих в 
+ следует существование лежащих в 
 \begin_inset Formula $I'$
 \end_inset
 
-, для приближённого многочлена, являющегося мономиальной комбинацией 
+ специализаций для приближённого многочлена, являющегося мономиальной комбинацие
+й 
 \begin_inset Formula $p$
 \end_inset
 
@@ -17109,7 +17112,8 @@ reference "lem:linear-comb"
 \begin_inset Formula $I'$
 \end_inset
 
- и при этом будет являться и специализацией и укороченного многочлена 
+ и при этом будет являться и специализацией для укороченного многочлена
+ 
 \family typewriter
 ApproxReduce
 \family default
@@ -17122,17 +17126,243 @@ ApproxReduce
 \end_layout
 
 \begin_layout Standard
-[Нормализация старшего коээфициента]
+Обратное утверждение неверно -- не любая специализация 
+\family typewriter
+ApproxReduce
+\family default
+
+\begin_inset Formula $(p,r)$
+\end_inset
+
+ будет лежать в идеале, порождённом некоторой специализацией входных данных.
+ Рассмотрим переход от системы уравнений, задаваемой входными приближёнными
+ многочленами, к системе задаваемой приближённым базисом Грёбнера, рассчитанным
+ при помощи алгоритма, использующего процедуру 
+\family typewriter
+ApproxReduce
+\family default
+.
+ В общем случае он будет не равносильным, а переходом к более общей системе,
+ множество решений которой при различных специализациях содержит множество
+ решений исходной системы.
+ Поскольку рассматриваемая задача 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "problem:approx-poly-system"
+
+\end_inset
+
+ требует лишь найти окрестности, содержащие решения, то такой переход 
+\begin_inset Quotes fld
+\end_inset
+
+к следствию
+\begin_inset Quotes frd
+\end_inset
+
+ вполне применим для её решения.
 \end_layout
 
 \begin_layout Standard
-Получается, что на каждом шаге алгоритма переход совершается не к равносильной
- системе, а к более общей, множество решений которой при различных специализация
-х содержит множество решений исходной системы, то есть осуществляется переход
- к следствию.
- Для реализации исходная система уравнений рассматривается как одна совокупность
- на каждом шаге происходит переход от вычислений [Влияние нулей на процесс
- вычисления]
+Нормализация старшего коэффициента многочлена 
+\begin_inset Formula $p$
+\end_inset
+
+ с обратимым старшим коэффициентом в случае точных вычислений определяется
+ как 
+\begin_inset Formula $\frac{1}{\HC\left(p\right)}p$
+\end_inset
+
+.
+ Если продолжить это определение на случай приближённых вычислений, применяя
+ его в случае обратимого 
+\begin_inset Formula $\HC\left(p\right)$
+\end_inset
+
+, то старший коэффициент полученного многочлена будет приближённым числом
+ вида 
+\begin_inset Formula $_{\alpha}1,\alpha>0$
+\end_inset
+
+, а не в точности единицей 
+\begin_inset Formula $_{0}1$
+\end_inset
+
+.
+ К многочлену
+\begin_inset Formula $\frac{1}{\HC\left(p\right)}p$
+\end_inset
+
+ можно применить лемму 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:linear-comb"
+
+\end_inset
+
+ интерпретировав его как 
+\begin_inset Formula $0+\frac{1}{\HC\left(p\right)}\cdot p$
+\end_inset
+
+, поэтому для любой специализации входных многочленов, дающей идеал 
+\begin_inset Formula $I'$
+\end_inset
+
+ найдётся специализация 
+\begin_inset Formula $\frac{1}{\HC\left(p\right)}p$
+\end_inset
+
+, лежащая в 
+\begin_inset Formula $I'$
+\end_inset
+
+.
+ Покажем, что это будет выполняться и после замены 
+\begin_inset Formula $_{\alpha}1$
+\end_inset
+
+ на 
+\begin_inset Formula $_{0}1$
+\end_inset
+
+ рассуждая аналогично случаю редукции многочлена по многочлену.
+ Обозначим 
+\begin_inset Formula $\frac{1}{\HC\left(p\right)}p$
+\end_inset
+
+ с такой заменой за 
+\family typewriter
+ApproxNormalize
+\family default
+
+\begin_inset Formula $\left(p\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Lemma
+Если приближённый многочлен 
+\begin_inset Formula $p$
+\end_inset
+
+ с обратимым 
+\begin_inset Formula $\HC(p)$
+\end_inset
+
+ удовлетворяет утверждению 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "needed-poly-prop"
+
+\end_inset
+
+, то многочлен 
+\family typewriter
+\emph on
+ApproxNormalize
+\family default
+\emph default
+
+\begin_inset Formula $\left(p\right)$
+\end_inset
+
+ также ему удовлетворяет.
+\end_layout
+
+\begin_layout Proof
+Зафиксируем специализацию входных данных, дающую идеал 
+\begin_inset Formula $I'$
+\end_inset
+
+ и специализацию 
+\begin_inset Formula $p'\in I'$
+\end_inset
+
+.
+ Снова рассмотрим лемму 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:linear-comb"
+
+\end_inset
+
+ по отношению к выражению 
+\begin_inset Formula $0+\frac{1}{\HC\left(p\right)}\cdot p$
+\end_inset
+
+.
+ Применим вторую часть утверждения леммы, взяв 
+\begin_inset Formula $\frac{1}{\HC\left(p'\right)}$
+\end_inset
+
+ в качестве специализации для 
+\begin_inset Formula $\frac{1}{\HC\left(p\right)}$
+\end_inset
+
+.
+ Получится 
+\begin_inset Formula $\frac{1}{\HC\left(p'\right)}p'\in I'$
+\end_inset
+
+, являющийся специализацией 
+\begin_inset Formula $\frac{1}{\HC\left(p\right)}\cdot p$
+\end_inset
+
+ с единичным старшим мономом.
+ Значит он является и специализацией 
+\family typewriter
+ApproxNormalize
+\family default
+
+\begin_inset Formula $\left(p\right)$
+\end_inset
+
+, что доказывает утверждение леммы.
+\end_layout
+
+\begin_layout Standard
+Операции 
+\family typewriter
+ApproxReduce 
+\family default
+и
+\family typewriter
+ ApproxNormalize
+\family default
+ позволяют провести процедуру 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:ReduceCheckingSignatures"
+
+\end_inset
+
+ для приближённых многочленов и найти таким образом базис Грёбнера при помощи
+ алгоритма 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:SingleStepSignatureGroebner"
+
+\end_inset
+
+, но только в том случае, если все многочлены поступившие на вход 
+\family typewriter
+ApproxNormalize
+\family default
+ имеют обратимый старший коэффициент.
+ В случае вычислений над полем 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+ единственным необратимым элементом был 0, который мог соответствовать только
+ нулевому многочлену.
+ В случае же приближённых вычислений возможно появление ненулевого многочлена
+ с необратимым старшим коэффициентом что делает продолжение алгоритма невозможны
+м.
+ Далее мы рассмотрим возможные причины появления необратимых коэффициентов
+ и опишем методы, позволяющие в большинстве случаев продолжить вычисление
+ базиса Грёбнера.
+ 
 \end_layout
 
 \begin_layout Subsection
