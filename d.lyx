@@ -17420,9 +17420,9 @@ ApproxNormalize
 \begin_inset Formula 
 \[
 \begin{array}{ccc}
-\poly(f_{1})= & yz+_{0,1}1, & \Sig(f_{1})=\left(1,1\right)\\
-\poly(f_{2})= & yz^{2}+xz+1, & \Sig(f_{2})=\left(1,2\right)\\
-\poly(f_{3})= & y^{2}z+xy+1, & \Sig(f_{3})=\left(1,3\right)
+\poly(f_{1})= & y^{2}z+_{0,1}1, & \Sig(f_{1})=\left(1,1\right)\\
+\poly(f_{2})= & y^{2}z^{2}+xz+1, & \Sig(f_{2})=\left(1,2\right)\\
+\poly(f_{3})= & y^{3}z+xy+1, & \Sig(f_{3})=\left(1,3\right)
 \end{array}
 \]
 
@@ -17445,7 +17445,7 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  редуцируется по 
-\begin_inset Formula $R=\left\{ \left(\left(yz,3\right),0\right),\left(\left(y^{2}z,3\right),0\right),\left(\left(yz,2\right),0\right)\right\} ,$
+\begin_inset Formula $R=\left\{ \left(\left(y^{2}z,3\right),0\right),\left(\left(y^{3}z,3\right),0\right),\left(\left(y^{2}z,2\right),0\right)\right\} ,$
 \end_inset
 
  давая 
@@ -17455,7 +17455,7 @@ reference "par:SingleStepSignatureGroebner"
  в результате
 \begin_inset Formula 
 \[
-\poly(f_{4})=\poly(f_{1})=yz+_{0,1}1,\Sig(f_{4})=\left(1,1\right).
+\poly(f_{4})=\poly(f_{1})=y^{2}z+_{0,1}1,\Sig(f_{4})=\left(1,1\right).
 \]
 
 \end_inset
@@ -17469,7 +17469,7 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  редуцируется по 
-\begin_inset Formula $R=\left\{ \left(\left(yz,3\right),0\right),\left(\left(y^{2}z,3\right),0\right),\left(\left(yz,2\right),0\right),f_{4}\right\} ,$
+\begin_inset Formula $R=\left\{ \left(\left(y^{2}z,3\right),0\right),\left(\left(y^{3}z,3\right),0\right),\left(\left(y^{2}z,2\right),0\right),f_{4}\right\} ,$
 \end_inset
 
  давая 
@@ -17489,7 +17489,7 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  добавляется 
-\begin_inset Formula $yf_{5}$
+\begin_inset Formula $y^{2}f_{5}$
 \end_inset
 
 , как редуцируемый по 
@@ -17501,11 +17501,11 @@ reference "par:SingleStepSignatureGroebner"
 
 \begin_layout Enumerate
 Первый элемент множества 
-\begin_inset Formula $B=\left\{ f_{3},yf_{5}\right\} $
+\begin_inset Formula $B=\left\{ f_{3},y^{2}f_{5}\right\} $
 \end_inset
 
  редуцируется по 
-\begin_inset Formula $R=\left\{ \left(\left(yz,3\right),0\right),\left(\left(y^{2}z,3\right),0\right),\left(\left(yz,2\right),0\right),f_{4},f_{5}\right\} ,$
+\begin_inset Formula $R=\left\{ \left(\left(y^{2}z,3\right),0\right),\left(\left(y^{3}z,3\right),0\right),\left(\left(y^{2}z,2\right),0\right),f_{4},f_{5}\right\} ,$
 \end_inset
 
  давая 
@@ -17529,14 +17529,99 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
 , как редуцируемый по 
+\begin_inset Formula $yf_{5}$
+\end_inset
+
+, а также
+\begin_inset Formula $yzf_{6}$
+\end_inset
+
+, как редуцируемый по 
 \begin_inset Formula $xf_{4}$
 \end_inset
 
-и 
-\begin_inset Formula $zf_{5}$
+.
+\end_layout
+
+\begin_layout Enumerate
+Первый элемент множества 
+\begin_inset Formula $B=\left\{ zf_{6},y^{2}f_{5},yzf_{6}\right\} $
 \end_inset
 
-.
+ редуцируется по 
+\begin_inset Formula $R=\left\{ \left(\left(y^{2}z,3\right),0\right),\left(\left(y^{3}z,3\right),0\right),\left(\left(y^{2}z,2\right),0\right),f_{4},f_{5},f_{6}\right\} ,$
+\end_inset
+
+ давая 
+\begin_inset Formula $f_{7}$
+\end_inset
+
+ в результате
+\begin_inset Formula 
+\[
+\poly(f_{7})=z\poly(f_{6})-y\poly(f_{5})=\left(_{0,2}0\right)yz+z-y,\Sig(f_{7})=\left(z,3\right).
+\]
+
+\end_inset
+
+То есть приближённые вычисления дали элемент с необратимым старшим мономом.
+\end_layout
+
+\begin_layout Standard
+При этом, если во входных многочленах заменить приближённое число на символическ
+ий параметр 
+\begin_inset Formula $b$
+\end_inset
+
+, то мы получим 
+\begin_inset Formula 
+\begin{eqnarray*}
+\poly\left(f_{5}\right) & = & xz-bz+1\\
+\poly\left(f_{6}\right) & = & xy-by+1\\
+\poly\left(f_{7}\right) & = & z-y,
+\end{eqnarray*}
+
+\end_inset
+
+то есть коэффициент при 
+\begin_inset Formula $yz$
+\end_inset
+
+ в 
+\begin_inset Formula $f_{7}$
+\end_inset
+
+обнуляется.
+ Из обнуления в случае символических вычислений следует, что обнуление произойдё
+т и при любой специализации входных данных.
+ Дадим название таким необратимым элементам, возникающим в приближённых
+ вычислениях.
+\end_layout
+
+\begin_layout Definition
+Необратимый приближённый элемент, возникший в процессе приближённых вычислений
+ называется 
+\emph on
+символическим нулём
+\emph default
+, если при любой специализации входных данных при проведении соответствующих
+ вычислений получается точный ноль.
+\end_layout
+
+\begin_layout Standard
+Таким образом, при появлении символического нуля в качестве старшего коэффициент
+а одного из многочленов, вычисление может быть продолжено путём отбрасывания
+ такого старшего монома, поскольку отбрасывание не нарушит выполняемость
+ утверждения 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "needed-poly-prop"
+
+\end_inset
+
+ для рассматриваемого многочлена.
+ Однако, чтоб применить этот подход на практике нужно уметь обнаруживать
+ символические нули, поэтому ниже будет предложен метод их обнаружения.
 \end_layout
 
 \begin_layout Standard
