@@ -17525,7 +17525,7 @@ ApproxNormalize
 Символические нули
 \end_layout
 
-\begin_layout Standard
+\begin_layout Example
 Рассмотрим следующий набор отмеченных приближённых многочленов 
 \begin_inset Formula $\left\{ f_{1},f_{2},f_{3}\right\} $
 \end_inset
@@ -17913,7 +17913,7 @@ x+y-1 & =0
 \begin_inset Formula $bx^{3}-xy^{2}+2xy+y^{2}$
 \end_inset
 
-, то система будет иметь конечное непрерывное решение.
+, то система может иметь конечное непрерывное решение.
  Однако это будет верно не для всех таких многочленов, поскольку после подстанов
 ки старший коэффициент всё равно может обнулиться.
  Такое к примеру произойдёт для многочлена 
@@ -17921,12 +17921,52 @@ x+y-1 & =0
 \end_inset
 
 .
- 
 \end_layout
 
 \begin_layout Standard
-[Подумать о существоании примера, дающего понижение степени без влияния
- на идеал]
+Необратимые приближённые коэффициенты, появляющиеся в старших мономах не
+ редуцированных до конца многочленов не представляют проблемы для алгоритма
+ 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:SingleStepSignatureGroebner"
+
+\end_inset
+
+, поскольку после редукции старшим будет уже совсем другой моном.
+\end_layout
+
+\begin_layout Example
+Поэтому возможна ситуация, когда максимум полной степени достигается на
+ единственном старшем элементе с необратимым коэффициентом, но при этом
+ система имеет конечное непрерывное решение.
+ Такова к примеру система 
+\begin_inset Formula 
+\[
+\left\{ \begin{array}{cc}
+\left(_{0,1}0\right)x^{4}+x^{2}+y & =0\\
+x^{3}-1 & =0
+\end{array}\right..
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Таким образом, хотя в простых случаях и можно проследить связь между полными
+ степенями мономов и устранимостью нуля, в общем случае такой зависимости
+ нет.
+ В следующем разделе будут рассмотрены методики устранения индуцированных
+ входными данными нулей, основанные по сути на искусственной модификации
+ мономиального порядка.
+ Данные методы позволяют однозначно сделать заключение о устранимости нуля
+ лишь в том случае, когда за фиксированное число применений такого метода
+ получается базис Грёбнера, не содержащей необратимых элементов среди ведущих.
+ Если же за фиксированное число применений базис Грёбнера не был найден,
+ метод признаётся неподходящим для рассматриваемой системы и вопрос устранимости
+ нуля остаётся открытым.
 \end_layout
 
 \begin_layout Subsection
@@ -17934,15 +17974,27 @@ x+y-1 & =0
 \end_layout
 
 \begin_layout Standard
-[Пример - во многом готов, адаптировать к SSG-Shreyer]
+Для понимания причин возникновения внесённых вычислениями нулей рассмотрим
+ случай их возникновения в алгоритме 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:SingleStepSignatureGroebner"
+
+\end_inset
+
+ с порядком Schreyer.
 \end_layout
 
-\begin_layout Standard
-Рассмотрим задачу нахождения базиса Грёбнера с точки зрения порядка degrevlex(
+\begin_layout Example
+Рассмотрим следующий набор отмеченных приближённых многочленов 
+\begin_inset Formula $\left\{ f_{1},f_{2},f_{3}\right\} $
+\end_inset
+
+с мономиальным порядком degrevlex(
 \begin_inset Formula $x,y,z$
 \end_inset
 
-) для идеала, заданного многочленами с параметрами 
+) с параметрами 
 \begin_inset Formula $a$
 \end_inset
 
@@ -17950,10 +18002,14 @@ x+y-1 & =0
 \begin_inset Formula $b$
 \end_inset
 
-: 
+, являющимися приближёнными числами:
 \begin_inset Formula 
 \[
-g_{1}=y^{2}z+z^{2}+az
+\begin{array}{ccc}
+\poly(f_{1})= & y^{2}z+z^{2}+az, & \Sig(f_{1})=\left(1,1\right)\\
+\poly(f_{2})= & xyz, & \Sig(f_{2})=\left(1,2\right)\\
+\poly(f_{3})= & xy^{2}+bx+1, & \Sig(f_{3})=\left(1,3\right)
+\end{array}
 \]
 
 \end_inset
@@ -17962,9 +18018,26 @@ g_{1}=y^{2}z+z^{2}+az
 \end_layout
 
 \begin_layout Standard
+Итерации алгоритма будут происходить следующим образом:
+\end_layout
+
+\begin_layout Enumerate
+Первый элемент множества 
+\begin_inset Formula $B=\left\{ f_{1},f_{2},f_{3}\right\} $
+\end_inset
+
+ редуцируется по 
+\begin_inset Formula $R=\left\{ \left(\left(y^{2}z,3\right),0\right),\left(\left(xyz,3\right),0\right),\left(\left(y^{2}z,2\right),0\right)\right\} ,$
+\end_inset
+
+ давая 
+\begin_inset Formula $f_{4}$
+\end_inset
+
+ в результате
 \begin_inset Formula 
 \[
-g_{2}=xyz
+\poly(f_{4})=\poly(f_{1})=y^{2}z+z^{2}+az,\Sig(f_{4})=\left(1,1\right).
 \]
 
 \end_inset
@@ -17972,15 +18045,182 @@ g_{2}=xyz
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Enumerate
+Первый элемент множества 
+\begin_inset Formula $B=\left\{ f_{2},f_{3}\right\} $
+\end_inset
+
+ редуцируется по 
+\begin_inset Formula $R=\left\{ \left(\left(y^{2}z,3\right),0\right),\left(\left(xyz,3\right),0\right),\left(\left(y^{2}z,2\right),0\right),f_{4}\right\} ,$
+\end_inset
+
+ давая 
+\begin_inset Formula $f_{5}$
+\end_inset
+
+ в результате
 \begin_inset Formula 
 \[
-g_{3}=xy^{2}+bx+1
+\poly(f_{5})=\poly(f_{2})=xyz,\Sig(f_{5})=\left(1,2\right)
 \]
 
 \end_inset
 
+В 
+\begin_inset Formula $B$
+\end_inset
 
+ добавляется 
+\begin_inset Formula $yf_{5}$
+\end_inset
+
+, как редуцируемый по 
+\begin_inset Formula $xf_{4}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Первый элемент множества 
+\begin_inset Formula $B=\left\{ f_{3},yf_{5}\right\} $
+\end_inset
+
+ редуцируется по 
+\begin_inset Formula $R=\left\{ \left(\left(y^{2}z,3\right),0\right),\left(\left(xyz,3\right),0\right),\left(\left(y^{2}z,2\right),0\right),f_{4},f_{5}\right\} ,$
+\end_inset
+
+ давая 
+\begin_inset Formula $f_{6}$
+\end_inset
+
+ в результате
+\begin_inset Formula 
+\[
+\poly(f_{6})=\poly(f_{3})=xy^{2}+bx+1,\Sig(f_{6})=\left(1,3\right)
+\]
+
+\end_inset
+
+В 
+\begin_inset Formula $B$
+\end_inset
+
+ добавляется 
+\begin_inset Formula $zf_{6}$
+\end_inset
+
+, как редуцируемый по 
+\begin_inset Formula $yf_{5}$
+\end_inset
+
+ и 
+\begin_inset Formula $xf_{4}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Первый элемент множества 
+\begin_inset Formula $B=\left\{ yf_{5},zf_{6}\right\} $
+\end_inset
+
+ редуцируется по 
+\begin_inset Formula $R=\left\{ \left(\left(y^{2}z,3\right),0\right),\left(\left(xyz,3\right),0\right),\left(\left(y^{2}z,2\right),0\right),f_{4},f_{5},f_{6}\right\} ,$
+\end_inset
+
+ давая 
+\begin_inset Formula $f_{7}$
+\end_inset
+
+ в результате
+\begin_inset Formula 
+\[
+\poly(f_{7})=y\poly(f_{5})-x\poly(f_{4})=xz^{2}+axz,\Sig(f_{7})=\left(y,2\right)
+\]
+
+\end_inset
+
+В 
+\begin_inset Formula $B$
+\end_inset
+
+ добавляется 
+\begin_inset Formula $yf_{7}$
+\end_inset
+
+, как редуцируемый по 
+\begin_inset Formula $zf_{5}$
+\end_inset
+
+ и также
+\begin_inset Formula $y^{2}f_{7}$
+\end_inset
+
+, как редуцируемый по 
+\begin_inset Formula $z^{2}f_{6}$
+\end_inset
+
+ и 
+\begin_inset Formula $xzf_{4}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Первый элемент множества 
+\begin_inset Formula $B=\left\{ zf_{6},yf_{7},y^{2}f_{7}\right\} $
+\end_inset
+
+ редуцируется по 
+\begin_inset Formula $R=\left\{ \left(\left(y^{2}z,3\right),0\right),\left(\left(xyz,3\right),0\right),\left(\left(y^{2}z,2\right),0\right),f_{4},f_{5},f_{6},f_{7}\right\} ,$
+\end_inset
+
+ давая 
+\begin_inset Formula $f_{8}$
+\end_inset
+
+ в результате
+\begin_inset Formula 
+\[
+\poly(f_{8})=z\poly(f_{6})-x\poly(f_{4})=xz^{2}+axz,\Sig(f_{7})=\left(z,3\right)
+\]
+
+\end_inset
+
+В 
+\begin_inset Formula $B$
+\end_inset
+
+ добавляется 
+\begin_inset Formula $yf_{7}$
+\end_inset
+
+, как редуцируемый по 
+\begin_inset Formula $zf_{5}$
+\end_inset
+
+ и также
+\begin_inset Formula $y^{2}f_{7}$
+\end_inset
+
+, как редуцируемый по 
+\begin_inset Formula $z^{2}f_{6}$
+\end_inset
+
+ и 
+\begin_inset Formula $xzf_{4}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+[Скорректировать пример выше так, чтоб он воспроизводил проблему из примера
+ ниже для случая SSG-Schreyer]
 \end_layout
 
 \begin_layout Standard
