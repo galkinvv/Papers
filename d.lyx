@@ -18137,7 +18137,7 @@ reference "par:SingleStepSignatureGroebner"
  в результате
 \begin_inset Formula 
 \[
-\poly(f_{7})=y\poly(f_{5})-x\poly(f_{4})=xz^{2}+axz,\Sig(f_{7})=\left(y,2\right)
+\poly(f_{7})=-\left(y\poly(f_{5})-x\poly(f_{4})\right)=xz^{2}+axz,\Sig(f_{7})=\left(y,2\right)
 \]
 
 \end_inset
@@ -18185,63 +18185,23 @@ reference "par:SingleStepSignatureGroebner"
  в результате
 \begin_inset Formula 
 \[
-\poly(f_{8})=z\poly(f_{6})-x\poly(f_{4})=xz^{2}+axz,\Sig(f_{7})=\left(z,3\right)
+\poly(f_{8})=(z\poly(f_{6})-x\poly(f_{4}))+\poly(f_{7})=
 \]
 
 \end_inset
 
-В 
-\begin_inset Formula $B$
-\end_inset
 
- добавляется 
-\begin_inset Formula $yf_{7}$
-\end_inset
-
-, как редуцируемый по 
-\begin_inset Formula $zf_{5}$
-\end_inset
-
- и также
-\begin_inset Formula $y^{2}f_{7}$
-\end_inset
-
-, как редуцируемый по 
-\begin_inset Formula $z^{2}f_{6}$
-\end_inset
-
- и 
-\begin_inset Formula $xzf_{4}$
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Standard
-[Скорректировать пример выше так, чтоб он воспроизводил проблему из примера
- ниже для случая SSG-Schreyer]
-\end_layout
-
-\begin_layout Standard
-Применим алгоритм Бухбергера:
-\end_layout
-
-\begin_layout Standard
 \begin_inset Formula 
 \[
-g_{4}=S(g_{1},g_{2})=xz^{2}+axz
+=\left(\left(xy^{2}z+bxz+z\right)-\left(xy^{2}z+xz^{2}+axz\right)\right)+xz^{2}+axz=((b-a)+a)xz+z,
 \]
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
 \begin_inset Formula 
 \[
-g_{5}=S(g_{1},g_{3})=-xz^{2}+(b-a)xz+z
+\Sig(f_{7})=\left(z,3\right)
 \]
 
 \end_inset
@@ -18250,47 +18210,33 @@ g_{5}=S(g_{1},g_{3})=-xz^{2}+(b-a)xz+z
 \end_layout
 
 \begin_layout Standard
-что после редукции по 
-\begin_inset Formula $g_{4}$
+При приближённых вычислениях выражение вида 
+\begin_inset Formula $((b-a)+a)xz+z$
 \end_inset
 
- даёт:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-(1-1)xz^{2}+(a+(b-a))xz+z=(a+(b-a))xz+z
-\]
-
+ может иметь необратимый старший коэффициент даже в том случае, если 
+\begin_inset Formula $b$
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-При вычислениях с ограниченной точностью или в интервальной арифметике выражения
- вида 
-\begin_inset Formula $(a+(b-a))xz+z$
-\end_inset
-
- с фиксированным значением параметра 
+ обратим.
+ Это возможно если радиус вариации 
 \begin_inset Formula $a$
 \end_inset
 
- может произойти потеря точности в ведущем коэффициенте многочлена, особенно
- если абсолютная точность значения 
-\begin_inset Formula $a$
-\end_inset
-
- много меньше абсолютной точности значения значения 
+ много меньше абсолютного значения приближения 
 \begin_inset Formula $b$
 \end_inset
 
 .
- Если же проводить вычисление базиса символически, и подставить конкретные
- значения параметров в результат -- точность полученного результата будет
- больше.
+ С другой стороны, символические вычисления показывают, что если 
+\begin_inset Formula $b$
+\end_inset
+
+ обратим, то ни при каких входных данных старший коэффициент не обращается
+ в нуль.
+ Для борьбы с такими необратимыми коэффициентами будет предложен метод вычислени
+я приближённых коэффициентов, позволяющий получать результат с меньшими
+ значениями вариации.
 \end_layout
 
 \begin_layout Section
