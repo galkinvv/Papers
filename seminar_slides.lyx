@@ -45,7 +45,7 @@
 \cite_engine basic
 \use_bibtopic false
 \use_indices false
-\paperorientation portrait
+\paperorientation landscape
 \suppress_date false
 \use_refstyle 0
 \index Index
@@ -68,6 +68,519 @@
 \end_header
 
 \begin_body
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\GVWl}{<_{\text{H}}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\GVWg}{>_{\text{\textnormal{H}}}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
+\end_inset
+
+	
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\Sig}{\mathcal{S}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\HM}{\mathrm{HM}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\HC}{\mathrm{HC}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\LCM}{\mathrm{LCM}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\totaldeg}{\mathrm{deg}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\poly}{\mathrm{poly}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\sigidx}{\mathrm{index}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Алгоритмы вычисления базиса Грёбнера идеала 
+\begin_inset Formula $\{f_{1},\dots,f_{m}\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Алгоритм Бухбергера -- последовательные редукциях S-пар.
+ Много редукций к нулю
+\end_layout
+
+\begin_layout Standard
+Алгоритмы основанные на сигнатурах -- входным многочленам 
+\begin_inset Formula $f_{i}$
+\end_inset
+
+ ставится в соответствие сигнатура 
+\begin_inset Formula $S(f_{i})=\left(1,i\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Задаётся согласованный с мономиальным 
+\begin_inset Formula $<$
+\end_inset
+
+порядок 
+\begin_inset Formula $\prec$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Распространяется на их полиномиальные комбинации
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Умножение на моном: 
+\begin_inset Formula $S(p)=(m,i)\Longrightarrow S(m'p)=(m'm,i)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Сумма 
+\begin_inset Formula $S(p_{1}+p_{2})=\max_{\prec}(S(p_{1}),S(p_{2}))$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Представление 
+\begin_inset Formula $p=\sum_{k}m_{k}\cdot g_{i_{k}}$
+\end_inset
+
+ над 
+\begin_inset Formula $G\ni g_{i_{k}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+называется 
+\emph on
+степенным
+\emph default
+, если 
+\begin_inset Formula $\forall k\, HM(m_{k}g_{i_{k}})\preccurlyeq HM(p)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Базис Грёбнера: любой элемент идеала имеет степенное представление над ним
+\end_layout
+
+\begin_layout Standard
+называется 
+\emph on
+сигнатурным
+\emph default
+, если 
+\begin_inset Formula $\forall k\, S(m_{k}g_{i_{k}})\preccurlyeq S(p)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+S-базис Грёбнера: любой элемент идеала имеет степенное и одновременно сигнатурно
+е представление над ним
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Подмножество базиса Грёбнера 
+\begin_inset Formula $\left\{ g\in G|\mbox{deg}(g)\le d\right\} $
+\end_inset
+
+ -- 
+\begin_inset Formula $d$
+\end_inset
+
+-базис.
+ Может инкрементально вычисляться для однородных многочленов
+\end_layout
+
+\begin_layout Standard
+Подмножество S-базиса Грёбнера 
+\begin_inset Formula $\left\{ g\in G|S(g)\preccurlyeq\sigma\right\} $
+\end_inset
+
+ -- 
+\begin_inset Formula $S_{\sigma}$
+\end_inset
+
+-базис.
+ Может инкрементально вычисляться
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+F5-подобные алгоритмы инкрементального вычисления S-базиса Грёбнера:
+\end_layout
+
+\begin_layout Standard
+В случае регулярности входных данных не отбрасывают никаких вычисленных
+ многочленов, давая минимальный S-базис
+\end_layout
+
+\begin_layout Itemize
+TRB-MJ (L.Huang, 2010) 
+\end_layout
+
+\begin_layout Itemize
+SB (B.Roune, M.Stillman, 2012)
+\end_layout
+
+\begin_layout Standard
+Доказательство 
+\begin_inset Quotes eld
+\end_inset
+
+Алгоритма Бухбергера с правилами отброса S-пар
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Ключевой метод сравнения старшего монома 
+\begin_inset Quotes eld
+\end_inset
+
+делённого
+\begin_inset Quotes erd
+\end_inset
+
+ на сигнатуру:
+\end_layout
+
+\begin_layout Definition
+\begin_inset Formula 
+\[
+h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\Longleftrightarrow\HM(p_{1})\sigma_{2}\prec\HM(p_{2})\sigma_{1},
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Paragraph
+\begin_inset CommandInset label
+LatexCommand label
+name "par:SingleStepSignatureGroebner"
+
+\end_inset
+
+
+\family typewriter
+SingleStepSignatureGroebner
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Вход: многочлены 
+\begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} $
+\end_inset
+
+ 
+\family default
+с сигнатурами.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Переменные: 
+\begin_inset Formula $R$
+\end_inset
+
+ -- промежуточный 
+\begin_inset Formula $S_{\sigma}$
+\end_inset
+
+-базис, включающий сизигии и 
+\begin_inset Formula $B$
+\end_inset
+
+ -- многочлены ожидающие анализа
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Результат: ненулевые элементы 
+\begin_inset Formula $R$
+\end_inset
+
+ -- S-базис Грёбнера идеала 
+\begin_inset Formula $I=\left(f_{1},\dots,f_{m}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Инициализация:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $R\leftarrow\{\mbox{известные сизигии}\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $B\leftarrow\{\mbox{входные многочлены}\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+
+\series bold
+do while 
+\begin_inset Formula $B\neq\varnothing$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing single
+\begin_inset Formula $(\sigma,p')\leftarrow$
+\end_inset
+
+ элемент 
+\begin_inset Formula $B$
+\end_inset
+
+ с 
+\begin_inset Formula $\prec$
+\end_inset
+
+-минимальной сигнатурой
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing single
+\begin_inset Formula $B\leftarrow B\setminus\{b\in B,\Sig(b)=\sigma\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing single
+\begin_inset Formula $p\leftarrow$
+\end_inset
+
+Сигнатурно редуцировать 
+\begin_inset Formula $\left(\sigma,p'\right)$
+\end_inset
+
+по 
+\begin_inset Formula $R$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing single
+\begin_inset Formula $R\leftarrow R\cup\left\{ \left(\sigma,p\right)\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing single
+
+\series bold
+if
+\series default
+ 
+\begin_inset Formula $p\not=0$
+\end_inset
+
+
+\series bold
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\paragraph_spacing single
+
+\series bold
+for 
+\series default
+
+\begin_inset Formula $\{r\in R\,|\,0\ne r\GVWl\left(\sigma,p\right)\}$
+\end_inset
+
+
+\series bold
+:
+\series default
+
+\begin_inset Formula $B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(r)}r\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing single
+
+\series bold
+for 
+\series default
+
+\begin_inset Formula $\{r\in R\,|\, r\GVWg\left(\sigma,p\right)\}$
+\end_inset
+
+
+\series bold
+:
+\series default
+
+\begin_inset Formula $B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(p)}\left(\sigma,p\right)\}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\paragraph_spacing single
+\begin_inset Formula $B\leftarrow B\setminus\{b\in B\,|\,\exists r\in R\, r\GVWl b\wedge\Sig(r)|\Sig(b)\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Интерпретации как алгоритм Бухбергера с правилами отбрасывания S-пар.
+\end_layout
 
 \begin_layout Slide
 
@@ -130,49 +643,6 @@
 
 \end_deeper
 \end_deeper
-\begin_layout Slide
-
-\end_layout
-
-\begin_layout Standard
-Алгоритмы вычисления базиса Грёбнера
-\end_layout
-
-\begin_layout Itemize
-Алгоритм Бухбергера -- первый и наименее эффективный
-\end_layout
-
-\begin_layout Itemize
-Алгоритмы основанные на сигнатурах -- показали большую эффективность
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-F5 -- не минимальный S-базис
-\end_layout
-
-\begin_layout Itemize
-GVW, ArriPerry -- отбрасывание результатов вычислений
-\end_layout
-
-\begin_layout Itemize
-TRB-MJ/SB -- наиболее эффективные на сегодня
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-На основе TRB-MJ/SB строится алгоритм SSG с простой реализацией и доказательство
-м.
-\end_layout
-
-\begin_layout Slide
-
-\end_layout
-
-\begin_layout Standard
-TODO: Псевдокод алгоритм SSG на 1-2 слайда.
-\end_layout
-
 \begin_layout Slide
 
 \end_layout
