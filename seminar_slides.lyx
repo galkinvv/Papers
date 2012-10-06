@@ -157,6 +157,24 @@
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setlength{
+\backslash
+parskip}{5pt}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Slide
 
 \end_layout
@@ -191,7 +209,7 @@
 \begin_inset Formula $<$
 \end_inset
 
-порядок 
+ порядок 
 \begin_inset Formula $\prec$
 \end_inset
 
@@ -449,7 +467,6 @@ SingleStepSignatureGroebner
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing single
 
 \series bold
 do while 
@@ -460,7 +477,6 @@ do while
 \end_layout
 
 \begin_layout Enumerate
-\paragraph_spacing single
 \begin_inset Formula $(\sigma,p')\leftarrow$
 \end_inset
 
@@ -476,7 +492,6 @@ do while
 \end_layout
 
 \begin_layout Enumerate
-\paragraph_spacing single
 \begin_inset Formula $B\leftarrow B\setminus\{b\in B,\Sig(b)=\sigma\}$
 \end_inset
 
@@ -484,7 +499,6 @@ do while
 \end_layout
 
 \begin_layout Enumerate
-\paragraph_spacing single
 \begin_inset Formula $p\leftarrow$
 \end_inset
 
@@ -492,7 +506,7 @@ do while
 \begin_inset Formula $\left(\sigma,p'\right)$
 \end_inset
 
-по 
+ по 
 \begin_inset Formula $R$
 \end_inset
 
@@ -500,7 +514,6 @@ do while
 \end_layout
 
 \begin_layout Enumerate
-\paragraph_spacing single
 \begin_inset Formula $R\leftarrow R\cup\left\{ \left(\sigma,p\right)\right\} $
 \end_inset
 
@@ -508,7 +521,6 @@ do while
 \end_layout
 
 \begin_layout Enumerate
-\paragraph_spacing single
 
 \series bold
 if
@@ -524,13 +536,12 @@ if
 
 \begin_deeper
 \begin_layout Enumerate
-\paragraph_spacing single
 
 \series bold
-for 
+for
 \series default
 
-\begin_inset Formula $\{r\in R\,|\,0\ne r\GVWl\left(\sigma,p\right)\}$
+\begin_inset Formula $\{r\in R|0\ne r\GVWl\left(\sigma,p\right)\}$
 \end_inset
 
 
@@ -542,16 +553,17 @@ for
 \end_inset
 
 
+\series bold
+[Б]
 \end_layout
 
 \begin_layout Enumerate
-\paragraph_spacing single
 
 \series bold
-for 
+for
 \series default
 
-\begin_inset Formula $\{r\in R\,|\, r\GVWg\left(\sigma,p\right)\}$
+\begin_inset Formula $\{r\in R|r\GVWg\left(\sigma,p\right)\}$
 \end_inset
 
 
@@ -563,12 +575,196 @@ for
 \end_inset
 
 
+\series bold
+[Б]
 \end_layout
 
 \end_deeper
 \begin_layout Enumerate
-\paragraph_spacing single
-\begin_inset Formula $B\leftarrow B\setminus\{b\in B\,|\,\exists r\in R\, r\GVWl b\wedge\Sig(r)|\Sig(b)\}$
+\begin_inset Formula $B\leftarrow B\setminus\{b\in B|\exists r\in R\, r\GVWl b\mbox{ и есть делимость }\Sig(r)|\Sig(b)\}$
+\end_inset
+
+
+\series bold
+[Б]
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+[Б] 
+\series default
+-- отличия от Бухбергера, помимо добавления сигнатурности
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Доказательство остановки
+\end_layout
+
+\begin_layout Enumerate
+Любой отмеченный многочлен из 
+\begin_inset Formula $B$
+\end_inset
+
+, моном сигнатуры которого не равен 1, не редуцируется по 
+\begin_inset Formula $R$
+\end_inset
+
+ сигнатурно
+\end_layout
+
+\begin_layout Enumerate
+До редукции многочлена 
+\begin_inset Formula $p'$
+\end_inset
+
+, сигнатуры из 
+\begin_inset Formula $\left\{ r\in R\,|\, r\GVWl(\sigma,p')\right\} $
+\end_inset
+
+ не делят 
+\begin_inset Formula $\sigma$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+После редукции многочлена 
+\begin_inset Formula $p'$
+\end_inset
+
+ до 
+\begin_inset Formula $p$
+\end_inset
+
+, старшие мономы из 
+\begin_inset Formula $\left\{ r\in R\,|\, r\GVWg(\sigma,p)\right\} $
+\end_inset
+
+ не делят 
+\begin_inset Formula $\HM(p)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+После редукции многочлена 
+\begin_inset Formula $p'$
+\end_inset
+
+ до 
+\begin_inset Formula $p$
+\end_inset
+
+, элементы 
+\begin_inset Formula $R$
+\end_inset
+
+ не могут одновременно иметь старшие мономы, делящие 
+\begin_inset Formula $\HM(p)$
+\end_inset
+
+, и сигнатуры, делящие 
+\begin_inset Formula $\sigma$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+По лемме Диксона число пополнений 
+\begin_inset Formula $R$
+\end_inset
+
+ конечно
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Доказательство корректности:
+\end_layout
+
+\begin_layout Enumerate
+Пусть 
+\begin_inset Formula $\sigma\succ0,R=\left\{ r_{i}\right\} $
+\end_inset
+
+ -- S
+\emph on
+
+\begin_inset Formula $_{\sigma}$
+\end_inset
+
+
+\emph default
+-базис и выбраны 
+\begin_inset Formula $h_{1},h_{2},\Sig(h_{i})=\sigma$
+\end_inset
+
+, которые нельзя сигнатурно редуцировать по 
+\begin_inset Formula $R$
+\end_inset
+
+.
+ Тогда 
+\begin_inset Formula $\HM(h_{1})=\HM(h_{2})$
+\end_inset
+
+ и у 
+\begin_inset Formula $h_{1}$
+\end_inset
+
+ есть сигнатурное представление над 
+\begin_inset Formula $R\cup\left\{ h_{2}\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+На каждой итерации после шага 6 выполнен инвариант: для 
+\begin_inset Formula $\forall\sigma\prec$
+\end_inset
+
+ сигнатур элементов 
+\begin_inset Formula $B$
+\end_inset
+
+, найдутся 
+\begin_inset Formula $r_{\sigma}\in R,t_{\sigma}\in\mathbb{T}:\Sig(t_{\sigma}r_{\sigma})=\sigma$
+\end_inset
+
+ и 
+\begin_inset Formula $t_{\sigma}r_{\sigma}$
+\end_inset
+
+ не редуцируется сигнатурно по 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+На каждой итерации после шага 6 выполнен инвариант: 
+\begin_inset Formula $\forall h,\Sig(h)\prec$
+\end_inset
+
+ сигнатур элементов 
+\begin_inset Formula $B$
+\end_inset
+
+, имеет сигнатурное представление над 
+\begin_inset Formula $R$
 \end_inset
 
 .
@@ -579,23 +775,7 @@ for
 \end_layout
 
 \begin_layout Standard
-Интерпретации как алгоритм Бухбергера с правилами отбрасывания S-пар.
-\end_layout
-
-\begin_layout Slide
-
-\end_layout
-
-\begin_layout Standard
-Алгоритмы вычисления базиса Грёбнера
-\end_layout
-
-\begin_layout Itemize
-Алгоритм Бухбергера -- первый и наименее эффективный
-\end_layout
-
-\begin_layout Itemize
-Алгоритмы для вычислений над 
+Алгоритмы вычисления базиса Грёбнера над 
 \begin_inset Formula $\mathbb{R}$
 \end_inset
 
@@ -606,7 +786,6 @@ for
 
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 Символические вычисления (исчерпывающий базис) -- рост символических коэффициент
 ов
@@ -641,7 +820,6 @@ for
 Изменение порядка на мономах
 \end_layout
 
-\end_deeper
 \end_deeper
 \begin_layout Slide
 
