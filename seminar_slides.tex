@@ -1,0 +1,529 @@
+%% LyX 2.0.2 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[landscape,english,russian]{slides}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\setcounter{secnumdepth}{1}
+\setcounter{tocdepth}{1}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+\pdfpageheight\paperheight
+\pdfpagewidth\paperwidth
+
+\DeclareRobustCommand{\cyrtext}{%
+  \fontencoding{T2A}\selectfont\def\encodingdefault{T2A}}
+\DeclareRobustCommand{\textcyr}[1]{\leavevmode{\cyrtext #1}}
+\AtBeginDocument{\DeclareFontEncoding{T2A}{}{}}
+
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\newcounter{slidetype}
+\setcounter{slidetype}{0}
+\newif\ifLyXsNoCenter
+\LyXsNoCenterfalse
+\newcommand{\noslidecentering}{
+   \LyXsNoCentertrue%
+}
+\newcommand{\slidecentering}{
+   \LyXsNoCenterfalse%
+}
+\newcommand{\lyxendslide}[1]{
+   \ifLyXsNoCenter%
+        \vfill%
+   \fi%
+   \ifcase \value{slidetype}%
+        \or % no action for 0
+        \end{slide} \or%
+        \end{overlay} \or%
+        \end{note}%
+   \fi%
+   \setcounter{slidetype}{0}
+      \visible
+}
+\AtEndDocument{\lyxendslide{.}}
+\newcommand{\lyxnewslide}[1]{
+ \lyxendslide{.}
+ \setcounter{slidetype}{1}
+ \begin{slide}
+}
+\newenvironment{lyxlist}[1]
+{\begin{list}{}
+{\settowidth{\labelwidth}{#1}
+ \setlength{\leftmargin}{\labelwidth}
+ \addtolength{\leftmargin}{\labelsep}
+ \renewcommand{\makelabel}[1]{##1\hfil}}}
+{\end{list}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+% Uncomment to print out only slides and overlays
+%
+%\onlyslides{\slides}
+
+% Uncomment to print out only notes
+%
+%\onlynotes{\notes}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+\global\long\def\GVWl{<_{\text{H}}}
+
+
+\global\long\def\GVWg{>_{\text{\textnormal{H}}}}
+
+
+\global\long\def\eqdef{\overset{\mathrm{_{def}}}{=}}
+
+
+\global\long\def\equivdef{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
+	
+
+\global\long\def\Sig{\mathcal{S}}
+
+
+\global\long\def\HM{\mathrm{HM}}
+
+
+\global\long\def\HC{\mathrm{HC}}
+
+
+\global\long\def\LCM{\mathrm{LCM}}
+
+
+\global\long\def\totaldeg{\mathrm{deg}}
+
+
+\global\long\def\poly{\mathrm{poly}}
+
+
+\global\long\def\sigidx{\mathrm{index}}
+
+
+\setlength{\parskip}{5pt}
+
+
+\lyxnewslide{}
+
+Алгоритмы вычисления базиса Грёбнера идеала $\{f_{1},\dots,f_{m}\}$
+
+Алгоритм Бухбергера -- последовательные редукциях S-пар. Много редукций
+к нулю
+
+Алгоритмы основанные на сигнатурах -- входным многочленам $f_{i}$
+ставится в соответствие сигнатура $S(f_{i})=\left(1,i\right)$
+\begin{itemize}
+\item Задаётся согласованный с мономиальным $<$ порядок $\prec$
+\item Распространяется на их полиномиальные комбинации
+
+\begin{itemize}
+\item Умножение на моном: $S(p)=(m,i)\Longrightarrow S(m'p)=(m'm,i)$
+\item Сумма $S(p_{1}+p_{2})=\max_{\prec}(S(p_{1}),S(p_{2}))$
+\end{itemize}
+\end{itemize}
+
+\lyxnewslide{}
+
+Представление $p=\sum_{k}m_{k}\cdot g_{i_{k}}$ над $G\ni g_{i_{k}}$
+\begin{itemize}
+\item называется \emph{степенным}, если $\forall k\, HM(m_{k}g_{i_{k}})\preccurlyeq HM(p)$.
+
+\begin{itemize}
+\item Базис Грёбнера: любой элемент идеала имеет степенное представление
+над ним
+\end{itemize}
+\item называется \emph{сигнатурным}, если $\forall k\, S(m_{k}g_{i_{k}})\preccurlyeq S(p)$.
+
+\begin{itemize}
+\item S-базис Грёбнера: любой элемент идеала имеет степенное и одновременно
+сигнатурное представление над ним
+\end{itemize}
+\end{itemize}
+
+\lyxnewslide{}
+\begin{itemize}
+\item Подмножество базиса Грёбнера $\left\{ g\in G|\totaldeg(g)\le d\right\} $
+-- $d$-базис.
+
+\begin{itemize}
+\item Может инкрементально вычисляться для однородных многочленов
+\end{itemize}
+\item Подмножество S-базиса Грёбнера $\left\{ g\in G|S(g)\preccurlyeq\sigma\right\} $
+-- $S_{\sigma}$-базис.
+
+\begin{itemize}
+\item Может инкрементально вычисляться
+\end{itemize}
+\end{itemize}
+
+\lyxnewslide{}
+
+Не сигнатурные алгоритмы
+\begin{itemize}
+\item Алгоритм Бухбергера (Бухбергер, 1976)
+\item Алгоритм F4 (J.-C. Faugère, 1999)
+\end{itemize}
+Вычисляют обычный базис Грёбнера
+\begin{itemize}
+\item Применяются различные критерии, как правило формируемые в терминах
+S-пар
+\item Доказательство корректности основано на критерии редуцируемости всех
+S-пар
+
+\begin{itemize}
+\item Каждый из критериев обосновывается независимо
+\end{itemize}
+\item Имеют редукции к нулю, поскольку никак не учитывают строение множества
+сизигий
+\end{itemize}
+
+\lyxnewslide{}
+
+Сигнатурные алгоритмы
+\begin{itemize}
+\item Вычисляют S-базис
+\end{itemize}
+\begin{tabular}{|c|c|c|}
+\hline 
+ & Отбрасывание мн-ов & Минимальный S-базис\tabularnewline
+\hline 
+\hline 
+S-пары & F5 (J.-C. Faugère, 2002) & AP(A.Arri, J.Perry,2011)\tabularnewline
+\hline 
+без & G2V(2010) & TRB-MJ (L.Huang, 2010)\tabularnewline
+ S-пар & GVW(2010) & SB (B.Roune, M.Stillman, 2012)\tabularnewline
+\hline 
+\end{tabular}
+\begin{itemize}
+\item Для регулярных входных данных, вычисляющие минимальный S-базис алгоритмы,
+не отбрасывают никаких вычисленных многочленов и не имеют редукций
+к нулю
+\item Эффективность подтверждена экспериментами
+\item Могут не использовать S-пары в формулировке
+\item Инкрементально вычисляют $S_{\sigma}$-базисы
+\end{itemize}
+
+\lyxnewslide{}
+
+Остановка и корректность сигнатурных алгоритмов
+\begin{itemize}
+\item в виде ``Алгоритма Бухбергера с особыми правилами отброса S-пар''
+\item для алгоритма F5 не дано доказательства остановки
+\item для других сложное доказательство, основанное на критерии редуцируемости
+всех S-пар
+\end{itemize}
+
+\lyxnewslide{}
+
+Важное для предлагаемых идей определение сравнения отмеченных многочленов:
+сравнение старшего монома ``делённого'' на сигнатуру:
+
+\[
+h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\Longleftrightarrow\HM(p_{1})\sigma_{2}\prec\HM(p_{2})\sigma_{1},
+\]
+
+
+При сигнатурной редукции:
+\begin{itemize}
+\item редуктор $>_{\mbox{H}}$ редуцируемого
+\item результат редукции $<_{\mbox{H}}$ редуцируемого
+\end{itemize}
+
+\lyxnewslide{}
+
+Доказано: F5 останавливается
+\begin{enumerate}
+\item Цепь отмеченных многочленов: $\left\{ h_{i}\right\} ,\Sig(h_{i-1})|\Sig(h_{i})$
+\item Если не останавливается - существует бесконечная $<_{\mbox{H}}$-убывающая
+цепь
+\item В бесконечной цепи найдутся $\HM(h_{i})|\HM(h_{j})$
+\item Это невозможно без учёта критериев из F5
+\item Если есть сигнатурный редуктор, то есть и сигнатурный редуктор, удовлетворяющий
+критериям
+\end{enumerate}
+
+\lyxnewslide{}
+
+Алгоритм\texttt{ SingleStepSignatureGroebner}
+\begin{lyxlist}{00.00.0000}
+\item [{Вход:}] многочлены $\left\{ f_{1},\ldots,f_{m}\right\} $ с сигнатурами.
+\item [{Переменные:}] $R$ -- промежуточный $S_{\sigma}$-базис, включающий
+сизигии и $B$ -- многочлены ожидающие анализа
+\item [{Результат:}] ненулевые элементы $R$ -- S-базис Грёбнера идеала
+$I=\left(f_{1},\dots,f_{m}\right)$
+\end{lyxlist}
+Простое доказательство, не используещее S-пары
+
+
+\lyxnewslide{}
+
+Инициализация:
+
+$R\leftarrow\{\mbox{известные сизигии}\}$
+
+$B\leftarrow\{\mbox{входные многочлены}\}$
+
+
+\lyxnewslide{}
+
+\textbf{do while $B\neq\varnothing$:}
+\begin{enumerate}
+\item $(\sigma,p')\leftarrow$ элемент $B$ с $\prec$-минимальной сигнатурой
+\item $B\leftarrow B\setminus\{b\in B,\Sig(b)=\sigma\}$
+\item $p\leftarrow$Сигнатурно редуцировать $\left(\sigma,p'\right)$ по
+$R$
+\item $R\leftarrow R\cup\left\{ \left(\sigma,p\right)\right\} $
+\item \textbf{if} $p\not=0$\textbf{:}
+
+\begin{enumerate}
+\item \textbf{for}$\{r\in R|0\ne r\GVWl\left(\sigma,p\right)\}$\textbf{:}$B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(r)}r\}$\textbf{{[}Б{]}}
+\item \textbf{for}$\{r\in R|r\GVWg\left(\sigma,p\right)\}$\textbf{:}$B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(p)}\left(\sigma,p\right)\}$\textbf{{[}Б{]}}
+\end{enumerate}
+\item $B\leftarrow B\setminus\{b\in B|\exists r\in R\, r\GVWl b\mbox{ и есть делимость }\Sig(r)|\Sig(b)\}$\textbf{{[}Б{]}}
+\end{enumerate}
+\textbf{{[}Б{]} }-- отличия от Бухбергера, помимо добавления сигнатурности
+
+
+\lyxnewslide{}
+
+Доказательство остановки
+\begin{enumerate}
+\item Любой отмеченный многочлен из $B$, моном сигнатуры которого не равен
+1, не редуцируется по $R$ сигнатурно
+\item До редукции многочлена $p'$, сигнатуры из $\left\{ r\in R\,|\, r\GVWl(\sigma,p')\right\} $
+не делят $\sigma$
+\item После редукции многочлена $p'$ до $p$, старшие мономы из $\left\{ r\in R\,|\, r\GVWg(\sigma,p)\right\} $
+не делят $\HM(p)$
+\item После редукции многочлена $p'$ до $p$, элементы $R$ не могут одновременно
+иметь старшие мономы, делящие $\HM(p)$, и сигнатуры, делящие $\sigma$
+\item По лемме Диксона число пополнений $R$ конечно
+\end{enumerate}
+
+\lyxnewslide{}
+
+Доказательство корректности:
+\begin{enumerate}
+\item Пусть $\sigma\succ0,R=\left\{ r_{i}\right\} $ -- S\emph{$_{\sigma}$}-базис
+и выбраны $h_{1},h_{2},\Sig(h_{i})=\sigma$, которые нельзя сигнатурно
+редуцировать по $R$. Тогда $\HM(h_{1})=\HM(h_{2})$ и у $h_{1}$
+есть сигнатурное представление над $R\cup\left\{ h_{2}\right\} $.
+\item На каждой итерации после шага 6 выполнен инвариант: для $\forall\sigma\prec$
+сигнатур элементов $B$, найдутся $r_{\sigma}\in R,t_{\sigma}\in\mathbb{T}:\Sig(t_{\sigma}r_{\sigma})=\sigma$
+и $t_{\sigma}r_{\sigma}$ не редуцируется сигнатурно по $R$.
+\item На каждой итерации после шага 6 выполнен инвариант: $\forall h,\Sig(h)\prec$
+сигнатур элементов $B$, имеет сигнатурное представление над $R$.
+\end{enumerate}
+
+\lyxnewslide{}
+
+Алгоритмы вычисления базиса Грёбнера над $\mathbb{R}$ и $\mathbb{C}$
+\begin{itemize}
+\item Символические вычисления (исчерпывающий базис) -- рост символических
+коэффициентов
+\item Вычисления над $\mathbb{Z}$ и $\mathbb{Q}$ -- рост длины численных
+коэффициентов
+\item Вычисления с оценкой точности -- проблемы нулей
+
+\begin{itemize}
+\item Определение численными методами
+\item Определение модулярными методами
+\item Изменение порядка на мономах
+\end{itemize}
+\end{itemize}
+
+\lyxnewslide{}
+
+Приближённые числа
+
+\[
+(a,\varepsilon),a\in\mathbb{C},\varepsilon\in\mathbb{R}
+\]
+
+
+Специализации
+
+\[
+a_{0}\in\mathbb{C}\left|a_{0}-a\right|<\varepsilon
+\]
+
+
+Формализация задачи: ищем множество, содержащее решения при любых
+специализациях.
+
+
+\lyxnewslide{}
+\begin{lyxlist}{00.00.0000}
+\item [{Сложение}] $(a_{1},\varepsilon_{1})+(a_{2},\varepsilon_{2})=(a_{1}+a_{2},\varepsilon_{1}+\varepsilon_{2})$
+\item [{Умножение}] $(a_{1},\varepsilon_{1})\times(a_{2},\varepsilon_{2})=(a_{1}a_{2},\varepsilon_{1}\left|a_{2}\right|+\varepsilon_{2}\left|a_{1}\right|+\varepsilon_{1}\varepsilon_{2})$
+\item [{Вычитание}] на основе сложения и умножения на -1:
+\[
+(a_{1},\varepsilon_{1})-(a_{2},\varepsilon_{2})=(a_{1}-a_{2},\varepsilon_{1}+\varepsilon_{2})
+\]
+
+\item [{Обращение}] определяется только для приближённых чисел, для которых
+0 не является специализацией, что эквивалентно $\left|a\right|-\varepsilon>0$:
+\end{lyxlist}
+\[
+\frac{1}{(a,\varepsilon)}=\left(\frac{1}{a},\frac{\varepsilon}{\left|a\right|\left(\left|a\right|-\varepsilon\right)}\right)
+\]
+
+
+
+\lyxnewslide{}
+
+Классификация необратимых приближённых элементов:
+\begin{itemize}
+\item \emph{символический ноль} -- при любой специализации входных данных
+соответствующую вычисления дают точный ноль. 
+\item \emph{ноль, индуцированный входными данными -- }некоторые, но не все
+специализации дают точный ноль
+\item \emph{ноль, внесённый вычислениями }-- не существует специализации,
+дающей точный ноль
+\end{itemize}
+
+\lyxnewslide{}
+
+Пример символического нуля:
+
+\selectlanguage{english}%
+\textrm{\normalsize 
+\[
+\begin{array}{ccc}
+\poly(f_{1})= & y^{2}z+a, & \Sig(f_{1})=\left(1,1\right)\\
+\poly(f_{2})= & y^{2}z^{2}+xz+1, & \Sig(f_{2})=\left(1,2\right)\\
+\poly(f_{3})= & y^{3}z+xy+1, & \Sig(f_{3})=\left(1,3\right)\\
+\poly(f_{4})= & \poly(f_{1})=y^{2}z+a, & \Sig(f_{4})=\left(1,1\right)\\
+\poly(f_{5})= & \poly(f_{2})-z\poly(f_{4})=xz-az+1, & \Sig(f_{5})=\left(1,2\right)\\
+\poly(f_{6})= & \poly(f_{3})-y\poly(f_{4})=xy-ay+1, & \Sig(f_{6})=\left(1,3\right)\\
+\poly(f_{7})= & z\poly(f_{6})-y\poly(f_{5})=\left(a-a\right)yz+z-y, & \Sig(f_{7})=\left(z,3\right)
+\end{array}
+\]
+}{\normalsize \par}
+
+\selectlanguage{russian}%
+
+\lyxnewslide{}
+
+Пример индуцированного или внесённого нуля:
+
+\[
+\begin{array}{ccc}
+\poly(f_{1})= & y^{2}z+z^{2}+az, & \Sig(f_{1})=\left(1,1\right)\\
+\poly(f_{2})= & xyz, & \Sig(f_{2})=\left(1,2\right)\\
+\poly(f_{3})= & xy^{2}+bx+1, & \Sig(f_{3})=\left(1,3\right)\\
+\poly(f_{4})= & \poly(f_{1})=y^{2}z+z^{2}+az, & \Sig(f_{4})=\left(1,1\right)\\
+\poly(f_{5})= & \poly(f_{2})=xyz, & \Sig(f_{5})=\left(1,2\right)\\
+\poly(f_{6})= & \poly(f_{3})=xy^{2}+bx+1, & \Sig(f_{6})=\left(1,3\right)\\
+\poly(f_{7})= & -\left(y\poly(f_{5})-x\poly(f_{4})\right)=xz^{2}+axz, & \Sig(f_{7})=\left(y,2\right)
+\end{array}
+\]
+ 
+\[
+\poly(f_{8})=(z\poly(f_{6})-x\poly(f_{4}))+\poly(f_{7})=
+\]
+\[
+=\left(\left(xy^{2}z+bxz+z\right)-\left(xy^{2}z+xz^{2}+axz\right)\right)+xz^{2}+axz=((b-a)+a)xz+z,
+\]
+\[
+\Sig(f_{8})=\left(z,3\right)
+\]
+
+
+
+\lyxnewslide{}
+
+Сигнатурные алгоритмы для $\mathbb{R}$ и $\mathbb{C}$
+\begin{itemize}
+\item F5+TSV (J.-C. Faugère, Y. Liang, 2011): Комбинирование идей F5 и приближённых
+вычислений с введением дополнительных многочленов $x_{1}^{i_{1}}\cdots x_{m}^{i_{m}}-\varepsilon$
+для ``изменения'' порядка. Недостаток -- полный перезапуск алгоритмов
+после добавления многочленов
+\end{itemize}
+
+\lyxnewslide{}
+
+Порядок Term-Over-Pos на сигнатурах:
+
+\[
+\left(t_{1},i_{1}\right)\prec\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & t_{1}<t_{2}\\
+ & t_{1}=t_{2},i{}_{1}<i_{2}
+\end{aligned}
+\right..
+\]
+Порядок Pos-Over-Term на сигнатурах:
+
+\[
+\left(t_{1},i_{1}\right)\prec\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & i{}_{1}<i_{2}\\
+ & i{}_{1}=i_{2},t_{1}<t_{2}
+\end{aligned}
+\right..
+\]
+
+
+Порядок Schreyer$\prec$ на сигнатурах:
+
+\[
+\left(t_{1},i_{1}\right)\prec\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & t_{1}HM(f_{i_{1}})<t_{2}HM(f_{i_{2}})\\
+ & t_{1}HM(f_{i_{1}})=t_{2}HM(f_{i_{2}}),i{}_{1}<i_{2}
+\end{aligned}
+\right..
+\]
+
+
+
+\lyxnewslide{}
+
+Взвешенный порядок $\prec_{w}$ на сигнатурах с $m$ входными многочленами
+с параметром $w=(w_{1},\dots,w_{m})\in\mathbb{T}^{m}$:
+
+\[
+\left(t_{1},i_{1}\right)\prec_{w}\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & t_{1}w_{i_{1}}<t_{2}w_{i_{2}}\\
+ & t_{1}w_{i_{1}}=t_{2}w_{i_{2}},i{}_{1}<i_{2}
+\end{aligned}
+\right..
+\]
+
+
+Строится алгоритм \texttt{SingleStepSignatureGroebner} для $\mathbb{C}$
+\begin{itemize}
+\item Взвешенный порядок на сигнатурах позволяет не производить перезапуск
+алгоритмов при добавлении многочлена $x_{1}^{i_{1}}\cdots x_{m}^{i_{m}}-\varepsilon$,
+задавая ему подходящий вес
+\item Модулярные вычисления для классификации нулей
+\end{itemize}
+
+\lyxnewslide{}
+
+Модулярные методы носят вероятностный характер. Ложные нули получаются,
+если выбранные значения оказываются корнем символического многочлена.
+Это возможно, если:
+\begin{itemize}
+\item $\mathbb{Q}$-многочлен тождественно обнуляется по выбранному модулю
+
+\begin{itemize}
+\item Оценка на максимальный коэффициент для определения максимального числа
+простых чисел, на которые делится
+\end{itemize}
+\item модулярная специализация $\mathbb{Q}$-многочлена имеет корень
+
+\begin{itemize}
+\item Оценка на максимальную степень
+\end{itemize}
+\end{itemize}
+
+\lyxnewslide{}
+
+Результаты:
+\begin{itemize}
+\item Доказана остановка F5
+\item Прямое доказательство \texttt{SingleStepSignatureGroebner} без S-пар
+\item Классификация необратимых приближённых элементов
+\item \texttt{SingleStepSignatureGroebner для }$\mathbb{C}$\end{itemize}
+
+\end{document}
