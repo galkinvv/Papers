@@ -180,6 +180,22 @@ parskip}{5pt}
 \end_layout
 
 \begin_layout Standard
+
+\size huge
+Галкин Василий
+\end_layout
+
+\begin_layout Standard
+
+\size huge
+Сигнатурные алгоритмы вычисления базисов Грёбнера
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
 Алгоритмы вычисления базиса Грёбнера идеала 
 \begin_inset Formula $\{f_{1},\dots,f_{m}\}$
 \end_inset
@@ -188,7 +204,7 @@ parskip}{5pt}
 \end_layout
 
 \begin_layout Standard
-Алгоритм Бухбергера -- последовательные редукциях S-пар.
+Алгоритм Бухбергера -- последовательные редукции S-пар.
  Много редукций к нулю
 \end_layout
 
