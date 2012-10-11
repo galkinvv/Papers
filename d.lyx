@@ -17033,6 +17033,26 @@ reference "problem:approx-poly-system"
 \end_layout
 
 \begin_layout Standard
+Доказанное свойство позволяет придать строгий смысл знаку равенства, применяемом
+у к приближённым числам.
+ Он означает не совпадение приближённых чисел слева и справа, а то что для
+ любой специализации левой части, найдётся равная ей специализация правой
+ части.
+ Поскольку обратное при этом не обязано выполняться, понятие, выражаемое
+ знаком равенства является некоммутативным, и по сути знак равенства является
+ знаком разрешения перехода от одной части к другой.
+ Тем не менее за ним остаётся обозначение 
+\begin_inset Quotes fld
+\end_inset
+
+=
+\begin_inset Quotes frd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
 На основе сложения чисел определим сложение приближённых многочленов, а
  на основе операции умножения -- операцию умножения многочлена на элемент
  
@@ -18153,7 +18173,7 @@ reference "par:SingleStepSignatureGroebner"
 \begin_layout Example
 \begin_inset CommandInset label
 LatexCommand label
-name "example:introduced_zeroes"
+name "example:introduced-zeroes"
 
 \end_inset
 
@@ -18872,7 +18892,47 @@ reference "example:symbolic-zeroes"
 \end_inset
 
 , в котором появляются символические нули.
- Запишем получаемые многочлены:
+ Запишем получаемые многочлены при использовании вычислений по произвольно
+ взятому модулю 
+\begin_inset Formula $107$
+\end_inset
+
+ с произвольно взятым коэффициентом 
+\begin_inset Formula $76$
+\end_inset
+
+ на месте коэффициента с ненулевой вариацией, опуская члены с 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+, поскольку они не используются:
+\begin_inset Formula 
+\[
+\begin{array}{ccc}
+\poly(f_{1})= & y^{2}z+\left\{ 76,{}_{0,1}1\right\} , & \Sig(f_{1})=\left(1,1\right)\\
+\poly(f_{2})= & y^{2}z^{2}+xz+1, & \Sig(f_{2})=\left(1,2\right)\\
+\poly(f_{3})= & y^{3}z+xy+1, & \Sig(f_{3})=\left(1,3\right)\\
+\poly(f_{4})= & \poly(f_{1})=y^{2}z+\left\{ 76,{}_{0,1}1\right\} , & \Sig(f_{4})=\left(1,1\right)\\
+\poly(f_{5})= & \poly(f_{2})-z\poly(f_{4})=xz+\left\{ 31,{}_{0,1}-1\right\} z+1, & \Sig(f_{5})=\left(1,2\right)\\
+\poly(f_{6})= & \poly(f_{3})-y\poly(f_{4})=xy+\left\{ 31,{}_{0,1}-1\right\} y+1, & \Sig(f_{6})=\left(1,3\right)\\
+\poly(f_{7})= & z\poly(f_{6})-y\poly(f_{5})=\\
+ & \left(\left\{ 76,{}_{0,1}1\right\} +\left\{ 31,{}_{0,1}-1\right\} \right)yz+z-y=\\
+ & \left(\left\{ 0,{}_{0,2}0\right\} \right)yz+z-y, & \Sig(f_{7})=\left(z,3\right)
+\end{array}
+\]
+
+\end_inset
+
+и, применяя отбрасывание, в итоге получаем многочлен с обратимым старшим
+ коэффициентом: 
+\begin_inset Formula 
+\[
+\poly\left(f_{7}\right)=z-y.
+\]
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
@@ -18900,7 +18960,7 @@ reference "example:symbolic-zeroes"
 Возможной является ситуация, когда при равенстве старших мономов старший
  приближённый коэффициент оказывается необратим.
  При этом, поскольку модулярные значения образуют поле, старший модулярный
- коэффициент будет обратим всегда.
+ коэффициент, являющийся ненулевым, будет обратим всегда.
  Если такая необратимость появляется на промежуточном шаге редукции, не
  являющемся последним, она никак не влияет на ход алгоритма, так как такой
  многочлен может выступать в роли редуцируемого.
@@ -18913,25 +18973,26 @@ reference "example:symbolic-zeroes"
 \family typewriter
 ApproxNormalize
 \family default
-, то есть возникает описанная ранее ситуация невозможности продолжения вычислени
-й из-за необратимого элемента.
+.
+ То есть возникает описанная ранее ситуация невозможности продолжения вычислений
+ из-за необратимого элемента.
  Этот элемент не может являться символическим нулём, поскольку модулярный
  коэффициент не равен нулю.
- Остаются возможности нуля индуцированного входными данными и нуля внесённого
+ Остаются возможности нуля, индуцированного входными данными, и нуля, внесённого
  вычислениями.
  Основанные на введении новых мономов способы, позволяющие в некоторых ситуациях
  обойти обе разновидности нулей, будут рассмотрены в следующей главе.
- Здесь же мы предложим численный метод устранения некоторых из внесённых
- вычислениями нулей.
+ Здесь же мы предложим численный метод устранения некоторых из нулей, внесённых
+ вычислениями.
 \end_layout
 
 \begin_deeper
 \begin_layout Enumerate
-Идея метода основана на наблюдении которое можно сделать на основе примера
+Идея метода основана на наблюдении, которое можно сделать на основе примера
  
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "example:introduced_zeroes"
+reference "example:introduced-zeroes"
 
 \end_inset
 
@@ -18941,7 +19002,7 @@ reference "example:introduced_zeroes"
  добавлялся с коэффициентами противоположных знаков, на дающих в сумме 0:
 \begin_inset Formula 
 \[
-2\cdot_{0,4}1-1\cdot_{0,4}1=_{3\cdot0,4}1=_{1,2}1
+2\cdot_{0,4}1-1\cdot_{0,4}1={}_{0,8}2-{}_{0,4}1=_{1,2}1
 \]
 
 \end_inset
@@ -18950,7 +19011,7 @@ reference "example:introduced_zeroes"
  результата был бы меньше, что позволило бы его обратить:
 \begin_inset Formula 
 \[
-2\cdot_{0,4}1-1\cdot_{0,4}1=1\cdot_{\cdot0,4}1=_{0,4}1
+2\cdot_{0,4}1-1\cdot_{0,4}1=(2-1)\cdot_{\cdot0,4}1=1\cdot_{0,4}1={}_{0,4}1
 \]
 
 \end_inset
@@ -19015,6 +19076,107 @@ reference "enu:Select-prime"
  коэффициентами.
 \end_layout
 
+\begin_layout Enumerate
+Покажем, как данный метод вычислений будет работать на примере 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "example:introduced-zeroes"
+
+\end_inset
+
+, в котором появляются символические нули.
+ Запишем получаемые многочлены при использовании вычислений по произвольно
+ взятому модулю 
+\begin_inset Formula $107$
+\end_inset
+
+ с произвольно взятыми коэффициентами на месте коэффициентов с ненулевой
+ вариацией:
+\begin_inset Formula 
+\[
+\begin{array}{ccc}
+\poly(f_{1})= & y^{2}z+z^{2}+\left\{ 24,_{1}10\right\} z+t_{1}, & \Sig(f_{1})=\left(1,1\right)\\
+\poly(f_{2})= & xyz+t_{2}, & \Sig(f_{2})=\left(1,2\right)\\
+\poly(f_{3})= & xy^{2}+\left\{ 70,_{0,1}1\right\} x+1+t_{3}, & \Sig(f_{3})=\left(1,3\right)\\
+\poly(f_{4})= & \poly(f_{1})=y^{2}z+z^{2}+\left\{ 24,_{1}10\right\} z+t_{1}, & \Sig(f_{4})=\left(1,1\right)\\
+\poly(f_{5})= & \poly(f_{2})=xyz+t_{2}, & \Sig(f_{5})=\left(1,2\right)\\
+\poly(f_{6})= & \poly(f_{3})=xy^{2}+\left\{ 70,_{0,1}1\right\} x+1+t_{3}, & \Sig(f_{6})=\left(1,3\right)\\
+\poly(f_{7})= & -\left(y\poly(f_{5})-x\poly(f_{4})\right)=\\
+ & xz^{2}+\left\{ 24,_{1}10\right\} xz+xt_{1}-yt_{2}, & \Sig(f_{7})=\left(y,2\right)\\
+\poly(f_{8})= & (z\poly(f_{6})-x\poly(f_{4}))+\poly(f_{7})=\\
+ & \left(\left(xy^{2}z+\left\{ 70,_{0,1}1\right\} xz+z+zt_{3}\right)+\right.\\
+ & \left.\left(-xy^{2}z-xz^{2}+\left\{ 83,_{1}-10\right\} xz+106xt_{1}\right)\right)+\\
+ & xz^{2}+\left\{ 24,_{1}10\right\} xz+xt_{1}-yt_{2}=\\
+ & \left(\left(\left\{ 70,_{0,1}1\right\} +\left\{ 83,_{1}-10\right\} \right)+\left\{ 24,_{1}10\right\} \right)xz+z+\\
+ & zt_{3}+yt_{2}+(1+106)xt_{1}=\\
+ & \left\{ 70,_{2,1}1\right\} xz+z+zt_{3}+yt_{2}, & \Sig(f_{8})=\left(z,3\right)
+\end{array}
+\]
+
+\end_inset
+
+Откуда многочлен сигнатуры 
+\begin_inset Formula $\left(z,3\right)$
+\end_inset
+
+ со старшим мономом 
+\begin_inset Formula $xz$
+\end_inset
+
+ предположительно представляется в виде 
+\begin_inset Formula $c_{1}zf_{3}+c_{2}yt_{2}$
+\end_inset
+
+.
+ Требуя обнуления коэффициента при 
+\begin_inset Formula $xy^{2}z$
+\end_inset
+
+ и единичности коэффициента при 
+\begin_inset Formula $xz$
+\end_inset
+
+ получаем систему:
+\begin_inset Formula 
+\begin{eqnarray*}
+\begin{pmatrix}1 & 1\\
+\left\{ 70,_{0,1}1\right\}  & 0
+\end{pmatrix}\begin{pmatrix}c_{1}\\
+c_{2}
+\end{pmatrix} & = & \begin{pmatrix}0\\
+1
+\end{pmatrix}\\
+ & \Downarrow\\
+\begin{pmatrix}1 & 1\\
+1 & 0
+\end{pmatrix}\begin{pmatrix}c_{1}\\
+c_{2}
+\end{pmatrix} & = & \begin{pmatrix}0\\
+\left\{ 26,_{0,12}1\right\} 
+\end{pmatrix}\\
+ & \Downarrow\\
+\begin{pmatrix}0 & 1\\
+1 & 0
+\end{pmatrix}\begin{pmatrix}c_{1}\\
+c_{2}
+\end{pmatrix} & = & \begin{pmatrix}\left\{ 81,_{0,12}-1\right\} \\
+\left\{ 26,_{0,12}1\right\} 
+\end{pmatrix},
+\end{eqnarray*}
+
+\end_inset
+
+откуда получаем, что можно взять 
+\begin_inset Formula 
+\[
+\poly\left(f_{8}\right)=\left\{ 81,_{0,12}-1\right\} zf_{3}+\left\{ 26,_{0,12}1\right\} yt_{2}
+\]
+
+\end_inset
+
+ 
+\end_layout
+
 \end_deeper
 \begin_layout Enumerate
 На основе полученных модулярного и приближённого решений системы строится
@@ -19030,7 +19192,6 @@ ApproxNormalize
  Такая замена корректна, поскольку он лежит в идеале, порождаемом входными
  многочленами, а его старший моном и сигнатура такие же как у заменяемого
  многочлена с необратимым старшим коэффициентом.
- 
 \end_layout
 
 \end_deeper
