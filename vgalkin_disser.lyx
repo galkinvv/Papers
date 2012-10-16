@@ -2389,7 +2389,7 @@ reference "def:S-pair-nosig"
 \begin_inset Formula $\left(k_{1}u_{1}\cdot h_{1},k_{2}u_{2}\cdot h_{2}\right)$
 \end_inset
 
-LaTeX Warning: Citation `NumericalPolynomialAlgebra' on page 50 undefined on in�щую ей сигнатуру 
+ отмеченных многочленов имеет соответствующую ей сигнатуру 
 \begin_inset Formula $\Sig(u_{i}h_{i})$
 \end_inset
 
@@ -7228,7 +7228,7 @@ Done.
  Необходимо отметить, что этот порядок соответствует порядку отмеченных
  многочленов в последовательности, получаемой склеиванием массивов правил
  
-\begin_inset File: koi8-r.def 1999/11/16 v1.0d Input encoding fileefn page 5
+\begin_inset Formula $\mbox{Rule}[m]:\mbox{Rule}[m-1]:\cdots:\mbox{Rule}[1]$
 \end_inset
 
 , поскольку добавление нового многочлена в 
@@ -8601,7 +8601,7 @@ name "example-of-having-gg-repr"
 \begin_inset Formula $p$
 \end_inset
 
-(/usr/share/texmf-texlive/tex/latex/cyrillic/koi8-r.defng' on page 57 undefinedляется в 
+ сигнатурно редуцируется и результат добавляется в 
 \begin_inset Formula $G_{g}$
 \end_inset
 
