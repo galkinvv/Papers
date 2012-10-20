@@ -14714,13 +14714,13 @@ for
 \end_deeper
 \end_deeper
 \begin_layout Enumerate
-\begin_inset CommandInset ref
-LatexCommand nameref
-reference "enu:-remove-from-B-sstep"
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:-remove-from-B-sstep"
 
 \end_inset
 
-
+ 
 \begin_inset Formula $B\leftarrow B\setminus\{b\in B\,|\,\exists r\in R\, r\GVWl b\wedge\Sig(r)|\Sig(b)\}$
 \end_inset
 
@@ -14786,9 +14786,9 @@ key "GVW"
 
  похожим псевдокодом, но имеет принципиальное отличие в работе: обобщённый
  критерий отбрасывания шага 
-\begin_inset CommandInset label
-LatexCommand label
-name "enu:-remove-from-B-sstep"
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "enu:-remove-from-B-sstep"
 
 \end_inset
 
@@ -15872,8 +15872,9 @@ key "UsingAlgebraicGeometry"
 \end_layout
 
 \begin_layout Standard
-Другой метод решения основан на собственных векторах линейного оператора
- в векторном пространстве 
+Другой метод решения применим для случая систем с конечным числом решений
+ и основан на собственных векторах линейного оператора в векторном пространстве
+ 
 \begin_inset Formula $\mathcal{A}=\mathcal{P}/\left(f_{1},\ldots,f_{m}\right)$
 \end_inset
 
@@ -15888,7 +15889,9 @@ key "UsingAlgebraicGeometry"
 \end_inset
 
 .
- Опишем схему этого метода решения системы линейных уравнений.
+ Поскольку наиболее важным для дальнейшего является взаимодействие данного
+ метода с алгоритмами базисов Грёбнера, опишем схему метода и порядок применения
+ базисов в нём, но не будем повторять его обоснование.
 \end_layout
 
 \begin_layout Paragraph
@@ -15902,26 +15905,25 @@ name "par:action-matrix-method"
 \end_layout
 
 \begin_layout Enumerate
-находится набор образующих радикала 
+Рассматривается идеал 
+\begin_inset Formula $I=\left(f_{1},\ldots,f_{m}\right)$
+\end_inset
+
+, находится набор образующих радикала 
 \begin_inset Formula $I'=\sqrt{I}$
+\end_inset
+
+ с использованием метода описанного в параграфе 2 той же главы 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "UsingAlgebraicGeometry"
+
 \end_inset
 
 :
 \end_layout
 
 \begin_deeper
-\begin_layout Enumerate
-строится базис Грёбнера 
-\begin_inset Formula $G$
-\end_inset
-
- идеала 
-\begin_inset Formula $I=\left(f_{1},\ldots,f_{m}\right)$
-\end_inset
-
- относительно произвольного мономиального порядка 
-\end_layout
-
 \begin_layout Enumerate
 \begin_inset CommandInset label
 LatexCommand label
@@ -15929,22 +15931,90 @@ name "enu:use-basis-for-radical"
 
 \end_inset
 
-образующие радикала находятся на основе нормальной формы относительно базиса
- Грёбнера 
-\begin_inset Formula $G$
+определяется некоторый конечный базис 
+\begin_inset Formula $D$
 \end_inset
 
- с использованием метода описанного в параграфе 2 той же главы
+ в линейном пространстве 
+\begin_inset Formula $\mathcal{A}=\mathcal{P}/I$
+\end_inset
+
+ и находится оператор нормальной формы 
+\begin_inset Formula $N_{D}$
+\end_inset
+
+, позволяющий для любого элемента 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+ находить его 
+\begin_inset Formula $D$
+\end_inset
+
+-координаты.
+ Как правило для нахождения такого базиса и оператора используются методы,
+ связанные с базисами Грёбнера.
+ 
+\end_layout
+
+\begin_layout Enumerate
+если конечный базис построить не удалось, алгоритм завершается, поскольку
+ является применимым лишь для систем с конечным числом решений, дающим нульмерны
+е идеалы.
+\end_layout
+
+\begin_layout Enumerate
+для каждой из переменных 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ при помощи оператора 
+\begin_inset Formula $N_{D}$
+\end_inset
+
+ находится линейная зависимость в 
+\begin_inset Formula $\mathcal{A}$
+\end_inset
+
+ среди различных степеней этой переменной
+\end_layout
+
+\begin_layout Enumerate
+строится минимальный многочлен 
+\begin_inset Formula $m_{i}\in I\cup\mathcal{K}\left[x_{i}\right]$
+\end_inset
+
+, соответствующей найденной линейной зависимости
+\end_layout
+
+\begin_layout Enumerate
+для многочленов от одной переменной определяются генераторы радикалов 
+\begin_inset Formula $\left(r_{i}\right)=\sqrt{\left(m_{i}\right)}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+идеал 
+\begin_inset Formula $I'$
+\end_inset
+
+ задаётся как 
+\begin_inset Formula $I\cup\left\{ r_{1},\dots,r_{n}\right\} $
+\end_inset
+
+
 \end_layout
 
 \end_deeper
 \begin_layout Enumerate
-вычисляется матрица 
+Вычисляется матрица 
 \begin_inset Formula $m_{F}$
 \end_inset
 
- линейного оператора в пространстве 
-\begin_inset Formula $\mathcal{A}=\mathcal{P}/I'$
+ линейного оператора в линейном пространстве 
+\begin_inset Formula $\mathcal{A}'=\mathcal{P}/I'$
 \end_inset
 
 :
@@ -15952,30 +16022,43 @@ name "enu:use-basis-for-radical"
 
 \begin_deeper
 \begin_layout Enumerate
-строится базис Грёбнера 
-\begin_inset Formula $G'$
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:use-basis-for-matrix"
+
 \end_inset
 
- идеала 
-\begin_inset Formula $I'$
+ фиксируется некоторый базис 
+\begin_inset Formula $B=\left\{ b_{1},\dots,b_{l}\right\} \subset\mathcal{A}'$
 \end_inset
 
- относительно произвольного мономиального порядка
-\end_layout
-
-\begin_layout Enumerate
-фиксируется базис 
-\begin_inset Formula $B=\left\{ b_{1},\dots,b_{l}\right\} \subset\mathcal{A}$
+ и находится оператор нормальной формы 
+\begin_inset Formula $N_{B}:\mathcal{P}\rightarrow\mathcal{K}^{l}$
 \end_inset
 
-, образованный мономами, не являющимися старшими мономами многочленов 
-\begin_inset Formula $I'$
+, позволяющий по любому многочлену из 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+ находить коэффициенты соответствующего ему элемента 
+\begin_inset Formula $\mathcal{A}$
+\end_inset
+
+ в базисе 
+\begin_inset Formula $B$
 \end_inset
 
 .
- Если оказывается, что множество таких мономов бесконечно, то множество
- решений системы содержит бесконечно много точек и рассматриваемый алгоритм
- неприменим к данному случаю.
+ Этот шаг отличается от шага 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:use-basis-for-radical"
+
+\end_inset
+
+только рассматриваемым идеалом и также обычно использует методы, связанные
+ с базисами Грёбнера.
+ 
 \end_layout
 
 \begin_layout Enumerate
@@ -15998,20 +16081,18 @@ name "enu:selecting-ci"
 \end_inset
 
  как линейный оператор в 
-\begin_inset Formula $\mathcal{A}$
+\begin_inset Formula $\mathcal{A}'$
 \end_inset
 
 
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset CommandInset label
-LatexCommand label
-name "enu:use-basis-for-matrix"
-
+строится матрица этого оператора 
+\begin_inset Formula $m_{F}$
 \end_inset
 
-строится матрица этого оператора, являющаяся 
+, являющаяся 
 \begin_inset Formula $l\times l$
 \end_inset
 
@@ -16021,12 +16102,12 @@ name "enu:use-basis-for-matrix"
 
 .
  При этом 
-\begin_inset Formula $G'$
+\begin_inset Formula $N_{B}$
 \end_inset
 
  используется для вычисления нормальной формы многочлена, являющейся однозначным
  представителем класса в 
-\begin_inset Formula $\mathcal{A}$
+\begin_inset Formula $\mathcal{A}'$
 \end_inset
 
 
@@ -16047,7 +16128,7 @@ name "enu:use-basis-for-matrix"
 
 \begin_deeper
 \begin_layout Enumerate
-при помощи метода поиска собственных значений матрицы для 
+при помощи метода поиска собственных значений матрицы в поле 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
@@ -16102,32 +16183,41 @@ reference "enu:selecting-ci"
 \end_layout
 
 \begin_layout Enumerate
-находятся значения 
-\begin_inset Formula $x_{j}\in B$
+для каждого 
+\begin_inset Formula $x_{j}$
 \end_inset
 
- путём выбора их из найденных значений базисных элементов
+ при помощи 
+\begin_inset Formula $N_{B}$
+\end_inset
+
+ находится 
+\begin_inset Formula $B$
+\end_inset
+
+-координаты 
+\begin_inset Formula $x_{j1},\dots,x_{jl}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
-находятся значения 
-\begin_inset Formula $x_{i}\notin B$
+для каждого собственного вектора значение 
+\begin_inset Formula $x_{j}$
 \end_inset
 
- путём подстановки в многочлены 
-\begin_inset Formula $p_{i}\in G',\HM(p_{i})=x_{i}$
+ находится как 
+\begin_inset Formula $x_{j}=\sum_{i}x_{ji}b_{i}$
 \end_inset
 
- найденных значений
-\begin_inset Formula $x_{j}\in B$
-\end_inset
-
-
+.
 \end_layout
 
 \end_deeper
 \begin_layout Standard
-Приведённый алгоритм использует базис Грёбнера на шагах 
+Приведённому алгоритму необходим базис фактор-пространства и оператор нормальной
+ формы на шагах 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:use-basis-for-matrix"
@@ -16141,18 +16231,21 @@ reference "enu:use-basis-for-radical"
 
 \end_inset
 
- для нахождения нормальной формы и это единственное, что требуется от базиса.
- Таким образом описанный алгоритм не накладывает никакого ограничения на
- мономиальный порядок, относительно которого считается базис Грёбнера.
- Также допустимы модификации данного алгоритма, вычисляющие не базис Грёбнера,
- а краевой базис, строгое определение которого даётся в 
+ и это единственное для чего в алгоритме может быть использован базис Грёбнера.
+ Поэтому описанный алгоритм не накладывает никакого ограничения на мономиальный
+ порядок, относительно которого считается базис Грёбнера.
+ Также допустимо использование 
+\emph on
+краевого базиса
+\emph default
+, строгое определение которого даётся в 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "NumericalPolynomialAlgebra"
 
 \end_inset
 
-, являющийся более общим понятием по сравнению с базисом Грёбнера.
+, и который является более общим понятием по сравнению с базисом Грёбнера.
  Работы 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -16598,77 +16691,25 @@ name "problem:approx-poly-system"
 
 \begin_layout Standard
 При решении этой задачи с применением базиса Грёбнера необходимо решить
- проблему возникающую в ситуации, когда старший коэффициент многочлена,
- выраженным в виде приближённого числа имеет ноль в качестве одной из своих
- специализаций, что делает невозможным обычное продолжение алгоритма, поскольку
- использование такого многочлена в качестве редуктора невозможно.
- Большинство работ, посвящённых этой проблеме, предлагают решения, связанные
- с расширением множества мономов 
+ проблему, возникающую в ситуации, когда выраженный приближённым числом
+ старший коэффициент многочлена имеет ноль в качестве одной из своих специализац
+ий, что делает невозможным обычное продолжение алгоритма, поскольку использовани
+е такого многочлена в качестве редуктора невозможно.
+ Большинство работ, посвящённых этой проблеме 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "NumericalComputationGB,NumericalComputationOfGBVarSubsttution,ArtificialDiscontinuities,GroebnerInExtFields"
+
+\end_inset
+
+, предлагают решения, связанные с расширением множества мономов 
 \begin_inset Formula $\mathbb{T}$
 \end_inset
 
 .
- Например в 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "NumericalComputationGB"
-
-\end_inset
-
- показано, как можно минимизировать вероятность появления таких многочленов
- путём сохранения  в мономе информации о размере коэффициентов.
-\end_layout
-
-\begin_layout Standard
-Серия работ 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "NumericalComputationOfGBVarSubsttution,ArtificialDiscontinuities,GroebnerInExtFields"
-
-\end_inset
-
- предлагает частичное решение рассматриваемой задачи, использующее кольцо
- многочленов с расширенным набором переменных и 
-\begin_inset CommandInset ref
-LatexCommand nameref
-reference "par:action-matrix-method"
-
-\end_inset
-
-, в котором нормальная форма строится на основе Базиса Грёбнера, рассчитанного
- в таком кольце.
- При этом, если система не является системой с конечным непрерывным решением,
- процедура расширения идеала никогда не завершится.
- Если же система обладает конечным непрерывным решением, то завершение процедуры
- строго доказано лишь для определённого класса задач с одним приближённым
- числом.
- Однако на практике метод достаточно быстро завершается для многих произвольных
- приближённых задач.
- Поэтому алгоритм искусственно ограничивают константным числом операций
- расширения, и, если по их завершению базис расширенного идеала не находится,
- алгоритм завершается с сообщением о его неприменимости к данной задаче.
- В случае же успешного завершения алгоритма найденный базис Грёбнера позволяет
- находить нормальную форму и таким образом решения системы.
-\end_layout
-
-\begin_layout Standard
-Работа 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "GroebnerInExtFields"
-
-\end_inset
-
- описывает адаптацию алгоритмов Бухбергера и F5 для вычисления расширенного
- базиса Грёбнера.
- Принцип работы обоих модификаций состоит в попытке построения базиса Грёбнера
- в соответствии с базовым алгоритмом, которая или приводит к ответу, или
- получает многочлен с достаточно маленьким старшим коэффициентом, после
- чего добавляет в исходную систему многочлен, исправляющий это, и заново
- запускает базовый алгоритм.
- Такой подход имеет недостаток -- после каждого расширения системы алгоритм
- запускается заново, во многом заново вычисляя при этом результаты, уже
- вычисленные ранее.
+ Однако, описываемые в них методы не допускают прозрачного применения к
+ сигнатурным алгоритмам: после каждого расширения множества мономов требуется
+ перезапуск алгоритмов, во многом повторяющий уже проведённые вычисления.
 \end_layout
 
 \begin_layout Standard
@@ -17608,15 +17649,15 @@ ApproxReduce
 \family typewriter
  ApproxNormalize
 \family default
- позволяют провести процедуру 
+ позволяют провести в приближённом случае процедуру аналогичную процедуре
+ 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "par:ReduceCheckingSignatures"
 
 \end_inset
 
- для приближённых многочленов и найти таким образом при помощи алгоритма
- 
+ и найти таким образом при помощи алгоритма 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "par:SingleStepSignatureGroebner"
@@ -17624,7 +17665,10 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  множество приближённых многочленов, образующее базис Грёбнера.
- Однако применение алгоритма возможно только в том случае, если все многочлены
+\end_layout
+
+\begin_layout Standard
+Однако применение алгоритма возможно только в том случае, если все многочлены
  поступившие на вход 
 \family typewriter
 ApproxNormalize
@@ -18431,7 +18475,7 @@ name "example:introduced-zeroes"
 \end_layout
 
 \begin_layout Section
-Вычисления для борьбы с нулями
+Борьба с необратимыми элементами
 \end_layout
 
 \begin_layout Standard
@@ -19766,7 +19810,7 @@ P_{0}>P_{d}(R,V,\beta)=\sqrt{\frac{R2^{R}V}{\beta}}.
 \end_layout
 
 \begin_layout Subsection
-Борьба с устранимыми нулями
+Методы дополнительных переменных
 \end_layout
 
 \begin_layout Standard
@@ -19776,9 +19820,269 @@ P_{0}>P_{d}(R,V,\beta)=\sqrt{\frac{R2^{R}V}{\beta}}.
  могут оказываться довольно большими.
 \end_layout
 
+\begin_layout Subsubsection
+Применение расширенного базиса к задаче решения системы
+\end_layout
+
+\begin_layout Standard
+Принципиально иные методы борьбы с устранимыми нулями основаны на идее внесения
+ в идеал многочленов вида 
+\begin_inset Formula $t_{i}-y_{i}$
+\end_inset
+
+, где 
+\begin_inset Formula $t_{i}\in\mathbb{T}$
+\end_inset
+
+, а 
+\begin_inset Formula $y$
+\end_inset
+
+ -- новая переменная.
+ Используя терминологию работы 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GroebnerInExtFields"
+
+\end_inset
+
+ можно сказать, что добавление таких многочленов превращает идеал 
+\begin_inset Formula $I=\left(f_{1},\ldots,f_{m}\right)\subset\mathcal{K}\left[x_{1},\dots,x_{n}\right]=\mathcal{P}$
+\end_inset
+
+ в расширенный идеал 
+\begin_inset Formula $I^{E}=\left(f_{1},\ldots,f_{m},t_{1}-y_{1},\ldots,t_{s}-y_{s}\right)\subset\mathcal{K}\left[x_{1},\dots,x_{n},y_{1},\dots,y_{s}\right]=\mathcal{P}^{E}$
+\end_inset
+
+.
+ Поэтому алгоритмы использующие данный метод находят базис Грёбнера не для
+ идеала 
+\begin_inset Formula $I$
+\end_inset
+
+, а для 
+\begin_inset Formula $I^{E}$
+\end_inset
+
+.
+ Предложение 4.2 из 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GroebnerInExtFields"
+
+\end_inset
+
+ показывает, что нули сохраняются при расширении идеала, и, таким образом,
+ найдя нули расширенного идеала можно получить решение системы.
+ 
+\end_layout
+
+\begin_layout Standard
+Однако возможно и более прозрачное применение базиса расширенного идеала
+ непосредственно к алгоритму 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:action-matrix-method"
+
+\end_inset
+
+, выполняемому для 
+\begin_inset Formula $I$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Definition
+Назовём 
+\emph on
+оператором сужения
+\emph default
+ отображение колец
+\begin_inset Formula $e^{-}:\mathcal{P}^{E}\rightarrow\mathcal{P}$
+\end_inset
+
+, осуществляющее замену всех 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+ на 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Обозначим за 
+\begin_inset Formula $M^{E}\subset\mathcal{P}^{E}$
+\end_inset
+
+ множество мономов, не делящихся на 
+\begin_inset Formula $\HM\left(I^{E}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+Назовём редукцию по базису Грёбнера 
+\begin_inset Formula $I^{E}$
+\end_inset
+
+ 
+\emph on
+оператором нормальной формы 
+\begin_inset Formula $N_{I^{E}}$
+\end_inset
+
+
+\emph default
+.
+ Он позволяет найти для любого многочлена из 
+\begin_inset Formula $\mathcal{P}^{E}$
+\end_inset
+
+ координаты в 
+\begin_inset Formula $B^{E}$
+\end_inset
+
+ -- базисе 
+\begin_inset Formula $\mathcal{P}^{E}/I^{E}$
+\end_inset
+
+, который задаётся представителями из 
+\begin_inset Formula $M^{E}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Theorem
+Множество 
+\begin_inset Formula $e^{-}\left(M^{E}\right)\subset\mathbb{T}$
+\end_inset
+
+ является базисом в 
+\begin_inset Formula $\mathcal{P}/I$
+\end_inset
+
+, а ограничение 
+\begin_inset Formula $N_{I^{E}}$
+\end_inset
+
+ на 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+ позволяет найти координаты в нём.
+\end_layout
+
+\begin_layout Proof
+Координаты не меняются от сужения:
+\begin_inset Formula $N_{I^{E}}\left(f\right)=N_{I^{E}}\left(e^{-}\left(f\right)\right)\,\forall f$
+\end_inset
+
+.
+ Значит в качестве представителей базиса 
+\begin_inset Formula $B^{E}$
+\end_inset
+
+ могут быть взяты элементы 
+\begin_inset Formula $e^{-}\left(M^{E}\right)\subset\mathcal{P}$
+\end_inset
+
+.
+ Они являются линейно независимыми в 
+\begin_inset Formula $\mathcal{P}^{E}/I^{E}$
+\end_inset
+
+ и порождают его.
+ Их линейная независимость в 
+\begin_inset Formula $\mathcal{P}/I$
+\end_inset
+
+ вытекает отсюда немедленно.
+ Любой элемент 
+\begin_inset Formula $\mathcal{P}/I$
+\end_inset
+
+, заданный представителем 
+\begin_inset Formula $p$
+\end_inset
+
+ из 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+ выражается данный базис, поскольку выполняется его принадлежность сумме
+ с линейной оболочкой: 
+\begin_inset Formula 
+\[
+p\in I^{E}+\left\langle M^{E}\right\rangle 
+\]
+
+\end_inset
+
+что после сужения даёт
+\begin_inset Formula 
+\[
+p=e^{-}\left(p\right)\in e^{-}\left(I^{E}+\left\langle M^{E}\right\rangle \right)=I+e^{-}\left(\left\langle M^{E}\right\rangle \right)=I+\left\langle e^{-}\left(M^{E}\right)\right\rangle .
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Ограничение 
+\begin_inset Formula $N_{I^{E}}$
+\end_inset
+
+ на 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+ является искомой нормальной формой, дающей координаты в 
+\begin_inset Formula $e^{-}\left(M^{E}\right)$
+\end_inset
+
+ поскольку координаты не меняются от применения 
+\begin_inset Formula $e^{-}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula 
+\[
+p=I^{E}+\sum_{j}k_{j}m_{j}\Longrightarrow e^{-}\left(p\right)=I+\sum_{j}k_{j}\left(m_{j}\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Базис и нормальная форма, упоминаемые в формулировке доказанной теоремы,
+ в точности оказываются понятиями необходимыми для работы алгоритма 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:action-matrix-method"
+
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Standard
 Существует несколько приёмов, позволяющих повлиять на мономиальный порядок
- в возникающих многочленах.
+ в возникающих многочленах добавлением новых многочленов рассмотренного
+ вида.
  Работа 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -19786,7 +20090,16 @@ key "NumericalComputationGB"
 
 \end_inset
 
- предлагает умножение некоторых мономов на вновь добавляемую переменную.
+ предлагает умножение некоторых мономов на вновь добавляемую переменную
+ 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+ путём вводе многочлена 
+\begin_inset Formula $1-\varepsilon$
+\end_inset
+
+.
  Этот метод позволяет в процессе работы алгоритмов, не использующих сигнатуры,
  при возникновении необратимого коэффициента при старшем мономе переносить
  его в конец многочлена.
@@ -19804,20 +20117,25 @@ key "NumericalComputationOfGBVarSubsttution,ArtificialDiscontinuities,GroebnerIn
 \end_inset
 
  предлагает метод, применимый и к сигнатурным алгоритмам.
- Он основан на добавлении многочлена с новыми переменными в набор входных
- данных и применении к такому расширенному множеству любого из алгоритмов
- вычисления базисов Грёбнера.
- Однако, изначально не известно, какие многочлены нужно добавить во входные
- данные.
- Поэтому в первый раз алгоритм вычисления запускается на входных данных
- без изменений, и как только возникает ситуация необратимости старшего приближён
-ного коэффициента, во входные данные добавляется многочлен и алгоритм запускаетс
-я с начала.
- Если необратимый элемент появляется опять -- входные данные снова расширяются
- и процесс повторяется.
- Конечность числа необходимость перезапусков не была доказана ни для каких
- случаев, однако практические эксперименты показали, что их число как правило
- является небольшим.
+ При каждом обнаружении многочлена 
+\begin_inset Formula $p$
+\end_inset
+
+ с необратимым старшим коэффициентом он добавляет во входные данные многочлен
+ 
+\begin_inset Formula $\HM\left(p\right)-y_{i}$
+\end_inset
+
+ с новой переменной 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+ и запускает алгоритм с начала.
+ Конечность числа необходимых перезапусков не была доказана, однако практические
+ эксперименты показали, что их число как правило является небольшим.
+ Но сама необходимость перезапуска приводит к тому, что некоторые уже проведённы
+е вычисления будут проведены вновь.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -19828,22 +20146,21 @@ key "NumericalComputationOfGBVarSubsttution,ArtificialDiscontinuities,GroebnerIn
  Основная идея состоит в том, чтоб назначать добавляемому во входные данные
  многочлену такую сигнатуру, чтоб ход алгоритма до момента добавления многочлена
  от него не зависел.
- Для этого добавляемому многочлену назначается сигнатура, строго предшествующая
- текущей рассматриваемой.
+ 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Вещественно-взвешенный порядок
 \end_layout
 
 \begin_layout Standard
-Большинство сигнатурных алгоритмов может работать с произвольным порядком
+Однопроходные сигнатурные алгоритмы могут работать с произвольным порядком
  на сигнатурах.
  Однако большинство распространённых порядков определяют сигнатуры входных
  многочленов на основе их порядка и старших мономов.
  Для реализации идеи добавления многочлена во входные данные в процессе
  работы алгоритма потребуется более общий порядок, позволяющий назначать
- добавляемому многочлену произвольное значение сигнатуры.
+ добавляемому многочлену достаточно произвольное значение сигнатуры.
  Это становится возможным благодаря применению взвешенного порядка, дополненного
  возможностью использовать в качестве индекса сигнатуры вещественные числа
  вместо целых.
@@ -19861,6 +20178,9 @@ key "NumericalComputationOfGBVarSubsttution,ArtificialDiscontinuities,GroebnerIn
 \end_inset
 
 , для которого сравнение сигнатур определяется следующим образом:
+\end_layout
+
+\begin_layout Standard
 \begin_inset Formula 
 \[
 \left(t_{1},i_{1}\right)\prec_{w}\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & t_{1}w_{i_{1}}\prec t_{2}w_{i_{2}}\\
@@ -19874,6 +20194,49 @@ key "NumericalComputationOfGBVarSubsttution,ArtificialDiscontinuities,GroebnerIn
 
 \end_layout
 
+\begin_layout Definition
+Пусть задан набор из 
+\begin_inset Formula $m$
+\end_inset
+
+ входных многочленов и вещественно-взвешенный порядок на нём с параметрами
+ 
+\begin_inset Formula $(w_{1},\dots,w_{m})$
+\end_inset
+
+ и 
+\begin_inset Formula $(j_{1},\dots,j_{m})$
+\end_inset
+
+.
+ Назовём 
+\emph on
+дополнением с сигнатурой предшествующей 
+\emph default
+
+\begin_inset Formula $\left(t,i\right)$
+\end_inset
+
+ добавление во входное множество на место 
+\begin_inset Formula $m+1$
+\end_inset
+
+ многочлена, параметры сигнатуры которого определяются как 
+\begin_inset Formula $w_{m+1}=t\cdot w_{i},\, j_{m+1}=\frac{j_{i}+\max\left\{ j_{k}\in j_{1},\dots,j_{m}|j_{k}<j_{i}\right\} }{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Сигнатура добавленного входного многочлена оказывается строго максимальной
+ в множестве сигнатур, меньших 
+\begin_inset Formula $\left(t,i\right)$
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Theorem
 Рассмотрим шаг 
 \begin_inset CommandInset ref
@@ -19882,7 +20245,11 @@ reference "enu:-after-reduce-sstep"
 
 \end_inset
 
- алгоритма 
+ на 
+\begin_inset Formula $N$
+\end_inset
+
+-й итерации алгоритма 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "par:SingleStepSignatureGroebner"
@@ -19893,34 +20260,462 @@ reference "par:SingleStepSignatureGroebner"
 \begin_inset Formula $\prec_{w}$
 \end_inset
 
- с параметром 
-\begin_inset Formula $w=(w_{1},\dots,w_{m})\in\mathbb{T}^{m}$
+ с параметрами 
+\begin_inset Formula $(w_{1},\dots,w_{m})$
+\end_inset
+
+ и 
+\begin_inset Formula $(j_{1},\dots,j_{m})$
 \end_inset
 
 .
- Пусть на нём был получен многочлен сигнатуры 
+ Пусть на нём был получен многочлен 
+\begin_inset Formula $p$
+\end_inset
+
+ сигнатуры 
 \begin_inset Formula $\left(t,i\right)$
 \end_inset
 
 .
- Тогда 
-\end_layout
-
-\begin_layout Standard
-[Модификация алгоритма SSG для борьбы с устранимыми нулями путём добавления
- многочленов 
-\begin_inset Formula $m_{i}-\varepsilon_{i}$
+ Тогда при дополнении входного множества многочленом со старшим мономом
+ 
+\begin_inset Formula $\HM\left(p\right)$
 \end_inset
 
- с правильными сигнатурными весами]
+и сигнатурой предшествующей 
+\begin_inset Formula $\left(t,i\right)$
+\end_inset
+
+ и перезапуске алгоритма с начала, первые 
+\begin_inset Formula $N-1$
+\end_inset
+
+ итераций пройдут без изменений, а редукции произведённые на итерации 
+\begin_inset Formula $N$
+\end_inset
+
+ будут произведены на итерации 
+\begin_inset Formula $N+1$
+\end_inset
+
+
 \end_layout
 
-\begin_layout Subsection
-Применение расширенного базиса к задаче решения системы
+\begin_layout Proof
+После добавления входного многочлена в работе алгоритма произойдёт следующее:
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+на этапе инициализации в 
+\begin_inset Formula $B$
+\end_inset
+
+ добавится многочлен 
+\begin_inset Formula $f_{m+1}$
+\end_inset
+
+, а в 
+\begin_inset Formula $R$
+\end_inset
+
+ -- нули с сигнатурами, не меньшими 
+\begin_inset Formula $\left(\HM\left(f_{j}\right),m+1\right),j\leqslant m$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+итерации главного цикла 
+\begin_inset Formula $1\dots N-1$
+\end_inset
+
+ пройдут без изменений, поскольку добавленный в 
+\begin_inset Formula $B$
+\end_inset
+
+ многочлен 
+\begin_inset Formula $f_{m+1}$
+\end_inset
+
+ имеет сигнатуру, превышающую сигнатуру обрабатываемых на этих итерациях
+ многочленах
+\end_layout
+
+\begin_layout Itemize
+на 
+\begin_inset Formula $N$
+\end_inset
+
+-й итерации многочлен 
+\begin_inset Formula $f_{m+1}$
+\end_inset
+
+ перемещается из 
+\begin_inset Formula $B$
+\end_inset
+
+ в 
+\begin_inset Formula $R$
+\end_inset
+
+.
+ Он не может быть редуцирован, поскольку на итерации 
+\begin_inset Formula $N$
+\end_inset
+
+ до добавления многочлен с таким же старшим мономом и большей сигнатурой
+ 
+\begin_inset Formula $\left(t,i\right)$
+\end_inset
+
+ не редуцировался по такому же множеству
+\begin_inset Formula $R$
+\end_inset
+
+ при редукции.
+\end_layout
+
+\begin_layout Itemize
+на 
+\begin_inset Formula $N+1$
+\end_inset
+
+-й итерации будет рассматриваться многочлен, дающий 
+\begin_inset Formula $p$
+\end_inset
+
+ в процессе редукции.
+ Но после добавления редукция не остановится на данном этапе, а будет продолжена
+ редукцией 
+\begin_inset Formula $p$
+\end_inset
+
+ по 
+\begin_inset Formula $f_{m+1}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
 \begin_layout Standard
-[применение расширенного базиса к задаче решения системы]
+Таким образом, доказано, что при добавлении многочлена с указанным старшим
+ мономом вместо перезапуска алгоритма возможно добавление многочлена сразу
+ в 
+\begin_inset Formula $R$
+\end_inset
+
+ и продолжение редукции.
+ Это позволяет сформулировать алгоритм, работающий с приближёнными многочленами,
+ строящий расширенный базис Грёбнера.
+ Его входные данные совпадают с входными данными алгоритма 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:SingleStepSignatureGroebner"
+
+\end_inset
+
+, а корректность в случае остановки вытекает из доказанной теоремы.
+\end_layout
+
+\begin_layout Paragraph
+
+\family typewriter
+ApproxmateSignatureGroebner
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $R\leftarrow\cup_{1\leqslant i<j\leqslant m}\left\{ \left(\max_{\prec_{a}}\left(\left(\HM(f_{i}),j\right),\left(\HM(f_{j}),i\right)\right),0\right)\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $B\leftarrow\{((1,1),f_{1}),((1,2),f_{2}),\dots,((1,m),f_{m})\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+do while 
+\begin_inset Formula $B\neq\varnothing$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $(\sigma,p)\leftarrow$
+\end_inset
+
+ элемент 
+\begin_inset Formula $B$
+\end_inset
+
+ с 
+\begin_inset Formula $\prec_{a}$
+\end_inset
+
+-минимальной сигнатурой
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:-remove-sigma-from-B-sstep-1"
+
+\end_inset
+
+
+\begin_inset Formula $B\leftarrow B\setminus\{b\in B,\Sig(b)=\sigma\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+ApproxReduce 
+\family default
+и
+\family typewriter
+ ApproxNormalize
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+do
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+do while 
+\begin_inset Formula $\exists r\in R\, r\GVWg(\sigma,p)\wedge\HM(r)|\HM(p)$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $p\leftarrow$
+\end_inset
+
+ 
+\family typewriter
+ApproxReduce
+\family default
+(
+\begin_inset Formula $p$
+\end_inset
+
+, 
+\begin_inset Formula $\GVWg$
+\end_inset
+
+-максимальный элемент 
+\begin_inset Formula $r$
+\end_inset
+
+ среди указанных в условии цикла)
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+while 
+\begin_inset Formula $p=0$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+if 
+\series default
+
+\begin_inset Formula $p\ne0$
+\end_inset
+
+
+\series bold
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $p\leftarrow\frac{p}{\HC(p)}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+return
+\series default
+ 
+\begin_inset Formula $p$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:-before-reduce-sstep-1"
+
+\end_inset
+
+
+\begin_inset Formula $p\leftarrow$
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:ReduceCheckingSignatures"
+
+\end_inset
+
+((
+\begin_inset Formula $\sigma,p'),R$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:-after-reduce-sstep-1"
+
+\end_inset
+
+
+\begin_inset Formula $R\leftarrow R\cup\left\{ \left(\sigma,p\right)\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+if
+\series default
+ 
+\begin_inset Formula $p\not=0$
+\end_inset
+
+
+\series bold
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+for 
+\series default
+
+\begin_inset Formula $\{r\in R\,|\, r\GVWl\left(\sigma,p\right),\HM(r)\neq0\}$
+\end_inset
+
+
+\series bold
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(r)}r\}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+for 
+\series default
+
+\begin_inset Formula $\{r\in R\,|\, r\GVWg\left(\sigma,p\right)\}$
+\end_inset
+
+
+\series bold
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(p)}\left(\sigma,p\right)\}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "enu:-remove-from-B-sstep"
+
+\end_inset
+
+
+\begin_inset Formula $B\leftarrow B\setminus\{b\in B\,|\,\exists r\in R\, r\GVWl b\wedge\Sig(r)|\Sig(b)\}$
+\end_inset
+
+, где под делимостью сигнатур, подразумевается делимость определённая для
+ 
+\begin_inset Formula $\mathbf{T}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+return
+\series default
+ 
+\begin_inset Formula $\{\poly(r)\,|\, r\in R,\poly(r)\ne0\}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
