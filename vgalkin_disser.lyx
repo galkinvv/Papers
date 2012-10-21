@@ -5,7 +5,16 @@
 \textclass article
 \begin_preamble
 \input{gost/babelbst.tex}
+\oddsidemargin=0.46cm
+\hoffset=0cm
+\textwidth=16.75cm
+\topmargin=-0.54cm
+\textheight=25.2cm
+\headheight=0cm
+\headsep=0cm
+\sloppy
 \end_preamble
+\options a4paper, reqno, 12pt
 \use_default_options true
 \begin_modules
 theorems-ams
@@ -57,7 +66,7 @@ figs-within-sections
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
-\suppress_date false
+\suppress_date true
 \use_refstyle 0
 \index Index
 \shortcut idx
@@ -82,7 +91,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\GVWl}{<_{\text{H}}}
+\newcommand{\GVWg}{>_{\text{\textnormal{H}}}}
 \end_inset
 
 
@@ -90,7 +99,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\GVWg}{>_{\text{\textnormal{H}}}}
+\newcommand{\GVWl}{<_{\text{H}}}
 \end_inset
 
 
@@ -169,6 +178,10 @@ figs-within-sections
 \end_layout
 
 \begin_layout Title
+\begin_inset Note Note
+status open
+
+\begin_layout Title
 Сигнатурные алгоритмы вычисления базисов Грёбнера
 \end_layout
 
@@ -182,6 +195,368 @@ figs-within-sections
 
 \begin_layout Address
 galkin-vv@ya.ru
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fontsize{14pt}{18}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+selectfont
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset space \space{}
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ 
+\size largest
+Московский государственный университет 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset VSpace smallskip
+\end_inset
+
+имени М.В.
+\begin_inset space ~
+\end_inset
+
+Ломоносова
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size largest
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size largest
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size largest
+Механико-математический факультет
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset VSpace vfill
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+На правах рукописи
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\align center
+УДК 512.628.2+519.688
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+%+512.714
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset VSpace vfill
+\end_inset
+
+
+\begin_inset VSpace vfill
+\end_inset
+
+
+\begin_inset VSpace vfill
+\end_inset
+
+
+\size largest
+ГАЛКИН Василий Витальевич
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset VSpace vfill
+\end_inset
+
+
+\size giant
+Сигнатурные алгоритмы вычисления базисов Грёбнера
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset VSpace vfill
+\end_inset
+
+Специальность 01.01.06
+\begin_inset space ~
+\end_inset
+
+--- математическая логика,
+\end_layout
+
+\begin_layout Standard
+\align center
+алгебра и теория чисел
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size larger
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size larger
+Диссертация на соискание ученой степени 
+\begin_inset Newline newline
+\end_inset
+
+ кандидата физико-математических наук
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size larger
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size larger
+\begin_inset VSpace vfill
+\end_inset
+
+Научный руководитель:
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size larger
+кандидат физико-математических наук
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size larger
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\align center
+
+\size larger
+,
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+
+\size larger
+ведущий научный сотрудник 
+\end_layout
+
+\end_inset
+
+А.И.
+ Зобнин
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset VSpace vfill
+\end_inset
+
+
+\begin_inset VSpace vfill
+\end_inset
+
+
+\begin_inset VSpace vfill
+\end_inset
+
+
+\begin_inset VSpace vfill
+\end_inset
+
+Москва
+\begin_inset Newline newline
+\end_inset
+
+ 2012 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Abstract
@@ -2618,7 +2993,11 @@ key "F5InBBStyle"
 
 \end_inset
 
-.
+
+\end_layout
+
+\begin_layout Subsubsection
+Псевдокод F5
 \end_layout
 
 \begin_layout Standard
@@ -3427,8 +3806,6 @@ name "par:CritPair"
 \end_inset
 
 CritPair
-\family sans
- 
 \end_layout
 
 \begin_layout Labeling
@@ -3666,6 +4043,8 @@ name "par:Spol"
 
 \end_inset
 
+
+\series medium
 Spol
 \end_layout
 
@@ -3868,8 +4247,6 @@ name "par:Reduction"
 \end_inset
 
 Reduction
-\family sans
- 
 \end_layout
 
 \begin_layout Labeling
@@ -4171,8 +4548,6 @@ name "par:IsReducible"
 \end_inset
 
 IsReducible
-\family sans
- 
 \end_layout
 
 \begin_layout Labeling
@@ -12685,6 +13060,10 @@ reference "eq:left-or-right-monom"
 .
 \end_layout
 
+\begin_layout Subsubsection
+Псевдокод инкрементального алгоритма 
+\end_layout
+
 \begin_layout Paragraph
 \begin_inset CommandInset label
 LatexCommand label
@@ -14475,6 +14854,10 @@ key "Eder2012inhomogeneous"
 .
 \end_layout
 
+\begin_layout Subsubsection
+Псевдокод одноэтапного алгоритма 
+\end_layout
+
 \begin_layout Paragraph
 \begin_inset CommandInset label
 LatexCommand label
@@ -15889,6 +16272,10 @@ reference "par:SingleStepSignatureGroebner"
 
 \begin_layout Part
 Решение систем полиномиальных уравнений
+\end_layout
+
+\begin_layout Section
+Системы уравнений и методы их решения
 \end_layout
 
 \begin_layout Standard
@@ -20526,6 +20913,10 @@ reference "par:SingleStepSignatureGroebner"
  
 \end_layout
 
+\begin_layout Subsubsection
+Алгоритм для приближённых вычислений
+\end_layout
+
 \begin_layout Standard
 Эти рассуждения позволяет сформулировать алгоритм, работающий с приближёнными
  многочленами, строящий расширенный базис Грёбнера.
@@ -20994,7 +21385,7 @@ reference "par:SingleStepSignatureGroebner"
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 bibfiles "f5_references"
-options "gost/ugost2008ns"
+options "gost/ugost2008"
 
 \end_inset
 
