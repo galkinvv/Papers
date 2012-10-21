@@ -14606,6 +14606,18 @@ name "enu:-remove-sigma-from-B-sstep"
 \end_inset
 
 
+\series bold
+if
+\series default
+ 
+\begin_inset Formula $\sigma=\left(1,\sigidx\left(\sigma\right)\right)$
+\end_inset
+
+
+\series bold
+:
+\series default
+
 \begin_inset Formula $B\leftarrow B\setminus\{b\in B,\Sig(b)=\sigma\}$
 \end_inset
 
@@ -15197,10 +15209,6 @@ reference "enu:-after-reduce"
 \end_inset
 
  в 
-\begin_inset Formula $ $
-\end_inset
-
-
 \begin_inset Formula $R$
 \end_inset
 
@@ -15214,7 +15222,23 @@ reference "enu:-after-reduce"
 \begin_inset Formula $\sigidx(\sigma)$
 \end_inset
 
-, который не может иметь делителей сигнатуры .
+, который не может иметь делителей сигнатуры.
+ Повторное добавление элемента с сигнатурой 
+\begin_inset Formula $\left(1,\sigidx(\sigma)\right)$
+\end_inset
+
+невозможно, поскольку такие элементы явно удаляются из 
+\begin_inset Formula $B$
+\end_inset
+
+ сразу после извлечения на шаге 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-remove-sigma-from-B-sstep"
+
+\end_inset
+
+, и никогда не добавляются позднее.
 \end_layout
 
 \begin_layout Theorem
@@ -15472,6 +15496,25 @@ reference "enu:-remove-sigma-from-B-sstep"
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:exist-r-sigma"
+
+\end_inset
+
+ с дополнением о том, что на шаге 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-remove-sigma-from-B-sstep"
+
+\end_inset
+
+ отбрасываются только элементы, добавленные в 
+\begin_inset Formula $B$
+\end_inset
+
+ при инициализации, а элементы, добавленные позже могут быть удалены только
+ на шаге 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:-remove-from-B-sstep"
 
 \end_inset
 
@@ -20180,7 +20223,7 @@ key "NumericalComputationOfGBVarSubsttution,ArtificialDiscontinuities,GroebnerIn
 , для которого сравнение сигнатур определяется следующим образом:
 \end_layout
 
-\begin_layout Standard
+\begin_layout Definition
 \begin_inset Formula 
 \[
 \left(t_{1},i_{1}\right)\prec_{w}\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & t_{1}w_{i_{1}}\prec t_{2}w_{i_{2}}\\
@@ -20192,6 +20235,15 @@ key "NumericalComputationOfGBVarSubsttution,ArtificialDiscontinuities,GroebnerIn
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Любой взвешенный порядок является частным случаем вещественно-взвешенного
+ с параметрами 
+\begin_inset Formula $j_{i}=i$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Definition
@@ -20238,6 +20290,12 @@ key "NumericalComputationOfGBVarSubsttution,ArtificialDiscontinuities,GroebnerIn
 \end_layout
 
 \begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:Adding-polys"
+
+\end_inset
+
 Рассмотрим шаг 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -20409,8 +20467,56 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  и продолжение редукции.
- Это позволяет сформулировать алгоритм, работающий с приближёнными многочленами,
- строящий расширенный базис Грёбнера.
+\end_layout
+
+\begin_layout Standard
+Для применимости этой теоремы к алгоритму, необходимо чтоб добавлнмый многочлен
+ 
+\begin_inset Formula $\HM\left(p\right)-y$
+\end_inset
+
+ имел старший моном 
+\begin_inset Formula $\HM\left(p\right)$
+\end_inset
+
+.
+ Для достижения этого будем продолжать мономиальный порядок на 
+\begin_inset Formula $y$
+\end_inset
+
+ так, чтоб 
+\begin_inset Formula $y$
+\end_inset
+
+ был 
+\begin_inset Formula $\prec$
+\end_inset
+
+-меньше всех имеющихся переменных.
+ При 
+\begin_inset Formula $\HM\left(p\right)\ne1$
+\end_inset
+
+ такое продолжение порядка гарантирует, что 
+\begin_inset Formula $y\prec\HM\left(p\right)$
+\end_inset
+
+.
+ Однако при 
+\begin_inset Formula $\HM\left(p\right)=1$
+\end_inset
+
+ старшим членом всегда будет оказываться 
+\begin_inset Formula $y$
+\end_inset
+
+, и добавление многочлена со старшим мономом нужного вида совершить не удастся.
+ 
+\end_layout
+
+\begin_layout Standard
+Эти рассуждения позволяет сформулировать алгоритм, работающий с приближёнными
+ многочленами, строящий расширенный базис Грёбнера.
  Его входные данные совпадают с входными данными алгоритма 
 \begin_inset CommandInset ref
 LatexCommand nameref
@@ -20418,13 +20524,23 @@ reference "par:SingleStepSignatureGroebner"
 
 \end_inset
 
-, а корректность в случае остановки вытекает из доказанной теоремы.
+, с тем ограничением, что порядок 
+\begin_inset Formula $\prec_{a}$
+\end_inset
+
+ на сигнатурах является вещественно-взвешенным порядком с некоторыми параметрами.
 \end_layout
 
 \begin_layout Paragraph
 
 \family typewriter
-ApproxmateSignatureGroebner
+\begin_inset CommandInset label
+LatexCommand label
+name "par:ApproxSignatureGroebner"
+
+\end_inset
+
+ApproxSignatureGroebner
 \end_layout
 
 \begin_layout Enumerate
@@ -20436,6 +20552,13 @@ ApproxmateSignatureGroebner
 
 \begin_layout Enumerate
 \begin_inset Formula $B\leftarrow\{((1,1),f_{1}),((1,2),f_{2}),\dots,((1,m),f_{m})\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $k\leftarrow0$
 \end_inset
 
 
@@ -20468,13 +20591,6 @@ do while
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset CommandInset label
-LatexCommand label
-name "enu:-remove-sigma-from-B-sstep-1"
-
-\end_inset
-
-
 \begin_inset Formula $B\leftarrow B\setminus\{b\in B,\Sig(b)=\sigma\}$
 \end_inset
 
@@ -20483,18 +20599,8 @@ name "enu:-remove-sigma-from-B-sstep-1"
 
 \begin_layout Enumerate
 
-\family typewriter
-ApproxReduce 
-\family default
-и
-\family typewriter
- ApproxNormalize
-\end_layout
-
-\begin_layout Enumerate
-
 \series bold
-do
+infinite loop:
 \end_layout
 
 \begin_deeper
@@ -20535,24 +20641,107 @@ ApproxReduce
 \end_deeper
 \begin_layout Enumerate
 
+\series bold
+if 
+\series default
+
+\begin_inset Formula $\HC\left(p\right)$
+\end_inset
+
+ обратим 
+\series bold
+or 
+\series default
+
+\begin_inset Formula $p=0$
+\end_inset
+
+
+\series bold
+: break infinite loop
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+if 
+\series default
+
+\begin_inset Formula $\HM\left(p\right)=1$
+\end_inset
+
+
+\series bold
+: exit(
+\series default
+
+\begin_inset Quotes fld
+\end_inset
+
+Алгоритм неприменим к данной задаче
+\begin_inset Quotes frd
+\end_inset
+
+
+\series bold
+)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $k\leftarrow k+1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Расширим набор параметров порядка 
+\begin_inset Formula $\prec_{a}$
+\end_inset
+
+ на сигнатурах на индекс 
+\begin_inset Formula $m+k$
+\end_inset
+
+ в соответствии с правилом добавления многочлена с сигнатурой предшествующей
+ 
+\begin_inset Formula $\Sig\left(p\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Расширим порядок 
+\begin_inset Formula $\prec$
+\end_inset
+
+ на мономах на переменную 
+\begin_inset Formula $y_{k}$
+\end_inset
+
+, положив её меньше всех остальных переменных
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $f_{m+k}\leftarrow\HM\left(p\right)-y_{k}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $R\leftarrow R\cup\left\{ \left(\left(1,m+k\right),f_{m+k}\right)\right\} \cup_{1\leqslant i<m+k}\left\{ \left(\max_{\prec_{a}}\left(\left(\HM(f_{i}),k\right),\left(\HM(f_{m+k}),i\right)\right),0\right)\right\} $
+\end_inset
+
+
 \end_layout
 
 \end_deeper
 \begin_layout Enumerate
 
 \series bold
-while 
-\begin_inset Formula $p=0$
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-
-\series bold
-if 
+if
 \series default
 
 \begin_inset Formula $p\ne0$
@@ -20560,85 +20749,23 @@ if
 
 
 \series bold
-:
+: 
 \end_layout
 
 \begin_deeper
 \begin_layout Enumerate
-\begin_inset Formula $p\leftarrow\frac{p}{\HC(p)}$
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\end_deeper
-\begin_layout Enumerate
-
-\series bold
-return
-\series default
- 
-\begin_inset Formula $p$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset CommandInset label
-LatexCommand label
-name "enu:-before-reduce-sstep-1"
-
-\end_inset
-
-
 \begin_inset Formula $p\leftarrow$
 \end_inset
 
 
-\begin_inset CommandInset ref
-LatexCommand nameref
-reference "par:ReduceCheckingSignatures"
-
-\end_inset
-
-((
-\begin_inset Formula $\sigma,p'),R$
-\end_inset
-
-)
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset CommandInset label
-LatexCommand label
-name "enu:-after-reduce-sstep-1"
-
-\end_inset
-
-
-\begin_inset Formula $R\leftarrow R\cup\left\{ \left(\sigma,p\right)\right\} $
+\family typewriter
+ApproxNormalize
+\begin_inset Formula $\left(p\right)$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Enumerate
-
-\series bold
-if
-\series default
- 
-\begin_inset Formula $p\not=0$
-\end_inset
-
-
-\series bold
-:
-\end_layout
-
-\begin_deeper
 \begin_layout Enumerate
 
 \series bold
@@ -20687,13 +20814,13 @@ for
 \end_deeper
 \end_deeper
 \begin_layout Enumerate
-\begin_inset CommandInset ref
-LatexCommand nameref
-reference "enu:-remove-from-B-sstep"
-
+\begin_inset Formula $R\leftarrow R\cup\left\{ \left(\sigma,p\right)\right\} $
 \end_inset
 
 
+\end_layout
+
+\begin_layout Enumerate
 \begin_inset Formula $B\leftarrow B\setminus\{b\in B\,|\,\exists r\in R\, r\GVWl b\wedge\Sig(r)|\Sig(b)\}$
 \end_inset
 
@@ -20716,6 +20843,45 @@ return
 \end_inset
 
 
+\end_layout
+
+\begin_layout Theorem
+Если алгоритм 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:ApproxSignatureGroebner"
+
+\end_inset
+
+ останавливается, то он возвращает базис Грёбнера расширения идеала 
+\begin_inset Formula $\left(f_{1},\dots,f_{m}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Поскольку все добавляемые в процессе работы алгоритма многочлены удовлетворяют
+ теореме 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:Adding-polys"
+
+\end_inset
+
+, результат данного алгоритма будет совпадать с результатом алгоритма 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:SingleStepSignatureGroebner"
+
+\end_inset
+
+, применённого к расширенному множеству входных данных, про который известно
+ что он выдаёт базис Грёбнера.
+\end_layout
+
+\begin_layout Standard
+Вопрос условий остановки данного алгоритма остаётся открытым.
 \end_layout
 
 \begin_layout Section
