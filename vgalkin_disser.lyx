@@ -2,7 +2,7 @@
 \lyxformat 413
 \begin_document
 \begin_header
-\textclass article
+\textclass extarticle
 \begin_preamble
 \input{gost/babelbst.tex}
 \oddsidemargin=0.46cm
@@ -14,7 +14,7 @@
 \headsep=0cm
 \sloppy
 \end_preamble
-\options a4paper, reqno, 12pt
+\options a4paper, reqno, 14pt
 \use_default_options true
 \begin_modules
 theorems-ams
@@ -177,64 +177,41 @@ figs-within-sections
 
 \end_layout
 
-\begin_layout Title
-\begin_inset Note Note
+\begin_layout Standard
+\begin_inset ERT
 status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+let
+\backslash
+maketitle
+\backslash
+relax%
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Title
 Сигнатурные алгоритмы вычисления базисов Грёбнера
 \end_layout
 
 \begin_layout Author
-Василий Галкин
-\end_layout
-
-\begin_layout Address
-МГУ
-\end_layout
-
-\begin_layout Address
-galkin-vv@ya.ru
-\end_layout
-
-\end_inset
-
-
+Василий Галкин, Мехмат МГУ, galkin-vv@ya.ru
 \end_layout
 
 \begin_layout Standard
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 {
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-fontsize{14pt}{18}
-\end_layout
-
-\end_inset
-
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-selectfont
 \end_layout
 
 \end_inset
@@ -260,24 +237,13 @@ thispagestyle{empty}
 
 \begin_layout Standard
 \align center
-\begin_inset space \space{}
-\end_inset
 
-
-\begin_inset Newline newline
-\end_inset
-
- 
-\size largest
+\size larger
 Московский государственный университет 
 \begin_inset Newline newline
 \end_inset
 
- 
-\begin_inset VSpace smallskip
-\end_inset
-
-имени М.В.
+ имени М.В.
 \begin_inset space ~
 \end_inset
 
@@ -286,59 +252,31 @@ thispagestyle{empty}
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-\align center
-
-\size largest
 \begin_inset VSpace medskip
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-\align center
-
-\size largest
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align center
-
-\size largest
 Механико-математический факультет
-\end_layout
+\size default
 
-\begin_layout Standard
-\align center
 \begin_inset VSpace vfill
 \end_inset
 
 
-\begin_inset space \hfill{}
-\end_inset
-
-На правах рукописи
 \end_layout
 
 \begin_layout Standard
-\align center
-\begin_inset space \hfill{}
+\align right
+На правах рукописи
+\begin_inset Newline newline
 \end_inset
 
-
+УДК 512
 \begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-\align center
-УДК 512.628.2+519.688
+\align right
+.628.2+519.688
 \end_layout
 
 \end_inset
@@ -363,22 +301,6 @@ status collapsed
 
 \begin_layout Standard
 \align center
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align center
 \begin_inset VSpace vfill
 \end_inset
 
@@ -391,34 +313,24 @@ status collapsed
 \end_inset
 
 
-\size largest
+\size larger
 ГАЛКИН Василий Витальевич
 \end_layout
 
 \begin_layout Standard
 \align center
-\begin_inset VSpace smallskip
-\end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-\align center
+\size small
 \begin_inset VSpace vfill
 \end_inset
 
 
-\size giant
-Сигнатурные алгоритмы вычисления базисов Грёбнера
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset VSpace medskip
+\size huge
+Сигнатурные алгоритмы
+\begin_inset Newline newline
 \end_inset
 
-
+вычисления базисов Грёбнера
 \end_layout
 
 \begin_layout Standard
@@ -431,19 +343,10 @@ status collapsed
 \end_inset
 
 --- математическая логика,
-\end_layout
-
-\begin_layout Standard
-\align center
-алгебра и теория чисел
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset VSpace bigskip
+\begin_inset Newline newline
 \end_inset
 
-
+алгебра и теория чисел
 \end_layout
 
 \begin_layout Standard
@@ -459,7 +362,7 @@ status collapsed
 \begin_layout Standard
 \align center
 
-\size larger
+\size large
 Диссертация на соискание ученой степени 
 \begin_inset Newline newline
 \end_inset
@@ -470,34 +373,15 @@ status collapsed
 \begin_layout Standard
 \align center
 
-\size larger
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align center
-
-\size larger
+\size large
 \begin_inset VSpace vfill
 \end_inset
 
 Научный руководитель:
-\end_layout
+\begin_inset Newline newline
+\end_inset
 
-\begin_layout Standard
-\align center
-
-\size larger
 кандидат физико-математических наук
-\end_layout
-
-\begin_layout Standard
-\align center
-
-\size larger
 \begin_inset Note Note
 status open
 
@@ -506,15 +390,16 @@ status open
 
 \size larger
 ,
+\begin_inset Newline newline
+\end_inset
+
+доцент
 \end_layout
 
-\begin_layout Plain Layout
-\align center
+\end_inset
 
-\size larger
-ведущий научный сотрудник 
-\end_layout
 
+\begin_inset Newline newline
 \end_inset
 
 А.И.
@@ -526,23 +411,27 @@ status open
 \begin_inset VSpace vfill
 \end_inset
 
-
-\begin_inset VSpace vfill
-\end_inset
-
-
-\begin_inset VSpace vfill
-\end_inset
-
-
-\begin_inset VSpace vfill
-\end_inset
-
 Москва
 \begin_inset Newline newline
 \end_inset
 
  2012 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -559,7 +448,18 @@ status collapsed
 
 \end_layout
 
-\begin_layout Abstract
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part*
+Введение
+\end_layout
+
+\begin_layout Standard
 Основное направление данной работы -- построение эффективного способа применения
  алгоритмов, основанных на сигнатурах, для решения полиномиальных уравнений.
  В первой части показана остановка алгоритм F5, предложенного Фожером, и
@@ -571,8 +471,67 @@ status collapsed
  конечными полями.
 \end_layout
 
+\begin_layout Standard
+Бухбергер.
+ Основанные на сизигиях, но не сигнатурах - 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FirstSyzygiesPaper"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Представленный алгоритм принадлежит к семейству алгоритмов вычисления базисов
+ Грёбнера, которые вычисляют S-базис и в той или иной степени являются развитием
+ алгоритма F5.
+ Одно из основных направлений его развития -- упрощение теоретических обосновани
+й и расширение области применимости -- представлено в 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5InBBStyle,GermanF5Proof_ru,ZobninGeneralization_ru"
+
+\end_inset
+
+.
+ Другое -- повышение эффективности, путём ввода дополнительных критериев
+ отбрасывания некоторых вычислений -- описывается в 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5C,G2V,SignatureBasedGBs"
+
+\end_inset
+
+ и позволяет проводить вычисления так, чтобы до конца редуцировались лишь
+ многочлены, являющиеся новыми элементами S-базиса или дающие новую сигнатуру
+ нулевого многочлена, расширяющую идеал моноида, содержащий такие сигнатуры,
+ называемые также 
+\emph on
+сигнатурами сизигий.
+
+\emph default
+ Обобщение с одновременным применением всех критериев в алгоритмах TRB-MJ
+ и SB 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HuangConception,PracticalGB"
+
+\end_inset
+
+ позволяет добиться большей эффективности благодаря тому, что все отбрасывания
+ применяются до проведения таких вычислительно трудоёмких операций, как
+ редукция многочлена или подсчёт старшего монома S-пары, -- в результате
+ не оказывается, что результаты каких-то вычислений были отброшены.
+\end_layout
+
 \begin_layout Part
 Вычисление базисов Грёбнера
+\end_layout
+
+\begin_layout Section
+Обозначения
 \end_layout
 
 \begin_layout Standard
@@ -695,9 +654,10 @@ t_{1}\prec t_{2}\Longrightarrow t_{1}t_{3}\prec t_{2}t_{3}
 
 , задаваемый как:
 \begin_inset Formula 
-\[
-x_{1}^{a_{1}}x_{2}^{a_{2}}\cdots x_{n}^{a_{n}}\prec x_{1}^{b_{1}}x_{2}^{b_{2}}\cdots x_{n}^{b_{n}}\equivdef\exists i,1\leqslant i\leqslant n,\left(a_{1},\dots,a_{i-1}\right)=\left(b_{1},\dots,b_{i-1}\right),a_{i}<b_{i}
-\]
+\begin{eqnarray*}
+ & x_{1}^{a_{1}}x_{2}^{a_{2}}\cdots x_{n}^{a_{n}}\prec x_{1}^{b_{1}}x_{2}^{b_{2}}\cdots x_{n}^{b_{n}}\equivdef\\
+ & \equivdef\exists i,1\leqslant i\leqslant n,\left(a_{1},\dots,a_{i-1}\right)=\left(b_{1},\dots,b_{i-1}\right),a_{i}<b_{i}\\
+\end{eqnarray*}
 
 \end_inset
 
@@ -7177,7 +7137,10 @@ name "thm:f_g_3_props"
 , удовлетворяющее следующему:
 \begin_inset Formula 
 \begin{equation}
-\HM(h_{n+1})\prec\HM\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)=\HM(g_{n}),\,\Sig(h_{n+1})=\Sig\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)\succ\Sig(g_{n}).\label{eq:spair-chain}
+\begin{array}{ccccc}
+\HM(h_{n+1}) & \prec & \HM\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right) & = & \HM(g_{n}),\\
+\Sig(h_{n+1}) & = & \Sig\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right) & \succ & \Sig(g_{n}).
+\end{array}\label{eq:spair-chain}
 \end{equation}
 
 \end_inset
@@ -8762,9 +8725,10 @@ reference "eq:repr-ex-2"
 
 \begin_layout Standard
 \begin_inset Formula 
-\[
-b_{j}b_{i}=\sum_{k}m_{i_{k}}\cdot b_{j}=\sum_{k}m_{i_{k}}\cdot b_{j}+0=\sum_{k}m_{i_{k}}\cdot b_{j}+\left(\sum_{k}m_{j_{k}}\cdot b_{i}-\sum_{k}m_{i_{k}}\cdot b_{j}\right)=\sum_{k}m_{j_{k}}\cdot b_{i},
-\]
+\begin{eqnarray*}
+ & b_{j}b_{i}=\sum_{k}m_{i_{k}}\cdot b_{j}=\sum_{k}m_{i_{k}}\cdot b_{j}+0=\\
+ & =\sum_{k}m_{i_{k}}\cdot b_{j}+\left(\sum_{k}m_{j_{k}}\cdot b_{i}-\sum_{k}m_{i_{k}}\cdot b_{j}\right)=\sum_{k}m_{j_{k}}\cdot b_{i},
+\end{eqnarray*}
 
 \end_inset
 
@@ -13080,6 +13044,13 @@ reference "eq:left-or-right-monom"
 .
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 Псевдокод инкрементального алгоритма 
 \end_layout
@@ -13166,7 +13137,7 @@ SimpleSignatureGroebner
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $R\leftarrow\{\left(\HM(g_{1}),0\right),\left(\HM(g_{2}),0\right),\dots,\left(\HM(g_{m}),0\right),(0,g_{1}),(0,g_{2}),\dots,(0,g_{m})\}$
+\begin_inset Formula $R\leftarrow\{\left(\HM(g_{1}),0\right),\dots,\left(\HM(g_{m}),0\right),(0,g_{1}),\dots,(0,g_{m})\}$
 \end_inset
 
 
@@ -13346,6 +13317,13 @@ return
 \series default
  
 \begin_inset Formula $\{\poly(r)\,|\, r\in R,\poly(r)\ne0\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
 \end_inset
 
 
@@ -14666,9 +14644,9 @@ reference "lem:adds-really-new"
 \end_layout
 
 \begin_layout Standard
-Во всех упомянутых алгоритмах, включая исходный F5, формулируется два типа
- критериев отброса: критерии, связанные с сизигиями, называемые в этой работе
- также 
+Во многих сигнатурных алгоритмах, в том числе исходном F5, формулируется
+ два типа критериев отброса: критерии, связанные с сизигиями, называемые
+ 
 \begin_inset Quotes fld
 \end_inset
 
@@ -14676,7 +14654,23 @@ reference "lem:adds-really-new"
 \begin_inset Quotes frd
 \end_inset
 
-, и критерии перезаписи, корректность каждого из которых доказывается независимо.
+ в данной работе и 
+\begin_inset Quotes fld
+\end_inset
+
+критериями Фожера
+\begin_inset Quotes frd
+\end_inset
+
+ в работах 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5C,Modifying-for-termination"
+
+\end_inset
+
+, а также критерии перезаписи.
+ Корректность каждого из типов доказывается независимо.
  Описанный алгоритм несколько проще: он использует лишь единственный критерий
  отброса на шаге 
 \begin_inset CommandInset ref
@@ -14785,43 +14779,6 @@ target "https://github.com/galkinvv/Singular-f5-like/blob/ssg/kernel/kstd2.cc"
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Эмпирическое сравнение данной реализации с другими алгоритмами вычисления
- базисов Грёбнера, реализованных Кристианом Эдером подтвердили следующие
- соображения:
-\end_layout
-
-\begin_layout Itemize
-алгоритм 
-\begin_inset CommandInset ref
-LatexCommand nameref
-reference "par:SimpleSignatureGroebner"
-
-\end_inset
-
- корректно вычисляет базис Грёбнера;
-\end_layout
-
-\begin_layout Itemize
-результат содержит не большее число многочленов, чем результат других инкремента
-льных алгоритмов, возвращающих S-базис, что согласуется с утверждением о
- минимальности S-базиса;
-\end_layout
-
-\begin_layout Itemize
-время работы алгоритма оказывается не больше, чем у других инкрементальных
- алгоритмов, основанных на сигнатурах.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection
 Одноэтапный вариант
 \end_layout
@@ -14873,6 +14830,13 @@ key "Eder2012inhomogeneous"
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -18890,7 +18854,15 @@ name "example:introduced-zeroes"
 
 \begin_inset Formula 
 \[
-=\left(\left(xy^{2}z+bxz+z\right)-\left(xy^{2}z+xz^{2}+axz\right)\right)+xz^{2}+axz=((b-a)+a)xz+z,
+=\left(\left(xy^{2}z+bxz+z\right)-\left(xy^{2}z+xz^{2}+axz\right)\right)+xz^{2}+axz=
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+=((b-a)+a)xz+z,
 \]
 
 \end_inset
@@ -21307,17 +21279,16 @@ reference "par:SingleStepSignatureGroebner"
 Вопрос условий остановки данного алгоритма остаётся открытым.
 \end_layout
 
-\begin_layout Section
+\begin_layout Part*
 Заключение
 \end_layout
 
 \begin_layout Standard
 Главным результатом данной работы является построение методики применения
- одного из наиболее эффективных алгоритмов вычисления Базисов Грёбнера к
+ одного из наиболее эффективных алгоритмов вычисления базисов Грёбнера к
  задачам численного решения полиномиальных систем.
- Две предлагаемых методики -- методика внесения дополнительных переменных
- и модулярная методика -- являются независимыми и допускают совместное применени
-е.
+ Две предлагаемых методики -- внесение дополнительных переменных и модулярные
+ вычисления -- являются независимыми и допускают совместное применение.
 \end_layout
 
 \begin_layout Standard
@@ -21342,32 +21313,31 @@ key "GroebnerInExtFields"
  Преимуществом таких методик является лёгкий переход на использование любого
  из имеющихся алгоритмов вычисления точного базиса Грёбнера, а недостатком
  -- недостаточно тесное взаимодействие с ходом алгоритма, в результате чего
- происходит много отдельных вызовов алгоритма вычисления точного базиса.
+ происходит много его отдельных вызовов.
  При этом возникает неэффективное поведение: к примеру, перезапуск алгоритмов
- с начала в методе замены мономов приводит к дублированию многих вычислений,
- а вычисление исчерпывающего базиса может рассматривать области значений
- параметров, находящиеся за пределами возможных значений приближённых входных
- данных, вычисляя таким образом базисы Грёбнера для не интересных в частной
- задаче случаев.
+ в методе замены мономов приводит к дублированию многих вычислений, а вычисление
+ исчерпывающего базиса может рассматривать области значений параметров,
+ находящиеся за пределами возможных значений приближённых входных данных,
+ вычисляя таким образом базисы Грёбнера для не интересных в частной задаче
+ случаев.
 \end_layout
 
 \begin_layout Standard
 Были проведены исследования алгоритма F5, позволившие разрешить открытый
  ранее вопрос об остановке алгоритма в случае нерегулярных входных данных.
  Сам по себе этот результат не имеет большой ценности, поскольку для предложенны
-х позже не менее эффективных сигнатурных алгоритмов проблема остановки была
- решена.
+х позже не менее эффективных сигнатурных алгоритмов проблема остановки уже
+ была решена.
  Однако доказанные наряду с фактом установки утверждения позволили сформулироват
-ь несколько принципов алгоритма F5, не вытекающих явно из его классической
- формулировки, на основе которых была найдена формулировка сигнатурного
- алгоритма 
+ь несколько принципов алгоритма F5, не вытекающих из его классической формулиров
+ки явно, на основе которых был построен сигнатурный алгоритм 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "par:SingleStepSignatureGroebner"
 
 \end_inset
 
-, достаточно простая и удобная для интеграции с методиками приближённых
+, достаточно простой и удобный для интеграции с методиками приближённых
  вычислений.
 \end_layout
 
@@ -21380,11 +21350,11 @@ reference "par:SingleStepSignatureGroebner"
  При интеграции в алгоритм модулярного метода ход алгоритма не меняется,
  но на каждом шаге производятся дополнительные вычисления для приближённых
  коэффициентов.
- Но для некоторых входных данных модулярный метод не позволит продолжить
- вычисления, даже при наличии непрерывного решения.
+ Для некоторых входных данных модулярный метод не позволит продолжить вычисления
+, даже при наличии непрерывного решения.
  В таком случае возможно применение метода дополнительных переменных.
  Добавление многочлена воздействует на дальнейший ход алгоритма, но это
- изменение делает продолжение алгоритма соответствующее работе неизменного
+ изменение делает продолжение алгоритма соответствующим работе неизменного
  алгоритма на изменённых входных данных.
  Таким образом, если алгоритм 
 \begin_inset CommandInset ref
@@ -21395,17 +21365,103 @@ reference "par:SingleStepSignatureGroebner"
 
  с применением двух рассматриваемых методик для приближённых вычислений
  завершается, то его ход оказывается эквивалентен ходу данного алгоритма
- без этих методик на некоторых входных данных.
- Возникает такая же ситуация с оценкой эффективности какая была без приближённых
- методик: алгоритм не производит лишних вычислений в рамках своего метода,
- но заключения об эффективности самого метода отсюда получить нельзя.
+ без этих методик на некоторых расширенных входных данных.
 \end_layout
 
 \begin_layout Standard
+При этом для обоих предложенных методик остаются неясными вопросы обоснования
+ их эффективности.
+ В модулярном случае данная на простой модуль оценка, необходимая для достижения
+ приемлемой на практике вероятности ошибки, может оказываться довольно большой.
+ Предположительно, в большинстве случаев можно брать сравнительно небольшие
+ модули не превышающие 
+\begin_inset Formula $2^{64}$
+\end_inset
+
+, с которыми наиболее эффективно работают современные вычислительный процессоры,
+ однако этот вопрос остаётся открытым.
+ Помимо этого неясным остаётся то какую долю времени на фоне общего времени
+ работы алгоритма может занимать метод Гаусса, используемый при переходе
+ от модулярных вычислений к приближённым.
+ Внесение дополнительных переменных оставляет ещё более важный открытый
+ вопрос об остановке алгоритма.
+ Поэтому, хотя методики приближённых вычислений и были тесно интегрированы
+ в алгоритм, однозначно гарантировать их эффективность нельзя.
+\end_layout
+
+\begin_layout Standard
+С другой стороны, известные методы приближённых вычислений базисов Грёбнера
+ также не дают подобных оценок.
+ Косвенно можно предположить, что полиномиальные выражения коэффициентов
+ зависящего от параметров ответа, который обязаны выдать алгоритмы вычисления
+ исчерпывающего базиса Грёбнера, в определённом смысле соответствуют вычислениям
+, проводимым в модулярном случае, а значит последние будут не медленнее
+ таких алгоритмов, поскольку время работы алгоритма не может быть меньше
+ времени формирования ответа.
+ Обе предложенные методики обладают преимуществами, не связанными со скоростью.
+ Для модулярного метода можно отметить способствующее повышению точности
+ результата использование численных методов выбора строки при решении системы,
+ а для метода дополнительных переменных -- в случае незначительного отличия
+ структуры приближённого базиса от точного, отличия в работе приближённого
+ алгоритма как правило будут также незначительны по отношению к точному.
+\end_layout
+
+\begin_layout Standard
+Таким образом, предложенные методики оказываются корректными способами вычислени
+я приближённого базиса Грёбнера, сравнительная эффективность которых остаётся
+ неясной.
+ Поэтому, при выборе метода решения для той или иной приближённой задачи,
+ выбор между приведёнными в этой работе алгоритмами и известными ранее должен
+ производиться на основе анализа структуры и требуемого результата задачи.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Эмпирическое сравнение данной реализации с другими алгоритмами вычисления
+ базисов Грёбнера, реализованных Кристианом Эдером подтвердили следующие
+ соображения:
+\end_layout
+
+\begin_layout Itemize
+алгоритм 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:SimpleSignatureGroebner"
+
+\end_inset
+
+ корректно вычисляет базис Грёбнера;
+\end_layout
+
+\begin_layout Itemize
+результат содержит не большее число многочленов, чем результат других инкремента
+льных алгоритмов, возвращающих S-базис, что согласуется с утверждением о
+ минимальности S-базиса;
+\end_layout
+
+\begin_layout Itemize
+время работы алгоритма оказывается не больше, чем у других инкрементальных
+ алгоритмов, основанных на сигнатурах.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 bibfiles "f5_references"
-options "gost/ugost2008"
+options "bibtotoc,gost/ugost2008"
 
 \end_inset
 
