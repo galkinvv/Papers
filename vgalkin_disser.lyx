@@ -1811,7 +1811,7 @@ reference "thm:Simple-spoly"
 \begin_inset Formula $\beta_{2}$
 \end_inset
 
- , и задано конечное множество ненулевых многочленов 
+, и задано конечное множество ненулевых многочленов 
 \begin_inset Formula $G=\{g_{1},\dots,g_{m}\}\subset\mathcal{P}$
 \end_inset
 
@@ -2697,9 +2697,9 @@ t'|t''\equivdef\exists t_{1}\in\mathbb{T},t''=t_{1}t'
 \begin_inset Formula $h_{2}$
 \end_inset
 
- 
+,
 \emph default
-, дающая в результате отмеченный многочлен 
+ дающая в результате отмеченный многочлен 
 \begin_inset Formula $h_{1}\in H$
 \end_inset
 
@@ -5074,7 +5074,7 @@ return
 
 
 \family sans
- , ToDo
+, ToDo
 \shape italic
  
 \family default
@@ -5143,7 +5143,7 @@ return
 
 
 \family sans
- , ToDo
+, ToDo
 \shape italic
  
 \family default
@@ -5538,7 +5538,7 @@ reference "par:Reduction"
 \begin_inset Formula $r_{k}$
 \end_inset
 
- , добавленный в Done позже.
+, добавленный в Done позже.
  Тогда про другой многочлен S-пары 
 \begin_inset Formula $r_{3-k}$
 \end_inset
@@ -5600,7 +5600,7 @@ reference "enu:IsRed-d"
 \begin_inset Formula $d_{j}$
 \end_inset
 
- , мы имеем 
+, мы имеем 
 \begin_inset Formula $u_{k}=1$
 \end_inset
 
@@ -7057,7 +7057,7 @@ reference "par:AlgorithmF5"
 \begin_inset Formula $r_{1}$
 \end_inset
 
- , и состоящая из генераторов, что доказывает теорему.
+, и состоящая из генераторов, что доказывает теорему.
 \end_layout
 
 \begin_layout Standard
@@ -7805,7 +7805,7 @@ S-пара не была отброшена, поэтому её S-многоч�
 \begin_inset Formula $G_{g}$
 \end_inset
 
- , и результат был добавлен как элемент 
+, и результат был добавлен как элемент 
 \begin_inset Formula $G_{g}$
 \end_inset
 
@@ -9598,7 +9598,7 @@ reference "par:TopReduction"
 \begin_inset Formula $\sum_{k}m'_{k}\cdot b_{i'_{k}}\lessdot\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
- , и правое представление сигнатурно, то и левое представление сигнатурно.
+, и правое представление сигнатурно, то и левое представление сигнатурно.
 \end_layout
 
 \begin_layout Proof
@@ -9658,7 +9658,7 @@ reference "par:TopReduction"
 \begin_inset Formula $\prec_{P}$
 \end_inset
 
- , мы получаем доказательство вполне упорядоченности элементов представлений
+, мы получаем доказательство вполне упорядоченности элементов представлений
  по 
 \begin_inset Formula $\lessdot{}_{1}$
 \end_inset
@@ -10029,7 +10029,7 @@ key "F5C"
 \begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
- , обладающий 
+, обладающий 
 \begin_inset Formula $G_{g}$
 \end_inset
 
@@ -10142,7 +10142,7 @@ m_{K}b_{i_{K}}=c_{0}s_{0}\cdot f_{j_{0}}+\sum_{l}m_{l}\cdot f_{i_{l}}.\label{eq:
 \begin_inset Formula $f_{j_{1}}$
 \end_inset
 
- , и за 
+, и за 
 \begin_inset Formula $N_{0,}N_{1}$
 \end_inset
 
@@ -10261,7 +10261,7 @@ reference "eq:input-repr-case1"
 \begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
- , обладающий 
+, обладающий 
 \begin_inset Formula $G_{g}$
 \end_inset
 
@@ -14217,7 +14217,7 @@ reference "enu:-remove-from-B"
 \begin_inset Formula $r_{\sigma}\in R,t_{\sigma}\in\mathbb{T}:\Sig(t_{\sigma}r_{\sigma})=\sigma$
 \end_inset
 
- , и 
+, и 
 \begin_inset Formula $t_{\sigma}r_{\sigma}$
 \end_inset
 
@@ -16869,7 +16869,7 @@ key "ArtificialDiscontinuities"
 \begin_inset Formula $\exists d'\subset\mathbb{C}^{n}$
 \end_inset
 
-, являющееся открытым, такое что , 
+, являющееся открытым, такое что, 
 \begin_inset Formula $d\in D'\Longleftrightarrow$
 \end_inset
 
@@ -19021,7 +19021,7 @@ key "ComprehensiveGB"
 \begin_inset Formula $\mathbb{C}\left[a_{i}\right]$
 \end_inset
 
- , являющееся базисом Грёбнера параметрического идеала при любой специализации
+, являющееся базисом Грёбнера параметрического идеала при любой специализации
  параметров.
  Таким образом нахождение исчерпывающего базиса позволяет решить рассматриваемую
  нами задачу.
@@ -20188,7 +20188,7 @@ g\left(x_{1},\dots,x_{n}\right)=x_{n}^{s}g'\left(x_{1},\dots,x_{n-1}\right)+g''\
 \begin_inset Formula $g'$
 \end_inset
 
- , и значит подстановка соответствующих значений в 
+, и значит подстановка соответствующих значений в 
 \begin_inset Formula $g$
 \end_inset
 
