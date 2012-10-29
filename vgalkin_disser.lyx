@@ -381,29 +381,19 @@ status collapsed
 \begin_inset Newline newline
 \end_inset
 
-кандидат физико-математических наук
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-\align center
-
-\size larger
-,
+кандидат физико-математических наук,
 \begin_inset Newline newline
 \end_inset
 
 доцент
-\end_layout
-
-\end_inset
-
-
 \begin_inset Newline newline
 \end_inset
 
 А.И.
- Зобнин
+\begin_inset space ~
+\end_inset
+
+Зобнин
 \end_layout
 
 \begin_layout Standard
@@ -872,7 +862,7 @@ target "http://arxiv.org/abs/1205.6050"
 \begin_layout Standard
 Диссертационная работа состоит из введения, двух частей, первая из которых
  посвящена исследованию алгоритмов вычисления базисов Грёбнера, а вторая
- -- их применению к решению систем, заключения, приложения и библиографии.
+ -- их применению к решению систем, заключения и библиографии.
  Общий объем диссертации составляет 
 \begin_inset CommandInset ref
 LatexCommand pageref
@@ -969,7 +959,11 @@ reference "LastPage"
 
  -- формально расширенное нулём множество мономов.
  Операция умножения расширяется как 
-\begin_inset Formula $\forall t\in\mathbb{T}_{0}\, t\cdot0=0$
+\begin_inset Formula $\forall t\in\mathbb{T}_{0}$
+\end_inset
+
+ 
+\begin_inset Formula $t\cdot0=0$
 \end_inset
 
 .
@@ -979,7 +973,7 @@ reference "LastPage"
 \end_inset
 
  стандартно: 
-\begin_inset Formula $t_{1}|t_{2}\eqdef\exists t_{3}\, t_{1}\cdot t_{3}=t_{2}$
+\begin_inset Formula $t_{1}|t_{2}\equivdef\exists t_{3}\, t_{1}\cdot t_{3}=t_{2}$
 \end_inset
 
 
@@ -1094,6 +1088,10 @@ x_{1}^{a_{1}}x_{2}^{a_{2}}\cdots x_{n}^{a_{n}}\prec x_{1}^{b_{1}}x_{2}^{b_{2}}\c
 
 \begin_layout Lemma
 Для мономиального порядка 
+\begin_inset Formula $\prec$
+\end_inset
+
+ и 
 \begin_inset Formula $\forall t_{1},t_{2},t_{3}\in\mathbb{T}$
 \end_inset
 
@@ -1180,11 +1178,11 @@ t_{1}\succ t_{2}
 \begin_inset Formula $\HM(p)\in\mathbb{T}_{0}$
 \end_inset
 
- -- старший моном многочлена определён для 
+ -- старший моном многочлена, определяется для 
 \begin_inset Formula $\forall p\in\mathcal{P}$
 \end_inset
 
-; при 
+: при 
 \begin_inset Formula $p\neq0$
 \end_inset
 
@@ -1207,11 +1205,11 @@ t_{1}\succ t_{2}
 \begin_inset Formula $\HC(p)\in\mathcal{K}$
 \end_inset
 
- -- старший коэффициент многочлена, определён для 
+ -- старший коэффициент многочлена, определяется для 
 \begin_inset Formula $\forall p\in\mathcal{P}$
 \end_inset
 
-; при 
+: при 
 \begin_inset Formula $p\neq0$
 \end_inset
 
@@ -1317,8 +1315,11 @@ t_{1}\succ t_{2}
 \begin_inset Formula $G\subset\mathcal{P}$
 \end_inset
 
- называется последний элемент в последовательности редукций, которую нельзя
- продолжить.
+ называется последний элемент в начинающейся с 
+\begin_inset Formula $f$
+\end_inset
+
+ последовательности редукций, которую нельзя продолжить.
  Результат редукции по множеству нередуцируем по нему.
 \end_layout
 
@@ -1355,7 +1356,7 @@ name "gb-def-1"
 \end_inset
 
 , если 
-\begin_inset Formula $\forall f\in I,f\neq0\exists g\in G$
+\begin_inset Formula $\forall f\in I,f\neq0\,\exists g\in G$
 \end_inset
 
 , редуцирующий 
@@ -1495,8 +1496,8 @@ p=\sum_{k}m_{k}\cdot g_{i_{k}},\; g_{i_{k}}\in G
 \begin_inset Formula $p$
 \end_inset
 
- оказывается равным сумме отмеченных многочленов, соответствующих элементам
- его представления.
+ оказывается равным сумме многочленов, соответствующих элементам его представлен
+ия.
  Два представления равны, если наборы их элементов совпадают как множества.
  Поскольку, правая часть представления лежит в идеале 
 \family roman
@@ -1570,8 +1571,8 @@ p=\sum_{k}m_{k}\cdot g_{i_{k}},\; g_{i_{k}}\in G
 \begin_inset Formula $G=\{y,y^{2},x^{2}+y\}\subset\mathbb{R}[x,y]$
 \end_inset
 
- с лексикографическим порядком, заданным 
-\begin_inset Formula $x\succ y$
+ с лексикографическим порядком 
+\begin_inset Formula $\mbox{lex}\left(x,y\right)$
 \end_inset
 
 :
@@ -1799,7 +1800,8 @@ reference "gb-def-2"
 
 \begin_layout Standard
 Все алгоритмы вычисления базиса Грёбнера по заданным таким образом входным
- данным могут быть разделены на 2 больших группы: инкрементальные и одноэтапные.
+ данным могут быть разделены на две больших группы: инкрементальные и одноэтапны
+е.
  Инкрементальные алгоритмы состоят из 
 \begin_inset Formula $m-1$
 \end_inset
@@ -2377,7 +2379,7 @@ p=\sum_{l}m_{l}\cdot g_{i_{l}}+(c_{2}+c_{m}c_{2}')t_{2}\cdot g_{i_{2}}+\sum_{k>2
 
 \end_inset
 
-после группировки подобных при их наличии даст удовлетворяющее 
+после группировки подобных даст удовлетворяющее 
 \begin_inset Formula $\beta_{2}$
 \end_inset
 
@@ -2580,7 +2582,7 @@ reference "par:Buchberger"
 \begin_inset Formula $G$
 \end_inset
 
-, нередуцируем по нему,а значит, расширяет идеал моноида, порождаемый старшими
+, нередуцируем по нему, а значит, расширяет идеал моноида, порождаемый старшими
  элементами многочленов 
 \begin_inset Formula $G$
 \end_inset
