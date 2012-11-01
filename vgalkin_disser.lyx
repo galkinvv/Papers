@@ -2711,8 +2711,8 @@ key "F5C,GVW,G2V,F5InBBStyle,HuangConception"
 
  и в данной работе представление не фиксируется, и один многочлен может
  иметь неограниченное число сигнатур.
- Таким образом, в понятие сигнатуры зависит не только от многочлена, но
- и от того, над каким множеством рассматриваются его представления и даже
+ Таким образом, понятие сигнатуры зависит не только от многочлена, но и
+ от того, над каким множеством рассматриваются его представления и даже
  от самого представления.
  Для одноэтапных алгоритмов представления рассматриваются над множеством
  
@@ -2742,7 +2742,7 @@ key "F5C,GVW,G2V,F5InBBStyle,HuangConception"
 \end_inset
 
  называется пара 
-\begin_inset Formula $(t;i)\in\mathbf{T}=\mathbb{T}\times\mathbb{N}$
+\begin_inset Formula $(t,i)\in\mathbf{T}=\mathbb{T}\times\mathbb{N}$
 \end_inset
 
 .
@@ -2764,7 +2764,7 @@ key "F5C,GVW,G2V,F5InBBStyle,HuangConception"
 \emph default
 .
  Умножение такой сигнатуры на моном определяется как 
-\begin_inset Formula $t_{1}(t;i)\eqdef(t_{1}t,i)$
+\begin_inset Formula $t_{1}(t,i)\eqdef(t_{1}t,i)$
 \end_inset
 
 , что соответствует умножению на моном элемента представления.
@@ -2955,11 +2955,11 @@ t'|t''\equivdef\exists t_{1}\in\mathbb{T},t''=t_{1}t'
 
 .
  Полная степень монома сигнатуры 
-\begin_inset Formula $s\in\tau$
+\begin_inset Formula $\sigma\in\tau$
 \end_inset
 
  обозначается 
-\begin_inset Formula $\totaldeg(s)$
+\begin_inset Formula $\totaldeg(\sigma)$
 \end_inset
 
 .
@@ -3327,10 +3327,10 @@ key "FaugereF5"
 \end_inset
 
 .
- Являясь по сути инкрементальным алгоритмом, его исходная формулировка не
- допускает строго инкрементальной записи в определённом выше смысле, поскольку
- на каждом следующем шаге используется не только базис, найденный на предыдущем,
- но и некоторая информация о сигнатурах элементов этого базиса.
+ Хотя он по сути является инкрементальным алгоритмом, его исходная формулировка
+ не допускает строго инкрементальной записи в определённом выше смысле,
+ поскольку на каждом следующем шаге используется не только базис, найденный
+ на предыдущем, но и некоторая информация о сигнатурах элементов этого базиса.
  Наиболее близкая к исходному алгоритму строго инкрементальная формулировка
  описывается в работе 
 \begin_inset CommandInset citation
@@ -3746,7 +3746,7 @@ IncrementalF5
 \begin_inset Formula $i$
 \end_inset
 
- -- этап алгоритма,
+ -- этап алгоритма, 
 \begin_inset Formula $G_{i}$
 \end_inset
 
@@ -3966,8 +3966,8 @@ AlgorithmF5
 
 
 \shape default
-Оператор нормальной формы, производящий полную редукцию по множеству многочленов
- 
+ оператор нормальной формы, производящий полную редукцию по множеству многочлено
+в 
 \begin_inset Formula $\left\{ poly(R[r])|r\in G_{i-1}\right\} $
 \end_inset
 
@@ -3983,7 +3983,7 @@ AlgorithmF5
 
 
 \shape default
-Отсортированный по возрастанию сокращаемого монома список 
+ отсортированный по возрастанию сокращаемого монома список 
 \family typewriter
 {
 \family default
@@ -4258,7 +4258,7 @@ CritPair
 \begin_layout Enumerate
 
 \family sans
-\begin_inset Formula $t\leftarrow\LCM(\HM(R[r_{1}]),\HM(R[r_{2}])$
+\begin_inset Formula $t\leftarrow\LCM\left(\HM(R[r_{1}]),\HM(R[r_{2}])\right)$
 \end_inset
 
 
@@ -4286,7 +4286,7 @@ for
 
 \family sans
 \shape italic
-\begin_inset Formula $u_{i}\leftarrow\frac{t}{HT(R[r_{i}])}$
+\begin_inset Formula $u_{i}\leftarrow\frac{1}{\HC(R[r_{i}])}\frac{t}{\HM(R[r_{i}])}$
 \end_inset
 
 
@@ -4959,7 +4959,7 @@ IsReducible
 \begin_inset Formula $R$
 \end_inset
 
-, для которого выполняется поиск возможных сигнатурных редукций,
+, для которого выполняется поиск возможных сигнатурных редукций, 
 \begin_inset Formula $G$
 \end_inset
 
@@ -4994,7 +4994,7 @@ IsReducible
 \begin_inset Formula $R$
 \end_inset
 
-, для итерирования по 
+ для итерирования по 
 \begin_inset Formula $G$
 \end_inset
 
@@ -5027,7 +5027,7 @@ IsReducible
 for
 \series default
  
-\begin_inset Formula $r_{i}\in G$
+\begin_inset Formula $r_{j}\in G$
 \end_inset
 
 
@@ -5187,7 +5187,7 @@ TopReduction
 \begin_inset Formula $R$
 \end_inset
 
-, для которого выполняется редукция,
+, для которого выполняется редукция, 
 \begin_inset Formula $G$
 \end_inset
 
@@ -5287,7 +5287,7 @@ return
 \series default
 (Done
 \family default
-
+ 
 \begin_inset Formula $\leftarrow\varnothing$
 \end_inset
 
@@ -5363,7 +5363,7 @@ return
 \series default
 (Done
 \family default
-
+ 
 \begin_inset Formula $\leftarrow\left\{ r_{0}\right\} $
 \end_inset
 
@@ -5579,9 +5579,9 @@ key "F5-revisited"
 , показана только для случая отсутствия редукций к нулю.
  В свою очередь, отсутствие редукций к нулю доказано для случая, когда входное
  множество многочленов представлено регулярной последовательностью, а среди
- нерегулярных последовательностей известны примеры, приводящие появлению
+ нерегулярных последовательностей известны примеры, приводящие к появлению
  в алгоритме F5 редукций к нулю.
- При этом, примеров, приводящих к отсутствию остановки алгоритма найдено
+ При этом, примеров, приводящих к отсутствию остановки алгоритма, найдено
  не было.
  Поскольку для большинства входных последовательностей их регулярность неизвестн
 а, эти исследования не позволяют ответить на вопрос завершения практической
@@ -5908,9 +5908,9 @@ reference "par:Reduction"
 
 \end_inset
 
-,
+
 \family default
- путём добавления по одному многочлену к множеству Done.
+, путём добавления по одному многочлену к множеству Done.
  Поэтому, среди одного или двух многочленов критической пары, принадлежащих
  
 \begin_inset Formula $R_{d}$
@@ -6810,11 +6810,7 @@ reference "par:AlgorithmF5"
 \series bold
 while
 \series default
--циклу внутри 
-\family typewriter
-процедуры 
-\family default
-
+-циклу внутри процедуры 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "par:Reduction"
@@ -7058,7 +7054,7 @@ reference "par:TopReduction"
 \begin_inset Formula $\underline{u_{l}}$
 \end_inset
 
- мономы, на которые они умножались.
+ -- мономы, на которые они умножались.
  При этом 
 \begin_inset Formula $l^{*}$
 \end_inset
@@ -7091,7 +7087,7 @@ reference "par:TopReduction"
 \begin_inset Formula $\Sig(R[l])$
 \end_inset
 
- нигде далее не меняется после добавления многочлена в последовательность.
+ никогда не меняется после добавления многочлена в последовательность.
  Далее, будем пытаться найти бесконечную подпоследовательность 
 \begin_inset Formula $\left\{ R[k_{1}],R[k_{2}],\ldots,R[k_{n}],\ldots\right\} $
 \end_inset
@@ -7239,13 +7235,13 @@ reference "par:IsReducible"
 
 .
  И в обоих случаях, получаемый S-многочлен немедленно добавляется в список
- Rule последним элементом.
+ Rule первым элементом.
  Поэтому, в момент построения S-многочлена с сигнатурой 
 \begin_inset Formula $s$
 \end_inset
 
- можно утверждать, что старшая часть S-пары соответствует последнему из
- правил с сигнатурой, делящей 
+ можно утверждать, что старшая часть S-пары соответствует первому из правил
+ с сигнатурой, делящей 
 \begin_inset Formula $s$
 \end_inset
 
@@ -7399,7 +7395,7 @@ reference "par:AlgorithmF5"
 \begin_inset Formula $m$
 \end_inset
 
- и является концом цепи S-пар
+ и является концом цепи S-пар 
 \begin_inset Formula $\{R[m],\ldots,R[l^{**}],R[l^{*}],R[l]\}$
 \end_inset
 
@@ -7435,8 +7431,8 @@ reference "par:AlgorithmF5"
  является генератором цепи S-пар, среди его S-порождённых всегда может быть
  выбран другой генератор цепи S-пар.
  Таким образом, может быть построена бесконечная цепь S-пар, начинающаяся
- 
-\begin_inset Formula $r_{1}$
+ с 
+\begin_inset Formula $R\left[m\right]$
 \end_inset
 
 , и состоящая из генераторов, что доказывает теорему.
@@ -7761,14 +7757,14 @@ key "TheF5Revised"
 \begin_layout Fact
 Если никакие многочлены не были отброшены проверками критериев 
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "enu:IsRed-b"
 
 \end_inset
 
  и 
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "enu:IsRed-c"
 
 \end_inset
@@ -7838,14 +7834,14 @@ reference "par:TopReduction"
 
  с точки зрения сигнатуры он проходит проверки 
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "enu:IsRed-a"
 
 \end_inset
 
  и 
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "enu:IsRed-d"
 
 \end_inset
@@ -7860,14 +7856,14 @@ reference "par:IsReducible"
  и его сигнатура меньше.
  При отсутствии проверки критериев 
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "enu:IsRed-b"
 
 \end_inset
 
  и 
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "enu:IsRed-c"
 
 \end_inset
@@ -7910,14 +7906,14 @@ reference "par:TopReduction"
 
  отбрасывается проверками 
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "enu:IsRed-b"
 
 \end_inset
 
- или 
+ и 
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "enu:IsRed-c"
 
 \end_inset
@@ -7957,7 +7953,11 @@ S-пары с сигнатурами, меньшими
 \begin_inset Formula $m$
 \end_inset
 
-, индекс которого добавлен на некоторой итерации алгоритма в Done.
+, позиция которого в 
+\begin_inset Formula $R$
+\end_inset
+
+ добавлена на некоторой итерации алгоритма в Done.
  Мы будем анализировать состояние алгоритма в момент, непосредственно предшеству
 ющий добавлению 
 \begin_inset Formula $g$
@@ -7999,9 +7999,9 @@ Done.
 \end_inset
 
 .
- Необходимо отметить, что этот порядок соответствует порядку отмеченных
- многочленов в последовательности, получаемой склеиванием массивов правил
- 
+ Необходимо отметить, что этот порядок является обратным по отношению к
+ порядку отмеченных многочленов в последовательности, получаемой склеиванием
+ массивов правил 
 \begin_inset Formula $\mbox{Rule}[m]:\mbox{Rule}[m-1]:\cdots:\mbox{Rule}[1]$
 \end_inset
 
@@ -8099,7 +8099,7 @@ key "F5C"
 
 \end_inset
 
-, но рассматриваются на произвольной итерации алгоритма, а не после его
+, но рассматриваемыми на произвольной итерации алгоритма, а не после его
  остановки.
 \end_layout
 
@@ -8391,7 +8391,7 @@ reference "par:IsReducible"
 .
  
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "enu:IsRed-a"
 
 \end_inset
@@ -8432,7 +8432,7 @@ reference "enu:IsRed-a"
 \begin_layout Itemize
 отбрасывание пунктом 
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "enu:IsRed-b"
 
 \end_inset
@@ -8451,7 +8451,7 @@ reference "enu:IsRed-b"
 \begin_layout Itemize
 отбрасывание пунктом 
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "enu:IsRed-c"
 
 \end_inset
@@ -8473,7 +8473,7 @@ reference "par:Rewritten?"
 \begin_layout Itemize
 отбрасывание пунктом 
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "enu:IsRed-d"
 
 \end_inset
@@ -8489,7 +8489,7 @@ reference "enu:IsRed-d"
  может быть перезаписан другим, поэтому, если S-пара не была отброшена проверкой
  
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "enu:IsRed-c"
 
 \end_inset
