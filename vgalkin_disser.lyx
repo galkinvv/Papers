@@ -8319,8 +8319,7 @@ reference "par:Reduction"
 \end_deeper
 \begin_layout Proof
 Второй путь обработки используется для S-пар, соответствующих редукциям,
- запрещённым алгоритмом -- соответствующие S-пары порождаются многочленами
- 
+ запрещённым алгоритмом -- эти S-пары порождаются многочленами 
 \begin_inset Formula $R[l^{*}]$
 \end_inset
 
@@ -8618,7 +8617,7 @@ reference "par:Rewritten?"
 
 .
  Некоторые S-пары могут оказываться на путях обработки несколько раз, к
- примеру это происходит на итерации в 
+ примеру это происходит на итерации 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "par:AlgorithmF5"
@@ -8691,7 +8690,7 @@ S-пары с сигнатурой
 \end_inset
 
 , такой что 
-\begin_inset Formula $\sigidx(w)>\sigidx(\Sig(g))=1$
+\begin_inset Formula $\sigidx(w)<\sigidx(\Sig(g))=m$
 \end_inset
 
 .
@@ -8711,7 +8710,7 @@ S-пары с сигнатурой
 \end_inset
 
 , такой что 
-\begin_inset Formula $\sigidx(w)=\sigidx(\Sig(g))=1,\totaldeg(w)<\totaldeg(\Sig(g))$
+\begin_inset Formula $\sigidx(w)=\sigidx(\Sig(g))=m,\totaldeg(w)<\totaldeg(\Sig(g))$
 \end_inset
 
 .
@@ -8736,7 +8735,7 @@ S-пары с сигнатурой
 \end_inset
 
 , такой что 
-\begin_inset Formula $\sigidx(w)=\sigidx(\Sig(g))=1,\totaldeg(w)=\totaldeg(\Sig(g)),w\prec\Sig(g)$
+\begin_inset Formula $\sigidx(w)=\sigidx(\Sig(g))=m,\totaldeg(w)=\totaldeg(\Sig(g)),w\prec\Sig(g)$
 \end_inset
 
 .
@@ -8880,7 +8879,7 @@ reference "par:TopReduction"
 
 \begin_layout Definition
 Умноженный на моном отмеченный многочлен 
-\begin_inset Formula $sr_{i},\, r_{i}\in G_{g}$
+\begin_inset Formula $sR\left[i\right],\, R\left[i\right]\in G_{g}$
 \end_inset
 
  называется 
@@ -8888,7 +8887,7 @@ reference "par:TopReduction"
 удовлетворяющим критерию F5
 \emph default
 , если 
-\begin_inset Formula $\varphi(s\Sig(r_{i}))\ne s\Sig(r_{i})$
+\begin_inset Formula $\varphi(s\Sig(R\left[i\right]))\ne s\Sig(R\left[i\right])$
 \end_inset
 
 , где 
@@ -8896,7 +8895,7 @@ reference "par:TopReduction"
 \end_inset
 
  -- оператор нормальной формы по отношению к 
-\begin_inset Formula $G_{index(r_{i})-1}$
+\begin_inset Formula $G_{index(R\left[i\right])-1}$
 \end_inset
 
 .
@@ -8904,7 +8903,7 @@ reference "par:TopReduction"
 
 \begin_layout Standard
 Это определение эквивалентно тому, что 
-\begin_inset Formula $sr_{i}$
+\begin_inset Formula $sR\left[i\right]$
 \end_inset
 
  является ненормализованным отмеченным многочленом с точки зрения определения
@@ -8920,7 +8919,7 @@ key "FaugereF5"
 
 \begin_layout Definition
 Умноженный на моном отмеченный многочлен 
-\begin_inset Formula $sr_{i},\, r_{i}\in G_{g}$
+\begin_inset Formula $sR\left[i\right],\, R\left[i\right]\in G_{g}$
 \end_inset
 
  называется 
@@ -8932,7 +8931,7 @@ key "FaugereF5"
 \end_inset
 
  такое что 
-\begin_inset Formula $\Sig(r_{j})|s\Sig(r_{i})$
+\begin_inset Formula $\Sig(R\left[j\right])|s\Sig(R\left[i\right])$
 \end_inset
 
 .
@@ -8940,7 +8939,7 @@ key "FaugereF5"
 
 \begin_layout Standard
 В случае, если 
-\begin_inset Formula $sr_{i}$
+\begin_inset Formula $sR\left[i\right]$
 \end_inset
 
  является частью S-пары, эти определения эквиваленты проверкам, производимым
@@ -8961,11 +8960,11 @@ key "FaugereF5"
 \noun off
 \color none
 
-\begin_inset Formula $sr_{i}$
+\begin_inset Formula $sR\left[i\right]$
 \end_inset
 
  удовлетворяет критерию, то и дополнительно домноженный многочлен 
-\begin_inset Formula $s_{1}sr_{i}$
+\begin_inset Formula $s_{1}sR\left[i\right]$
 \end_inset
 
  также ему удовлетворяет.
@@ -9035,12 +9034,8 @@ b_{j}=1\cdot b_{j}.
 \begin_inset Formula $b_{i_{k}}$
 \end_inset
 
- гарантирует, что все элементы представления, отличающиеся только коэффициентом
- из поля 
-\begin_inset Formula $c_{k}$
-\end_inset
-
-, скомбинированы вместе путём суммирования коэффициентов из поля 
+ гарантирует, что все элементы представления, отличающиеся только коэффициентом,
+ скомбинированы вместе путём суммирования коэффициентов в поле 
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
@@ -9181,7 +9176,7 @@ reference "eq:repr-ex-2"
 \begin_layout Standard
 \begin_inset Formula 
 \[
-0=\sum_{\varnothing}\mbox{(empty sum)}=\sum_{k}m_{j_{k}}\cdot b_{i}+\sum_{k}(-m_{i_{k}})\cdot b_{j},
+0=\sum_{\varnothing}\mbox{(пустая сумма)}=\sum_{k}m_{j_{k}}\cdot b_{i}+\sum_{k}(-m_{i_{k}})\cdot b_{j},
 \]
 
 \end_inset
@@ -9230,11 +9225,7 @@ reference "eq:repr-ex-2"
 \begin_inset Formula $G_{g}$
 \end_inset
 
-, 
-\end_layout
-
-\begin_layout Standard
-поэтому 
+, поэтому 
 \begin_inset Formula $f_{i}g_{i}$
 \end_inset
 
