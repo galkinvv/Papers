@@ -5450,7 +5450,7 @@ else
 
 
 \shape default
-любой элемент 
+ любой элемент 
 \begin_inset Formula $r'$
 \end_inset
 
@@ -5473,7 +5473,7 @@ else
 if 
 \series default
 
-\begin_inset Formula $u\Sig(R[r_{1}])\prec_{\tau}\Sig(R[r_{1}])$
+\begin_inset Formula $u\Sig(R[r_{1}])\prec_{P}\Sig(R[r_{1}])$
 \end_inset
 
  
@@ -6674,7 +6674,7 @@ reference "par:TopReduction"
 \end_inset
 
  и 
-\begin_inset Formula $\Sig(R\left[r_{k}\right])\succ\Sig(R\left[r_{q}\right])$
+\begin_inset Formula $\Sig(R\left[r_{k}\right])\succ_{P}\Sig(R\left[r_{q}\right])$
 \end_inset
 
 , гарантирующие что редукция по нему будет сигнатурной.
@@ -6698,7 +6698,7 @@ reference "par:IsReducible"
 
 .
  Таким образом, ситуация 
-\begin_inset Formula $\Sig(R\left[r_{k}\right])\prec t\cdot\Sig(R\left[r_{q}\right])$
+\begin_inset Formula $\Sig(R\left[r_{k}\right])\prec_{P}t\cdot\Sig(R\left[r_{q}\right])$
 \end_inset
 
  возможна только при 
@@ -7113,7 +7113,7 @@ reference "par:TopReduction"
 \end_inset
 
  и 
-\begin_inset Formula $\Sig(R[l])=\overline{u_{l}}\Sig(R[l^{*}])\succ\underline{u_{l}}\Sig(R[l_{*}])$
+\begin_inset Formula $\Sig(R[l])=\overline{u_{l}}\Sig(R[l^{*}])\succ_{P}\underline{u_{l}}\Sig(R[l_{*}])$
 \end_inset
 
 .
@@ -7606,7 +7606,7 @@ name "thm:f_g_3_props"
 \begin{equation}
 \begin{array}{ccccc}
 \HM(h_{n+1}) & \prec & \HM\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right) & = & \HM(g_{n}),\\
-\Sig(h_{n+1}) & = & \Sig\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right) & \succ & \Sig(g_{n}).
+\Sig(h_{n+1}) & = & \Sig\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right) & \succ_{P} & \Sig(g_{n}).
 \end{array}\label{eq:spair-chain}
 \end{equation}
 
@@ -7631,7 +7631,7 @@ reference "eq:spair-chain"
  Этот факт не может быть напрямую использован для доказательства конечности
  цепей, поскольку порядок на частных, в отличии от порядка на мономах, не
  даёт вполне упорядоченности: к примеру, последовательность 
-\begin_inset Formula $\frac{x}{x}\succ_{q}\frac{x}{x^{2}}\succ_{q}\cdots\succ_{q}\frac{x}{x^{n}}>_{q}\cdots$
+\begin_inset Formula $\frac{x}{x}\succ_{q}\frac{x}{x^{2}}\succ_{q}\cdots\succ_{q}\frac{x}{x^{n}}\succ_{q}\cdots$
 \end_inset
 
  является бесконечно убывающей.
@@ -8784,7 +8784,7 @@ S-пары с сигнатурой
 \end_inset
 
 , такой что 
-\begin_inset Formula $\sigidx(w)=\sigidx(\Sig(g))=m,\totaldeg(w)=\totaldeg(\Sig(g)),w\prec\Sig(g)$
+\begin_inset Formula $\sigidx(w)=\sigidx(\Sig(g))=m,\totaldeg(w)=\totaldeg(\Sig(g)),w\prec_{P}\Sig(g)$
 \end_inset
 
 .
@@ -8862,7 +8862,7 @@ reference "par:CritPair"
 \end_inset
 
 , такой что 
-\begin_inset Formula $\totaldeg(R[l])=\totaldeg(g),\,\Sig(R[l])\prec\Sig(g)$
+\begin_inset Formula $\totaldeg(R[l])=\totaldeg(g),\,\Sig(R[l])\prec_{P}\Sig(g)$
 \end_inset
 
 .
@@ -10755,7 +10755,7 @@ reference "eq:input-repr-case1"
 \begin_inset Formula $\lessdot$
 \end_inset
 
--меньшее представление строится методом, аналогичным из 
+-меньшее представление строится методом, заимствованным из 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "F5C"
@@ -11115,7 +11115,7 @@ m_{K}b_{i_{K}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i
 \begin_inset Formula $K'$
 \end_inset
 
--го равен 
+-го, равен 
 \begin_inset Formula $\HM(mh-m_{K'}b_{i_{K'}})=\HM(m_{K'}b_{i_{K'}})=m_{\max}$
 \end_inset
 
@@ -11201,10 +11201,10 @@ m_{K}b_{i_{K}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i
 \noun default
 \color inherit
 
-\begin_inset Formula $[m'^{-1}m_{\max},\, m'^{-1}m_{K'},\, b_{i_{K'}},\, m'^{-1}m_{K''},\, b_{i_{K''}}]$
+\begin_inset Formula $\left\{ \frac{m_{K'}}{m'}\cdot b_{i_{K'}},\,\frac{m_{K''}}{m'}\cdot b_{i_{K''}}\right\} $
 \end_inset
 
-
+,
 \family roman
 \series medium
 \shape up
@@ -11259,11 +11259,11 @@ m_{K}b_{i_{K}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i
  -- отмеченным многочленам, соответствующим элементам, про которые известно,
  что они не удовлетворяют критериям по предположению леммы.
  Из 
-\begin_inset Formula $m'\Sig(q)\prec\Sig(g)$
+\begin_inset Formula $m'\Sig(q)\prec_{P}\Sig(g)$
 \end_inset
 
  имеем 
-\begin_inset Formula $\Sig(q)\prec\Sig(g)$
+\begin_inset Formula $\Sig(q)\prec_{P}\Sig(g)$
 \end_inset
 
 , а значит можно применить теорему 
@@ -11453,7 +11453,7 @@ name "thm:exist-smaller-signature-safe-representation"
 \end_layout
 
 \begin_layout Standard
-Это привод нас к следующему ключевому результату:
+Это приводит нас к следующему ключевому результату:
 \end_layout
 
 \begin_layout Theorem
@@ -11557,7 +11557,7 @@ name "cor:all-needed-for-terminaton"
 \begin_inset Formula $f$
 \end_inset
 
-, который не отбрасывается критериями F5 и перезаписи.
+, который не отбрасывается критериями F5 и Перезаписи.
 \end_layout
 
 \begin_layout Proof
@@ -11565,7 +11565,7 @@ name "cor:all-needed-for-terminaton"
 \begin_inset Formula $mf',\, m=\frac{\HM(f)}{\HM(f')}\in\mathcal{K}\times\mathbb{T},\, f'\in G_{g}$
 \end_inset
 
- умноженный редуктор с 
+ -- умноженный редуктор с 
 \begin_inset Formula $\Sig(mf')\prec_{P}\Sig(g)$
 \end_inset
 
@@ -11900,7 +11900,7 @@ reference "thm:f_g_3_props"
 \end_inset
 
  -- мы имеем 
-\begin_inset Formula $\Sig(f')t\prec\Sig(f)$
+\begin_inset Formula $\Sig(f')t\prec_{P}\Sig(f)$
 \end_inset
 
 , и следствие 
@@ -12027,14 +12027,14 @@ Done, в том числе
 
 , хотя бы одно из условий 
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "enu:IsRed-a"
 
 \end_inset
 
  - 
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "enu:IsRed-d"
 
 \end_inset
@@ -12046,12 +12046,12 @@ reference "enu:IsRed-d"
 \begin_deeper
 \begin_layout Itemize
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "enu:IsRed-a"
 
 \end_inset
 
-удовлетворяется, так как 
+ удовлетворяется, так как 
 \begin_inset Formula $f'_{1}$
 \end_inset
 
@@ -12071,14 +12071,14 @@ reference "thm:always-exist-ok-reductor"
 
 \begin_layout Itemize
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "enu:IsRed-b"
 
 \end_inset
 
-и 
+ и 
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "enu:IsRed-c"
 
 \end_inset
@@ -12099,12 +12099,12 @@ reference "thm:always-exist-ok-reductor"
 
 \begin_layout Itemize
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "enu:IsRed-d"
 
 \end_inset
 
-удовлетворяется, поскольку 
+ удовлетворяется, поскольку 
 \begin_inset Formula $f'_{1}$
 \end_inset
 
@@ -12157,7 +12157,7 @@ name "thm:high-sp-part"
 
  -- сигнатура старшей части некоторой S-пары, она не отбрасывается в F5
  тогда и только тогда, когда не удовлетворяет критерию F5 и образована многочлен
-ом максимальным по индексу в 
+ом максимальным по позиции в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -12175,24 +12175,27 @@ name "thm:high-sp-part"
 \begin_layout Proof
 Проверки в процедурах 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand nameref
 reference "par:CritPair"
 
 \end_inset
 
  и 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand nameref
 reference "par:Spol"
 
 \end_inset
 
- приводят к тому что рассматриваются S-пары, со старшей частью, не отбрасываемой
- критериями F5 и перезаписи.
- Если S-пара отбрасывается критерием F5, то все S-пары будут им отбрасываться,
- поскольку известно, что многочлен такой сигнатуры имеет сигнатурное представлен
-ие, в котором все элементы имеют меньшую сигнатуру, и поэтому редуцируется
- к нулю относительно текущего множества 
+ приводят к тому, что рассматриваются S-пары, со старшей частью, не отбрасываемо
+й критериями F5 и перезаписи.
+ Если S-пара отбрасывается критерием F5, то все S-пары сигнатуры 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ будут им отбрасываться, поскольку известно, что многочлен такой сигнатуры
+ имеет сигнатурное представление, в котором все элементы имеют меньшую сигнатуру
+, и поэтому редуцируется к нулю относительно текущего множества 
 \begin_inset Formula $G\cup$
 \end_inset
 
@@ -12459,7 +12462,11 @@ name "clm:how-sigs"
 \end_inset
 
 .
- Старшая часть S-пары определяется по сигнатуре, согласно теореме 
+ 
+\end_layout
+
+\begin_layout Proof
+Старшая часть S-пары определяется по сигнатуре, согласно теореме 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:high-sp-part"
@@ -12576,7 +12583,7 @@ reference "thm:Exist-hm-in-deg-repr"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
@@ -12656,6 +12663,13 @@ key "HuangConception"
  (Предложение 6).
  Добавление S-пар, после того как сигнатурные редукции закончились, остаётся
  необходимым.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -16410,7 +16424,7 @@ reference "enu:-remove-from-B-sstep"
 \end_inset
 
  выполнен инвариант: 
-\begin_inset Formula $\forall h\in H,\Sig(h)\prec$
+\begin_inset Formula $\forall h\in H,\Sig(h)\prec_{a}$
 \end_inset
 
  сигнатур элементов 
@@ -16728,7 +16742,7 @@ key "GVW"
 
  показали, что одноэтапные алгоритмы вычислений базисов Грёбнера с порядком
  
-\begin_inset Formula $\prec_{s}$
+\begin_inset Formula $\prec_{S}$
 \end_inset
 
  в среднем оказываются как минимум не менее эффективными, чем вычисления
@@ -16743,7 +16757,7 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  с порядком 
-\begin_inset Formula $\prec_{s}$
+\begin_inset Formula $\prec_{S}$
 \end_inset
 
 .
