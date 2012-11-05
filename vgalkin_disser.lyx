@@ -13,6 +13,55 @@
 \headheight=0cm
 \headsep=0cm
 \sloppy
+
+\usepackage{suffix}
+
+% If this is in *.tex file, uncomment the following line.
+\makeatletter
+
+% Save the original \part declaration
+\let\old@part\part
+
+% To that definition, add a new special starred version.
+\WithSuffix\def\part*{
+  % Handle the optional parameter.
+  \ifx\next[%
+    \let\next\thesis@part@star%
+  \else
+    \def\next{\thesis@part@star[]}%
+  \fi
+  \next}
+
+% The actual macro definition.
+\def\thesis@part@star[#1]#2{
+  % Insert the actual (unnumbered) \part header.
+  \old@part*{#2}
+  % Last, add the part to the table of contents
+  \addcontentsline{toc}{part}{#2}
+}
+
+\let\old@section\section
+
+% To that definition, add a new special starred version.
+\WithSuffix\def\section*{
+  % Handle the optional parameter.
+  \ifx\next[%
+    \let\next\thesis@section@star%
+  \else
+    \def\next{\thesis@section@star[]}%
+  \fi
+  \next}
+
+% The actual macro definition.
+\def\thesis@section@star[#1]#2{
+  % Insert the actual (unnumbered) \part header.
+  \old@section*{#2}
+  % Last, add the part to the table of contents
+  \addcontentsline{toc}{section}{#2}
+}
+
+% If this is in *.tex file, uncomment the following line.
+\makeatother
 \end_preamble
 \options a4paper, reqno, 14pt
 \use_default_options true
@@ -449,7 +498,7 @@ status collapsed
 Введение
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Section*
 Актуальность темы
 \end_layout
 
@@ -630,7 +679,7 @@ key "GroebnerInExtFields"
  с упором на эффективность вносимых в них модификаций.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Section*
 Цель работы
 \end_layout
 
@@ -688,7 +737,7 @@ key "GroebnerInExtFields"
 Эти задачи были успешно решены в данной работе.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Section*
 Научная новизна
 \end_layout
 
@@ -737,7 +786,7 @@ key "GroebnerInExtFields"
  добавлять новые замены в процессе работы алгоритма
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Section*
 Основные методы исследования
 \end_layout
 
@@ -787,7 +836,7 @@ key "G2V,Modifying-for-termination,ZobninGeneralization_ru,SignatureBasedGBs,The
  приближённых полиномиальных систем.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Section*
 Теоретическая и практическая ценность работы
 \end_layout
 
@@ -804,7 +853,7 @@ key "G2V,Modifying-for-termination,ZobninGeneralization_ru,SignatureBasedGBs,The
  в робототехнике и видеоаналитике.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Section*
 Апробация работы
 \end_layout
 
@@ -813,7 +862,7 @@ key "G2V,Modifying-for-termination,ZobninGeneralization_ru,SignatureBasedGBs,The
  кафедры высшей алгебры МГУ.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Section*
 Публикации
 \end_layout
 
@@ -873,7 +922,7 @@ target "http://arxiv.org/abs/1205.6050"
 .
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Section*
 Структура и объем диссертации
 \end_layout
 
@@ -893,10 +942,10 @@ reference "LastPage"
 \end_inset
 
 страниц.
- Структура работы отражена в оглавлении.
+ Структура работы отражена в содержании.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Section*
 Благодарности
 \end_layout
 
@@ -1070,7 +1119,7 @@ t_{1}\prec t_{2}\Longrightarrow t_{1}t_{3}\prec t_{2}t_{3}
 \begin_inset Formula 
 \begin{eqnarray*}
  & x_{1}^{a_{1}}x_{2}^{a_{2}}\cdots x_{n}^{a_{n}}\prec x_{1}^{b_{1}}x_{2}^{b_{2}}\cdots x_{n}^{b_{n}}\equivdef\\
- & \equivdef\exists i,1\leqslant i\leqslant n,\left(a_{1},\dots,a_{i-1}\right)=\left(b_{1},\dots,b_{i-1}\right),a_{i}<b_{i}\\
+ & \equivdef\exists i,1\leqslant i\leqslant n,\left(a_{1},\dots,a_{i-1}\right)=\left(b_{1},\dots,b_{i-1}\right),a_{i}<b_{i}
 \end{eqnarray*}
 
 \end_inset
@@ -5401,7 +5450,7 @@ else
 
 
 \shape default
-любой элемент 
+ любой элемент 
 \begin_inset Formula $r'$
 \end_inset
 
@@ -5424,7 +5473,7 @@ else
 if 
 \series default
 
-\begin_inset Formula $u\Sig(R[r_{1}])\prec_{\tau}\Sig(R[r_{1}])$
+\begin_inset Formula $u\Sig(R[r_{1}])\prec_{P}\Sig(R[r_{1}])$
 \end_inset
 
  
@@ -6625,7 +6674,7 @@ reference "par:TopReduction"
 \end_inset
 
  и 
-\begin_inset Formula $\Sig(R\left[r_{k}\right])\succ\Sig(R\left[r_{q}\right])$
+\begin_inset Formula $\Sig(R\left[r_{k}\right])\succ_{P}\Sig(R\left[r_{q}\right])$
 \end_inset
 
 , гарантирующие что редукция по нему будет сигнатурной.
@@ -6649,7 +6698,7 @@ reference "par:IsReducible"
 
 .
  Таким образом, ситуация 
-\begin_inset Formula $\Sig(R\left[r_{k}\right])\prec t\cdot\Sig(R\left[r_{q}\right])$
+\begin_inset Formula $\Sig(R\left[r_{k}\right])\prec_{P}t\cdot\Sig(R\left[r_{q}\right])$
 \end_inset
 
  возможна только при 
@@ -7064,7 +7113,7 @@ reference "par:TopReduction"
 \end_inset
 
  и 
-\begin_inset Formula $\Sig(R[l])=\overline{u_{l}}\Sig(R[l^{*}])\succ\underline{u_{l}}\Sig(R[l_{*}])$
+\begin_inset Formula $\Sig(R[l])=\overline{u_{l}}\Sig(R[l^{*}])\succ_{P}\underline{u_{l}}\Sig(R[l_{*}])$
 \end_inset
 
 .
@@ -7557,7 +7606,7 @@ name "thm:f_g_3_props"
 \begin{equation}
 \begin{array}{ccccc}
 \HM(h_{n+1}) & \prec & \HM\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right) & = & \HM(g_{n}),\\
-\Sig(h_{n+1}) & = & \Sig\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right) & \succ & \Sig(g_{n}).
+\Sig(h_{n+1}) & = & \Sig\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right) & \succ_{P} & \Sig(g_{n}).
 \end{array}\label{eq:spair-chain}
 \end{equation}
 
@@ -7582,7 +7631,7 @@ reference "eq:spair-chain"
  Этот факт не может быть напрямую использован для доказательства конечности
  цепей, поскольку порядок на частных, в отличии от порядка на мономах, не
  даёт вполне упорядоченности: к примеру, последовательность 
-\begin_inset Formula $\frac{x}{x}\succ_{q}\frac{x}{x^{2}}\succ_{q}\cdots\succ_{q}\frac{x}{x^{n}}>_{q}\cdots$
+\begin_inset Formula $\frac{x}{x}\succ_{q}\frac{x}{x^{2}}\succ_{q}\cdots\succ_{q}\frac{x}{x^{n}}\succ_{q}\cdots$
 \end_inset
 
  является бесконечно убывающей.
@@ -8735,7 +8784,7 @@ S-пары с сигнатурой
 \end_inset
 
 , такой что 
-\begin_inset Formula $\sigidx(w)=\sigidx(\Sig(g))=m,\totaldeg(w)=\totaldeg(\Sig(g)),w\prec\Sig(g)$
+\begin_inset Formula $\sigidx(w)=\sigidx(\Sig(g))=m,\totaldeg(w)=\totaldeg(\Sig(g)),w\prec_{P}\Sig(g)$
 \end_inset
 
 .
@@ -8813,7 +8862,7 @@ reference "par:CritPair"
 \end_inset
 
 , такой что 
-\begin_inset Formula $\totaldeg(R[l])=\totaldeg(g),\,\Sig(R[l])\prec\Sig(g)$
+\begin_inset Formula $\totaldeg(R[l])=\totaldeg(g),\,\Sig(R[l])\prec_{P}\Sig(g)$
 \end_inset
 
 .
@@ -9335,7 +9384,11 @@ key "FaugereF5"
 \end_inset
 
  удовлетворяют условию корректности допустимых многочленов, и мы будем применять
- предыдущее утверждение ко всем таким многочленам.
+ предыдущее утверждение ко всем многочленам 
+\begin_inset Formula $R$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Example
@@ -9563,22 +9616,50 @@ reference "par:TopReduction"
 \end_inset
 
  для списка 
-\begin_inset Formula $G_{g}=\left\{ b_{1},\, b_{2},\, b_{3}\right\} $
+\begin_inset Formula $G_{g}=\left\{ b_{1},b_{2},b_{3}\right\} $
 \end_inset
 
  из 3-х элементов с порядком на сигнатурах 
-\begin_inset Formula $x\mathbf{F}_{i}\succ y\mathbf{F}_{i}$
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\succ_{P}$
 \end_inset
 
+, индуцированным мономиальным порядком 
+\begin_inset Formula $\mbox{lex}\left(x,y\right)$
+\end_inset
+
+,
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
  и сигнатурами 
-\begin_inset Formula $\Sig(b_{1})=\mathbf{F}_{1},\Sig(b_{2})=\mathbf{F}_{2},\Sig(b_{3})=x\mathbf{F}_{1}$
+\begin_inset Formula $\Sig(b_{1})=\left(1,1\right),\,\Sig(b_{2})=\left(1,2\right),\,\Sig(b_{3})=\left(x,2\right)$
 \end_inset
 
 .
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $y\cdot b_{1}\gtrdot_{1}100y\cdot b_{2}$
+\begin_inset Formula $y\cdot b_{2}\gtrdot_{1}100y\cdot b_{1}$
 \end_inset
 
 
@@ -9601,7 +9682,7 @@ reference "par:TopReduction"
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $x\cdot b_{1}\gtrdot_{1}y\cdot b_{1}$
+\begin_inset Formula $x\cdot b_{2}\gtrdot_{1}y\cdot b_{2}$
 \end_inset
 
 
@@ -9624,7 +9705,7 @@ reference "par:TopReduction"
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $-x\cdot b_{1}$
+\begin_inset Formula $-x\cdot b_{2}$
 \end_inset
 
  
@@ -9652,7 +9733,7 @@ reference "par:TopReduction"
 \noun default
 \color inherit
  
-\begin_inset Formula $2x\cdot b_{1}$
+\begin_inset Formula $2x\cdot b_{2}$
 \end_inset
 
 
@@ -9671,7 +9752,7 @@ reference "par:TopReduction"
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $y^{2}\cdot b_{1}\lessdot_{1}y\cdot b_{3}$
+\begin_inset Formula $y^{2}\cdot b_{2}\lessdot_{1}y\cdot b_{3}$
 \end_inset
 
 
@@ -9718,11 +9799,11 @@ reference "par:TopReduction"
 \uwave off
 \noun off
 \color none
-\begin_inset Formula $x^{2}\cdot b_{1}\gtrdot_{1}x\cdot b_{3}$
+\begin_inset Formula $x^{2}\cdot b_{2}\gtrdot_{1}x\cdot b_{3}$
 \end_inset
 
  поскольку сигнатуры равны, а позиция в списке отмеченного многочлена левой
- части равна 1, что меньше чем позиция многочлена правой части, равная 3.
+ части равна 2, что меньше чем позиция многочлена правой части, равная 3.
 \end_layout
 
 \begin_layout Standard
@@ -9808,7 +9889,7 @@ reference "par:TopReduction"
 \uwave off
 \noun off
 \color none
-\begin_inset Formula $x^{2}\cdot b_{1}+xy\cdot b_{1}+y^{2}b_{1}\gtrdot x^{2}\cdot b_{1}+100y^{2}\cdot b_{1}$
+\begin_inset Formula $x^{2}\cdot b_{2}+xy\cdot b_{2}+y^{2}b_{2}\gtrdot x^{2}\cdot b_{2}+100y^{2}\cdot b_{2}$
 \end_inset
 
  поскольку 
@@ -9824,7 +9905,7 @@ reference "par:TopReduction"
 \noun default
 \color inherit
 
-\begin_inset Formula $xy\cdot b_{1}\gtrdot_{1}y^{2}\cdot b_{1}$
+\begin_inset Formula $xy\cdot b_{2}\gtrdot_{1}y^{2}\cdot b_{2}$
 \end_inset
 
 
@@ -9843,7 +9924,7 @@ reference "par:TopReduction"
 \uwave off
 \noun off
 \color none
-\begin_inset Formula $x^{2}\cdot b_{1}+100y^{2}\cdot b_{1}\gtrdot x^{2}\cdot b_{1}$
+\begin_inset Formula $x^{2}\cdot b_{2}+100y^{2}\cdot b_{2}\gtrdot x^{2}\cdot b_{2}$
 \end_inset
 
  поскольку правая часть является началом левой
@@ -9862,11 +9943,11 @@ reference "par:TopReduction"
 \uwave off
 \noun off
 \color none
-\begin_inset Formula $x^{2}\cdot b_{1}\gtrdot xy\cdot b_{1}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}$
+\begin_inset Formula $x^{2}\cdot b_{2}\gtrdot xy\cdot b_{2}+y^{2}\cdot b_{2}+x^{2}\cdot b_{1}$
 \end_inset
 
  поскольку 
-\begin_inset Formula $x^{2}\cdot b_{1}\gtrdot_{1}xy\cdot b_{1}$
+\begin_inset Formula $x^{2}\cdot b_{2}\gtrdot_{1}xy\cdot b_{2}$
 \end_inset
 
 
@@ -9885,11 +9966,11 @@ reference "par:TopReduction"
 \uwave off
 \noun off
 \color none
-\begin_inset Formula $xy\cdot b_{1}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}\gtrdot y\cdot b_{3}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}$
+\begin_inset Formula $xy\cdot b_{2}+y^{2}\cdot b_{2}+x^{2}\cdot b_{1}\gtrdot y\cdot b_{3}+y^{2}\cdot b_{2}+x^{2}\cdot b_{1}$
 \end_inset
 
  поскольку 
-\begin_inset Formula $xy\cdot b_{1}\gtrdot_{1}y\cdot b_{3}$
+\begin_inset Formula $xy\cdot b_{2}\gtrdot_{1}y\cdot b_{3}$
 \end_inset
 
 
@@ -9908,7 +9989,7 @@ reference "par:TopReduction"
 \uwave off
 \noun off
 \color none
-\begin_inset Formula $y\cdot b_{3}+y^{2}\cdot b_{1}+x^{2}\cdot b_{2}$
+\begin_inset Formula $y\cdot b_{3}+y^{2}\cdot b_{2}+x^{2}\cdot b_{1}$
 \end_inset
 
  и 
@@ -9924,7 +10005,7 @@ reference "par:TopReduction"
 \noun default
 \color inherit
 
-\begin_inset Formula $2y\cdot b_{3}+y^{2}\cdot b_{2}$
+\begin_inset Formula $2y\cdot b_{3}+y^{2}\cdot b_{1}$
 \end_inset
 
 
@@ -10204,7 +10285,7 @@ key "F5C"
 \end_layout
 
 \begin_layout Standard
-Построение такого представления для 
+Нахождение такого представления для 
 \begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
@@ -10298,7 +10379,7 @@ key "F5C"
 \begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
- поскольку: все элементы 
+, поскольку: все элементы 
 \begin_inset Formula $\gtrdot_{1}$
 \end_inset
 
@@ -10427,15 +10508,15 @@ key "F5C"
 
 \begin_layout Standard
 Элемент, не обладающий первым свойством, удовлетворяет критерию F5, что
- позволяет использовать соображение о том, что 
-\begin_inset Formula $m_{K}\Sig(b_{i_{K}})$
-\end_inset
-
- не является его сигнатурой 
+ позволяет использовать соображение о том, что для 
 \begin_inset Formula $m_{K}b_{i_{K}}$
 \end_inset
 
- аналогично теореме 20 работы 
+ существуют представления с сигнатурами, меньшими 
+\begin_inset Formula $m_{K}\Sig(b_{i_{K}})$
+\end_inset
+
+, аналогично теореме 20 работы 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "F5C"
@@ -10674,7 +10755,7 @@ reference "eq:input-repr-case1"
 \begin_inset Formula $\lessdot$
 \end_inset
 
--меньшее представление строится методом, аналогичным из 
+-меньшее представление строится методом, заимствованным из 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "F5C"
@@ -11034,7 +11115,7 @@ m_{K}b_{i_{K}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i
 \begin_inset Formula $K'$
 \end_inset
 
--го равен 
+-го, равен 
 \begin_inset Formula $\HM(mh-m_{K'}b_{i_{K'}})=\HM(m_{K'}b_{i_{K'}})=m_{\max}$
 \end_inset
 
@@ -11120,10 +11201,10 @@ m_{K}b_{i_{K}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i
 \noun default
 \color inherit
 
-\begin_inset Formula $[m'^{-1}m_{\max},\, m'^{-1}m_{K'},\, b_{i_{K'}},\, m'^{-1}m_{K''},\, b_{i_{K''}}]$
+\begin_inset Formula $\left\{ \frac{m_{K'}}{m'}\cdot b_{i_{K'}},\,\frac{m_{K''}}{m'}\cdot b_{i_{K''}}\right\} $
 \end_inset
 
-
+,
 \family roman
 \series medium
 \shape up
@@ -11178,11 +11259,11 @@ m_{K}b_{i_{K}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i
  -- отмеченным многочленам, соответствующим элементам, про которые известно,
  что они не удовлетворяют критериям по предположению леммы.
  Из 
-\begin_inset Formula $m'\Sig(q)\prec\Sig(g)$
+\begin_inset Formula $m'\Sig(q)\prec_{P}\Sig(g)$
 \end_inset
 
  имеем 
-\begin_inset Formula $\Sig(q)\prec\Sig(g)$
+\begin_inset Formula $\Sig(q)\prec_{P}\Sig(g)$
 \end_inset
 
 , а значит можно применить теорему 
@@ -11372,7 +11453,7 @@ name "thm:exist-smaller-signature-safe-representation"
 \end_layout
 
 \begin_layout Standard
-Это привод нас к следующему ключевому результату:
+Это приводит нас к следующему ключевому результату:
 \end_layout
 
 \begin_layout Theorem
@@ -11476,7 +11557,7 @@ name "cor:all-needed-for-terminaton"
 \begin_inset Formula $f$
 \end_inset
 
-, который не отбрасывается критериями F5 и перезаписи.
+, который не отбрасывается критериями F5 и Перезаписи.
 \end_layout
 
 \begin_layout Proof
@@ -11484,7 +11565,7 @@ name "cor:all-needed-for-terminaton"
 \begin_inset Formula $mf',\, m=\frac{\HM(f)}{\HM(f')}\in\mathcal{K}\times\mathbb{T},\, f'\in G_{g}$
 \end_inset
 
- умноженный редуктор с 
+ -- умноженный редуктор с 
 \begin_inset Formula $\Sig(mf')\prec_{P}\Sig(g)$
 \end_inset
 
@@ -11819,7 +11900,7 @@ reference "thm:f_g_3_props"
 \end_inset
 
  -- мы имеем 
-\begin_inset Formula $\Sig(f')t\prec\Sig(f)$
+\begin_inset Formula $\Sig(f')t\prec_{P}\Sig(f)$
 \end_inset
 
 , и следствие 
@@ -11946,14 +12027,14 @@ Done, в том числе
 
 , хотя бы одно из условий 
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "enu:IsRed-a"
 
 \end_inset
 
  - 
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "enu:IsRed-d"
 
 \end_inset
@@ -11965,12 +12046,12 @@ reference "enu:IsRed-d"
 \begin_deeper
 \begin_layout Itemize
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "enu:IsRed-a"
 
 \end_inset
 
-удовлетворяется, так как 
+ удовлетворяется, так как 
 \begin_inset Formula $f'_{1}$
 \end_inset
 
@@ -11990,14 +12071,14 @@ reference "thm:always-exist-ok-reductor"
 
 \begin_layout Itemize
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "enu:IsRed-b"
 
 \end_inset
 
-и 
+ и 
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "enu:IsRed-c"
 
 \end_inset
@@ -12018,12 +12099,12 @@ reference "thm:always-exist-ok-reductor"
 
 \begin_layout Itemize
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "enu:IsRed-d"
 
 \end_inset
 
-удовлетворяется, поскольку 
+ удовлетворяется, поскольку 
 \begin_inset Formula $f'_{1}$
 \end_inset
 
@@ -12076,7 +12157,7 @@ name "thm:high-sp-part"
 
  -- сигнатура старшей части некоторой S-пары, она не отбрасывается в F5
  тогда и только тогда, когда не удовлетворяет критерию F5 и образована многочлен
-ом максимальным по индексу в 
+ом максимальным по позиции в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -12094,24 +12175,27 @@ name "thm:high-sp-part"
 \begin_layout Proof
 Проверки в процедурах 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand nameref
 reference "par:CritPair"
 
 \end_inset
 
  и 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand nameref
 reference "par:Spol"
 
 \end_inset
 
- приводят к тому что рассматриваются S-пары, со старшей частью, не отбрасываемой
- критериями F5 и перезаписи.
- Если S-пара отбрасывается критерием F5, то все S-пары будут им отбрасываться,
- поскольку известно, что многочлен такой сигнатуры имеет сигнатурное представлен
-ие, в котором все элементы имеют меньшую сигнатуру, и поэтому редуцируется
- к нулю относительно текущего множества 
+ приводят к тому, что рассматриваются S-пары, со старшей частью, не отбрасываемо
+й критериями F5 и перезаписи.
+ Если S-пара отбрасывается критерием F5, то все S-пары сигнатуры 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ будут им отбрасываться, поскольку известно, что многочлен такой сигнатуры
+ имеет сигнатурное представление, в котором все элементы имеют меньшую сигнатуру
+, и поэтому редуцируется к нулю относительно текущего множества 
 \begin_inset Formula $G\cup$
 \end_inset
 
@@ -12378,7 +12462,11 @@ name "clm:how-sigs"
 \end_inset
 
 .
- Старшая часть S-пары определяется по сигнатуре, согласно теореме 
+ 
+\end_layout
+
+\begin_layout Proof
+Старшая часть S-пары определяется по сигнатуре, согласно теореме 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:high-sp-part"
@@ -12495,7 +12583,7 @@ reference "thm:Exist-hm-in-deg-repr"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
@@ -12575,6 +12663,13 @@ key "HuangConception"
  (Предложение 6).
  Добавление S-пар, после того как сигнатурные редукции закончились, остаётся
  необходимым.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -16329,7 +16424,7 @@ reference "enu:-remove-from-B-sstep"
 \end_inset
 
  выполнен инвариант: 
-\begin_inset Formula $\forall h\in H,\Sig(h)\prec$
+\begin_inset Formula $\forall h\in H,\Sig(h)\prec_{a}$
 \end_inset
 
  сигнатур элементов 
@@ -16477,7 +16572,7 @@ reference "thm:has-s-repr-sstep"
 
 , требуя от него лишь согласованность с мономиальным порядком.
  Определения и сравнение эффективности различных согласованных порядков
- можно найти в параграфе Term Orders работы
+ можно найти в параграфе Term Orders работы 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "GVW"
@@ -16647,7 +16742,7 @@ key "GVW"
 
  показали, что одноэтапные алгоритмы вычислений базисов Грёбнера с порядком
  
-\begin_inset Formula $\prec_{s}$
+\begin_inset Formula $\prec_{S}$
 \end_inset
 
  в среднем оказываются, как минимум, не менее эффективными, чем вычисления
@@ -16662,7 +16757,7 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  с порядком 
-\begin_inset Formula $\prec_{s}$
+\begin_inset Formula $\prec_{S}$
 \end_inset
 
 .
@@ -21871,7 +21966,7 @@ reference "par:SimpleSignatureGroebner"
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 bibfiles "f5_references"
-options "bibtotoc,gost/ugost2008"
+options "gost/ugost2008"
 
 \end_inset
 
