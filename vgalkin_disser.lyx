@@ -3710,7 +3710,7 @@ for
 \begin_inset Formula $i=1,\dots,r$
 \end_inset
 
- do 
+ do:
 \end_layout
 
 \begin_deeper
@@ -3731,9 +3731,9 @@ if
 \begin_inset Formula $\Sig(R[L[i]])$
 \end_inset
 
- 
+
 \series bold
-then 
+:
 \end_layout
 
 \begin_deeper
@@ -3856,7 +3856,7 @@ for
 \begin_inset Formula $i=2,\dots,m$
 \end_inset
 
- do
+ do:
 \end_layout
 
 \begin_deeper
@@ -4064,7 +4064,7 @@ while
 
  
 \series bold
-do 
+do:
 \end_layout
 
 \begin_deeper
@@ -4164,7 +4164,7 @@ for
 
 \series bold
 \shape default
- do 
+ do:
 \end_layout
 
 \begin_deeper
@@ -4327,7 +4327,7 @@ for
 
 \series bold
 \shape default
- do 
+ do:
 \end_layout
 
 \begin_deeper
@@ -4365,7 +4365,7 @@ if
 
  
 \series bold
-then 
+:
 \end_layout
 
 \begin_deeper
@@ -4403,9 +4403,9 @@ if
 \begin_inset Formula $\varphi(u_{1}t_{1})\ne u_{1}t_{1}$
 \end_inset
 
- 
+
 \series bold
-then
+:
 \end_layout
 
 \begin_deeper
@@ -4443,9 +4443,9 @@ and
 \begin_inset Formula $\varphi(u_{2}t_{2})\ne u_{2}t_{2}$
 \end_inset
 
- 
+
 \series bold
-then
+:
 \end_layout
 
 \begin_deeper
@@ -4554,7 +4554,7 @@ for
 \begin_inset Formula $l=1,\dots,h$
 \end_inset
 
- do 
+ do:
 \end_layout
 
 \begin_deeper
@@ -4613,9 +4613,9 @@ reference "par:Rewritten?"
 \begin_inset Formula $(v,r_{j})$
 \end_inset
 
-) 
+)
 \series bold
-then
+:
 \end_layout
 
 \begin_deeper
@@ -4791,7 +4791,7 @@ ToDo
 
  
 \series bold
-do 
+do:
 \end_layout
 
 \begin_deeper
@@ -5183,7 +5183,7 @@ name "enu:IsRed-d"
 
 \family sans
 \series bold
-then return 
+then: return 
 \series default
 
 \begin_inset Formula $\left\{ r_{j}\right\} $
@@ -5309,9 +5309,9 @@ if
 \begin_inset Formula $\poly(R[r_{0}])=0$
 \end_inset
 
- 
+
 \series bold
-then 
+:
 \end_layout
 
 \begin_deeper
@@ -5400,7 +5400,7 @@ if
 
 \series bold
 \shape default
- then 
+:
 \end_layout
 
 \begin_deeper
@@ -5437,7 +5437,7 @@ return
 
 \family sans
 \series bold
-else 
+else:
 \end_layout
 
 \begin_deeper
@@ -5476,9 +5476,9 @@ if
 \begin_inset Formula $u\Sig(R[r_{1}])\prec_{P}\Sig(R[r_{1}])$
 \end_inset
 
- 
+
 \series bold
-then 
+:
 \end_layout
 
 \begin_deeper
@@ -5522,7 +5522,7 @@ return
 
 \family sans
 \series bold
-else 
+else:
 \end_layout
 
 \begin_deeper
@@ -12805,7 +12805,7 @@ while
 
  
 \series bold
-do 
+do:
 \end_layout
 
 \begin_deeper
@@ -12848,6 +12848,8 @@ reference "clm:how-sigs"
 \end_inset
 
 
+\series bold
+:
 \end_layout
 
 \begin_deeper
@@ -13209,7 +13211,7 @@ name "remark:follows-from-lessH"
  нестрогими экстремумами:
 \begin_inset Formula 
 \[
-\forall\sigma_{1},\sigma_{2},p_{2}\,\left(\sigma_{1},0\right)\not\GVWg\left(\sigma_{2},p_{2}\right).
+\forall\sigma_{1},\sigma_{2},p_{2}\;\left(\sigma_{1},0\right)\not\GVWg\left(\sigma_{2},p_{2}\right).
 \]
 
 \end_inset
@@ -13225,7 +13227,7 @@ name "remark:follows-from-lessH"
 , элементы с нулевой сигнатурой -- также нестрогие экстремумы:
 \begin_inset Formula 
 \[
-\forall\sigma_{2},p_{1},p_{2}\in\mathbb{T}_{0}\,\left(0,p_{1}\right)\not\GVWl\left(\sigma_{2},p_{2}\right).
+\forall\sigma_{2},p_{1},p_{2}\;\left(0,p_{1}\right)\not\GVWl\left(\sigma_{2},p_{2}\right).
 \]
 
 \end_inset
@@ -13316,7 +13318,7 @@ key "HuangConception"
 \end_inset
 
 , если 
-\begin_inset Formula $\forall t_{1},t_{2}\in\mathbb{T},\sigma\in\tau\, t_{1}\prec t_{2}\Longleftrightarrow t_{1}\sigma\prec_{\tau}t_{2}\sigma$
+\begin_inset Formula $\forall t_{1},t_{2}\in\mathbb{T},\sigma\in\tau\,\; t_{1}\prec t_{2}\Longleftrightarrow t_{1}\sigma\prec_{\tau}t_{2}\sigma$
 \end_inset
 
 .
@@ -13358,7 +13360,7 @@ t_{1}\sigma\prec_{P}t_{2}\sigma\Longleftrightarrow\left(t_{1}s,i\right)\prec_{P}
 \end_layout
 
 \begin_layout Standard
-Все конкретные порядки на сигнатурах, рассматриваемые в данной работе являются
+Все конкретные порядки на сигнатурах, рассматриваемые в данной работе, являются
  согласованными с порядком на мономах.
  Поэтому во всех последующих утверждениях на порядок 
 \begin_inset Formula $\prec_{\tau}$
@@ -13428,10 +13430,25 @@ name "lem:greater-or-smaller"
 \end_layout
 
 \begin_layout Proof
-Из условия леммы известно, что
+Если рассматривается одноэтапный алгоритм, и среди 
+\begin_inset Formula $h_{1},h_{2},h_{3}$
+\end_inset
+
+ есть элементы с различными индексами сигнатуры, утверждение леммы получается
+ из рассмотрения индексов.
+\end_layout
+
+\begin_layout Proof
+В оставшемся случае одинаковых индексов забудем про них и до конца доказательств
+а данной леммы будем рассматривать сигнатуры как элементы 
+\begin_inset Formula $\mathbb{T}_{0}$
+\end_inset
+
+.
+ Из условия леммы известно, что
 \begin_inset Formula 
 \begin{equation}
-\HM(h_{1})\Sig(h_{2})\prec_{\tau}\HM(h_{2})\Sig(h_{1})\label{eq:gvw-order-3}
+\HM(h_{1})\Sig(h_{2})\prec_{\tau0}\HM(h_{2})\Sig(h_{1})\label{eq:gvw-order-3}
 \end{equation}
 
 \end_inset
@@ -13570,7 +13587,7 @@ SimpleSignatureGroebner
 
 \family sans
 Вход: многочлены 
-\begin_inset Formula $\{g_{1},\dots,g_{m}\}$
+\begin_inset Formula $\{g_{1},\dots,g_{m}\}=G$
 \end_inset
 
 , образующие базис Грёбнера, многочлен 
@@ -13804,7 +13821,7 @@ if
 \begin_layout Enumerate
 
 \series bold
-else: break
+else: break do forever
 \end_layout
 
 \end_deeper
@@ -13886,7 +13903,7 @@ ReduceCheckingSignatures
 \begin_inset Formula $R$
 \end_inset
 
- нормализованный единичным старшим коэффициентом
+ и нормализованный единичным старшим коэффициентом
 \end_layout
 
 \begin_layout Enumerate
@@ -14034,9 +14051,9 @@ reference "example:labeled-polys"
 \begin_layout Standard
 Дадим теоретическое обоснование представленного алгоритма.
  Для этого покажем его остановку и корректность результата.
- Данные результаты показаны без использования фактов, полученных ранее при
- доказательстве остановки F5, поскольку приведённый алгоритм позволяет дать
- значительно более простое обоснование без ссылок на них.
+ Данные утверждения показаны без использования фактов, полученных ранее
+ при доказательстве остановки F5, поскольку приведённый алгоритм позволяет
+ дать значительно более простое обоснование без ссылок на них.
 \end_layout
 
 \begin_layout Lemma
@@ -14305,22 +14322,22 @@ reference "par:SimpleSignatureGroebner"
 do
 \series default
  выполняются лишь конечное число раз.
- В 
+ В процедуре 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "par:ReduceCheckingSignatures"
 
 \end_inset
 
- при ненулевых 
+ на каждой итерации цикла с ненулевым 
 \begin_inset Formula $p$
 \end_inset
 
- на каждой итерации 
+ происходит уменьшение
 \begin_inset Formula $\HM(p)$
 \end_inset
 
- уменьшается по 
+ по 
 \begin_inset Formula $\prec_{0}$
 \end_inset
 
@@ -14329,7 +14346,7 @@ reference "par:ReduceCheckingSignatures"
 \begin_inset Formula $p$
 \end_inset
 
- он завершится в силу 
+ цикл завершится в силу 
 \begin_inset Formula $\GVWl$
 \end_inset
 
@@ -14470,8 +14487,8 @@ S
 \begin_inset Formula $I$
 \end_inset
 
- (соответственно 
-\begin_inset Formula $\left\{ h\in I\,|\,\Sig(h)\prec_{0}\sigma\right\} $
+ (соответственно подмножества 
+\begin_inset Formula $\left\{ h\in I\,|\,\Sig(h)\prec_{0}\sigma\right\} \subset I$
 \end_inset
 
 )
@@ -14547,11 +14564,11 @@ name "lem:s-basis-and-no-reductions"
 \begin_inset Formula $\poly(h_{i})$
 \end_inset
 
- сопоставляется 
-\begin_inset Formula $\prec_{0}\sigma$
+ сопоставляется сигнатура 
+\begin_inset Formula $\sigma'\prec_{0}\sigma$
 \end_inset
 
- сигнатура: 
+: 
 \begin_inset Formula 
 \[
 \exists K\in\mathcal{K},v\in\mathcal{P}\,\HM(v)=\sigma'\prec_{0}\sigma,vf\equiv\poly(h_{1})-K\poly(h_{2})\pmod{\left(G\right)},
@@ -14612,7 +14629,7 @@ name "lem:s-basis-and-no-reductions"
 \end_inset
 
  получается добавлением 
-\begin_inset Formula $K\cdot\poly(h_{2})$
+\begin_inset Formula $K\cdot h_{2}$
 \end_inset
 
  к сигнатурному представлению 
@@ -14657,7 +14674,11 @@ name "lem:S-basis-is-a-basis"
 \begin_inset Formula $h=\left(\sigma,p\right)\in H$
 \end_inset
 
- и применить теорему 
+ и выбрать из сигнатурного представления 
+\begin_inset Formula $h$
+\end_inset
+
+ подходящий элемент, применив теорему 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:Exist-hm-in-deg-repr"
@@ -14726,9 +14747,12 @@ reference "enu:-remove-from-B"
 \begin_inset Formula $\GVWl$
 \end_inset
 
--минимальный элемент.
- Обозначим 
-\begin_inset Formula $t_{\sigma}=\frac{\sigma}{\Sig(r_{\sigma})}$
+-минимальный элемент, а за 
+\begin_inset Formula $t_{\sigma}$
+\end_inset
+
+ -- моном 
+\begin_inset Formula $\frac{\sigma}{\Sig(r_{\sigma})}$
 \end_inset
 
 .
@@ -15062,9 +15086,14 @@ reference "par:SimpleSignatureGroebner"
 
 \end_inset
 
- совпадает с ходом алгоритмов TRB-MJ и SB, однако в силу некоторого различия
- их формулировок, усложняющего сравнение, мы не будем останавливаться на
- строгом обосновании это факта.
+ совпадает с ходом алгоритмов TRB-MJ и SB, превращённых в инкрементальные
+ взятием 
+\begin_inset Formula $\prec_{p}$
+\end_inset
+
+ в качестве порядка на сигнатурах, однако в силу некоторого различия их
+ формулировок, усложняющего сравнение, мы не будем останавливаться на строгом
+ обосновании это факта.
  Вместо этого, приведём определённое подтверждение эффективности приведённого
  алгоритма среди алгоритмов, вычисляющих S-базис, заключающееся в отсутствии
  вычислений лишних элементов S-базиса.
@@ -15318,8 +15347,8 @@ key "Eder2012inhomogeneous"
 
 , согласованного с порядком на мономах, и покажем её корректность.
  Конкретные порядки будут рассмотрены позже.
- Как и в случае инкрементального алгоритма случаи, когда среди входных многочлен
-ов 
+ Как и при формулировке инкрементального алгоритма случаи, когда среди входных
+ многочленов 
 \begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} $
 \end_inset
 
@@ -15375,9 +15404,11 @@ SingleStepSignatureGroebner
 \begin_inset Formula $\HC(f_{i})=1$
 \end_inset
 
-,
-\family default
- согласованный с мономиальным порядка 
+, мономиальный порядок 
+\begin_inset Formula $\prec$
+\end_inset
+
+, согласованный с ним порядок 
 \begin_inset Formula $\prec_{a}$
 \end_inset
 
@@ -15385,7 +15416,7 @@ SingleStepSignatureGroebner
 \begin_inset Formula $\mathbf{T}$
 \end_inset
 
-, индуцированный им частичный порядок 
+, и индуцированный ими частичный порядок 
 \begin_inset Formula $<_{H}$
 \end_inset
 
@@ -15505,7 +15536,7 @@ if
 \series bold
 :
 \series default
-
+ 
 \begin_inset Formula $B\leftarrow B\setminus\{b\in B,\Sig(b)=\sigma\}$
 \end_inset
 
@@ -15712,7 +15743,7 @@ key "TheF5Revised"
 \end_inset
 
 , псевдокод которого также очень похож на приведённый.
- Его отличие с вычислительной точки зрения в состоит в том что 
+ Его отличие с вычислительной точки зрения состоит в том что 
 \begin_inset Quotes fld
 \end_inset
 
@@ -15728,7 +15759,7 @@ key "TheF5Revised"
 \end_layout
 
 \begin_layout Standard
-С другой стороны, алгоритмы TRB-MJ и SB, описанные в
+С другой стороны, алгоритмы TRB-MJ и SB, описанные в 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "HuangConception,PracticalGB"
@@ -16035,7 +16066,7 @@ reference "enu:-after-reduce"
 \end_layout
 
 \begin_layout Proof
-Для элементов с мономом сигнатуры, отличным от 1, В силу леммы 
+Для элементов с мономом сигнатуры, отличным от 1, в силу леммы 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lem:exist-reductor-not1-sstep"
@@ -16115,7 +16146,7 @@ reference "enu:-after-reduce"
 \begin_inset Formula $\left(1,\sigidx(\sigma)\right)$
 \end_inset
 
-невозможно, поскольку такие элементы явно удаляются из 
+ невозможно, поскольку такие элементы явно удаляются из 
 \begin_inset Formula $B$
 \end_inset
 
@@ -16182,7 +16213,7 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  где 
-\begin_inset Formula $R_{i0}\subset\left\{ (\sigma,i),\sigma\in\mathbb{T}\right\} \times\left\{ 0\right\} ,R_{i*}\subset\left\{ (\sigma,i),\sigma\in\mathbb{T}\right\} \times\mathcal{P}\setminus\left\{ 0\right\} $
+\begin_inset Formula $R_{i0}\subset\left\{ (\sigma,i),\sigma\in\mathbb{T}\right\} \times\left\{ 0\right\} ,R_{i*}\subset\left\{ (\sigma,i),\sigma\in\mathbb{T}\right\} \times\mathbb{T}$
 \end_inset
 
 .
@@ -21500,7 +21531,7 @@ do while
 \begin_layout Enumerate
 
 \series bold
-infinite loop:
+do forever:
 \end_layout
 
 \begin_deeper
@@ -21558,7 +21589,7 @@ or
 
 
 \series bold
-: break infinite loop
+: break do forever
 \end_layout
 
 \begin_layout Enumerate
