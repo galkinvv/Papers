@@ -824,8 +824,8 @@ key "GroebnerInExtFields"
 Большая часть методов, используемых в работе, являются алгебраическими.
  Это включает базисы Грёбнера, коммутативную алгебру, линейную алгебру,
  а также символические вычисления и теорию конечных полей.
- Помимо них работа использует приёмы, используемые в теории вероятностей
- и численных методах.
+ Помимо них работа использует приёмы, используемые в теории вероятностей,
+ математическом анализе и численных методах.
  Главные результаты о сигнатурных алгоритмах в целом, на которые опирается
  данная работа, находятся в работах 
 \begin_inset CommandInset citation
@@ -3740,7 +3740,7 @@ for
 \begin_inset Formula $i=1,\dots,r$
 \end_inset
 
- do 
+ do:
 \end_layout
 
 \begin_deeper
@@ -3761,9 +3761,9 @@ if
 \begin_inset Formula $\Sig(R[L[i]])$
 \end_inset
 
- 
+
 \series bold
-then 
+:
 \end_layout
 
 \begin_deeper
@@ -3886,7 +3886,7 @@ for
 \begin_inset Formula $i=2,\dots,m$
 \end_inset
 
- do
+ do:
 \end_layout
 
 \begin_deeper
@@ -4094,7 +4094,7 @@ while
 
  
 \series bold
-do 
+do:
 \end_layout
 
 \begin_deeper
@@ -4194,7 +4194,7 @@ for
 
 \series bold
 \shape default
- do 
+ do:
 \end_layout
 
 \begin_deeper
@@ -4357,7 +4357,7 @@ for
 
 \series bold
 \shape default
- do 
+ do:
 \end_layout
 
 \begin_deeper
@@ -4395,7 +4395,7 @@ if
 
  
 \series bold
-then 
+:
 \end_layout
 
 \begin_deeper
@@ -4433,9 +4433,9 @@ if
 \begin_inset Formula $\varphi(u_{1}t_{1})\ne u_{1}t_{1}$
 \end_inset
 
- 
+
 \series bold
-then
+:
 \end_layout
 
 \begin_deeper
@@ -4473,9 +4473,9 @@ and
 \begin_inset Formula $\varphi(u_{2}t_{2})\ne u_{2}t_{2}$
 \end_inset
 
- 
+
 \series bold
-then
+:
 \end_layout
 
 \begin_deeper
@@ -4584,7 +4584,7 @@ for
 \begin_inset Formula $l=1,\dots,h$
 \end_inset
 
- do 
+ do:
 \end_layout
 
 \begin_deeper
@@ -4643,9 +4643,9 @@ reference "par:Rewritten?"
 \begin_inset Formula $(v,r_{j})$
 \end_inset
 
-) 
+)
 \series bold
-then
+:
 \end_layout
 
 \begin_deeper
@@ -4821,7 +4821,7 @@ ToDo
 
  
 \series bold
-do 
+do:
 \end_layout
 
 \begin_deeper
@@ -5213,7 +5213,7 @@ name "enu:IsRed-d"
 
 \family sans
 \series bold
-then return 
+then: return 
 \series default
 
 \begin_inset Formula $\left\{ r_{j}\right\} $
@@ -5339,9 +5339,9 @@ if
 \begin_inset Formula $\poly(R[r_{0}])=0$
 \end_inset
 
- 
+
 \series bold
-then 
+:
 \end_layout
 
 \begin_deeper
@@ -5430,7 +5430,7 @@ if
 
 \series bold
 \shape default
- then 
+:
 \end_layout
 
 \begin_deeper
@@ -5467,7 +5467,7 @@ return
 
 \family sans
 \series bold
-else 
+else:
 \end_layout
 
 \begin_deeper
@@ -5506,9 +5506,9 @@ if
 \begin_inset Formula $u\Sig(R[r_{1}])\prec_{P}\Sig(R[r_{1}])$
 \end_inset
 
- 
+
 \series bold
-then 
+:
 \end_layout
 
 \begin_deeper
@@ -5552,7 +5552,7 @@ return
 
 \family sans
 \series bold
-else 
+else:
 \end_layout
 
 \begin_deeper
@@ -12835,7 +12835,7 @@ while
 
  
 \series bold
-do 
+do:
 \end_layout
 
 \begin_deeper
@@ -12878,6 +12878,8 @@ reference "clm:how-sigs"
 \end_inset
 
 
+\series bold
+:
 \end_layout
 
 \begin_deeper
@@ -13239,7 +13241,7 @@ name "remark:follows-from-lessH"
  нестрогими экстремумами:
 \begin_inset Formula 
 \[
-\forall\sigma_{1},\sigma_{2},p_{2}\,\left(\sigma_{1},0\right)\not\GVWg\left(\sigma_{2},p_{2}\right).
+\forall\sigma_{1},\sigma_{2},p_{2}\;\left(\sigma_{1},0\right)\not\GVWg\left(\sigma_{2},p_{2}\right).
 \]
 
 \end_inset
@@ -13255,7 +13257,7 @@ name "remark:follows-from-lessH"
 , элементы с нулевой сигнатурой -- также нестрогие экстремумы:
 \begin_inset Formula 
 \[
-\forall\sigma_{2},p_{1},p_{2}\in\mathbb{T}_{0}\,\left(0,p_{1}\right)\not\GVWl\left(\sigma_{2},p_{2}\right).
+\forall\sigma_{2},p_{1},p_{2}\;\left(0,p_{1}\right)\not\GVWl\left(\sigma_{2},p_{2}\right).
 \]
 
 \end_inset
@@ -13346,7 +13348,7 @@ key "HuangConception"
 \end_inset
 
 , если 
-\begin_inset Formula $\forall t_{1},t_{2}\in\mathbb{T},\sigma\in\tau\, t_{1}\prec t_{2}\Longleftrightarrow t_{1}\sigma\prec_{\tau}t_{2}\sigma$
+\begin_inset Formula $\forall t_{1},t_{2}\in\mathbb{T},\sigma\in\tau\,\; t_{1}\prec t_{2}\Longleftrightarrow t_{1}\sigma\prec_{\tau}t_{2}\sigma$
 \end_inset
 
 .
@@ -13388,7 +13390,7 @@ t_{1}\sigma\prec_{P}t_{2}\sigma\Longleftrightarrow\left(t_{1}s,i\right)\prec_{P}
 \end_layout
 
 \begin_layout Standard
-Все конкретные порядки на сигнатурах, рассматриваемые в данной работе являются
+Все конкретные порядки на сигнатурах, рассматриваемые в данной работе, являются
  согласованными с порядком на мономах.
  Поэтому во всех последующих утверждениях на порядок 
 \begin_inset Formula $\prec_{\tau}$
@@ -13458,10 +13460,25 @@ name "lem:greater-or-smaller"
 \end_layout
 
 \begin_layout Proof
-Из условия леммы известно, что
+Если рассматривается одноэтапный алгоритм, и среди 
+\begin_inset Formula $h_{1},h_{2},h_{3}$
+\end_inset
+
+ есть элементы с различными индексами сигнатуры, утверждение леммы получается
+ из рассмотрения индексов.
+\end_layout
+
+\begin_layout Proof
+В оставшемся случае одинаковых индексов забудем про них и до конца доказательств
+а данной леммы будем рассматривать сигнатуры как элементы 
+\begin_inset Formula $\mathbb{T}_{0}$
+\end_inset
+
+.
+ Из условия леммы известно, что
 \begin_inset Formula 
 \begin{equation}
-\HM(h_{1})\Sig(h_{2})\prec_{\tau}\HM(h_{2})\Sig(h_{1})\label{eq:gvw-order-3}
+\HM(h_{1})\Sig(h_{2})\prec_{\tau0}\HM(h_{2})\Sig(h_{1})\label{eq:gvw-order-3}
 \end{equation}
 
 \end_inset
@@ -13600,7 +13617,7 @@ SimpleSignatureGroebner
 
 \family sans
 Вход: многочлены 
-\begin_inset Formula $\{g_{1},\dots,g_{m}\}$
+\begin_inset Formula $\{g_{1},\dots,g_{m}\}=G$
 \end_inset
 
 , образующие базис Грёбнера, многочлен 
@@ -13834,7 +13851,7 @@ if
 \begin_layout Enumerate
 
 \series bold
-else: break
+else: break do forever
 \end_layout
 
 \end_deeper
@@ -13916,7 +13933,7 @@ ReduceCheckingSignatures
 \begin_inset Formula $R$
 \end_inset
 
- нормализованный единичным старшим коэффициентом
+ и нормализованный единичным старшим коэффициентом
 \end_layout
 
 \begin_layout Enumerate
@@ -14064,9 +14081,9 @@ reference "example:labeled-polys"
 \begin_layout Standard
 Дадим теоретическое обоснование представленного алгоритма.
  Для этого покажем его остановку и корректность результата.
- Данные результаты показаны без использования фактов, полученных ранее при
- доказательстве остановки F5, поскольку приведённый алгоритм позволяет дать
- значительно более простое обоснование без ссылок на них.
+ Данные утверждения показаны без использования фактов, полученных ранее
+ при доказательстве остановки F5, поскольку приведённый алгоритм позволяет
+ дать значительно более простое обоснование без ссылок на них.
 \end_layout
 
 \begin_layout Lemma
@@ -14335,22 +14352,22 @@ reference "par:SimpleSignatureGroebner"
 do
 \series default
  выполняются лишь конечное число раз.
- В 
+ В процедуре 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "par:ReduceCheckingSignatures"
 
 \end_inset
 
- при ненулевых 
+ на каждой итерации цикла с ненулевым 
 \begin_inset Formula $p$
 \end_inset
 
- на каждой итерации 
+ происходит уменьшение
 \begin_inset Formula $\HM(p)$
 \end_inset
 
- уменьшается по 
+ по 
 \begin_inset Formula $\prec_{0}$
 \end_inset
 
@@ -14359,7 +14376,7 @@ reference "par:ReduceCheckingSignatures"
 \begin_inset Formula $p$
 \end_inset
 
- он завершится в силу 
+ цикл завершится в силу 
 \begin_inset Formula $\GVWl$
 \end_inset
 
@@ -14500,8 +14517,8 @@ S
 \begin_inset Formula $I$
 \end_inset
 
- (соответственно 
-\begin_inset Formula $\left\{ h\in I\,|\,\Sig(h)\prec_{0}\sigma\right\} $
+ (соответственно подмножества 
+\begin_inset Formula $\left\{ h\in I\,|\,\Sig(h)\prec_{0}\sigma\right\} \subset I$
 \end_inset
 
 )
@@ -14577,11 +14594,11 @@ name "lem:s-basis-and-no-reductions"
 \begin_inset Formula $\poly(h_{i})$
 \end_inset
 
- сопоставляется 
-\begin_inset Formula $\prec_{0}\sigma$
+ сопоставляется сигнатура 
+\begin_inset Formula $\sigma'\prec_{0}\sigma$
 \end_inset
 
- сигнатура: 
+: 
 \begin_inset Formula 
 \[
 \exists K\in\mathcal{K},v\in\mathcal{P}\,\HM(v)=\sigma'\prec_{0}\sigma,vf\equiv\poly(h_{1})-K\poly(h_{2})\pmod{\left(G\right)},
@@ -14642,7 +14659,7 @@ name "lem:s-basis-and-no-reductions"
 \end_inset
 
  получается добавлением 
-\begin_inset Formula $K\cdot\poly(h_{2})$
+\begin_inset Formula $K\cdot h_{2}$
 \end_inset
 
  к сигнатурному представлению 
@@ -14687,7 +14704,11 @@ name "lem:S-basis-is-a-basis"
 \begin_inset Formula $h=\left(\sigma,p\right)\in H$
 \end_inset
 
- и применить теорему 
+ и выбрать из сигнатурного представления 
+\begin_inset Formula $h$
+\end_inset
+
+ подходящий элемент, применив теорему 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:Exist-hm-in-deg-repr"
@@ -14756,9 +14777,12 @@ reference "enu:-remove-from-B"
 \begin_inset Formula $\GVWl$
 \end_inset
 
--минимальный элемент.
- Обозначим 
-\begin_inset Formula $t_{\sigma}=\frac{\sigma}{\Sig(r_{\sigma})}$
+-минимальный элемент, а за 
+\begin_inset Formula $t_{\sigma}$
+\end_inset
+
+ -- моном 
+\begin_inset Formula $\frac{\sigma}{\Sig(r_{\sigma})}$
 \end_inset
 
 .
@@ -15092,9 +15116,14 @@ reference "par:SimpleSignatureGroebner"
 
 \end_inset
 
- совпадает с ходом алгоритмов TRB-MJ и SB, однако в силу некоторого различия
- их формулировок, усложняющего сравнение, мы не будем останавливаться на
- строгом обосновании это факта.
+ совпадает с ходом алгоритмов TRB-MJ и SB, превращённых в инкрементальные
+ взятием 
+\begin_inset Formula $\prec_{p}$
+\end_inset
+
+ в качестве порядка на сигнатурах, однако в силу некоторого различия их
+ формулировок, усложняющего сравнение, мы не будем останавливаться на строгом
+ обосновании это факта.
  Вместо этого, приведём определённое подтверждение эффективности приведённого
  алгоритма среди алгоритмов, вычисляющих S-базис, заключающееся в отсутствии
  вычислений лишних элементов S-базиса.
@@ -15348,8 +15377,8 @@ key "Eder2012inhomogeneous"
 
 , согласованного с порядком на мономах, и покажем её корректность.
  Конкретные порядки будут рассмотрены позже.
- Как и в случае инкрементального алгоритма случаи, когда среди входных многочлен
-ов 
+ Как и при формулировке инкрементального алгоритма случаи, когда среди входных
+ многочленов 
 \begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} $
 \end_inset
 
@@ -15405,9 +15434,11 @@ SingleStepSignatureGroebner
 \begin_inset Formula $\HC(f_{i})=1$
 \end_inset
 
-,
-\family default
- согласованный с мономиальным порядка 
+, мономиальный порядок 
+\begin_inset Formula $\prec$
+\end_inset
+
+, согласованный с ним порядок 
 \begin_inset Formula $\prec_{a}$
 \end_inset
 
@@ -15415,7 +15446,7 @@ SingleStepSignatureGroebner
 \begin_inset Formula $\mathbf{T}$
 \end_inset
 
-, индуцированный им частичный порядок 
+, и индуцированный ими частичный порядок 
 \begin_inset Formula $<_{H}$
 \end_inset
 
@@ -15535,7 +15566,7 @@ if
 \series bold
 :
 \series default
-
+ 
 \begin_inset Formula $B\leftarrow B\setminus\{b\in B,\Sig(b)=\sigma\}$
 \end_inset
 
@@ -15742,7 +15773,7 @@ key "TheF5Revised"
 \end_inset
 
 , псевдокод которого также очень похож на приведённый.
- Его отличие с вычислительной точки зрения в состоит в том что 
+ Его отличие с вычислительной точки зрения состоит в том что 
 \begin_inset Quotes fld
 \end_inset
 
@@ -15758,7 +15789,7 @@ key "TheF5Revised"
 \end_layout
 
 \begin_layout Standard
-С другой стороны, алгоритмы TRB-MJ и SB, описанные в
+С другой стороны, алгоритмы TRB-MJ и SB, описанные в 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "HuangConception,PracticalGB"
@@ -16065,7 +16096,7 @@ reference "enu:-after-reduce"
 \end_layout
 
 \begin_layout Proof
-Для элементов с мономом сигнатуры, отличным от 1, В силу леммы 
+Для элементов с мономом сигнатуры, отличным от 1, в силу леммы 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lem:exist-reductor-not1-sstep"
@@ -16145,7 +16176,7 @@ reference "enu:-after-reduce"
 \begin_inset Formula $\left(1,\sigidx(\sigma)\right)$
 \end_inset
 
-невозможно, поскольку такие элементы явно удаляются из 
+ невозможно, поскольку такие элементы явно удаляются из 
 \begin_inset Formula $B$
 \end_inset
 
@@ -16212,7 +16243,7 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  где 
-\begin_inset Formula $R_{i0}\subset\left\{ (\sigma,i),\sigma\in\mathbb{T}\right\} \times\left\{ 0\right\} ,R_{i*}\subset\left\{ (\sigma,i),\sigma\in\mathbb{T}\right\} \times\mathcal{P}\setminus\left\{ 0\right\} $
+\begin_inset Formula $R_{i0}\subset\left\{ (\sigma,i),\sigma\in\mathbb{T}\right\} \times\left\{ 0\right\} ,R_{i*}\subset\left\{ (\sigma,i),\sigma\in\mathbb{T}\right\} \times\mathbb{T}$
 \end_inset
 
 .
@@ -16806,7 +16837,7 @@ reference "par:SingleStepSignatureGroebner"
 \begin_inset Formula $f_{1},\ldots,f_{m}$
 \end_inset
 
- из кольца
+ из кольца 
 \begin_inset Formula $\mathcal{P}=\mathcal{K}\left[x_{1},\dots,x_{n}\right]$
 \end_inset
 
@@ -16845,7 +16876,7 @@ key "UsingAlgebraicGeometry"
 
 , задаваемого матрицей действий умножением, называемой также просто матрицей
  действий.
- Данный метод описывается и доказывается в книге 
+ Данный метод также описывается и доказывается в книге 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "UsingAlgebraicGeometry"
@@ -16865,7 +16896,9 @@ name "par:action-matrix-method"
 
 \end_inset
 
-Метод матриц действия
+
+\family typewriter
+Метод Матриц Действия
 \end_layout
 
 \begin_layout Enumerate
@@ -16877,14 +16910,14 @@ name "par:action-matrix-method"
 \begin_inset Formula $I'=\sqrt{I}$
 \end_inset
 
- с использованием метода описанного в параграфе 2 той же главы 
+ с использованием метода описанного в 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "UsingAlgebraicGeometry"
 
 \end_inset
 
-:
+ (глава 2 §2):
 \end_layout
 
 \begin_deeper
@@ -17020,7 +17053,7 @@ reference "enu:use-basis-for-radical"
 
 \end_inset
 
-только рассматриваемым идеалом и также обычно использует методы, связанные
+ только рассматриваемым идеалом и также обычно использует методы, связанные
  с базисами Грёбнера.
  
 \end_layout
@@ -17258,15 +17291,23 @@ key "ArtificialDiscontinuities"
 \end_inset
 
 .
- Элемент
+ Элемент 
 \begin_inset Formula $a$
 \end_inset
 
- будем называть приближением, а 
+ будем называть 
+\emph on
+приближением
+\emph default
+, а 
 \begin_inset Formula $\varepsilon$
 \end_inset
 
- -- радиусом вариации.
+ -- 
+\emph on
+радиусом вариации
+\emph default
+.
  Приближённое число 
 \begin_inset Formula $\left(a,\varepsilon\right)$
 \end_inset
@@ -17347,6 +17388,12 @@ key "ArtificialDiscontinuities"
 
  за 
 \begin_inset Formula $D$
+\end_inset
+
+.
+ Элементами определённого таким образом множества оказываются конечные наборы
+ точек геометрического пространства 
+\begin_inset Formula $\mathbb{C}^{n}$
 \end_inset
 
 .
@@ -17498,7 +17545,7 @@ x & = & \frac{1}{\sqrt{P_{1}}-1}
 \end_inset
 
 .
- Эта же система с параметром 
+ Эта же система с приближённым коэффициентом 
 \begin_inset Formula $p_{1}=_{0,2}0,7$
 \end_inset
 
@@ -17508,7 +17555,7 @@ x & = & \frac{1}{\sqrt{P_{1}}-1}
 
  является системой с конечным непрерывным решением, поскольку все выражающие
  решения функции непрерывны.
- Значение параметра 
+ Значение приближённого коэффициента 
 \begin_inset Formula $p_{1}=_{0,01}1$
 \end_inset
 
@@ -17559,7 +17606,7 @@ y^{2}-p_{1} & =0
 \end_layout
 
 \begin_layout Example
-Рассмотрим систему с двумя приближёнными числами 
+Рассмотрим систему с двумя приближёнными коэффициентами 
 \begin_inset Formula $p_{1},p_{2}\in E$
 \end_inset
 
@@ -17623,8 +17670,8 @@ name "problem:approx-poly-system"
 \begin_inset Formula $\left\{ f_{1}=0,\ldots,f_{m}=0\right\} $
 \end_inset
 
- определить, является ли она системой с конечным непрерывным решением, и
- если является -- найти решение -- набор 
+ определить, является ли она системой с конечным непрерывным решением, и,
+ если является, найти решение -- набор 
 \begin_inset Formula $l$
 \end_inset
 
@@ -18206,7 +18253,7 @@ reference "needed-poly-prop"
 \end_inset
 
 , поскольку сокращение не произойдёт.
- Обозначим за 
+ Зафиксируем некоторую специализацию входных данных и обозначим за 
 \begin_inset Formula $p'$
 \end_inset
 
@@ -18364,7 +18411,11 @@ ApproxReduce
 \begin_inset Formula $(p,r)$
 \end_inset
 
-, поскольку при вычитании старший моном сокращается.
+, поскольку при вычитании коэффициентов специализаций, происходящем в 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+, старший моном сокращается.
  Это доказывает оба утверждения леммы.
 \end_layout
 
@@ -18432,7 +18483,7 @@ reference "problem:approx-poly-system"
 \end_inset
 
 .
- К многочлену
+ К многочлену 
 \begin_inset Formula $\frac{1}{\HC\left(p\right)}p$
 \end_inset
 
@@ -18443,7 +18494,7 @@ reference "lem:linear-comb"
 
 \end_inset
 
- интерпретировав его как 
+, интерпретировав его как 
 \begin_inset Formula $0+\frac{1}{\HC\left(p\right)}\cdot p$
 \end_inset
 
@@ -18451,7 +18502,7 @@ reference "lem:linear-comb"
 \begin_inset Formula $I'$
 \end_inset
 
- найдётся специализация 
+, найдётся специализация 
 \begin_inset Formula $\frac{1}{\HC\left(p\right)}p$
 \end_inset
 
@@ -18460,7 +18511,16 @@ reference "lem:linear-comb"
 \end_inset
 
 .
- Покажем, что это будет выполняться и после замены 
+ В следующей лемме покажем, рассуждая аналогично случаю редукции многочлена
+ 
+\family typewriter
+ApproxReduce
+\family default
+, что специализация в 
+\begin_inset Formula $I'$
+\end_inset
+
+ найдётся и после замены старшего коэффициента 
 \begin_inset Formula $_{\alpha}1$
 \end_inset
 
@@ -18468,7 +18528,7 @@ reference "lem:linear-comb"
 \begin_inset Formula $_{0}1$
 \end_inset
 
- рассуждая аналогично случаю редукции многочлена по многочлену.
+.
  Обозначим 
 \begin_inset Formula $\frac{1}{\HC\left(p\right)}p$
 \end_inset
@@ -18481,7 +18541,7 @@ ApproxNormalize
 \begin_inset Formula $\left(p\right)$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Lemma
@@ -18581,7 +18641,7 @@ reference "lem:linear-comb"
 \end_inset
 
 .
- Получится 
+ Получится многочлен 
 \begin_inset Formula $\frac{1}{\HC\left(p'\right)}p'\in I'$
 \end_inset
 
@@ -18589,7 +18649,7 @@ reference "lem:linear-comb"
 \begin_inset Formula $\frac{1}{\HC\left(p\right)}\cdot p$
 \end_inset
 
- с единичным старшим мономом.
+ и обладающий единичным старшим мономом.
  Значит он является и специализацией 
 \family typewriter
 ApproxNormalize
@@ -18635,8 +18695,6 @@ reference "par:SingleStepSignatureGroebner"
 ApproxNormalize
 \family default
  имеют обратимый старший коэффициент.
- При этом будет выполняться следующая связь между приближённым и специализирован
-ными случаями.
  Отметим, что поскольку алгоритм в начале работы добавляет в множество 
 \begin_inset Formula $R$
 \end_inset
@@ -18645,12 +18703,20 @@ ApproxNormalize
  чтоб старшие коэффициенты входных данных не обращались в ноль при специализации.
  Это требование эквивалентно требованию обратимости старших коэффициентов
  входного множества многочленов.
+ Покажем теперь связь между приближённым базисом Грёбнера и базисом Грёбнера
+ специализации входных данных.
 \end_layout
 
 \begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:gb-specializations"
+
+\end_inset
+
 Если алгоритм вычисления базиса Грёбнера на наборе приближённых многочленов
  с обратимыми старшими коэффициентами оказалось возможным провести до конца,
- то Базис Грёбнера специализации входных данных является специализацией
+ то базис Грёбнера специализации входных данных является специализацией
  приближённого базиса Грёбнера.
 \end_layout
 
@@ -18658,7 +18724,7 @@ ApproxNormalize
 Доказательство этого утверждения проведём индукцией по итерациям алгоритма.
  Будем доказывать, что на каждой итерации состояние алгоритма на специализации
  входных данных является специализацией для алгоритма в приближённом случае,
- причём старшие коэффициенты не меняются при специализации.
+ причём старшие мономы не меняются при специализации.
  Базой индукции является состояние в начале алгоритма -- входные данные
  специализированного алгоритма являются специализацией приближённых.
  Докажем, что на каждой итерации это свойство сохраняется.
@@ -18684,9 +18750,8 @@ reference "lem:ApproxNormalize-is-matching"
 ApproxNormalize
 \family default
 , а значит старшие мономы, возникающие в алгоритмах будут одинаковы.
- Поскольку на ход алгоритма влияют лишь они, то схема алгоритма с точки
- зрения появляющихся мономов, то и все аспекты состояния алгоритма, не касающиес
-я коэффициентов, будут одинаковы.
+ Поскольку на ход алгоритма влияют лишь они, то и все аспекты состояния
+ алгоритма, не касающиеся коэффициентов, будут одинаковы.
 \end_layout
 
 \begin_layout Standard
@@ -18720,7 +18785,7 @@ name "example:symbolic-zeroes"
 \begin_inset Formula $\left\{ f_{1},f_{2},f_{3}\right\} $
 \end_inset
 
-с мономиальным порядком degrevlex(
+ с мономиальным порядком degrevlex(
 \begin_inset Formula $x,y,z$
 \end_inset
 
@@ -18743,7 +18808,11 @@ reference "par:SingleStepSignatureGroebner"
 
 \end_inset
 
- с порядком Schreyer на сигнатурах.
+ с порядком 
+\begin_inset Formula $\prec_{S}$
+\end_inset
+
+ (Schreyer) на сигнатурах.
  Итерации алгоритма будут происходить следующим образом:
 \end_layout
 
@@ -18840,7 +18909,7 @@ reference "par:SingleStepSignatureGroebner"
 \begin_inset Formula $yf_{5}$
 \end_inset
 
-, а также
+, а также 
 \begin_inset Formula $yzf_{6}$
 \end_inset
 
@@ -18899,7 +18968,7 @@ reference "par:SingleStepSignatureGroebner"
 \begin_inset Formula $f_{7}$
 \end_inset
 
-обнуляется.
+ обнуляется.
  Из обнуления в случае символических вычислений следует, что обнуление произойдё
 т и при любой специализации входных данных.
  Дадим название таким необратимым элементам, возникающим в приближённых
@@ -18921,9 +18990,9 @@ reference "par:SingleStepSignatureGroebner"
 \emph default
 , если при любой специализации входных данных при проведении соответствующих
  вычислений получается точный ноль.
- Иными словами, для любой специализации входных данных существует лежащая
- в порождаемом ими идеале специализация многочлена, содержащего рассматриваемый
- необратимый коэффициент, с нулём на его месте.
+ Иными словами, для любой специализации входных данных в порождаемом ими
+ идеале существует специализация многочлена, содержащего рассматриваемый
+ необратимый коэффициент, с нулём на месте этого коэффициента.
  Необратимые элементы, не являющиеся символическими нулями называются 
 \emph on
 приближёнными нулями
@@ -19115,7 +19184,7 @@ x+y-1 & =0
 
 \begin_layout Standard
 Необратимые приближённые коэффициенты, появляющиеся в старших мономах не
- редуцированных до конца многочленов не представляют проблемы для алгоритма
+ редуцированных до конца многочленов, не представляют проблемы для алгоритма
  
 \begin_inset CommandInset ref
 LatexCommand nameref
@@ -19350,7 +19419,7 @@ name "example:introduced-zeroes"
 \begin_inset Formula $zf_{5}$
 \end_inset
 
- и также
+, а также 
 \begin_inset Formula $y^{2}f_{7}$
 \end_inset
 
@@ -19585,8 +19654,8 @@ key "ComprehensiveGB"
 Необходимым условием символического нуля является равенство нулю соответствующег
 о коэффициента при точных вычислениях в дробно-рациональных комплексных
  числах с произвольными числами в качестве параметров, при условии, что
- не произошло обнулений, повлиявших на ход алгоритма до получения рассматриваемо
-го коэффициента.
+ не произошло обнулений, отсутствовавших в приближённом случае, и повлиявших
+ на ход алгоритма до получения рассматриваемого коэффициента.
 \end_layout
 
 \begin_layout Standard
@@ -19616,8 +19685,8 @@ key "ComprehensiveGB"
 \end_inset
 
  с произвольными числами в качестве параметров, при условии, что не произошло
- обнулений, повлиявших на ход алгоритма до получения рассматриваемого коэффициен
-та.
+ обнулений, отсутствовавших в приближённом случае, и повлиявших на ход алгоритма
+ до получения рассматриваемого коэффициента.
 \end_layout
 
 \begin_layout Standard
@@ -19629,7 +19698,7 @@ key "ComprehensiveGB"
  Однако, модулярные вычисления по простому модулю не имеют такой проблемы
  и имеют сложность проведения пропорциональную сложности приближённых вычислений.
  Если зафиксировать произвольные значения модулярных коэффициентов на местах
- приближённых чисел возможно проведение алгоритма вычисления Базиса Грёбнера
+ приближённых чисел возможно проведение алгоритма вычисления базиса Грёбнера
  для многочленов, коэффициенты которых представлены парами 
 \begin_inset Formula $\left\{ a,\alpha\right\} $
 \end_inset
@@ -19754,7 +19823,8 @@ reference "example:introduced-zeroes"
 \end_inset
 
 При этом, если бы мы вначале рассчитали сумму коэффициентов, радиус вариации
- результата был бы меньше, что позволило бы его обратить:
+ результата был бы меньше, что позволило бы в рассматриваемом примере его
+ обратить:
 \begin_inset Formula 
 \[
 2\cdot_{0,4}1-1\cdot_{0,4}1=(2-1)\cdot_{\cdot0,4}1=1\cdot_{0,4}1={}_{0,4}1
@@ -19768,7 +19838,7 @@ reference "example:introduced-zeroes"
 \begin_inset Formula $\mathbb{C}\left[a_{i}\right]$
 \end_inset
 
--- символическое выражение для коэффициентов -- в качестве 
+ -- символическое выражение для коэффициентов -- в качестве 
 \begin_inset Formula $a_{i}$
 \end_inset
 
@@ -19877,13 +19947,14 @@ reference "needed-poly-prop"
  расширению вариации системы в том смысле, что для каждой специализации
  исходной системы найдётся эквивалентная ей специализация системы после
  проведения операции над строкой.
- Поэтому, если операциями над строками привела к системе имеющей решение
+ Поэтому, если операциями над строками привела к системе, имеющей решение
  при любой специализации, исходная система также имеет решение при любой
  специализации, и оно является решением одной из специализаций приведённой
  системы.
- Взяв такое решение для каждой специализации входных данных мы получим многочлен
- являющийся специализацией приближённого многочлена, указанного в следствии
- теоремы, что доказывает выполнение свойства для этого приближённого многочлена.
+ Взяв такое решение для каждой специализации входных данных, мы получим
+ многочлен, являющийся специализацией приближённого многочлена, указанного
+ в следствии теоремы, что доказывает выполнение свойства для этого приближённого
+ многочлена.
 \end_layout
 
 \begin_layout Standard
@@ -19916,8 +19987,8 @@ name "enu:Select-prime"
 ые комплексно модулярные числа, а значения с нулевой вариацией, рассматриваются
  как комплексно-рациональные числа и отображаются в комплексно-модулярные
  взятием всех коэффициентов по модулю.
- Если при этом получилось деление на ноль -- происходит возврат к началу
- шагу 
+ Если при этом получилось деление на ноль или обнуление одного из старших
+ коэффициентов входных данных -- происходит возврат к началу шагу 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:Select-prime"
@@ -19948,15 +20019,15 @@ reference "enu:Select-prime"
  игнорируются при определении старшего монома и при сравнении с нулём, однако
  подвергаются стандартным операциям при суммировании и умножении на моном.
  Таким образом, при образовании сумм исходных многочленов с полиномиальными
- коэффициентами оказывается, что все многочлена 
+ коэффициентами оказывается, что для многочлена 
 \begin_inset Formula $p$
 \end_inset
 
- мономы содержащие 
+ мономы, содержащие 
 \begin_inset Formula $t_{i}$
 \end_inset
 
- дают сумму вида 
+, дают сумму вида 
 \begin_inset Formula $\sum_{i}q_{i}t_{i}$
 \end_inset
 
@@ -19969,17 +20040,6 @@ reference "enu:Select-prime"
 \end_inset
 
 .
- В силу того, что их коэффициенты получаются из коэффициентов 
-\begin_inset Formula $p$
-\end_inset
-
- при содержащих 
-\begin_inset Formula $t_{i}$
-\end_inset
-
- мономах, для них справедливы данные для случая символических нулей оценки
- вероятности того, что будет получен ноль в модулярном случае при отсутствии
- нуля в символическом.
 \end_layout
 
 \begin_layout Enumerate
@@ -20015,14 +20075,14 @@ reference "enu:-after-reduce-sstep"
 \begin_inset Formula $t_{i}$
 \end_inset
 
- с ненулевыми модулярными коэффициентами определим, на какие мономы умножаются
- входные многочлены для порождения текущего.
+ с ненулевыми модулярными коэффициентами определяется, на какие мономы умножаютс
+я входные многочлены для порождения текущего.
  При этом для них известны модулярные коэффициенты, но не известны приближённые.
  В силу возможности обнулений модулярных коэффициентов при 
 \begin_inset Formula $t_{i}$
 \end_inset
 
- без отсутствия символического нуля нельзя утверждать, что найденные мономы
+ без отсутствия символического нуля, нельзя утверждать, что найденные мономы
  позволяют построить многочлен с 
 \begin_inset Formula $\HM\left(p\right)$
 \end_inset
@@ -20036,7 +20096,7 @@ reference "enu:-after-reduce-sstep"
 \end_layout
 
 \begin_layout Enumerate
-Составляется СЛАУ в приближённых числах, соответствующую условию теоремы
+Составляется СЛАУ в приближённых числах, соответствующая условию теоремы
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -20117,7 +20177,7 @@ reference "enu:Select-prime-for-matrix"
  к шагу 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "enu:Select-prime-for-matrix"
+reference "enu:Select-prime"
 
 \end_inset
 
@@ -20142,15 +20202,15 @@ reference "enu:Select-prime-for-matrix"
 \begin_inset Formula $\tilde{q_{i}}$
 \end_inset
 
-, при этом отбрасываются мономы старшие 
+, в котором мономы старше 
 \begin_inset Formula $HM(p)$
 \end_inset
 
-, и принимается равным единице коэффициент при 
+ отбрасываются, а коэффициент при 
 \begin_inset Formula $HM(p)$
 \end_inset
 
-.
+ принимается равным единице.
  Этот многочлен записывается в результирующий приближённый S-базис 
 \begin_inset Formula $\tilde{R}$
 \end_inset
@@ -20216,8 +20276,8 @@ reference "example:introduced-zeroes"
 \begin_inset Formula $f_{8}$
 \end_inset
 
-, поскольку прямое применение алгоритма к приближённой системе давало необратимы
-й старший коэффициент.
+, поскольку для предыдущих многочленов прямое применение алгоритма к приближённо
+й системе давало необратимый старший коэффициент.
  Основываясь на мономах 
 \begin_inset Formula $t_{i}$
 \end_inset
@@ -20290,7 +20350,7 @@ c_{2}
  можно получить на основе выражения 
 \begin_inset Formula 
 \[
-_{0,12}1zf_{3}+{}_{0,12}-1yf_{2}=
+_{0,12}1zf_{3}+\left(_{0,12}-1\right)yf_{2}=
 \]
 
 \end_inset
@@ -20298,7 +20358,7 @@ _{0,12}1zf_{3}+{}_{0,12}-1yf_{2}=
 
 \begin_inset Formula 
 \[
-={}_{0,12}1z\left(xy^{2}+{}_{0,1}1x+1\right)+{}_{0,12}-1y\left(xyz\right)=
+={}_{0,12}1z\left(xy^{2}+{}_{0,1}1x+1\right)+\left(_{0,12}-1\right)y\left(xyz\right)=
 \]
 
 \end_inset
@@ -20336,8 +20396,8 @@ _{0,12}1zf_{3}+{}_{0,12}-1yf_{2}=
 \begin_inset Formula $\left\{ a_{i}\right\} $
 \end_inset
 
-, на соответствующем месте будет тождественно нулевой многочлен над 
-\begin_inset Formula $\mathbb{C}$
+, на соответствующем месте будет тождественно нулевой многочлен из 
+\begin_inset Formula $\mathbb{C}\left[a_{i}\right]$
 \end_inset
 
 .
@@ -20435,7 +20495,7 @@ _{0,12}1zf_{3}+{}_{0,12}-1yf_{2}=
 \begin_inset Quotes fld
 \end_inset
 
-Редуцировать все строки с ведущим элементов в столбце 
+редуцировать все строки с ведущим элементов в столбце 
 \begin_inset Formula $c'$
 \end_inset
 
@@ -20445,6 +20505,10 @@ _{0,12}1zf_{3}+{}_{0,12}-1yf_{2}=
 
 , ведущий элемент которой также расположен в столбце 
 \begin_inset Formula $c'$
+\end_inset
+
+
+\begin_inset Quotes frd
 \end_inset
 
 .
@@ -20521,39 +20585,53 @@ m_{r,c}\rightarrow m_{r',c'}m_{r,c}-m_{r,c'}m_{r,c'}
 \end_inset
 
 , а число мономов 
-\begin_inset Formula $2^{R2^{R}-1}<2^{R2^{R}}$
+\begin_inset Formula $\left(2^{2^{R}-1}\right)^{R}<2^{R2^{R}}$
 \end_inset
 
 .
- Поскольку коэффициенты с нулевой вариацией выражаются целыми числами, они
- оказывают влияние на максимальный коэффициент многочлена 
+\end_layout
+
+\begin_layout Standard
+Если умножить входную систему на НОК всех числителей двоичных дробей, соответств
+ующих членам нулевой вариации, входные данные окажутся представленными целочисле
+нными многочленами с параметрами 
+\begin_inset Formula $a_{i}$
+\end_inset
+
+.
+ Выраженные целыми числами коэффициенты этой системы оказывают влияние на
+ максимальный коэффициент многочлена 
 \begin_inset Formula $A$
 \end_inset
 
 .
- Если все постоянные коэффициенты из 
-\begin_inset Formula $\mathbb{C}$
-\end_inset
-
- во входных данных не превышают по модулю 
+ Пусть они не превышают по модулю 
 \begin_inset Formula $Z_{0}\in\mathbb{N}$
 \end_inset
 
-, то он может быть оценен по модулю сверху значением
+.
+ Тогда максимальный коэффициент 
+\begin_inset Formula $A$
+\end_inset
+
+ может быть оценен по модулю сверху значением 
 \begin_inset Formula $A_{0}=Z_{0}^{R2^{R}}2^{R2^{R}}=(2Z_{0})^{R2^{R}}$
 \end_inset
 
 .
- Оценим, на какое максимальное количество простых чисел, больших 
+\end_layout
+
+\begin_layout Standard
+Оценим, на какое максимальное количество простых чисел, больших 
 \begin_inset Formula $P_{0}$
 \end_inset
 
- может делить все коэффициенты 
+, могут делиться все коэффициенты 
 \begin_inset Formula $A$
 \end_inset
 
 .
- Минимальный модуль коэффициента не превышает 
+ Максимальный модуль коэффициента не превышает 
 \begin_inset Formula $A_{0}$
 \end_inset
 
@@ -20562,7 +20640,7 @@ m_{r,c}\rightarrow m_{r',c'}m_{r,c}-m_{r,c'}m_{r,c'}
 \end_inset
 
  таких простых.
- Оценка зависит максимального модуля во входных данных, числа строк матрицы
+ Оценка зависит от максимального модуля во входных данных, числа строк матрицы
  и 
 \begin_inset Formula $P_{0}:$
 \end_inset
@@ -20576,7 +20654,7 @@ N_{d}\left(P_{0},Z_{0},R\right)=\log_{P_{0}}A_{0}=R2^{R}\log_{P_{0}}2Z_{0}.
 \end_inset
 
 Значит, для того чтоб получить вероятность тождественного обнуления многочлена
- в модулярном случае, меньше чем 
+ в модулярном поле, меньше чем 
 \begin_inset Formula $\alpha$
 \end_inset
 
@@ -20615,7 +20693,7 @@ N_{d}\left(P_{0},Z_{0},R\right)=\log_{P_{0}}A_{0}=R2^{R}\log_{P_{0}}2Z_{0}.
 \begin_inset Formula $q$
 \end_inset
 
- имеет не более 
+ элементов имеет не более 
 \begin_inset Formula $q^{n-1}rn$
 \end_inset
 
@@ -20714,7 +20792,7 @@ g\left(x_{1},\dots,x_{n}\right)=x_{n}^{s}g'\left(x_{1},\dots,x_{n-1}\right)+g''\
 \end_inset
 
 .
- Суммируя это с оценкой на количество корней предыдущего типа мы получаем
+ Суммируя это с оценкой на количество корней предыдущего типа, мы получаем
  оценку из утверждения теоремы.
 \end_layout
 
@@ -20731,7 +20809,7 @@ g\left(x_{1},\dots,x_{n}\right)=x_{n}^{s}g'\left(x_{1},\dots,x_{n-1}\right)+g''\
 \begin_inset Formula $q$
 \end_inset
 
- элементов, по отношению ко всем возможным наборам не превышает 
+ элементов, по отношению ко всем возможным наборам, не превышает 
 \begin_inset Formula $\frac{rn}{q}$
 \end_inset
 
@@ -20778,6 +20856,34 @@ P_{0}>P_{d}(R,V,\beta)=\sqrt{\frac{R2^{R}V}{\beta}}.
 
 \end_layout
 
+\begin_layout Standard
+Таким образом, получены оценки, позволяющие выбирать 
+\begin_inset Formula $N_{p}$
+\end_inset
+
+ и 
+\begin_inset Formula $P_{0}$
+\end_inset
+
+ на основе максимального модуля элемента входных данных 
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+, числа приближённых коэффициентов 
+\begin_inset Formula $V$
+\end_inset
+
+, количества строк матрицы 
+\begin_inset Formula $R$
+\end_inset
+
+ и максимально допустимых вероятностей ошибки 
+\begin_inset Formula $\alpha,\beta$
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Subsection
 Методы дополнительных переменных
 \end_layout
@@ -20804,7 +20910,7 @@ P_{0}>P_{d}(R,V,\beta)=\sqrt{\frac{R2^{R}V}{\beta}}.
 \end_inset
 
 , а 
-\begin_inset Formula $y$
+\begin_inset Formula $y_{i}$
 \end_inset
 
  -- новая переменная.
@@ -20824,8 +20930,8 @@ key "GroebnerInExtFields"
 \end_inset
 
 .
- Поэтому алгоритмы использующие данный метод находят базис Грёбнера не для
- идеала 
+ Поэтому алгоритмы использующие данный метод, находят базис Грёбнера не
+ для идеала 
 \begin_inset Formula $I$
 \end_inset
 
@@ -20860,7 +20966,11 @@ reference "par:action-matrix-method"
 \end_inset
 
 .
- 
+ Дальнейшие определения даются в предположении нульмерности идеала 
+\begin_inset Formula $I$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Definition
@@ -20868,7 +20978,7 @@ reference "par:action-matrix-method"
 \emph on
 оператором сужения
 \emph default
- отображение колец
+ отображение колец 
 \begin_inset Formula $e^{-}:\mathcal{P}^{E}\rightarrow\mathcal{P}$
 \end_inset
 
@@ -20888,7 +20998,7 @@ reference "par:action-matrix-method"
 \begin_inset Formula $M^{E}\subset\mathcal{P}^{E}$
 \end_inset
 
- множество мономов, не делящихся на 
+ конечное множество мономов, не делящихся на 
 \begin_inset Formula $\HM\left(I^{E}\right)$
 \end_inset
 
@@ -20903,7 +21013,7 @@ reference "par:action-matrix-method"
  
 \emph on
 оператором нормальной формы 
-\begin_inset Formula $N_{I^{E}}$
+\begin_inset Formula $N_{I^{E}}:\mathcal{P}^{E}\rightarrow\mathcal{K}^{\left|M^{E}\right|}$
 \end_inset
 
 
@@ -20945,11 +21055,15 @@ reference "par:action-matrix-method"
 \begin_inset Formula $\mathcal{P}$
 \end_inset
 
- позволяет найти координаты в нём.
+ позволяет найти координаты элементов 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+ в этом базисе.
 \end_layout
 
 \begin_layout Proof
-Координаты не меняются от сужения:
+Координаты не меняются от сужения: 
 \begin_inset Formula $N_{I^{E}}\left(f\right)=N_{I^{E}}\left(e^{-}\left(f\right)\right)\,\forall f$
 \end_inset
 
@@ -20985,8 +21099,8 @@ reference "par:action-matrix-method"
 \begin_inset Formula $\mathcal{P}$
 \end_inset
 
- выражается данный базис, поскольку выполняется его принадлежность сумме
- с линейной оболочкой: 
+ выражается через данный базис, поскольку выполняется его принадлежность
+ сумме с линейной оболочкой: 
 \begin_inset Formula 
 \[
 p\in I^{E}+\left\langle M^{E}\right\rangle 
@@ -21018,7 +21132,7 @@ p=e^{-}\left(p\right)\in e^{-}\left(I^{E}+\left\langle M^{E}\right\rangle \right
 \begin_inset Formula $e^{-}\left(M^{E}\right)$
 \end_inset
 
- поскольку координаты не меняются от применения 
+, поскольку координаты не меняются от применения 
 \begin_inset Formula $e^{-}$
 \end_inset
 
@@ -21028,7 +21142,7 @@ p=e^{-}\left(p\right)\in e^{-}\left(I^{E}+\left\langle M^{E}\right\rangle \right
 \begin_layout Proof
 \begin_inset Formula 
 \[
-p=I^{E}+\sum_{j}k_{j}m_{j}\Longrightarrow e^{-}\left(p\right)=I+\sum_{j}k_{j}\left(m_{j}\right).
+p\in I^{E}+\sum_{j}k_{j}m_{j}\Longrightarrow e^{-}\left(p\right)\in I+\sum_{j}k_{j}e^{-}\left(m_{j}\right).
 \]
 
 \end_inset
@@ -21038,7 +21152,7 @@ p=I^{E}+\sum_{j}k_{j}m_{j}\Longrightarrow e^{-}\left(p\right)=I+\sum_{j}k_{j}\le
 
 \begin_layout Standard
 Базис и нормальная форма, упоминаемые в формулировке доказанной теоремы,
- в точности оказываются понятиями необходимыми для работы алгоритма 
+ в точности оказываются понятиями, необходимыми для работы алгоритма 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "par:action-matrix-method"
@@ -21099,7 +21213,7 @@ key "NumericalComputationOfGBVarSubsttution,ArtificialDiscontinuities,GroebnerIn
 \begin_inset Formula $y_{i}$
 \end_inset
 
- и запускает алгоритм с начала.
+ и запускает алгоритм сначала.
  Конечность числа необходимых перезапусков не была доказана, однако практические
  эксперименты показали, что их число как правило является небольшим.
  Но сама необходимость перезапуска приводит к тому, что некоторые уже проведённы
@@ -21111,7 +21225,7 @@ key "NumericalComputationOfGBVarSubsttution,ArtificialDiscontinuities,GroebnerIn
 Предлагаемый ниже метод в каком-то смысле совмещает два вышеописанных подхода:
  он является применимым к основанным на сигнатурах однопроходным алгоритмам,
  не требует внесения серьёзных изменений в обоснование их корректности и
- позволяет продолжать алгоритм, не начиная его сначала.
+ позволяет продолжать алгоритм, не запуская его сначала.
  Основная идея состоит в том, чтоб назначать добавляемому во входные данные
  многочлену такую сигнатуру, чтоб ход алгоритма до момента добавления многочлена
  от него не зависел.
@@ -21240,7 +21354,7 @@ reference "par:SingleStepSignatureGroebner"
 
 \end_inset
 
-, выполняющегося со взвешенным порядком порядок 
+, выполняющегося с вещественно-взвешенным порядком 
 \begin_inset Formula $\prec_{w}$
 \end_inset
 
@@ -21253,7 +21367,7 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
 .
- Пусть на нём был получен многочлен 
+ Пусть на этом шаге был получен многочлен 
 \begin_inset Formula $p$
 \end_inset
 
@@ -21262,16 +21376,16 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
 .
- Тогда при дополнении входного множества многочленом со старшим мономом
- 
+ Тогда, если перезапустить алгоритм сначала после дополнения входного множества
+ многочленом со старшим мономом 
 \begin_inset Formula $\HM\left(p\right)$
 \end_inset
 
-и сигнатурой предшествующей 
+ и сигнатурой предшествующей 
 \begin_inset Formula $\left(t,i\right)$
 \end_inset
 
- и перезапуске алгоритма с начала, первые 
+, первые 
 \begin_inset Formula $N-1$
 \end_inset
 
@@ -21355,7 +21469,7 @@ reference "par:SingleStepSignatureGroebner"
 \begin_inset Formula $\left(t,i\right)$
 \end_inset
 
- не редуцировался по такому же множеству
+ не редуцировался по такому же множеству 
 \begin_inset Formula $R$
 \end_inset
 
@@ -21459,6 +21573,15 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  на сигнатурах является вещественно-взвешенным порядком с некоторыми параметрами.
+ Помимо этого старшие коэффициенты входных многочленов должны быть обратимы
+ в приближённом смысле.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Paragraph
@@ -21530,7 +21653,7 @@ do while
 \begin_layout Enumerate
 
 \series bold
-infinite loop:
+do forever:
 \end_layout
 
 \begin_deeper
@@ -21588,7 +21711,7 @@ or
 
 
 \series bold
-: break infinite loop
+: break do forever
 \end_layout
 
 \begin_layout Enumerate
@@ -21625,16 +21748,15 @@ if
 \end_layout
 
 \begin_layout Enumerate
-Расширим набор параметров порядка 
+Расширим порядок 
 \begin_inset Formula $\prec_{a}$
 \end_inset
 
- на сигнатурах на индекс 
+ на индекс 
 \begin_inset Formula $m+k$
 \end_inset
 
- в соответствии с правилом добавления многочлена с сигнатурой предшествующей
- 
+ в соответствии с правилом дополнения сигнатурой предшествующей 
 \begin_inset Formula $\Sig\left(p\right)$
 \end_inset
 
@@ -21673,7 +21795,7 @@ if
 \series bold
 if
 \series default
-
+ 
 \begin_inset Formula $p\ne0$
 \end_inset
 
@@ -21783,11 +21905,14 @@ reference "par:ApproxSignatureGroebner"
 
 \end_inset
 
- останавливается, то он возвращает базис Грёбнера расширения идеала 
-\begin_inset Formula $\left(f_{1},\dots,f_{m}\right)$
+ останавливается на входных данных с обратимыми старшими коэффициентами,
+ то он возвращает приближённый базис Грёбнера идеала 
+\begin_inset Formula $\left(f_{1},\dots,f_{m},t_{1}-y_{1},\dots,t_{k}-y_{k}\right)$
 \end_inset
 
-
+.
+ Для любой специализации входных данных расширенные базисы Грёбнера будут
+ специализациями приближённого базиса.
 \end_layout
 
 \begin_layout Proof
@@ -21799,19 +21924,50 @@ reference "thm:Adding-polys"
 
 \end_inset
 
-, результат данного алгоритма будет совпадать с результатом алгоритма 
+, результат данного алгоритма будет совпадать с результатом приближённого
+ алгоритма 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "par:SingleStepSignatureGroebner"
 
 \end_inset
 
-, применённого к расширенному множеству входных данных, про который известно
- что он выдаёт базис Грёбнера.
+, применённого к расширенному множеству входных данных, про который известно,
+ что он выдаёт приближённый базис Грёбнера.
+ Связь со специализациями входных данных вытекает из теоремы 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:gb-specializations"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Вопрос условий остановки данного алгоритма остаётся открытым.
+Требование на обратимость старших коэффициентов входных данных может быть
+ отброшено путём модификации инициализации алгоритма: если не добавлять
+ в 
+\begin_inset Formula $R$
+\end_inset
+
+ сигнатуры сизигий, соответствующих многочленам с необратимым 
+\begin_inset Formula $\HC$
+\end_inset
+
+, такие многочлены могут быть разрешены.
+ Это не произведёт влияния на эффективность, поскольку соответствующие элементы
+ будут добавлены в 
+\begin_inset Formula $R$
+\end_inset
+
+ в момент расширения идеала.
+ Таким образом, приведённый алгоритм может быть применён к любым входным
+ данным.
+ При этом остаются открытыми вопросы условия остановки, и того, насколько
+ распространены входные данные, обладающие непрерывным решением, но однако
+ вызывающие завершение алгоритма с выдачей сообщения о неприменимости к
+ этим входным данным.
 \end_layout
 
 \begin_layout Part*
@@ -21853,7 +22009,7 @@ key "GroebnerInExtFields"
  в методе замены мономов приводит к дублированию многих вычислений, а вычисление
  исчерпывающего базиса может рассматривать области значений параметров,
  находящиеся за пределами возможных значений приближённых входных данных,
- вычисляя таким образом базисы Грёбнера для не интересных в частной задаче
+ вычисляя таким образом базисы Грёбнера для неинтересных в частной задаче
  случаев.
 \end_layout
 
@@ -21900,7 +22056,7 @@ reference "par:SingleStepSignatureGroebner"
 
  с применением двух рассматриваемых методик для приближённых вычислений
  завершается, то его ход оказывается эквивалентен ходу данного алгоритма
- без этих методик на некоторых расширенных входных данных.
+ без них на некоторых расширенных входных данных.
 \end_layout
 
 \begin_layout Standard
@@ -21913,9 +22069,9 @@ reference "par:SingleStepSignatureGroebner"
 \begin_inset Formula $2^{64}$
 \end_inset
 
-, с которыми наиболее эффективно работают современные вычислительный процессоры,
+, с которыми наиболее эффективно работают современные вычислительные процессоры,
  однако этот вопрос остаётся открытым.
- Помимо этого неясным остаётся то какую долю времени на фоне общего времени
+ Помимо этого неясным остаётся то, какую долю времени на фоне общего времени
  работы алгоритма может занимать метод Гаусса, используемый при переходе
  от модулярных вычислений к приближённым.
  Внесение дополнительных переменных оставляет ещё более важный открытый
