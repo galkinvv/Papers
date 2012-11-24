@@ -112,7 +112,7 @@ figs-within-sections
 \use_mhchem 1
 \use_mathdots 1
 \cite_engine basic
-\use_bibtopic false
+\use_bibtopic true
 \use_indices false
 \paperorientation portrait
 \suppress_date true
@@ -938,20 +938,10 @@ key "G2V,Modifying-for-termination,ZobninGeneralization_ru,SignatureBasedGBs,The
 \begin_layout Standard
 Результаты автора по теме диссертации находятся в процессе публикации в
  работах 
-\begin_inset Quotes fld
-\end_inset
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Termination_of_Original_F5_Rus,SSG_Rus"
 
-Остановка алгоритма F5
-\begin_inset Quotes frd
-\end_inset
-
- и 
-\begin_inset Quotes fld
-\end_inset
-
-Простой итеративный алгоритм вычисления базисов Грёбнера, основанный на
- сигнатурах
-\begin_inset Quotes frd
 \end_inset
 
  в журнале 
@@ -973,18 +963,17 @@ target "http://arxiv.org"
 \end_inset
 
  как 
-\begin_inset CommandInset href
-LatexCommand href
-name "Termination of Original F5"
-target "http://arxiv.org/abs/1203.2402"
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Termination_of_Original_F5_arXiv,SSG-arXiv"
 
 \end_inset
 
- и 
-\begin_inset CommandInset href
-LatexCommand href
-name "Simple signature-based Groebner basis algorithm"
-target "http://arxiv.org/abs/1205.6050"
+.
+ Исследования, связанные с алгоритмом F4 опубликованы в работе 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "AleGalZob08"
 
 \end_inset
 
@@ -22189,10 +22178,40 @@ reference "par:SimpleSignatureGroebner"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Section*
+Список литературы
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 bibfiles "f5_references"
-options "gost/ugost2008"
+options "gost/ugost2008s"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Публикации автора по теме диссертации
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintAll"
+bibfiles "my_publications"
+options "gost/ugost2008s"
 
 \end_inset
 
