@@ -241,6 +241,28 @@ status open
 \backslash
 let
 \backslash
+flqq
+\backslash
+guillemotleft
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+let
+\backslash
+frqq
+\backslash
+guillemotright
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+let
+\backslash
 maketitle
 \backslash
 relax%
