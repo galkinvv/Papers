@@ -69,6 +69,7 @@
 theorems-ams
 eqs-within-sections
 figs-within-sections
+theorems-sec
 \end_modules
 \maintain_unincluded_children false
 \begin_local_layout
@@ -129,6 +130,10 @@ figs-within-sections
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
+\bullet 0 0 0 -1
+\bullet 1 0 6 -1
+\bullet 2 0 10 -1
+\bullet 3 0 9 -1
 \tracking_changes false
 \output_changes false
 \html_math_output 0
@@ -1073,11 +1078,39 @@ reference "LastPage"
 \end_layout
 
 \begin_layout Itemize
+\begin_inset Formula $\mathbb{N}$
+\end_inset
+
+ -- множество натуральных чисел с нулём.
+\end_layout
+
+\begin_layout Itemize
 \begin_inset Formula $\mathbb{T}$
 \end_inset
 
  -- множество мономов, образуемых этими переменными.
- Является коммутативным моноидом по операции умножения мономов
+ Является коммутативным моноидом по операции умножения мономов.
+ Данное множество оказывается изоморфно 
+\begin_inset Formula $\mathbb{N}^{n}$
+\end_inset
+
+ -- набору степеней переменных, входящих в моном, называемом также 
+\emph on
+вектор-степенью монома
+\emph default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+термом
+\emph default
+ называется произведение монома на коэффициент из поля 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Itemize
@@ -1118,7 +1151,7 @@ reference "LastPage"
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $\totaldeg(t)\in\mathbb{N}\cup\left\{ 0\right\} $
+\begin_inset Formula $\totaldeg(t)\in\mathbb{N}$
 \end_inset
 
  -- полная степень монома 
@@ -1350,7 +1383,7 @@ t_{1}\succ t_{2}
 \begin_inset Formula $\HM(0)=0$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Itemize
@@ -1381,6 +1414,11 @@ t_{1}\succ t_{2}
 \end_layout
 
 \begin_layout Itemize
+Вектор-степенью ненулевого многочлена называется вектор-степень его старшего
+ монома.
+\end_layout
+
+\begin_layout Itemize
 \begin_inset Formula $\LCM(t_{1},t_{2})\in\mathbb{T}$
 \end_inset
 
@@ -1389,7 +1427,6 @@ t_{1}\succ t_{2}
 \end_inset
 
 .
- 
 \end_layout
 
 \begin_layout Definition
@@ -1476,8 +1513,11 @@ t_{1}\succ t_{2}
 \end_layout
 
 \begin_layout Standard
-Определение редукции зависит от порядка.
- На его основе дадим самое простое определение базиса Грёбнера:
+Введённое таким образом понятие редукции зависит от порядка, и в некоторой
+ литературе называется top-редукцией для подчёркивания того факта, что при
+ редукции обнуляется коэффициент при старшем мономе.
+ В данном тексте все рассматриваемые редукции являются именно такими.
+ На основе этого понятия дадим самое простое определение базиса Грёбнера:
 \end_layout
 
 \begin_layout Definition
@@ -1718,6 +1758,14 @@ p=\sum_{k}m_{k}\cdot g_{i_{k}},\; g_{i_{k}}\in G
 .
 \end_layout
 
+\begin_layout Definition
+Иными словами, представление является степенным тогда и только тогда, когда
+ вектор-степень каждого из многочленов, соответствующих элементам представления,
+ не превышает вектор-степени представляемого многочлена с точки зрения мономиаль
+ного порядка.
+ 
+\end_layout
+
 \begin_layout Standard
 Дадим несколько примеров представлений над множеством 
 \begin_inset Formula $G=\{y,y^{2},x^{2}+y\}\subset\mathbb{R}[x,y]$
@@ -1942,8 +1990,10 @@ reference "gb-def-2"
 \end_inset
 
 .
- Все алгоритмы, описанные в этой работе, подразумевают что идеал задаётся
- конечным набором своих порождающих: 
+ В силу теоремы Гильберта о базисе любой идеал может быть задан конечным
+ набором своих порождающих.
+ Поэтому все алгоритмы, описанные в этой работе, подразумевают что идеал
+ задаётся именно так: 
 \begin_inset Formula $I=\left(F\right)=\left(f_{1},\ldots,f_{m}\right)$
 \end_inset
 
@@ -1991,7 +2041,7 @@ reference "gb-def-2"
 \begin_inset Formula $G_{m}$
 \end_inset
 
- является искомым базисом 
+ является искомым базисом Грёбнера идеала 
 \begin_inset Formula $I$
 \end_inset
 
@@ -2038,7 +2088,7 @@ reference "gb-def-2"
 
 , путём использования одноэтапного алгоритма в роли шага для инкрементального,
  подавая ему на вход множество 
-\begin_inset Formula $G_{i}\cup f_{i+1}$
+\begin_inset Formula $G_{i}\cup\left\{ f_{i+1}\right\} $
 \end_inset
 
 .
@@ -2087,7 +2137,7 @@ S-парой
 частью S-пары
 \emph default
 .
- Части S-пары могут рассматриваться как символические произведения монома
+ Части S-пары могут рассматриваться как символические произведения терма
  на многочлен, или как многочлены, равные этим произведениям.
  При последней трактовке у частей S-пары оказывается одинаковый старший
  моном, называемый 
@@ -2201,7 +2251,7 @@ name "thm:Simple-spoly"
 
 \begin_deeper
 \begin_layout Itemize
-\begin_inset Formula $\beta(p,p)=\mbox{TRUE}$
+\begin_inset Formula $\beta(p,p)=\mbox{True}$
 \end_inset
 
 
@@ -2209,7 +2259,7 @@ name "thm:Simple-spoly"
 
 \begin_layout Itemize
 Если 
-\begin_inset Formula $\beta(p,g)=\mbox{TRUE}$
+\begin_inset Formula $\beta(p,g)=\mbox{True}$
 \end_inset
 
 , то 
@@ -2217,7 +2267,7 @@ name "thm:Simple-spoly"
 \end_inset
 
  будет 
-\begin_inset Formula $\beta(mp,mg)=\mbox{TRUE}$
+\begin_inset Formula $\beta(mp,mg)=\mbox{True}$
 \end_inset
 
 
@@ -2225,7 +2275,7 @@ name "thm:Simple-spoly"
 
 \begin_layout Itemize
 Если 
-\begin_inset Formula $\beta(p,g)=\mbox{TRUE}$
+\begin_inset Formula $\beta(p,g)=\mbox{True}$
 \end_inset
 
 , то 
@@ -2233,7 +2283,7 @@ name "thm:Simple-spoly"
 \end_inset
 
  будет 
-\begin_inset Formula $\beta(kp,g)=\beta(p,kg)=\mbox{TRUE}$
+\begin_inset Formula $\beta(kp,g)=\beta(p,kg)=\mbox{True}$
 \end_inset
 
 
@@ -2241,15 +2291,15 @@ name "thm:Simple-spoly"
 
 \begin_layout Itemize
 Если 
-\begin_inset Formula $\beta(p,g)=\mbox{TRUE}$
+\begin_inset Formula $\beta(p,g)=\mbox{True}$
 \end_inset
 
  и 
-\begin_inset Formula $\beta(g,h)=\mbox{TRUE}$
+\begin_inset Formula $\beta(g,h)=\mbox{True}$
 \end_inset
 
 , то 
-\begin_inset Formula $\beta(p,h)=\mbox{TRUE}$
+\begin_inset Formula $\beta(p,h)=\mbox{True}$
 \end_inset
 
 
@@ -2268,7 +2318,7 @@ name "thm:Simple-spoly"
 , определённое как 
 \begin_inset Formula 
 \[
-\beta_{\HM}(p,g)=\mbox{TRUE}\Longleftrightarrow\HM(g)\preccurlyeq\HM(p).
+\beta_{\HM}(p,g)=\mbox{True}\Longleftrightarrow\HM(g)\preccurlyeq\HM(p).
 \]
 
 \end_inset
@@ -2294,7 +2344,7 @@ name "thm:Simple-spoly"
 
 \emph default
 , если 
-\begin_inset Formula $\forall k\,\beta(p,m_{k}g_{i_{k}})=\mbox{TRUE}$
+\begin_inset Formula $\forall k\,\beta(p,m_{k}g_{i_{k}})=\mbox{True}$
 \end_inset
 
 .
@@ -2307,12 +2357,7 @@ name "thm:Simple-spoly"
 \end_inset
 
 .
- Теперь можно сформулировать теорему, которая в частном случае тождественно
- истинной функции 
-\begin_inset Formula $\beta_{2}$
-\end_inset
-
- совпадает с теоремой 
+ Теперь можно сформулировать теорему, являющуюся обобщением теоремы 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:Simple-spoly"
@@ -2478,12 +2523,29 @@ reference "thm:Simple-spoly"
 \begin_inset Formula $\left(c_{1}'t_{1}'\cdot g_{i_{1}};c_{2}'t_{2}'\cdot g_{i_{2}}\right)$
 \end_inset
 
-, причём, 
-\begin_inset Formula $\exists t_{m}\in\mathbb{T},c_{m}\in\mathcal{K}$
+, причём найдутся 
+\begin_inset Formula $t\in\mathbb{T},c\in\mathcal{K}$
 \end_inset
 
  для которых 
-\begin_inset Formula $c_{1}'t_{1}'c_{m}t_{m}=c_{1}t_{1}$
+\begin_inset Formula $c_{1}'t_{1}'ct=c_{1}t_{1}$
+\end_inset
+
+.
+ Поскольку 
+\begin_inset Formula $\HM\left(t_{1}'g_{i_{1}}\right)=\HM\left(t_{2}'g_{i_{2}}\right)$
+\end_inset
+
+ и 
+\begin_inset Formula $\HM\left(t_{1}g_{i_{1}}\right)=M=\HM\left(t_{2}g_{i_{2}}\right)$
+\end_inset
+
+ для найденного 
+\begin_inset Formula $t$
+\end_inset
+
+ будет также выполняться 
+\begin_inset Formula $t_{2}'t=t_{2}$
 \end_inset
 
 .
@@ -2502,7 +2564,7 @@ reference "thm:Simple-spoly"
 .
  В силу свойств условий представления отсюда следует, что после умножения
  его на 
-\begin_inset Formula $c_{m}t_{m}$
+\begin_inset Formula $ct$
 \end_inset
 
  он тоже будет иметь представление над 
@@ -2526,7 +2588,7 @@ reference "thm:Simple-spoly"
  Тогда выражение 
 \begin_inset Formula 
 \[
-p=\sum_{l}m_{l}\cdot g_{i_{l}}+(c_{2}+c_{m}c_{2}')t_{2}\cdot g_{i_{2}}+\sum_{k>2}m_{k}\cdot g_{i_{k}}
+p=\sum_{l}m_{l}\cdot g_{i_{l}}+(c_{2}+cc_{2}')t_{2}\cdot g_{i_{2}}+\sum_{k>2}m_{k}\cdot g_{i_{k}}
 \]
 
 \end_inset
@@ -2544,6 +2606,22 @@ p=\sum_{l}m_{l}\cdot g_{i_{l}}+(c_{2}+c_{m}c_{2}')t_{2}\cdot g_{i_{2}}+\sum_{k>2
 \end_layout
 
 \begin_layout Standard
+Отсюда вытекает истинность теоремы 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:Simple-spoly"
+
+\end_inset
+
+, поскольку она может рассматриваться как специализация только что доказанной
+ для случая тождественно истинной функции 
+\begin_inset Formula $\beta_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
 Теперь сформулируем простейший вариант алгоритма Бухбергера в виде одноэтапного
  алгоритма
 \end_layout
@@ -2554,7 +2632,7 @@ p=\sum_{l}m_{l}\cdot g_{i_{l}}+(c_{2}+c_{m}c_{2}')t_{2}\cdot g_{i_{2}}+\sum_{k>2
 \begin_inset Formula $\{f_{1},\dots,f_{m}\}$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Labeling
@@ -2573,7 +2651,7 @@ p=\sum_{l}m_{l}\cdot g_{i_{l}}+(c_{2}+c_{m}c_{2}')t_{2}\cdot g_{i_{2}}+\sum_{k>2
 \begin_inset Formula $p\in\mathcal{P}$
 \end_inset
 
- -- многочлен текущего шага
+ -- многочлен текущего шага.
 \end_layout
 
 \begin_layout Labeling
@@ -2582,7 +2660,7 @@ p=\sum_{l}m_{l}\cdot g_{i_{l}}+(c_{2}+c_{m}c_{2}')t_{2}\cdot g_{i_{2}}+\sum_{k>2
 \begin_inset Formula $I=\left(f_{1},\dots,f_{m}\right)$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Paragraph
@@ -2855,7 +2933,7 @@ key "F5C,GVW,G2V,F5InBBStyle,HuangConception"
 
 , а для инкрементальных на каждом шаге берётся соответствующее этому шагу
  множество 
-\begin_inset Formula $G_{i}\cup f_{i+1}$
+\begin_inset Formula $G_{i}\cup\left\{ f_{i+1}\right\} $
 \end_inset
 
 .
@@ -3164,7 +3242,7 @@ t'|t''\equivdef\exists t_{1}\in\mathbb{T},t''=t_{1}t'
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\beta_{\Sig}(p,g)=\mbox{TRUE}\Longleftrightarrow\Sig(g)\preccurlyeq_{\tau}\Sig(p).
+\beta_{\Sig}(p,g)=\mbox{True}\Longleftrightarrow\Sig(g)\preccurlyeq_{\tau}\Sig(p).
 \]
 
 \end_inset
@@ -16888,8 +16966,21 @@ reference "par:SingleStepSignatureGroebner"
 \begin_inset Formula $\mathcal{P}=\mathcal{K}\left[x_{1},\dots,x_{n}\right]$
 \end_inset
 
-, возникают в различных областях науки, в частности криптографии и алгоритмах
- компьютерного зрения.
+, возникают в различных областях науки, в частности криптографии 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereCrypto08"
+
+\end_inset
+
+ и алгоритмах компьютерного зрения 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FastStablePolySolving"
+
+\end_inset
+
+.
  Для решения таких систем могут применяться общие методы решения систем
  уравнений заданных аналитическими функциями, в частности итерационные методы.
  Такие методы не всегда позволяют найти все решения рассматриваемой системы.
@@ -16912,6 +17003,23 @@ key "UsingAlgebraicGeometry"
  Его недостатком является необходимость вычислять базис Грёбнера именно
  относительно лексикографического порядка, что может оказаться значительно
  более трудоёмкой задачей, нежели вычисление с другими мономиальными порядками.
+ Для преодоления этой проблемы были предложены методы вычисления базиса
+ Грёбнера для одного порядка по известному базису, вычисленному для другого
+ порядка, наиболее известными из которых являются Groebner Walk 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GroebnerWalk"
+
+\end_inset
+
+ и FGLM 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FGLM"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -16946,7 +17054,7 @@ name "par:action-matrix-method"
 
 
 \family typewriter
-Метод Матриц Действия
+Метод матриц действия
 \end_layout
 
 \begin_layout Enumerate
@@ -16998,14 +17106,13 @@ name "enu:use-basis-for-radical"
 
 -координаты.
  Как правило, для нахождения такого базиса и оператора используются методы,
- связанные с базисами Грёбнера.
- 
+ связанные с базисами Грёбнера;
 \end_layout
 
 \begin_layout Enumerate
 если конечный базис построить не удалось, алгоритм завершается, поскольку
  является применимым лишь для систем с конечным числом решений, дающим нульмерны
-е идеалы.
+е идеалы;
 \end_layout
 
 \begin_layout Enumerate
@@ -17021,7 +17128,7 @@ name "enu:use-basis-for-radical"
 \begin_inset Formula $\mathcal{A}$
 \end_inset
 
- среди различных степеней этой переменной
+ среди различных степеней этой переменной;
 \end_layout
 
 \begin_layout Enumerate
@@ -17029,15 +17136,15 @@ name "enu:use-basis-for-radical"
 \begin_inset Formula $m_{i}\in I\cup\mathcal{K}\left[x_{i}\right]$
 \end_inset
 
-, соответствующей найденной линейной зависимости
+, соответствующий найденной линейной зависимости;
 \end_layout
 
 \begin_layout Enumerate
-для многочленов от одной переменной определяются генераторы радикалов 
+для многочленов от одной переменной определяются образующие радикалов 
 \begin_inset Formula $\left(r_{i}\right)=\sqrt{\left(m_{i}\right)}$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Enumerate
@@ -17049,7 +17156,7 @@ name "enu:use-basis-for-radical"
 \begin_inset Formula $I\cup\left\{ r_{1},\dots,r_{n}\right\} $
 \end_inset
 
-
+.
 \end_layout
 
 \end_deeper
@@ -17102,8 +17209,7 @@ reference "enu:use-basis-for-radical"
 \end_inset
 
  только рассматриваемым идеалом и также обычно использует методы, связанные
- с базисами Грёбнера.
- 
+ с базисами Грёбнера;
 \end_layout
 
 \begin_layout Enumerate
@@ -17117,7 +17223,7 @@ name "enu:selecting-ci"
 \begin_inset Formula $c_{1},\dots,c_{n}\in\mathcal{K}$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Enumerate
@@ -17129,7 +17235,7 @@ name "enu:selecting-ci"
 \begin_inset Formula $\mathcal{A}'$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Enumerate
@@ -17155,7 +17261,7 @@ name "enu:selecting-ci"
 \begin_inset Formula $\mathcal{A}'$
 \end_inset
 
-
+.
 \end_layout
 
 \end_deeper
@@ -17168,7 +17274,7 @@ name "enu:selecting-ci"
 \begin_inset Formula $m_{F}$
 \end_inset
 
-
+:
 \end_layout
 
 \begin_deeper
@@ -17181,7 +17287,7 @@ name "enu:selecting-ci"
 \begin_inset Formula $m_{F}$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Enumerate
@@ -17197,7 +17303,7 @@ reference "enu:selecting-ci"
 \end_inset
 
 , где выбираются другие случайные константы.
- На практике возникновение такой ситуации крайне маловероятно.
+ На практике возникновение такой ситуации крайне маловероятно;
 \end_layout
 
 \begin_layout Enumerate
@@ -17205,26 +17311,49 @@ reference "enu:selecting-ci"
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
-, находятся левые вектора-строки, отвечающие собственным значениям
+, находятся левые вектора-строки 
+\begin_inset Formula $\bar{v}_{1},\dots,\bar{v}_{l}$
+\end_inset
+
+, отвечающие собственным значениям.
 \end_layout
 
 \end_deeper
 \begin_layout Enumerate
-Находятся значения 
+Для каждого собственного вектора 
+\begin_inset Formula $\bar{w}$
+\end_inset
+
+ из множества векторов 
+\begin_inset Formula $\left\{ \bar{v}_{1},\dots,\bar{v}_{l}\right\} $
+\end_inset
+
+ находятся соответствующие ему значения 
 \begin_inset Formula $x_{1},\dots,x_{n}$
 \end_inset
 
-, соответствующие каждому собственному вектору
+:
 \end_layout
 
 \begin_deeper
 \begin_layout Enumerate
-значения собственного вектора трактуются как значения базисных элементов
- 
-\begin_inset Formula $b_{1},\dots,b_{l}$
+\begin_inset Formula $l$
 \end_inset
 
- в точке, являющейся решением исходной системы.
+ элементов 
+\begin_inset Formula $w_{1},\dots,w_{l}$
+\end_inset
+
+ собственного вектора 
+\begin_inset Formula $\bar{w}$
+\end_inset
+
+ трактуются как значения базисных элементов в точке, являющейся решением
+ исходной системы, что даёт уравнения, выполняющиеся в этой точке: 
+\begin_inset Formula $b_{1}=w_{1},\dots,b_{l}=w_{l}$
+\end_inset
+
+;
 \end_layout
 
 \begin_layout Enumerate
@@ -17236,24 +17365,30 @@ reference "enu:selecting-ci"
 \begin_inset Formula $N_{B}$
 \end_inset
 
- находится 
+ находится их координаты в базисе 
 \begin_inset Formula $B$
 \end_inset
 
--координаты 
-\begin_inset Formula $x_{j1},\dots,x_{jl}$
+: 
+\begin_inset Formula $\left(x_{j1},\dots,x_{jl}\right)$
 \end_inset
 
-
+.
+ Эта операция выполняется только один раз, поскольку эти координаты не зависят
+ от рассматриваемого собственного вектора;
 \end_layout
 
 \begin_layout Enumerate
-для каждого собственного вектора значение 
+для собственного вектора 
+\begin_inset Formula $\bar{w}$
+\end_inset
+
+ значение 
 \begin_inset Formula $x_{j}$
 \end_inset
 
  находится как 
-\begin_inset Formula $x_{j}=\sum_{i}x_{ji}b_{i}$
+\begin_inset Formula $x_{j}=\sum_{i}x_{ji}w_{i}$
 \end_inset
 
 .
@@ -17388,7 +17523,9 @@ key "ArtificialDiscontinuities"
 \end_inset
 
 .
- Многочлены, получаемые подстановкой коэффициентов из множества вариаций,
+ Такой многочлен чисто формален, поскольку ещё не определены арифметические
+ операции над приближёнными числами.
+ Многочлены, получаемые подстановкой в него коэффициентов из множества вариаций,
  называются 
 \emph on
 специализациями приближённого многочлена
@@ -17409,7 +17546,7 @@ key "ArtificialDiscontinuities"
 Множество специализаций системы изоморфно декартову произведению конечного
  числа множеств специализаций коэффициентов и является топологическим пространст
 вом.
- Далее множество специализаций будет обозначаться за 
+ Далее множество специализаций системы будет обозначаться за 
 \begin_inset Formula $E$
 \end_inset
 
@@ -17462,7 +17599,7 @@ key "ArtificialDiscontinuities"
 \begin_inset Formula $D$
 \end_inset
 
-, если 
+, если и только если 
 \begin_inset Formula $\exists d'\subset\mathbb{C}^{n}$
 \end_inset
 
@@ -17476,6 +17613,101 @@ key "ArtificialDiscontinuities"
 
  лежат в 
 \begin_inset Formula $d'$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Theorem
+Данное определение топологии корректно.
+\end_layout
+
+\begin_layout Proof
+Для доказательства корректности топологии достаточно показать, что выбранная
+ база удовлетворяет двум достаточным для корректности свойствам:
+\end_layout
+
+\begin_layout Proof
+Покажем, что любой элемент 
+\begin_inset Formula $D$
+\end_inset
+
+ содержится в некотором элементе базы.
+ Рассмотрим элемент 
+\begin_inset Formula $d_{0}\in D$
+\end_inset
+
+, состоящий из набора 
+\begin_inset Formula $d_{0}=\left\{ c_{1},\dots,c_{k}\right\} ,c_{i}\in\mathbb{C}^{n}$
+\end_inset
+
+.
+ Существует шар 
+\begin_inset Formula $d'_{0}\subset\mathbb{C}^{n}$
+\end_inset
+
+, содержащий все 
+\begin_inset Formula $c_{i}$
+\end_inset
+
+.
+ Соответствующий ему элемент базы 
+\begin_inset Formula $D'_{0}$
+\end_inset
+
+ будет содержать 
+\begin_inset Formula $d_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Покажем, что пересечение элементов базы также в ней лежит.
+ Рассмотрим пересечение элементов базы 
+\begin_inset Formula $D_{1}'\cap D_{2}'$
+\end_inset
+
+, соответствующих 
+\begin_inset Formula $d_{1}'$
+\end_inset
+
+ и 
+\begin_inset Formula $d_{2}'$
+\end_inset
+
+ -- открытым подмножествам 
+\begin_inset Formula $\mathbb{C}^{n}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $D_{1}'\cap D_{2}'$
+\end_inset
+
+ содержит те и только те элементы 
+\begin_inset Formula $D$
+\end_inset
+
+, все точки которых лежат одновременно в 
+\begin_inset Formula $d_{1}'$
+\end_inset
+
+ и 
+\begin_inset Formula $d_{2}'$
+\end_inset
+
+, то есть в 
+\begin_inset Formula $d_{1}'\cap d_{2}'$
+\end_inset
+
+.
+ Таким образом 
+\begin_inset Formula $D_{1}'\cap D_{2}'$
+\end_inset
+
+ -- элемент базы, соответствующий 
+\begin_inset Formula $d_{1}'\cap d_{2}'$
 \end_inset
 
 .
@@ -17970,7 +18202,7 @@ name "needed-poly-prop"
 
 , и все вариации числа до округления являются вариациями числа после округления:
  
-\begin_inset Formula $\mathbf{\varepsilon_{w}}\geqslant\varepsilon+\left|a_{w}-a\right|$
+\begin_inset Formula $\varepsilon_{w}\geqslant\varepsilon+\left|a_{w}-a\right|$
 \end_inset
 
 .
@@ -17985,7 +18217,7 @@ name "needed-poly-prop"
 
 .
  Одно из условий такой близости можно сформулировать как 
-\begin_inset Formula $\mathbf{\varepsilon_{w}}\leqslant(1+E)\varepsilon$
+\begin_inset Formula $\varepsilon_{w}\leqslant(1+E)\varepsilon$
 \end_inset
 
 , где 
@@ -19585,7 +19817,7 @@ reference "problem:approx-poly-system"
 \begin_layout Standard
 Наиболее простой способ определения символических нулей состоит в рассмотрении
  всех приближённых чисел ненулевой вариации как параметров 
-\begin_inset Formula $\left\{ a_{i}\right\} $
+\begin_inset Formula $\left\{ a_{1},\dots,a_{k}\right\} $
 \end_inset
 
  со значениями в 
@@ -19599,7 +19831,24 @@ reference "problem:approx-poly-system"
 .
  В этом случае каждый из коэффициентов представляется как многочлен от нескольки
 х переменных из 
-\begin_inset Formula $\mathbb{C}\left[a_{i}\right]$
+\begin_inset Formula $\mathbb{C}\left[a_{1},\dots,a_{k}\right]$
+\end_inset
+
+.
+ Далее для краткости множество параметров 
+\begin_inset Formula $\left\{ a_{1},\dots,a_{k}\right\} $
+\end_inset
+
+ будет записываться как 
+\begin_inset Formula $\left\{ a_{i}\right\} $
+\end_inset
+
+, а кольцо многочленов 
+\begin_inset Formula $\mathbb{C}\left[a_{1},\dots,a_{k}\right]$
+\end_inset
+
+ -- как 
+\begin_inset Formula $\mathbb{C}\left[\left\{ a_{i}\right\} \right]$
 \end_inset
 
 .
@@ -19608,7 +19857,7 @@ reference "problem:approx-poly-system"
 \begin_layout Lemma
 Необратимый приближённый коэффициент является символическим нулём тогда
  и только тогда, когда многочлен из 
-\begin_inset Formula $\mathbb{C}\left[a_{i}\right]$
+\begin_inset Formula $\mathbb{C}\left[\left\{ a_{i}\right\} \right]$
 \end_inset
 
 , возникающий на соответствующем месте при вычислениях с параметрами является
@@ -19643,7 +19892,7 @@ key "ComprehensiveGB"
 .
  Алгоритм вычисления исчерпывающего базиса позволяет найти множество многочленов
  с коэффициентами из 
-\begin_inset Formula $\mathbb{C}\left[a_{i}\right]$
+\begin_inset Formula $\mathbb{C}\left[\left\{ a_{i}\right\} \right]$
 \end_inset
 
 , являющееся базисом Грёбнера параметрического идеала при любой специализации
@@ -19671,7 +19920,7 @@ key "ComprehensiveGB"
  приближённом случаях сложность арифметических операций может асимптотически
  различаться: при символических вычислениях количество различных мономов
  в многочленах из 
-\begin_inset Formula $\mathbb{C}\left[a_{i}\right]$
+\begin_inset Formula $\mathbb{C}\left[\left\{ a_{i}\right\} \right]$
 \end_inset
 
  будет как правило нарастать в процессе вычислений, а при вычислении в двоичных
@@ -19686,14 +19935,14 @@ key "ComprehensiveGB"
 
 \begin_layout Standard
 Многочлены из 
-\begin_inset Formula $\mathbb{C}\left[a_{i}\right]$
+\begin_inset Formula $\mathbb{C}\left[\left\{ a_{i}\right\} \right]$
 \end_inset
 
 , соответствующие входным данным могут быть рассмотрены как многочлены с
  коэффициентами из кольца комплексных дробно-рациональных чисел.
  Поскольку символический ноль появляется только при тождественном обнулении
  многочлена из 
-\begin_inset Formula $\mathbb{C}\left[a_{i}\right]$
+\begin_inset Formula $\mathbb{C}\left[\left\{ a_{i}\right\} \right]$
 \end_inset
 
  верна следующая лемма.
@@ -19884,7 +20133,7 @@ reference "example:introduced-zeroes"
 Поэтому попытаемся найти выражение рассматриваемого приближённого многочлена
  через исходные.
  Для этого необходимо в многочлен из 
-\begin_inset Formula $\mathbb{C}\left[a_{i}\right]$
+\begin_inset Formula $\mathbb{C}\left[\left\{ a_{i}\right\} \right]$
 \end_inset
 
  -- символическое выражение для коэффициентов -- в качестве 
@@ -20446,7 +20695,7 @@ _{0,12}1zf_{3}+\left(_{0,12}-1\right)yf_{2}=
 \end_inset
 
 , на соответствующем месте будет тождественно нулевой многочлен из 
-\begin_inset Formula $\mathbb{C}\left[a_{i}\right]$
+\begin_inset Formula $\mathbb{C}\left[\left\{ a_{i}\right\} \right]$
 \end_inset
 
 .
@@ -20625,7 +20874,7 @@ m_{r,c}\rightarrow m_{r',c'}m_{r,c}-m_{r,c'}m_{r,c'}
 
 .
  Обозначим его за 
-\begin_inset Formula $A\in\mathbb{C}\left[a_{i}\right]$
+\begin_inset Formula $A\in\mathbb{C}\left[\left\{ a_{i}\right\} \right]$
 \end_inset
 
 .
