@@ -1118,7 +1118,7 @@ reference "LastPage"
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $\totaldeg(t)\in\mathbb{Z}$
+\begin_inset Formula $\totaldeg(t)\in\mathbb{N}\cup\left\{ 0\right\} $
 \end_inset
 
  -- полная степень монома 
@@ -1219,13 +1219,13 @@ x_{1}^{a_{1}}x_{2}^{a_{2}}\cdots x_{n}^{a_{n}}\prec x_{1}^{b_{1}}x_{2}^{b_{2}}\c
 \end_inset
 
  и 
-\begin_inset Formula $\forall t_{1},t_{2},t_{3}\in\mathbb{T}$
+\begin_inset Formula $\forall t_{1},t_{2},t_{3}\in\mathbb{T}_{0}$
 \end_inset
 
  выполняется: 
 \begin_inset Formula 
 \[
-t_{1}\prec t_{2}\Longleftrightarrow t_{1}t_{3}\prec t_{2}t_{3}
+t_{1}\prec t_{2}\Longleftarrow t_{1}t_{3}\prec t_{2}t_{3}
 \]
 
 \end_inset
@@ -1253,12 +1253,37 @@ t_{1}\succ t_{2}
 
 \end_inset
 
-Второе при этом невозможно, поскольку тогда из определения бы следовало,
+В случае, если все элементы принадлежат 
+\begin_inset Formula $\mathbb{T}$
+\end_inset
+
+, второе неравенство невозможно, поскольку тогда из определения бы следовало,
  что 
 \begin_inset Formula $t_{1}t_{3}\succ t_{2}t_{3}$
 \end_inset
 
+.
+ Случаи, когда один из элементов принадлежит 
+\begin_inset Formula $\mathbb{T}_{0}\setminus\mathbb{T}=\left\{ 0\right\} $
+\end_inset
 
+, рассматриваются отдельно.
+\end_layout
+
+\begin_layout Standard
+Обратное следствие 
+\begin_inset Formula $t_{1}\prec t_{2}\Longrightarrow t_{1}t_{3}\prec t_{2}t_{3}$
+\end_inset
+
+ выполняется для 
+\begin_inset Formula $t_{3}\in\mathbb{T}$
+\end_inset
+
+, но не обязано выполняться для 
+\begin_inset Formula $t_{3}\in\mathbb{T}_{0}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Itemize
