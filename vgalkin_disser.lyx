@@ -3847,7 +3847,7 @@ Rewritten?
 \series bold
  
 \series default
-булево значение, равное истине, если произведение 
+булево значение, равное True, если произведение 
 \begin_inset Formula $u\cdot R[k]$
 \end_inset
 
@@ -6354,16 +6354,8 @@ reference "par:TopReduction"
 
 \end_inset
 
- и будет продолжать возвращать значение 
-\begin_inset Quotes fld
-\end_inset
-
-Истина
-\begin_inset Quotes frd
-\end_inset
-
- на всех последующих этапах алгоритма, поскольку перезаписывающие многочлены
- не могут исчезнуть.
+ и будет продолжать возвращать значение True на всех последующих этапах
+ алгоритма, поскольку перезаписывающие многочлены не могут исчезнуть.
 \end_layout
 
 \begin_layout Proof
@@ -6395,15 +6387,7 @@ reference "par:Rewritten?"
 \begin_inset Formula $\left(u_{3-k},r_{3-k}\right)$
 \end_inset
 
- будет возвращать 
-\begin_inset Quotes fld
-\end_inset
-
-Истину
-\begin_inset Quotes frd
-\end_inset
-
- после добавления правила, соответствующего 
+ будет возвращать True после добавления правила, соответствующего 
 \begin_inset Formula $r_{k}$
 \end_inset
 
@@ -6434,15 +6418,7 @@ reference "par:Rewritten?"
 \begin_inset Formula $\left(u_{3-k},r_{3-k}\right)$
 \end_inset
 
- возвращает 
-\begin_inset Quotes fld
-\end_inset
-
-Истину
-\begin_inset Quotes frd
-\end_inset
-
- при выполнении 
+ возвращает True при выполнении 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "par:TopReduction"
@@ -6528,15 +6504,7 @@ reference "par:Spol"
 
 \end_inset
 
- вернёт 
-\begin_inset Quotes fld
-\end_inset
-
-Истину
-\begin_inset Quotes frd
-\end_inset
-
-.
+ вернёт True.
  Значит, на итерации 
 \begin_inset Formula $j+1$
 \end_inset
@@ -17049,7 +17017,7 @@ key "FGLM"
 
 , задаваемого матрицей действий умножением, называемой также просто матрицей
  действий.
- Данный метод также описывается и доказывается в книге 
+ Данный метод описывается и доказывается также в книге 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "UsingAlgebraicGeometry"
@@ -17057,10 +17025,18 @@ key "UsingAlgebraicGeometry"
 \end_inset
 
  (Предложение 4.7 главы 2).
- Поскольку наиболее важным для дальнейших рассуждений является взаимодействие
- данного метода с алгоритмами вычисления базисов Грёбнера, опишем схему
- метода и порядок применения базисов в нём, но не будем повторять его обосновани
-е.
+ Предлагаемая там формулировка метода использует базис Грёбнера и дана в
+ виде набора нескольких теорем.
+ В дальнейшем окажется важным то, что базис Грёбнера используется в этом
+ методе только для задания оператора нормальной формы 
+\begin_inset Formula $\mathcal{P}\rightarrow\mathcal{A}$
+\end_inset
+
+, поэтому мы приведём переформулировку метода в алгоритмическом виде, явно
+ использующем в своей работе не сам базис Грёбнера, а только оператор нормальной
+ формы.
+ При такой переформулировке обоснование метода не изменяется, поэтому мы
+ не будем его повторять.
 \end_layout
 
 \begin_layout Paragraph
