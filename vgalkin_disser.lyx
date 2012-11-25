@@ -792,23 +792,23 @@ key "GroebnerInExtFields"
 \begin_layout Itemize
 установить остановку сигнатурного алгоритма F5 вычисления базисов Грёбнера
  на произвольном входном множестве многочленов, не обязательно являющимся
- регулярной последовательностью
+ регулярной последовательностью;
 \end_layout
 
 \begin_layout Itemize
 сформулировать и доказать свойства, однозначно определяющие многочлены,
- участвующие в проводимых алгоритмом F5 редукциях на основе состояния алгоритма
+ участвующие в проводимых алгоритмом F5 редукциях на основе состояния алгоритма;
 \end_layout
 
 \begin_layout Itemize
 сформировать наиболее простой алгоритм, индуцированный этими свойствами,
  доказать его корректность и остановку, а также реализовать его в одной
- из систем компьютерной алгебры
+ из систем компьютерной алгебры;
 \end_layout
 
 \begin_layout Itemize
 сформулировать строгое определение задачи приближённого решения системы,
- которое бы соответствовало алгоритмам компьютерных приближённых вычислений
+ которое бы соответствовало алгоритмам компьютерных приближённых вычислений;
 \end_layout
 
 \begin_layout Itemize
@@ -816,7 +816,7 @@ key "GroebnerInExtFields"
  приближённых систем; найти основывающийся на модулярных вычислениях способ
  для вероятностного определения точного равенства нулю приближённых коэффициенто
 в; построить правило выбора модуля для таких вычислений, обеспечивающее
- не превышающую заданную константу вероятность получения некорректного ответа
+ не превышающую заданную константу вероятность получения некорректного ответа;
 \end_layout
 
 \begin_layout Itemize
@@ -827,7 +827,7 @@ key "GroebnerInExtFields"
 
 \end_inset
 
- к сигнатурным алгоритмам без их перезапуска
+ к сигнатурным алгоритмам без их перезапуска.
 \end_layout
 
 \begin_layout Standard
@@ -861,7 +861,7 @@ key "FaugereF5"
 
 , а не аналогичных алгоритмов, идентичность которых с F5 до конца не ясна.
  Показано, что при существовании редуктора, отбрасываемого одним из критериев
- в алгоритме, существует один и только один не отбрасываемый редуктор
+ в алгоритме, существует один и только один не отбрасываемый редуктор.
 \end_layout
 
 \begin_layout Itemize
@@ -880,7 +880,7 @@ key "GroebnerInExtFields"
 
 \end_inset
 
- добавлять новые замены в процессе работы алгоритма
+ добавлять новые замены в процессе работы алгоритма.
 \end_layout
 
 \begin_layout Section*
@@ -1089,21 +1089,21 @@ reference "LastPage"
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
- -- некоторое поле
+ -- некоторое поле;
 \end_layout
 
 \begin_layout Itemize
 \begin_inset Formula $x_{1},\dots,x_{n}$
 \end_inset
 
- -- абстрактное множество переменных
+ -- абстрактное множество переменных;
 \end_layout
 
 \begin_layout Itemize
 \begin_inset Formula $\mathbb{N}$
 \end_inset
 
- -- множество натуральных чисел с нулём.
+ -- множество натуральных чисел с нулём;
 \end_layout
 
 \begin_layout Itemize
@@ -1118,9 +1118,7 @@ reference "LastPage"
 
  -- набору степеней переменных, входящих в моном, называемом также 
 \emph on
-вектор-степенью монома
-\emph default
-.
+вектор-степенью монома;
 \end_layout
 
 \begin_layout Itemize
@@ -1132,7 +1130,7 @@ reference "LastPage"
 \begin_inset Formula $\mathcal{K}$
 \end_inset
 
-.
+;
 \end_layout
 
 \begin_layout Itemize
@@ -1154,7 +1152,7 @@ reference "LastPage"
 \begin_inset Formula $t_{1}|t_{2}\equivdef\exists t_{3}\; t_{1}\cdot t_{3}=t_{2}$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Itemize
@@ -1165,7 +1163,7 @@ reference "LastPage"
 \begin_inset Formula $\mathcal{K}[x_{1},\dots,x_{n}]$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Itemize
@@ -1176,7 +1174,7 @@ reference "LastPage"
 \begin_inset Formula $t\in\mathbb{T}$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Definition
@@ -1230,7 +1228,7 @@ t_{1}\prec t_{2}\Longrightarrow t_{1}t_{3}\prec t_{2}t_{3}
 \begin_inset Formula 
 \begin{eqnarray*}
  & x_{1}^{a_{1}}x_{2}^{a_{2}}\cdots x_{n}^{a_{n}}\prec x_{1}^{b_{1}}x_{2}^{b_{2}}\cdots x_{n}^{b_{n}}\equivdef\\
- & \equivdef\exists i,1\leqslant i\leqslant n,\;\left(a_{1},\dots,a_{i-1}\right)=\left(b_{1},\dots,b_{i-1}\right),a_{i}<b_{i}
+ & \equivdef\exists i,1\leqslant i\leqslant n,\;\left(a_{1},\dots,a_{i-1}\right)=\left(b_{1},\dots,b_{i-1}\right),a_{i}<b_{i},
 \end{eqnarray*}
 
 \end_inset
@@ -1276,7 +1274,7 @@ x_{1}^{a_{1}}x_{2}^{a_{2}}\cdots x_{n}^{a_{n}}\prec x_{1}^{b_{1}}x_{2}^{b_{2}}\c
  выполняется: 
 \begin_inset Formula 
 \[
-t_{1}\prec t_{2}\Longleftarrow t_{1}t_{3}\prec t_{2}t_{3}
+t_{1}\prec t_{2}\Longleftarrow t_{1}t_{3}\prec t_{2}t_{3}.
 \]
 
 \end_inset
@@ -1335,6 +1333,7 @@ t_{1}\succ t_{2}
 \end_inset
 
 .
+ На основе понятия мономиального порядка вводятся следующие обозначения:
 \end_layout
 
 \begin_layout Itemize
@@ -1350,7 +1349,7 @@ t_{1}\succ t_{2}
 \begin_inset Formula $1\in\mathbb{T}$
 \end_inset
 
-, то есть пустое произведение
+, то есть пустое произведение;
 \end_layout
 
 \begin_layout Itemize
@@ -1374,7 +1373,7 @@ t_{1}\succ t_{2}
 \begin_inset Formula $\mathbb{T}_{0}$
 \end_inset
 
- вполне упорядоченным
+ вполне упорядоченным;
 \end_layout
 
 \begin_layout Itemize
@@ -1401,7 +1400,7 @@ t_{1}\succ t_{2}
 \begin_inset Formula $\HM(0)=0$
 \end_inset
 
-.
+;
 \end_layout
 
 \begin_layout Itemize
@@ -1428,12 +1427,12 @@ t_{1}\succ t_{2}
 \begin_inset Formula $\HC(0)=0$
 \end_inset
 
-.
+;
 \end_layout
 
 \begin_layout Itemize
-Вектор-степенью ненулевого многочлена называется вектор-степень его старшего
- монома.
+вектор-степенью ненулевого многочлена называется вектор-степень его старшего
+ монома;
 \end_layout
 
 \begin_layout Itemize
@@ -1660,29 +1659,29 @@ key "F5C"
 \begin_inset Formula $G$
 \end_inset
 
- 
+
 \emph default
-любую соответствующую верному равенству в 
+ соответствующую верному равенству в 
 \begin_inset Formula $\mathcal{P}$
 \end_inset
 
- запись вида:
+ запись вида
 \begin_inset Formula 
 \[
-p=\sum_{k}m_{k}\cdot g_{i_{k}},\; g_{i_{k}}\in G
+p=\sum_{k}m_{k}\cdot g_{i_{k}},\; g_{i_{k}}\in G,
 \]
 
 \end_inset
 
-с коэффициентами 
+в которй термы 
 \begin_inset Formula $m_{k}=c_{k}t_{k}\in\mathcal{K}\times\mathbb{T}$
 \end_inset
 
-, в которой все пары 
+ таковы, что все пары 
 \begin_inset Formula $\left(t_{k},g_{i_{k}}\right)$
 \end_inset
 
- различны, и коэффициенты 
+ различны, а коэффициенты 
 \begin_inset Formula $c_{k}\ne0$
 \end_inset
 
@@ -1800,42 +1799,42 @@ p=\sum_{k}m_{k}\cdot g_{i_{k}},\; g_{i_{k}}\in G
 \begin_inset Formula $y=1\cdot y$
 \end_inset
 
- -- степенное представление
+ -- степенное представление;
 \end_layout
 
 \begin_layout Itemize
 \begin_inset Formula $y^{2}=y\cdot y$
 \end_inset
 
- -- степенное представление
+ -- степенное представление;
 \end_layout
 
 \begin_layout Itemize
 \begin_inset Formula $y^{2}=y\cdot(x^{2}+y)-x^{2}\cdot y$
 \end_inset
 
- -- представление, не являющееся степенным
+ -- представление, не являющееся степенным;
 \end_layout
 
 \begin_layout Itemize
 \begin_inset Formula $0=1\cdot y^{2}-y\cdot y$
 \end_inset
 
- -- представление, не являющееся степенным
+ -- представление, не являющееся степенным;
 \end_layout
 
 \begin_layout Itemize
 \begin_inset Formula $0=0$
 \end_inset
 
- (сумма нуля элементов) -- степенное представление
+ (сумма нуля элементов) -- степенное представление;
 \end_layout
 
 \begin_layout Itemize
 \begin_inset Formula $x^{2}=1\cdot(x^{2}+y)-1\cdot y$
 \end_inset
 
- -- степенное представление
+ -- степенное представление;
 \end_layout
 
 \begin_layout Itemize
@@ -1843,7 +1842,7 @@ p=\sum_{k}m_{k}\cdot g_{i_{k}},\; g_{i_{k}}\in G
 \end_inset
 
  -- не является представлением, так как первый и последний элементы отличаются
- лишь коэффициентом
+ лишь коэффициентом;
 \end_layout
 
 \begin_layout Itemize
@@ -1873,7 +1872,7 @@ name "thm:Exist-hm-in-deg-repr"
 \begin_inset Formula $\HM(p)=\HM(m_{K}g_{i_{K}})$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Proof
@@ -1964,7 +1963,7 @@ reference "gb-def-2"
 
 \end_inset
 
- эквивалентны
+ эквивалентны.
 \end_layout
 
 \begin_layout Proof
@@ -2142,7 +2141,7 @@ S-парой
 \begin_inset Formula $g_{2}$
 \end_inset
 
- называется пара произведений:
+ называется пара произведений
 \begin_inset Formula 
 \[
 \left(\frac{\HM(g_{2})\HC(g_{2})}{\LCM(\HM(g_{1}),\HM(g_{2}))}\cdot g_{1};\frac{\HM(g_{1})\HC(g_{1})}{\LCM(\HM(g_{1}),\HM(g_{2}))}\cdot g_{2}\right).
@@ -2272,7 +2271,7 @@ name "thm:Simple-spoly"
 \begin_inset Formula $\beta(p,p)=\mbox{True}$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Itemize
@@ -2288,7 +2287,7 @@ name "thm:Simple-spoly"
 \begin_inset Formula $\beta(mp,mg)=\mbox{True}$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Itemize
@@ -2304,7 +2303,7 @@ name "thm:Simple-spoly"
 \begin_inset Formula $\beta(kp,g)=\beta(p,kg)=\mbox{True}$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Itemize
@@ -2320,7 +2319,7 @@ name "thm:Simple-spoly"
 \begin_inset Formula $\beta(p,h)=\mbox{True}$
 \end_inset
 
-
+.
 \end_layout
 
 \end_deeper
@@ -2632,7 +2631,7 @@ reference "thm:Simple-spoly"
 \end_inset
 
 , поскольку она может рассматриваться как специализация только что доказанной
- для случая тождественно истинной функции 
+ теоремы для случая тождественно истинной функции 
 \begin_inset Formula $\beta_{2}$
 \end_inset
 
@@ -2712,7 +2711,7 @@ S-многочлены всех пар
 \begin_inset Formula $(f_{i},f_{j}),i<j\}$
 \end_inset
 
-.
+
 \end_layout
 
 \begin_layout Enumerate
@@ -2782,7 +2781,7 @@ S-многочлены всех пар
 \begin_inset Formula $(p,g),g\in G\}$
 \end_inset
 
-.
+
 \end_layout
 
 \begin_layout Enumerate
@@ -2822,7 +2821,7 @@ reference "par:Buchberger"
 
 \end_inset
 
- останавливается на любых входных данных
+ останавливается на любых входных данных.
 \end_layout
 
 \begin_layout Proof
@@ -2857,7 +2856,7 @@ reference "par:Buchberger"
 \begin_inset Formula $\left(f_{1},\dots,f_{m}\right)$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Proof
@@ -3008,7 +3007,7 @@ key "F5C,GVW,G2V,F5InBBStyle,HuangConception"
 \begin_layout Standard
 \begin_inset Formula 
 \[
-t'|t''\equivdef\exists t_{1}\in\mathbb{T},\; t''=t_{1}t'
+t'|t''\equivdef\exists t_{1}\in\mathbb{T},\; t''=t_{1}t'.
 \]
 
 \end_inset
@@ -3445,7 +3444,7 @@ name "example:labeled-polys"
 \begin_inset Formula $pf_{i}=\sum_{m_{p}\in p}m_{p}\cdot f_{i}$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Itemize
@@ -3491,7 +3490,7 @@ name "example:labeled-polys"
 \begin_inset Formula $pf=\sum_{m_{p}\in p}m_{p}\cdot f$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Itemize
@@ -3590,11 +3589,11 @@ key "FaugereF5"
 \end_layout
 
 \begin_layout Itemize
-разрешены только сигнатурные редукции
+разрешены только сигнатурные редукции;
 \end_layout
 
 \begin_layout Itemize
-при взятии S-пары из очереди выбирается S-пара с наименьшей сигнатурой
+при взятии S-пары из очереди выбирается S-пара с наименьшей сигнатурой;
 \end_layout
 
 \begin_layout Itemize
@@ -3615,7 +3614,7 @@ key "F5InBBStyle"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Subsubsection
@@ -3676,7 +3675,7 @@ key "F5InBBStyle"
 \begin_inset Formula $m$
 \end_inset
 
- элементами, а в процессе работы пополняется со стороны конца
+ элементами, а в процессе работы пополняется со стороны конца.
 \end_layout
 
 \begin_layout Labeling
@@ -3697,7 +3696,7 @@ key "F5InBBStyle"
 \begin_inset Formula $R$
 \end_inset
 
- элемента
+ элемента.
 \end_layout
 
 \begin_layout Labeling
@@ -3718,7 +3717,7 @@ Rule Массив правил перезаписи, содержащий
 \begin_inset Formula $m$
 \end_inset
 
- пустых массивов, которые в процессе работы пополняется со стороны начала
+ пустых массивов, которые в процессе работы пополняется со стороны начала.
 \end_layout
 
 \begin_layout Labeling
@@ -3734,7 +3733,7 @@ Rule Массив правил перезаписи, содержащий
 \begin_inset Formula $\HC$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Labeling
@@ -3746,7 +3745,7 @@ Rule Массив правил перезаписи, содержащий
 \begin_inset Formula $\mathbf{T}$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Paragraph
@@ -3778,7 +3777,7 @@ AddRule
 \begin_inset Formula $R$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -3836,7 +3835,7 @@ Rewritten?
 \begin_inset Formula $R$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Labeling
@@ -3851,7 +3850,7 @@ Rewritten?
 \begin_inset Formula $u\cdot R[k]$
 \end_inset
 
- отбрасывается критерием перезаписи
+ отбрасывается критерием перезаписи.
 \end_layout
 
 \begin_layout Enumerate
@@ -3965,7 +3964,7 @@ IncrementalF5
 \begin_inset Formula $F=[f_{1},\dots,f_{m}]$
 \end_inset
 
- -- упорядоченный массив однородных многочленов
+ -- упорядоченный массив однородных многочленов.
 \end_layout
 
 \begin_layout Labeling
@@ -3988,7 +3987,7 @@ IncrementalF5
 \begin_inset Formula $(f_{1},\dots,f_{i})$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Labeling
@@ -4007,7 +4006,7 @@ IncrementalF5
 \begin_inset Formula $\prec$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -4108,7 +4107,7 @@ AlgorithmF5
 \begin_inset Formula $R$
 \end_inset
 
-, образующих базис Грёбнера некоторого идеала 
+, образующих базис Грёбнера некоторого идеала.
 \end_layout
 
 \begin_layout Labeling
@@ -4151,7 +4150,7 @@ AlgorithmF5
 \begin_inset Formula $R$
 \end_inset
 
-, используемые при итерировании
+, используемые при итерировании.
 \end_layout
 
 \begin_layout Labeling
@@ -4174,7 +4173,7 @@ AlgorithmF5
 \begin_inset Formula $\left(\left\{ poly(R[r])|r\in G_{i-1}\right\} \cup f_{i}\right)$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -4460,7 +4459,7 @@ CritPair
 \begin_inset Formula $\mathcal{P}$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Labeling
@@ -4471,7 +4470,7 @@ CritPair
 \begin_inset Formula $t,t_{1},t_{2},u_{1},u_{2}$
 \end_inset
 
- -- мономы
+ -- мономы.
 \end_layout
 
 \begin_layout Labeling
@@ -4482,7 +4481,7 @@ CritPair
 \series bold
  
 \series default
-множество S-пар отмеченных многочленов, содержащее не более одного элемента
+множество S-пар отмеченных многочленов, содержащее не более одного элемента.
 \end_layout
 
 \begin_layout Enumerate
@@ -4544,7 +4543,7 @@ if
 \begin_inset Formula $u_{1}\Sig(R[r_{1}])\prec_{P}u_{2}\Sig(R[r_{2}])$
 \end_inset
 
- 
+
 \series bold
 :
 \end_layout
@@ -4683,7 +4682,7 @@ Spol
 \begin_inset Formula $P=\left\{ p_{1},\dots,p_{h}\right\} $
 \end_inset
 
- -- множество S-пар фиксированной степени
+ -- множество S-пар фиксированной степени.
 \end_layout
 
 \begin_layout Labeling
@@ -4694,7 +4693,7 @@ Spol
 \begin_inset Formula $(u\cdot R[r_{i}],v\cdot R[r_{j}])$
 \end_inset
 
- -- S-пара отмеченных многочленов
+ -- S-пара отмеченных многочленов.
 \end_layout
 
 \begin_layout Labeling
@@ -4714,7 +4713,7 @@ Spol
 \end_inset
 
 , соответствующих отмеченным многочленам, полученным из входных S-пар как
- S-многочлены
+ S-многочлены.
 \end_layout
 
 \begin_layout Enumerate
@@ -4896,7 +4895,7 @@ ToDo,
 \begin_inset Formula $\mathcal{P}$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Labeling
@@ -4937,7 +4936,7 @@ ToDo,
 \begin_inset Formula $R$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Labeling
@@ -4957,7 +4956,7 @@ Done -- множество индексов
 \begin_inset Formula $G$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -5205,7 +5204,7 @@ IsReducible
 \begin_inset Formula $\mathcal{P}$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Labeling
@@ -5232,7 +5231,7 @@ IsReducible
 \begin_inset Formula $t_{j}$
 \end_inset
 
- -- моном сигнатуры
+ -- моном сигнатуры.
 \end_layout
 
 \begin_layout Labeling
@@ -5247,7 +5246,7 @@ IsReducible
 \begin_inset Formula $R$
 \end_inset
 
-, соответствующих возможным редукторам, содержащее не более одного элемента
+, соответствующих возможным редукторам, содержащее не более одного элемента.
 \end_layout
 
 \begin_layout Enumerate
@@ -5314,7 +5313,7 @@ name "enu:IsRed-b"
 \begin_inset Formula $\Sig(R[r_{j}])$
 \end_inset
 
-.
+
 \end_layout
 
 \begin_layout Enumerate
@@ -5433,7 +5432,7 @@ TopReduction
 \begin_inset Formula $\mathcal{P}$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Labeling
@@ -5456,7 +5455,7 @@ TopReduction
 \begin_inset Formula $u$
 \end_inset
 
- -- моном
+ -- моном.
 \end_layout
 
 \begin_layout Labeling
@@ -5477,7 +5476,7 @@ TopReduction
 \begin_inset Formula $R$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -6564,12 +6563,11 @@ reference "par:Spol"
 \begin_inset Formula $d_{j+2}>d_{j+1}$
 \end_inset
 
-.
- 
+;
 \end_layout
 
 \begin_layout Itemize
-Другая возможность относительного расположения -- строгое возрастание 
+другая возможность относительного расположения -- строгое возрастание 
 \begin_inset Formula $d_{j+1}>d_{j}$
 \end_inset
 
@@ -7076,7 +7074,7 @@ reference "par:IsReducible"
 
  возвращает пустое множество, соответствует переносу элемента множества
  ToDo в Done и число таких шагов ограничено числом элементов, добавляемых
- в ToDo
+ в ToDo;
 \end_layout
 
 \begin_layout Itemize
@@ -7088,7 +7086,7 @@ reference "par:IsReducible"
 \end_inset
 
  возвращает не сигнатурный редуктор, соответствует добавлению нового элемента
- в ToDo и число таких шагов ограничено числом возможных добавлений
+ в ToDo и число таких шагов ограничено числом возможных добавлений;
 \end_layout
 
 \begin_layout Itemize
@@ -7141,7 +7139,7 @@ reference "Every_cycle_iteration_finish"
 
 \begin_layout Standard
 Отсюда получается следующий факт о поведении алгоритма в ситуации, когда
- он не завершается:
+ он не завершается.
 \end_layout
 
 \begin_layout Claim
@@ -8346,10 +8344,7 @@ reference "par:IsReducible"
 ).
  Такие S-пары будут называться 
 \emph on
-S-парами с частью, удовлетворяющей критерию F5
-\emph default
-.
- 
+S-парами с частью, удовлетворяющей критерию F5;
 \end_layout
 
 \begin_layout Enumerate
@@ -8377,9 +8372,7 @@ reference "par:IsReducible"
 ).
  Такие S-пары будут называться 
 \emph on
-S-парами с частью, удовлетворяющей критерию Перезаписи
-\emph default
-.
+S-парами с частью, удовлетворяющей критерию Перезаписи;
 \end_layout
 
 \begin_layout Enumerate
@@ -8443,7 +8436,7 @@ reference "par:CritPair"
 \begin_inset Formula $f_{i}$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Itemize
@@ -8462,7 +8455,7 @@ reference "par:CritPair"
 \begin_inset Formula $P$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Itemize
@@ -8477,7 +8470,7 @@ reference "par:Spol"
 
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Itemize
@@ -8499,7 +8492,7 @@ reference "par:Rewritten?"
 \begin_inset Formula $F_{d}=ToDo$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Itemize
@@ -8642,7 +8635,7 @@ reference "enu:IsRed-b"
 \begin_inset Formula $\overline{u_{l}}\cdot R[l^{*}]$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Itemize
@@ -8664,7 +8657,7 @@ reference "par:Rewritten?"
 \begin_inset Formula $\overline{u_{l}}\cdot R[l^{*}]$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Itemize
@@ -8702,7 +8695,7 @@ reference "par:Rewritten?"
 
 \end_inset
 
-
+;
 \end_layout
 
 \end_deeper
@@ -8771,7 +8764,7 @@ reference "par:TopReduction"
 
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Itemize
@@ -8782,7 +8775,7 @@ reference "par:Reduction"
 
 \end_inset
 
- добавляет этот многочлен в ToDo
+ добавляет этот многочлен в ToDo;
 \end_layout
 
 \begin_layout Itemize
@@ -9823,7 +9816,7 @@ reference "par:TopReduction"
 \uwave off
 \noun off
 \color none
- поскольку сигнатура левой части  
+ поскольку сигнатура левой части 
 \begin_inset Formula $\succ_{P}$
 \end_inset
 
@@ -10057,7 +10050,7 @@ reference "par:TopReduction"
 \begin_inset Formula $xy\cdot b_{2}\gtrdot_{1}y^{2}\cdot b_{2}$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Itemize
@@ -10076,7 +10069,7 @@ reference "par:TopReduction"
 \begin_inset Formula $x^{2}\cdot b_{2}+100y^{2}\cdot b_{2}\gtrdot x^{2}\cdot b_{2}$
 \end_inset
 
- поскольку правая часть является началом левой
+ поскольку правая часть является началом левой;
 \end_layout
 
 \begin_layout Itemize
@@ -10099,7 +10092,7 @@ reference "par:TopReduction"
 \begin_inset Formula $x^{2}\cdot b_{2}\gtrdot_{1}xy\cdot b_{2}$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Itemize
@@ -10122,7 +10115,7 @@ reference "par:TopReduction"
 \begin_inset Formula $xy\cdot b_{2}\gtrdot_{1}y\cdot b_{3}$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Itemize
@@ -10229,7 +10222,7 @@ reference "par:TopReduction"
 \begin_inset Formula $\lessdot$
 \end_inset
 
--минимальный элемент, является вполне упорядоченность:
+-минимальный элемент, является вполне упорядоченность.
 \end_layout
 
 \begin_layout Theorem
@@ -10338,14 +10331,14 @@ key "Baader.Nipkow98Term"
 \begin_inset Formula $m_{k}b_{i_{k}}$
 \end_inset
 
- не удовлетворяет критерию F5.
+ не удовлетворяет критерию F5;
 \end_layout
 
 \begin_layout Enumerate
 \begin_inset Formula $m_{k}b_{i_{k}}$
 \end_inset
 
- не удовлетворяет критерию Перезаписи.
+ не удовлетворяет критерию Перезаписи;
 \end_layout
 
 \begin_layout Enumerate
@@ -10364,7 +10357,7 @@ key "Baader.Nipkow98Term"
 \begin_inset Formula $\HM(m_{k}b_{i_{k}})\leqslant\HM(mh)$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
@@ -10410,7 +10403,7 @@ key "F5C"
 \begin_inset Formula $K$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Itemize
@@ -10418,7 +10411,7 @@ key "F5C"
 \begin_inset Formula $m_{K'}b_{i_{K'}}=\sum_{l}m_{l}\cdot b_{i_{l}}$
 \end_inset
 
- для этого элемента
+ для этого элемента;
 \end_layout
 
 \begin_layout Itemize
@@ -10430,7 +10423,7 @@ key "F5C"
 \begin_inset Formula $m_{K'}b_{i_{K'}}=m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
- 
+.
 \end_layout
 
 \begin_layout Standard
@@ -11120,7 +11113,7 @@ reference "eq:input-repr-case1"
  получим желаемый результат:
 \begin_inset Formula 
 \[
-m_{K}b_{i_{K}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i_{l'}}+\sum_{l}m_{l}\cdot f_{i_{l}}
+m_{K}b_{i_{K}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i_{l'}}+\sum_{l}m_{l}\cdot f_{i_{l}}.
 \]
 
 \end_inset
@@ -11512,7 +11505,8 @@ m_{K'}b_{i_{K'}}=c_{0}^{-1}c_{1}m_{K''}\cdot b_{i_{K''}}+c_{0}^{-1}m'\cdot b_{i'
 : 
 \end_layout
 
-\begin_layout Proof
+\begin_deeper
+\begin_layout Itemize
 \begin_inset Formula $m_{K''}\cdot b_{i_{K''}}$
 \end_inset
 
@@ -11520,10 +11514,10 @@ m_{K'}b_{i_{K'}}=c_{0}^{-1}c_{1}m_{K''}\cdot b_{i_{K''}}+c_{0}^{-1}m'\cdot b_{i'
 \begin_inset Formula $m_{K'}\cdot b_{i_{K'}}$
 \end_inset
 
- 
+;
 \end_layout
 
-\begin_layout Proof
+\begin_layout Itemize
 
 \family roman
 \series medium
@@ -11543,10 +11537,10 @@ m_{K'}b_{i_{K'}}=c_{0}^{-1}c_{1}m_{K''}\cdot b_{i_{K''}}+c_{0}^{-1}m'\cdot b_{i'
 \begin_inset Formula $i'>i_{K'}$
 \end_inset
 
-
+;
 \end_layout
 
-\begin_layout Proof
+\begin_layout Itemize
 последняя сумма состоит из элементов с сигнатурами, меньшими чем 
 \begin_inset Formula $m'\Sig(b_{i'})=\Sig(m_{K'}\cdot b_{i_{K'}})$
 \end_inset
@@ -11554,6 +11548,7 @@ m_{K'}b_{i_{K'}}=c_{0}^{-1}c_{1}m_{K''}\cdot b_{i_{K''}}+c_{0}^{-1}m'\cdot b_{i'
 .
 \end_layout
 
+\end_deeper
 \begin_layout Theorem
 \begin_inset CommandInset label
 LatexCommand label
@@ -11911,7 +11906,7 @@ Done
 \begin_inset Formula $f$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Itemize
@@ -11922,7 +11917,7 @@ Done
 \begin_inset Formula $t_{1}=\frac{\HM(f)}{\HM(f'_{1})}$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Itemize
@@ -12215,7 +12210,7 @@ reference "thm:always-exist-ok-reductor"
 
 \end_inset
 
- 
+;
 \end_layout
 
 \begin_layout Itemize
@@ -12243,7 +12238,7 @@ reference "thm:always-exist-ok-reductor"
 
 \end_inset
 
- 
+;
 \end_layout
 
 \begin_layout Itemize
@@ -12851,7 +12846,7 @@ SimplifiedF5
 \begin_inset Formula $R$
 \end_inset
 
-, образующих базис Грёбнера некоторого идеала 
+, образующих базис Грёбнера некоторого идеала.
 \end_layout
 
 \begin_layout Labeling
@@ -12878,7 +12873,7 @@ SimplifiedF5
 \begin_inset Formula $R$
 \end_inset
 
-, используемый при итерировании
+, используемый при итерировании.
 \end_layout
 
 \begin_layout Labeling
@@ -12901,7 +12896,7 @@ SimplifiedF5
 \begin_inset Formula $\left(\left\{ poly(R[r])|r\in G_{i-1}\right\} \cup f_{i}\right)$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -13253,7 +13248,7 @@ key "2012GrbTermination"
 
 \end_inset
 
-:
+.
 \end_layout
 
 \begin_layout Definition
@@ -13297,32 +13292,32 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \end_layout
 
 \begin_layout Itemize
-Один из них равен 
+один из них равен 
 \begin_inset Formula $(0,0)$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Itemize
 \begin_inset Formula $p_{1}=p_{2}=0$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Itemize
 \begin_inset Formula $\sigma_{1}=\sigma_{2}=0$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Itemize
 \begin_inset Formula $(\sigma_{1},p_{1})=(t\sigma_{2},tp_{2})$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
@@ -13442,7 +13437,7 @@ key "HuangConception"
 
 \end_inset
 
-:
+.
 \end_layout
 
 \begin_layout Definition
@@ -13492,7 +13487,7 @@ name "lem:precP_compatible"
  Тогда
 \begin_inset Formula 
 \[
-t_{1}\sigma\prec_{P}t_{2}\sigma\Longleftrightarrow\left(t_{1}s,i\right)\prec_{P}\left(t_{2}s,i\right)\Longleftrightarrow t_{1}s\prec t_{2}s\Longleftrightarrow t_{1}\prec t_{2}
+t_{1}\sigma\prec_{P}t_{2}\sigma\Longleftrightarrow\left(t_{1}s,i\right)\prec_{P}\left(t_{2}s,i\right)\Longleftrightarrow t_{1}s\prec t_{2}s\Longleftrightarrow t_{1}\prec t_{2}.
 \]
 
 \end_inset
@@ -13589,7 +13584,7 @@ name "lem:greater-or-smaller"
  Из условия леммы известно, что
 \begin_inset Formula 
 \begin{equation}
-\HM(h_{1})\Sig(h_{2})\prec_{\tau0}\HM(h_{2})\Sig(h_{1})\label{eq:gvw-order-3}
+\HM(h_{1})\Sig(h_{2})\prec_{\tau0}\HM(h_{2})\Sig(h_{1}),\label{eq:gvw-order-3}
 \end{equation}
 
 \end_inset
@@ -13778,7 +13773,7 @@ SimpleSignatureGroebner
 \begin_inset Formula $B$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Labeling
@@ -13789,7 +13784,7 @@ SimpleSignatureGroebner
 \begin_inset Formula $I=\left(g_{1},\dots,g_{m},f\right)$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -14014,7 +14009,7 @@ ReduceCheckingSignatures
 \begin_inset Formula $H$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Labeling
@@ -14029,7 +14024,7 @@ ReduceCheckingSignatures
 \begin_inset Formula $R$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Labeling
@@ -14044,7 +14039,7 @@ ReduceCheckingSignatures
 \begin_inset Formula $R$
 \end_inset
 
- и нормализованный единичным старшим коэффициентом
+ и нормализованный единичным старшим коэффициентом.
 \end_layout
 
 \begin_layout Enumerate
@@ -14454,7 +14449,7 @@ reference "par:SimpleSignatureGroebner"
 
 \end_inset
 
- останавливается
+ останавливается.
 \end_layout
 
 \begin_layout Proof
@@ -15150,7 +15145,7 @@ reference "par:SimpleSignatureGroebner"
 
 \end_inset
 
- возвращает базис Грёбнера
+ возвращает базис Грёбнера.
 \end_layout
 
 \begin_layout Proof
@@ -15248,7 +15243,7 @@ reference "par:SimpleSignatureGroebner"
 
 \end_inset
 
-, -- минимален
+, -- минимален.
 \end_layout
 
 \begin_layout Proof
@@ -15604,7 +15599,7 @@ SingleStepSignatureGroebner
 \begin_inset Formula $B$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Labeling
@@ -15615,7 +15610,7 @@ SingleStepSignatureGroebner
 \begin_inset Formula $I=\left(f_{1},\dots,f_{m}\right)$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -15801,7 +15796,7 @@ name "enu:-remove-from-B-sstep"
 \begin_inset Formula $\mathbf{T}$
 \end_inset
 
-.
+
 \end_layout
 
 \end_deeper
@@ -16309,7 +16304,7 @@ reference "par:SingleStepSignatureGroebner"
 
 \end_inset
 
- останавливается
+ останавливается.
 \end_layout
 
 \begin_layout Proof
@@ -16705,7 +16700,7 @@ reference "par:SingleStepSignatureGroebner"
 
 \end_inset
 
- возвращает базис Грёбнера
+ возвращает базис Грёбнера.
 \end_layout
 
 \begin_layout Proof
@@ -16816,7 +16811,7 @@ reference "par:SimpleSignatureGroebner"
 \end_layout
 
 \begin_layout Standard
-Для второго порядка понадобится формулировка в обобщённом виде:
+Для второго порядка понадобится формулировка в обобщённом виде.
 \end_layout
 
 \begin_layout Definition
@@ -16859,7 +16854,7 @@ reference "par:SimpleSignatureGroebner"
 \begin_inset Formula $\prec$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Proof
@@ -16871,7 +16866,7 @@ reference "par:SimpleSignatureGroebner"
  Тогда 
 \begin_inset Formula 
 \[
-t_{1}\sigma\prec_{w}t_{2}\sigma\Longleftrightarrow\left(t_{1}s,i\right)\prec_{w}\left(t_{2}s,i\right)\Longleftrightarrow t_{1}sw_{i}\prec t_{2}sw_{i}\Longleftrightarrow t_{1}\prec t_{2}
+t_{1}\sigma\prec_{w}t_{2}\sigma\Longleftrightarrow\left(t_{1}s,i\right)\prec_{w}\left(t_{2}s,i\right)\Longleftrightarrow t_{1}sw_{i}\prec t_{2}sw_{i}\Longleftrightarrow t_{1}\prec t_{2}.
 \]
 
 \end_inset
@@ -17884,8 +17879,7 @@ y^{2}-p_{1} & =0
 \begin_inset Formula $p_{1},p_{2}\in E$
 \end_inset
 
-.
- 
+: 
 \begin_inset Formula 
 \[
 \left\{ \begin{array}{cc}
@@ -18095,7 +18089,7 @@ name "needed-poly-prop"
 \begin_inset Formula $(a_{1},\varepsilon_{1})+(a_{2},\varepsilon_{2})=(a_{1}+a_{2},\varepsilon_{1}+\varepsilon_{2})$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Labeling
@@ -18108,7 +18102,7 @@ name "needed-poly-prop"
 \begin_inset Formula $(a_{1},\varepsilon_{1})\times(a_{2},0)=(a_{1}a_{2},\varepsilon_{1}\left|a_{2}\right|)$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
@@ -18119,7 +18113,7 @@ name "needed-poly-prop"
 :
 \begin_inset Formula 
 \[
-(a_{1},\varepsilon_{1})-(a_{2},\varepsilon_{2})=(a_{1},\varepsilon_{1})+((a_{2},\varepsilon_{2})\times_{0}-1)=(a_{1}-a_{2},\varepsilon_{1}+\varepsilon_{2})
+(a_{1},\varepsilon_{1})-(a_{2},\varepsilon_{2})=(a_{1},\varepsilon_{1})+((a_{2},\varepsilon_{2})\times_{0}-1)=(a_{1}-a_{2},\varepsilon_{1}+\varepsilon_{2}).
 \]
 
 \end_inset
@@ -18140,7 +18134,7 @@ name "needed-poly-prop"
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\frac{1}{(a,\varepsilon)}=\left(\frac{1}{a},\frac{\varepsilon}{\left|a\right|\left(\left|a\right|-\varepsilon\right)}\right)
+\frac{1}{(a,\varepsilon)}=\left(\frac{1}{a},\frac{\varepsilon}{\left|a\right|\left(\left|a\right|-\varepsilon\right)}\right).
 \]
 
 \end_inset
@@ -19068,15 +19062,15 @@ name "example:symbolic-zeroes"
 \begin_inset Formula 
 \[
 \begin{array}{ccc}
-\poly(f_{1})= & y^{2}z+_{0,1}1, & \Sig(f_{1})=\left(1,1\right)\\
-\poly(f_{2})= & y^{2}z^{2}+xz+1, & \Sig(f_{2})=\left(1,2\right)\\
-\poly(f_{3})= & y^{3}z+xy+1, & \Sig(f_{3})=\left(1,3\right)
+\poly(f_{1})= & y^{2}z+_{0,1}1, & \Sig(f_{1})=\left(1,1\right);\\
+\poly(f_{2})= & y^{2}z^{2}+xz+1, & \Sig(f_{2})=\left(1,2\right);\\
+\poly(f_{3})= & y^{3}z+xy+1, & \Sig(f_{3})=\left(1,3\right).
 \end{array}
 \]
 
 \end_inset
 
-и применим алгоритм 
+Применим к нему алгоритм 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "par:SingleStepSignatureGroebner"
@@ -19131,7 +19125,7 @@ reference "par:SingleStepSignatureGroebner"
  в результате
 \begin_inset Formula 
 \[
-\poly(f_{5})=\poly(f_{2})-z\poly(f_{4})=xz-\left(_{0,1}1\right)z+1,\Sig(f_{5})=\left(1,2\right)
+\poly(f_{5})=\poly(f_{2})-z\poly(f_{4})=xz-\left(_{0,1}1\right)z+1,\Sig(f_{5})=\left(1,2\right).
 \]
 
 \end_inset
@@ -19167,7 +19161,7 @@ reference "par:SingleStepSignatureGroebner"
  в результате
 \begin_inset Formula 
 \[
-\poly(f_{6})=\poly(f_{3})-y\poly(f_{4})=xy-\left(_{0,1}1\right)y+1,\Sig(f_{6})=\left(1,3\right)
+\poly(f_{6})=\poly(f_{3})-y\poly(f_{4})=xy-\left(_{0,1}1\right)y+1,\Sig(f_{6})=\left(1,3\right).
 \]
 
 \end_inset
@@ -19228,8 +19222,8 @@ reference "par:SingleStepSignatureGroebner"
 , то мы получим 
 \begin_inset Formula 
 \begin{eqnarray*}
-\poly\left(f_{5}\right) & = & xz-bz+1\\
-\poly\left(f_{6}\right) & = & xy-by+1\\
+\poly\left(f_{5}\right) & = & xz-bz+1,\\
+\poly\left(f_{6}\right) & = & xy-by+1,\\
 \poly\left(f_{7}\right) & = & z-y,
 \end{eqnarray*}
 
@@ -19577,9 +19571,9 @@ name "example:introduced-zeroes"
 \begin_inset Formula 
 \[
 \begin{array}{ccc}
-\poly(f_{1})= & y^{2}z+z^{2}+az, & \Sig(f_{1})=\left(1,1\right)\\
-\poly(f_{2})= & xyz, & \Sig(f_{2})=\left(1,2\right)\\
-\poly(f_{3})= & xy^{2}+bx+1, & \Sig(f_{3})=\left(1,3\right)
+\poly(f_{1})= & y^{2}z+z^{2}+az, & \Sig(f_{1})=\left(1,1\right);\\
+\poly(f_{2})= & xyz, & \Sig(f_{2})=\left(1,2\right);\\
+\poly(f_{3})= & xy^{2}+bx+1, & \Sig(f_{3})=\left(1,3\right).
 \end{array}
 \]
 
@@ -19632,7 +19626,7 @@ name "example:introduced-zeroes"
  в результате
 \begin_inset Formula 
 \[
-\poly(f_{5})=\poly(f_{2})=xyz,\Sig(f_{5})=\left(1,2\right)
+\poly(f_{5})=\poly(f_{2})=xyz,\Sig(f_{5})=\left(1,2\right).
 \]
 
 \end_inset
@@ -19668,7 +19662,7 @@ name "example:introduced-zeroes"
  в результате
 \begin_inset Formula 
 \[
-\poly(f_{6})=\poly(f_{3})=xy^{2}+bx+1,\Sig(f_{6})=\left(1,3\right)
+\poly(f_{6})=\poly(f_{3})=xy^{2}+bx+1,\Sig(f_{6})=\left(1,3\right).
 \]
 
 \end_inset
@@ -19708,7 +19702,7 @@ name "example:introduced-zeroes"
  в результате
 \begin_inset Formula 
 \[
-\poly(f_{7})=-\left(y\poly(f_{5})-x\poly(f_{4})\right)=xz^{2}+axz,\Sig(f_{7})=\left(y,2\right)
+\poly(f_{7})=-\left(y\poly(f_{5})-x\poly(f_{4})\right)=xz^{2}+axz,\Sig(f_{7})=\left(y,2\right).
 \]
 
 \end_inset
@@ -19780,7 +19774,7 @@ name "example:introduced-zeroes"
 
 \begin_inset Formula 
 \[
-\Sig(f_{8})=\left(z,3\right)
+\Sig(f_{8})=\left(z,3\right).
 \]
 
 \end_inset
@@ -20083,22 +20077,22 @@ reference "example:symbolic-zeroes"
 \begin_inset Formula 
 \[
 \begin{array}{ccc}
-\poly(f_{1})= & y^{2}z+\left\{ 76,{}_{0,1}1\right\} , & \Sig(f_{1})=\left(1,1\right)\\
-\poly(f_{2})= & y^{2}z^{2}+xz+1, & \Sig(f_{2})=\left(1,2\right)\\
-\poly(f_{3})= & y^{3}z+xy+1, & \Sig(f_{3})=\left(1,3\right)\\
-\poly(f_{4})= & \poly(f_{1})=y^{2}z+\left\{ 76,{}_{0,1}1\right\} , & \Sig(f_{4})=\left(1,1\right)\\
-\poly(f_{5})= & \poly(f_{2})-z\poly(f_{4})=xz+\left\{ 31,{}_{0,1}-1\right\} z+1, & \Sig(f_{5})=\left(1,2\right)\\
-\poly(f_{6})= & \poly(f_{3})-y\poly(f_{4})=xy+\left\{ 31,{}_{0,1}-1\right\} y+1, & \Sig(f_{6})=\left(1,3\right)\\
+\poly(f_{1})= & y^{2}z+\left\{ 76,{}_{0,1}1\right\} , & \Sig(f_{1})=\left(1,1\right);\\
+\poly(f_{2})= & y^{2}z^{2}+xz+1, & \Sig(f_{2})=\left(1,2\right);\\
+\poly(f_{3})= & y^{3}z+xy+1, & \Sig(f_{3})=\left(1,3\right);\\
+\poly(f_{4})= & \poly(f_{1})=y^{2}z+\left\{ 76,{}_{0,1}1\right\} , & \Sig(f_{4})=\left(1,1\right);\\
+\poly(f_{5})= & \poly(f_{2})-z\poly(f_{4})=xz+\left\{ 31,{}_{0,1}-1\right\} z+1, & \Sig(f_{5})=\left(1,2\right);\\
+\poly(f_{6})= & \poly(f_{3})-y\poly(f_{4})=xy+\left\{ 31,{}_{0,1}-1\right\} y+1, & \Sig(f_{6})=\left(1,3\right);\\
 \poly(f_{7})= & z\poly(f_{6})-y\poly(f_{5})=\\
  & \left(\left\{ 76,{}_{0,1}1\right\} +\left\{ 31,{}_{0,1}-1\right\} \right)yz+z-y=\\
- & \left(\left\{ 0,{}_{0,2}0\right\} \right)yz+z-y, & \Sig(f_{7})=\left(z,3\right)
+ & \left(\left\{ 0,{}_{0,2}0\right\} \right)yz+z-y, & \Sig(f_{7})=\left(z,3\right).
 \end{array}
 \]
 
 \end_inset
 
-и, применяя отбрасывание, в итоге получаем многочлен с обратимым старшим
- коэффициентом: 
+Применяя отбрасывание, в итоге получаем многочлен с обратимым старшим коэффициен
+том: 
 \begin_inset Formula 
 \[
 \poly\left(f_{7}\right)=z-y.
@@ -20140,7 +20134,7 @@ reference "example:introduced-zeroes"
  добавлялся с коэффициентами противоположных знаков, не дающих в сумме 0:
 \begin_inset Formula 
 \[
-2\cdot_{0,4}1-1\cdot_{0,4}1={}_{0,8}2-{}_{0,4}1=_{1,2}1
+2\cdot_{0,4}1-1\cdot_{0,4}1={}_{0,8}2-{}_{0,4}1=_{1,2}1.
 \]
 
 \end_inset
@@ -20150,7 +20144,7 @@ reference "example:introduced-zeroes"
  обратить:
 \begin_inset Formula 
 \[
-2\cdot_{0,4}1-1\cdot_{0,4}1=(2-1)\cdot_{\cdot0,4}1=1\cdot_{0,4}1={}_{0,4}1
+2\cdot_{0,4}1-1\cdot_{0,4}1=(2-1)\cdot_{\cdot0,4}1=1\cdot_{0,4}1={}_{0,4}1.
 \]
 
 \end_inset
@@ -20437,7 +20431,7 @@ name "enu:Select-prime-for-matrix"
 
 \end_inset
 
-Зафиксируем ещё одно простое число вида 
+Фиксируется ещё одно простое число вида 
 \begin_inset Formula $4k+3$
 \end_inset
 
@@ -20454,7 +20448,7 @@ reference "enu:Select-prime"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -20478,7 +20472,7 @@ reference "enu:Select-prime-for-matrix"
 
 \end_inset
 
- и выбирается другое простое число
+ и выбирается другое простое число.
 \end_layout
 
 \begin_layout Enumerate
@@ -20571,21 +20565,21 @@ reference "example:introduced-zeroes"
 \begin_inset Formula 
 \[
 \begin{array}{ccc}
-\poly(f_{1})= & y^{2}z+z^{2}+24z+t_{1}, & \Sig(f_{1})=\left(1,1\right)\\
-\poly(f_{2})= & xyz+t_{2}, & \Sig(f_{2})=\left(1,2\right)\\
-\poly(f_{3})= & xy^{2}+70x+1+t_{3}, & \Sig(f_{3})=\left(1,3\right)\\
-\poly(f_{4})= & \poly(f_{1})=y^{2}z+z^{2}+24z+t_{1}, & \Sig(f_{4})=\left(1,1\right)\\
-\poly(f_{5})= & \poly(f_{2})=xyz+t_{2}, & \Sig(f_{5})=\left(1,2\right)\\
-\poly(f_{6})= & \poly(f_{3})=xy^{2}+70x+1+t_{3}, & \Sig(f_{6})=\left(1,3\right)\\
+\poly(f_{1})= & y^{2}z+z^{2}+24z+t_{1}, & \Sig(f_{1})=\left(1,1\right);\\
+\poly(f_{2})= & xyz+t_{2}, & \Sig(f_{2})=\left(1,2\right);\\
+\poly(f_{3})= & xy^{2}+70x+1+t_{3}, & \Sig(f_{3})=\left(1,3\right);\\
+\poly(f_{4})= & \poly(f_{1})=y^{2}z+z^{2}+24z+t_{1}, & \Sig(f_{4})=\left(1,1\right);\\
+\poly(f_{5})= & \poly(f_{2})=xyz+t_{2}, & \Sig(f_{5})=\left(1,2\right);\\
+\poly(f_{6})= & \poly(f_{3})=xy^{2}+70x+1+t_{3}, & \Sig(f_{6})=\left(1,3\right);\\
 \poly(f_{7})= & -\left(y\poly(f_{5})-x\poly(f_{4})\right)=\\
- & xz^{2}+24xz+xt_{1}-yt_{2}, & \Sig(f_{7})=\left(y,2\right)\\
+ & xz^{2}+24xz+xt_{1}-yt_{2}, & \Sig(f_{7})=\left(y,2\right);\\
 \poly(f_{8})= & (z\poly(f_{6})-x\poly(f_{4}))+\poly(f_{7})=\\
  & \left(\left(xy^{2}z+70xz+z+zt_{3}\right)+\right.\\
  & \left.\left(-xy^{2}z-xz^{2}+83xz+106xt_{1}\right)\right)+\\
  & xz^{2}+24xz+xt_{1}-yt_{2}=\\
  & \left(\left(70+83\right)+24\right)xz+z+\\
  & zt_{3}-yt_{2}+(1+106)xt_{1}=\\
- & 70xz+z+zt_{3}-yt_{2}, & \Sig(f_{8})=\left(z,3\right)
+ & 70xz+z+zt_{3}-yt_{2}, & \Sig(f_{8})=\left(z,3\right).
 \end{array}
 \]
 
@@ -20689,7 +20683,7 @@ _{0,12}1zf_{3}+\left(_{0,12}-1\right)yf_{2}=
  
 \begin_inset Formula 
 \[
-={}_{0,24}0xy^{2}z+{}_{0,232}1xz+{}_{0,12}1z
+={}_{0,24}0xy^{2}z+{}_{0,232}1xz+{}_{0,12}1z.
 \]
 
 \end_inset
@@ -20839,7 +20833,7 @@ _{0,12}1zf_{3}+\left(_{0,12}-1\right)yf_{2}=
  преобразуются по формуле 
 \begin_inset Formula 
 \[
-m_{r,c}\rightarrow m_{r',c'}m_{r,c}-m_{r,c'}m_{r,c'}
+m_{r,c}\rightarrow m_{r',c'}m_{r,c}-m_{r,c'}m_{r,c'}.
 \]
 
 \end_inset
@@ -21145,7 +21139,7 @@ g\left(x_{1},\dots,x_{n}\right)=x_{n}^{s}g'\left(x_{1},\dots,x_{n-1}\right)+g''\
 \begin_inset Formula $q^{n}$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
@@ -21426,7 +21420,7 @@ reference "par:action-matrix-method"
  сумме с линейной оболочкой: 
 \begin_inset Formula 
 \[
-p\in I^{E}+\left\langle M^{E}\right\rangle 
+p\in I^{E}+\left\langle M^{E}\right\rangle ,
 \]
 
 \end_inset
@@ -21720,7 +21714,7 @@ reference "par:SingleStepSignatureGroebner"
 \begin_inset Formula $N+1$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Proof
@@ -21745,7 +21739,7 @@ reference "par:SingleStepSignatureGroebner"
 \begin_inset Formula $\left(\HM\left(f_{j}\right),m+1\right),j\leqslant m$
 \end_inset
 
-.
+;
 \end_layout
 
 \begin_layout Itemize
@@ -21762,7 +21756,7 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  имеет сигнатуру, превышающую сигнатуру обрабатываемых на этих итерациях
- многочленах
+ многочленах;
 \end_layout
 
 \begin_layout Itemize
@@ -21796,7 +21790,7 @@ reference "par:SingleStepSignatureGroebner"
 \begin_inset Formula $R$
 \end_inset
 
- при редукции.
+ при редукции;
 \end_layout
 
 \begin_layout Itemize
@@ -22048,9 +22042,9 @@ if
 
 
 \series bold
-: exit(
+: exit
 \series default
-
+ 
 \begin_inset Quotes fld
 \end_inset
 
@@ -22059,8 +22053,6 @@ if
 \end_inset
 
 
-\series bold
-)
 \end_layout
 
 \begin_layout Enumerate
@@ -22204,7 +22196,7 @@ for
 \begin_inset Formula $\mathbf{T}$
 \end_inset
 
-.
+
 \end_layout
 
 \end_deeper
@@ -22264,7 +22256,7 @@ reference "thm:gb-specializations"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
