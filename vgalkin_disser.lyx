@@ -240,6 +240,22 @@ theorems-sec
 \end_layout
 
 \begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\monone}{\mathbf{1}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\monzero}{\mathbf{0}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -1126,7 +1142,18 @@ reference "LastPage"
 
  -- набору степеней переменных, входящих в моном, называемом также 
 \emph on
-вектор-степенью монома;
+вектор-степенью монома.
+
+\emph default
+ Единичный моном будет выделяться как 
+\begin_inset Formula $\monone\in\mathbb{T}$
+\end_inset
+
+ для визуального отличия от числа 
+\begin_inset Formula $1\in\mathcal{K}$
+\end_inset
+
+;
 \end_layout
 
 \begin_layout Itemize
@@ -1142,12 +1169,12 @@ reference "LastPage"
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $\mathbb{T}_{0}=\mathbb{T}\cup\left\{ 0\right\} $
+\begin_inset Formula $\mathbb{T}_{0}=\mathbb{T}\cup\left\{ \monzero\right\} $
 \end_inset
 
  -- формально расширенное нулём множество мономов.
  Операция умножения расширяется как 
-\begin_inset Formula $\forall t\in\mathbb{T}_{0}\; t\cdot0=0$
+\begin_inset Formula $\forall t\in\mathbb{T}_{0}\; t\cdot\monzero=\monzero$
 \end_inset
 
 .
@@ -1160,6 +1187,19 @@ reference "LastPage"
 \begin_inset Formula $t_{1}|t_{2}\equivdef\exists t_{3}\; t_{1}\cdot t_{3}=t_{2}$
 \end_inset
 
+.
+ Нулевой элемент 
+\begin_inset Formula $\mathbb{T}_{0}$
+\end_inset
+
+ будет выделяться как 
+\begin_inset Formula $\monzero$
+\end_inset
+
+ для визуального отличия от числа 
+\begin_inset Formula $0\in\mathcal{K}$
+\end_inset
+
 ;
 \end_layout
 
@@ -1169,6 +1209,15 @@ reference "LastPage"
 
  -- кольцо многочленов 
 \begin_inset Formula $\mathcal{K}[x_{1},\dots,x_{n}]$
+\end_inset
+
+.
+ Нулевой многочлен обозначается 
+\begin_inset Formula $0$
+\end_inset
+
+ без выделения, поскольку 
+\begin_inset Formula $0\in\mathcal{K}\subset\mathcal{P}$
 \end_inset
 
 ;
@@ -1223,7 +1272,7 @@ t_{1}\prec t_{2}\Longrightarrow t_{1}t_{3}\prec t_{2}t_{3}
 \begin_layout Definition
 \begin_inset Formula 
 \[
-1\preccurlyeq t_{1}.
+\monone\preccurlyeq t_{1}.
 \]
 
 \end_inset
@@ -1321,7 +1370,7 @@ t_{1}\succ t_{2}
 
 .
  Случаи, когда один из элементов принадлежит 
-\begin_inset Formula $\mathbb{T}_{0}\setminus\mathbb{T}=\left\{ 0\right\} $
+\begin_inset Formula $\mathbb{T}_{0}\setminus\mathbb{T}=\left\{ \monzero\right\} $
 \end_inset
 
 , рассматриваются отдельно.
@@ -1354,7 +1403,7 @@ t_{1}\succ t_{2}
 
 .
  Минимальным элементом является 
-\begin_inset Formula $1\in\mathbb{T}$
+\begin_inset Formula $\monone\in\mathbb{T}$
 \end_inset
 
 , то есть пустое произведение;
@@ -1373,7 +1422,7 @@ t_{1}\succ t_{2}
 \end_inset
 
  заданием 
-\begin_inset Formula $1\succ_{0}0$
+\begin_inset Formula $\monone\succ_{0}\monzero$
 \end_inset
 
 .
@@ -1405,7 +1454,7 @@ t_{1}\succ t_{2}
 \end_inset
 
  определён как 
-\begin_inset Formula $\HM(0)=0$
+\begin_inset Formula $\HM(0)=\monzero$
 \end_inset
 
 ;
@@ -1681,7 +1730,7 @@ p=\sum_{k}m_{k}\cdot g_{i_{k}},\; g_{i_{k}}\in G,
 
 \end_inset
 
-в которй термы 
+в которой термы 
 \begin_inset Formula $m_{k}=c_{k}t_{k}\in\mathcal{K}\times\mathbb{T}$
 \end_inset
 
@@ -3072,7 +3121,7 @@ t'|t''\equivdef\exists t_{1}\in\mathbb{T},\; t''=t_{1}t'.
 \end_inset
 
 , и 
-\begin_inset Formula $0\in\mathbb{T}_{0}$
+\begin_inset Formula $\monzero\in\mathbb{T}_{0}$
 \end_inset
 
 , если 
@@ -3303,7 +3352,7 @@ t'|t''\equivdef\exists t_{1}\in\mathbb{T},\; t''=t_{1}t'.
 
 \emph default
  выполняется 
-\begin_inset Formula $\Sig(h'_{1})\succ_{\tau}\Sig(th_{2}),\HM(h'{}_{1})=\HM(th{}_{2})\neq0,$
+\begin_inset Formula $\Sig(h'_{1})\succ_{\tau}\Sig(th_{2}),\HM(h'{}_{1})=\HM(th{}_{2})\neq\monzero,$
 \end_inset
 
  то возможна 
@@ -3456,7 +3505,7 @@ name "example:labeled-polys"
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $\left(\Sss{t\HM(f_{i})}{j},0\right)$
+\begin_inset Formula $\left(\Sss{t\HM(f_{i})}j,0\right)$
 \end_inset
 
  для 
@@ -3502,7 +3551,7 @@ name "example:labeled-polys"
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $\left(0,g\right)$
+\begin_inset Formula $\left(\monzero,g\right)$
 \end_inset
 
  для 
@@ -4021,7 +4070,7 @@ IncrementalF5
 
 \family sans
 \shape italic
-\begin_inset Formula $R\leftarrow[(\Sss{1}{1},f_{1}),(\Sss{1}{2},f_{2}),\dots,(\Sss{1}{m},f_{m})]$
+\begin_inset Formula $R\leftarrow[(\Sss{\monone}1,f_{1}),(\Sss{\monone}2,f_{2}),\dots,(\Sss{\monone}m,f_{m})]$
 \end_inset
 
 
@@ -4062,7 +4111,7 @@ reference "par:AlgorithmF5"
 \end_inset
 
 
-\begin_inset Formula $((\Sss{1}{i},f_{i}),G_{i-1})$
+\begin_inset Formula $((\Sss{\monone}i,f_{i}),G_{i-1})$
 \end_inset
 
 
@@ -4104,7 +4153,7 @@ AlgorithmF5
  
 \series default
 
-\begin_inset Formula $(\Sss{1}{i},f_{i})$
+\begin_inset Formula $(\Sss{\monone}i,f_{i})$
 \end_inset
 
  -- отмеченный многочлен, 
@@ -6220,7 +6269,7 @@ reference "enu:IsRed-d"
 \end_inset
 
 , мы имеем 
-\begin_inset Formula $u_{k}=1$
+\begin_inset Formula $u_{k}=\monone$
 \end_inset
 
 , поскольку, полная степень критической пары равна полной степени её челна
@@ -6403,7 +6452,7 @@ reference "par:Rewritten?"
 \end_inset
 
  перезаписывается 
-\begin_inset Formula $\left(1,r_{k}\right)$
+\begin_inset Formula $\left(\monone,r_{k}\right)$
 \end_inset
 
 .
@@ -6825,7 +6874,7 @@ reference "par:TopReduction"
 \end_inset
 
 , мы получаем свойства 
-\begin_inset Formula $t=1$
+\begin_inset Formula $t=\monone$
 \end_inset
 
  и 
@@ -7581,7 +7630,7 @@ reference "par:IsReducible"
 \end_deeper
 \begin_layout Proof
 Если алгоритм не останавливается, то многочлен входного множества 
-\begin_inset Formula $R[m]=(\Sss{1}{m},f_{m})$
+\begin_inset Formula $R[m]=(\Sss{\monone}m,f_{m})$
 \end_inset
 
  является генератором цепи S-пар, поскольку каждый многочлен 
@@ -8531,7 +8580,7 @@ reference "par:Reduction"
 \end_inset
 
 , и S-многочлен им соответствующий имеет вид 
-\begin_inset Formula $\overline{u_{l}}\cdot\poly(R[l^{*}])-1\cdot\poly(R[l_{*}])$
+\begin_inset Formula $\overline{u_{l}}\cdot\poly(R[l^{*}])-\monone\cdot\poly(R[l_{*}])$
 \end_inset
 
 .
@@ -8681,7 +8730,7 @@ reference "enu:IsRed-d"
 \end_inset
 
  и 
-\begin_inset Formula $1\cdot R[l_{*}]$
+\begin_inset Formula $\monone\cdot R[l_{*}]$
 \end_inset
 
  может быть перезаписан другим, поэтому, если S-пара не была отброшена проверкой
@@ -8693,7 +8742,7 @@ reference "enu:IsRed-c"
 \end_inset
 
 , данный тип отбрасывания означает, что часть S-пары 
-\begin_inset Formula $1\cdot R[l_{*}]$
+\begin_inset Formula $\monone\cdot R[l_{*}]$
 \end_inset
 
  не проходит проверку 
@@ -9802,7 +9851,7 @@ reference "par:TopReduction"
 \noun default
 \color inherit
  и сигнатурами 
-\begin_inset Formula $\Sig(b_{1})=\Sss{1}{1},\,\Sig(b_{2})=\Sss{1}{2},\,\Sig(b_{3})=\Sss{x}{2}$
+\begin_inset Formula $\Sig(b_{1})=\Sss{\monone}1,\,\Sig(b_{2})=\Sss{\monone}2,\,\Sig(b_{3})=\Sss x2$
 \end_inset
 
 .
@@ -12843,7 +12892,7 @@ SimplifiedF5
  
 \series default
 
-\begin_inset Formula $(\Sss{1}{i},f_{i})$
+\begin_inset Formula $(\Sss{\monone}i,f_{i})$
 \end_inset
 
  -- отмеченный многочлен, 
@@ -13190,7 +13239,7 @@ key "2012GrbTermination"
 \end_inset
 
 : 
-\begin_inset Formula $\mathbf{T}_{0}\eqdef\mathbf{T}\cup\{0\}$
+\begin_inset Formula $\mathbf{T}_{0}\eqdef\mathbf{T}\cup\{\monzero\}$
 \end_inset
 
 .
@@ -13301,7 +13350,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 
 \begin_layout Itemize
 один из них равен 
-\begin_inset Formula $(0,0)$
+\begin_inset Formula $(\monzero,0)$
 \end_inset
 
 ;
@@ -13315,7 +13364,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $\sigma_{1}=\sigma_{2}=0$
+\begin_inset Formula $\sigma_{1}=\sigma_{2}=\monzero$
 \end_inset
 
 ;
@@ -13344,7 +13393,7 @@ name "remark:follows-from-lessH"
 \end_inset
 
  возможно только тогда, когда 
-\begin_inset Formula $0\ne\HM(p_{2})\sigma_{1}$
+\begin_inset Formula $\monzero\ne\HM(p_{2})\sigma_{1}$
 \end_inset
 
 .
@@ -13371,7 +13420,7 @@ name "remark:follows-from-lessH"
 , элементы с нулевой сигнатурой -- также нестрогие экстремумы:
 \begin_inset Formula 
 \[
-\forall\sigma_{2},p_{1},p_{2}\;\left(0,p_{1}\right)\not\GVWl\left(\sigma_{2},p_{2}\right).
+\forall\sigma_{2},p_{1},p_{2}\;\left(\monzero,p_{1}\right)\not\GVWl\left(\sigma_{2},p_{2}\right).
 \]
 
 \end_inset
@@ -13409,7 +13458,7 @@ name "remark:follows-from-lessH"
 
 \begin_layout Lemma
 Пусть 
-\begin_inset Formula $h_{1},h_{2}\in H,\HM(h_{1})|\HM(h_{2}),\HM(h_{2})\neq0$
+\begin_inset Formula $h_{1},h_{2}\in H,\HM(h_{1})|\HM(h_{2}),\HM(h_{2})\neq\monzero$
 \end_inset
 
 .
@@ -13488,14 +13537,14 @@ name "lem:precP_compatible"
 
 \begin_layout Proof
 Пусть 
-\begin_inset Formula $\sigma=\Sss{s}{i}\in\mathbf{T}$
+\begin_inset Formula $\sigma=\Sss si\in\mathbf{T}$
 \end_inset
 
 .
  Тогда
 \begin_inset Formula 
 \[
-t_{1}\sigma\prec_{P}t_{2}\sigma\Longleftrightarrow\Sss{t_{1}s}{i}\prec_{P}\Sss{t_{2}s}{i}\Longleftrightarrow t_{1}s\prec t_{2}s\Longleftrightarrow t_{1}\prec t_{2}.
+t_{1}\sigma\prec_{P}t_{2}\sigma\Longleftrightarrow\Sss{t_{1}s}i\prec_{P}\Sss{t_{2}s}i\Longleftrightarrow t_{1}s\prec t_{2}s\Longleftrightarrow t_{1}\prec t_{2}.
 \]
 
 \end_inset
@@ -13559,7 +13608,7 @@ name "lem:greater-or-smaller"
 
  отмеченные многочлены.
  Тогда 
-\begin_inset Formula $\forall h_{3}\in H\setminus\left\{ \left(0,0\right)\right\} $
+\begin_inset Formula $\forall h_{3}\in H\setminus\left\{ \left(\monzero,0\right)\right\} $
 \end_inset
 
  выполняется хотя бы одно из двух неравенств: 
@@ -13605,12 +13654,12 @@ reference "remark:follows-from-lessH"
 \end_inset
 
  
-\begin_inset Formula $\HM(h_{2})\neq0,\Sig(h_{1})\neq0$
+\begin_inset Formula $\HM(h_{2})\neq\monzero,\Sig(h_{1})\neq\monzero$
 \end_inset
 
 .
  Поэтому, если 
-\begin_inset Formula $\HM(h_{3})=0$
+\begin_inset Formula $\HM(h_{3})=\monzero$
 \end_inset
 
 , имеем 
@@ -13618,7 +13667,7 @@ reference "remark:follows-from-lessH"
 \end_inset
 
 , а если 
-\begin_inset Formula $\Sig(h_{3})=0$
+\begin_inset Formula $\Sig(h_{3})=\monzero$
 \end_inset
 
  -- то 
@@ -13796,7 +13845,7 @@ SimpleSignatureGroebner
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $R\leftarrow\{\left(\HM(g_{1}),0\right),\dots,\left(\HM(g_{m}),0\right),(0,g_{1}),\dots,(0,g_{m})\}$
+\begin_inset Formula $R\leftarrow\{\left(\HM(g_{1}),0\right),\dots,\left(\HM(g_{m}),0\right),(\monzero,g_{1}),\dots,(\monzero,g_{m})\}$
 \end_inset
 
 
@@ -13810,7 +13859,7 @@ SimpleSignatureGroebner
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $(\sigma,p')\leftarrow(1,f)$
+\begin_inset Formula $(\sigma,p')\leftarrow(\monone,f)$
 \end_inset
 
 
@@ -13883,7 +13932,7 @@ if
 for 
 \series default
 
-\begin_inset Formula $\{r\in R\,|\, r\GVWl\left(\sigma,p\right),\HM(r)\neq0\}$
+\begin_inset Formula $\{r\in R\,|\, r\GVWl\left(\sigma,p\right),\HM(r)\neq\monzero\}$
 \end_inset
 
 
@@ -14122,7 +14171,7 @@ return
 \end_inset
 
  в алгоритме -- элементы 
-\begin_inset Formula $H\setminus\left\{ \left(0,0\right)\right\} $
+\begin_inset Formula $H\setminus\left\{ \left(\monzero,0\right)\right\} $
 \end_inset
 
 .
@@ -14169,12 +14218,16 @@ reference "example:labeled-polys"
 \begin_inset Formula $\sigma$
 \end_inset
 
- никогда не обращается в 0 и нулевые сигнатуры в 
+ никогда не обращается в 
+\begin_inset Formula $\monzero$
+\end_inset
+
+ и нулевые сигнатуры в 
 \begin_inset Formula $R$
 \end_inset
 
  лишь у элементов 
-\begin_inset Formula $(0,g_{1}),...,(0,g_{m}).$
+\begin_inset Formula $(\monzero,g_{1}),...,(\monzero,g_{m}).$
 \end_inset
 
  Нулевой старший моном может быть у любого многочлена, добавляемого в 
@@ -14270,14 +14323,18 @@ reference "enu:-before-reduce"
 
 \begin_layout Proof
 На первой итерации алгоритма это выполняется, поскольку 
-\begin_inset Formula $\sigma=1$
+\begin_inset Formula $\sigma=\monone$
 \end_inset
 
  и 
 \begin_inset Formula $R$
 \end_inset
 
- не содержит элементы с сигнатурами, делящими 1.
+ не содержит элементы с сигнатурами, делящими 
+\begin_inset Formula $\monone$
+\end_inset
+
+.
  На последующих итерациях это выполнено, поскольку если бы в 
 \begin_inset Formula $R$
 \end_inset
@@ -14508,20 +14565,20 @@ reference "par:ReduceCheckingSignatures"
 
 .
  Оно может быть разбито как 
-\begin_inset Formula $R_{*0}\cup R_{0*}\cup R_{**},$
+\begin_inset Formula $R_{*0}\cup R_{\monzero*}\cup R_{**},$
 \end_inset
 
  где 
-\begin_inset Formula $R_{*0}\subset\mathbb{T}\times\left\{ 0\right\} ,R_{0*}\subset\left\{ 0\right\} \times\mathcal{P}\setminus\left\{ 0\right\} ,R_{**}\subset\mathbb{T}\times\mathcal{P}\setminus\left\{ 0\right\} $
+\begin_inset Formula $R_{*0}\subset\mathbb{T}\times\left\{ 0\right\} ,R_{\monzero*}\subset\left\{ \monzero\right\} \times\mathcal{P}\setminus\left\{ 0\right\} ,R_{**}\subset\mathbb{T}\times\mathcal{P}\setminus\left\{ 0\right\} $
 \end_inset
 
 .
  
-\begin_inset Formula $R_{0*}$
+\begin_inset Formula $R_{\monzero*}$
 \end_inset
 
  не пополняется в силу 
-\begin_inset Formula $\sigma\neq0$
+\begin_inset Formula $\sigma\neq\monzero$
 \end_inset
 
 .
@@ -14660,7 +14717,7 @@ name "lem:s-basis-and-no-reductions"
 \end_inset
 
 Пусть 
-\begin_inset Formula $\sigma\succ_{0}0,R=\left\{ r_{i}\right\} $
+\begin_inset Formula $\sigma\succ_{0}\monzero,R=\left\{ r_{i}\right\} $
 \end_inset
 
  -- S
@@ -14879,7 +14936,7 @@ reference "enu:-remove-from-B"
 \end_inset
 
  с 
-\begin_inset Formula $\Sig(r_{0})=1$
+\begin_inset Formula $\Sig(r_{0})=\monone$
 \end_inset
 
 .
@@ -15045,15 +15102,15 @@ reference "enu:-remove-from-B"
 \end_inset
 
  соответствующие отмеченные многочлены 
-\begin_inset Formula $\left(0,g\right)$
+\begin_inset Formula $\left(\monzero,g\right)$
 \end_inset
 
  имеют сигнатурные представления над 
-\begin_inset Formula $\{(0,g_{1}),...,(0,g_{m})\}\subset R$
+\begin_inset Formula $\{(\monzero,g_{1}),...,(\monzero,g_{m})\}\subset R$
 \end_inset
 
 , поэтому 
-\begin_inset Formula $\sigma\succ_{0}0$
+\begin_inset Formula $\sigma\succ_{0}\monzero$
 \end_inset
 
 .
@@ -15622,14 +15679,14 @@ SingleStepSignatureGroebner
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $R\leftarrow\cup_{1\leqslant i<j\leqslant m}\left\{ \left(\max_{\prec_{a}}\left(\Sss{\HM(f_{i})}{j},\Sss{\HM(f_{j})}{i}\right),0\right)\right\} $
+\begin_inset Formula $R\leftarrow\cup_{1\leqslant i<j\leqslant m}\left\{ \left(\max_{\prec_{a}}\left(\Sss{\HM(f_{i})}j,\Sss{\HM(f_{j})}i\right),0\right)\right\} $
 \end_inset
 
 
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $B\leftarrow\{(\Sss{1}{1},f_{1}),(\Sss{1}{2},f_{2}),\dots,(\Sss{1}{m},f_{m})\}$
+\begin_inset Formula $B\leftarrow\{(\Sss{\monone}1,f_{1}),(\Sss{\monone}2,f_{2}),\dots,(\Sss{\monone}m,f_{m})\}$
 \end_inset
 
 
@@ -15673,14 +15730,10 @@ name "enu:-remove-sigma-from-B-sstep"
 if
 \series default
  
-\begin_inset Formula $\sigma=\Sss{1}{\sigidx\left(\sigma}\right)$
+\begin_inset Formula $\sigma=\Sss{\monone}{\sigidx\left(\sigma\right)}$
 \end_inset
 
-
-\series bold
-:
-\series default
- 
+: 
 \begin_inset Formula $B\leftarrow B\setminus\{b\in B,\Sig(b)=\sigma\}$
 \end_inset
 
@@ -15705,8 +15758,8 @@ reference "par:ReduceCheckingSignatures"
 
 \end_inset
 
-((
-\begin_inset Formula $\sigma,p'),R$
+(
+\begin_inset Formula $\left(\sigma,p'\right),R$
 \end_inset
 
 )
@@ -15747,7 +15800,7 @@ if
 for 
 \series default
 
-\begin_inset Formula $\{r\in R\,|\, r\GVWl\left(\sigma,p\right),\HM(r)\neq0\}$
+\begin_inset Formula $\{r\in R\,|\, r\GVWl\left(\sigma,p\right),\HM(r)\neq\monzero\}$
 \end_inset
 
 
@@ -16041,8 +16094,12 @@ reference "par:SingleStepSignatureGroebner"
 \begin_inset Formula $B$
 \end_inset
 
-, моном сигнатуры которого не равен 1, может быть редуцирован с сохранением
- сигнатуры по некоторому элементу 
+, моном сигнатуры которого не равен 
+\begin_inset Formula $\monone$
+\end_inset
+
+, может быть редуцирован с сохранением сигнатуры по некоторому элементу
+ 
 \begin_inset Formula $R.$
 \end_inset
 
@@ -16050,7 +16107,11 @@ reference "par:SingleStepSignatureGroebner"
 \end_layout
 
 \begin_layout Proof
-Отмеченные многочлены c не равным 1 мономом сигнатуры добавляются в 
+Отмеченные многочлены c не равным 
+\begin_inset Formula $\monone$
+\end_inset
+
+ мономом сигнатуры добавляются в 
 \begin_inset Formula $B$
 \end_inset
 
@@ -16101,11 +16162,19 @@ reference "enu:-before-reduce-sstep"
 
 \begin_layout Proof
 На первой итерации алгоритма это выполняется, поскольку все мономы сигнатур
- равны 1, а все элементы 
+ равны 
+\begin_inset Formula $\monone$
+\end_inset
+
+, а все элементы 
 \begin_inset Formula $R$
 \end_inset
 
- имеют сигнатуры не равные 1.
+ имеют сигнатуры не равные 
+\begin_inset Formula $\monone$
+\end_inset
+
+.
  На последующих итерациях это выполнено, поскольку, если бы в 
 \begin_inset Formula $R$
 \end_inset
@@ -16210,7 +16279,11 @@ reference "enu:-after-reduce"
 \end_layout
 
 \begin_layout Proof
-Для элементов с мономом сигнатуры, отличным от 1, в силу леммы 
+Для элементов с мономом сигнатуры, отличным от 
+\begin_inset Formula $\monone$
+\end_inset
+
+, в силу леммы 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "lem:exist-reductor-not1-sstep"
@@ -16264,7 +16337,11 @@ reference "lem:r-gvw-big-sstep"
 \end_layout
 
 \begin_layout Proof
-Для элементов с мономом сигнатуры 1 на шаге 
+Для элементов с мономом сигнатуры 
+\begin_inset Formula $\monone$
+\end_inset
+
+ на шаге 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:-after-reduce"
@@ -16276,9 +16353,12 @@ reference "enu:-after-reduce"
 \end_inset
 
  не может быть делящих сигнатуру элементов, поскольку все элементы, добавленные
- изначально, имеют не равные 1 мономы сигнатуры, а среди добавляемых позже
- элементов 
-\begin_inset Formula $\left(\sigma,p\right)=\left(\Sss{1}{\sigidx(\sigma)},p\right)$
+ изначально, имеют не равные 
+\begin_inset Formula $\monone$
+\end_inset
+
+ мономы сигнатуры, а среди добавляемых позже элементов 
+\begin_inset Formula $\left(\sigma,p\right)=\left(\Sss{\monone}{\sigidx(\sigma)},p\right)$
 \end_inset
 
  -- это первый элемент с индексом 
@@ -16287,7 +16367,7 @@ reference "enu:-after-reduce"
 
 , который не может иметь делителей сигнатуры.
  Повторное добавление элемента с сигнатурой 
-\begin_inset Formula $\Sss{1}{\sigidx(\sigma)}$
+\begin_inset Formula $\Sss{\monone}{\sigidx(\sigma)}$
 \end_inset
 
  невозможно, поскольку такие элементы явно удаляются из 
@@ -16357,7 +16437,7 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  где 
-\begin_inset Formula $R_{i0}\subset\left\{ (\sigma,i),\sigma\in\mathbb{T}\right\} \times\left\{ 0\right\} ,R_{i*}\subset\left\{ (\sigma,i),\sigma\in\mathbb{T}\right\} \times\mathbb{T}$
+\begin_inset Formula $R_{i0}\subset\left\{ \Sss{\sigma}i,\sigma\in\mathbb{T}\right\} \times\left\{ 0\right\} ,R_{i*}\subset\left\{ \Sss{\sigma}i,\sigma\in\mathbb{T}\right\} \times\mathbb{\mathcal{P}}\setminus\left\{ 0\right\} $
 \end_inset
 
 .
@@ -16378,11 +16458,11 @@ reference "thm:SSG-stop"
 
 .
  Рассмотрим следующие множества, являющиеся идеалами моноидов: 
-\begin_inset Formula $L_{i0}=\left(\left\{ \sigma\,|\,((\sigma,i),0)\in R_{i0}\right\} \right)\subset\mathbb{T}$
+\begin_inset Formula $L_{i0}=\left(\left\{ \sigma\,|\,(\Sss{\sigma}i,0)\in R_{i0}\right\} \right)\subset\mathbb{T}$
 \end_inset
 
  и 
-\begin_inset Formula $L_{i*}=\left(\left\{ (\sigma,t)\,|\,\exists((\sigma,i),p)\in R_{**}\; t=\HM(p)\right\} \right)\subset\mathbb{T}\times\mathbb{T}$
+\begin_inset Formula $L_{i*}=\left(\left\{ (\sigma,t)\,|\,\exists(\Sss{\sigma}i,p)\in R_{**}\; t=\HM(p)\right\} \right)\subset\mathbb{T}\times\mathbb{T}$
 \end_inset
 
 .
@@ -16473,7 +16553,7 @@ reference "enu:-remove-from-B-sstep"
 \end_inset
 
  содержит элементы с сигнатурой 
-\begin_inset Formula $\Sss{1}{i}$
+\begin_inset Formula $\Sss{\monone}i$
 \end_inset
 
  для всех индексов сигнатуры 
@@ -16482,7 +16562,7 @@ reference "enu:-remove-from-B-sstep"
 
 .
  В процессе работы алгоритма элемент c сигнатурой 
-\begin_inset Formula $\Sss{1}{i}$
+\begin_inset Formula $\Sss{\monone}i$
 \end_inset
 
  не может быть удалён из 
@@ -16507,7 +16587,7 @@ reference "enu:-remove-from-B-sstep"
 
  с такой же сигнатурой.
  Когда какой-то из элементов с сигнатурой 
-\begin_inset Formula $\Sss{1}{i}$
+\begin_inset Formula $\Sss{\monone}i$
 \end_inset
 
  исключается на шаге 
@@ -16539,7 +16619,7 @@ reference "enu:-remove-sigma-from-B-sstep"
 \end_inset
 
  с 
-\begin_inset Formula $\Sig(r_{0})=\Sss{1}{\sigidx(\sigma)}$
+\begin_inset Formula $\Sig(r_{0})=\Sss{\monone}{\sigidx(\sigma)}$
 \end_inset
 
  и можно утверждать что множество 
@@ -16867,14 +16947,14 @@ reference "par:SimpleSignatureGroebner"
 
 \begin_layout Proof
 Пусть 
-\begin_inset Formula $\sigma=\Sss{s}{i}\in\mathbf{T}$
+\begin_inset Formula $\sigma=\Sss si\in\mathbf{T}$
 \end_inset
 
 .
  Тогда 
 \begin_inset Formula 
 \[
-t_{1}\sigma\prec_{w}t_{2}\sigma\Longleftrightarrow\Sss{t_{1}s}{i}\prec_{w}\Sss{t_{2}s}{i}\Longleftrightarrow t_{1}sw_{i}\prec t_{2}sw_{i}\Longleftrightarrow t_{1}\prec t_{2}.
+t_{1}\sigma\prec_{w}t_{2}\sigma\Longleftrightarrow\Sss{t_{1}s}i\prec_{w}\Sss{t_{2}s}i\Longleftrightarrow t_{1}sw_{i}\prec t_{2}sw_{i}\Longleftrightarrow t_{1}\prec t_{2}.
 \]
 
 \end_inset
@@ -19070,9 +19150,9 @@ name "example:symbolic-zeroes"
 \begin_inset Formula 
 \[
 \begin{array}{ccc}
-\poly(f_{1})= & y^{2}z+_{0,1}1, & \Sig(f_{1})=\Sss{1}{1};\\
-\poly(f_{2})= & y^{2}z^{2}+xz+1, & \Sig(f_{2})=\Sss{1}{2};\\
-\poly(f_{3})= & y^{3}z+xy+1, & \Sig(f_{3})=\Sss{1}{3}.
+\poly(f_{1})= & y^{2}z+_{0,1}1, & \Sig(f_{1})=\Sss{\monone}1;\\
+\poly(f_{2})= & y^{2}z^{2}+xz+1, & \Sig(f_{2})=\Sss{\monone}2;\\
+\poly(f_{3})= & y^{3}z+xy+1, & \Sig(f_{3})=\Sss{\monone}3.
 \end{array}
 \]
 
@@ -19099,7 +19179,7 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  редуцируется по 
-\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}{3},0\right),\left(\Sss{y^{3}z}{3},0\right),\left(\Sss{y^{2}z}{2},0\right)\right\} ,$
+\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}3,0\right),\left(\Sss{y^{3}z}3,0\right),\left(\Sss{y^{2}z}2,0\right)\right\} ,$
 \end_inset
 
  давая 
@@ -19109,7 +19189,7 @@ reference "par:SingleStepSignatureGroebner"
  в результате
 \begin_inset Formula 
 \[
-\poly(f_{4})=\poly(f_{1})=y^{2}z+_{0,1}1,\Sig(f_{4})=\Sss{1}{1}.
+\poly(f_{4})=\poly(f_{1})=y^{2}z+_{0,1}1,\Sig(f_{4})=\Sss{\monone}1.
 \]
 
 \end_inset
@@ -19123,7 +19203,7 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  редуцируется по 
-\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}{3},0\right),\left(\Sss{y^{3}z}{3},0\right),\left(\Sss{y^{2}z}{2},0\right),f_{4}\right\} ,$
+\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}3,0\right),\left(\Sss{y^{3}z}3,0\right),\left(\Sss{y^{2}z}2,0\right),f_{4}\right\} ,$
 \end_inset
 
  давая 
@@ -19133,7 +19213,7 @@ reference "par:SingleStepSignatureGroebner"
  в результате
 \begin_inset Formula 
 \[
-\poly(f_{5})=\poly(f_{2})-z\poly(f_{4})=xz-\left(_{0,1}1\right)z+1,\Sig(f_{5})=\Sss{1}{2}.
+\poly(f_{5})=\poly(f_{2})-z\poly(f_{4})=xz-\left(_{0,1}1\right)z+1,\Sig(f_{5})=\Sss{\monone}2.
 \]
 
 \end_inset
@@ -19159,7 +19239,7 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  редуцируется по 
-\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}{3},0\right),\left(\Sss{y^{3}z}{3},0\right),\left(\Sss{y^{2}z}{2},0\right),f_{4},f_{5}\right\} ,$
+\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}3,0\right),\left(\Sss{y^{3}z}3,0\right),\left(\Sss{y^{2}z}2,0\right),f_{4},f_{5}\right\} ,$
 \end_inset
 
  давая 
@@ -19169,7 +19249,7 @@ reference "par:SingleStepSignatureGroebner"
  в результате
 \begin_inset Formula 
 \[
-\poly(f_{6})=\poly(f_{3})-y\poly(f_{4})=xy-\left(_{0,1}1\right)y+1,\Sig(f_{6})=\Sss{1}{3}.
+\poly(f_{6})=\poly(f_{3})-y\poly(f_{4})=xy-\left(_{0,1}1\right)y+1,\Sig(f_{6})=\Sss{\monone}3.
 \]
 
 \end_inset
@@ -19203,7 +19283,7 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  редуцируется по 
-\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}{3},0\right),\left(\Sss{y^{3}z}{3},0\right),\left(\Sss{y^{2}z}{2},0\right),f_{4},f_{5},f_{6}\right\} ,$
+\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}3,0\right),\left(\Sss{y^{3}z}3,0\right),\left(\Sss{y^{2}z}2,0\right),f_{4},f_{5},f_{6}\right\} ,$
 \end_inset
 
  давая 
@@ -19213,7 +19293,7 @@ reference "par:SingleStepSignatureGroebner"
  в результате
 \begin_inset Formula 
 \[
-\poly(f_{7})=z\poly(f_{6})-y\poly(f_{5})=\left(_{0,2}0\right)yz+z-y,\Sig(f_{7})=\Sss{z}{3}.
+\poly(f_{7})=z\poly(f_{6})-y\poly(f_{5})=\left(_{0,2}0\right)yz+z-y,\Sig(f_{7})=\Sss z3.
 \]
 
 \end_inset
@@ -19579,9 +19659,9 @@ name "example:introduced-zeroes"
 \begin_inset Formula 
 \[
 \begin{array}{ccc}
-\poly(f_{1})= & y^{2}z+z^{2}+az, & \Sig(f_{1})=\Sss{1}{1};\\
-\poly(f_{2})= & xyz, & \Sig(f_{2})=\Sss{1}{2};\\
-\poly(f_{3})= & xy^{2}+bx+1, & \Sig(f_{3})=\Sss{1}{3}.
+\poly(f_{1})= & y^{2}z+z^{2}+az, & \Sig(f_{1})=\Sss{\monone}1;\\
+\poly(f_{2})= & xyz, & \Sig(f_{2})=\Sss{\monone}2;\\
+\poly(f_{3})= & xy^{2}+bx+1, & \Sig(f_{3})=\Sss{\monone}3.
 \end{array}
 \]
 
@@ -19600,7 +19680,7 @@ name "example:introduced-zeroes"
 \end_inset
 
  редуцируется по 
-\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}{3},0\right),\left(\Sss{xyz}{3},0\right),\left(\Sss{y^{2}z}{2},0\right)\right\} ,$
+\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}3,0\right),\left(\Sss{xyz}3,0\right),\left(\Sss{y^{2}z}2,0\right)\right\} ,$
 \end_inset
 
  давая 
@@ -19610,7 +19690,7 @@ name "example:introduced-zeroes"
  в результате
 \begin_inset Formula 
 \[
-\poly(f_{4})=\poly(f_{1})=y^{2}z+z^{2}+az,\Sig(f_{4})=\Sss{1}{1}.
+\poly(f_{4})=\poly(f_{1})=y^{2}z+z^{2}+az,\Sig(f_{4})=\Sss{\monone}1.
 \]
 
 \end_inset
@@ -19624,7 +19704,7 @@ name "example:introduced-zeroes"
 \end_inset
 
  редуцируется по 
-\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}{3},0\right),\left(\Sss{xyz}{3},0\right),\left(\Sss{y^{2}z}{2},0\right),f_{4}\right\} ,$
+\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}3,0\right),\left(\Sss{xyz}3,0\right),\left(\Sss{y^{2}z}2,0\right),f_{4}\right\} ,$
 \end_inset
 
  давая 
@@ -19634,7 +19714,7 @@ name "example:introduced-zeroes"
  в результате
 \begin_inset Formula 
 \[
-\poly(f_{5})=\poly(f_{2})=xyz,\Sig(f_{5})=\Sss{1}{2}.
+\poly(f_{5})=\poly(f_{2})=xyz,\Sig(f_{5})=\Sss{\monone}2.
 \]
 
 \end_inset
@@ -19660,7 +19740,7 @@ name "example:introduced-zeroes"
 \end_inset
 
  редуцируется по 
-\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}{3},0\right),\left(\Sss{xyz}{3},0\right),\left(\Sss{y^{2}z}{2},0\right),f_{4},f_{5}\right\} ,$
+\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}3,0\right),\left(\Sss{xyz}3,0\right),\left(\Sss{y^{2}z}2,0\right),f_{4},f_{5}\right\} ,$
 \end_inset
 
  давая 
@@ -19670,7 +19750,7 @@ name "example:introduced-zeroes"
  в результате
 \begin_inset Formula 
 \[
-\poly(f_{6})=\poly(f_{3})=xy^{2}+bx+1,\Sig(f_{6})=\Sss{1}{3}.
+\poly(f_{6})=\poly(f_{3})=xy^{2}+bx+1,\Sig(f_{6})=\Sss{\monone}3.
 \]
 
 \end_inset
@@ -19700,7 +19780,7 @@ name "example:introduced-zeroes"
 \end_inset
 
  редуцируется по 
-\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}{3},0\right),\left(\Sss{xyz}{3},0\right),\left(\Sss{y^{2}z}{2},0\right),f_{4},f_{5},f_{6}\right\} ,$
+\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}3,0\right),\left(\Sss{xyz}3,0\right),\left(\Sss{y^{2}z}2,0\right),f_{4},f_{5},f_{6}\right\} ,$
 \end_inset
 
  давая 
@@ -19710,7 +19790,7 @@ name "example:introduced-zeroes"
  в результате
 \begin_inset Formula 
 \[
-\poly(f_{7})=-\left(y\poly(f_{5})-x\poly(f_{4})\right)=xz^{2}+axz,\Sig(f_{7})=\Sss{y}{2}.
+\poly(f_{7})=-\left(y\poly(f_{5})-x\poly(f_{4})\right)=xz^{2}+axz,\Sig(f_{7})=\Sss y2.
 \]
 
 \end_inset
@@ -19748,7 +19828,7 @@ name "example:introduced-zeroes"
 \end_inset
 
  редуцируется по 
-\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}{3},0\right),\left(\Sss{xyz}{3},0\right),\left(\Sss{y^{2}z}{2},0\right),f_{4},f_{5},f_{6},f_{7}\right\} ,$
+\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}3,0\right),\left(\Sss{xyz}3,0\right),\left(\Sss{y^{2}z}2,0\right),f_{4},f_{5},f_{6},f_{7}\right\} ,$
 \end_inset
 
  давая 
@@ -19782,7 +19862,7 @@ name "example:introduced-zeroes"
 
 \begin_inset Formula 
 \[
-\Sig(f_{8})=\Sss{z}{3}.
+\Sig(f_{8})=\Sss z3.
 \]
 
 \end_inset
@@ -20085,15 +20165,15 @@ reference "example:symbolic-zeroes"
 \begin_inset Formula 
 \[
 \begin{array}{ccc}
-\poly(f_{1})= & y^{2}z+\left\{ 76,{}_{0,1}1\right\} , & \Sig(f_{1})=\Sss{1}{1};\\
-\poly(f_{2})= & y^{2}z^{2}+xz+1, & \Sig(f_{2})=\Sss{1}{2};\\
-\poly(f_{3})= & y^{3}z+xy+1, & \Sig(f_{3})=\Sss{1}{3};\\
-\poly(f_{4})= & \poly(f_{1})=y^{2}z+\left\{ 76,{}_{0,1}1\right\} , & \Sig(f_{4})=\Sss{1}{1};\\
-\poly(f_{5})= & \poly(f_{2})-z\poly(f_{4})=xz+\left\{ 31,{}_{0,1}-1\right\} z+1, & \Sig(f_{5})=\Sss{1}{2};\\
-\poly(f_{6})= & \poly(f_{3})-y\poly(f_{4})=xy+\left\{ 31,{}_{0,1}-1\right\} y+1, & \Sig(f_{6})=\Sss{1}{3};\\
+\poly(f_{1})= & y^{2}z+\left\{ 76,{}_{0,1}1\right\} , & \Sig(f_{1})=\Sss{\monone}1;\\
+\poly(f_{2})= & y^{2}z^{2}+xz+1, & \Sig(f_{2})=\Sss{\monone}2;\\
+\poly(f_{3})= & y^{3}z+xy+1, & \Sig(f_{3})=\Sss{\monone}3;\\
+\poly(f_{4})= & \poly(f_{1})=y^{2}z+\left\{ 76,{}_{0,1}1\right\} , & \Sig(f_{4})=\Sss{\monone}1;\\
+\poly(f_{5})= & \poly(f_{2})-z\poly(f_{4})=xz+\left\{ 31,{}_{0,1}-1\right\} z+1, & \Sig(f_{5})=\Sss{\monone}2;\\
+\poly(f_{6})= & \poly(f_{3})-y\poly(f_{4})=xy+\left\{ 31,{}_{0,1}-1\right\} y+1, & \Sig(f_{6})=\Sss{\monone}3;\\
 \poly(f_{7})= & z\poly(f_{6})-y\poly(f_{5})=\\
  & \left(\left\{ 76,{}_{0,1}1\right\} +\left\{ 31,{}_{0,1}-1\right\} \right)yz+z-y=\\
- & \left(\left\{ 0,{}_{0,2}0\right\} \right)yz+z-y, & \Sig(f_{7})=\Sss{z}{3}.
+ & \left(\left\{ 0,{}_{0,2}0\right\} \right)yz+z-y, & \Sig(f_{7})=\Sss z3.
 \end{array}
 \]
 
@@ -20332,7 +20412,7 @@ reference "enu:Select-prime"
 \begin_inset Formula $f_{i}$
 \end_inset
 
- добавляется моном 
+ добавляется терм 
 \begin_inset Formula $1\cdot t_{i}$
 \end_inset
 
@@ -20573,21 +20653,21 @@ reference "example:introduced-zeroes"
 \begin_inset Formula 
 \[
 \begin{array}{ccc}
-\poly(f_{1})= & y^{2}z+z^{2}+24z+t_{1}, & \Sig(f_{1})=\Sss{1}{1};\\
-\poly(f_{2})= & xyz+t_{2}, & \Sig(f_{2})=\Sss{1}{2};\\
-\poly(f_{3})= & xy^{2}+70x+1+t_{3}, & \Sig(f_{3})=\Sss{1}{3};\\
-\poly(f_{4})= & \poly(f_{1})=y^{2}z+z^{2}+24z+t_{1}, & \Sig(f_{4})=\Sss{1}{1};\\
-\poly(f_{5})= & \poly(f_{2})=xyz+t_{2}, & \Sig(f_{5})=\Sss{1}{2};\\
-\poly(f_{6})= & \poly(f_{3})=xy^{2}+70x+1+t_{3}, & \Sig(f_{6})=\Sss{1}{3};\\
+\poly(f_{1})= & y^{2}z+z^{2}+24z+t_{1}, & \Sig(f_{1})=\Sss{\monone}1;\\
+\poly(f_{2})= & xyz+t_{2}, & \Sig(f_{2})=\Sss{\monone}2;\\
+\poly(f_{3})= & xy^{2}+70x+1+t_{3}, & \Sig(f_{3})=\Sss{\monone}3;\\
+\poly(f_{4})= & \poly(f_{1})=y^{2}z+z^{2}+24z+t_{1}, & \Sig(f_{4})=\Sss{\monone}1;\\
+\poly(f_{5})= & \poly(f_{2})=xyz+t_{2}, & \Sig(f_{5})=\Sss{\monone}2;\\
+\poly(f_{6})= & \poly(f_{3})=xy^{2}+70x+1+t_{3}, & \Sig(f_{6})=\Sss{\monone}3;\\
 \poly(f_{7})= & -\left(y\poly(f_{5})-x\poly(f_{4})\right)=\\
- & xz^{2}+24xz+xt_{1}-yt_{2}, & \Sig(f_{7})=\Sss{y}{2};\\
+ & xz^{2}+24xz+xt_{1}-yt_{2}, & \Sig(f_{7})=\Sss y2;\\
 \poly(f_{8})= & (z\poly(f_{6})-x\poly(f_{4}))+\poly(f_{7})=\\
  & \left(\left(xy^{2}z+70xz+z+zt_{3}\right)+\right.\\
  & \left.\left(-xy^{2}z-xz^{2}+83xz+106xt_{1}\right)\right)+\\
  & xz^{2}+24xz+xt_{1}-yt_{2}=\\
  & \left(\left(70+83\right)+24\right)xz+z+\\
  & zt_{3}-yt_{2}+(1+106)xt_{1}=\\
- & 70xz+z+zt_{3}-yt_{2}, & \Sig(f_{8})=\Sss{z}{3}.
+ & 70xz+z+zt_{3}-yt_{2}, & \Sig(f_{8})=\Sss z3.
 \end{array}
 \]
 
@@ -20608,7 +20688,7 @@ reference "example:introduced-zeroes"
 \end_inset
 
  можно предположить, что приближённый многочлен сигнатуры 
-\begin_inset Formula $\Sss{z}{3}$
+\begin_inset Formula $\Sss z3$
 \end_inset
 
  со старшим мономом 
@@ -21631,7 +21711,7 @@ key "NumericalComputationOfGBVarSubsttution,ArtificialDiscontinuities,GroebnerIn
 дополнением с сигнатурой предшествующей 
 \emph default
 
-\begin_inset Formula $\Sss{t}{i}$
+\begin_inset Formula $\Sss ti$
 \end_inset
 
  добавление во входное множество на место 
@@ -21648,7 +21728,7 @@ key "NumericalComputationOfGBVarSubsttution,ArtificialDiscontinuities,GroebnerIn
 \begin_layout Standard
 Сигнатура добавленного входного многочлена оказывается строго максимальной
  в множестве сигнатур, меньших 
-\begin_inset Formula $\Sss{t}{i}$
+\begin_inset Formula $\Sss ti$
 \end_inset
 
 .
@@ -21697,7 +21777,7 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  сигнатуры 
-\begin_inset Formula $\Sss{t}{i}$
+\begin_inset Formula $\Sss ti$
 \end_inset
 
 .
@@ -21707,7 +21787,7 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  и сигнатурой предшествующей 
-\begin_inset Formula $\Sss{t}{i}$
+\begin_inset Formula $\Sss ti$
 \end_inset
 
 , первые 
@@ -21791,7 +21871,7 @@ reference "par:SingleStepSignatureGroebner"
 
  до добавления многочлен с таким же старшим мономом и большей сигнатурой
  
-\begin_inset Formula $\Sss{t}{i}$
+\begin_inset Formula $\Sss ti$
 \end_inset
 
  не редуцировался по такому же множеству 
@@ -21859,7 +21939,7 @@ reference "par:SingleStepSignatureGroebner"
 
 -меньше всех имеющихся переменных.
  При 
-\begin_inset Formula $\HM\left(p\right)\ne1$
+\begin_inset Formula $\HM\left(p\right)\ne\monone$
 \end_inset
 
  такое продолжение порядка гарантирует, что 
@@ -21868,7 +21948,7 @@ reference "par:SingleStepSignatureGroebner"
 
 .
  Однако при 
-\begin_inset Formula $\HM\left(p\right)=1$
+\begin_inset Formula $\HM\left(p\right)=\monone$
 \end_inset
 
  старшим членом всегда будет оказываться 
@@ -21922,14 +22002,14 @@ ApproxSignatureGroebner
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $R\leftarrow\cup_{1\leqslant i<j\leqslant m}\left\{ \left(\max_{\prec_{a}}\left(\Sss{\HM(f_{i})}{j},\Sss{\HM(f_{j})}{i}\right),0\right)\right\} $
+\begin_inset Formula $R\leftarrow\cup_{1\leqslant i<j\leqslant m}\left\{ \left(\max_{\prec_{a}}\left(\Sss{\HM(f_{i})}j,\Sss{\HM(f_{j})}i\right),0\right)\right\} $
 \end_inset
 
 
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $B\leftarrow\{(\Sss{1}{1},f_{1}),(\Sss{1}{2},f_{2}),\dots,(\Sss{1}{m},f_{m})\}$
+\begin_inset Formula $B\leftarrow\{(\Sss{\monone}1,f_{1}),(\Sss{\monone}2,f_{2}),\dots,(\Sss{\monone}m,f_{m})\}$
 \end_inset
 
 
@@ -22045,7 +22125,7 @@ or
 if 
 \series default
 
-\begin_inset Formula $\HM\left(p\right)=1$
+\begin_inset Formula $\HM\left(p\right)=\monone$
 \end_inset
 
 
@@ -22106,7 +22186,7 @@ if
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $R\leftarrow R\cup\left\{ \left(\Sss{1}{m+k},f_{m+k}\right)\right\} \cup_{1\leqslant i<m+k}\left\{ \left(\max_{\prec_{a}}\left(\Sss{\HM(f_{i})}{k},\Sss{\HM(f_{m+k})}{i}\right),0\right)\right\} $
+\begin_inset Formula $R\leftarrow R\cup\left\{ \left(\Sss{\monone}{m+k},f_{m+k}\right)\right\} \cup_{1\leqslant i<m+k}\left\{ \left(\max_{\prec_{a}}\left(\Sss{\HM(f_{i})}k,\Sss{\HM(f_{m+k})}i\right),0\right)\right\} $
 \end_inset
 
 
@@ -22147,7 +22227,7 @@ ApproxNormalize
 for 
 \series default
 
-\begin_inset Formula $\{r\in R\,|\, r\GVWl\left(\sigma,p\right),\HM(r)\neq0\}$
+\begin_inset Formula $\{r\in R\,|\, r\GVWl\left(\sigma,p\right),\HM(r)\neq\monzero\}$
 \end_inset
 
 
