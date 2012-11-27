@@ -232,6 +232,14 @@ theorems-sec
 \end_layout
 
 \begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\Sss}[2]{\left\langle #1\centerdot#2\right\rangle }
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -2971,7 +2979,7 @@ key "F5C,GVW,G2V,F5InBBStyle,HuangConception"
 \end_inset
 
  называется пара 
-\begin_inset Formula $(t,i)\in\mathbf{T}=\mathbb{T}\times\mathbb{N}$
+\begin_inset Formula $\Sss ti\in\mathbf{T}=\mathbb{T}\times\mathbb{N}$
 \end_inset
 
 .
@@ -2993,7 +3001,7 @@ key "F5C,GVW,G2V,F5InBBStyle,HuangConception"
 \emph default
 .
  Умножение такой сигнатуры на моном определяется как 
-\begin_inset Formula $t_{1}(t,i)\eqdef(t_{1}t,i)$
+\begin_inset Formula $t_{1}\Sss ti\eqdef\Sss{t_{1}t}i$
 \end_inset
 
 , что соответствует умножению на моном элемента представления.
@@ -3031,7 +3039,7 @@ t'|t''\equivdef\exists t_{1}\in\mathbb{T},\; t''=t_{1}t'.
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\left(t_{1},i_{1}\right)\prec_{P}\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & i_{1}<i_{2}\\
+\Sss{t_{1}}{i_{1}}\prec_{P}\Sss{t_{2}}{i_{2}}\Longleftrightarrow\left[\begin{aligned} & i_{1}<i_{2}\\
  & i{}_{1}=i_{2},t_{1}\prec t_{2}
 \end{aligned}
 \right..
@@ -3436,7 +3444,7 @@ name "example:labeled-polys"
 
 \begin_deeper
 \begin_layout Itemize
-\begin_inset Formula $\left(\left(\HM(p),i\right),pf_{i}\right),p\in\mathcal{P},i\in\mathbb{N}$
+\begin_inset Formula $\left(\Sss{\HM(p)}i,pf_{i}\right),p\in\mathcal{P},i\in\mathbb{N}$
 \end_inset
 
 .
@@ -3448,7 +3456,7 @@ name "example:labeled-polys"
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $\left(\left(t\HM(f_{i}),j\right),0\right)$
+\begin_inset Formula $\left(\Sss{t\HM(f_{i})}{j},0\right)$
 \end_inset
 
  для 
@@ -4013,7 +4021,7 @@ IncrementalF5
 
 \family sans
 \shape italic
-\begin_inset Formula $R\leftarrow[((1,1),f_{1}),((1,2),f_{2}),\dots,((1,m),f_{m})]$
+\begin_inset Formula $R\leftarrow[(\Sss{1}{1},f_{1}),(\Sss{1}{2},f_{2}),\dots,(\Sss{1}{m},f_{m})]$
 \end_inset
 
 
@@ -4054,7 +4062,7 @@ reference "par:AlgorithmF5"
 \end_inset
 
 
-\begin_inset Formula $(((1,i),f_{i}),G_{i-1})$
+\begin_inset Formula $((\Sss{1}{i},f_{i}),G_{i-1})$
 \end_inset
 
 
@@ -4096,7 +4104,7 @@ AlgorithmF5
  
 \series default
 
-\begin_inset Formula $((1,i),f_{i})$
+\begin_inset Formula $(\Sss{1}{i},f_{i})$
 \end_inset
 
  -- отмеченный многочлен, 
@@ -7573,7 +7581,7 @@ reference "par:IsReducible"
 \end_deeper
 \begin_layout Proof
 Если алгоритм не останавливается, то многочлен входного множества 
-\begin_inset Formula $R[m]=((1,m),f_{m})$
+\begin_inset Formula $R[m]=(\Sss{1}{m},f_{m})$
 \end_inset
 
  является генератором цепи S-пар, поскольку каждый многочлен 
@@ -9794,7 +9802,7 @@ reference "par:TopReduction"
 \noun default
 \color inherit
  и сигнатурами 
-\begin_inset Formula $\Sig(b_{1})=\left(1,1\right),\,\Sig(b_{2})=\left(1,2\right),\,\Sig(b_{3})=\left(x,2\right)$
+\begin_inset Formula $\Sig(b_{1})=\Sss{1}{1},\,\Sig(b_{2})=\Sss{1}{2},\,\Sig(b_{3})=\Sss{x}{2}$
 \end_inset
 
 .
@@ -10683,7 +10691,7 @@ key "F5C"
 \end_inset
 
 -максимального элемента, равной 
-\begin_inset Formula $m_{K}\Sig(b_{i_{K}})=(s_{0},j_{0})\in\mathbf{T}$
+\begin_inset Formula $m_{K}\Sig(b_{i_{K}})=\Sss{s_{0}}{j_{0}}\in\mathbf{T}$
 \end_inset
 
 
@@ -10778,7 +10786,7 @@ m_{K}b_{i_{K}}=\sum_{i=1}^{N_{0}}c_{0}s_{1}m_{0i}\cdot f_{j_{1}}+\sum_{i=2}^{N_{
 \noun off
 \color none
 
-\begin_inset Formula $(s_{0},j_{0})$
+\begin_inset Formula $\Sss{s_{0}}{j_{0}}$
 \end_inset
 
 .
@@ -10837,7 +10845,7 @@ reference "eq:input-repr-case1"
 \end_inset
 
 , поэтому и выполняется неравенство для сигнатур: 
-\begin_inset Formula $s_{1}(m_{1i},j_{0})\prec_{P}s_{1}(m_{11},j_{0})=(s_{0},j_{0})$
+\begin_inset Formula $s_{1}\Sss{m_{1i}}{j_{0}}\prec_{P}s_{1}\Sss{m_{11}}{j_{0}}=\Sss{s_{0}}{j_{0}}$
 \end_inset
 
 .
@@ -10914,7 +10922,7 @@ key "F5C"
 
 \begin_layout Proof
 Предположим, что сигнатура 
-\begin_inset Formula $\Sig(m_{K}b_{i_{K}})=(s_{0},j_{0})$
+\begin_inset Formula $\Sig(m_{K}b_{i_{K}})=\Sss{s_{0}}{j_{0}}$
 \end_inset
 
 ,
@@ -10939,7 +10947,7 @@ key "F5C"
 
 .
  Поскольку, представление сигнатурно, мы имеем 
-\begin_inset Formula $\Sig(b_{i'})\preccurlyeq_{P}(s_{0},j_{0})\preccurlyeq_{P}\Sig(mh)\prec_{P}\Sig(g)$
+\begin_inset Formula $\Sig(b_{i'})\preccurlyeq_{P}\Sss{s_{0}}{j_{0}}\preccurlyeq_{P}\Sig(mh)\prec_{P}\Sig(g)$
 \end_inset
 
 .
@@ -11018,7 +11026,7 @@ reference "par:TopReduction"
 \noun default
 \color inherit
 
-\begin_inset Formula $s'\Sig(b_{i'})=(s_{0},j_{0})$
+\begin_inset Formula $s'\Sig(b_{i'})=\Sss{s_{0}}{j_{0}}$
 \end_inset
 
 .
@@ -11139,7 +11147,7 @@ m_{K}b_{i_{K}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i
 \noun off
 \color none
 
-\begin_inset Formula $(s_{0},j_{0})$
+\begin_inset Formula $\Sss{s_{0}}{j_{0}}$
 \end_inset
 
 , а для первого элемента, если 
@@ -11147,7 +11155,7 @@ m_{K}b_{i_{K}}=c'^{-1}c_{0}s'\cdot b_{i'}+\sum_{l'}-c'^{-1}c_{0}m_{l'}\cdot f_{i
 \end_inset
 
  не нулевой, имеем 
-\begin_inset Formula $\Sig(c'^{-1}c_{0}s'\cdot b_{i'})=\Sig(m_{K}\cdot b_{i_{K}})=(s_{0},j_{0})$
+\begin_inset Formula $\Sig(c'^{-1}c_{0}s'\cdot b_{i'})=\Sig(m_{K}\cdot b_{i_{K}})=\Sss{s_{0}}{j_{0}}$
 \end_inset
 
  с 
@@ -12835,7 +12843,7 @@ SimplifiedF5
  
 \series default
 
-\begin_inset Formula $((1,i),f_{i})$
+\begin_inset Formula $(\Sss{1}{i},f_{i})$
 \end_inset
 
  -- отмеченный многочлен, 
@@ -13480,14 +13488,14 @@ name "lem:precP_compatible"
 
 \begin_layout Proof
 Пусть 
-\begin_inset Formula $\sigma=(s,i)\in\mathbf{T}$
+\begin_inset Formula $\sigma=\Sss{s}{i}\in\mathbf{T}$
 \end_inset
 
 .
  Тогда
 \begin_inset Formula 
 \[
-t_{1}\sigma\prec_{P}t_{2}\sigma\Longleftrightarrow\left(t_{1}s,i\right)\prec_{P}\left(t_{2}s,i\right)\Longleftrightarrow t_{1}s\prec t_{2}s\Longleftrightarrow t_{1}\prec t_{2}.
+t_{1}\sigma\prec_{P}t_{2}\sigma\Longleftrightarrow\Sss{t_{1}s}{i}\prec_{P}\Sss{t_{2}s}{i}\Longleftrightarrow t_{1}s\prec t_{2}s\Longleftrightarrow t_{1}\prec t_{2}.
 \]
 
 \end_inset
@@ -15614,14 +15622,14 @@ SingleStepSignatureGroebner
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $R\leftarrow\cup_{1\leqslant i<j\leqslant m}\left\{ \left(\max_{\prec_{a}}\left(\left(\HM(f_{i}),j\right),\left(\HM(f_{j}),i\right)\right),0\right)\right\} $
+\begin_inset Formula $R\leftarrow\cup_{1\leqslant i<j\leqslant m}\left\{ \left(\max_{\prec_{a}}\left(\Sss{\HM(f_{i})}{j},\Sss{\HM(f_{j})}{i}\right),0\right)\right\} $
 \end_inset
 
 
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $B\leftarrow\{((1,1),f_{1}),((1,2),f_{2}),\dots,((1,m),f_{m})\}$
+\begin_inset Formula $B\leftarrow\{(\Sss{1}{1},f_{1}),(\Sss{1}{2},f_{2}),\dots,(\Sss{1}{m},f_{m})\}$
 \end_inset
 
 
@@ -15665,7 +15673,7 @@ name "enu:-remove-sigma-from-B-sstep"
 if
 \series default
  
-\begin_inset Formula $\sigma=\left(1,\sigidx\left(\sigma\right)\right)$
+\begin_inset Formula $\sigma=\Sss{1}{\sigidx\left(\sigma}\right)$
 \end_inset
 
 
@@ -16270,7 +16278,7 @@ reference "enu:-after-reduce"
  не может быть делящих сигнатуру элементов, поскольку все элементы, добавленные
  изначально, имеют не равные 1 мономы сигнатуры, а среди добавляемых позже
  элементов 
-\begin_inset Formula $\left(\sigma,p\right)=\left(\left(1,\sigidx(\sigma)\right),p\right)$
+\begin_inset Formula $\left(\sigma,p\right)=\left(\Sss{1}{\sigidx(\sigma)},p\right)$
 \end_inset
 
  -- это первый элемент с индексом 
@@ -16279,7 +16287,7 @@ reference "enu:-after-reduce"
 
 , который не может иметь делителей сигнатуры.
  Повторное добавление элемента с сигнатурой 
-\begin_inset Formula $\left(1,\sigidx(\sigma)\right)$
+\begin_inset Formula $\Sss{1}{\sigidx(\sigma)}$
 \end_inset
 
  невозможно, поскольку такие элементы явно удаляются из 
@@ -16465,7 +16473,7 @@ reference "enu:-remove-from-B-sstep"
 \end_inset
 
  содержит элементы с сигнатурой 
-\begin_inset Formula $\left(1,i\right)$
+\begin_inset Formula $\Sss{1}{i}$
 \end_inset
 
  для всех индексов сигнатуры 
@@ -16474,7 +16482,7 @@ reference "enu:-remove-from-B-sstep"
 
 .
  В процессе работы алгоритма элемент c сигнатурой 
-\begin_inset Formula $\left(1,i\right)$
+\begin_inset Formula $\Sss{1}{i}$
 \end_inset
 
  не может быть удалён из 
@@ -16499,7 +16507,7 @@ reference "enu:-remove-from-B-sstep"
 
  с такой же сигнатурой.
  Когда какой-то из элементов с сигнатурой 
-\begin_inset Formula $\left(1,i\right)$
+\begin_inset Formula $\Sss{1}{i}$
 \end_inset
 
  исключается на шаге 
@@ -16531,7 +16539,7 @@ reference "enu:-remove-sigma-from-B-sstep"
 \end_inset
 
  с 
-\begin_inset Formula $\Sig(r_{0})=\left(1,\sigidx(\sigma)\right)$
+\begin_inset Formula $\Sig(r_{0})=\Sss{1}{\sigidx(\sigma)}$
 \end_inset
 
  и можно утверждать что множество 
@@ -16837,7 +16845,7 @@ reference "par:SimpleSignatureGroebner"
 \begin_layout Definition
 \begin_inset Formula 
 \[
-\left(t_{1},i_{1}\right)\prec_{w}\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & t_{1}w_{i_{1}}\prec t_{2}w_{i_{2}}\\
+\Sss{t_{1}}{i_{1}}\prec_{w}\Sss{t_{2}}{i_{2}}\Longleftrightarrow\left[\begin{aligned} & t_{1}w_{i_{1}}\prec t_{2}w_{i_{2}}\\
  & t_{1}w_{i_{1}}=t_{2}w_{i_{2}},i{}_{1}<i_{2}
 \end{aligned}
 \right..
@@ -16859,14 +16867,14 @@ reference "par:SimpleSignatureGroebner"
 
 \begin_layout Proof
 Пусть 
-\begin_inset Formula $\sigma=(s,i)\in\mathbf{T}$
+\begin_inset Formula $\sigma=\Sss{s}{i}\in\mathbf{T}$
 \end_inset
 
 .
  Тогда 
 \begin_inset Formula 
 \[
-t_{1}\sigma\prec_{w}t_{2}\sigma\Longleftrightarrow\left(t_{1}s,i\right)\prec_{w}\left(t_{2}s,i\right)\Longleftrightarrow t_{1}sw_{i}\prec t_{2}sw_{i}\Longleftrightarrow t_{1}\prec t_{2}.
+t_{1}\sigma\prec_{w}t_{2}\sigma\Longleftrightarrow\Sss{t_{1}s}{i}\prec_{w}\Sss{t_{2}s}{i}\Longleftrightarrow t_{1}sw_{i}\prec t_{2}sw_{i}\Longleftrightarrow t_{1}\prec t_{2}.
 \]
 
 \end_inset
@@ -19062,9 +19070,9 @@ name "example:symbolic-zeroes"
 \begin_inset Formula 
 \[
 \begin{array}{ccc}
-\poly(f_{1})= & y^{2}z+_{0,1}1, & \Sig(f_{1})=\left(1,1\right);\\
-\poly(f_{2})= & y^{2}z^{2}+xz+1, & \Sig(f_{2})=\left(1,2\right);\\
-\poly(f_{3})= & y^{3}z+xy+1, & \Sig(f_{3})=\left(1,3\right).
+\poly(f_{1})= & y^{2}z+_{0,1}1, & \Sig(f_{1})=\Sss{1}{1};\\
+\poly(f_{2})= & y^{2}z^{2}+xz+1, & \Sig(f_{2})=\Sss{1}{2};\\
+\poly(f_{3})= & y^{3}z+xy+1, & \Sig(f_{3})=\Sss{1}{3}.
 \end{array}
 \]
 
@@ -19091,7 +19099,7 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  редуцируется по 
-\begin_inset Formula $R=\left\{ \left(\left(y^{2}z,3\right),0\right),\left(\left(y^{3}z,3\right),0\right),\left(\left(y^{2}z,2\right),0\right)\right\} ,$
+\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}{3},0\right),\left(\Sss{y^{3}z}{3},0\right),\left(\Sss{y^{2}z}{2},0\right)\right\} ,$
 \end_inset
 
  давая 
@@ -19101,7 +19109,7 @@ reference "par:SingleStepSignatureGroebner"
  в результате
 \begin_inset Formula 
 \[
-\poly(f_{4})=\poly(f_{1})=y^{2}z+_{0,1}1,\Sig(f_{4})=\left(1,1\right).
+\poly(f_{4})=\poly(f_{1})=y^{2}z+_{0,1}1,\Sig(f_{4})=\Sss{1}{1}.
 \]
 
 \end_inset
@@ -19115,7 +19123,7 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  редуцируется по 
-\begin_inset Formula $R=\left\{ \left(\left(y^{2}z,3\right),0\right),\left(\left(y^{3}z,3\right),0\right),\left(\left(y^{2}z,2\right),0\right),f_{4}\right\} ,$
+\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}{3},0\right),\left(\Sss{y^{3}z}{3},0\right),\left(\Sss{y^{2}z}{2},0\right),f_{4}\right\} ,$
 \end_inset
 
  давая 
@@ -19125,7 +19133,7 @@ reference "par:SingleStepSignatureGroebner"
  в результате
 \begin_inset Formula 
 \[
-\poly(f_{5})=\poly(f_{2})-z\poly(f_{4})=xz-\left(_{0,1}1\right)z+1,\Sig(f_{5})=\left(1,2\right).
+\poly(f_{5})=\poly(f_{2})-z\poly(f_{4})=xz-\left(_{0,1}1\right)z+1,\Sig(f_{5})=\Sss{1}{2}.
 \]
 
 \end_inset
@@ -19151,7 +19159,7 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  редуцируется по 
-\begin_inset Formula $R=\left\{ \left(\left(y^{2}z,3\right),0\right),\left(\left(y^{3}z,3\right),0\right),\left(\left(y^{2}z,2\right),0\right),f_{4},f_{5}\right\} ,$
+\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}{3},0\right),\left(\Sss{y^{3}z}{3},0\right),\left(\Sss{y^{2}z}{2},0\right),f_{4},f_{5}\right\} ,$
 \end_inset
 
  давая 
@@ -19161,7 +19169,7 @@ reference "par:SingleStepSignatureGroebner"
  в результате
 \begin_inset Formula 
 \[
-\poly(f_{6})=\poly(f_{3})-y\poly(f_{4})=xy-\left(_{0,1}1\right)y+1,\Sig(f_{6})=\left(1,3\right).
+\poly(f_{6})=\poly(f_{3})-y\poly(f_{4})=xy-\left(_{0,1}1\right)y+1,\Sig(f_{6})=\Sss{1}{3}.
 \]
 
 \end_inset
@@ -19195,7 +19203,7 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  редуцируется по 
-\begin_inset Formula $R=\left\{ \left(\left(y^{2}z,3\right),0\right),\left(\left(y^{3}z,3\right),0\right),\left(\left(y^{2}z,2\right),0\right),f_{4},f_{5},f_{6}\right\} ,$
+\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}{3},0\right),\left(\Sss{y^{3}z}{3},0\right),\left(\Sss{y^{2}z}{2},0\right),f_{4},f_{5},f_{6}\right\} ,$
 \end_inset
 
  давая 
@@ -19205,7 +19213,7 @@ reference "par:SingleStepSignatureGroebner"
  в результате
 \begin_inset Formula 
 \[
-\poly(f_{7})=z\poly(f_{6})-y\poly(f_{5})=\left(_{0,2}0\right)yz+z-y,\Sig(f_{7})=\left(z,3\right).
+\poly(f_{7})=z\poly(f_{6})-y\poly(f_{5})=\left(_{0,2}0\right)yz+z-y,\Sig(f_{7})=\Sss{z}{3}.
 \]
 
 \end_inset
@@ -19571,9 +19579,9 @@ name "example:introduced-zeroes"
 \begin_inset Formula 
 \[
 \begin{array}{ccc}
-\poly(f_{1})= & y^{2}z+z^{2}+az, & \Sig(f_{1})=\left(1,1\right);\\
-\poly(f_{2})= & xyz, & \Sig(f_{2})=\left(1,2\right);\\
-\poly(f_{3})= & xy^{2}+bx+1, & \Sig(f_{3})=\left(1,3\right).
+\poly(f_{1})= & y^{2}z+z^{2}+az, & \Sig(f_{1})=\Sss{1}{1};\\
+\poly(f_{2})= & xyz, & \Sig(f_{2})=\Sss{1}{2};\\
+\poly(f_{3})= & xy^{2}+bx+1, & \Sig(f_{3})=\Sss{1}{3}.
 \end{array}
 \]
 
@@ -19592,7 +19600,7 @@ name "example:introduced-zeroes"
 \end_inset
 
  редуцируется по 
-\begin_inset Formula $R=\left\{ \left(\left(y^{2}z,3\right),0\right),\left(\left(xyz,3\right),0\right),\left(\left(y^{2}z,2\right),0\right)\right\} ,$
+\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}{3},0\right),\left(\Sss{xyz}{3},0\right),\left(\Sss{y^{2}z}{2},0\right)\right\} ,$
 \end_inset
 
  давая 
@@ -19602,7 +19610,7 @@ name "example:introduced-zeroes"
  в результате
 \begin_inset Formula 
 \[
-\poly(f_{4})=\poly(f_{1})=y^{2}z+z^{2}+az,\Sig(f_{4})=\left(1,1\right).
+\poly(f_{4})=\poly(f_{1})=y^{2}z+z^{2}+az,\Sig(f_{4})=\Sss{1}{1}.
 \]
 
 \end_inset
@@ -19616,7 +19624,7 @@ name "example:introduced-zeroes"
 \end_inset
 
  редуцируется по 
-\begin_inset Formula $R=\left\{ \left(\left(y^{2}z,3\right),0\right),\left(\left(xyz,3\right),0\right),\left(\left(y^{2}z,2\right),0\right),f_{4}\right\} ,$
+\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}{3},0\right),\left(\Sss{xyz}{3},0\right),\left(\Sss{y^{2}z}{2},0\right),f_{4}\right\} ,$
 \end_inset
 
  давая 
@@ -19626,7 +19634,7 @@ name "example:introduced-zeroes"
  в результате
 \begin_inset Formula 
 \[
-\poly(f_{5})=\poly(f_{2})=xyz,\Sig(f_{5})=\left(1,2\right).
+\poly(f_{5})=\poly(f_{2})=xyz,\Sig(f_{5})=\Sss{1}{2}.
 \]
 
 \end_inset
@@ -19652,7 +19660,7 @@ name "example:introduced-zeroes"
 \end_inset
 
  редуцируется по 
-\begin_inset Formula $R=\left\{ \left(\left(y^{2}z,3\right),0\right),\left(\left(xyz,3\right),0\right),\left(\left(y^{2}z,2\right),0\right),f_{4},f_{5}\right\} ,$
+\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}{3},0\right),\left(\Sss{xyz}{3},0\right),\left(\Sss{y^{2}z}{2},0\right),f_{4},f_{5}\right\} ,$
 \end_inset
 
  давая 
@@ -19662,7 +19670,7 @@ name "example:introduced-zeroes"
  в результате
 \begin_inset Formula 
 \[
-\poly(f_{6})=\poly(f_{3})=xy^{2}+bx+1,\Sig(f_{6})=\left(1,3\right).
+\poly(f_{6})=\poly(f_{3})=xy^{2}+bx+1,\Sig(f_{6})=\Sss{1}{3}.
 \]
 
 \end_inset
@@ -19692,7 +19700,7 @@ name "example:introduced-zeroes"
 \end_inset
 
  редуцируется по 
-\begin_inset Formula $R=\left\{ \left(\left(y^{2}z,3\right),0\right),\left(\left(xyz,3\right),0\right),\left(\left(y^{2}z,2\right),0\right),f_{4},f_{5},f_{6}\right\} ,$
+\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}{3},0\right),\left(\Sss{xyz}{3},0\right),\left(\Sss{y^{2}z}{2},0\right),f_{4},f_{5},f_{6}\right\} ,$
 \end_inset
 
  давая 
@@ -19702,7 +19710,7 @@ name "example:introduced-zeroes"
  в результате
 \begin_inset Formula 
 \[
-\poly(f_{7})=-\left(y\poly(f_{5})-x\poly(f_{4})\right)=xz^{2}+axz,\Sig(f_{7})=\left(y,2\right).
+\poly(f_{7})=-\left(y\poly(f_{5})-x\poly(f_{4})\right)=xz^{2}+axz,\Sig(f_{7})=\Sss{y}{2}.
 \]
 
 \end_inset
@@ -19740,7 +19748,7 @@ name "example:introduced-zeroes"
 \end_inset
 
  редуцируется по 
-\begin_inset Formula $R=\left\{ \left(\left(y^{2}z,3\right),0\right),\left(\left(xyz,3\right),0\right),\left(\left(y^{2}z,2\right),0\right),f_{4},f_{5},f_{6},f_{7}\right\} ,$
+\begin_inset Formula $R=\left\{ \left(\Sss{y^{2}z}{3},0\right),\left(\Sss{xyz}{3},0\right),\left(\Sss{y^{2}z}{2},0\right),f_{4},f_{5},f_{6},f_{7}\right\} ,$
 \end_inset
 
  давая 
@@ -19774,7 +19782,7 @@ name "example:introduced-zeroes"
 
 \begin_inset Formula 
 \[
-\Sig(f_{8})=\left(z,3\right).
+\Sig(f_{8})=\Sss{z}{3}.
 \]
 
 \end_inset
@@ -20077,15 +20085,15 @@ reference "example:symbolic-zeroes"
 \begin_inset Formula 
 \[
 \begin{array}{ccc}
-\poly(f_{1})= & y^{2}z+\left\{ 76,{}_{0,1}1\right\} , & \Sig(f_{1})=\left(1,1\right);\\
-\poly(f_{2})= & y^{2}z^{2}+xz+1, & \Sig(f_{2})=\left(1,2\right);\\
-\poly(f_{3})= & y^{3}z+xy+1, & \Sig(f_{3})=\left(1,3\right);\\
-\poly(f_{4})= & \poly(f_{1})=y^{2}z+\left\{ 76,{}_{0,1}1\right\} , & \Sig(f_{4})=\left(1,1\right);\\
-\poly(f_{5})= & \poly(f_{2})-z\poly(f_{4})=xz+\left\{ 31,{}_{0,1}-1\right\} z+1, & \Sig(f_{5})=\left(1,2\right);\\
-\poly(f_{6})= & \poly(f_{3})-y\poly(f_{4})=xy+\left\{ 31,{}_{0,1}-1\right\} y+1, & \Sig(f_{6})=\left(1,3\right);\\
+\poly(f_{1})= & y^{2}z+\left\{ 76,{}_{0,1}1\right\} , & \Sig(f_{1})=\Sss{1}{1};\\
+\poly(f_{2})= & y^{2}z^{2}+xz+1, & \Sig(f_{2})=\Sss{1}{2};\\
+\poly(f_{3})= & y^{3}z+xy+1, & \Sig(f_{3})=\Sss{1}{3};\\
+\poly(f_{4})= & \poly(f_{1})=y^{2}z+\left\{ 76,{}_{0,1}1\right\} , & \Sig(f_{4})=\Sss{1}{1};\\
+\poly(f_{5})= & \poly(f_{2})-z\poly(f_{4})=xz+\left\{ 31,{}_{0,1}-1\right\} z+1, & \Sig(f_{5})=\Sss{1}{2};\\
+\poly(f_{6})= & \poly(f_{3})-y\poly(f_{4})=xy+\left\{ 31,{}_{0,1}-1\right\} y+1, & \Sig(f_{6})=\Sss{1}{3};\\
 \poly(f_{7})= & z\poly(f_{6})-y\poly(f_{5})=\\
  & \left(\left\{ 76,{}_{0,1}1\right\} +\left\{ 31,{}_{0,1}-1\right\} \right)yz+z-y=\\
- & \left(\left\{ 0,{}_{0,2}0\right\} \right)yz+z-y, & \Sig(f_{7})=\left(z,3\right).
+ & \left(\left\{ 0,{}_{0,2}0\right\} \right)yz+z-y, & \Sig(f_{7})=\Sss{z}{3}.
 \end{array}
 \]
 
@@ -20565,21 +20573,21 @@ reference "example:introduced-zeroes"
 \begin_inset Formula 
 \[
 \begin{array}{ccc}
-\poly(f_{1})= & y^{2}z+z^{2}+24z+t_{1}, & \Sig(f_{1})=\left(1,1\right);\\
-\poly(f_{2})= & xyz+t_{2}, & \Sig(f_{2})=\left(1,2\right);\\
-\poly(f_{3})= & xy^{2}+70x+1+t_{3}, & \Sig(f_{3})=\left(1,3\right);\\
-\poly(f_{4})= & \poly(f_{1})=y^{2}z+z^{2}+24z+t_{1}, & \Sig(f_{4})=\left(1,1\right);\\
-\poly(f_{5})= & \poly(f_{2})=xyz+t_{2}, & \Sig(f_{5})=\left(1,2\right);\\
-\poly(f_{6})= & \poly(f_{3})=xy^{2}+70x+1+t_{3}, & \Sig(f_{6})=\left(1,3\right);\\
+\poly(f_{1})= & y^{2}z+z^{2}+24z+t_{1}, & \Sig(f_{1})=\Sss{1}{1};\\
+\poly(f_{2})= & xyz+t_{2}, & \Sig(f_{2})=\Sss{1}{2};\\
+\poly(f_{3})= & xy^{2}+70x+1+t_{3}, & \Sig(f_{3})=\Sss{1}{3};\\
+\poly(f_{4})= & \poly(f_{1})=y^{2}z+z^{2}+24z+t_{1}, & \Sig(f_{4})=\Sss{1}{1};\\
+\poly(f_{5})= & \poly(f_{2})=xyz+t_{2}, & \Sig(f_{5})=\Sss{1}{2};\\
+\poly(f_{6})= & \poly(f_{3})=xy^{2}+70x+1+t_{3}, & \Sig(f_{6})=\Sss{1}{3};\\
 \poly(f_{7})= & -\left(y\poly(f_{5})-x\poly(f_{4})\right)=\\
- & xz^{2}+24xz+xt_{1}-yt_{2}, & \Sig(f_{7})=\left(y,2\right);\\
+ & xz^{2}+24xz+xt_{1}-yt_{2}, & \Sig(f_{7})=\Sss{y}{2};\\
 \poly(f_{8})= & (z\poly(f_{6})-x\poly(f_{4}))+\poly(f_{7})=\\
  & \left(\left(xy^{2}z+70xz+z+zt_{3}\right)+\right.\\
  & \left.\left(-xy^{2}z-xz^{2}+83xz+106xt_{1}\right)\right)+\\
  & xz^{2}+24xz+xt_{1}-yt_{2}=\\
  & \left(\left(70+83\right)+24\right)xz+z+\\
  & zt_{3}-yt_{2}+(1+106)xt_{1}=\\
- & 70xz+z+zt_{3}-yt_{2}, & \Sig(f_{8})=\left(z,3\right).
+ & 70xz+z+zt_{3}-yt_{2}, & \Sig(f_{8})=\Sss{z}{3}.
 \end{array}
 \]
 
@@ -20600,7 +20608,7 @@ reference "example:introduced-zeroes"
 \end_inset
 
  можно предположить, что приближённый многочлен сигнатуры 
-\begin_inset Formula $\left(z,3\right)$
+\begin_inset Formula $\Sss{z}{3}$
 \end_inset
 
  со старшим мономом 
@@ -21583,7 +21591,7 @@ key "NumericalComputationOfGBVarSubsttution,ArtificialDiscontinuities,GroebnerIn
 \begin_layout Definition
 \begin_inset Formula 
 \[
-\left(t_{1},i_{1}\right)\prec_{w}\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & t_{1}w_{i_{1}}\prec t_{2}w_{i_{2}}\\
+\Sss{t_{1}}{i_{1}}\prec_{w}\Sss{t_{2}}{i_{2}}\Longleftrightarrow\left[\begin{aligned} & t_{1}w_{i_{1}}\prec t_{2}w_{i_{2}}\\
  & t_{1}w_{i_{1}}=t_{2}w_{i_{2}},j_{i{}_{1}}<j_{i_{2}}
 \end{aligned}
 \right..
@@ -21623,7 +21631,7 @@ key "NumericalComputationOfGBVarSubsttution,ArtificialDiscontinuities,GroebnerIn
 дополнением с сигнатурой предшествующей 
 \emph default
 
-\begin_inset Formula $\left(t,i\right)$
+\begin_inset Formula $\Sss{t}{i}$
 \end_inset
 
  добавление во входное множество на место 
@@ -21640,7 +21648,7 @@ key "NumericalComputationOfGBVarSubsttution,ArtificialDiscontinuities,GroebnerIn
 \begin_layout Standard
 Сигнатура добавленного входного многочлена оказывается строго максимальной
  в множестве сигнатур, меньших 
-\begin_inset Formula $\left(t,i\right)$
+\begin_inset Formula $\Sss{t}{i}$
 \end_inset
 
 .
@@ -21689,7 +21697,7 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  сигнатуры 
-\begin_inset Formula $\left(t,i\right)$
+\begin_inset Formula $\Sss{t}{i}$
 \end_inset
 
 .
@@ -21699,7 +21707,7 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  и сигнатурой предшествующей 
-\begin_inset Formula $\left(t,i\right)$
+\begin_inset Formula $\Sss{t}{i}$
 \end_inset
 
 , первые 
@@ -21736,7 +21744,7 @@ reference "par:SingleStepSignatureGroebner"
 \end_inset
 
  -- нули с сигнатурами, не меньшими 
-\begin_inset Formula $\left(\HM\left(f_{j}\right),m+1\right),j\leqslant m$
+\begin_inset Formula $\Sss{\HM\left(f_{j}\right)}{m+1},j\leqslant m$
 \end_inset
 
 ;
@@ -21783,7 +21791,7 @@ reference "par:SingleStepSignatureGroebner"
 
  до добавления многочлен с таким же старшим мономом и большей сигнатурой
  
-\begin_inset Formula $\left(t,i\right)$
+\begin_inset Formula $\Sss{t}{i}$
 \end_inset
 
  не редуцировался по такому же множеству 
@@ -21914,14 +21922,14 @@ ApproxSignatureGroebner
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $R\leftarrow\cup_{1\leqslant i<j\leqslant m}\left\{ \left(\max_{\prec_{a}}\left(\left(\HM(f_{i}),j\right),\left(\HM(f_{j}),i\right)\right),0\right)\right\} $
+\begin_inset Formula $R\leftarrow\cup_{1\leqslant i<j\leqslant m}\left\{ \left(\max_{\prec_{a}}\left(\Sss{\HM(f_{i})}{j},\Sss{\HM(f_{j})}{i}\right),0\right)\right\} $
 \end_inset
 
 
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $B\leftarrow\{((1,1),f_{1}),((1,2),f_{2}),\dots,((1,m),f_{m})\}$
+\begin_inset Formula $B\leftarrow\{(\Sss{1}{1},f_{1}),(\Sss{1}{2},f_{2}),\dots,(\Sss{1}{m},f_{m})\}$
 \end_inset
 
 
@@ -22098,7 +22106,7 @@ if
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $R\leftarrow R\cup\left\{ \left(\left(1,m+k\right),f_{m+k}\right)\right\} \cup_{1\leqslant i<m+k}\left\{ \left(\max_{\prec_{a}}\left(\left(\HM(f_{i}),k\right),\left(\HM(f_{m+k}),i\right)\right),0\right)\right\} $
+\begin_inset Formula $R\leftarrow R\cup\left\{ \left(\Sss{1}{m+k},f_{m+k}\right)\right\} \cup_{1\leqslant i<m+k}\left\{ \left(\max_{\prec_{a}}\left(\Sss{\HM(f_{i})}{k},\Sss{\HM(f_{m+k})}{i}\right),0\right)\right\} $
 \end_inset
 
 
