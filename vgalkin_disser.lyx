@@ -2559,7 +2559,7 @@ reference "thm:Simple-spoly"
 \end_inset
 
  этот моном должен сократиться.
- Для простоты будем полагать, что это элементы с индексами 1 и 2: 
+ Для простоты будем полагать, что это элементы с позициями 1 и 2: 
 \begin_inset Formula $c_{1}t_{1}\cdot g_{i_{1}}$
 \end_inset
 
@@ -3082,7 +3082,8 @@ t'|t''\equivdef\exists t_{1}\in\mathbb{T},\; t''=t_{1}t'.
 \begin_inset Formula $\prec_{P}$
 \end_inset
 
-, сравнивающий вначале индексы, а потом мономы:
+, индуцированный мономиальным порядком и сравнивающий вначале индексы, а
+ потом мономы:
 \end_layout
 
 \begin_layout Standard
@@ -3708,13 +3709,31 @@ key "F5InBBStyle"
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
+\begin_inset Formula $m$
+\end_inset
+
+ Число входных многочленов.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 \begin_inset Formula $R$
 \end_inset
 
- Пополняемый массив отмеченных многочленов, нумеруемый числовыми индексами,
- начинающимися с единичного.
+ Пополняемый массив отмеченных многочленов, нумеруемый натуральными числами,
+ начинающимися с единицы.
+ Числа, нумерующие элементы в нём, мы будем называть позициями, оставляя
+ слово индекс для понятия 
+\begin_inset Quotes fld
+\end_inset
+
+индекс сигнатуры
+\begin_inset Quotes frd
+\end_inset
+
+.
  Большая часть процедур оперирует не с отмеченными многочленами, а с их
- индексами в этом массиве.
+ позициями в этом массиве.
  При редукции, многочлен, однажды добавленный в 
 \begin_inset Formula $R$
 \end_inset
@@ -3749,7 +3768,7 @@ key "F5InBBStyle"
 \end_inset
 
 .
- Используется для получения индекса только что добавленного в 
+ Используется для получения позиции только что добавленного в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -3764,12 +3783,21 @@ Rule Массив правил перезаписи, содержащий
 
  элементов.
  Каждый элемент соответствует ровно одному индексу сигнатуры и в свою очередь
- является пополняемым массивом чисел, являющихся индексами отмеченных многочлено
+ является пополняемым массивом чисел, являющихся позициями отмеченных многочлено
 в в 
 \begin_inset Formula $R$
 \end_inset
 
 .
+ Таким образом, получается, что Rule содержит только 
+\begin_inset Quotes fld
+\end_inset
+
+ссылки
+\begin_inset Quotes frd
+\end_inset
+
+ на многочлены, но не их самих.
  Изначально Rule состоит из 
 \begin_inset Formula $m$
 \end_inset
@@ -3798,11 +3826,24 @@ Rule Массив правил перезаписи, содержащий
 \begin_inset Formula $\prec_{P}$
 \end_inset
 
- Используемый порядок на множестве сигнатур 
+ Определённый выше порядок на множестве сигнатур 
 \begin_inset Formula $\mathbf{T}$
 \end_inset
 
-.
+, индуцированный мономиальным порядком, производящий вначале сравнение индексов
+ сигнатуры, а потом -- мономов.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Paragraph
@@ -3830,7 +3871,7 @@ AddRule
 
 
 \series default
- -- индекс элемента в 
+ -- позиция элемента в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -3853,6 +3894,18 @@ AddRule
 
 \shape default
 ] 
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Paragraph
@@ -3888,7 +3941,7 @@ Rewritten?
 
 
 \series default
- -- индекс элемента в 
+ -- позиция элемента в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -3996,6 +4049,18 @@ return
 return false
 \end_layout
 
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Paragraph
 
 \family typewriter
@@ -4032,11 +4097,11 @@ IncrementalF5
 \begin_inset Formula $i$
 \end_inset
 
- -- этап алгоритма, 
+ -- номер этапа алгоритма, 
 \begin_inset Formula $G_{i}$
 \end_inset
 
- -- множество индексов отмеченных многочленов в 
+ -- множество позиций отмеченных многочленов в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -4125,7 +4190,19 @@ reference "par:AlgorithmF5"
 return 
 \series default
 
-\begin_inset Formula $\left\{ poly(R[r])|r\in G_{m}\right\} $
+\begin_inset Formula $\left\{ \poly(R[r])|r\in G_{m}\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
 \end_inset
 
 
@@ -4160,11 +4237,16 @@ AlgorithmF5
 \begin_inset Formula $G_{i-1}$
 \end_inset
 
- -- множество индексов отмеченных многочленов в 
+ -- множество позиций отмеченных многочленов в 
 \begin_inset Formula $R$
 \end_inset
 
 , образующих базис Грёбнера некоторого идеала.
+ Многочлены, стоящие на этих позициях имеют индексы сигнатур, меньшие 
+\begin_inset Formula $i$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Labeling
@@ -4195,7 +4277,7 @@ AlgorithmF5
 \begin_inset Formula $F_{d},R_{d}$
 \end_inset
 
- -- некоторые множества индексов 
+ -- некоторые множества позиций в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -4203,7 +4285,7 @@ AlgorithmF5
 \begin_inset Formula $r,p$
 \end_inset
 
- -- индексы элементов в 
+ -- позиции элементов в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -4222,12 +4304,12 @@ AlgorithmF5
 \begin_inset Formula $G_{i}$
 \end_inset
 
- -- множество индексов отмеченных многочленов в 
+ -- множество позиций отмеченных многочленов в 
 \begin_inset Formula $R$
 \end_inset
 
 , образующих базис Грёбнера идеала 
-\begin_inset Formula $\left(\left\{ poly(R[r])|r\in G_{i-1}\right\} \cup f_{i}\right)$
+\begin_inset Formula $\left(\left\{ \poly(R[r])|r\in G_{i-1}\right\} \cup f_{i}\right)$
 \end_inset
 
 .
@@ -4254,7 +4336,7 @@ AlgorithmF5
 \shape default
  оператор нормальной формы, производящий полную редукцию по множеству многочлено
 в 
-\begin_inset Formula $\left\{ poly(R[r])|r\in G_{i-1}\right\} $
+\begin_inset Formula $\left\{ \poly(R[r])|r\in G_{i-1}\right\} $
 \end_inset
 
 
@@ -4455,20 +4537,19 @@ reference "par:CritPair"
 \family sans
 \series bold
 return 
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-\lang english
-
 \begin_inset Formula $G_{i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
 \end_inset
 
 
@@ -4499,7 +4580,7 @@ CritPair
 \begin_inset Formula $r_{1},r_{2}$
 \end_inset
 
- -- индексы отмеченных многочленов в 
+ -- позиции отмеченных многочленов в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -4713,6 +4794,18 @@ return
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Paragraph
 
 \family typewriter
@@ -4765,7 +4858,7 @@ Spol
 \begin_inset Formula $F$
 \end_inset
 
- -- множество индексов 
+ -- множество позиций 
 \begin_inset Formula $R$
 \end_inset
 
@@ -4915,6 +5008,18 @@ return
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Paragraph
 
 \family typewriter
@@ -4940,7 +5045,7 @@ ToDo,
 \begin_inset Formula $G$
 \end_inset
 
- -- множества индексов 
+ -- множества позиций 
 \begin_inset Formula $R$
 \end_inset
 
@@ -4963,7 +5068,7 @@ ToDo,
 \begin_inset Formula $h$
 \end_inset
 
- -- индекс отмеченных многочленов в 
+ -- позиция отмеченного многочлена в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -4989,7 +5094,7 @@ ToDo,
 
 \end_inset
 
- -- множества индексов 
+ -- множества позиций в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -5004,7 +5109,7 @@ ToDo,
 \series bold
  
 \series default
-Done -- множество индексов 
+Done -- множество позиций в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -5038,11 +5143,11 @@ do:
 
 
 \family sans
- индекс из ToDo
+ позиция из ToDo
 \family default
 ,
 \family sans
- соответствующий многочлену с минимальной по 
+ соответствующая многочлену с минимальной по 
 \begin_inset Formula $\prec_{P}$
 \end_inset
 
@@ -5216,6 +5321,18 @@ Done
  
 \end_layout
 
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Paragraph
 
 \family typewriter
@@ -5241,7 +5358,7 @@ IsReducible
 \begin_inset Formula $r_{0}$
 \end_inset
 
- -- индекс отмеченного многочлена в 
+ -- позиция отмеченного многочлена в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -5249,7 +5366,7 @@ IsReducible
 \begin_inset Formula $G$
 \end_inset
 
- -- множество индексов 
+ -- множество позиций 
 \begin_inset Formula $R$
 \end_inset
 
@@ -5276,7 +5393,7 @@ IsReducible
 \begin_inset Formula $r_{j}$
 \end_inset
 
- -- индекс в 
+ -- позиция в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -5299,7 +5416,7 @@ IsReducible
 \series bold
  
 \series default
-множество индексов 
+множество позиций в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -5444,6 +5561,22 @@ return
  
 \end_layout
 
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+
+\end_layout
+
 \begin_layout Paragraph
 
 \family typewriter
@@ -5469,7 +5602,7 @@ TopReduction
 \begin_inset Formula $r_{0}$
 \end_inset
 
- -- индекс отмеченного многочлена в 
+ -- позиция отмеченного многочлена в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -5477,7 +5610,7 @@ TopReduction
 \begin_inset Formula $G$
 \end_inset
 
- -- множество индексов 
+ -- множество позиций 
 \begin_inset Formula $R$
 \end_inset
 
@@ -5500,7 +5633,7 @@ TopReduction
 \begin_inset Formula $r'$
 \end_inset
 
- -- множество индексов элементов 
+ -- множество позиций элементов 
 \begin_inset Formula $R$
 \end_inset
 
@@ -5528,8 +5661,8 @@ TopReduction
 \end_inset
 
 .
- Возвращаемое значение -- пара множеств (ToDo, Done) содержащих индексы
- 
+ Возвращаемое значение -- пара множеств (ToDo, Done) содержащих позиции
+ в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -6202,11 +6335,11 @@ reference "par:Reduction"
 \begin_inset Formula $R_{d}$
 \end_inset
 
-, мы можем выбрать индекс многочлена 
+, мы можем выбрать позицию 
 \begin_inset Formula $r_{k}$
 \end_inset
 
-, добавленный в Done позже.
+, добавленную в Done позже.
  Тогда про другой многочлен S-пары 
 \begin_inset Formula $r_{3-k}$
 \end_inset
@@ -7712,7 +7845,7 @@ name "thm:f_g_3_props"
 \begin_inset Formula $G$
 \end_inset
 
- содержит индексы пары отмеченных многочленов 
+ содержит позиции пары отмеченных многочленов 
 \begin_inset Formula $f',f$
 \end_inset
 
@@ -7764,8 +7897,8 @@ name "thm:f_g_3_props"
 При работе с цепями S-пар является важным тот факт, что многочлен никогда
  не редуцируется дальше, после того как он был использован для создания
  S-пары в качестве старшей по сигнатуре части.
- Факт выполняется, поскольку, индексы всех многочлены, которые ещё могут
- быть подвергнуты редукции находятся в множестве ToDo, а индексы многочленов,
+ Факт выполняется, поскольку, позиции всех многочлены, которые ещё могут
+ быть подвергнуты редукции находятся в множестве ToDo, а позиции многочленов,
  используемых как старшая часть S-пары, находятся в 
 \begin_inset Formula $G$
 \end_inset
@@ -11842,7 +11975,7 @@ reference "thm:f_g_3_props"
 \begin_inset Formula $f',f$
 \end_inset
 
-, с индексами в 
+, с позициями в 
 \begin_inset Formula $G_{m}$
 \end_inset
 
@@ -12042,7 +12175,7 @@ reference "thm:f_g_3_props"
 \end_inset
 
 .
- Индекс многочлена 
+ Позиция многочлена 
 \family default
 \series default
 \shape default
@@ -12899,7 +13032,7 @@ SimplifiedF5
 \begin_inset Formula $G_{i-1}$
 \end_inset
 
- -- множество индексов отмеченных многочленов в 
+ -- множество позиций отмеченных многочленов в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -12926,11 +13059,11 @@ SimplifiedF5
 \begin_inset Formula $r$
 \end_inset
 
- -- индекс элементов в 
+ -- позиция элементов в 
 \begin_inset Formula $R$
 \end_inset
 
-, используемый при итерировании.
+, используемая при итерировании.
 \end_layout
 
 \begin_layout Labeling
@@ -12945,12 +13078,12 @@ SimplifiedF5
 \begin_inset Formula $G_{i}$
 \end_inset
 
- -- множество индексов отмеченных многочленов в 
+ -- множество позиций отмеченных многочленов в 
 \begin_inset Formula $R$
 \end_inset
 
 , образующих базис Грёбнера идеала 
-\begin_inset Formula $\left(\left\{ poly(R[r])|r\in G_{i-1}\right\} \cup f_{i}\right)$
+\begin_inset Formula $\left(\left\{ \poly(R[r])|r\in G_{i-1}\right\} \cup f_{i}\right)$
 \end_inset
 
 .
