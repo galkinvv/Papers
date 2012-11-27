@@ -4491,7 +4491,7 @@ for
 
 \family sans
 \shape italic
-\begin_inset Formula $P\leftarrow P\cup\{$
+\begin_inset Formula $P\leftarrow P\cup_{p\in G_{i}}$
 \end_inset
 
 
@@ -4504,7 +4504,7 @@ reference "par:CritPair"
 \end_inset
 
 
-\begin_inset Formula $(r,p,i,\varphi)|p\in G_{i}\}$
+\begin_inset Formula $(r,p,i,\varphi)$
 \end_inset
 
 
@@ -5843,7 +5843,7 @@ else:
 if 
 \series default
 
-\begin_inset Formula $u\Sig(R[r_{1}])\prec_{P}\Sig(R[r_{1}])$
+\begin_inset Formula $u\Sig(R[r_{1}])\prec_{P}\Sig(R[r_{0}])$
 \end_inset
 
 
@@ -6003,8 +6003,8 @@ key "F5-revisited"
  При этом, примеров, приводящих к отсутствию остановки алгоритма, найдено
  не было.
  Поскольку для большинства входных последовательностей их регулярность неизвестн
-а, эти исследования не позволяют ответить на вопрос завершения практической
- реализации алгоритма на конкретных входных данных.
+а, эти исследования не позволяют ответить на вопрос завершения алгоритма
+ на конкретных входных данных.
  Один из подходов к решению проблемы -- добавление в алгоритм дополнительных
  проверок и критериев, гарантирующих остановку алгоритма.
  Этот подход даёт строгое доказательство остановки, однако, получаемый результат
@@ -6231,7 +6231,7 @@ reference "par:AlgorithmF5"
 
 .
  Оно выполняется, поскольку на 
-\begin_inset Formula $j-1$
+\begin_inset Formula $\left(j-1\right)$
 \end_inset
 
 -ой итерации все многочлены в 
@@ -6405,7 +6405,7 @@ reference "enu:IsRed-d"
 \begin_inset Formula $u_{k}=\monone$
 \end_inset
 
-, поскольку, полная степень критической пары равна полной степени её челна
+, поскольку, полная степень критической пары равна полной степени её члена
  
 \begin_inset Formula $\totaldeg\left(\HM\left(R\left[r_{k}\right]\right)\right)$
 \end_inset
@@ -6839,7 +6839,7 @@ reference "par:AlgorithmF5"
 \end_inset
 
 .
- Вначале покажем несколько общих утверждений о многочленах в множествах
+ В начале покажем несколько общих утверждений о многочленах в множествах
  ToDo и Rule в процессе 
 \begin_inset Formula $j$
 \end_inset
@@ -6875,7 +6875,7 @@ reference "par:AlgorithmF5"
  Все прочие критические пары порождаются с индексом сигнатуры, соответствующим
  некоторому отмеченному многочлену, перемещённому из множества ToDo в множество
  Done.
- В свою очередь, все элементы ToDo создаются или на основе критических пар
+ В свою очередь, все элементы ToDo создаются или на основе критических пар,
  или внутри процедуры 
 \begin_inset CommandInset ref
 LatexCommand nameref
@@ -6891,14 +6891,14 @@ reference "par:TopReduction"
 
 \end_inset
 
- имеют сигнатуру, превышающую сигнатуру многочлена, который редуцирует данный
- вызов процедуры и который является элементом ToDo.
+, имеют сигнатуру, превышающую сигнатуру многочлена, который редуцирует
+ данный вызов процедуры и который является элементом ToDo.
  Поэтому, многочлен или критическая пара с индексом сигнатуры, отличным
  от 
 \begin_inset Formula $m$
 \end_inset
 
- не могут появиться в рассматриваемом вызове 
+, не могут появиться в рассматриваемом вызове 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "par:AlgorithmF5"
@@ -6931,7 +6931,7 @@ reference "par:AlgorithmF5"
 \begin_inset Formula $j$
 \end_inset
 
- имеют полную степень равную 
+, имеют полную степень равную 
 \begin_inset Formula $d_{j}$
 \end_inset
 
@@ -7014,7 +7014,7 @@ reference "par:TopReduction"
 \begin_inset Formula $\Sig(R\left[r_{k}\right])\succ_{P}\Sig(R\left[r_{q}\right])$
 \end_inset
 
-, гарантирующие что редукция по нему будет сигнатурной.
+, гарантирующие, что редукция по нему будет сигнатурной.
  Случай 
 \begin_inset Formula $\Sig(R\left[r_{k}\right])=\Sig(R\left[r_{q}\right])$
 \end_inset
@@ -7054,7 +7054,7 @@ reference "par:TopReduction"
 \begin_inset Formula $t\cdot\Sig(R\left[r_{q}\right])$
 \end_inset
 
- и тот факт что 
+ и тот факт, что 
 \begin_inset Formula $r_{q}$
 \end_inset
 
@@ -7065,6 +7065,13 @@ reference "par:Rewritten?"
 
 \end_inset
 
+ на шаге 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:IsRed-c"
+
+\end_inset
+
  внутри 
 \begin_inset CommandInset ref
 LatexCommand nameref
@@ -7072,7 +7079,7 @@ reference "par:IsReducible"
 
 \end_inset
 
- гарантирует, что ни одного многочлена с сигнатурой 
+, гарантирует, что ни одного многочлена с сигнатурой 
 \begin_inset Formula $t\Sig(R\left[r_{q}\right])$
 \end_inset
 
@@ -7090,6 +7097,13 @@ reference "par:IsReducible"
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "par:IsReducible"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:IsRed-c"
 
 \end_inset
 
@@ -7243,14 +7257,21 @@ reference "par:TopReduction"
 \end_inset
 
 , поэтому в ToDo добавляется лишь конечное число элементов.
- Теперь мы покажем, что все типы шагов, происходящих внутри 
+ Теперь мы покажем, что все типы шагов, происходящих в вызове 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
+ внутри 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "par:Reduction"
 
 \end_inset
 
- могут быть выполнены лишь конечное число раз:
+, могут быть выполнены лишь конечное число раз:
 \end_layout
 
 \begin_deeper
@@ -7263,7 +7284,7 @@ reference "par:IsReducible"
 \end_inset
 
  возвращает пустое множество, соответствует переносу элемента множества
- ToDo в Done и число таких шагов ограничено числом элементов, добавляемых
+ ToDo в Done, и число таких шагов ограничено числом элементов, добавляемых
  в ToDo;
 \end_layout
 
@@ -7275,8 +7296,9 @@ reference "par:IsReducible"
 
 \end_inset
 
- возвращает не сигнатурный редуктор, соответствует добавлению нового элемента
- в ToDo и число таких шагов ограничено числом возможных добавлений;
+ возвращает потенциальный редуктор, сигнатура которого оказывается больше
+ сигнатуры редуцируемого, соответствует добавлению нового элемента в ToDo,
+ и число таких шагов ограничено числом возможных добавлений;
 \end_layout
 
 \begin_layout Itemize
@@ -7290,7 +7312,7 @@ reference "par:IsReducible"
  возвращает сигнатурный редуктор, соответствует редукции одного из элементов
  ToDo.
  Это может произойти лишь конечное число раз, поскольку в ToDo добавляется
- конечное число многочленов и не может существовать бесконечной цепочки
+ конечное число многочленов, и не может существовать бесконечной цепочки
  редукций для одного многочлена, поскольку в процессе редукции его старший
  моном 
 \begin_inset Formula $\HM$
@@ -7328,8 +7350,8 @@ reference "Every_cycle_iteration_finish"
 \end_layout
 
 \begin_layout Standard
-Отсюда получается следующий факт о поведении алгоритма в ситуации, когда
- он не завершается.
+Отсюда получается следующее утверждение о поведении алгоритма в ситуации,
+ когда он не завершается.
 \end_layout
 
 \begin_layout Claim
@@ -7494,7 +7516,7 @@ reference "par:TopReduction"
 , откуда вытекает делимость: 
 \begin_inset Formula 
 \begin{equation}
-\Sig(R[k_{n-1}])|\Sig(R[k_{n}]).\label{eq:s-pair-chain-def}
+\Sig(R[k_{n-1}])\,|\,\Sig(R[k_{n}]).\label{eq:s-pair-chain-def}
 \end{equation}
 
 \end_inset
@@ -7631,7 +7653,7 @@ reference "par:IsReducible"
 \begin_inset Formula $s$
 \end_inset
 
- -- она даже может быть найдена, исходя лишь из списка Rule и сигнатуры
+, -- она даже может быть найдена, исходя лишь из списка Rule и сигнатуры
  
 \begin_inset Formula $s$
 \end_inset
@@ -7898,7 +7920,7 @@ name "thm:f_g_3_props"
  не редуцируется дальше, после того как он был использован для создания
  S-пары в качестве старшей по сигнатуре части.
  Факт выполняется, поскольку, позиции всех многочлены, которые ещё могут
- быть подвергнуты редукции находятся в множестве ToDo, а позиции многочленов,
+ быть подвергнуты редукции, находятся в множестве ToDo, а позиции многочленов,
  используемых как старшая часть S-пары, находятся в 
 \begin_inset Formula $G$
 \end_inset
@@ -22016,7 +22038,7 @@ reference "par:SingleStepSignatureGroebner"
 
 \begin_layout Itemize
 на 
-\begin_inset Formula $N+1$
+\begin_inset Formula $\left(N+1\right)$
 \end_inset
 
 -й итерации будет рассматриваться многочлен, дающий 
