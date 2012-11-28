@@ -5363,7 +5363,7 @@ IsReducible
 \end_inset
 
 , для которого выполняется поиск возможных сигнатурных редукций, 
-\begin_inset Formula $G$
+\begin_inset Formula $G_{\text{red}}$
 \end_inset
 
  -- множество позиций 
@@ -5398,7 +5398,7 @@ IsReducible
 \end_inset
 
  для итерирования по 
-\begin_inset Formula $G$
+\begin_inset Formula $G_{\text{red}}$
 \end_inset
 
 , 
@@ -5430,7 +5430,7 @@ IsReducible
 for
 \series default
  
-\begin_inset Formula $r_{j}\in G$
+\begin_inset Formula $r_{j}\in G_{\text{red}}$
 \end_inset
 
 
@@ -5575,10 +5575,6 @@ height "1pt"
 
 \begin_layout Paragraph
 
-\end_layout
-
-\begin_layout Paragraph
-
 \family typewriter
 \series medium
 \begin_inset CommandInset label
@@ -5607,7 +5603,7 @@ TopReduction
 \end_inset
 
 , для которого выполняется редукция, 
-\begin_inset Formula $G$
+\begin_inset Formula $G_{\text{red}}$
 \end_inset
 
  -- множество позиций 
@@ -5750,7 +5746,7 @@ reference "par:IsReducible"
 \end_inset
 
 (
-\begin_inset Formula $h,G,\varphi$
+\begin_inset Formula $h,G_{\text{red}},\varphi$
 \end_inset
 
 ) 
@@ -6345,7 +6341,7 @@ reference "par:Reduction"
 \end_inset
 
  можно утверждать, что он уже присутствовал в 
-\begin_inset Formula $G\cup$
+\begin_inset Formula $G_{\text{red}}=G\cup$
 \end_inset
 
 Done к моменту добавления 
@@ -6982,7 +6978,7 @@ reference "par:TopReduction"
  добавляет элемент в ToDo в противном случае.
  Элементы ToDo обрабатываются в порядке возрастания сигнатур, поэтому ни
  один из элементов 
-\begin_inset Formula $G\cup$
+\begin_inset Formula $G_{\text{red}}=G\cup$
 \end_inset
 
 Done не может иметь сигнатуры, превышающей сигнатуру многочлена 
@@ -7441,7 +7437,7 @@ reference "par:TopReduction"
 \end_inset
 
  порождается как S-многочлен двух, уже ранее добавленных в последовательность
- многочленов.
+ многочленов и впоследствии редуцируется проведением сигнатурных редукций.
  Будем обозначать за 
 \begin_inset Formula $l^{*}$
 \end_inset
@@ -7496,55 +7492,67 @@ reference "par:TopReduction"
 \end_inset
 
  никогда не меняется после добавления многочлена в последовательность.
- Далее, будем пытаться найти бесконечную подпоследовательность 
-\begin_inset Formula $\left\{ R[k_{1}],R[k_{2}],\ldots,R[k_{n}],\ldots\right\} $
-\end_inset
-
- в этой последовательности, обладающую свойством, что 
-\begin_inset Formula $R[k_{n}]$
-\end_inset
-
- является S-многочленом 
-\begin_inset Formula $R[k_{n-1}]=R[k_{n}^{*}]$
-\end_inset
-
- и некоторого другого многочлена меньшей сигнатуры.
- То есть 
-\begin_inset Formula $\Sig(R[k_{n}])=\overline{u_{k_{n}}}\Sig(R[k_{n-1}])$
-\end_inset
-
-, откуда вытекает делимость: 
-\begin_inset Formula 
-\begin{equation}
-\Sig(R[k_{n-1}])\,|\,\Sig(R[k_{n}]).\label{eq:s-pair-chain-def}
-\end{equation}
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Definition
-Конечную или бесконечную последовательность отмеченных многочленов из 
-\begin_inset Formula $H$
+Зафиксируем некоторые входные данные для алгоритма F5 и рассмотрим порождаемый
+ им конечный или бесконечный массив отмеченных многочленов 
+\begin_inset Formula $R$
 \end_inset
 
-, соседние элементы которой удовлетворяют свойству 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:s-pair-chain-def"
-
+.
+ Конечную или бесконечную последовательность 
+\begin_inset Formula $\left\{ R[k_{1}],R[k_{2}],\ldots,R[k_{n}],\ldots\right\} $
 \end_inset
 
-, будем называть 
+ отмеченных многочленов из 
+\begin_inset Formula $R$
+\end_inset
+
+, обладающую свойством, что при создании 
+\begin_inset Formula $R[k_{n}]$
+\end_inset
+
+ как S-многочлена в роли части с большей сигнатурой 
+\begin_inset Formula $R[k_{n}^{*}]$
+\end_inset
+
+ выступал предыдущий элемент последовательности, будем называть 
 \emph on
 цепью S-пар
 \emph default
 .
+ Символически это требование можно записать как 
+\begin_inset Formula $\forall n>1\; k_{n}^{*}=k_{n-1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Lemma
+Для соседних элементы цепи S-пар выполняется делимость сигнатур в 
+\begin_inset Formula $\mathbf{T}$
+\end_inset
+
+: 
+\begin_inset Formula $\Sig(R[k_{n-1}])\,|\,\Sig(R[k_{n}])$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Вытекает из того что по определению цепи S-пар выполняется равенство 
+\begin_inset Formula $\Sig(R[k_{n}])=\overline{u_{k_{n}}}\Sig(R[k_{n-1}])$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-Каждый порождаемый многочлен 
+Далее, будем пытаться найти бесконечную цепь S-пар в случае отсутствия завершени
+я алгоритма.
+ Каждый порождаемый многочлен 
 \begin_inset Formula $R[l]$
 \end_inset
 
@@ -7579,7 +7587,7 @@ reference "eq:s-pair-chain-def"
 \end_layout
 
 \begin_layout Standard
-Первое свойство цепей S-пар основано на критерии перезаписи и заключается
+Важное свойство цепей S-пар основано на критерии перезаписи и заключается
  в следующей теореме.
 \end_layout
 
@@ -7917,15 +7925,33 @@ name "thm:f_g_3_props"
 
 \begin_layout Proof
 При работе с цепями S-пар является важным тот факт, что многочлен никогда
- не редуцируется дальше, после того как он был использован для создания
- S-пары в качестве старшей по сигнатуре части.
- Факт выполняется, поскольку, позиции всех многочлены, которые ещё могут
+ не редуцируется дальше, после того как он был использован в качестве старшей
+ по сигнатуре части для создания S-многочлена.
+ Факт выполняется, поскольку, позиции всех многочленов, которые ещё могут
  быть подвергнуты редукции, находятся в множестве ToDo, а позиции многочленов,
- используемых как старшая часть S-пары, находятся в 
+ используемых как старшая часть S-многочлена, находятся в 
 \begin_inset Formula $G$
 \end_inset
 
- или в Done.
+ для случая создания S-многочлена в 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Spol"
+
+\end_inset
+
+ или в 
+\begin_inset Formula $G_{\text{red}}=G\cup$
+\end_inset
+
+Done в случае создания S-многочлена в 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
+.
  Поэтому, многочлен 
 \begin_inset Formula $h_{n}$
 \end_inset
@@ -7938,7 +7964,7 @@ name "thm:f_g_3_props"
 \begin_inset Formula $\poly(h_{n})$
 \end_inset
 
- после того как был использован для создания какой-либо S-пары.
+ после того как был использован для создания какого-либо S-многочлена.
  И можно утверждать, что выполняется равенство 
 \begin_inset Formula 
 \[
@@ -12552,7 +12578,7 @@ reference "par:Spol"
  будут им отбрасываться, поскольку известно, что многочлен такой сигнатуры
  имеет сигнатурное представление, в котором все элементы имеют меньшую сигнатуру
 , и поэтому редуцируется к нулю относительно текущего множества 
-\begin_inset Formula $G\cup$
+\begin_inset Formula $G_{\text{red}}=G\cup$
 \end_inset
 
 Done.
