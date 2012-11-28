@@ -5098,7 +5098,15 @@ ToDo,
 \begin_inset Formula $R$
 \end_inset
 
-.
+, 
+\begin_inset Formula $G_{\text{red}}$
+\end_inset
+
+ -- множество позиций 
+\begin_inset Formula $R$
+\end_inset
+
+, соответствующих потенциальным редукторам.
 \end_layout
 
 \begin_layout Labeling
@@ -5185,6 +5193,15 @@ ToDo
 \begin_layout Enumerate
 
 \family sans
+\begin_inset Formula $G_{\text{red}}\leftarrow G\cup$
+\end_inset
+
+Done
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
 \shape italic
 \begin_inset Formula $($
 \end_inset
@@ -5228,23 +5245,15 @@ reference "par:TopReduction"
 
 \end_inset
 
-(
+
 \shape italic
 
-\begin_inset Formula $h,G\cup$
+\begin_inset Formula $\left(h,G_{\text{red}},\varphi\right)$
 \end_inset
 
 
 \shape default
-Done
-\shape italic
-, 
-\begin_inset Formula $\varphi$
-\end_inset
-
-
-\shape default
-) 
+ 
 \end_layout
 
 \begin_layout Enumerate
