@@ -611,7 +611,7 @@ key "NumericalComputationGB"
 
 \begin_layout Standard
 Однако, наиболее эффективными из известных на сегодняшний день алгоритмов
- вычисления базисов Грёбнера, являются алгоритмы, основанные на сигнатурах.
+ вычисления базисов Грёбнера являются алгоритмы, основанные на сигнатурах.
  Их идея заключается в использовании информации о выражении всех вычисляемых
  многочленов через исходные.
  Она приводит к минимизации числа лишних операций и была впервые предложена
@@ -2780,10 +2780,6 @@ name "par:Buchberger"
 \end_inset
 
 Buchberger
-\begin_inset Formula $\left(\left\{ f_{1},\dots,f_{m}\right\} \right)$
-\end_inset
-
-
 \end_layout
 
 \begin_layout Enumerate
@@ -3737,7 +3733,7 @@ key "F5InBBStyle"
 \end_layout
 
 \begin_layout Paragraph
-Глобальные переменные:
+Глобальные переменные
 \end_layout
 
 \begin_layout Labeling
