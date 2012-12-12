@@ -1,0 +1,685 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass extarticle
+\begin_preamble
+\input{gost/babelbst.tex}
+\oddsidemargin=0.46cm
+\hoffset=0cm
+\textwidth=16.75cm
+\topmargin=-0.54cm
+\textheight=25.2cm
+\headheight=0cm
+\headsep=0cm
+\sloppy
+
+\usepackage{suffix}
+
+% If this is in *.tex file, uncomment the following line.
+\makeatletter
+
+% Save the original \part declaration
+\let\old@part\part
+
+% To that definition, add a new special starred version.
+\WithSuffix\def\part*{
+  % Handle the optional parameter.
+  \ifx\next[%
+    \let\next\thesis@part@star%
+  \else
+    \def\next{\thesis@part@star[]}%
+  \fi
+  \next}
+
+% The actual macro definition.
+\def\thesis@part@star[#1]#2{
+  % Insert the actual (unnumbered) \part header.
+  \old@part*{#2}
+  % Last, add the part to the table of contents
+  \addcontentsline{toc}{part}{#2}
+}
+
+\let\old@section\section
+
+% To that definition, add a new special starred version.
+\WithSuffix\def\section*{
+  % Handle the optional parameter.
+  \ifx\next[%
+    \let\next\thesis@section@star%
+  \else
+    \def\next{\thesis@section@star[]}%
+  \fi
+  \next}
+
+% The actual macro definition.
+\def\thesis@section@star[#1]#2{
+  % Insert the actual (unnumbered) \part header.
+  \old@section*{#2}
+  % Last, add the part to the table of contents
+  \addcontentsline{toc}{section}{#2}
+}
+
+% If this is in *.tex file, uncomment the following line.
+\makeatother
+\end_preamble
+\options a4paper, reqno, 14pt
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+theorems-sec
+\end_modules
+\maintain_unincluded_children false
+\begin_local_layout
+
+\end_local_layout
+\language russian
+\language_package babel
+\inputencoding utf8
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered true
+\pdf_bookmarksopen true
+\pdf_bookmarksopenlevel 7
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic true
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 5
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language french
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\bullet 0 0 0 -1
+\bullet 1 0 6 -1
+\bullet 2 0 10 -1
+\bullet 3 0 9 -1
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Актуальность темы
+\end_layout
+
+\begin_layout Standard
+Одним из современных практических применений алгебры является её использование
+ для компьютерного решения полиномиальных систем уравнений, возникающих
+ в различных областях деятельности 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FastStablePolySolving"
+
+\end_inset
+
+.
+ Традиционно к ним применялись общие приближённые методы решения произвольных
+ систем уравнений.
+ Однако со временем были разработаны специализированные алгоритмы для решения
+ полиномиальных систем 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "sturmfels2002solvingPolySystems"
+
+\end_inset
+
+.
+ Наиболее универсальным среди них является алгоритм, основанный на вычислении
+ базиса Грёбнера полиномиального идеала.
+ При этом может использоваться как базис относительно лексикографического,
+ так и относительно произвольного мономиального порядка 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "UsingAlgebraicGeometry"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Возникающие на практике системы могут иметь неточно заданные входные данные,
+ что делает невозможным прямое применение алгоритмов, предложенных для вычислени
+я базисов Грёбнера в кольце многочленов над полем.
+ Существуют методики, позволяющие применять любой алгоритм вычисления базисов
+ Грёбнера для приближённого случая, но они не учитывают сам ход алгоритма
+ и могут запускать его несколько раз, что снижает эффективность такого подхода.
+ Классическим алгоритмом вычисления базисов Грёбнера является алгоритм Бухбергер
+а.
+ В дальнейшем он получил развитие в виде алгоритма F4, для которого была
+ найдена методика применения к системам с приближёнными входными данными
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "NumericalComputationGB"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Однако, наиболее эффективными из известных на сегодняшний день алгоритмов
+ вычисления базисов Грёбнера являются алгоритмы, основанные на сигнатурах.
+ Их идея заключается в использовании информации о выражении всех вычисляемых
+ многочленов через исходные.
+ Она приводит к минимизации числа лишних операций и была впервые предложена
+ в основанном на сизигиях виде 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FirstSyzygiesPaper"
+
+\end_inset
+
+.
+ Следующей вехой в этом направлении стало появление первого эффективного
+ сигнатурного алгоритма -- алгоритм F5 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5"
+
+\end_inset
+
+, применимого к однородным регулярным последовательностям.
+ В дальнейшем он развивался в сторону расширения области применимости и
+ повышения эффективности.
+ Было дано объяснение методики применения алгоритма F5 к неоднородным входным
+ данным 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Eder2012inhomogeneous"
+
+\end_inset
+
+.
+ Повышение эффективности шло по нескольким направлениям.
+ Совершенствовались критерии отбрасывания многочленов: алгоритм G2V 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "G2V"
+
+\end_inset
+
+ позволил отбрасывать многочлены, основываясь на всех известных сизигиях,
+ а не только на тривиальных.
+ Был предложен улучшенный критерий отбрасывания 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "TheF5Revised"
+
+\end_inset
+
+, позволяющий отбрасывать до редукции все многочлены за исключением минимального
+ S-базиса.
+ Также развивалось взаимодействие между этапами алгоритма: алгоритм F5C
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5C"
+
+\end_inset
+
+ добавил редукцию базиса между этапами, а алгоритмы GVW 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GVW"
+
+\end_inset
+
+ и F5B 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F5InBBStyle"
+
+\end_inset
+
+ сделали алгоритм одноэтапным, позволяя использовать более широкий спектр
+ порядков на сигнатурах.
+ Последним направлением развития стал переход от очереди S-пар к очереди
+ их старших частей, позволяющий упростить конструкцию всего алгоритма.
+ Этот подход был введён в уже упоминавшемся алгоритме G2V и продолжен в
+ алгоритме GVW.
+ Совмещение всех этих методик ускорения породило практически одинаковые
+ алгоритмы TRB-MJ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HuangConception"
+
+\end_inset
+
+ и SB 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "PracticalGB"
+
+\end_inset
+
+, являющиеся наиболее эффективными сигнатурными алгоритмами на сегодняшний
+ день.
+ Сигнатурный алгоритм, используемый в данной работе в качестве базового,
+ также практически совпадает с ними в порядке работы, но отличается формулировко
+й и методом обоснования.
+ Принципиально другим направлением развития алгоритма F5 стала его матричная
+ версия 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bardet02algorithmsseminar"
+
+\end_inset
+
+.
+ Но по сути она не является сигнатурным алгоритмом, поскольку не запоминает
+ сигнатуры элементов в процессе работы, и заимствует из алгоритма F5 лишь
+ часть критериев отбрасывания.
+\end_layout
+
+\begin_layout Standard
+Помимо сигнатурного направления развития алгоритмов вычисления базисов Грёбнера
+ существует инволютивное направление, также позволяющее решать системы полиномиа
+льных уравнений.
+ Оно основано на идее запрета умножения на некоторые мономы 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "zharkov1993involution"
+
+\end_inset
+
+, которая позволяет значительно сократить объём проводимых вычислений.
+ Эта идея получила развитие в виде более общего понятия инволютивного базиса,
+ описанного вместе с алгоритмом его нахождения 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "gerdt1998involutive"
+
+\end_inset
+
+.
+ Ещё одним шагом в применении инволютивного базиса к решению систем стало
+ появление понятия исчерпывающего инволютивного базиса 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ComprehensiveInvolutive"
+
+\end_inset
+
+.
+ Взаимосвязь инволютивных методов с сигнатурными остаётся неизвестной, и
+ далее в данной работе они не рассматриваются.
+\end_layout
+
+\begin_layout Standard
+Попытки применения традиционных алгоритмов нахождения базиса Грёбнера к
+ приближённым вычислениям с неточно заданными входными данными в 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+ или 
+\begin_inset Formula $\mathbb{R}$
+\end_inset
+
+ привели к появлению нескольких методов.
+ Одним из них является использование обобщённого базиса Грёбнера -- краевого
+ базиса 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ComputingBorderBases"
+
+\end_inset
+
+.
+ Также было предложено понятие исчерпывающего базиса Грёбнера, позволяющего
+ находить параметрический базис Грёбнера 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ComprehensiveGB"
+
+\end_inset
+
+, и эффективные алгоритмы его вычисления 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ComprehenciveGroebnerFastViaGroebner,ComprehensiveNewAlgorithm,ComprehensiveMinimal"
+
+\end_inset
+
+.
+ Применение сигнатурных алгоритмов к приближённым вычислениям изучено хуже.
+ Одной из методик этого направления является использование метода замены
+ переменных 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GroebnerInExtFields"
+
+\end_inset
+
+.
+ Этот метод позволяет находить приближённый базис Грёбнера используя любой
+ традиционный алгоритм вычисления точного базиса Грёбнера с небольшими модификац
+иями.
+ При его изложении 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GroebnerInExtFields"
+
+\end_inset
+
+ даются примеры таких модификаций для алгоритма Бухбергера и матричной версии
+ F5, но сигнатурные алгоритмы явно не затрагиваются.
+ Кроме того, большинство упомянутых методов вычисления приближённого базиса
+ разделяют один недостаток: в процессе работы алгоритм вычисления точного
+ базиса Грёбнера запускается несколько раз.
+ 
+\end_layout
+
+\begin_layout Standard
+Основное направление данной работы -- более глубокое исследование этой области,
+ путём изучения применимости сигнатурных алгоритмов в приближённом случае
+ с упором на эффективность вносимых в них модификаций.
+\end_layout
+
+\begin_layout Section*
+Цель работы
+\end_layout
+
+\begin_layout Standard
+Целью настоящей работы является создание методик решения приближённых систем
+ алгебраических уравнений при помощи сигнатурных алгоритмов вычисления базиса
+ Грёбнера.
+ В качестве отдельных этапов, приводящих к данной цели, ставились следующие
+ задачи:
+\end_layout
+
+\begin_layout Itemize
+установить остановку сигнатурного алгоритма F5 вычисления базисов Грёбнера
+ на произвольном входном множестве многочленов, не обязательно являющимся
+ регулярной последовательностью;
+\end_layout
+
+\begin_layout Itemize
+сформулировать и доказать свойства, однозначно определяющие многочлены,
+ участвующие в проводимых алгоритмом F5 редукциях, на основе состояния алгоритма
+;
+\end_layout
+
+\begin_layout Itemize
+сформировать наиболее простой алгоритм, индуцированный этими свойствами,
+ доказать его корректность и остановку, а также реализовать его в одной
+ из систем компьютерной алгебры;
+\end_layout
+
+\begin_layout Itemize
+сформулировать строгое определение задачи приближённого решения системы,
+ которое бы соответствовало алгоритмам компьютерных приближённых вычислений;
+\end_layout
+
+\begin_layout Itemize
+предложить метод применения алгоритмов вычисления базиса Грёбнера для решения
+ приближённых систем; найти основывающийся на модулярных вычислениях способ
+ для вероятностного определения точного равенства нулю приближённых коэффициенто
+в; построить правило выбора модуля для таких вычислений, обеспечивающее
+ не превышающую заданную константу вероятность получения некорректного ответа;
+\end_layout
+
+\begin_layout Itemize
+научиться применять метод замены переменных 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GroebnerInExtFields"
+
+\end_inset
+
+ к сигнатурным алгоритмам без их перезапуска.
+\end_layout
+
+\begin_layout Standard
+Эти задачи были успешно решены в данной работе.
+\end_layout
+
+\begin_layout Section*
+Научная новизна
+\end_layout
+
+\begin_layout Standard
+Научная новизна диссертации состоит в следующем:
+\end_layout
+
+\begin_layout Itemize
+Доказана остановка алгоритма F5 на любых входных данных, не обязательно
+ являющихся регулярными.
+ В отличие от других попыток доказательства 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "2012GrbTermination,HuangConception"
+
+\end_inset
+
+, доказана именно остановка алгоритма в исходной формулировке 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5"
+
+\end_inset
+
+, а не аналогичных алгоритмов, идентичность которых с F5 до конца не ясна.
+ Показано, что при существовании редуктора, отбрасываемого одним из критериев
+ в алгоритме, существует один и только один не отбрасываемый редуктор.
+\end_layout
+
+\begin_layout Itemize
+Предложен вероятностный модулярный метод решения полиномиальных систем уравнений
+ с приближёнными входными данными.
+ Дано явное численное правило выбора простого модуля на основе требуемой
+ вероятности корректности и величин, возникающих в процессе работы алгоритма.
+\end_layout
+
+\begin_layout Itemize
+Предложена интеграция методики замены переменных в сигнатурные алгоритмы
+ вычисления базисов Грёбнера, позволяющая, в отличие от метода замены переменных
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GroebnerInExtFields"
+
+\end_inset
+
+, добавлять новые замены в процессе работы алгоритма.
+\end_layout
+
+\begin_layout Section*
+Основные методы исследования
+\end_layout
+
+\begin_layout Standard
+Большинство методов, используемых в работе, являются алгебраическими.
+ Среди них можно выделить базисы Грёбнера, коммутативную алгебру, линейную
+ алгебру, а также символические вычисления и теорию конечных полей.
+ Помимо них работа содержит приёмы, используемые в теории вероятностей,
+ математическом анализе и численных методах.
+ Главные результаты о сигнатурных алгоритмах в целом, на которые опирается
+ данная работа, находятся в работах Фожера, Эдера и Перри 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5,F5C"
+
+\end_inset
+
+.
+ Эффективный алгоритм вычисления базисов Грёбнера 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "HuangConception,PracticalGB"
+
+\end_inset
+
+ получает новое доказательство корректности и используется как базовый алгоритм
+ для проведения приближённых вычислений.
+ Метод замены переменных 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GroebnerInExtFields"
+
+\end_inset
+
+ служит основой одной из рассматриваемых методик приближённых вычислений.
+ Наконец, данная работа была бы невозможна без результатов теории сигнатурных
+ алгоритмов
+\begin_inset CommandInset citation
+LatexCommand cite
+key "G2V,Modifying-for-termination,ZobninGeneralization_ru,SignatureBasedGBs,TheF5Revised"
+
+\end_inset
+
+, и является результатом связывания сигнатурных алгоритмов вычисления базисов
+ Грёбнера с одной из наиболее практических областей их применения -- решением
+ приближённых полиномиальных систем.
+\end_layout
+
+\begin_layout Section*
+Теоретическая и практическая ценность работы
+\end_layout
+
+\begin_layout Standard
+Диссертация совмещает теоретические и прикладные направления.
+ Теоретическая сторона результатов включает доказательства остановки сигнатурных
+ алгоритмов на нерегулярных последовательностях и получение строгих оценок
+ вероятности корректности для вероятностных модулярных алгоритмов.
+\end_layout
+
+\begin_layout Standard
+Сигнатурный алгоритм инкрементального вычисления базисов Грёбнера был реализован
+ автором в системе компьютерной алгебры Singular.
+ Данный алгоритм нетребователен к структурам данных и может быть легко перенесен
+ в другие системы компьютерной алгебры.
+ Результаты диссертации могут быть полезны при решении задач, возникающих
+ в робототехнике и видеоаналитике.
+\end_layout
+
+\begin_layout Section*
+Апробация работы
+\end_layout
+
+\begin_layout Standard
+Результаты диссертации докладывались на научно-исследовательском семинаре
+ кафедры высшей алгебры МГУ.
+\end_layout
+
+\begin_layout Section*
+Публикации
+\end_layout
+
+\begin_layout Standard
+Результаты автора по теме диссертации находятся в процессе публикации в
+ работах 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Termination_of_Original_F5_Rus,SSG_Rus"
+
+\end_inset
+
+ в журнале 
+\begin_inset Quotes fld
+\end_inset
+
+Вестник МГУ
+\begin_inset Quotes frd
+\end_inset
+
+.
+ Переводы статей на английский язык в несколько более полном изложении,
+ не скованном требованиями журнала к размеру публикации, доступны в электронной
+ библиотеке 
+\begin_inset CommandInset href
+LatexCommand href
+target "http://arxiv.org"
+
+\end_inset
+
+ как 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Termination_of_Original_F5_arXiv,SSG-arXiv"
+
+\end_inset
+
+.
+ Исследования, связанные с алгоритмом F4, опубликованы в работе 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "AleGalZob08"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section*
+Структура и объем диссертации
+\end_layout
+
+\begin_layout Standard
+Диссертационная работа состоит из введения и двух частей, первая из которых
+ посвящена исследованию алгоритмов вычисления базисов Грёбнера, а вторая
+ -- их применению к решению систем.
+ В конце работы находятся заключение и библиография.
+ Общий объем диссертации составляет 
+\begin_inset CommandInset ref
+LatexCommand pageref
+reference "LastPage"
+
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+страниц.
+ Структура работы отражена в содержании.
+\end_layout
+
+\end_body
+\end_document
