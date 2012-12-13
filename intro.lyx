@@ -667,13 +667,19 @@ key "AleGalZob08"
  -- их применению к решению систем.
  В конце работы находятся заключение и библиография.
  Общий объем диссертации составляет 
-\begin_inset CommandInset ref
-LatexCommand pageref
-reference "LastPage"
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+numberofdisserpages
+\end_layout
 
 \end_inset
 
-
+ 
 \begin_inset space ~
 \end_inset
 
