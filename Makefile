@@ -8,9 +8,14 @@ define PYMAKEAUTOREFCITES
 import sys,re
 inside=False
 inside_my=False
+occured=set()
 def normalizecmdname(name):
 	return re.sub(r"[\d\._:-]","",name)
-replacer=lambda match: r"\!"+r"\textsuperscript{,}".join((r"\footnote{\autorefcite"+normalizecmdname(book)+"}" for book in match.group(1).split(",")))
+def singlereplacer(name):
+	if name in occured: return r"{\textsuperscript{\ref{numref"+name+r"}}}"
+	occured.add(name)
+	return "{\\autorefcite"+name+"}"
+replacer=lambda match: r"\!"+r"\textsuperscript{,}".join((singlereplacer(normalizecmdname(book)) for book in match.group(1).split(",")))
 for in_line in sys.stdin:
 	if in_line.startswith(r"\end{document}"):
 		inside=False
@@ -35,12 +40,13 @@ def normalizecmdname(name):
 def replacer(match):
 	global inside_def
 	inside_def=True
-	return r"\providecommand{\autorefcite"+normalizecmdname(match.group(1))+"}{"
+	name=normalizecmdname(match.group(1))
+	return "\\newcommand{\\autorefcite"+name+r"}{\footnote{\label{numref"+name+"}"
 for in_line in sys.stdin:
 	if len(in_line.strip("\n")) == 0:
 		if inside_def:
 			inside_def=False
-			in_line="}"+in_line
+			in_line="}}"+in_line
 		sys.stdout.write(in_line)
 	else:
 		sys.stdout.write(re.sub(r"\\bibitem{([^}]+)}",replacer,in_line))
