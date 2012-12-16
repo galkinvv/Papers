@@ -1,3 +1,60 @@
+auto_ref.tex: Makefile auto_ref.lyx
+	rm -f $@
+	lyx -e pdflatex auto_ref.lyx
+intro.tex: Makefile intro.lyx
+	rm -f $@
+	lyx -e pdflatex intro.lyx
+define PYMAKEAUTOREFCITES
+import sys,re
+inside=False
+inside_my=False
+def normalizecmdname(name):
+	return re.sub(r"[\d\._:-]","",name)
+replacer=lambda match: r"\!"+r"\textsuperscript{,}".join((r"\footnote{\autorefcite"+normalizecmdname(book)+"}" for book in match.group(1).split(",")))
+for in_line in sys.stdin:
+	if in_line.startswith(r"\end{document}"):
+		inside=False
+	if not inside:		
+		if in_line.startswith(r"\begin{document}"):
+			inside=True
+	else:
+		if in_line.startswith("Результаты автора"):
+			inside_my=True
+		if not inside_my:
+			in_line=re.sub(r"\\cite{([^}]+)}",replacer,in_line)
+		sys.stdout.write(in_line)
+endef
+export PYMAKEAUTOREFCITES
+intro_for_autoref.tex: Makefile intro.tex
+	python -c "$$PYMAKEAUTOREFCITES" < intro.tex >$@ 
+define PYMAKEAUTOREFBIB
+import sys,re
+inside_def=False
+def normalizecmdname(name):
+	return re.sub(r"[\d\._:-]","",name)
+def replacer(match):
+	global inside_def
+	inside_def=True
+	return r"\providecommand{\autorefcite"+normalizecmdname(match.group(1))+"}{"
+for in_line in sys.stdin:
+	if len(in_line.strip("\n")) == 0:
+		if inside_def:
+			inside_def=False
+			in_line="}"+in_line
+		sys.stdout.write(in_line)
+	else:
+		sys.stdout.write(re.sub(r"\\bibitem{([^}]+)}",replacer,in_line))
+endef
+export PYMAKEAUTOREFBIB
+autoref_bibcommands_generator.tex: Makefile autoref_bibcommands_generator.aux f5_references.bib gost/ugost2008s.bst
+	rm autoref_bibcommands_generator.bbl
+	bibtex autoref_bibcommands_generator.aux
+	grep -v "thebibliography" < autoref_bibcommands_generator.bbl| python -c "$$PYMAKEAUTOREFBIB" >$@
+auto_ref.pdf: autoref_bibcommands_generator.tex intro_for_autoref.tex auto_ref.tex Makefile
+	pdflatex auto_ref.tex
+	bibtex auto_ref.1.aux
+	pdflatex auto_ref.tex
+	pdflatex auto_ref.tex	
 simple_sig_rus.tex: simple_sig_rus.lyx Makefile
 	rm -f $@
 	lyx -e pdflatex simple_sig_rus.lyx

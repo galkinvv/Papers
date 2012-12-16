@@ -108,10 +108,10 @@ theorems-sec
 \pdf_pdfusetitle true
 \papersize default
 \use_geometry true
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
+\use_amsmath 2
+\use_esint 0
+\use_mhchem 0
+\use_mathdots 0
 \cite_engine basic
 \use_bibtopic true
 \use_indices false
@@ -878,9 +878,31 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand input
-filename "intro.lyx"
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+input{autoref_bibcommands_generator.tex}
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+def
+\backslash
+newblock
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+input{intro_for_autoref.tex}
+\end_layout
 
 \end_inset
 
