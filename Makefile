@@ -53,7 +53,7 @@ for in_line in sys.stdin:
 endef
 export PYMAKEAUTOREFBIB
 autoref_bibcommands_generator.tex: Makefile autoref_bibcommands_generator.aux f5_references.bib gost/ugost2008s.bst
-	rm autoref_bibcommands_generator.bbl
+	rm -f autoref_bibcommands_generator.bbl
 	bibtex autoref_bibcommands_generator.aux
 	grep -v "thebibliography" < autoref_bibcommands_generator.bbl| python -c "$$PYMAKEAUTOREFBIB" >$@
 auto_ref.pdf: autoref_bibcommands_generator.tex intro_for_autoref.tex auto_ref.tex Makefile
