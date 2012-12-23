@@ -760,6 +760,11 @@ status open
 \begin_inset VSpace vfill
 \end_inset
 
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 Защита диссертации состоится 
 \begin_inset Note Note
 status open
@@ -788,7 +793,7 @@ status open
 кий факультет, аудитория 14-08.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 С диссертацией можно ознакомиться в библиотеке ме\SpecialChar \-
 ха\SpecialChar \-
 ни\SpecialChar \-
@@ -802,7 +807,7 @@ status open
  факультета МГУ (Главное здание, 14 этаж)
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Автореферат разослан
 \begin_inset Note Note
 status open
@@ -814,6 +819,11 @@ status open
 \end_inset
 
 .
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
