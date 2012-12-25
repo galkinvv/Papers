@@ -1,25 +1,24 @@
-auto_ref.tex: Makefile auto_ref.lyx
+auto_ref_plainrefs.tex: Makefile auto_ref.lyx
 	rm -f $@
 	lyx -e pdflatex auto_ref.lyx
+	mv auto_ref.tex auto_ref_plainrefs.tex
 intro.tex: Makefile intro.lyx
 	rm -f $@
 	lyx -e pdflatex intro.lyx
 define PYMAKEAUTOREFCITES
 import sys,re
+all_doc="--alldocument" in sys.argv
 inside=False
 inside_my=False
-occured=set()
 def normalizecmdname(name):
 	return re.sub(r"[\d\._:-]","",name)
 def singlereplacer(name):
-	if name in occured: return r"{\textsuperscript{\ref{numref"+name+r"}}}"
-	occured.add(name)
-	return "{\\autorefcite"+name+"}"
+	return "{\\autorefcite"+name+r"}\def\autorefcite"+name+r"{\textsuperscript{\ref{numref"+name+r"}}}"
 replacer=lambda match: r"\!"+r"\textsuperscript{,}".join((singlereplacer(normalizecmdname(book)) for book in match.group(1).split(",")))
 for in_line in sys.stdin:
 	if in_line.startswith(r"\end{document}"):
 		inside=False
-	if not inside:		
+	if not inside and not all_doc:		
 		if in_line.startswith(r"\begin{document}"):
 			inside=True
 	else:
@@ -56,7 +55,8 @@ autoref_bibcommands_generator.tex: Makefile autoref_bibcommands_generator.aux f5
 	rm -f autoref_bibcommands_generator.bbl
 	bibtex autoref_bibcommands_generator.aux
 	grep -v "thebibliography" < autoref_bibcommands_generator.bbl| python -c "$$PYMAKEAUTOREFBIB" >$@
-auto_ref.pdf: autoref_bibcommands_generator.tex intro_for_autoref.tex auto_ref.tex Makefile
+auto_ref.pdf: autoref_bibcommands_generator.tex intro_for_autoref.tex auto_ref_plainrefs.tex Makefile
+	python -c "$$PYMAKEAUTOREFCITES" --alldocument < auto_ref_plainrefs.tex >auto_ref.tex
 	pdflatex auto_ref.tex
 	bibtex auto_ref.1.aux
 	pdflatex auto_ref.tex

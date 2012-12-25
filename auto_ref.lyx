@@ -69,7 +69,6 @@
 theorems-ams
 eqs-within-sections
 figs-within-sections
-theorems-sec
 \end_modules
 \maintain_unincluded_children false
 \begin_local_layout
@@ -298,7 +297,7 @@ relax% TEX-заголовки только для включения инфор�
 \backslash
 def
 \backslash
-numberofdisserpages{115}
+numberofdisserpages{117}
 \end_layout
 
 \end_inset
@@ -924,7 +923,320 @@ input{intro_for_autoref.tex}
 \end_layout
 
 \begin_layout Standard
-Todo
+Во 
+\series bold
+Введении
+\series default
+ изложена краткая история вопроса, обоснована актуальность темы и сформулированы
+ основные результаты диссертации.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Часть I
+\series default
+ посвящена описаниям и обоснованиям алгоритмов вычисления базисов Грёбнера
+ в кольцах многочленов от нескольких переменных над произвольным полем.
+ В её начале 
+\series bold
+Глава 1
+\series default
+ вводит основную терминологию, необходимую для формулировки теоретических
+ утверждений в отношении многочленов из кольца 
+\begin_inset Formula $\mathcal{P}=\mathcal{K}[x_{1},\dots,x_{n}]$
+\end_inset
+
+ с мономиальным порядком 
+\begin_inset Formula $\prec$
+\end_inset
+
+ на множестве их мономов 
+\begin_inset Formula $\mathbb{T}$
+\end_inset
+
+.
+ Наиболее важным для дальнейшей теории сигнатурных алгоритмов являются понятие
+ 
+\emph on
+представления
+\emph default
+ и его связь с базисом Грёбнера, заключающееся в следующем:
+\end_layout
+
+\begin_layout Definition
+Для фиксированного множества 
+\begin_inset Formula $G\subset\mathcal{P}$
+\end_inset
+
+ назовём 
+\emph on
+представлением
+\emph default
+ 
+\emph on
+многочлена 
+\begin_inset Formula $p\in\mathcal{P}$
+\end_inset
+
+ над 
+\begin_inset Formula $G$
+\end_inset
+
+
+\emph default
+ соответствующую верному равенству в 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+ запись вида
+\begin_inset Formula 
+\[
+p=\sum_{k}m_{k}\cdot g_{i_{k}},\; g_{i_{k}}\in G,
+\]
+
+\end_inset
+
+в которой термы 
+\begin_inset Formula $m_{k}=c_{k}t_{k}\in\mathcal{K}\times\mathbb{T}$
+\end_inset
+
+ таковы, что все пары 
+\begin_inset Formula $\left(t_{k},g_{i_{k}}\right)$
+\end_inset
+
+ различны, а коэффициенты 
+\begin_inset Formula $c_{k}\ne0$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Definition
+Представление 
+\begin_inset Formula $p=\sum_{k}m_{k}\cdot g_{i_{k}}$
+\end_inset
+
+ над 
+\begin_inset Formula $G$
+\end_inset
+
+ называется 
+\emph on
+степенным
+\emph default
+, если 
+\begin_inset Formula $\forall k\;\HM(m_{k}g_{i_{k}})\preccurlyeq\HM(p)$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Definition
+Множество 
+\begin_inset Formula $G\subset I$
+\end_inset
+
+ называется 
+\emph on
+базисом Грёбнера
+\emph default
+ идеала 
+\begin_inset Formula $I$
+\end_inset
+
+ кольца 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+ для порядка 
+\begin_inset Formula $\prec$
+\end_inset
+
+, если 
+\begin_inset Formula $\forall f\in I$
+\end_inset
+
+ имеет степенное представление над 
+\begin_inset Formula $G$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+Также производится классификация всех алгоритмов вычисления базиса Грёбнера
+ по способу их формулировки: 
+\emph on
+инкрементальными
+\emph default
+ называются алгоритмы, последовательно вычисляющие базисы Грёбнера для начальных
+ частей входного набора, а 
+\emph on
+однопроходными --
+\emph default
+ алгоритмы, обрабатывающие всё множество целиком.
+ В формулировках инкрементальных алгоритмов входные данные представляются
+ как базис Грёбнера предыдущего шага
+\begin_inset Formula $G$
+\end_inset
+
+ и следующий рассматриваемый многочлен 
+\begin_inset Formula $f$
+\end_inset
+
+.
+ Для однопроходных на вход подаются сразу все многочлены 
+\begin_inset Formula $f_{1},\ldots,f_{m}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Глава 2
+\series default
+ описывает классический алгоритм Бухбергера и используемую в нём базовую
+ операцию создания S-пары, которая используется и далее при доказательстве
+ остановки F5: 
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+S-парой
+\emph default
+ ненулевых многочленов 
+\begin_inset Formula $g_{1}$
+\end_inset
+
+ и 
+\begin_inset Formula $g_{2}$
+\end_inset
+
+ называется пара произведений
+\begin_inset Formula 
+\[
+\left(\frac{\HM(g_{2})\HC(g_{2})}{\LCM(\HM(g_{1}),\HM(g_{2}))}\cdot g_{1};\frac{\HM(g_{1})\HC(g_{1})}{\LCM(\HM(g_{1}),\HM(g_{2}))}\cdot g_{2}\right).
+\]
+
+\end_inset
+
+
+\series bold
+Глава 3
+\series default
+ вводит понятие отмеченного многочлена, ключевое для всех дальнейших рассуждений.
+ Вначале определяется сигнатура элемента представления для инкрементальных
+ и однопроходных алгоритмов.
+\end_layout
+
+\begin_layout Definition
+Для одноэтапного алгоритма 
+\emph on
+сигнатурой элемента представления
+\emph default
+ 
+\begin_inset Formula $ct\cdot f_{i}$
+\end_inset
+
+ над 
+\begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} $
+\end_inset
+
+ называется пара 
+\begin_inset Formula $\Sss ti\in\mathbf{T}=\mathbb{T}\times\mathbb{N}$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Definition
+Для
+\emph on
+ 
+\emph default
+инкрементального алгоритма 
+\emph on
+сигнатурой элемента представления
+\emph default
+ 
+\begin_inset Formula $ct\cdot p$
+\end_inset
+
+ над 
+\begin_inset Formula $G\cup\left\{ f\right\} $
+\end_inset
+
+ называется 
+\begin_inset Formula $t\in\mathbb{T}$
+\end_inset
+
+, если 
+\begin_inset Formula $p=f$
+\end_inset
+
+, и 
+\begin_inset Formula $\monzero$
+\end_inset
+
+, если 
+\begin_inset Formula $p\in G$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Дальнейшие определения вводятся сразу для инкрементальных и однопроходных
+ алгоритмов в предположении, что на множестве сигнатур задан порядок 
+\begin_inset Formula $\prec_{\tau}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+
+\emph on
+Сигнатурой представления
+\emph default
+ называется 
+\begin_inset Formula $\prec_{\tau}$
+\end_inset
+
+-максимальная сигнатура его элементов.
+ 
+\emph on
+Отмеченным многочленом
+\emph default
+ называется пара, состоящая из многочлена и сигнатуры одного из его представлени
+й.
+ Таким образом, каждому многочлену может быть сопоставлено любое количество
+ отмеченных многочленов, поскольку он может иметь несколько представлений.
+\end_layout
+
+\begin_layout Standard
+Далее описывается алгоритм F5 и приводится вариант его псевдокода, дополняющий
+ псевдокод из статьи 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5"
+
+\end_inset
+
+ описаниями предназначений процедур и используемых в них переменных.
+ Основное содержание этой главы посвящено доказательству его остановки.
+ Оно основано на следующей идее: если алгоритм не завершается, то после
+ определённого шага в множестве, формируемом
 \end_layout
 
 \begin_layout Part*
@@ -977,6 +1289,27 @@ LatexCommand bibtex
 btprint "btPrintAll"
 bibfiles "my_publications"
 options "gost/ugost2008s"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintAll"
+bibfiles "f5_references"
+options "gost/ugost2008s"
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
