@@ -552,7 +552,7 @@ key "GroebnerInExtFields"
 \begin_inset Quotes fld
 \end_inset
 
-приближённых нулей
+необратимых приближённых элементов
 \begin_inset Quotes frd
 \end_inset
 
@@ -565,7 +565,7 @@ key "GroebnerInExtFields"
 \begin_inset Quotes fld
 \end_inset
 
-приближённого нуля
+необратимого приближённого элемента
 \begin_inset Quotes frd
 \end_inset
 
