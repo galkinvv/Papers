@@ -8336,7 +8336,7 @@ reference "par:IsReducible"
 \end_inset
 
 .
- 
+ Условие 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:IsRed-a"
@@ -8372,12 +8372,12 @@ reference "enu:IsRed-a"
 \noun default
 \color inherit
 .
- Она может быть отброшена другими проверками:
+ Она может быть отброшена другими условиями:
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-отбрасывание пунктом 
+условие 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:IsRed-b"
@@ -8396,7 +8396,7 @@ reference "enu:IsRed-b"
 \end_layout
 
 \begin_layout Itemize
-отбрасывание пунктом 
+условие 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:IsRed-c"
@@ -8418,7 +8418,7 @@ reference "par:Rewritten?"
 \end_layout
 
 \begin_layout Itemize
-отбрасывание пунктом 
+условие 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:IsRed-d"
@@ -8433,7 +8433,7 @@ reference "enu:IsRed-d"
 \begin_inset Formula $\monone\cdot R[l_{*}]$
 \end_inset
 
- может быть перезаписан другим, поэтому, если S-пара не была отброшена проверкой
+ может быть перезаписан другим, поэтому, если S-пара не была отброшена условием
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -8565,18 +8565,18 @@ reference "par:Rewritten?"
 
 .
  Некоторые S-пары могут оказываться на путях обработки несколько раз, к
- примеру это происходит на итерации 
+ примеру это происходит в 
 \begin_inset CommandInset ref
 LatexCommand nameref
 reference "par:AlgorithmF5"
 
 \end_inset
 
- со значением 
+ на итерации, в которой значение 
 \begin_inset Formula $d$
 \end_inset
 
-, не изменившимся с прошлой итерации.
+ не изменилось по сравнению с предыдущей.
  Если S-пара была отброшена при первой попытке обработки, то она будет точно
  также отброшена и на следующей попытке.
  Если первая обработка добавила редуцированный многочлен в Done, то пара
