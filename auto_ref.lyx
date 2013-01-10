@@ -1908,7 +1908,7 @@ SingleStepSignatureGroebner
 LatexCommand bibtex
 btprint "btPrintAll"
 bibfiles "my_publications"
-options "gost/ugost2008s"
+options "gost/ugost2008s_myparts"
 
 \end_inset
 
