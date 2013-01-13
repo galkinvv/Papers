@@ -342,6 +342,13 @@ status open
 thispagestyle{empty}
 \end_layout
 
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{page}{-1}
+\end_layout
+
 \end_inset
 
  
@@ -355,7 +362,11 @@ thispagestyle{empty}
 \begin_inset Newline newline
 \end_inset
 
- имени М.В.
+ имени М.
+\begin_inset space ~
+\end_inset
+
+В.
 \begin_inset space ~
 \end_inset
 
@@ -532,7 +543,7 @@ status open
 
 
 \begin_inset Tabular
-<lyxtabular version="3" rows="9" columns="2">
+<lyxtabular version="3" rows="8" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top" width="0">
 <column alignment="left" valignment="top" width="0pt">
@@ -551,26 +562,6 @@ status open
 
 \begin_layout Plain Layout
 кандидат физико-математических наук,
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-доцент 
 \end_layout
 
 \end_inset
@@ -637,6 +628,7 @@ status open
 \begin_inset Text
 
 \begin_layout Plain Layout
+<пока не определён>
 \begin_inset Note Note
 status open
 
@@ -690,17 +682,15 @@ status open
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-доцент И.Н.
- Балаба
-\end_layout
-
+с.н.с Н.
+\begin_inset space ~
 \end_inset
 
+Н.
+\begin_inset space ~
+\end_inset
 
+Васильев
 \end_layout
 
 \end_inset
@@ -895,15 +885,6 @@ status open
 
 \backslash
 input{autoref_bibcommands_generator.tex}
-\end_layout
-
-\begin_layout Plain Layout
-
-%
-\backslash
-def
-\backslash
-newblock
 \end_layout
 
 \begin_layout Plain Layout

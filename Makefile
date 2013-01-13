@@ -11,10 +11,10 @@ all_doc="--alldocument" in sys.argv
 inside=False
 inside_my=False
 def normalizecmdname(name):
-	return re.sub(r"[\d\._:-]","",name)
+	return re.sub(r"[\d\._:0-9-]","X",name)
 def singlereplacer(name):
 	return "{\\autorefcite"+name+r"}\def\autorefcite"+name+r"{\textsuperscript{\ref{numref"+name+r"}}}"
-replacer=lambda match: r"\!"+r"\textsuperscript{,}".join((singlereplacer(normalizecmdname(book)) for book in match.group(1).split(",")))
+replacer=lambda match: r"\unskip"+r"\textsuperscript{,}".join((singlereplacer(normalizecmdname(book)) for book in match.group(1).split(",")))
 for in_line in sys.stdin:
 	if in_line.startswith(r"\end{document}"):
 		inside=False
@@ -35,7 +35,7 @@ define PYMAKEAUTOREFBIB
 import sys,re
 inside_def=False
 def normalizecmdname(name):
-	return re.sub(r"[\d\._:-]","",name)
+	return re.sub(r"[\d\._:0-9-]","X",name)
 def replacer(match):
 	global inside_def
 	inside_def=True
@@ -48,7 +48,11 @@ for in_line in sys.stdin:
 			in_line="}}"+in_line
 		sys.stdout.write(in_line)
 	else:
-		sys.stdout.write(re.sub(r"\\bibitem{([^}]+)}",replacer,in_line))
+		in_line = re.sub(r"\\bibitem{([^}]+)}",replacer,in_line)	
+		if inside_def: 
+			in_line = in_line.rstrip().replace(r"\BibEmph",r"\unskip\hspace{1mm}\BibEmph")
+			
+		sys.stdout.write(in_line)
 endef
 export PYMAKEAUTOREFBIB
 autoref_bibcommands_generator.tex: Makefile autoref_bibcommands_generator.aux f5_references.bib gost/ugost2008s.bst
