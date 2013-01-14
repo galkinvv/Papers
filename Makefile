@@ -1,6 +1,6 @@
 auto_ref_plainrefs.tex: Makefile auto_ref.lyx
 	rm -f $@
-	lyx -e pdflatex auto_ref.lyx
+	lyx -e xetex auto_ref.lyx
 	mv auto_ref.tex auto_ref_plainrefs.tex
 intro.tex: Makefile intro.lyx
 	rm -f $@
@@ -61,10 +61,10 @@ autoref_bibcommands_generator.tex: Makefile autoref_bibcommands_generator.aux f5
 	grep -v "thebibliography" < autoref_bibcommands_generator.bbl| python -c "$$PYMAKEAUTOREFBIB" >$@
 auto_ref.pdf: autoref_bibcommands_generator.tex intro_for_autoref.tex auto_ref_plainrefs.tex Makefile
 	python -c "$$PYMAKEAUTOREFCITES" --alldocument < auto_ref_plainrefs.tex >auto_ref.tex
-	pdflatex auto_ref.tex
+	xelatex auto_ref.tex
 	bibtex auto_ref.1.aux
-	pdflatex auto_ref.tex
-	pdflatex auto_ref.tex	
+	xelatex auto_ref.tex
+	xelatex auto_ref.tex	
 simple_sig_rus.tex: simple_sig_rus.lyx Makefile
 	rm -f $@
 	lyx -e pdflatex simple_sig_rus.lyx
