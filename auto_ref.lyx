@@ -4,6 +4,23 @@
 \begin_header
 \textclass extarticle
 \begin_preamble
+\usepackage[
+unicode=false,
+pdfusetitle,
+bookmarks=true,
+bookmarksnumbered=true,
+bookmarksopen=true,
+bookmarksopenlevel=7,
+breaklinks=false,
+pdfborder={0 0 0},
+backref=false,
+colorlinks=false,
+xetex,
+pdfa
+]
+ {hyperref}
+
+
 \input{gost/babelbst.tex}
 \oddsidemargin=0.46cm
 \hoffset=0cm
@@ -97,7 +114,7 @@ figs-within-sections
 \index_command default
 \paperfontsize default
 \spacing single
-\use_hyperref true
+\use_hyperref false
 \pdf_bookmarks true
 \pdf_bookmarksnumbered true
 \pdf_bookmarksopen true
