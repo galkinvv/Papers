@@ -76,21 +76,21 @@ theorems-sec
 
 \end_local_layout
 \language russian
-\language_package babel
+\language_package \usepackage[russian]{polyglossia}
 \inputencoding utf8
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
+\font_roman CMU Serif
+\font_sans CMU Sans Serif
+\font_typewriter CMU Typewriter Text
 \font_default_family default
-\use_non_tex_fonts false
+\use_non_tex_fonts true
 \font_sc false
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
 
 \graphics default
-\default_output_format default
+\default_output_format pdf4
 \output_sync 0
 \bibtex_command default
 \index_command default
@@ -106,6 +106,7 @@ theorems-sec
 \pdf_colorlinks false
 \pdf_backref false
 \pdf_pdfusetitle true
+\pdf_quoted_options "unicode=false"
 \papersize default
 \use_geometry true
 \use_amsmath 1
@@ -20778,7 +20779,7 @@ m_{r,c}\rightarrow m_{r',c'}m_{r,c}-m_{r,c'}m_{r,c'}.
 
 \end_inset
 
-.
+
 \end_layout
 
 \begin_layout Proof
