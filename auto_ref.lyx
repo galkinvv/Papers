@@ -1885,6 +1885,13 @@ SingleStepSignatureGroebner
  сигнатуру между двумя уже имеющимися.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
 \begin_layout Part*
 Благодарности
 \end_layout
@@ -1924,11 +1931,35 @@ SingleStepSignatureGroebner
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+linespread{0.9}
+\end_layout
+
+\end_inset
+
+
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 btprint "btPrintAll"
 bibfiles "my_publications"
 options "gost/ugost2008s_myparts"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
 
 \end_inset
 
