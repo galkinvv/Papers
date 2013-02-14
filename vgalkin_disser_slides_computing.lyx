@@ -2,7 +2,7 @@
 \lyxformat 413
 \begin_document
 \begin_header
-\textclass slides
+\textclass beamer
 \begin_preamble
 % Uncomment to print out only slides and overlays
 %
@@ -18,11 +18,11 @@
 \language_package default
 \inputencoding utf8
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
+\font_roman CMU Serif
+\font_sans CMU Sans Serif
+\font_typewriter CMU Typewriter Text
 \font_default_family default
-\use_non_tex_fonts false
+\use_non_tex_fonts true
 \font_sc false
 \font_osf false
 \font_sf_scale 100
@@ -35,9 +35,19 @@
 \index_command default
 \paperfontsize default
 \spacing single
-\use_hyperref false
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\pdf_quoted_options "unicode=false"
 \papersize default
-\use_geometry false
+\use_geometry true
 \use_amsmath 2
 \use_esint 0
 \use_mhchem 1
@@ -175,7 +185,7 @@ parskip}{5pt}
 
 \end_layout
 
-\begin_layout Slide
+\begin_layout BeginFrame
 
 \end_layout
 
@@ -189,10 +199,6 @@ parskip}{5pt}
 
 \size huge
 Сигнатурные алгоритмы вычисления базисов Грёбнера
-\end_layout
-
-\begin_layout Slide
-
 \end_layout
 
 \begin_layout Standard
@@ -254,7 +260,7 @@ parskip}{5pt}
 \end_layout
 
 \end_deeper
-\begin_layout Slide
+\begin_layout BeginFrame
 
 \end_layout
 
@@ -307,7 +313,7 @@ S-базис Грёбнера: любой элемент идеала имеет
 \end_layout
 
 \end_deeper
-\begin_layout Slide
+\begin_layout BeginFrame
 
 \end_layout
 
@@ -347,7 +353,7 @@ S-базис Грёбнера: любой элемент идеала имеет
 \end_layout
 
 \end_deeper
-\begin_layout Slide
+\begin_layout BeginFrame
 
 \end_layout
 
@@ -386,7 +392,7 @@ S-базис Грёбнера: любой элемент идеала имеет
 Имеют редукции к нулю, поскольку никак не учитывают строение множества сизигий
 \end_layout
 
-\begin_layout Slide
+\begin_layout BeginFrame
 
 \end_layout
 
@@ -550,7 +556,7 @@ SB (B.Roune, M.Stillman, 2012)
 -базисы
 \end_layout
 
-\begin_layout Slide
+\begin_layout BeginFrame
 
 \end_layout
 
@@ -579,7 +585,7 @@ SB (B.Roune, M.Stillman, 2012)
  всех S-пар
 \end_layout
 
-\begin_layout Slide
+\begin_layout BeginFrame
 
 \end_layout
 
@@ -627,7 +633,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\Longleftrightarrow\HM(p_{
  редуцируемого
 \end_layout
 
-\begin_layout Slide
+\begin_layout BeginFrame
 
 \end_layout
 
@@ -668,7 +674,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\Longleftrightarrow\HM(p_{
  критериям
 \end_layout
 
-\begin_layout Slide
+\begin_layout BeginFrame
 
 \end_layout
 
@@ -678,8 +684,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\Longleftrightarrow\HM(p_{
  SingleStepSignatureGroebner
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
+\begin_layout Description
 
 \family sans
 Вход: многочлены 
@@ -691,8 +696,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\Longleftrightarrow\HM(p_{
 с сигнатурами.
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
+\begin_layout Description
 
 \family sans
 Переменные: 
@@ -710,8 +714,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\Longleftrightarrow\HM(p_{
  -- многочлены ожидающие анализа
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
+\begin_layout Description
 
 \family sans
 Результат: ненулевые элементы 
@@ -729,11 +732,11 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\Longleftrightarrow\HM(p_{
 Простое доказательство, не используещее S-пары
 \end_layout
 
-\begin_layout Slide
+\begin_layout BeginFrame
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Description
 Инициализация:
 \end_layout
 
@@ -751,7 +754,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\Longleftrightarrow\HM(p_{
 
 \end_layout
 
-\begin_layout Slide
+\begin_layout BeginFrame
 
 \end_layout
 
@@ -886,7 +889,7 @@ for
 -- отличия от Бухбергера, помимо добавления сигнатурности
 \end_layout
 
-\begin_layout Slide
+\begin_layout BeginFrame
 
 \end_layout
 
@@ -974,7 +977,7 @@ for
  конечно
 \end_layout
 
-\begin_layout Slide
+\begin_layout BeginFrame
 
 \end_layout
 
@@ -1059,7 +1062,7 @@ for
 .
 \end_layout
 
-\begin_layout Slide
+\begin_layout BeginFrame
 
 \end_layout
 
@@ -1110,7 +1113,7 @@ for
 \end_layout
 
 \end_deeper
-\begin_layout Slide
+\begin_layout BeginFrame
 
 \end_layout
 
@@ -1148,12 +1151,11 @@ a_{0}\in\mathbb{C}\left|a_{0}-a\right|<\varepsilon
 Формализация задачи: ищем множество, содержащее решения при любых специализациях.
 \end_layout
 
-\begin_layout Slide
+\begin_layout BeginFrame
 
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
+\begin_layout Description
 Сложение 
 \begin_inset Formula $(a_{1},\varepsilon_{1})+(a_{2},\varepsilon_{2})=(a_{1}+a_{2},\varepsilon_{1}+\varepsilon_{2})$
 \end_inset
@@ -1161,8 +1163,7 @@ a_{0}\in\mathbb{C}\left|a_{0}-a\right|<\varepsilon
 
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
+\begin_layout Description
 Умножение 
 \begin_inset Formula $(a_{1},\varepsilon_{1})\times(a_{2},\varepsilon_{2})=(a_{1}a_{2},\varepsilon_{1}\left|a_{2}\right|+\varepsilon_{2}\left|a_{1}\right|+\varepsilon_{1}\varepsilon_{2})$
 \end_inset
@@ -1170,8 +1171,7 @@ a_{0}\in\mathbb{C}\left|a_{0}-a\right|<\varepsilon
 
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
+\begin_layout Description
 Вычитание на основе сложения и умножения на -1:
 \begin_inset Formula 
 \[
@@ -1183,8 +1183,7 @@ a_{0}\in\mathbb{C}\left|a_{0}-a\right|<\varepsilon
 
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
+\begin_layout Description
 Обращение определяется только для приближённых чисел, для которых 0 не является
  специализацией, что эквивалентно 
 \begin_inset Formula $\left|a\right|-\varepsilon>0$
@@ -1204,7 +1203,7 @@ a_{0}\in\mathbb{C}\left|a_{0}-a\right|<\varepsilon
 
 \end_layout
 
-\begin_layout Slide
+\begin_layout BeginFrame
 
 \end_layout
 
@@ -1238,7 +1237,7 @@ a_{0}\in\mathbb{C}\left|a_{0}-a\right|<\varepsilon
 -- не существует специализации, дающей точный ноль
 \end_layout
 
-\begin_layout Slide
+\begin_layout BeginFrame
 
 \end_layout
 
@@ -1278,7 +1277,7 @@ a_{0}\in\mathbb{C}\left|a_{0}-a\right|<\varepsilon
 
 \end_layout
 
-\begin_layout Slide
+\begin_layout BeginFrame
 
 \end_layout
 
@@ -1329,7 +1328,7 @@ a_{0}\in\mathbb{C}\left|a_{0}-a\right|<\varepsilon
 
 \end_layout
 
-\begin_layout Slide
+\begin_layout BeginFrame
 
 \end_layout
 
@@ -1365,7 +1364,7 @@ F5+TSV (J.-C.
  Недостаток -- полный перезапуск алгоритмов после добавления многочленов
 \end_layout
 
-\begin_layout Slide
+\begin_layout BeginFrame
 
 \end_layout
 
@@ -1423,7 +1422,7 @@ F5+TSV (J.-C.
 
 \end_layout
 
-\begin_layout Slide
+\begin_layout BeginFrame
 
 \end_layout
 
@@ -1482,7 +1481,7 @@ SingleStepSignatureGroebner
 Модулярные вычисления для классификации нулей
 \end_layout
 
-\begin_layout Slide
+\begin_layout BeginFrame
 
 \end_layout
 
@@ -1521,7 +1520,7 @@ SingleStepSignatureGroebner
 \end_layout
 
 \end_deeper
-\begin_layout Slide
+\begin_layout BeginFrame
 
 \end_layout
 
@@ -1554,6 +1553,10 @@ SingleStepSignatureGroebner для
 \begin_inset Formula $\mathbb{C}$
 \end_inset
 
+
+\end_layout
+
+\begin_layout EndFrame
 
 \end_layout
 
