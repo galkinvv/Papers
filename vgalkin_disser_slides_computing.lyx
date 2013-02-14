@@ -1,0 +1,1561 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass slides
+\begin_preamble
+% Uncomment to print out only slides and overlays
+%
+%\onlyslides{\slides}
+
+% Uncomment to print out only notes
+%
+%\onlynotes{\notes}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language russian
+\language_package default
+\inputencoding utf8
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics dvips
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 2
+\use_esint 0
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation landscape
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 1
+\tocdepth 1
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\GVWl}{<_{\text{H}}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\GVWg}{>_{\text{\textnormal{H}}}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
+\end_inset
+
+	
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\Sig}{\mathcal{S}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\HM}{\mathrm{HM}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\HC}{\mathrm{HC}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\LCM}{\mathrm{LCM}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\totaldeg}{\mathrm{deg}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\poly}{\mathrm{poly}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\sigidx}{\mathrm{index}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setlength{
+\backslash
+parskip}{5pt}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+
+\size huge
+Галкин Василий
+\end_layout
+
+\begin_layout Standard
+
+\size huge
+Сигнатурные алгоритмы вычисления базисов Грёбнера
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Алгоритмы вычисления базиса Грёбнера идеала 
+\begin_inset Formula $\{f_{1},\dots,f_{m}\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Алгоритм Бухбергера -- последовательные редукции S-пар.
+ Много редукций к нулю
+\end_layout
+
+\begin_layout Standard
+Алгоритмы основанные на сигнатурах -- входным многочленам 
+\begin_inset Formula $f_{i}$
+\end_inset
+
+ ставится в соответствие сигнатура 
+\begin_inset Formula $S(f_{i})=\left(1,i\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Задаётся согласованный с мономиальным 
+\begin_inset Formula $<$
+\end_inset
+
+ порядок 
+\begin_inset Formula $\prec$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Распространяется на их полиномиальные комбинации
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Умножение на моном: 
+\begin_inset Formula $S(p)=(m,i)\Longrightarrow S(m'p)=(m'm,i)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Сумма 
+\begin_inset Formula $S(p_{1}+p_{2})=\max_{\prec}(S(p_{1}),S(p_{2}))$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Представление 
+\begin_inset Formula $p=\sum_{k}m_{k}\cdot g_{i_{k}}$
+\end_inset
+
+ над 
+\begin_inset Formula $G\ni g_{i_{k}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+называется 
+\emph on
+степенным
+\emph default
+, если 
+\begin_inset Formula $\forall k\, HM(m_{k}g_{i_{k}})\preccurlyeq HM(p)$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Базис Грёбнера: любой элемент идеала имеет степенное представление над ним
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+называется 
+\emph on
+сигнатурным
+\emph default
+, если 
+\begin_inset Formula $\forall k\, S(m_{k}g_{i_{k}})\preccurlyeq S(p)$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+S-базис Грёбнера: любой элемент идеала имеет степенное и одновременно сигнатурно
+е представление над ним
+\end_layout
+
+\end_deeper
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Itemize
+Подмножество базиса Грёбнера 
+\begin_inset Formula $\left\{ g\in G|\totaldeg(g)\le d\right\} $
+\end_inset
+
+ -- 
+\begin_inset Formula $d$
+\end_inset
+
+-базис.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Может инкрементально вычисляться для однородных многочленов
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Подмножество S-базиса Грёбнера 
+\begin_inset Formula $\left\{ g\in G|S(g)\preccurlyeq\sigma\right\} $
+\end_inset
+
+ -- 
+\begin_inset Formula $S_{\sigma}$
+\end_inset
+
+-базис.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Может инкрементально вычисляться
+\end_layout
+
+\end_deeper
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Не сигнатурные алгоритмы
+\end_layout
+
+\begin_layout Itemize
+Алгоритм Бухбергера (Бухбергер, 1976)
+\end_layout
+
+\begin_layout Itemize
+Алгоритм F4 (J.-C.
+ Faugère, 1999)
+\end_layout
+
+\begin_layout Standard
+Вычисляют обычный базис Грёбнера
+\end_layout
+
+\begin_layout Itemize
+Применяются различные критерии, как правило формируемые в терминах S-пар
+\end_layout
+
+\begin_layout Itemize
+Доказательство корректности основано на критерии редуцируемости всех S-пар
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Каждый из критериев обосновывается независимо
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Имеют редукции к нулю, поскольку никак не учитывают строение множества сизигий
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Сигнатурные алгоритмы
+\end_layout
+
+\begin_layout Itemize
+Вычисляют S-базис
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Отбрасывание мн-ов
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Минимальный S-базис
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+S-пары
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+F5 (J.-C.
+ Faugère, 2002)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AP(A.Arri, J.Perry,2011)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+без
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+G2V(2010)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TRB-MJ (L.Huang, 2010)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ S-пар
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+GVW(2010)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SB (B.Roune, M.Stillman, 2012)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Для регулярных входных данных, вычисляющие минимальный S-базис алгоритмы,
+ не отбрасывают никаких вычисленных многочленов и не имеют редукций к нулю
+\end_layout
+
+\begin_layout Itemize
+Эффективность подтверждена экспериментами
+\end_layout
+
+\begin_layout Itemize
+Могут не использовать S-пары в формулировке
+\end_layout
+
+\begin_layout Itemize
+Инкрементально вычисляют 
+\begin_inset Formula $S_{\sigma}$
+\end_inset
+
+-базисы
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Остановка и корректность сигнатурных алгоритмов
+\end_layout
+
+\begin_layout Itemize
+в виде 
+\begin_inset Quotes eld
+\end_inset
+
+Алгоритма Бухбергера с особыми правилами отброса S-пар
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+для алгоритма F5 не дано доказательства остановки
+\end_layout
+
+\begin_layout Itemize
+для других сложное доказательство, основанное на критерии редуцируемости
+ всех S-пар
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Важное для предлагаемых идей определение сравнения отмеченных многочленов:
+ сравнение старшего монома 
+\begin_inset Quotes eld
+\end_inset
+
+делённого
+\begin_inset Quotes erd
+\end_inset
+
+ на сигнатуру:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\Longleftrightarrow\HM(p_{1})\sigma_{2}\prec\HM(p_{2})\sigma_{1},
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+При сигнатурной редукции:
+\end_layout
+
+\begin_layout Itemize
+редуктор 
+\begin_inset Formula $>_{\mbox{H}}$
+\end_inset
+
+ редуцируемого
+\end_layout
+
+\begin_layout Itemize
+результат редукции 
+\begin_inset Formula $<_{\mbox{H}}$
+\end_inset
+
+ редуцируемого
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Доказано: F5 останавливается
+\end_layout
+
+\begin_layout Enumerate
+Цепь отмеченных многочленов: 
+\begin_inset Formula $\left\{ h_{i}\right\} ,\Sig(h_{i-1})|\Sig(h_{i})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Если не останавливается - существует бесконечная 
+\begin_inset Formula $<_{\mbox{H}}$
+\end_inset
+
+-убывающая цепь
+\end_layout
+
+\begin_layout Enumerate
+В бесконечной цепи найдутся 
+\begin_inset Formula $\HM(h_{i})|\HM(h_{j})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Это невозможно без учёта критериев из F5
+\end_layout
+
+\begin_layout Enumerate
+Если есть сигнатурный редуктор, то есть и сигнатурный редуктор, удовлетворяющий
+ критериям
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Алгоритм
+\family typewriter
+ SingleStepSignatureGroebner
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Вход: многочлены 
+\begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} $
+\end_inset
+
+ 
+\family default
+с сигнатурами.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Переменные: 
+\begin_inset Formula $R$
+\end_inset
+
+ -- промежуточный 
+\begin_inset Formula $S_{\sigma}$
+\end_inset
+
+-базис, включающий сизигии и 
+\begin_inset Formula $B$
+\end_inset
+
+ -- многочлены ожидающие анализа
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\family sans
+Результат: ненулевые элементы 
+\begin_inset Formula $R$
+\end_inset
+
+ -- S-базис Грёбнера идеала 
+\begin_inset Formula $I=\left(f_{1},\dots,f_{m}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Простое доказательство, не используещее S-пары
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Инициализация:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $R\leftarrow\{\mbox{известные сизигии}\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $B\leftarrow\{\mbox{входные многочлены}\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+do while 
+\begin_inset Formula $B\neq\varnothing$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $(\sigma,p')\leftarrow$
+\end_inset
+
+ элемент 
+\begin_inset Formula $B$
+\end_inset
+
+ с 
+\begin_inset Formula $\prec$
+\end_inset
+
+-минимальной сигнатурой
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $B\leftarrow B\setminus\{b\in B,\Sig(b)=\sigma\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $p\leftarrow$
+\end_inset
+
+Сигнатурно редуцировать 
+\begin_inset Formula $\left(\sigma,p'\right)$
+\end_inset
+
+ по 
+\begin_inset Formula $R$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $R\leftarrow R\cup\left\{ \left(\sigma,p\right)\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+if
+\series default
+ 
+\begin_inset Formula $p\not=0$
+\end_inset
+
+
+\series bold
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+for
+\series default
+
+\begin_inset Formula $\{r\in R|0\ne r\GVWl\left(\sigma,p\right)\}$
+\end_inset
+
+
+\series bold
+:
+\series default
+
+\begin_inset Formula $B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(r)}r\}$
+\end_inset
+
+
+\series bold
+[Б]
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+for
+\series default
+
+\begin_inset Formula $\{r\in R|r\GVWg\left(\sigma,p\right)\}$
+\end_inset
+
+
+\series bold
+:
+\series default
+
+\begin_inset Formula $B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(p)}\left(\sigma,p\right)\}$
+\end_inset
+
+
+\series bold
+[Б]
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset Formula $B\leftarrow B\setminus\{b\in B|\exists r\in R\, r\GVWl b\mbox{ и есть делимость }\Sig(r)|\Sig(b)\}$
+\end_inset
+
+
+\series bold
+[Б]
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+[Б] 
+\series default
+-- отличия от Бухбергера, помимо добавления сигнатурности
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Доказательство остановки
+\end_layout
+
+\begin_layout Enumerate
+Любой отмеченный многочлен из 
+\begin_inset Formula $B$
+\end_inset
+
+, моном сигнатуры которого не равен 1, не редуцируется по 
+\begin_inset Formula $R$
+\end_inset
+
+ сигнатурно
+\end_layout
+
+\begin_layout Enumerate
+До редукции многочлена 
+\begin_inset Formula $p'$
+\end_inset
+
+, сигнатуры из 
+\begin_inset Formula $\left\{ r\in R\,|\, r\GVWl(\sigma,p')\right\} $
+\end_inset
+
+ не делят 
+\begin_inset Formula $\sigma$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+После редукции многочлена 
+\begin_inset Formula $p'$
+\end_inset
+
+ до 
+\begin_inset Formula $p$
+\end_inset
+
+, старшие мономы из 
+\begin_inset Formula $\left\{ r\in R\,|\, r\GVWg(\sigma,p)\right\} $
+\end_inset
+
+ не делят 
+\begin_inset Formula $\HM(p)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+После редукции многочлена 
+\begin_inset Formula $p'$
+\end_inset
+
+ до 
+\begin_inset Formula $p$
+\end_inset
+
+, элементы 
+\begin_inset Formula $R$
+\end_inset
+
+ не могут одновременно иметь старшие мономы, делящие 
+\begin_inset Formula $\HM(p)$
+\end_inset
+
+, и сигнатуры, делящие 
+\begin_inset Formula $\sigma$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+По лемме Диксона число пополнений 
+\begin_inset Formula $R$
+\end_inset
+
+ конечно
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Доказательство корректности:
+\end_layout
+
+\begin_layout Enumerate
+Пусть 
+\begin_inset Formula $\sigma\succ0,R=\left\{ r_{i}\right\} $
+\end_inset
+
+ -- S
+\emph on
+
+\begin_inset Formula $_{\sigma}$
+\end_inset
+
+
+\emph default
+-базис и выбраны 
+\begin_inset Formula $h_{1},h_{2},\Sig(h_{i})=\sigma$
+\end_inset
+
+, которые нельзя сигнатурно редуцировать по 
+\begin_inset Formula $R$
+\end_inset
+
+.
+ Тогда 
+\begin_inset Formula $\HM(h_{1})=\HM(h_{2})$
+\end_inset
+
+ и у 
+\begin_inset Formula $h_{1}$
+\end_inset
+
+ есть сигнатурное представление над 
+\begin_inset Formula $R\cup\left\{ h_{2}\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+На каждой итерации после шага 6 выполнен инвариант: для 
+\begin_inset Formula $\forall\sigma\prec$
+\end_inset
+
+ сигнатур элементов 
+\begin_inset Formula $B$
+\end_inset
+
+, найдутся 
+\begin_inset Formula $r_{\sigma}\in R,t_{\sigma}\in\mathbb{T}:\Sig(t_{\sigma}r_{\sigma})=\sigma$
+\end_inset
+
+ и 
+\begin_inset Formula $t_{\sigma}r_{\sigma}$
+\end_inset
+
+ не редуцируется сигнатурно по 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+На каждой итерации после шага 6 выполнен инвариант: 
+\begin_inset Formula $\forall h,\Sig(h)\prec$
+\end_inset
+
+ сигнатур элементов 
+\begin_inset Formula $B$
+\end_inset
+
+, имеет сигнатурное представление над 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Алгоритмы вычисления базиса Грёбнера над 
+\begin_inset Formula $\mathbb{R}$
+\end_inset
+
+ и 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Символические вычисления (исчерпывающий базис) -- рост символических коэффициент
+ов
+\end_layout
+
+\begin_layout Itemize
+Вычисления над 
+\begin_inset Formula $\mathbb{Z}$
+\end_inset
+
+ и 
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+ -- рост длины численных коэффициентов
+\end_layout
+
+\begin_layout Itemize
+Вычисления с оценкой точности -- проблемы нулей
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Определение численными методами
+\end_layout
+
+\begin_layout Itemize
+Определение модулярными методами
+\end_layout
+
+\begin_layout Itemize
+Изменение порядка на мономах
+\end_layout
+
+\end_deeper
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Приближённые числа
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+(a,\varepsilon),a\in\mathbb{C},\varepsilon\in\mathbb{R}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Специализации
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+a_{0}\in\mathbb{C}\left|a_{0}-a\right|<\varepsilon
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Формализация задачи: ищем множество, содержащее решения при любых специализациях.
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Сложение 
+\begin_inset Formula $(a_{1},\varepsilon_{1})+(a_{2},\varepsilon_{2})=(a_{1}+a_{2},\varepsilon_{1}+\varepsilon_{2})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Умножение 
+\begin_inset Formula $(a_{1},\varepsilon_{1})\times(a_{2},\varepsilon_{2})=(a_{1}a_{2},\varepsilon_{1}\left|a_{2}\right|+\varepsilon_{2}\left|a_{1}\right|+\varepsilon_{1}\varepsilon_{2})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Вычитание на основе сложения и умножения на -1:
+\begin_inset Formula 
+\[
+(a_{1},\varepsilon_{1})-(a_{2},\varepsilon_{2})=(a_{1}-a_{2},\varepsilon_{1}+\varepsilon_{2})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Обращение определяется только для приближённых чисел, для которых 0 не является
+ специализацией, что эквивалентно 
+\begin_inset Formula $\left|a\right|-\varepsilon>0$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{1}{(a,\varepsilon)}=\left(\frac{1}{a},\frac{\varepsilon}{\left|a\right|\left(\left|a\right|-\varepsilon\right)}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Классификация необратимых приближённых элементов:
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+символический ноль
+\emph default
+ -- при любой специализации входных данных соответствующую вычисления дают
+ точный ноль.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+ноль, индуцированный входными данными -- 
+\emph default
+некоторые, но не все специализации дают точный ноль
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+ноль, внесённый вычислениями 
+\emph default
+-- не существует специализации, дающей точный ноль
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Пример символического нуля:
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+\begin_inset Formula 
+\[
+\begin{array}{ccc}
+\poly(f_{1})= & y^{2}z+a, & \Sig(f_{1})=\left(1,1\right)\\
+\poly(f_{2})= & y^{2}z^{2}+xz+1, & \Sig(f_{2})=\left(1,2\right)\\
+\poly(f_{3})= & y^{3}z+xy+1, & \Sig(f_{3})=\left(1,3\right)\\
+\poly(f_{4})= & \poly(f_{1})=y^{2}z+a, & \Sig(f_{4})=\left(1,1\right)\\
+\poly(f_{5})= & \poly(f_{2})-z\poly(f_{4})=xz-az+1, & \Sig(f_{5})=\left(1,2\right)\\
+\poly(f_{6})= & \poly(f_{3})-y\poly(f_{4})=xy-ay+1, & \Sig(f_{6})=\left(1,3\right)\\
+\poly(f_{7})= & z\poly(f_{6})-y\poly(f_{5})=\left(a-a\right)yz+z-y, & \Sig(f_{7})=\left(z,3\right)
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Пример индуцированного или внесённого нуля:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{ccc}
+\poly(f_{1})= & y^{2}z+z^{2}+az, & \Sig(f_{1})=\left(1,1\right)\\
+\poly(f_{2})= & xyz, & \Sig(f_{2})=\left(1,2\right)\\
+\poly(f_{3})= & xy^{2}+bx+1, & \Sig(f_{3})=\left(1,3\right)\\
+\poly(f_{4})= & \poly(f_{1})=y^{2}z+z^{2}+az, & \Sig(f_{4})=\left(1,1\right)\\
+\poly(f_{5})= & \poly(f_{2})=xyz, & \Sig(f_{5})=\left(1,2\right)\\
+\poly(f_{6})= & \poly(f_{3})=xy^{2}+bx+1, & \Sig(f_{6})=\left(1,3\right)\\
+\poly(f_{7})= & -\left(y\poly(f_{5})-x\poly(f_{4})\right)=xz^{2}+axz, & \Sig(f_{7})=\left(y,2\right)
+\end{array}
+\]
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+\poly(f_{8})=(z\poly(f_{6})-x\poly(f_{4}))+\poly(f_{7})=
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+=\left(\left(xy^{2}z+bxz+z\right)-\left(xy^{2}z+xz^{2}+axz\right)\right)+xz^{2}+axz=((b-a)+a)xz+z,
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\Sig(f_{8})=\left(z,3\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Сигнатурные алгоритмы для 
+\begin_inset Formula $\mathbb{R}$
+\end_inset
+
+ и 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+F5+TSV (J.-C.
+ Faugère, Y.
+ Liang, 2011): Комбинирование идей F5 и приближённых вычислений с введением
+ дополнительных многочленов 
+\begin_inset Formula $x_{1}^{i_{1}}\cdots x_{m}^{i_{m}}-\varepsilon$
+\end_inset
+
+ для 
+\begin_inset Quotes eld
+\end_inset
+
+изменения
+\begin_inset Quotes erd
+\end_inset
+
+ порядка.
+ Недостаток -- полный перезапуск алгоритмов после добавления многочленов
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Порядок Term-Over-Pos на сигнатурах:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left(t_{1},i_{1}\right)\prec\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & t_{1}<t_{2}\\
+ & t_{1}=t_{2},i{}_{1}<i_{2}
+\end{aligned}
+\right..
+\]
+
+\end_inset
+
+Порядок Pos-Over-Term на сигнатурах:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left(t_{1},i_{1}\right)\prec\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & i{}_{1}<i_{2}\\
+ & i{}_{1}=i_{2},t_{1}<t_{2}
+\end{aligned}
+\right..
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Порядок Schreyer
+\begin_inset Formula $\prec$
+\end_inset
+
+ на сигнатурах:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left(t_{1},i_{1}\right)\prec\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & t_{1}HM(f_{i_{1}})<t_{2}HM(f_{i_{2}})\\
+ & t_{1}HM(f_{i_{1}})=t_{2}HM(f_{i_{2}}),i{}_{1}<i_{2}
+\end{aligned}
+\right..
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Взвешенный порядок 
+\begin_inset Formula $\prec_{w}$
+\end_inset
+
+ на сигнатурах с 
+\begin_inset Formula $m$
+\end_inset
+
+ входными многочленами с параметром 
+\begin_inset Formula $w=(w_{1},\dots,w_{m})\in\mathbb{T}^{m}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left(t_{1},i_{1}\right)\prec_{w}\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & t_{1}w_{i_{1}}<t_{2}w_{i_{2}}\\
+ & t_{1}w_{i_{1}}=t_{2}w_{i_{2}},i{}_{1}<i_{2}
+\end{aligned}
+\right..
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Строится алгоритм 
+\family typewriter
+SingleStepSignatureGroebner
+\family default
+ для 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Взвешенный порядок на сигнатурах позволяет не производить перезапуск алгоритмов
+ при добавлении многочлена 
+\begin_inset Formula $x_{1}^{i_{1}}\cdots x_{m}^{i_{m}}-\varepsilon$
+\end_inset
+
+, задавая ему подходящий вес
+\end_layout
+
+\begin_layout Itemize
+Модулярные вычисления для классификации нулей
+\end_layout
+
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Модулярные методы носят вероятностный характер.
+ Ложные нули получаются, если выбранные значения оказываются корнем символическо
+го многочлена.
+ Это возможно, если:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+-многочлен тождественно обнуляется по выбранному модулю
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Оценка на максимальный коэффициент для определения максимального числа простых
+ чисел, на которые делится
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+модулярная специализация 
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+-многочлена имеет корень
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Оценка на максимальную степень
+\end_layout
+
+\end_deeper
+\begin_layout Slide
+
+\end_layout
+
+\begin_layout Standard
+Результаты:
+\end_layout
+
+\begin_layout Itemize
+Доказана остановка F5
+\end_layout
+
+\begin_layout Itemize
+Прямое доказательство 
+\family typewriter
+SingleStepSignatureGroebner
+\family default
+ без S-пар
+\end_layout
+
+\begin_layout Itemize
+Классификация необратимых приближённых элементов
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+SingleStepSignatureGroebner для 
+\family default
+
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
