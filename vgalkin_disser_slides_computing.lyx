@@ -4,18 +4,12 @@
 \begin_header
 \textclass beamer
 \begin_preamble
-% Uncomment to print out only slides and overlays
-%
-%\onlyslides{\slides}
-
-% Uncomment to print out only notes
-%
-%\onlynotes{\notes}
+\setbeamertemplate{navigation symbols}{}%remove navigation symbols
 \end_preamble
 \use_default_options false
 \maintain_unincluded_children false
 \language russian
-\language_package default
+\language_package auto
 \inputencoding utf8
 \fontencoding global
 \font_roman CMU Serif
@@ -56,7 +50,7 @@
 \use_bibtopic false
 \use_indices false
 \paperorientation landscape
-\suppress_date false
+\suppress_date true
 \use_refstyle 0
 \index Index
 \shortcut idx
@@ -167,42 +161,36 @@
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-setlength{
-\backslash
-parskip}{5pt}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout BeginFrame
-
-\end_layout
-
-\begin_layout Standard
-
-\size huge
-Галкин Василий
-\end_layout
-
-\begin_layout Standard
-
-\size huge
+\begin_layout Title
 Сигнатурные алгоритмы вычисления базисов Грёбнера
 \end_layout
 
+\begin_layout Author
+Галкин Василий
+\end_layout
+
+\begin_layout Institute
+Московский государственный университет 
+\begin_inset Newline newline
+\end_inset
+
+ имени М.В.
+\begin_inset space ~
+\end_inset
+
+Ломоносова
+\begin_inset Newline newline
+\end_inset
+
+Механико-математический факультет
+\end_layout
+
+\begin_layout BeginFrame
+Алгоритмы вычисления базиса Грёбнера
+\end_layout
+
 \begin_layout Standard
-Алгоритмы вычисления базиса Грёбнера идеала 
+Входные данные задаются в виде набора многочленов 
 \begin_inset Formula $\{f_{1},\dots,f_{m}\}$
 \end_inset
 
@@ -261,28 +249,36 @@ parskip}{5pt}
 
 \end_deeper
 \begin_layout BeginFrame
-
+Понятие представления и базис Грёбнера
 \end_layout
 
-\begin_layout Standard
-Представление 
-\begin_inset Formula $p=\sum_{k}m_{k}\cdot g_{i_{k}}$
+\begin_layout Definitions
+
+\emph on
+Представлением многочлена 
+\begin_inset Formula $p$
 \end_inset
 
- над 
-\begin_inset Formula $G\ni g_{i_{k}}$
+ над множеством многочленов 
+\begin_inset Formula $G$
+\end_inset
+
+
+\emph default
+ называется 
+\begin_inset Formula $p=\sum_{k}m_{k}\cdot g_{i_{k}},\; g_{i_{k}}\in G$
 \end_inset
 
 
 \end_layout
 
 \begin_layout Itemize
-называется 
+представление называется 
 \emph on
 степенным
 \emph default
 , если 
-\begin_inset Formula $\forall k\, HM(m_{k}g_{i_{k}})\preccurlyeq HM(p)$
+\begin_inset Formula $\forall k\,\HM(m_{k}g_{i_{k}})\preccurlyeq\HM(p)$
 \end_inset
 
 .
@@ -295,7 +291,7 @@ parskip}{5pt}
 
 \end_deeper
 \begin_layout Itemize
-называется 
+представление называется 
 \emph on
 сигнатурным
 \emph default
@@ -314,7 +310,7 @@ S-базис Грёбнера: любой элемент идеала имеет
 
 \end_deeper
 \begin_layout BeginFrame
-
+Части базиса
 \end_layout
 
 \begin_layout Itemize
@@ -354,10 +350,6 @@ S-базис Грёбнера: любой элемент идеала имеет
 
 \end_deeper
 \begin_layout BeginFrame
-
-\end_layout
-
-\begin_layout Standard
 Не сигнатурные алгоритмы
 \end_layout
 
@@ -393,10 +385,6 @@ S-базис Грёбнера: любой элемент идеала имеет
 \end_layout
 
 \begin_layout BeginFrame
-
-\end_layout
-
-\begin_layout Standard
 Сигнатурные алгоритмы
 \end_layout
 
@@ -464,7 +452,7 @@ F5 (J.-C.
 \begin_inset Text
 
 \begin_layout Plain Layout
-AP(A.Arri, J.Perry,2011)
+AP(A.Arri, J.Perry, 2011)
 \end_layout
 
 \end_inset
@@ -557,10 +545,6 @@ SB (B.Roune, M.Stillman, 2012)
 \end_layout
 
 \begin_layout BeginFrame
-
-\end_layout
-
-\begin_layout Standard
 Остановка и корректность сигнатурных алгоритмов
 \end_layout
 
@@ -586,7 +570,11 @@ SB (B.Roune, M.Stillman, 2012)
 \end_layout
 
 \begin_layout BeginFrame
+Порядок 
+\begin_inset Formula $>_{\mbox{H}}$
+\end_inset
 
+ на отмеченных многочленах
 \end_layout
 
 \begin_layout Standard
@@ -634,10 +622,6 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\Longleftrightarrow\HM(p_{
 \end_layout
 
 \begin_layout BeginFrame
-
-\end_layout
-
-\begin_layout Standard
 Доказано: F5 останавливается
 \end_layout
 
@@ -675,30 +659,20 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\Longleftrightarrow\HM(p_{
 \end_layout
 
 \begin_layout BeginFrame
-
-\end_layout
-
-\begin_layout Standard
 Алгоритм
 \family typewriter
  SingleStepSignatureGroebner
 \end_layout
 
 \begin_layout Description
-
-\family sans
 Вход: многочлены 
 \begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} $
 \end_inset
 
- 
-\family default
-с сигнатурами.
+ с сигнатурами.
 \end_layout
 
 \begin_layout Description
-
-\family sans
 Переменные: 
 \begin_inset Formula $R$
 \end_inset
@@ -715,8 +689,6 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\Longleftrightarrow\HM(p_{
 \end_layout
 
 \begin_layout Description
-
-\family sans
 Результат: ненулевые элементы 
 \begin_inset Formula $R$
 \end_inset
@@ -733,11 +705,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\Longleftrightarrow\HM(p_{
 \end_layout
 
 \begin_layout BeginFrame
-
-\end_layout
-
-\begin_layout Description
-Инициализация:
+Инициализация алгоритма
 \end_layout
 
 \begin_layout Standard
@@ -748,14 +716,14 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\Longleftrightarrow\HM(p_{
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $B\leftarrow\{\mbox{входные многочлены}\}$
+\begin_inset Formula $B\leftarrow\{f_{1},\ldots,f_{m}\}$
 \end_inset
 
-
+ входные многочлены
 \end_layout
 
 \begin_layout BeginFrame
-
+Код алгоритма
 \end_layout
 
 \begin_layout Standard
@@ -890,10 +858,6 @@ for
 \end_layout
 
 \begin_layout BeginFrame
-
-\end_layout
-
-\begin_layout Standard
 Доказательство остановки
 \end_layout
 
@@ -978,11 +942,7 @@ for
 \end_layout
 
 \begin_layout BeginFrame
-
-\end_layout
-
-\begin_layout Standard
-Доказательство корректности:
+Доказательство корректности
 \end_layout
 
 \begin_layout Enumerate
@@ -1063,10 +1023,6 @@ for
 \end_layout
 
 \begin_layout BeginFrame
-
-\end_layout
-
-\begin_layout Standard
 Алгоритмы вычисления базиса Грёбнера над 
 \begin_inset Formula $\mathbb{R}$
 \end_inset
@@ -1114,45 +1070,44 @@ for
 
 \end_deeper
 \begin_layout BeginFrame
-
-\end_layout
-
-\begin_layout Standard
 Приближённые числа
 \end_layout
 
-\begin_layout Standard
-\begin_inset Formula 
-\[
-(a,\varepsilon),a\in\mathbb{C},\varepsilon\in\mathbb{R}
-\]
+\begin_layout Definitions
 
+\emph on
+Приближённым (комплексным) числом
+\emph default
+ называется пара 
+\begin_inset Formula $(a,\varepsilon),a\in\mathbb{C},\varepsilon\in\mathbb{R}$
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-Специализации
-\end_layout
 
-\begin_layout Standard
-\begin_inset Formula 
-\[
-a_{0}\in\mathbb{C}\left|a_{0}-a\right|<\varepsilon
-\]
+\emph on
+Специализацией приближённого числа
+\emph default
+ 
+\begin_inset Formula $a$
+\end_inset
 
+ называется 
+\begin_inset Formula $a_{0}\in\mathbb{C}\left|a_{0}-a\right|<\varepsilon$
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-Формализация задачи: ищем множество, содержащее решения при любых специализациях.
+Формализация задачи поиска Базиса Грёбнера: ищем множество, содержащее решения
+ при любых специализациях входных данных.
 \end_layout
 
 \begin_layout BeginFrame
-
+Операции с приближёнными числами
 \end_layout
 
 \begin_layout Description
@@ -1204,14 +1159,14 @@ a_{0}\in\mathbb{C}\left|a_{0}-a\right|<\varepsilon
 \end_layout
 
 \begin_layout BeginFrame
+Классификация необратимых приближённых элементов
+\end_layout
+
+\begin_layout Definitions
 
 \end_layout
 
-\begin_layout Standard
-Классификация необратимых приближённых элементов:
-\end_layout
-
-\begin_layout Itemize
+\begin_layout Definitions
 
 \emph on
 символический ноль
@@ -1221,7 +1176,7 @@ a_{0}\in\mathbb{C}\left|a_{0}-a\right|<\varepsilon
  
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Standard
 
 \emph on
 ноль, индуцированный входными данными -- 
@@ -1229,7 +1184,7 @@ a_{0}\in\mathbb{C}\left|a_{0}-a\right|<\varepsilon
 некоторые, но не все специализации дают точный ноль
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Standard
 
 \emph on
 ноль, внесённый вычислениями 
@@ -1238,27 +1193,12 @@ a_{0}\in\mathbb{C}\left|a_{0}-a\right|<\varepsilon
 \end_layout
 
 \begin_layout BeginFrame
-
+Пример символического нуля
 \end_layout
 
-\begin_layout Standard
-Пример символического нуля:
-\end_layout
-
-\begin_layout Standard
+\begin_layout Example
 
 \family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-\lang english
 \begin_inset Formula 
 \[
 \begin{array}{ccc}
@@ -1278,14 +1218,10 @@ a_{0}\in\mathbb{C}\left|a_{0}-a\right|<\varepsilon
 \end_layout
 
 \begin_layout BeginFrame
-
+Пример индуцированного или внесённого нуля
 \end_layout
 
-\begin_layout Standard
-Пример индуцированного или внесённого нуля:
-\end_layout
-
-\begin_layout Standard
+\begin_layout Example
 \begin_inset Formula 
 \[
 \begin{array}{ccc}
@@ -1329,10 +1265,6 @@ a_{0}\in\mathbb{C}\left|a_{0}-a\right|<\varepsilon
 \end_layout
 
 \begin_layout BeginFrame
-
-\end_layout
-
-\begin_layout Standard
 Сигнатурные алгоритмы для 
 \begin_inset Formula $\mathbb{R}$
 \end_inset
@@ -1365,7 +1297,7 @@ F5+TSV (J.-C.
 \end_layout
 
 \begin_layout BeginFrame
-
+Порядки на сигнатурах
 \end_layout
 
 \begin_layout Standard
@@ -1411,8 +1343,8 @@ F5+TSV (J.-C.
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\left(t_{1},i_{1}\right)\prec\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & t_{1}HM(f_{i_{1}})<t_{2}HM(f_{i_{2}})\\
- & t_{1}HM(f_{i_{1}})=t_{2}HM(f_{i_{2}}),i{}_{1}<i_{2}
+\left(t_{1},i_{1}\right)\prec\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & t_{1}\HM(f_{i_{1}})<t_{2}\HM(f_{i_{2}})\\
+ & t_{1}\HM(f_{i_{1}})=t_{2}\HM(f_{i_{2}}),i{}_{1}<i_{2}
 \end{aligned}
 \right..
 \]
@@ -1423,7 +1355,7 @@ F5+TSV (J.-C.
 \end_layout
 
 \begin_layout BeginFrame
-
+Взвешенный порядок на сигнатурах
 \end_layout
 
 \begin_layout Standard
@@ -1482,7 +1414,7 @@ SingleStepSignatureGroebner
 \end_layout
 
 \begin_layout BeginFrame
-
+Модулярные методы
 \end_layout
 
 \begin_layout Standard
@@ -1521,11 +1453,7 @@ SingleStepSignatureGroebner
 
 \end_deeper
 \begin_layout BeginFrame
-
-\end_layout
-
-\begin_layout Standard
-Результаты:
+Результаты
 \end_layout
 
 \begin_layout Itemize
