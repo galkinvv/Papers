@@ -27,7 +27,7 @@
 \title{Сигнатурные алгоритмы вычисления базисов Грёбнера для решения 
  полиномиальных систем}
 \end_preamble
-\options hyperref={unicode=false}
+\options hyperref={unicode=false},russian
 \use_default_options false
 \maintain_unincluded_children false
 \language russian
@@ -248,11 +248,11 @@ status open
 
 \begin_deeper
 \begin_layout Itemize
-Доказательство остановки F5
+Определение свойств многочленов, выбираемых F5
 \end_layout
 
 \begin_layout Itemize
-Определение свойств многочленов, выбираемых F5
+Доказательство остановки F5
 \end_layout
 
 \begin_layout Itemize
@@ -278,7 +278,8 @@ status open
 \end_layout
 
 \begin_layout Itemize
-метод TSV для перемещения необратимых старших элементов
+метод замены мономов переменными (TSV) для перемещения необратимых старших
+ элементов
 \end_layout
 
 \end_deeper
@@ -817,6 +818,10 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\Longleftrightarrow\HM(p_{
 Свойства многочленов в F5
 \end_layout
 
+\begin_layout Standard
+TODO
+\end_layout
+
 \begin_layout BeginFrame
 Доказано: F5 останавливается
 \end_layout
@@ -901,28 +906,36 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\Longleftrightarrow\HM(p_{
 \end_layout
 
 \begin_layout BeginFrame
-Инициализация алгоритма
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $R\leftarrow\{\mbox{известные сизигии}\}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $B\leftarrow\{f_{1},\ldots,f_{m}\}$
-\end_inset
-
- входные многочлены
-\end_layout
-
-\begin_layout BeginFrame
 Код алгоритма
 \end_layout
 
-\begin_layout Standard
+\begin_layout Enumerate
+\begin_inset Formula $B\leftarrow\{$
+\end_inset
+
+входные многочлены 
+\begin_inset Formula $f_{1},\ldots,f_{m}$
+\end_inset
+
+ с их сигнатурами
+\begin_inset Formula $\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $R\leftarrow\{$
+\end_inset
+
+известные сизигии, например тривиальные
+\begin_inset Formula $\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
 
 \series bold
 do while 
@@ -932,6 +945,7 @@ do while
 :
 \end_layout
 
+\begin_deeper
 \begin_layout Enumerate
 \begin_inset Formula $(\sigma,p')\leftarrow$
 \end_inset
@@ -958,7 +972,11 @@ do while
 \begin_inset Formula $p\leftarrow$
 \end_inset
 
-Сигнатурно редуцировать 
+
+\family typewriter
+Сигнатурно_редуцировать
+\family default
+ 
 \begin_inset Formula $\left(\sigma,p'\right)$
 \end_inset
 
@@ -1009,8 +1027,6 @@ for
 \end_inset
 
 
-\series bold
-[Б]
 \end_layout
 
 \begin_layout Enumerate
@@ -1031,8 +1047,6 @@ for
 \end_inset
 
 
-\series bold
-[Б]
 \end_layout
 
 \end_deeper
@@ -1041,18 +1055,9 @@ for
 \end_inset
 
 
-\series bold
-[Б]
 \end_layout
 
-\begin_layout Standard
-
-\series bold
-[Б] 
-\series default
--- отличия от Бухбергера, помимо добавления сигнатурности
-\end_layout
-
+\end_deeper
 \begin_layout BeginFrame
 Доказательство остановки
 \end_layout

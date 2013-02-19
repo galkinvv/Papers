@@ -1,0 +1,82 @@
+\ProvidesDictionary{translator-theorem-dictionary}{Russian}
+
+\providetranslation{Comments}{Замечания}
+\providetranslation{comments}{замечание}
+\providetranslation{Comment}{Замечание}
+\providetranslation{comment}{замечания}
+\providetranslation{Corollaries}{Следствия}
+\providetranslation{corollaries}{следствия}
+\providetranslation{Corollary}{Следствие}
+\providetranslation{corollary}{следствие}
+\providetranslation{Definitions}{Определения}
+\providetranslation{definitions}{определения}
+\providetranslation{Definition}{Определение}
+\providetranslation{definition}{определение}
+\providetranslation{Examples}{Примеры}
+\providetranslation{examples}{примеры}
+\providetranslation{Example}{Пример}
+\providetranslation{example}{пример}
+\providetranslation{Exercises}{Упражнения}
+\providetranslation{exercises}{упражнения}
+\providetranslation{Exercise}{Упражнение}
+\providetranslation{exercise}{упражнения}
+\providetranslation{Facts}{Факты}
+\providetranslation{facts}{факты}
+\providetranslation{Fact}{Факт}
+\providetranslation{fact}{факт}
+\providetranslation{Key Lemmas}{Ключевые леммы}
+\providetranslation{key lemmas}{ключевые леммы}
+\providetranslation{Key Lemma}{Ключевая лемма}
+\providetranslation{key lemma}{ключевая лемма}
+\providetranslation{Key Observations}{Ключевые наблюдения}
+\providetranslation{key observations}{ключевые наблюдения}
+\providetranslation{Key Observation}{Ключевое наблюдение}
+\providetranslation{key observation}{ключевое наблюдение}
+\providetranslation{Lemmas}{Леммы}
+\providetranslation{lemmas}{леммы}
+\providetranslation{Lemma}{Лемма}
+\providetranslation{lemma}{лемма}
+\providetranslation{Main Theorems}{Основные теоремы}
+\providetranslation{main theorems}{основные теоремы}
+\providetranslation{Main Theorem}{Основная теорема}
+\providetranslation{main theorem}{основная теорема}
+\providetranslation{Observations}{Наблюдения}
+\providetranslation{observations}{наблюдения}
+\providetranslation{Observation}{Наблюдение}
+\providetranslation{observation}{наблюдение}
+\providetranslation{Problems}{Задачи}
+\providetranslation{problems}{задачи}
+\providetranslation{Problem}{Задача}
+\providetranslation{problem}{задача}
+\providetranslation{Proofs}{Доказательства}
+\providetranslation{proofs}{доказательства}
+\providetranslation{Proof}{Доказательство}
+\providetranslation{proof}{доказательство}
+\providetranslation{Proof Sketch}{Схема Доказательства}
+\providetranslation{Proof sketch}{Схема доказательства}
+\providetranslation{proof sketch}{схема доказательства}
+\providetranslation{Proof Sketches}{Схемы Доказательств}
+\providetranslation{Proof sketches}{Схемы доказательств}
+\providetranslation{proof sketches}{схемы доказательств}
+\providetranslation{Sketch of Proof}{Схема Доказательства}
+\providetranslation{Sketch of Proofs}{Схема Доказательств}
+\providetranslation{Sketch of proof}{Схема доказательства}
+\providetranslation{Sketch of proofs}{Схема доказательств}
+\providetranslation{sketch of proof}{схема доказательства}
+\providetranslation{sketch of proofs}{схема доказательств}
+\providetranslation{Propositions}{Предложения}
+\providetranslation{propositions}{предложения}
+\providetranslation{Proposition}{Предложение}
+\providetranslation{proposition}{предложение}
+\providetranslation{Remarks}{Примечания}
+\providetranslation{remarks}{примечания}
+\providetranslation{Remark}{Примечание}
+\providetranslation{remark}{примечание}
+\providetranslation{Solutions}{Решения}
+\providetranslation{solutions}{решения}
+\providetranslation{Solution}{Решение}
+\providetranslation{solution}{решение}
+\providetranslation{Theorems}{Теоремы}
+\providetranslation{theorems}{теоремы}
+\providetranslation{Theorem}{Теорема}
+\providetranslation{theorem}{теорема}
