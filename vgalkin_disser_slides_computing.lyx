@@ -82,7 +82,7 @@
 \tocdepth 1
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\quotes_language french
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -113,14 +113,6 @@ status open
 
 \begin_layout BeginFrame
 Оценка модуля
-\end_layout
-
-\begin_layout BeginFrame
-Метод TSV
-\end_layout
-
-\begin_layout BeginFrame
-Применение TSV без перезапуска алгоритмов
 \end_layout
 
 \end_inset
@@ -1280,7 +1272,7 @@ for
 Приближённым (комплексным) числом
 \emph default
  называется пара 
-\begin_inset Formula $(a,\varepsilon),a\in\mathbb{C},\varepsilon\in\mathbb{R}$
+\begin_inset Formula $(a,\varepsilon),\, a\in\mathbb{C},\,\varepsilon\in\mathbb{R}$
 \end_inset
 
 
@@ -1466,155 +1458,6 @@ for
 \end_layout
 
 \begin_layout BeginFrame
-Сигнатурные алгоритмы для 
-\begin_inset Formula $\mathbb{R}$
-\end_inset
-
- и 
-\begin_inset Formula $\mathbb{C}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-F5+TSV (J.-C.
- Faugère, Y.
- Liang, 2011): Комбинирование идей F5 и приближённых вычислений с введением
- дополнительных многочленов 
-\begin_inset Formula $x_{1}^{i_{1}}\cdots x_{m}^{i_{m}}-\varepsilon$
-\end_inset
-
- для 
-\begin_inset Quotes eld
-\end_inset
-
-изменения
-\begin_inset Quotes erd
-\end_inset
-
- порядка.
- Недостаток -- полный перезапуск алгоритмов после добавления многочленов
-\end_layout
-
-\begin_layout BeginFrame
-Порядки на сигнатурах
-\end_layout
-
-\begin_layout Standard
-Порядок Term-Over-Pos на сигнатурах:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\left(t_{1},i_{1}\right)\prec\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & t_{1}<t_{2}\\
- & t_{1}=t_{2},i{}_{1}<i_{2}
-\end{aligned}
-\right..
-\]
-
-\end_inset
-
-Порядок Pos-Over-Term на сигнатурах:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\left(t_{1},i_{1}\right)\prec\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & i{}_{1}<i_{2}\\
- & i{}_{1}=i_{2},t_{1}<t_{2}
-\end{aligned}
-\right..
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Порядок Schreyer
-\begin_inset Formula $\prec$
-\end_inset
-
- на сигнатурах:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\left(t_{1},i_{1}\right)\prec\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & t_{1}\HM(f_{i_{1}})<t_{2}\HM(f_{i_{2}})\\
- & t_{1}\HM(f_{i_{1}})=t_{2}\HM(f_{i_{2}}),i{}_{1}<i_{2}
-\end{aligned}
-\right..
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout BeginFrame
-Взвешенный порядок на сигнатурах
-\end_layout
-
-\begin_layout Standard
-Взвешенный порядок 
-\begin_inset Formula $\prec_{w}$
-\end_inset
-
- на сигнатурах с 
-\begin_inset Formula $m$
-\end_inset
-
- входными многочленами с параметром 
-\begin_inset Formula $w=(w_{1},\dots,w_{m})\in\mathbb{T}^{m}$
-\end_inset
-
-:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\left(t_{1},i_{1}\right)\prec_{w}\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & t_{1}w_{i_{1}}<t_{2}w_{i_{2}}\\
- & t_{1}w_{i_{1}}=t_{2}w_{i_{2}},i{}_{1}<i_{2}
-\end{aligned}
-\right..
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Строится алгоритм 
-\family typewriter
-SingleStepSignatureGroebner
-\family default
- для 
-\begin_inset Formula $\mathbb{C}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Взвешенный порядок на сигнатурах позволяет не производить перезапуск алгоритмов
- при добавлении многочлена 
-\begin_inset Formula $x_{1}^{i_{1}}\cdots x_{m}^{i_{m}}-\varepsilon$
-\end_inset
-
-, задавая ему подходящий вес
-\end_layout
-
-\begin_layout Itemize
-Модулярные вычисления для классификации нулей
-\end_layout
-
-\begin_layout BeginFrame
 Модулярные методы
 \end_layout
 
@@ -1640,7 +1483,7 @@ SingleStepSignatureGroebner
 
 \end_deeper
 \begin_layout Itemize
-модулярная специализация 
+Модулярная специализация 
 \begin_inset Formula $\mathbb{Q}$
 \end_inset
 
@@ -1653,6 +1496,259 @@ SingleStepSignatureGroebner
 \end_layout
 
 \end_deeper
+\begin_layout BeginFrame
+Метод TSV
+\end_layout
+
+\begin_layout Standard
+TSV (J.-C.
+ Faugère, Y.
+ Liang, 2011): Комбинирование алгоритмов нахождения базисов Грёбнера и приближён
+ных вычислений.
+ При получении старшего необратимого элемента в качестве коэффициента при
+ 
+\begin_inset Formula $x_{1}^{i_{1}}\cdots x_{m}^{i_{m}}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Itemize
+Добавляется новая переменная 
+\begin_inset Formula $y'$
+\end_inset
+
+, младше всех остальных
+\end_layout
+
+\begin_layout Itemize
+Для того, чтоб страший член редуцировался, идеал расширяется 
+\begin_inset Formula $I^{e}=(I,\, x_{1}^{i_{1}}\cdots x_{m}^{i_{m}}-y')$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+В случае сигнатурных алгоритмов выполняется перезапуск с самого начала,
+ поскольку сигнатура добавленного многочлена меньше текущей, а алгоритмы
+ требуют обработки в порядке возрастания сигнатур для своей корректной работы
+\begin_inset Note Note
+status open
+
+\begin_layout BeginFrame
+Порядки на сигнатурах
+\end_layout
+
+\begin_layout Plain Layout
+Порядок Term-Over-Pos на сигнатурах:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\[
+\left(t_{1},i_{1}\right)\prec\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & t_{1}<t_{2}\\
+ & t_{1}=t_{2},i{}_{1}<i_{2}
+\end{aligned}
+\right..
+\]
+
+\end_inset
+
+Порядок Pos-Over-Term на сигнатурах:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\[
+\left(t_{1},i_{1}\right)\prec\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & i{}_{1}<i_{2}\\
+ & i{}_{1}=i_{2},t_{1}<t_{2}
+\end{aligned}
+\right..
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Порядок Schreyer
+\begin_inset Formula $\prec$
+\end_inset
+
+ на сигнатурах:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\[
+\left(t_{1},i_{1}\right)\prec\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & t_{1}\HM(f_{i_{1}})<t_{2}\HM(f_{i_{2}})\\
+ & t_{1}\HM(f_{i_{1}})=t_{2}\HM(f_{i_{2}}),i{}_{1}<i_{2}
+\end{aligned}
+\right..
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+Применение TSV без перезапуска алгоритмов
+\end_layout
+
+\begin_layout Standard
+Взвешенный порядок 
+\begin_inset Formula $\prec_{w}$
+\end_inset
+
+ на сигнатурах с параметром -- вектором мономов 
+\begin_inset Formula $w=(w_{1},\dots,w_{m})$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left(t_{1},i_{1}\right)\prec_{w}\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & t_{1}w_{i_{1}}<t_{2}w_{i_{2}}\\
+ & t_{1}w_{i_{1}}=t_{2}w_{i_{2}},i{}_{1}<i_{2}
+\end{aligned}
+\right..
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Добавляется новая переменная 
+\begin_inset Formula $y'$
+\end_inset
+
+, младше всех остальных
+\end_layout
+
+\begin_layout Itemize
+Во входные данные вводится дополнительный многочлен 
+\begin_inset Formula $x_{1}^{i_{1}}\cdots x_{m}^{i_{m}}-y'$
+\end_inset
+
+ для того, чтоб страший член редуцировался
+\end_layout
+
+\begin_layout Itemize
+Параметр весов сигнатур расширяется мономов 
+\begin_inset Formula $w'$
+\end_inset
+
+, выбранным так, чтоб добавленный многочлен имел сигнатуру 
+\begin_inset Quotes fld
+\end_inset
+
+точно перед текущей
+\begin_inset Quotes frd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Алгоритм продолжается без перезапуска
+\end_layout
+
+\begin_layout BeginFrame
+Использование результата TSV для решения системы
+\end_layout
+
+\begin_layout Itemize
+Строится алгоритм 
+\family typewriter
+SingleStepSignatureGroebner
+\family default
+ для 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Модулярные вычисления для классификации нулей
+\end_layout
+
+\begin_layout Itemize
+Если необратимость устранить не удалось, применяется метод TSV
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+На основе найденного базиса в расширенном TSV идеале многочленов 
+\begin_inset Formula $I^{e}$
+\end_inset
+
+ строится оператор нормальной формы 
+\begin_inset Formula $\phi:I\rightarrow I$
+\end_inset
+
+ как композиция
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Вложения 
+\begin_inset Formula $Id^{e}:I\rightarrow I^{e}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Оператора нормальной формы в 
+\begin_inset Formula $I^{e}$
+\end_inset
+
+ - редукции по базису Грёбнера 
+\begin_inset Formula $\phi^{e}:I^{e}\rightarrow I^{e}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+Отображения 
+\begin_inset Formula $I^{e}\rightarrow I$
+\end_inset
+
+, индуцируемого заменами 
+\begin_inset Formula $y'\mapsto x_{1}^{i_{1}}\cdots x_{m}^{i_{m}}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Для решения полиномиальной системы применяется 
+\family typewriter
+метод матриц действия
+\family default
+, использующий лишь оператор нормальной формы 
+\begin_inset Formula $\phi$
+\end_inset
+
+.
+\end_layout
+
 \begin_layout BeginFrame
 Основные результаты
 \end_layout
@@ -1669,11 +1765,12 @@ key "Termination_of_Original_F5_Rus,Termination_of_Original_F5_arXiv"
 \end_layout
 
 \begin_layout Itemize
-Прямое доказательство 
+Предложен алгоритм 
 \family typewriter
 SingleStepSignatureGroebner
 \family default
- без S-пар 
+, корректность и остановка которого доказаны без использования понятия S-пар
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "SSG_Rus,SSG-arXiv"
@@ -1684,15 +1781,15 @@ key "SSG_Rus,SSG-arXiv"
 \end_layout
 
 \begin_layout Itemize
-Классификация необратимых приближённых элементов
+Дана классификация необратимых приближённых элементов
 \end_layout
 
 \begin_layout Itemize
-
+Построена методика применения сигнатурного алгоритма 
 \family typewriter
-SingleStepSignatureGroebner для 
+SingleStepSignatureGroebner 
 \family default
-
+для приближённых вычислений над 
 \begin_inset Formula $\mathbb{C}$
 \end_inset
 
