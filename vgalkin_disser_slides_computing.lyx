@@ -347,7 +347,7 @@ status open
 Сигнатурные алгоритмы вычисляют сигнатуру и используют её при выборе многочленов
  для редукции
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout BeginFrame
 Представления и базис Грёбнера
@@ -659,7 +659,23 @@ F5 (J.-C.
 \begin_inset space ~
 \end_inset
 
-Faugère, 2002)
+Faugère, 2002), F5B (Y.
+\begin_inset space ~
+\end_inset
+
+Sun, D.
+\begin_inset space ~
+\end_inset
+
+Wang, 2010), F5C (C.
+\begin_inset space ~
+\end_inset
+
+Eder, J.
+\begin_inset space ~
+\end_inset
+
+Perry, 2009)
 \end_layout
 
 \begin_deeper
@@ -698,49 +714,13 @@ Wang, 2010)
 
 \begin_deeper
 \begin_layout Itemize
-отличающиеся от F5 критерии
+по сравнению с F5 критерии отбрасывают меньше многочленов
 \end_layout
 
 \begin_layout Itemize
 остановка не доказана
 \end_layout
 
-\end_deeper
-\begin_layout Itemize
-F5B (Y.
-\begin_inset space ~
-\end_inset
-
-Sun, D.
-\begin_inset space ~
-\end_inset
-
-Wang, 2012)
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-в виде 
-\begin_inset Quotes eld
-\end_inset
-
-Алгоритма Бухбергера с особыми правилами отброса S-пар
-\begin_inset Quotes erd
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-даёт простой перенос доказательства остановки
-\end_layout
-
-\begin_layout Itemize
-
-\end_layout
-
-\end_deeper
 \end_deeper
 \begin_layout Itemize
 AP(A.
@@ -763,12 +743,12 @@ Roune, M.
 \begin_inset space ~
 \end_inset
 
-Stillman, 2012) и проч
+Stillman, 2012)
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-отличаются от F5 правилами выбора редуктора
+по сравнению с F5 позволяют использовать больше редуктов
 \end_layout
 
 \begin_layout Itemize
@@ -777,6 +757,10 @@ Stillman, 2012) и проч
 \end_layout
 
 \end_deeper
+\begin_layout Standard
+Вопрос эффективности открыт, проблема остановки F5 актуальна
+\end_layout
+
 \begin_layout BeginFrame
 Порядок 
 \begin_inset Formula $>_{\mbox{H}}$
