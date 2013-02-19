@@ -104,10 +104,6 @@ status open
 \end_layout
 
 \begin_layout BeginFrame
-Свойства многочленов в F5
-\end_layout
-
-\begin_layout BeginFrame
 Схема доказательства остановки
 \end_layout
 
@@ -237,24 +233,68 @@ status open
 \end_layout
 
 \begin_layout BeginFrame
-Алгоритмы вычисления базиса Грёбнера
+Цели работы
 \end_layout
 
 \begin_layout Standard
-Входные данные задаются в виде набора многочленов 
-\begin_inset Formula $\{f_{1},\dots,f_{m}\}$
+Основная цель -- создание теоретического фундамента для применения сигнатурных
+ алгоритмов вычисления базиса Грёбнера к решению приближённых систем полиномиаль
+ных уравнений.
+\end_layout
+
+\begin_layout Itemize
+Анализ сигнатурных алгоритмов
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Доказательство остановки F5
+\end_layout
+
+\begin_layout Itemize
+Определение свойств многочленов, выбираемых F5
+\end_layout
+
+\begin_layout Itemize
+Формулировка простого аналога
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Применение к приближённым вычислениям
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+строгая формулировка задачи приближённого решения системы
+\end_layout
+
+\begin_layout Itemize
+классификация необратимых приближённых элементов
+\end_layout
+
+\begin_layout Itemize
+вероятностные модулярные методы для определения класса необратимого элемента
+\end_layout
+
+\begin_layout Itemize
+метод TSV для перемещения необратимых старших элементов
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+Понятие сигнатуры
+\end_layout
+
+\begin_layout Standard
+Сигнатура определяется для элементов идеала, заданного как 
+\begin_inset Formula $I=\left(f_{1},\dots,f_{m}\right)$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
-Алгоритм Бухбергера -- последовательные редукции S-пар.
- Много редукций к нулю
-\end_layout
-
-\begin_layout Standard
-Алгоритмы основанные на сигнатурах -- входным многочленам 
+\begin_layout Itemize
 \begin_inset Formula $f_{i}$
 \end_inset
 
@@ -262,28 +302,28 @@ status open
 \begin_inset Formula $S(f_{i})=\left(1,i\right)$
 \end_inset
 
-
+ -- моном и индекс
 \end_layout
 
 \begin_layout Itemize
-Задаётся согласованный с мономиальным 
-\begin_inset Formula $<$
-\end_inset
-
- порядок 
+задаётся порядок 
 \begin_inset Formula $\prec$
 \end_inset
 
+ на сигнатурах, согласованный с мономиальным порядком 
+\begin_inset Formula $<$
+\end_inset
+
 
 \end_layout
 
 \begin_layout Itemize
-Распространяется на их полиномиальные комбинации
+сигнатура полиномиальных комбинаций многочленов
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-Умножение на моном: 
+умножение на моном: 
 \begin_inset Formula $S(p)=(m,i)\Longrightarrow S(m'p)=(m'm,i)$
 \end_inset
 
@@ -291,7 +331,7 @@ status open
 \end_layout
 
 \begin_layout Itemize
-Сумма 
+сумма 
 \begin_inset Formula $S(p_{1}+p_{2})=\max_{\prec}(S(p_{1}),S(p_{2}))$
 \end_inset
 
@@ -299,8 +339,18 @@ status open
 \end_layout
 
 \end_deeper
+\begin_layout Itemize
+сигнатура многочлена не единственна и зависит от порядка вычислений
+\end_layout
+
+\begin_layout Standard
+Сигнатурные алгоритмы вычисляют сигнатуру и используют её при выборе многочленов
+ для редукции
+\begin_inset Note Note
+status open
+
 \begin_layout BeginFrame
-Понятие представления и базис Грёбнера
+Представления и базис Грёбнера
 \end_layout
 
 \begin_layout Definitions
@@ -413,8 +463,8 @@ S-базис Грёбнера: любой элемент идеала имеет
  Faugère, 1999)
 \end_layout
 
-\begin_layout Standard
-Вычисляют обычный базис Грёбнера
+\begin_layout Plain Layout
+Вычисляют обычный базис Грёбнера, много редукций к нулю
 \end_layout
 
 \begin_layout Itemize
@@ -443,7 +493,7 @@ S-базис Грёбнера: любой элемент идеала имеет
 Вычисляют S-базис
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="3">
 <features tabularvalignment="middle">
@@ -595,10 +645,80 @@ SB (B.Roune, M.Stillman, 2012)
 -базисы
 \end_layout
 
-\begin_layout BeginFrame
-Остановка и корректность сигнатурных алгоритмов
+\end_inset
+
+
 \end_layout
 
+\begin_layout BeginFrame
+Сигнатурные алгоритмы и доказательство остановки
+\end_layout
+
+\begin_layout Itemize
+F5 (J.-C.
+\begin_inset space ~
+\end_inset
+
+Faugère, 2002)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+остановка доказана только для регулярного случая
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+G2V(S.
+\begin_inset space ~
+\end_inset
+
+Gao, Y.
+\begin_inset space ~
+\end_inset
+
+Guan, F.
+\begin_inset space ~
+\end_inset
+
+Volny IV, 2010), GVW(S.
+\begin_inset space ~
+\end_inset
+
+Gao, F.
+\begin_inset space ~
+\end_inset
+
+Volny IV, M.
+\begin_inset space ~
+\end_inset
+
+Wang, 2010)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+отличающиеся от F5 критерии
+\end_layout
+
+\begin_layout Itemize
+остановка не доказана
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+F5B (Y.
+\begin_inset space ~
+\end_inset
+
+Sun, D.
+\begin_inset space ~
+\end_inset
+
+Wang, 2012)
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 в виде 
 \begin_inset Quotes eld
@@ -611,15 +731,52 @@ SB (B.Roune, M.Stillman, 2012)
 
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
-для алгоритма F5 не дано доказательства остановки
+даёт простой перенос доказательства остановки
 \end_layout
 
 \begin_layout Itemize
-для других сложное доказательство, основанное на критерии редуцируемости
- всех S-пар
+
 \end_layout
 
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+AP(A.
+\begin_inset space ~
+\end_inset
+
+Arri, J.
+\begin_inset space ~
+\end_inset
+
+Perry, 2011), TRB-MJ (L.
+\begin_inset space ~
+\end_inset
+
+Huang, 2010), SB (B.
+\begin_inset space ~
+\end_inset
+
+Roune, M.
+\begin_inset space ~
+\end_inset
+
+Stillman, 2012) и проч
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+отличаются от F5 правилами выбора редуктора
+\end_layout
+
+\begin_layout Itemize
+сложное доказательство остановки, на основе редуцируемости всех S-пар, также
+ применимое к GVW
+\end_layout
+
+\end_deeper
 \begin_layout BeginFrame
 Порядок 
 \begin_inset Formula $>_{\mbox{H}}$
@@ -670,6 +827,10 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\Longleftrightarrow\HM(p_{
 \end_inset
 
  редуцируемого
+\end_layout
+
+\begin_layout BeginFrame
+Свойства многочленов в F5
 \end_layout
 
 \begin_layout BeginFrame
