@@ -100,14 +100,6 @@
 status open
 
 \begin_layout BeginFrame
-Краткое описание F5
-\end_layout
-
-\begin_layout BeginFrame
-Схема доказательства остановки
-\end_layout
-
-\begin_layout BeginFrame
 Идея модулярного метода
 \end_layout
 
@@ -258,33 +250,38 @@ status open
 
 \begin_deeper
 \begin_layout Itemize
-строгая формулировка задачи приближённого решения системы
+Строгая формулировка задачи приближённого решения системы
 \end_layout
 
 \begin_layout Itemize
-классификация необратимых приближённых элементов
+Классификация необратимых приближённых элементов
 \end_layout
 
 \begin_layout Itemize
-вероятностные модулярные методы для определения класса необратимого элемента
+Вероятностный модулярный метод для определения класса необратимого элемента
 \end_layout
 
 \begin_layout Itemize
-метод замены мономов переменными (TSV) для перемещения необратимых старших
+Метод замены мономов переменными (TSV) для перемещения необратимых старших
  элементов
-\end_layout
+\begin_inset Note Note
+status open
 
-\end_deeper
 \begin_layout BeginFrame
 Понятие сигнатуры
 \end_layout
 
-\begin_layout Standard
-Сигнатура определяется для элементов идеала, заданного как 
-\begin_inset Formula $I=\left(f_{1},\dots,f_{m}\right)$
+\begin_layout Plain Layout
+Сигнатура определяется для элементов идеала 
+\begin_inset Formula $\left(f_{1},\dots,f_{m}\right)$
 \end_inset
 
+ и по сути описывает способ представления элемента в виде полиномиальной
+ комбинации 
+\begin_inset Formula $f_{1},\dots,f_{m}$
+\end_inset
 
+.
 \end_layout
 
 \begin_layout Itemize
@@ -295,11 +292,11 @@ status open
 \begin_inset Formula $S(f_{i})=\left(1,i\right)$
 \end_inset
 
- -- моном и индекс
+ -- моном и, представляемый натуральным числом индекс
 \end_layout
 
 \begin_layout Itemize
-задаётся порядок 
+Задаётся порядок 
 \begin_inset Formula $\prec$
 \end_inset
 
@@ -311,12 +308,12 @@ status open
 \end_layout
 
 \begin_layout Itemize
-сигнатура полиномиальных комбинаций многочленов
+Сигнатура полиномиальных комбинаций многочленов
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-умножение на моном: 
+Умножение на моном: 
 \begin_inset Formula $S(p)=(m,i)\Longrightarrow S(m'p)=(m'm,i)$
 \end_inset
 
@@ -324,8 +321,12 @@ status open
 \end_layout
 
 \begin_layout Itemize
-сумма 
+Сумма 
 \begin_inset Formula $S(p_{1}+p_{2})=\max_{\prec}(S(p_{1}),S(p_{2}))$
+\end_inset
+
+, определено только при 
+\begin_inset Formula $S(p_{1})\ne S(p_{2})$
 \end_inset
 
 
@@ -333,12 +334,50 @@ status open
 
 \end_deeper
 \begin_layout Itemize
-сигнатура многочлена не единственна и зависит от порядка вычислений
+Сигнатура многочлена не единственна и зависит от порядка вычислений
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+Сигнатурные алгоритмы
 \end_layout
 
 \begin_layout Standard
-Сигнатурные алгоритмы вычисляют сигнатуру и используют её при выборе многочленов
- для редукции
+Сходства с алгоритмом Бухбергера
+\end_layout
+
+\begin_layout Itemize
+Содержат очередь редуцируемых многочленов
+\end_layout
+
+\begin_layout Itemize
+Каждый её элемент или отбрасывается правилами, или редуцируется
+\end_layout
+
+\begin_layout Standard
+Вычисляют сигнатуру и используют её
+\end_layout
+
+\begin_layout Itemize
+Разрешены только редукции, сохраняющие сигнатуры, с использованием удовлетворяющ
+их критериям редукторов
+\end_layout
+
+\begin_layout Itemize
+Правила отбрасывания элементов очереди анализируют сигнатуры
+\end_layout
+
+\begin_layout Standard
+Сигнатурные алгоритмы -- одни из наиболее эффективных для вычисления базиса
+ Грёбнера.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Note Note
 status collapsed
 
@@ -644,7 +683,7 @@ SB (B.Roune, M.Stillman, 2012)
 \end_layout
 
 \begin_layout BeginFrame
-Сигнатурные алгоритмы и доказательство остановки
+Доказательство остановки сигнатурных алгоритмов
 \end_layout
 
 \begin_layout Itemize
@@ -741,7 +780,7 @@ Stillman, 2012)
 
 \begin_deeper
 \begin_layout Itemize
-по сравнению с F5 позволяют использовать больше редуктов
+по сравнению с F5 позволяют использовать больше редукторов
 \end_layout
 
 \begin_layout Itemize
@@ -752,18 +791,19 @@ Stillman, 2012)
 \end_deeper
 \begin_layout Standard
 Вопрос эффективности открыт, проблема остановки F5 актуальна
-\end_layout
+\begin_inset Note Note
+status open
 
 \begin_layout BeginFrame
 Порядок 
 \begin_inset Formula $>_{\mbox{H}}$
 \end_inset
 
- на отмеченных многочленах
+ на многочленах с сигнатурой
 \end_layout
 
-\begin_layout Standard
-Важное для предлагаемых идей определение сравнения отмеченных многочленов:
+\begin_layout Plain Layout
+Важное для предлагаемых идей определение порядка для многочленов с сигнатурой:
  сравнение старшего монома 
 \begin_inset Quotes eld
 \end_inset
@@ -775,7 +815,7 @@ Stillman, 2012)
  на сигнатуру:
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Formula 
 \[
 h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\Longleftrightarrow\HM(p_{1})\sigma_{2}\prec\HM(p_{2})\sigma_{1},
@@ -786,7 +826,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\Longleftrightarrow\HM(p_{
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 При сигнатурной редукции:
 \end_layout
 
@@ -806,32 +846,115 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\Longleftrightarrow\HM(p_{
  редуцируемого
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout BeginFrame
 Свойства многочленов в F5
 \end_layout
 
 \begin_layout Standard
-TODO
+Критерии, применяемые алгоритмом F5, могут быть упрощены
+\end_layout
+
+\begin_layout Itemize
+Свойства редуцируемых S-пар
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Все редуцируемые алгоритмом S-пары имеют в качестве старшей части многочлен,
+ однозначно определяемый как последний из полученных многочленов в некотором
+ множестве.
+\end_layout
+
+\begin_layout Itemize
+Все редуцируемые алгоритмом S-пары имеют в качестве младшей части многочлен,
+ однозначно определяемый как многочлен с минимальной по 
+\begin_inset Formula $\prec$
+\end_inset
+
+ 
+\begin_inset Quotes fld
+\end_inset
+
+дробью
+\begin_inset Quotes frd
+\end_inset
+
+ 
+\begin_inset Formula $\frac{\Sig}{\HM}$
+\end_inset
+
+ в множестве потенциальных редукторов.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Свойство используемого редуктора
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Среди непустого множества потенциальных редукторов, сохраняющих сигнатуру,
+ критерии алгоритма выберут ровно один -- многочлен с минимальной по 
+\begin_inset Formula $\prec$
+\end_inset
+
+ 
+\begin_inset Quotes fld
+\end_inset
+
+дробью
+\begin_inset Quotes frd
+\end_inset
+
+ 
+\begin_inset Formula $\frac{\Sig}{\HM}$
+\end_inset
+
+ .
+\end_layout
+
+\end_deeper
+\begin_layout Corollary
+Если существует редуктор, отбрасываемый критериями, то существует и не отбрасыва
+емый критериями редуктор.
 \end_layout
 
 \begin_layout BeginFrame
-Доказано: F5 останавливается
+F5 останавливается
 \end_layout
 
-\begin_layout Enumerate
-Цепь отмеченных многочленов: 
+\begin_layout Definition
+
+\emph on
+Цепь многочленов
+\emph default
+ 
+\emph on
+с сигнатурой
+\emph default
+: последовательность 
 \begin_inset Formula $\left\{ h_{i}\right\} ,\Sig(h_{i-1})|\Sig(h_{i})$
 \end_inset
 
 
 \end_layout
 
+\begin_layout Proof
+
+\end_layout
+
 \begin_layout Enumerate
-Если не останавливается - существует бесконечная 
-\begin_inset Formula $<_{\mbox{H}}$
+Если алгоритм не останавливается - он получит бесконечную цепь с возрастающим
+ 
+\begin_inset Formula $\frac{\Sig}{\HM}$
 \end_inset
 
--убывающая цепь
+ 
 \end_layout
 
 \begin_layout Enumerate
@@ -843,7 +966,14 @@ TODO
 \end_layout
 
 \begin_layout Enumerate
-Это невозможно без учёта критериев из F5
+\begin_inset Formula $h_{i}$
+\end_inset
+
+ -- сигнатурный редуктор для 
+\begin_inset Formula $h_{j}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
@@ -851,10 +981,29 @@ TODO
  критериям
 \end_layout
 
+\begin_layout Enumerate
+Это противоречит тому, что 
+\begin_inset Formula $h_{j}$
+\end_inset
+
+ не было редуцировано
+\end_layout
+
 \begin_layout BeginFrame
 Алгоритм
 \family typewriter
  SingleStepSignatureGroebner
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $\GVWl$
+\end_inset
+
+ -- порядок на многочленах с сигнатурой, сравнивающий дроби 
+\begin_inset Formula $\frac{\Sig}{\HM}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Description
@@ -867,34 +1016,35 @@ TODO
 
 \begin_layout Description
 Переменные: 
-\begin_inset Formula $R$
-\end_inset
-
- -- промежуточный 
-\begin_inset Formula $S_{\sigma}$
-\end_inset
-
--базис, включающий сизигии и 
-\begin_inset Formula $B$
-\end_inset
-
- -- многочлены ожидающие анализа
 \end_layout
 
 \begin_layout Description
-Результат: ненулевые элементы 
+\begin_inset Formula $B$
+\end_inset
+
+ -- очередь многочленов, ожидающих анализа
+\end_layout
+
+\begin_layout Description
 \begin_inset Formula $R$
 \end_inset
 
- -- S-базис Грёбнера идеала 
-\begin_inset Formula $I=\left(f_{1},\dots,f_{m}\right)$
+ -- промежуточный базис до определённой сигнатуры, включающий сизигии
+\end_layout
+
+\begin_layout Description
+Результат: 
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $R$
+\end_inset
+
+ -- базис Грёбнера идеала 
+\begin_inset Formula $\left(f_{1},\dots,f_{m}\right)$
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-Простое доказательство, не используещее S-пары
 \end_layout
 
 \begin_layout BeginFrame
@@ -920,7 +1070,7 @@ TODO
 \begin_inset Formula $R\leftarrow\{$
 \end_inset
 
-известные сизигии, например тривиальные
+известные сизигии, в частности тривиальные
 \begin_inset Formula $\}$
 \end_inset
 
@@ -1050,6 +1200,15 @@ for
 \end_layout
 
 \end_deeper
+\begin_layout Standard
+Доказательства остановки и корректности основаны на формулировках инвариантов
+ для различных этапов
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
 \begin_layout BeginFrame
 Доказательство остановки
 \end_layout
@@ -1215,16 +1374,27 @@ for
 .
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout BeginFrame
-Алгоритмы вычисления базиса Грёбнера над 
+Алгоритмы вычисления базиса Грёбнера с приближёнными входными данными над
+ 
 \begin_inset Formula $\mathbb{R}$
 \end_inset
 
- и 
-\begin_inset Formula $\mathbb{C}$
+
+\end_layout
+
+\begin_layout Standard
+Вопрос о приближённом базисе Грёбнера в 
+\begin_inset Formula $\mathbb{R}$
 \end_inset
 
-
+ возникает из задачи решения полиномиальных систем, которые могут быть заданы
+ приближённо
 \end_layout
 
 \begin_layout Itemize
@@ -1234,10 +1404,6 @@ for
 
 \begin_layout Itemize
 Вычисления над 
-\begin_inset Formula $\mathbb{Z}$
-\end_inset
-
- и 
 \begin_inset Formula $\mathbb{Q}$
 \end_inset
 
@@ -1288,14 +1454,14 @@ for
 \end_inset
 
  называется 
-\begin_inset Formula $a_{0}\in\mathbb{C}\left|a_{0}-a\right|<\varepsilon$
+\begin_inset Formula $a_{0}\in\mathbb{C},\,\left|a_{0}-a\right|<\varepsilon$
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-Формализация задачи поиска Базиса Грёбнера: ищем множество, содержащее решения
+Формализация задачи поиска базиса Грёбнера: ищем множество, содержащее решения
  при любых специализациях входных данных.
 \end_layout
 
@@ -1364,7 +1530,7 @@ for
 \emph on
 символический ноль
 \emph default
- -- при любой специализации входных данных соответствующую вычисления дают
+ -- при любой специализации входных данных соответствующие вычисления дают
  точный ноль.
  
 \end_layout
@@ -1374,7 +1540,7 @@ for
 \emph on
 ноль, индуцированный входными данными -- 
 \emph default
-некоторые, но не все специализации дают точный ноль
+некоторые, но не все, специализации дают точный ноль
 \end_layout
 
 \begin_layout Standard
@@ -1386,86 +1552,43 @@ for
 \end_layout
 
 \begin_layout BeginFrame
-Пример символического нуля
+Модулярный метод 
 \end_layout
 
-\begin_layout Example
+\begin_layout Itemize
+Вычислениями по произвольному модулю определяется предположительная комбинация
+ входных элементов для элемента базиса
+\end_layout
 
-\family roman
-\begin_inset Formula 
-\[
-\begin{array}{ccc}
-\poly(f_{1})= & y^{2}z+a, & \Sig(f_{1})=\left(1,1\right)\\
-\poly(f_{2})= & y^{2}z^{2}+xz+1, & \Sig(f_{2})=\left(1,2\right)\\
-\poly(f_{3})= & y^{3}z+xy+1, & \Sig(f_{3})=\left(1,3\right)\\
-\poly(f_{4})= & \poly(f_{1})=y^{2}z+a, & \Sig(f_{4})=\left(1,1\right)\\
-\poly(f_{5})= & \poly(f_{2})-z\poly(f_{4})=xz-az+1, & \Sig(f_{5})=\left(1,2\right)\\
-\poly(f_{6})= & \poly(f_{3})-y\poly(f_{4})=xy-ay+1, & \Sig(f_{6})=\left(1,3\right)\\
-\poly(f_{7})= & z\poly(f_{6})-y\poly(f_{5})=\left(a-a\right)yz+z-y, & \Sig(f_{7})=\left(z,3\right)
-\end{array}
-\]
+\begin_layout Itemize
+Поиск аналога в приближённом случае сводится к решению линейной системы
+\end_layout
 
+\begin_layout Itemize
+Тест на символический ноль при решении системы в приближённых числах
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Точное -- символические вычисления над 
+\begin_inset Formula $ $
 \end_inset
 
 
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+ с заменой неточных входных значений на переменные
 \end_layout
 
+\begin_layout Itemize
+Вероятностное -- модулярные вычисления в конечном поле с заменой неточных
+ входных значений на произвольные элементы конечного поля
+\end_layout
+
+\end_deeper
 \begin_layout BeginFrame
-Пример индуцированного или внесённого нуля
-\end_layout
-
-\begin_layout Example
-\begin_inset Formula 
-\[
-\begin{array}{ccc}
-\poly(f_{1})= & y^{2}z+z^{2}+az, & \Sig(f_{1})=\left(1,1\right)\\
-\poly(f_{2})= & xyz, & \Sig(f_{2})=\left(1,2\right)\\
-\poly(f_{3})= & xy^{2}+bx+1, & \Sig(f_{3})=\left(1,3\right)\\
-\poly(f_{4})= & \poly(f_{1})=y^{2}z+z^{2}+az, & \Sig(f_{4})=\left(1,1\right)\\
-\poly(f_{5})= & \poly(f_{2})=xyz, & \Sig(f_{5})=\left(1,2\right)\\
-\poly(f_{6})= & \poly(f_{3})=xy^{2}+bx+1, & \Sig(f_{6})=\left(1,3\right)\\
-\poly(f_{7})= & -\left(y\poly(f_{5})-x\poly(f_{4})\right)=xz^{2}+axz, & \Sig(f_{7})=\left(y,2\right)
-\end{array}
-\]
-
-\end_inset
-
- 
-\begin_inset Formula 
-\[
-\poly(f_{8})=(z\poly(f_{6})-x\poly(f_{4}))+\poly(f_{7})=
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-=\left(\left(xy^{2}z+bxz+z\right)-\left(xy^{2}z+xz^{2}+axz\right)\right)+xz^{2}+axz=((b-a)+a)xz+z,
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\Sig(f_{8})=\left(z,3\right)
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout BeginFrame
-Модулярные методы
-\end_layout
-
-\begin_layout Standard
-Модулярные методы носят вероятностный характер.
- Ложные нули получаются, если выбранные значения оказываются корнем символическо
-го многочлена.
- Это возможно, если:
+Расхождение между символическими и модулярными вычислениями
 \end_layout
 
 \begin_layout Itemize
@@ -1478,7 +1601,7 @@ for
 \begin_deeper
 \begin_layout Itemize
 Оценка на максимальный коэффициент для определения максимального числа простых
- чисел, на которые делится
+ чисел, на которые могут делиться все коэффициенты
 \end_layout
 
 \end_deeper
@@ -1492,10 +1615,64 @@ for
 
 \begin_deeper
 \begin_layout Itemize
-Оценка на максимальную степень
+Оценка на максимальную степень, ограничивающая число корней
 \end_layout
 
 \end_deeper
+\begin_layout BeginFrame
+Итоговая оценка на модуль
+\end_layout
+
+\begin_layout Standard
+Оценка предлагает диапазон простых чисел, в котором доля чисел, могущих
+ привести к расхождению не более 
+\begin_inset Formula $2\alpha$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Начало диапазона 
+\begin_inset Formula $P_{0}>\sqrt{\frac{R2^{R}V}{\alpha}}.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Количество простых чисел в диапазоне 
+\begin_inset Formula $N_{p}>\frac{R2^{R}\log_{P_{0}}2Z_{0}}{\alpha}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $R$
+\end_inset
+
+ -- число строк в системе
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $V$
+\end_inset
+
+ -- количество приближённых коэффициентов во входных данных
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ -- максимальный числитель точного 
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+-коэффициента во входных данных
+\end_layout
+
 \begin_layout BeginFrame
 Метод TSV
 \end_layout
@@ -1805,6 +1982,78 @@ SingleStepSignatureGroebner
 LatexCommand bibtex
 bibfiles "my_publications"
 options "gost/ugost2008"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+Пример символического нуля
+\end_layout
+
+\begin_layout Example
+
+\family roman
+\begin_inset Formula 
+\[
+\begin{array}{ccc}
+\poly(f_{1})= & y^{2}z+a, & \Sig(f_{1})=\left(1,1\right)\\
+\poly(f_{2})= & y^{2}z^{2}+xz+1, & \Sig(f_{2})=\left(1,2\right)\\
+\poly(f_{3})= & y^{3}z+xy+1, & \Sig(f_{3})=\left(1,3\right)\\
+\poly(f_{4})= & \poly(f_{1})=y^{2}z+a, & \Sig(f_{4})=\left(1,1\right)\\
+\poly(f_{5})= & \poly(f_{2})-z\poly(f_{4})=xz-az+1, & \Sig(f_{5})=\left(1,2\right)\\
+\poly(f_{6})= & \poly(f_{3})-y\poly(f_{4})=xy-ay+1, & \Sig(f_{6})=\left(1,3\right)\\
+\poly(f_{7})= & z\poly(f_{6})-y\poly(f_{5})=\left(a-a\right)yz+z-y, & \Sig(f_{7})=\left(z,3\right)
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+Пример индуцированного или внесённого нуля
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+\begin{array}{ccc}
+\poly(f_{1})= & y^{2}z+z^{2}+az, & \Sig(f_{1})=\left(1,1\right)\\
+\poly(f_{2})= & xyz, & \Sig(f_{2})=\left(1,2\right)\\
+\poly(f_{3})= & xy^{2}+bx+1, & \Sig(f_{3})=\left(1,3\right)\\
+\poly(f_{4})= & \poly(f_{1})=y^{2}z+z^{2}+az, & \Sig(f_{4})=\left(1,1\right)\\
+\poly(f_{5})= & \poly(f_{2})=xyz, & \Sig(f_{5})=\left(1,2\right)\\
+\poly(f_{6})= & \poly(f_{3})=xy^{2}+bx+1, & \Sig(f_{6})=\left(1,3\right)\\
+\poly(f_{7})= & -\left(y\poly(f_{5})-x\poly(f_{4})\right)=xz^{2}+axz, & \Sig(f_{7})=\left(y,2\right)
+\end{array}
+\]
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+\poly(f_{8})=(z\poly(f_{6})-x\poly(f_{4}))+\poly(f_{7})=
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+=\left(\left(xy^{2}z+bxz+z\right)-\left(xy^{2}z+xz^{2}+axz\right)\right)+xz^{2}+axz=((b-a)+a)xz+z,
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\Sig(f_{8})=\left(z,3\right)
+\]
 
 \end_inset
 
