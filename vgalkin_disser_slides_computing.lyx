@@ -1931,7 +1931,7 @@ SingleStepSignatureGroebner
 \end_layout
 
 \begin_layout Itemize
-Доказана остановка F5 
+Доказана остановка алгоритма F5 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Termination_of_Original_F5_Rus,Termination_of_Original_F5_arXiv"
@@ -1946,7 +1946,8 @@ key "Termination_of_Original_F5_Rus,Termination_of_Original_F5_arXiv"
 \family typewriter
 SingleStepSignatureGroebner
 \family default
-, корректность и остановка которого доказаны без использования понятия S-пар
+, совмещающий эффективность сигнатурных алгоритмов с простыми доказательством
+ и реализацией.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1955,10 +1956,6 @@ key "SSG_Rus,SSG-arXiv"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Itemize
-Дана классификация необратимых приближённых элементов
 \end_layout
 
 \begin_layout Itemize
