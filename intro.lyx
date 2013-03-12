@@ -745,7 +745,14 @@ key "GroebnerInExtFields"
  в другие системы компьютерной алгебры.
  Результаты диссертации могут быть полезны при решении задач, возникающих
  в робототехнике, криптографии, статистике, алгебраической геометрии и видеоанал
-итике.
+итике
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FastStablePolySolving"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section*
