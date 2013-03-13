@@ -7516,6 +7516,23 @@ reference "par:AlgorithmF5"
 \end_inset
 
 .
+ Мы будем применять его к отношению 
+\begin_inset Formula $\HM$
+\end_inset
+
+ и 
+\begin_inset Formula $\Sig$
+\end_inset
+
+, что даёт порядок на отмеченных многочленах, аналогичный порядку GVW-order
+ из работы 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GBNonCommutativeGVWOrder"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Theorem
