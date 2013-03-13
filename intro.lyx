@@ -756,8 +756,14 @@ key "GroebnerInExtFields"
  Данный алгоритм нетребователен к структурам данных и может быть легко перенесен
  в другие системы компьютерной алгебры.
  Результаты диссертации могут быть полезны при решении задач, возникающих
- в робототехнике, криптографии, статистике, алгебраической геометрии и видеоанал
-итике
+ в робототехнике, криптографии, статистике 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "sturmfels2002solvingPolySystems"
+
+\end_inset
+
+, алгебраической геометрии и видеоаналитике
 \begin_inset CommandInset citation
 LatexCommand cite
 key "FastStablePolySolving"
