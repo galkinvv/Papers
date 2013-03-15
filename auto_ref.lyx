@@ -300,7 +300,7 @@ relax% TEX-заголовки только для включения инфор�
 \backslash
 def
 \backslash
-numberofdisserpages{119}
+numberofdisserpages{122}
 \end_layout
 
 \end_inset
@@ -546,7 +546,7 @@ status open
 
 
 \begin_inset Tabular
-<lyxtabular version="3" rows="9" columns="2">
+<lyxtabular version="3" rows="11" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top" width="0">
 <column alignment="left" valignment="top" width="0pt">
@@ -619,9 +619,6 @@ status open
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset VSpace 0.3pc
-\end_inset
-
  
 \end_layout
 
@@ -631,18 +628,55 @@ status open
 \begin_inset Text
 
 \begin_layout Plain Layout
-<пока не определён>
-\begin_inset Note Note
-status open
+профессор Г.И.
+\begin_inset space ~
+\end_inset
 
-\begin_layout Plain Layout
-профессор А.А.
- Михалев
+Малашонок
 \end_layout
 
 \end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
 
+\begin_layout Plain Layout
 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(Тамбовский государственный университет
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset VSpace 0.3pc
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+имени Г.Р.
+ Державина)
 \end_layout
 
 \end_inset

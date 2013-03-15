@@ -756,14 +756,35 @@ key "GroebnerInExtFields"
  Данный алгоритм нетребователен к структурам данных и может быть легко перенесен
  в другие системы компьютерной алгебры.
  Результаты диссертации могут быть полезны при решении задач, возникающих
- в робототехнике, криптографии, статистике 
+ в робототехнике 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereRobots"
+
+\end_inset
+
+, криптографии 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereCrypto08"
+
+\end_inset
+
+, статистике 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "sturmfels2002solvingPolySystems"
 
 \end_inset
 
-, алгебраической геометрии и видеоаналитике
+, алгебраической геометрии 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "sturmfels2002solvingPolySystems"
+
+\end_inset
+
+ и видеоаналитике 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "FastStablePolySolving"
@@ -778,8 +799,15 @@ key "FastStablePolySolving"
 \end_layout
 
 \begin_layout Standard
-Результаты диссертации докладывались на научно-исследовательском семинаре
- кафедры высшей алгебры МГУ.
+Результаты диссертации докладывались:
+\end_layout
+
+\begin_layout Itemize
+на научно-исследовательском семинаре кафедры высшей алгебры МГУ
+\end_layout
+
+\begin_layout Itemize
+на семинаре «Компьютерная алгебра» ВЦ РАН
 \end_layout
 
 \begin_layout Section*
