@@ -1117,7 +1117,7 @@ p=\sum_{k}m_{k}\cdot g_{i_{k}},\; g_{i_{k}}\in G,
 \begin_inset Formula $\forall f\in I$
 \end_inset
 
- имеет степенное представление над 
+ существует степенное представление над 
 \begin_inset Formula $G$
 \end_inset
 

@@ -952,7 +952,7 @@ t_{1}\succ t_{2}
 \begin_inset Formula $\HM(p)\in\mathbb{T}_{0}$
 \end_inset
 
- -- старший моном многочлена, определяется для 
+ -- старший моном многочлена, определяется 
 \begin_inset Formula $\forall p\in\mathcal{P}$
 \end_inset
 
@@ -979,7 +979,7 @@ t_{1}\succ t_{2}
 \begin_inset Formula $\HC(p)\in\mathcal{K}$
 \end_inset
 
- -- старший коэффициент многочлена, определяется для 
+ -- старший коэффициент многочлена, определяется 
 \begin_inset Formula $\forall p\in\mathcal{P}$
 \end_inset
 
@@ -1156,11 +1156,11 @@ name "gb-def-1"
 \begin_inset Formula $I$
 \end_inset
 
-, то для 
+, то 
 \begin_inset Formula $\forall f\in I$
 \end_inset
 
- есть конечная последовательность редукций по элементам 
+ существует конечная последовательность редукций по элементам 
 \begin_inset Formula $G$
 \end_inset
 
@@ -1513,7 +1513,7 @@ name "gb-def-2"
 \begin_inset Formula $\forall f\in I$
 \end_inset
 
- имеет степенное представление над 
+ существует степенное представление над 
 \begin_inset Formula $G$
 \end_inset
 
@@ -1543,12 +1543,19 @@ reference "gb-def-2"
 \begin_inset Formula $G$
 \end_inset
 
- удовлетворяет второму определению, то для 
+ удовлетворяет второму определению, то 
 \begin_inset Formula $\forall f\in I$
 \end_inset
 
- один из элементов степенного представления может быть взят в качестве редуцирую
-щего.
+ один из элементов степенного представления 
+\begin_inset Formula $f$
+\end_inset
+
+ над 
+\begin_inset Formula $G$
+\end_inset
+
+ может быть взят в качестве редуцирующего.
 \end_layout
 
 \begin_layout Proof
@@ -1556,7 +1563,7 @@ reference "gb-def-2"
 \begin_inset Formula $G$
 \end_inset
 
- удовлетворяет первому определению, то для 
+ удовлетворяет первому определению, то 
 \begin_inset Formula $\forall f\in I$
 \end_inset
 
@@ -7370,7 +7377,7 @@ reference "par:IsReducible"
 \end_inset
 
 .
- Поэтому, при 
+ Поэтому, 
 \begin_inset Formula $\forall i>i_{0}$
 \end_inset
 
@@ -7386,7 +7393,8 @@ reference "par:IsReducible"
 \begin_inset Formula $\Sig(R[l_{j}])\cdot\frac{v_{i}}{v_{j}}$
 \end_inset
 
- и существует не более чем 
+.
+ Отсюда вытекает, что существует не более чем 
 \begin_inset Formula $i_{0}$
 \end_inset
 
@@ -10230,7 +10238,7 @@ key "Baader.Nipkow98Term"
 \begin_inset Formula $mh=\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
- со свойствами, выполняющимися для 
+ со свойствами, выполняющимися 
 \begin_inset Formula $\forall k$
 \end_inset
 
@@ -14323,7 +14331,7 @@ reference "lem:greater-or-smaller"
 
 \end_inset
 
-, для 
+, 
 \begin_inset Formula $\forall r\in R$
 \end_inset
 
@@ -14720,7 +14728,6 @@ name "lem:S-basis-is-a-basis"
 \end_layout
 
 \begin_layout Proof
-Для 
 \begin_inset Formula $\forall p\in I$
 \end_inset
 
@@ -14756,7 +14763,7 @@ reference "enu:-remove-from-B"
 
 \end_inset
 
- выполнен инвариант: для 
+ выполнен инвариант: 
 \begin_inset Formula $\forall\sigma\in\mathbb{T},\sigma\prec$
 \end_inset
 
@@ -14928,11 +14935,11 @@ reference "enu:-remove-from-B"
 \begin_inset Formula $\prec_{0}$
 \end_inset
 
--минимальную 
+-минимальную сигнатуру 
 \begin_inset Formula $\sigma$
 \end_inset
 
-, для которой непусто 
+, для которой непусто множество 
 \begin_inset Formula $V_{\sigma}\eqdef\{h\in H\,|\, h\mbox{ нарушает инвариант},\Sig(h)=\sigma\}$
 \end_inset
 
@@ -14950,11 +14957,11 @@ reference "enu:-remove-from-B"
 
 \emph default
 -базис.
- Для 
+ Заметим, что 
 \begin_inset Formula $\forall g\in\left(G\right)$
 \end_inset
 
- соответствующие отмеченные многочлены 
+ отмеченные многочлены 
 \begin_inset Formula $\left(\monzero,g\right)$
 \end_inset
 
@@ -14963,6 +14970,10 @@ reference "enu:-remove-from-B"
 \end_inset
 
 , поэтому 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ не может быть нулевой, а значит 
 \begin_inset Formula $\sigma\succ_{0}\monzero$
 \end_inset
 
@@ -16159,7 +16170,7 @@ reference "lem:greater-or-smaller"
 
 \end_inset
 
- для 
+ 
 \begin_inset Formula $\forall r\in R$
 \end_inset
 
@@ -16377,7 +16388,7 @@ reference "enu:-remove-from-B-sstep"
 
 \end_inset
 
- выполнен инвариант: для 
+ выполнен инвариант:  
 \begin_inset Formula $\forall\sigma\in\mathbf{T},\sigma\prec_{a}$
 \end_inset
 
