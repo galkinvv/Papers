@@ -1,3 +1,5 @@
+vgalkin_disser.pdf: vgalkin_disser.lyx intro.lyx my_publications.bib f5_references.bib
+	lyx -e pdf4 $<
 auto_ref_plainrefs.tex: Makefile auto_ref.lyx
 	rm -f $@
 	lyx -e xetex auto_ref.lyx
