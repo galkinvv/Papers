@@ -1,0 +1,719 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass extarticle
+\begin_preamble
+\oddsidemargin=0.46cm
+\hoffset=0cm
+\textwidth=16.75cm
+\topmargin=-0.54cm
+\textheight=25.2cm
+\headheight=0cm
+\headsep=0cm
+\sloppy
+
+\usepackage{suffix}
+
+% If this is in *.tex file, uncomment the following line.
+\makeatletter
+
+% Save the original \part declaration
+\let\old@part\part
+
+% To that definition, add a new special starred version.
+\WithSuffix\def\part*{
+  % Handle the optional parameter.
+  \ifx\next[%
+    \let\next\thesis@part@star%
+  \else
+    \def\next{\thesis@part@star[]}%
+  \fi
+  \next}
+
+% The actual macro definition.
+\def\thesis@part@star[#1]#2{
+  \vspace{-9mm}
+  % Insert the actual (unnumbered) \part header.
+  \old@part*{{\Large #2}}
+  % Last, add the part to the table of contents
+  \addcontentsline{toc}{part}{#2}
+  \vspace{-4.5mm}
+}
+
+\let\old@section\section
+
+% To that definition, add a new special starred version.
+\WithSuffix\def\section*{
+  % Handle the optional parameter.
+  \ifx\next[%
+    \let\next\thesis@section@star%
+  \else
+    \def\next{\thesis@section@star[]}%
+  \fi
+  \next}
+
+% The actual macro definition.
+\def\thesis@section@star[#1]#2{
+  % Insert the actual (unnumbered) \part header.
+  \old@section*{{\large #2}}
+  % Last, add the part to the table of contents
+  \addcontentsline{toc}{section}{#2}
+}
+
+% If this is in *.tex file, uncomment the following line.
+\makeatother
+\end_preamble
+\options a4paper, reqno
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\begin_local_layout
+
+\end_local_layout
+\language english
+\language_package \usepackage[english]{polyglossia}
+\inputencoding utf8
+\fontencoding global
+\font_roman CMU Serif
+\font_sans CMU Sans Serif
+\font_typewriter CMU Typewriter Text
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered true
+\pdf_bookmarksopen true
+\pdf_bookmarksopenlevel 7
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\pdf_quoted_options "unicode=false"
+\papersize default
+\use_geometry false
+\use_amsmath 2
+\use_esint 0
+\use_mhchem 0
+\use_mathdots 0
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 5
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\bullet 0 0 0 -1
+\bullet 1 0 6 -1
+\bullet 2 0 10 -1
+\bullet 3 0 9 -1
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\GVWg}{>_{\text{\textnormal{H}}}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\GVWl}{<_{\text{H}}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
+\end_inset
+
+	
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\Sig}{\mathcal{S}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\HM}{\mathrm{HM}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\HC}{\mathrm{HC}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\LCM}{\mathrm{LCM}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\totaldeg}{\mathrm{deg}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\poly}{\mathrm{poly}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\sigidx}{\mathrm{index}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\Sss}[2]{\left\langle #1\centerdot#2\right\rangle }
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\monone}{\mathbf{1}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\monzero}{\mathbf{0}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+let
+\backslash
+flqq
+\backslash
+guillemotleft
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+let
+\backslash
+frqq
+\backslash
+guillemotright
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Gröbner bases for approximate input: applying Signature-based algorithms
+\end_layout
+
+\begin_layout Author
+Vasily Galkin
+\end_layout
+
+\begin_layout Address
+MSU, Faculty of Mechanics and Mathematics
+\end_layout
+
+\begin_layout Right Address
+galkin-vv@ya.ru
+\end_layout
+
+\begin_layout Section*
+Краткое содержание работы
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Часть II
+\series default
+ направлена на вопрос применения сигнатурных алгоритмов к решениям приближённых
+ систем уравнений.
+ Ключевым моментом для связывания являются свойства базиса Грёбнера, действитель
+но используемые при решении систем.
+ 
+\series bold
+Глава 5
+\series default
+ рассматривает основной метод решения систем при помощи базисов Грёбнера
+ -- метод матриц действия -- и показывает, что единственным использованием
+ базиса при решении систем является построение способа явного вычисления
+ отображения из кольца многочленов 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+ в факторкольцо 
+\begin_inset Formula $\mathcal{A}=\mathcal{P}/\left(f_{1},\ldots,f_{m}\right)$
+\end_inset
+
+.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Причём, для систем с конечным числом решений, данное факторкольцо может
+ быть интерпретировано как конечное векторное пространство над 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+, и результат отображения должен задаваться в 
+\begin_inset Formula $\mathcal{K}$
+\end_inset
+
+-координатах некоторого базиса этого векторного пространства.
+ Необходимость погружения в этот вопрос становится ясной при объяснении
+ применимости к решению систем обобщённых вариаций базиса Грёбнера.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Глава 6
+\series default
+ ставит задачу приближённого решения систем уравнений в строгие математические
+ рамки, вводя определение 
+\emph on
+приближённой системы
+\emph default
+, как системы с 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+-параметрами, для каждого из которых задан некоторый диапазон значений,
+ а её 
+\emph on
+специализаций
+\emph default
+ -- как систем с конкретными 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+-коэффициентами из этих диапазонов.
+ Круг рассматриваемых приближённых задач заранее сужается до задач с 
+\emph on
+конечным непрерывным решением
+\emph default
+.
+ Неформально это означает, что входные приближённые данные достаточно точны,
+ чтоб получить информацию о количестве решений и областях, ограничивающих
+ их значения.
+ Математическое определение конечного непрерывного решения потребовало построени
+я специальной топологии, поскольку тривиальное определение конечного непрерывног
+о решения как набора функций непрерывных по 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+-параметру сделало бы уравнение 
+\begin_inset Formula $x^{2}+p$
+\end_inset
+
+, не удовлетворяющим условию непрерывности в тех случаях, когда множество
+ значений параметра 
+\begin_inset Formula $p$
+\end_inset
+
+ содержит окрестность нуля.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Глава 7
+\series default
+ посвящена приближённым вычислениям применительно к задаче вычисления базисов
+ Грёбнера.
+ Определения приближённой арифметики и полиномиальных операций в этом случае
+ строятся на основе требования, накладываемого на результат процесса вычисления:
+ 
+\end_layout
+
+\begin_layout Claim
+Пусть 
+\begin_inset Formula $p$
+\end_inset
+
+ -- результирующий приближённый многочлен, полученный вычислением базиса
+ Грёбнера, а 
+\begin_inset Formula $I'$
+\end_inset
+
+ -- идеал, порождаемый некоторой специализацией входных данных.
+ Тогда существует специализация 
+\begin_inset Formula $p$
+\end_inset
+
+, лежащая в 
+\begin_inset Formula $I'$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Полиномиальных операций строится две: 
+\family typewriter
+ApproxNormalize
+\family default
+ -- нормализация старшего коэффициента многочлена, и 
+\family typewriter
+ApproxReduce
+\family default
+ -- редукция многочлена по нормализованному.
+ Последняя из них удаётся всегда, а нормализация в приближённом случае возможна,
+ если и только если среди множества специализаций приближённого старшего
+ коэффициента нет нулей.
+ Иначе элемент необратим и является 
+\emph on
+необратимым приближённым
+\emph default
+ 
+\emph on
+элементом
+\emph default
+.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Такие элементы классифицируются на основе сравнения хода приближённого алгоритма
+ с использованием процедур 
+\family typewriter
+ApproxNormalize
+\family default
+ и 
+\family typewriter
+ApproxReduce
+\family default
+ с ходом обычного алгоритма, применяемого к конкретной специализации входных
+ данных.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+Необратимый приближённый элемент, возникший в процессе приближённых вычислений,
+ называется 
+\emph on
+символическим нулём
+\emph default
+, если для любой специализации входных данных при проведении соответствующих
+ вычислений получается точный ноль.
+ Иными словами, для любой специализации входных данных в порождаемом ими
+ идеале существует специализация многочлена, содержащего рассматриваемый
+ необратимый коэффициент, с нулём на месте этого коэффициента.
+ Не являющиеся символическими нулями необратимые элементы называются 
+\emph on
+приближёнными нулями
+\emph default
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Definition
+Приближённый ноль называется 
+\emph on
+приближённым нулём, индуцированным входными данными
+\emph default
+, если существует специализация входных данных, при проведении для которой
+ алгоритма на соответствующем месте будет получен точный ноль.
+ При этом, поскольку данный приближённый коэффициент не является символическим
+ нулём, будут существовать и специализации, дающие ненулевой коэффициент
+ на этом месте.
+\end_layout
+
+\begin_deeper
+\begin_layout Definition
+Приближённый ноль называется 
+\emph on
+внесённым вычислением
+\emph default
+ 
+\emph on
+нулём
+\emph default
+, если не существует специализации входных данных, при проведении для которой
+ алгоритма на соответствующем месте будет получен точный ноль.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+Для каждой из разновидностей необратимых приближённых элементов приводятся
+ примеры появления и изучается влияние на возможность продолжения вычислений.
+\end_layout
+
+\begin_layout Standard
+Методам решения проблем, касающихся необратимых приближённых элементов,
+ посвящена 
+\series bold
+Глава 8
+\series default
+.
+ Первым её направлением является построение метода классификации приближённых
+ элементов, основанном на модулярных вычислениях и вероятностном подходе.
+ Идея метода состоит в том, что при повторении всех проводимых вычислений
+ по некоторому простому модулю с произвольно взятыми коэффициентами на местах
+ параметров, нули в результате арифметических операций будут появляться
+ только на месте символических нулей, за исключением ситуаций, когда выбор
+ коэффициентов 
+\begin_inset Quotes fld
+\end_inset
+
+случайно
+\begin_inset Quotes frd
+\end_inset
+
+ породит ноль.
+ Для формализации вероятностного метода строится правило, формирующее по
+ данным промежуточных вычислений базиса Грёбнера и произвольному 
+\begin_inset Formula $\alpha>0$
+\end_inset
+
+ диапазон простых чисел про который известно, что среди этого диапазона
+ модулей и подставляемых коэффициентов доля вариантов, дающих лишние нули,
+ будет не больше 
+\begin_inset Formula $\alpha$
+\end_inset
+
+.
+ Такая оценка, с одной стороны, даёт формализацию понятия 
+\begin_inset Quotes fld
+\end_inset
+
+случайно
+\begin_inset Quotes frd
+\end_inset
+
+, а с другой -- допускает использование в практических реализациях алгоритма.
+\end_layout
+
+\begin_layout Standard
+Помимо выделения символических нулей рассматриваемый модулярный метод может
+ использоваться для выявления того, как выражаются получаемые многочлены
+ базиса через входные.
+ Это даёт способ нахождения приближённых коэффициентов, позволяющий в некоторых
+ случаях получить обратимые коэффициенты на тех местах, где при прямом применени
+и приближённого алгоритма с 
+\family typewriter
+ApproxNormalize
+\family default
+ и 
+\family typewriter
+ApproxReduce
+\family default
+ получаются внесённые вычислениями нули.
+ 
+\end_layout
+
+\begin_layout Standard
+Принципиально другой метод работы с необратимыми элементами -- метод замены
+ переменных, заменяющий 
+\begin_inset Formula $t_{i}\in\mathbb{T}$
+\end_inset
+
+ на новые переменные 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+, расширяя кольцо многочленов 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+ до 
+\begin_inset Formula $\mathcal{P}^{E}$
+\end_inset
+
+.
+ Его описание 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GroebnerInExtFields"
+
+\end_inset
+
+ не даёт прямой применимости к методу матриц действия, поэтому возможность
+ такого применения доказывается в диссертации следующим.
+\end_layout
+
+\begin_layout Definition
+Назовём 
+\emph on
+оператором сужения
+\emph default
+ отображение колец 
+\begin_inset Formula $e^{-}:\mathcal{P}^{E}\rightarrow\mathcal{P}$
+\end_inset
+
+, осуществляющее замену всех 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+ на 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+.
+ Обозначим за 
+\begin_inset Formula $M^{E}\subset\mathcal{P}^{E}$
+\end_inset
+
+ конечное множество мономов, не делящихся на старшие мономы расширенного
+ базиса Грёбнера, находимого методом замены переменных для идеала 
+\begin_inset Formula $\subset\mathcal{P}^{E}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Theorem
+Суженное множество мономов 
+\begin_inset Formula $e^{-}\left(M^{E}\right)\subset\mathbb{T}$
+\end_inset
+
+ является базисом в 
+\begin_inset Formula $\mathcal{P}/\left(f_{1},\dots,f_{m}\right)$
+\end_inset
+
+, а ограничение на 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+ оператора нормальной формы, индуцированного в 
+\begin_inset Formula $\mathcal{P}^{E}$
+\end_inset
+
+, расширенным базисом Грёбнера, позволяет найти координаты элементов 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+ в этом базисе.
+\end_layout
+
+\begin_layout Standard
+Глава завершается определением вещественно-взвешенного порядка, позволяющего
+ добавлять любые многочлены во входное множество без перезапуска алгоритма
+ 
+\family typewriter
+SingleStepSignatureGroebner
+\family default
+, что позволяет применять к нему метод замены переменных без перезапусков.
+ Такое добавление многочлена становится возможным благодаря вещественным
+ индексам порядка, всегда позволяющим 
+\begin_inset Quotes fld
+\end_inset
+
+добавить
+\begin_inset Quotes frd
+\end_inset
+
+ сигнатуру между двумя уже имеющимися.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "../f5_references"
+options "alpha"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
