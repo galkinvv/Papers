@@ -4,13 +4,6 @@
 \begin_header
 \textclass extarticle
 \begin_preamble
-\oddsidemargin=0.46cm
-\hoffset=0cm
-\textwidth=16.75cm
-\topmargin=-0.54cm
-\textheight=25.2cm
-\headheight=0cm
-\headsep=0cm
 \sloppy
 
 \usepackage{suffix}
@@ -301,6 +294,19 @@ MSU, Faculty of Mechanics and Mathematics
 
 \begin_layout Right Address
 galkin-vv@ya.ru
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Section*
+Signature-based
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section*
