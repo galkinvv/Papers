@@ -296,23 +296,125 @@ MSU, Faculty of Mechanics and Mathematics
 galkin-vv@ya.ru
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
 \begin_layout Section*
-Signature-based
+Signature-based algorithms
 \end_layout
+
+\begin_layout Standard
+One of the modern practical applications of commutative algebra is its usage
+ in computer solving of polynomial systems arising from various areas 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FastStablePolySolving"
+
+\end_inset
+
+.
+ Earlier they were dealt with general methods for approximate solving arbitrary
+ systems of equations, but the Gröbner bases give the algorithms specialized
+ in solving of polynomial systems 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "UsingAlgebraicGeometry,sturmfels2002solvingPolySystems"
+
+\end_inset
+
+.
+ The classic algorithm for computing Gröbner bases is the Buchberger algorithm.
+ It's quite simple, but not very efficient.
+ So some other more efficient algorithms were introduced: matrix-based algorithm
+s 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "F4"
+
+\end_inset
+
+, involutive methods 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "zharkov1993involution,gerdt1998involutive,ComprehensiveInvolutive"
+
+\end_inset
+
+ and signature-based algorithms 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5,F5C,EderF5A,G2V,GVW,PracticalGB,HuangConception"
+
+\end_inset
+
+.
+ Those algorithms are faster and more sophisticated than Buchberger's.
+\end_layout
+
+\begin_layout Standard
+But the speed is not the only problem in practical applications of Gröbner
+ bases to polynomial system solving.
+ Another problem arises from the approximate origin of input data.
+ Most of the Gröbner bases computation methods are formulated for coefficients
+ in arbitrary field, but not for approximate numbers.
+ The root of problem is in zero equality testings: they are needed by algorithms
+ for key branchings, are obviously defined for fields but not always defined
+ for approximate numbers.
+ There are different approaches for overcoming this problem:
+\end_layout
+
+\begin_layout Itemize
+round approximate numbers to rational and perform the Gröbner basis computation
+ in field 
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+treat approximate numbers as symbols and perform computation with coefficients
+ in symbolic quotient field followed by symbol substitution in the result
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ComprehensiveGB,ComprehenciveGroebnerFastViaGroebner,ComprehensiveNewAlgorithm,ComprehensiveMinimal"
+
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+abandon the computation of the Gröbner basis and find some variant of basis
+ suitable for system solving 
+\lang russian
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "NumericalPolynomialAlgebra,ComputingBorderBases"
 
 \end_inset
 
 
+\lang english
+;
 \end_layout
 
-\begin_layout Section*
-Краткое содержание работы
+\begin_layout Itemize
+perform the computation in a pseudo-field of approximate numbers using some
+ methods to fix the zero testing.
+ Such methods includes:
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+adjusting the monomial order in a way that zero testings are preformed only
+ for coefficients that are exactly zero or exactly non-zero [TODO];
+\end_layout
+
+\begin_layout Itemize
+use some adaptive guessing to get zero testing result [TODO].
+\end_layout
+
+\end_deeper
 \begin_layout Standard
 
 \series bold
