@@ -281,7 +281,7 @@ guillemotright
 \end_layout
 
 \begin_layout Title
-Gröbner bases for approximate input: applying Signature-based algorithms
+Gröbner basis for approximate input: applying signature-based algorithms
 \end_layout
 
 \begin_layout Author
@@ -296,8 +296,8 @@ MSU, Faculty of Mechanics and Mathematics
 galkin-vv@ya.ru
 \end_layout
 
-\begin_layout Section*
-Signature-based algorithms
+\begin_layout Section
+Algorithms for computing Gröbner basis
 \end_layout
 
 \begin_layout Standard
@@ -360,7 +360,13 @@ But the speed is not the only problem in practical applications of Gröbner
  There are different approaches for overcoming this problem:
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:in-Q"
+
+\end_inset
+
 round approximate numbers to rational and perform the Gröbner basis computation
  in field 
 \begin_inset Formula $\mathbb{Q}$
@@ -369,10 +375,16 @@ round approximate numbers to rational and perform the Gröbner basis computation
 ;
 \end_layout
 
-\begin_layout Itemize
-treat approximate numbers as symbols and perform computation with coefficients
- in symbolic quotient field followed by symbol substitution in the result
- 
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:as-symbols"
+
+\end_inset
+
+treat approximate numbers as symbols and find Gröbner basis with coefficients
+ in symbolic quotient field using comprehensive basis followed by symbol
+ substitution in the result 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ComprehensiveGB,ComprehenciveGroebnerFastViaGroebner,ComprehensiveNewAlgorithm,ComprehensiveMinimal"
@@ -382,7 +394,13 @@ key "ComprehensiveGB,ComprehenciveGroebnerFastViaGroebner,ComprehensiveNewAlgori
 ;
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:other- basis"
+
+\end_inset
+
 abandon the computation of the Gröbner basis and find some variant of basis
  suitable for system solving 
 \lang russian
@@ -398,24 +416,159 @@ key "NumericalPolynomialAlgebra,ComputingBorderBases"
 ;
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Enumerate
 perform the computation in a pseudo-field of approximate numbers using some
- methods to fix the zero testing.
+ methods to avoid the problematic zero testing.
  Such methods includes:
 \end_layout
 
 \begin_deeper
-\begin_layout Itemize
-adjusting the monomial order in a way that zero testings are preformed only
- for coefficients that are exactly zero or exactly non-zero [TODO];
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:adjusting-the-monomial"
+
+\end_inset
+
+every time the algorithm meets the coefficient problematic for zero testing
+ add special polynomial reducing this coefficient to the ideal 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "NumericalComputationGB,NumericalComputationOfGBVarSubsttution,GroebnerInExtFields,ArtificialDiscontinuities"
+
+\end_inset
+
+;
 \end_layout
 
-\begin_layout Itemize
-use some adaptive guessing to get zero testing result [TODO].
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:other-fields"
+
+\end_inset
+
+use some heuristics to get zero testing result 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ModularTraverso"
+
+\end_inset
+
+.
 \end_layout
 
 \end_deeper
 \begin_layout Standard
+Most of these approaches considerably change the situation for signature-based
+ algorithms applied to approximate data compared to their application to
+ finite fields.
+ With approaches 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:in-Q"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:as-symbols"
+
+\end_inset
+
+ we can't more express the speed of algorithm in the number of arithmetic
+ operations with coefficients, because those operations themselves are not
+ constant time operations.
+ This leads to the significant slowdown because of the absolute value of
+ numerators growth for the approach 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:in-Q"
+
+\end_inset
+
+ and symbolic expressions growth for the approach 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:as-symbols"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The possibility to combine approach 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:other- basis"
+
+\end_inset
+
+ with a signature-based algorithms is an open question because they are
+ initially designed for Gröbner basis.
+ In 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GroebnerInExtFields"
+
+\end_inset
+
+the TSV method based on approach 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:adjusting-the-monomial"
+
+\end_inset
+
+ was successfully combined with signature-based algorithm F5, but the combined
+ variant has a serious drawback: after every polynomial addition the algorithm
+ is restarted from the beginning because signature based algorithms require
+ particular order in input polynomial processing.
+ The approach 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:other-fields"
+
+\end_inset
+
+ as it is described in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ModularTraverso"
+
+\end_inset
+
+ is perfect in terms of computational speed: the computation time differs
+ from the finite field case only by fixed task-independent multiplier.
+ Unfortunately the used heuristics sometimes can lead to wrong answer and
+ there is no any probability estimations of such case, so while the approach
+ may be used in practice, it lacks the proof.
+\end_layout
+
+\begin_layout Standard
+This work introduces methods based on last two approaches that try to solve
+ above mentioned problems.
+\end_layout
+
+\begin_layout Section
+Problem statement in approximate numbers
+\end_layout
+
+\begin_layout Section
+Modular method
+\end_layout
+
+\begin_layout Section
+Introducing real-weighted order for TSV method
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 
 \series bold
 Часть II
@@ -464,7 +617,7 @@ status open
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 
 \series bold
 Глава 6
@@ -514,7 +667,7 @@ status open
  содержит окрестность нуля.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 
 \series bold
 Глава 7
@@ -548,7 +701,7 @@ status open
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Полиномиальных операций строится две: 
 \family typewriter
 ApproxNormalize
@@ -640,12 +793,12 @@ ApproxReduce
 
 \end_deeper
 \end_deeper
-\begin_layout Standard
+\begin_layout Plain Layout
 Для каждой из разновидностей необратимых приближённых элементов приводятся
  примеры появления и изучается влияние на возможность продолжения вычислений.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Методам решения проблем, касающихся необратимых приближённых элементов,
  посвящена 
 \series bold
@@ -690,7 +843,7 @@ ApproxReduce
 , а с другой -- допускает использование в практических реализациях алгоритма.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Помимо выделения символических нулей рассматриваемый модулярный метод может
  использоваться для выявления того, как выражаются получаемые многочлены
  базиса через входные.
@@ -708,7 +861,7 @@ ApproxReduce
  
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Принципиально другой метод работы с необратимыми элементами -- метод замены
  переменных, заменяющий 
 \begin_inset Formula $t_{i}\in\mathbb{T}$
@@ -792,7 +945,7 @@ key "GroebnerInExtFields"
  в этом базисе.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Глава завершается определением вещественно-взвешенного порядка, позволяющего
  добавлять любые многочлены во входное множество без перезапуска алгоритма
  
@@ -810,6 +963,11 @@ SingleStepSignatureGroebner
 \end_inset
 
  сигнатуру между двумя уже имеющимися.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
