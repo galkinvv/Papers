@@ -281,7 +281,7 @@ guillemotright
 \end_layout
 
 \begin_layout Title
-Gröbner basis for approximate input: applying signature-based algorithms
+Approximate polynomial systems: using signature-based Gröbner basis algorithms
 \end_layout
 
 \begin_layout Author
@@ -554,6 +554,124 @@ This work introduces methods based on last two approaches that try to solve
 
 \begin_layout Section
 Problem statement in approximate numbers
+\end_layout
+
+\begin_layout Standard
+Before formulating these methods we need to prepare the formal statement
+ of the problem.
+ We assume that approximate input data consists of a multivariate polynomial
+ equations system with complex coefficients and for each coefficient we
+ know the maximum inaccuracy of it's value.
+ Approximate numbers are defined in a such way that this input data can
+ be easily represented by them.
+ The 
+\emph on
+approximate number
+\emph default
+ is defined as a pair 
+\begin_inset Formula $\left(a,\varepsilon\right)$
+\end_inset
+
+, where 
+\begin_inset Formula $a\in\mathbb{C},0\leqslant\varepsilon\in\mathbb{R}$
+\end_inset
+
+.
+ Element 
+\begin_inset Formula $a$
+\end_inset
+
+ is called 
+\emph on
+approximation
+\emph default
+, and 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+ -- 
+\emph on
+variation radius
+\emph default
+.
+ The elements of set 
+\begin_inset Formula $\left\{ a+e|e\in\mathbb{C},\left|e\right|\leqslant\varepsilon\right\} \subset\mathbb{C}$
+\end_inset
+
+ are called 
+\emph on
+specializations
+\emph default
+ of approximate number.
+\end_layout
+
+\begin_layout Standard
+Every coefficient of approximate input data is written as approximate number.
+ This includes exactly known coefficients -- they are represented by approximate
+ numbers with zero variation radius.
+ For every approximate number in input we can take some it's specialization
+ and get the polynomial system in 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+.
+ Such systems are called 
+\emph on
+specializations of approximate input data
+\emph default
+.
+ The desired approximate solution of the problem consists of the set of
+ approximate numbers corresponding to variables.
+ 
+\emph on
+Specializations of solution
+\emph default
+ are defined too -- they are represented by a set of variable values in
+ 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+.
+ Now we formulate the main relation that will be requirement for the approximate
+ solution: 
+\begin_inset Formula $\forall$
+\end_inset
+
+ specializations of approximate input data 
+\begin_inset Formula $\exists$
+\end_inset
+
+ specialization of approximate solution that gives the exact solution in
+ 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+ for the exact input data specialization.
+ The reverse is not required: some specialization of solution can be exact
+ solutions of neither input data specialization.
+\end_layout
+
+\begin_layout Standard
+Such solution definition successfully collaborates with the task where some
+ situation is known to be described by polynomials, but their coefficients
+ are found empirically.
+ So it is known that real situation is exactly described by one of input
+ data specializations.
+ The given approximate solution definition extends the correspondence to
+ the solution: the real situation is known to be exactly described by one
+ of solution specializations.
+ The drawback of such definition is in the possibility to get formally correct
+ but impractical solution, because even for system with zero variation radius
+ we can take as a solution approximate values with extremely huge variation
+ radii.
+ This problem is not concerned further and the results are assumed precise
+ enough to be practically useful.
+ The main directions are computation speeds and proof of result correctness
+ in terms of given approximate result definition.
+\end_layout
+
+\begin_layout Standard
+TODO: Defs of operations and Groebner basis
 \end_layout
 
 \begin_layout Section
