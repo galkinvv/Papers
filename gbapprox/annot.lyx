@@ -179,7 +179,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\HM}{\mathrm{HM}}
+\newcommand{\HM}{\mathrm{LM}}
 \end_inset
 
 
@@ -187,7 +187,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\HC}{\mathrm{HC}}
+\newcommand{\HC}{\mathrm{LC}}
 \end_inset
 
 
@@ -426,6 +426,23 @@ perform the computation in a pseudo-field of approximate numbers using some
 \begin_layout Enumerate
 \begin_inset CommandInset label
 LatexCommand label
+name "enu:other-fields"
+
+\end_inset
+
+use some heuristics to get zero testing result 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ModularTraverso"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
 name "enu:adjusting-the-monomial"
 
 \end_inset
@@ -439,23 +456,6 @@ key "NumericalComputationGB,NumericalComputationOfGBVarSubsttution,GroebnerInExt
 \end_inset
 
 ;
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset CommandInset label
-LatexCommand label
-name "enu:other-fields"
-
-\end_inset
-
-use some heuristics to get zero testing result 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "ModularTraverso"
-
-\end_inset
-
-.
 \end_layout
 
 \end_deeper
@@ -508,24 +508,6 @@ reference "enu:other- basis"
 
  with a signature-based algorithms is an open question because they are
  initially designed for Gröbner basis.
- In 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "GroebnerInExtFields"
-
-\end_inset
-
-the TSV method based on approach 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "enu:adjusting-the-monomial"
-
-\end_inset
-
- was successfully combined with signature-based algorithm F5, but the combined
- variant has a serious drawback: after every polynomial addition the algorithm
- is restarted from the beginning because signature based algorithms require
- particular order in input polynomial processing.
  The approach 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -544,7 +526,29 @@ key "ModularTraverso"
  from the finite field case only by fixed task-independent multiplier.
  Unfortunately the used heuristics sometimes can lead to wrong answer and
  there is no any probability estimations of such case, so while the approach
- may be used in practice, it lacks the proof.
+ may be used in practice, it lacks the strict proof.
+\end_layout
+
+\begin_layout Standard
+In 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GroebnerInExtFields"
+
+\end_inset
+
+the TSV method based on approach 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:adjusting-the-monomial"
+
+\end_inset
+
+ was successfully combined with signature-based algorithm F5, but the combined
+ variant has a serious drawback: after every polynomial addition the algorithm
+ is restarted from the beginning because signature based algorithms require
+ particular order in input polynomial processing.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -708,7 +712,16 @@ Gröbner basis
 \end_inset
 
  performed with some input data specialization.
- Eventually arithmetic operations are defined as follows:
+ This idea will be referred later as 
+\emph on
+approximation idea
+\emph default
+.
+
+\emph on
+ 
+\emph default
+Eventually arithmetic operations are defined as follows:
 \end_layout
 
 \begin_layout Labeling
@@ -777,12 +790,382 @@ The limitations of input data for inversion operations is the expression
  leading coefficient.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Approximate representations with rationals - allowed lose of accuracy that
+ doesn't heart approximation idea
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Non-invertible approximate elements
+\end_layout
+
+\begin_layout Standard
+To analyze deeper the problem of non-invertible approximate elements in
+ the process of Gröbner basis computation we require some important properties
+ about used algorithm:
+\end_layout
+
+\begin_layout Enumerate
+it is formulated with respect to arbitrary field;
+\end_layout
+
+\begin_layout Enumerate
+it's flow depends on concrete elements values only via zero-testings for
+ a coefficient in a sum of polynomials needed to determine some monomial
+ presence in the sum;
+\end_layout
+
+\begin_layout Enumerate
+the field operations are not used directly, instead algorithms are formulated
+ in terms of the reduction operation: a polynomial 
+\begin_inset Formula $g$
+\end_inset
+
+ with invertible leading coefficient is used to reduce monomial 
+\begin_inset Formula $M$
+\end_inset
+
+ in polynomial 
+\begin_inset Formula $f$
+\end_inset
+
+.
+ The reduction is possible only if 
+\begin_inset Formula $\HM\left(g\right)|M$
+\end_inset
+
+, the reduction result 
+\begin_inset Formula $f'$
+\end_inset
+
+ is equal to 
+\begin_inset Formula $f+c\frac{M}{\HM\left(g\right)}$
+\end_inset
+
+ for some field coefficient 
+\begin_inset Formula $c$
+\end_inset
+
+ and doesn't contain monomial 
+\begin_inset Formula $M$
+\end_inset
+
+ with non-zero coefficient.
+\end_layout
+
+\begin_layout Standard
+No limitations are stated for operations that are not field-related, like
+ multiplying polynomial by a monomial or taking leading monomial.
+ In practice this requirement is satisfied for nearly all signature-based
+ algorithms -- some of them are initially formulated in a conforming form,
+ others can be trivially reformulated.
+ The theory below is quite algorithm independent, but it is assumed that
+ some algorithm satisfying the above requirements is selected.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+There is a need to say that we are speaking only about first difference
+\end_layout
+
+\end_inset
+
+ This requirement allows to compare the runs of same algorithm on approximate
+ input and on it's specializations.
+ The significant difference may arise in two places:
+\end_layout
+
+\begin_layout Itemize
+the approximated algorithm during attempt to perform reduction with the
+ polynomial with non-invertible leading coefficient;
+\end_layout
+
+\begin_layout Itemize
+zero-testing of some monomial coefficient gives zero for the specialization
+ but non-zero for approximate case.
+ Though it is non-zero, it has a zero specialization due to approximation
+ idea, so the approximate element is non-invertible.
+\end_layout
+
+\begin_layout Standard
+In both cases the difference is a consequence of the non-invertible elements
+ appearance.
+ Modular method is designed to fix some of them by replacing with exact
+ zero or invertible elements.
+ At first there is a need for classification of non-invertible approximate
+ elements appeared during application of the algorithm to concrete approximate
+ input:
+\end_layout
+
+\begin_layout Itemize
+such element is called 
+\emph on
+symbolic zero
+\emph default
+ if the corresponding coefficient is zero in the algorithm application to
+ any of input data specializations;
+\end_layout
+
+\begin_layout Itemize
+such element is called 
+\emph on
+computation-introduced zero
+\emph default
+ if the corresponding coefficient is non-zero in the algorithm application
+ to any of input data specializations;
+\end_layout
+
+\begin_layout Itemize
+in the other case when some specializations give non-zero coefficient and
+ others give exactly zero such element is called 
+\emph on
+input-inspired zero .
+\end_layout
+
 \begin_layout Section
 Modular method
 \end_layout
 
+\begin_layout Standard
+The first two cases of non-invertible elements correspond to a situation
+ in which there is a chance to fix non-invertible approximate element by
+ changing it to exactly zero (for symbolic zero) or to invertible element
+ (for
+\emph on
+ 
+\emph default
+computation-introduced zero) and still keep the approximation idea satisfied.
+ The trivial approach to determine possibility of such replacement is keeping
+ a symbolic parametric representation of each coefficient with parameters
+ corresponding to approximate numbers in input.
+ Such representations allows to find some exact cancellations which in some
+ cases can lead to empty zero polynomial (symbolic zero case) or polynomial
+ expression that allows to construct more exact approximate number than
+ direct algorithm application (computation-introduced zero case).
+ In the latter case more exact number may be invertible.
+\end_layout
+
+\begin_layout Standard
+The problem of this trivial approach is speed and memory requirements for
+ symbolic computation -- both are not 
+\begin_inset Formula $O(1)$
+\end_inset
+
+ compared to simple approximate algorithm.
+ In
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ModularTraverso"
+
+\end_inset
+
+an optimization is proposed: symbolic polynomials with parameters are replaced
+ by polynomials in finite field with random values substituted in place
+ of parameters.
+ Zero coefficient appeared in such polynomials correspond to zero coefficient
+ in symbolic polynomial with high probability -- the situation when the
+ monomial is absent due to full cancellation.
+ This technique allows to find some symbolic zeros in approximate data in
+ the following way: the algorithm is simultaneously applied to approximate
+ data and finite field data, and if non-invertible approximate element correspon
+d to zero finite field element it is replaced by exact zero too.
+ Unfortunately this optimization lacks the incorrect result probability
+ estimation, and such estimation is hard to construct because the complexity
+ of replaced symbolic polynomials is unknown.
+\end_layout
+
+\begin_layout Standard
+The modular method described below is more complex, allows fixing of some
+ computation-introduced zeros and giving reasonable estimation for incorrect
+ result probability, but lacks the time complexity comparison with other
+ variants.
+ Its flow is following:
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:first field selection"
+
+\end_inset
+
+At first we take some arbitrary finite field 
+\begin_inset Formula $\mathbb{F}$
+\end_inset
+
+ and replace coefficients with ts random elements.
+ This step is identical to method from 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ModularTraverso"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+A special lower-than-all monomials is added at the end of every polynomial.
+ It participate in all finite field computations and is used to determine
+ how a computed polynomial can be written as a polynomial combination of
+ input data.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:in-finite-field-1"
+
+\end_inset
+
+The algorithm is run for finite field case and generates Gröbner basis.
+ For every its polynomial 
+\begin_inset Formula $f$
+\end_inset
+
+ the following steps a re performed:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Another finite field 
+\begin_inset Formula $\mathbb{F}'$
+\end_inset
+
+ is selected; now not arbitrarily.
+ but by explicit rule based on maximal allowed error probability and structure
+ of 
+\begin_inset Formula $f$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+The algorithm try to construct similar to 
+\begin_inset Formula $f$
+\end_inset
+
+ polynomial in another fields:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+it suggests that constructed polynomial is expressed as polynomial combination
+ of input data like 
+\begin_inset Formula $f$
+\end_inset
+
+ and takes information about it from the lower-than-all monomials in 
+\begin_inset Formula $f$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Enumerate
+it suggests that the leading monomial of constructed polynomial is 
+\begin_inset Formula $\HM\left(f\right)$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Enumerate
+it creates a linear system based on those suggestions, with every element
+ of the system matrix being a pair of approximate number and number from
+ 
+\begin_inset Formula $\mathbb{F}'$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Enumerate
+the system is solved, using zeros from 
+\begin_inset Formula $\mathbb{F}'$
+\end_inset
+
+ to determine and fix some symbolic zeros in approximate numbers;
+\end_layout
+
+\begin_layout Enumerate
+if the solution is impossible due to non-invertible approximate number the
+ task is abandoned, because such situation can't be handled;
+\end_layout
+
+\begin_layout Enumerate
+if the system has no solutions the suggestions are incorrect, so the algorithm
+ restarts with selecting new field in step 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:first field selection"
+
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Enumerate
+if the solution is found it is used to write out another polynomial of approxima
+te Gröbner basis.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+The ability to estimate incorrect result possibility is achieved by not
+ trusting the result got with 
+\begin_inset Formula $\mathbb{F}$
+\end_inset
+
+ and knowledge of system size during selection of the finite field 
+\begin_inset Formula $\mathbb{F}'$
+\end_inset
+
+.
+ The ability to fix some computation-introduced zeros follows from computations
+ in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:in-finite-field-1"
+
+\end_inset
+
+ where some input polynomials presenting in intermediate values can totally
+ cancel leading to absence of corresponding lower-than-all monomials in
+ 
+\begin_inset Formula $f$
+\end_inset
+
+.
+ In the approximate-only computations such cancellations introduces loose
+ of accuracy expressed in variation radius grow and sometimes gives introduced-z
+ero.
+\end_layout
+
 \begin_layout Section
 Introducing real-weighted order for TSV method
+\end_layout
+
+\begin_layout Standard
+Unfortunately modular methods can't do anything with input-inspired zeros,
+ because any approximate number in the corresponding place that satisfy
+ approximation idea will non-invertible and not exactly zero.
+ If the algorithm requires inversion of such number modualr methods abandon
+ the task.
 \end_layout
 
 \begin_layout Standard
