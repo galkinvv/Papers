@@ -905,7 +905,7 @@ In both cases the difference is a consequence of the non-invertible elements
  Modular method is designed to fix some of them by replacing with exact
  zero or invertible elements.
  At first there is a need for classification of non-invertible approximate
- elements appeared during application of the algorithm to concrete approximate
+ elements appeared Gduring application of the algorithm to concrete approximate
  input:
 \end_layout
 
@@ -1163,415 +1163,383 @@ Introducing real-weighted order for TSV method
 \begin_layout Standard
 Unfortunately modular methods can't do anything with input-inspired zeros,
  because any approximate number in the corresponding place that satisfy
- approximation idea will non-invertible and not exactly zero.
- If the algorithm requires inversion of such number modualr methods abandon
+ approximation idea will be non-invertible but not exactly zero.
+ If the algorithm requires inversion of such number modular methods abandon
  the task.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-Часть II
-\series default
- направлена на вопрос применения сигнатурных алгоритмов к решениям приближённых
- систем уравнений.
- Ключевым моментом для связывания являются свойства базиса Грёбнера, действитель
-но используемые при решении систем.
- 
-\series bold
-Глава 5
-\series default
- рассматривает основной метод решения систем при помощи базисов Грёбнера
- -- метод матриц действия -- и показывает, что единственным использованием
- базиса при решении систем является построение способа явного вычисления
- отображения из кольца многочленов 
-\begin_inset Formula $\mathcal{P}$
-\end_inset
-
- в факторкольцо 
-\begin_inset Formula $\mathcal{A}=\mathcal{P}/\left(f_{1},\ldots,f_{m}\right)$
-\end_inset
-
-.
- 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Причём, для систем с конечным числом решений, данное факторкольцо может
- быть интерпретировано как конечное векторное пространство над 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
-, и результат отображения должен задаваться в 
-\begin_inset Formula $\mathcal{K}$
-\end_inset
-
--координатах некоторого базиса этого векторного пространства.
- Необходимость погружения в этот вопрос становится ясной при объяснении
- применимости к решению систем обобщённых вариаций базиса Грёбнера.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\series bold
-Глава 6
-\series default
- ставит задачу приближённого решения систем уравнений в строгие математические
- рамки, вводя определение 
-\emph on
-приближённой системы
-\emph default
-, как системы с 
-\begin_inset Formula $\mathbb{C}$
-\end_inset
-
--параметрами, для каждого из которых задан некоторый диапазон значений,
- а её 
-\emph on
-специализаций
-\emph default
- -- как систем с конкретными 
-\begin_inset Formula $\mathbb{C}$
-\end_inset
-
--коэффициентами из этих диапазонов.
- Круг рассматриваемых приближённых задач заранее сужается до задач с 
-\emph on
-конечным непрерывным решением
-\emph default
-.
- Неформально это означает, что входные приближённые данные достаточно точны,
- чтоб получить информацию о количестве решений и областях, ограничивающих
- их значения.
- Математическое определение конечного непрерывного решения потребовало построени
-я специальной топологии, поскольку тривиальное определение конечного непрерывног
-о решения как набора функций непрерывных по 
-\begin_inset Formula $\mathbb{C}$
-\end_inset
-
--параметру сделало бы уравнение 
-\begin_inset Formula $x^{2}+p$
-\end_inset
-
-, не удовлетворяющим условию непрерывности в тех случаях, когда множество
- значений параметра 
-\begin_inset Formula $p$
-\end_inset
-
- содержит окрестность нуля.
-\end_layout
-
-\begin_layout Plain Layout
-
-\series bold
-Глава 7
-\series default
- посвящена приближённым вычислениям применительно к задаче вычисления базисов
- Грёбнера.
- Определения приближённой арифметики и полиномиальных операций в этом случае
- строятся на основе требования, накладываемого на результат процесса вычисления:
- 
-\end_layout
-
-\begin_layout Claim
-Пусть 
-\begin_inset Formula $p$
-\end_inset
-
- -- результирующий приближённый многочлен, полученный вычислением базиса
- Грёбнера, а 
-\begin_inset Formula $I'$
-\end_inset
-
- -- идеал, порождаемый некоторой специализацией входных данных.
- Тогда существует специализация 
-\begin_inset Formula $p$
-\end_inset
-
-, лежащая в 
-\begin_inset Formula $I'$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Plain Layout
-Полиномиальных операций строится две: 
-\family typewriter
-ApproxNormalize
-\family default
- -- нормализация старшего коэффициента многочлена, и 
-\family typewriter
-ApproxReduce
-\family default
- -- редукция многочлена по нормализованному.
- Последняя из них удаётся всегда, а нормализация в приближённом случае возможна,
- если и только если среди множества специализаций приближённого старшего
- коэффициента нет нулей.
- Иначе элемент необратим и является 
-\emph on
-необратимым приближённым
-\emph default
- 
-\emph on
-элементом
-\emph default
-.
- 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Такие элементы классифицируются на основе сравнения хода приближённого алгоритма
- с использованием процедур 
-\family typewriter
-ApproxNormalize
-\family default
- и 
-\family typewriter
-ApproxReduce
-\family default
- с ходом обычного алгоритма, применяемого к конкретной специализации входных
- данных.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Definition
-Необратимый приближённый элемент, возникший в процессе приближённых вычислений,
- называется 
-\emph on
-символическим нулём
-\emph default
-, если для любой специализации входных данных при проведении соответствующих
- вычислений получается точный ноль.
- Иными словами, для любой специализации входных данных в порождаемом ими
- идеале существует специализация многочлена, содержащего рассматриваемый
- необратимый коэффициент, с нулём на месте этого коэффициента.
- Не являющиеся символическими нулями необратимые элементы называются 
-\emph on
-приближёнными нулями
-\emph default
-.
-\end_layout
-
-\begin_deeper
-\begin_layout Definition
-Приближённый ноль называется 
-\emph on
-приближённым нулём, индуцированным входными данными
-\emph default
-, если существует специализация входных данных, при проведении для которой
- алгоритма на соответствующем месте будет получен точный ноль.
- При этом, поскольку данный приближённый коэффициент не является символическим
- нулём, будут существовать и специализации, дающие ненулевой коэффициент
- на этом месте.
-\end_layout
-
-\begin_deeper
-\begin_layout Definition
-Приближённый ноль называется 
-\emph on
-внесённым вычислением
-\emph default
- 
-\emph on
-нулём
-\emph default
-, если не существует специализации входных данных, при проведении для которой
- алгоритма на соответствующем месте будет получен точный ноль.
-\end_layout
-
-\end_deeper
-\end_deeper
-\begin_layout Plain Layout
-Для каждой из разновидностей необратимых приближённых элементов приводятся
- примеры появления и изучается влияние на возможность продолжения вычислений.
-\end_layout
-
-\begin_layout Plain Layout
-Методам решения проблем, касающихся необратимых приближённых элементов,
- посвящена 
-\series bold
-Глава 8
-\series default
-.
- Первым её направлением является построение метода классификации приближённых
- элементов, основанном на модулярных вычислениях и вероятностном подходе.
- Идея метода состоит в том, что при повторении всех проводимых вычислений
- по некоторому простому модулю с произвольно взятыми коэффициентами на местах
- параметров, нули в результате арифметических операций будут появляться
- только на месте символических нулей, за исключением ситуаций, когда выбор
- коэффициентов 
-\begin_inset Quotes fld
-\end_inset
-
-случайно
-\begin_inset Quotes frd
-\end_inset
-
- породит ноль.
- Для формализации вероятностного метода строится правило, формирующее по
- данным промежуточных вычислений базиса Грёбнера и произвольному 
-\begin_inset Formula $\alpha>0$
-\end_inset
-
- диапазон простых чисел про который известно, что среди этого диапазона
- модулей и подставляемых коэффициентов доля вариантов, дающих лишние нули,
- будет не больше 
-\begin_inset Formula $\alpha$
-\end_inset
-
-.
- Такая оценка, с одной стороны, даёт формализацию понятия 
-\begin_inset Quotes fld
-\end_inset
-
-случайно
-\begin_inset Quotes frd
-\end_inset
-
-, а с другой -- допускает использование в практических реализациях алгоритма.
-\end_layout
-
-\begin_layout Plain Layout
-Помимо выделения символических нулей рассматриваемый модулярный метод может
- использоваться для выявления того, как выражаются получаемые многочлены
- базиса через входные.
- Это даёт способ нахождения приближённых коэффициентов, позволяющий в некоторых
- случаях получить обратимые коэффициенты на тех местах, где при прямом применени
-и приближённого алгоритма с 
-\family typewriter
-ApproxNormalize
-\family default
- и 
-\family typewriter
-ApproxReduce
-\family default
- получаются внесённые вычислениями нули.
- 
-\end_layout
-
-\begin_layout Plain Layout
-Принципиально другой метод работы с необратимыми элементами -- метод замены
- переменных, заменяющий 
-\begin_inset Formula $t_{i}\in\mathbb{T}$
-\end_inset
-
- на новые переменные 
-\begin_inset Formula $y_{i}$
-\end_inset
-
-, расширяя кольцо многочленов 
-\begin_inset Formula $\mathcal{P}$
-\end_inset
-
- до 
-\begin_inset Formula $\mathcal{P}^{E}$
-\end_inset
-
-.
- Его описание 
+ So another method is required to overcome this problem.
+ The TSV method developed in 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "GroebnerInExtFields"
 
 \end_inset
 
- не даёт прямой применимости к методу матриц действия, поэтому возможность
- такого применения доказывается в диссертации следующим.
+solves this problem by adding to input data a new lesser-than-others monomial
+ 
+\begin_inset Formula $y_{k}$
+\end_inset
+
+ and a polynomial of the form 
+\begin_inset Formula $M_{k}-y_{k}$
+\end_inset
+
+ every time the algorithm tries to invert non-invertible approximate number
+ being a coefficient of monomial 
+\begin_inset Formula $M_{k}$
+\end_inset
+
+.
+ The presence of such polynomial in the input data leads to reducing the
+ monomial 
+\begin_inset Formula $M_{k}$
+\end_inset
+
+ in other polynomials, so the algorithm doesn't try to invert coefficient
+ of 
+\begin_inset Formula $M_{k}$
+\end_inset
+
+ because it becomes zero.
+ The coefficient of 
+\begin_inset Formula $y_{k}$
+\end_inset
+
+ becomes non-invertible but it is lesser-than-others monomial and the algorithm
+ doesn't try to invert its coefficient.
 \end_layout
 
-\begin_layout Definition
-Назовём 
-\emph on
-оператором сужения
+\begin_layout Standard
+Addition of the extra polynomial to input data has two important consequences.
+ First is the extension of the solved problem -- the algorithm doesn't find
+ the requested Gröbner basis of ideal 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\left(f_{1},\dots,f_{m}\right)$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
 \emph default
- отображение колец 
-\begin_inset Formula $e^{-}:\mathcal{P}^{E}\rightarrow\mathcal{P}$
-\end_inset
-
-, осуществляющее замену всех 
-\begin_inset Formula $y_{i}$
-\end_inset
-
- на 
-\begin_inset Formula $t_{i}$
-\end_inset
-
-.
- Обозначим за 
-\begin_inset Formula $M^{E}\subset\mathcal{P}^{E}$
-\end_inset
-
- конечное множество мономов, не делящихся на старшие мономы расширенного
- базиса Грёбнера, находимого методом замены переменных для идеала 
-\begin_inset Formula $\subset\mathcal{P}^{E}$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Theorem
-Суженное множество мономов 
-\begin_inset Formula $e^{-}\left(M^{E}\right)\subset\mathbb{T}$
-\end_inset
-
- является базисом в 
-\begin_inset Formula $\mathcal{P}/\left(f_{1},\dots,f_{m}\right)$
-\end_inset
-
-, а ограничение на 
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ in polynomial ring 
 \begin_inset Formula $\mathcal{P}$
 \end_inset
 
- оператора нормальной формы, индуцированного в 
+ but a Gröbner basis of some extended ideal in an extended polynomial ring
+ 
 \begin_inset Formula $\mathcal{P}^{E}$
 \end_inset
 
-, расширенным базисом Грёбнера, позволяет найти координаты элементов 
+.
+ To allow application of such object to polynomial system solving the action
+ matrix method for system solving 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "UsingAlgebraicGeometry"
+
+\end_inset
+
+ is reformulated in more general form: the usage of Gröbner basis is replaced
+ by usage of normal form operator giving coordinates in some basis of 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\mathcal{P}/\left(f_{1},\dots,f_{m}\right)$
+\end_inset
+
+.
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ To find such operator from extended Gröbner basis we compose the normal
+ form 
+\begin_inset Quotes eld
+\end_inset
+
+reduction by basis operator
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset Formula $N:\mathcal{P}^{E}\rightarrow\mathcal{P}^{E}$
+\end_inset
+
+ defined by extended basis with a ring narrow operator 
+\begin_inset Formula $e^{-}:\mathcal{P}^{E}\rightarrow\mathcal{P}$
+\end_inset
+
+ which replaces all added variables 
+\begin_inset Formula $y_{k}$
+\end_inset
+
+ by corresponding monomials 
+\begin_inset Formula $M_{k}$
+\end_inset
+
+.
+ The composition 
+\begin_inset Formula $e^{-}\circ N$
+\end_inset
+
+ acts from 
+\begin_inset Formula $\mathcal{P}^{E}$
+\end_inset
+
+ to 
 \begin_inset Formula $\mathcal{P}$
 \end_inset
 
- в этом базисе.
+ and can be limited to desired 
+\begin_inset Formula $\mathcal{P}\rightarrow\mathcal{P}$
+\end_inset
+
+ operator.
+ This way the extended basis can be used for system solving without introducing
+ the idea of extended ring in the solving method itself.
 \end_layout
 
-\begin_layout Plain Layout
-Глава завершается определением вещественно-взвешенного порядка, позволяющего
- добавлять любые многочлены во входное множество без перезапуска алгоритма
+\begin_layout Standard
+Another consequence of polynomial addition is more problematic: the signature-ba
+sed algorithms must process polynomials strictly in the signature order
+ and the addition polynomial should have a signature smaller than processed
+ polynomial to be allowed for use as its reducer.
+ This leads to the problem that the signature-based algorithm must be restarted
+ from scratch every time a new polynomial gets added to the input data.
+ The roots of this undesired behavior are in the limitations of orders tradition
+ally used in signature algorithms for ordering signatures.
+ We recall that a signature is a pair of monomial and a natural number written
+ as 
+\begin_inset Formula $\sigma=\Sss ti$
+\end_inset
+
+.
+ Different signature orders suitable for Gröbner basis computation are studied
+ in Term Orders paragraph of 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GVW"
+
+\end_inset
+
+.
+ The most widely used orders are: POT (position over term) and 
+\series bold
+g
+\series default
+2, also called the Schreyer order in
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Eder2012inhomogeneous"
+
+\end_inset
+
+.
+ Their definitions are based on monomial order 
+\begin_inset Formula $\prec$
+\end_inset
+
+ and input polynomials sequence 
+\begin_inset Formula $f_{1},\dots,f_{m}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+POT order: 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\Sss{t_{1}}{i_{1}}\prec_{P}\Sss{t_{2}}{i_{2}}\Longleftrightarrow\left[\begin{aligned} & i_{1}<i_{2}\\
+ & i_{1}=i_{2},t{}_{1}\prec t_{2}
+\end{aligned}
+\right..$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Schreyer order: 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\Sss{t_{1}}{i_{1}}\prec_{S}\Sss{t_{2}}{i_{2}}\Longleftrightarrow\left[\begin{aligned} & t_{1}\HM\left(f_{i_{1}}\right)\prec t_{2}\HM\left(f_{i_{2}}\right)\\
+ & t_{1}\HM\left(f_{i_{1}}\right)=t_{2}\HM\left(f_{i_{2}}\right),i{}_{1}<i_{2}
+\end{aligned}
+\right..$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Both orders are quite limited for our case: they doesn't give enough freedom
+ to make addition polynomial having a signature greater than all already
+ processed except the currently processed one.
+ To achieve this another very flexible order is introduced.
+ it has two parameters vectors: monomials
+\begin_inset Formula $w=(w_{1},\dots,w_{m})$
+\end_inset
+
+ and real numbers 
+\begin_inset Formula $j=(j_{1},\dots,j_{m})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Real-weighted order
+\emph default
+:
+\begin_inset Formula $\Sss{t_{1}}{i_{1}}\prec_{w}\Sss{t_{2}}{i_{2}}\Longleftrightarrow\left[\begin{aligned} & t_{1}w_{i_{1}}\prec t_{2}w_{i_{2}}\\
+ & t_{1}w_{i_{1}}=t_{2}w_{i_{2}},j_{i{}_{1}}<j_{i_{2}}
+\end{aligned}
+\right..$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The Schreyer order is an exactly special case of this order with parameters
  
-\family typewriter
-SingleStepSignatureGroebner
-\family default
-, что позволяет применять к нему метод замены переменных без перезапусков.
- Такое добавление многочлена становится возможным благодаря вещественным
- индексам порядка, всегда позволяющим 
-\begin_inset Quotes fld
+\begin_inset Formula $w_{i}=\HM\left(f_{i}\right)$
 \end_inset
 
-добавить
-\begin_inset Quotes frd
+ and 
+\begin_inset Formula $j_{i}=i$
 \end_inset
 
- сигнатуру между двумя уже имеющимися.
+, The POT order can be roughly approximated by taking 
+\begin_inset Formula $w_{i}=x^{A\cdot i}$
+\end_inset
+
+ and arbitrary 
+\begin_inset Formula $j_{i}$
+\end_inset
+
+, where 
+\begin_inset Formula $A$
+\end_inset
+
+ is a number much greater than degree of polynomials appeared in the algorithm
+ and 
+\begin_inset Formula $x$
+\end_inset
+
+ is some variable.
 \end_layout
 
+\begin_layout Standard
+The real-weighted order gives TSV method the ability to add a polynomial
+ 
+\begin_inset Formula $f_{m+k}=M_{k}-y_{k}$
 \end_inset
 
+ to input data with a signature that is just before the signature 
+\begin_inset Formula $\Sss ti$
+\end_inset
 
+ of currently processed polynomial with non-invertible coefficient of 
+\begin_inset Formula $M_{k}$
+\end_inset
+
+.
+ The signature of added polynomial 
+\begin_inset Formula $f_{m+k}$
+\end_inset
+
+is 
+\begin_inset Formula $\Sss 1{m+k}$
+\end_inset
+
+by signature definition, so its position can be tuned by selecting parameters
+ 
+\begin_inset Formula $w_{m+k},\, j_{m+k}$
+\end_inset
+
+ during parameters vector expansion.
+ To place it just before 
+\begin_inset Formula $\Sss ti$
+\end_inset
+
+ we need to select 
+\begin_inset Formula $w_{m+k}=w_{i}t$
+\end_inset
+
+ and 
+\begin_inset Formula $j_{m+k}=\frac{j_{i}+\max\left\{ j\in\left\{ j_{1},\dots,j_{m+k-1}\right\} |j<j_{i}\right\} }{2}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Such placement allows to proceed without algorithm restarting after polynomial
+ addition in TSV, because the signature of added polynomial exactly correspond
+ to the signature that should be processed now.
+ This optimization allow most of signature-based algorithms be used with
+ approximate input data with TSV method without restart because most of
+ orders can be expressed as special cases of real-weighted order.
 \end_layout
 
 \begin_layout Standard
