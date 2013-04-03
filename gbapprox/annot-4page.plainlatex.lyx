@@ -1,0 +1,850 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass birkmult
+\begin_preamble
+\sloppy
+%\usepackage{geometry}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\maintain_unincluded_children false
+\begin_local_layout
+
+\end_local_layout
+\language english
+\language_package default
+\inputencoding utf8
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format pdf2
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered true
+\pdf_bookmarksopen true
+\pdf_bookmarksopenlevel 7
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\pdf_quoted_options "unicode=false"
+\papersize default
+\use_geometry false
+\use_amsmath 2
+\use_esint 0
+\use_mhchem 0
+\use_mathdots 0
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Address
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+author{Vasily Galkin}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+address{Chair of Higher Algebra, Faculty of Mechanics and Mathematics, Moscow
+ State University, Moscow, Russia}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+email{galkin-vv@ya.ru}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Signature-based Gröbner basis computations for approximate input
+\end_layout
+
+\begin_layout Abstract
+This work develops methods for applying signature-based Gröbner basis computatio
+n algorithms to polynomial systems with inexact input data in 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+.
+ First method is based on the idea of modular computations which is known
+ to return incorrect result for small enough modules.
+ This is solved by giving strictly estimation of such possibility.
+ Second method is based on the previously known TSV (Term Substitution with
+ Variables) strategy.
+ It proposes the signature ordering that allows TSV to be applied to signature-b
+ased algorithms without restarts.
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\HM}{\mathrm{LM}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\HC}{\mathrm{LC}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\Sss}[2]{\left\langle #1\centerdot#2\right\rangle }
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Algorithms for computing Gröbner basis
+\end_layout
+
+\begin_layout Standard
+One of the modern practical applications of commutative algebra is its usage
+ in computer solving of approximate polynomial systems arising from various
+ areas.
+ The Gröbner basis is one of the main instruments that can be used to solve
+ them.
+ The classic algorithm for computing Gröbner bases is the Buchberger algorithm,
+ but there are more efficient algorithms including signature-based algorithms
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5,GVW,GroebnerInExtFields"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Most of them are formulated for coefficients in a field, but not for approximate
+ numbers.
+ The root of problem with applying to approximate numbers is in zero equality
+ testings: they are needed by algorithms for key branchings but not always
+ defined for approximate numbers.
+ There are different approaches for this problem:
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:in-Q"
+
+\end_inset
+
+round inexact numbers to rational and perform the computation in field 
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:as-symbols"
+
+\end_inset
+
+treat approximate numbers as symbols and use symbolic quotient field;
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:other- basis"
+
+\end_inset
+
+abandon the Gröbner basis and use other variant of basis for system solving;
+\end_layout
+
+\begin_layout Enumerate
+use a pseudo-field of approximate numbers but avoid problematic zero testing:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:other-fields"
+
+\end_inset
+
+get zero testing result with some heuristics 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ModularTraverso"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:adjusting-the-monomial"
+
+\end_inset
+
+add special polynomials to reduce problematic coefficient 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GroebnerInExtFields"
+
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Approaches 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:in-Q"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:as-symbols"
+
+\end_inset
+
+ make the approximate variant much slower than the same algorithm applied
+ to finite fields because non-constant complexity of arithmetic operations
+ with coefficients.
+ The possibility to combine approach 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:other- basis"
+
+\end_inset
+
+ with a signature-based algorithms is an open question because they are
+ initially designed for Gröbner basis.
+\end_layout
+
+\begin_layout Standard
+The approach 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:other-fields"
+
+\end_inset
+
+ as it is described in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ModularTraverso"
+
+\end_inset
+
+ is perfect in terms of computational speed.
+ But the heuristics can lead to wrong answer and there is no any probability
+ estimations of such case, so while the approach may be used in practice,
+ it lacks the strict proof.
+ In 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GroebnerInExtFields"
+
+\end_inset
+
+ the TSV method based on approach 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:adjusting-the-monomial"
+
+\end_inset
+
+ was successfully combined with signature-based algorithm F5.
+ But it has a serious slowdown compared to original F5: after every polynomial
+ addition the F5 is restarted from the beginning because signature based
+ algorithms require particular order in input polynomial processing.
+ This work introduces methods based on approaches 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:other-fields"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:adjusting-the-monomial"
+
+\end_inset
+
+ that try to solve above mentioned problems.
+\end_layout
+
+\begin_layout Section
+Problem statement in approximate numbers
+\end_layout
+
+\begin_layout Standard
+Before formulating these methods we need to prepare the formal statement
+ of the problem.
+ We assume that approximate input data consists of a multivariate polynomial
+ equations system with complex coefficients and for each coefficient we
+ know the maximum inaccuracy of it's value.
+ Approximate numbers are defined in a way that such input data can be easily
+ represented by them.
+ The 
+\emph on
+approximate number
+\emph default
+ is a pair 
+\begin_inset Formula $\left(a,\varepsilon\right)$
+\end_inset
+
+, where 
+\begin_inset Formula $a\in\mathbb{C},0\leqslant\varepsilon\in\mathbb{R}$
+\end_inset
+
+.
+ Element 
+\begin_inset Formula $a$
+\end_inset
+
+ is called 
+\emph on
+approximation
+\emph default
+, and 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+ -- 
+\emph on
+variation radius
+\emph default
+.
+ The elements of set 
+\begin_inset Formula $\left\{ a+e|e\in\mathbb{C},\left|e\right|\leqslant\varepsilon\right\} \subset\mathbb{C}$
+\end_inset
+
+ are called 
+\emph on
+specializations
+\emph default
+ of approximate number.
+\end_layout
+
+\begin_layout Standard
+For every approximate number in input we can take some specialization and
+ get the polynomial system in 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+.
+ Such systems are called 
+\emph on
+specializations of approximate input data
+\emph default
+.
+ The desired approximate solution of the problem consists of the set of
+ approximate numbers corresponding to variables.
+ 
+\emph on
+Specializations of solution
+\emph default
+ are defined too -- they are represented by a set of variable values in
+ 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+.
+ The design of approximate computations is based on the following 
+\emph on
+approximation rule
+\emph default
+: the approximate result of some computation should have specializations
+ equal to any of exact results corresponding to computation in 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+ performed with some input data specialization.
+ Applying this to the whole task we get: 
+\begin_inset Formula $\forall$
+\end_inset
+
+ specializations of approximate input data 
+\begin_inset Formula $\exists$
+\end_inset
+
+ specialization of approximate solution that gives the exact solution in
+ 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+ for the exact input data specialization.
+ Applying the rule to arithmetic operations we get their definitions:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Multiplication
+Addition 
+\begin_inset Formula $(a_{1},\varepsilon_{1})+(a_{2},\varepsilon_{2}):=(a_{1}+a_{2},\varepsilon_{1}+\varepsilon_{2})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Multiplication
+Multiplication 
+\begin_inset Formula $(a_{1},\varepsilon_{1})\times(a_{2},\varepsilon_{2}):=(a_{1}a_{2},\varepsilon_{1}\left|a_{2}\right|+\varepsilon_{2}\left|a_{1}\right|+\varepsilon_{1}\varepsilon_{2})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Multiplication
+Negation based on multiplication: 
+\begin_inset Formula $-(a,\varepsilon):=(a,\varepsilon)\times\left(-1,0\right)=(-a,\varepsilon).$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Multiplication
+Inversion defined only if zero isn't 
+\begin_inset Formula $(a,\varepsilon)$
+\end_inset
+
+ specialization (
+\begin_inset Formula $\Longleftrightarrow\left|a\right|-\varepsilon>0$
+\end_inset
+
+):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{1}{(a,\varepsilon)}:=\left(\frac{1}{a},\frac{\varepsilon}{\left|a\right|\left(\left|a\right|-\varepsilon\right)}\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Approximate representations with rationals - allowed lose of accuracy that
+ doesn't heart approximation rule
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Non-invertible approximate elements
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+There is a need to say that we are speaking only about first difference
+\end_layout
+
+\end_inset
+
+ The comparison of same algorithm runs on the approximate input and it's
+ specializations reveals significant difference in two cases:
+\end_layout
+
+\begin_layout Itemize
+approximated algorithm attempts to perform reduction by polynomial with
+ non-invertible leading coefficient;
+\end_layout
+
+\begin_layout Itemize
+leading coefficient for approximate case is zero for the specialization.
+ It is non-invertible because has a zero specialization due to approximation
+ rule.
+\end_layout
+
+\begin_layout Standard
+In both cases the difference is inspired by non-invertible approximate elements.
+ They can be classified to several kinds:
+\end_layout
+
+\begin_layout Itemize
+element is 
+\emph on
+symbolic zero
+\emph default
+ if the corresponding 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+-coefficient is zero in the algorithm application to any of input specialization
+s;
+\end_layout
+
+\begin_layout Itemize
+element is 
+\emph on
+computation-introduced zero
+\emph default
+ if the corresponding 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+-coefficient is non-zero in the algorithm application to any of input specializa
+tions;
+\end_layout
+
+\begin_layout Itemize
+in the other case the element is called 
+\emph on
+input-inspired zero.
+\end_layout
+
+\begin_layout Subsection
+Modular method
+\end_layout
+
+\begin_layout Standard
+The first two kinds of non-invertible elements correspond to a situation
+ in which there is a chance to fix non-invertible approximate element by
+ changing it to zero (for symbolic zero) or to some invertible element (for
+\emph on
+ 
+\emph default
+computation-introduced zero) and still keep the approximation rule satisfied.
+ The trivial approach to determine possibility of such replacement is keeping
+ a representation of each coefficient as symbolic expression of input data
+ coefficients and testing if it is identically equal to zero.
+ The problem of this trivial approach is its slowness.
+ In 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ModularTraverso"
+
+\end_inset
+
+ an optimization is proposed: replace symbolic expressions with its values
+ in finite field 
+\begin_inset Formula $\mathbb{F}$
+\end_inset
+
+.
+ Zeros in finite field correspond to identically zero expressions with high
+ probability.
+ Unfortunately the incorrect result probability estimation is not given.
+\end_layout
+
+\begin_layout Standard
+The proposed modular method is more complex.
+ It allows fixing of some computation-introduced zeros and gives reasonable
+ estimation for incorrect result probability, but lacks the time complexity
+ comparison with other variants.
+\end_layout
+
+\begin_layout Standard
+The symbolic expressions associated with polynomials are used for calculating
+ how this polynomial is expressed from input data.
+ Their computed values in 
+\begin_inset Formula $\mathbb{F}$
+\end_inset
+
+ are not trusted, but are treated as a suggestion for expressing approximate
+ polynomial with specific 
+\begin_inset Formula $\HM$
+\end_inset
+
+ from specific input polynomials.
+ This suggestion is written as linear system and another finite field 
+\begin_inset Formula $\mathbb{F}'$
+\end_inset
+
+ is selected.
+ System solution is performed simultaneously in approximate numbers and
+ in 
+\begin_inset Formula $\mathbb{F}'$
+\end_inset
+
+ using the last for detection of zero identical expressions.
+ The possibility of spurious zeros can be estimated from system size, known
+ at the moment of 
+\begin_inset Formula $\mathbb{F}'$
+\end_inset
+
+ selection, so its prime module can be selected big enough to make error
+ possibility smaller than fixed 
+\begin_inset Quotes eld
+\end_inset
+
+admissible
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset Formula $\alpha$
+\end_inset
+
+.
+ Another advantage is in fixing some computation-introduced zeros because
+ fully canceled input polynomials are not included in the system.
+\end_layout
+
+\begin_layout Subsection
+Introducing real-weighted order for TSV method
+\end_layout
+
+\begin_layout Standard
+Modular methods may fail to find some symbolic zeros and can't do anything
+ with input-inspired zeros.
+ TSV method 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GroebnerInExtFields"
+
+\end_inset
+
+ solves this problem.
+ Every time the algorithm tries to invert non-invertible coefficient of
+ monomial 
+\begin_inset Formula $M_{k}$
+\end_inset
+
+ it adds polynomial 
+\begin_inset Formula $M_{k}-y_{k}$
+\end_inset
+
+ to input data where 
+\begin_inset Formula $y_{k}$
+\end_inset
+
+ is a new lesser-than-others monomial.
+ Such polynomial reduces the 
+\begin_inset Formula $M_{k}$
+\end_inset
+
+ in other polynomials, so the their leading monomial changes.
+\end_layout
+
+\begin_layout Standard
+Due to additions the result is a Gröbner basis 
+\begin_inset Formula $G^{E}$
+\end_inset
+
+ of extended ideal in an extended polynomial ring 
+\begin_inset Formula $\mathcal{P}^{E}$
+\end_inset
+
+.
+ Fortunately the 
+\begin_inset Quotes eld
+\end_inset
+
+action matrix method
+\begin_inset Quotes erd
+\end_inset
+
+ for system solving can be reformulated to use a normal form operator 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+instead of Gröbner basis.
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ Such operator can be constructed in 
+\begin_inset Formula $P$
+\end_inset
+
+ from reduction in 
+\begin_inset Formula $\mathcal{P}^{E}$
+\end_inset
+
+ by 
+\begin_inset Formula $G^{E}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Other consequence is specific for signature-based algorithms.
+ They process polynomials strictly by increasing signature but added polynomial
+ 
+\begin_inset Formula $M_{k}-y_{k}$
+\end_inset
+
+ should have a signature smaller than current to be used as reducer.
+ The most widely used signature orders -- POT and Schreyer -- are quite
+ limited for our case: they don't allow addition polynomial to have a signature
+ greater than all already processed polynomials except the current one.
+ So 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GroebnerInExtFields"
+
+\end_inset
+
+ restarts algorithm after every addition.
+ To allow insertion of signature just before current we propose a generalized
+ order with parameter vectors: monomials 
+\begin_inset Formula $w=(w_{1},\dots,w_{m})$
+\end_inset
+
+ and real numbers 
+\begin_inset Formula $j=(j_{1},\dots,j_{m})$
+\end_inset
+
+.
+ Recall that 
+\emph on
+signature
+\emph default
+ 
+\begin_inset Formula $\Sss ti$
+\end_inset
+
+ is a pair of monomial and integer.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Real-weighted order
+\emph default
+:
+\begin_inset Formula $\Sss{t_{1}}{i_{1}}\prec_{w}\Sss{t_{2}}{i_{2}}\Longleftrightarrow\left[\begin{aligned} & t_{1}w_{i_{1}}\prec t_{2}w_{i_{2}}\\
+ & t_{1}w_{i_{1}}=t_{2}w_{i_{2}},j_{i{}_{1}}<j_{i_{2}}
+\end{aligned}
+\right..$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The real-weighted order gives TSV method the ability to add a polynomial
+ 
+\begin_inset Formula $M_{k}-y_{k}$
+\end_inset
+
+ to input data with a signature just before the signature of currently processed
+ polynomial and allows to proceed without algorithm restart, because it
+ exactly corresponds to the signature that should be processed now.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "approx_references"
+options "plain"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

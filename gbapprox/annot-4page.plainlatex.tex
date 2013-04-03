@@ -1,0 +1,263 @@
+%% LyX 2.0.5.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{birkmult}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=true,bookmarksopen=true,bookmarksopenlevel=7,
+ breaklinks=false,pdfborder={0 0 0},backref=false,colorlinks=false]
+ {hyperref}
+\hypersetup{
+ unicode=false}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\newenvironment{lyxlist}[1]
+{\begin{list}{}
+{\settowidth{\labelwidth}{#1}
+ \setlength{\leftmargin}{\labelwidth}
+ \addtolength{\leftmargin}{\labelsep}
+ \renewcommand{\makelabel}[1]{##1\hfil}}}
+{\end{list}}
+
+\@ifundefined{date}{}{\date{}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\sloppy
+%\usepackage{geometry}
+
+\makeatother
+
+\begin{document}
+
+\author{Vasily Galkin}
+\address{Chair of Higher Algebra, Faculty of Mechanics and Mathematics, Moscow State University, Moscow, Russia}
+\email{galkin-vv@ya.ru}
+
+
+\title{Signature-based Gröbner basis computations for approximate input}
+\maketitle
+\begin{abstract}
+This work develops methods for applying signature-based Gröbner basis
+computation algorithms to polynomial systems with inexact input data
+in $\mathbb{C}$. First method is based on the idea of modular computations
+which is known to return incorrect result for small enough modules.
+This is solved by giving strictly estimation of such possibility.
+Second method is based on the previously known TSV (Term Substitution
+with Variables) strategy. It proposes the signature ordering that
+allows TSV to be applied to signature-based algorithms without restarts.
+\end{abstract}
+\global\long\def\HM{\mathrm{LM}}
+
+
+\global\long\def\HC{\mathrm{LC}}
+
+
+\global\long\def\Sss#1#2{\left\langle #1\centerdot#2\right\rangle }
+
+
+
+\section{Algorithms for computing Gröbner basis}
+
+One of the modern practical applications of commutative algebra is
+its usage in computer solving of approximate polynomial systems arising
+from various areas. The Gröbner basis is one of the main instruments
+that can be used to solve them. The classic algorithm for computing
+Gröbner bases is the Buchberger algorithm, but there are more efficient
+algorithms including signature-based algorithms \cite{FaugereF5,GVW,GroebnerInExtFields}.
+
+Most of them are formulated for coefficients in a field, but not for
+approximate numbers. The root of problem with applying to approximate
+numbers is in zero equality testings: they are needed by algorithms
+for key branchings but not always defined for approximate numbers.
+There are different approaches for this problem:
+\begin{enumerate}
+\item \label{enu:in-Q}round inexact numbers to rational and perform the
+computation in field $\mathbb{Q}$;
+\item \label{enu:as-symbols}treat approximate numbers as symbols and use
+symbolic quotient field;
+\item \label{enu:other- basis}abandon the Gröbner basis and use other variant
+of basis for system solving;
+\item use a pseudo-field of approximate numbers but avoid problematic zero
+testing:
+
+\begin{enumerate}
+\item \label{enu:other-fields}get zero testing result with some heuristics
+\cite{ModularTraverso}.
+\item \label{enu:adjusting-the-monomial}add special polynomials to reduce
+problematic coefficient \cite{GroebnerInExtFields}.
+\end{enumerate}
+\end{enumerate}
+\pagebreak{}
+
+Approaches \ref{enu:in-Q} and \ref{enu:as-symbols} make the approximate
+variant much slower than the same algorithm applied to finite fields
+because non-constant complexity of arithmetic operations with coefficients.
+The possibility to combine approach \ref{enu:other- basis} with a
+signature-based algorithms is an open question because they are initially
+designed for Gröbner basis.
+
+The approach \ref{enu:other-fields} as it is described in \cite{ModularTraverso}
+is perfect in terms of computational speed. But the heuristics can
+lead to wrong answer and there is no any probability estimations of
+such case, so while the approach may be used in practice, it lacks
+the strict proof. In \cite{GroebnerInExtFields} the TSV method based
+on approach \ref{enu:adjusting-the-monomial} was successfully combined
+with signature-based algorithm F5. But it has a serious slowdown compared
+to original F5: after every polynomial addition the F5 is restarted
+from the beginning because signature based algorithms require particular
+order in input polynomial processing. This work introduces methods
+based on approaches \ref{enu:other-fields}, \ref{enu:adjusting-the-monomial}
+that try to solve above mentioned problems.
+
+
+\section{Problem statement in approximate numbers}
+
+Before formulating these methods we need to prepare the formal statement
+of the problem. We assume that approximate input data consists of
+a multivariate polynomial equations system with complex coefficients
+and for each coefficient we know the maximum inaccuracy of it's value.
+Approximate numbers are defined in a way that such input data can
+be easily represented by them. The \emph{approximate number} is a
+pair $\left(a,\varepsilon\right)$, where $a\in\mathbb{C},0\leqslant\varepsilon\in\mathbb{R}$.
+Element $a$ is called \emph{approximation}, and $\varepsilon$ --
+\emph{variation radius}. The elements of set $\left\{ a+e|e\in\mathbb{C},\left|e\right|\leqslant\varepsilon\right\} \subset\mathbb{C}$
+are called \emph{specializations} of approximate number.
+
+For every approximate number in input we can take some specialization
+and get the polynomial system in $\mathbb{C}$. Such systems are called
+\emph{specializations of approximate input data}. The desired approximate
+solution of the problem consists of the set of approximate numbers
+corresponding to variables. \emph{Specializations of solution} are
+defined too -- they are represented by a set of variable values in
+$\mathbb{C}$. The design of approximate computations is based on
+the following \emph{approximation rule}: the approximate result of
+some computation should have specializations equal to any of exact
+results corresponding to computation in $\mathbb{C}$ performed with
+some input data specialization. Applying this to the whole task we
+get: $\forall$ specializations of approximate input data $\exists$
+specialization of approximate solution that gives the exact solution
+in $\mathbb{C}$ for the exact input data specialization. Applying
+the rule to arithmetic operations we get their definitions:
+\begin{lyxlist}{Multiplication}
+\item [{Addition}] $(a_{1},\varepsilon_{1})+(a_{2},\varepsilon_{2}):=(a_{1}+a_{2},\varepsilon_{1}+\varepsilon_{2})$.
+\item [{Multiplication}] $(a_{1},\varepsilon_{1})\times(a_{2},\varepsilon_{2}):=(a_{1}a_{2},\varepsilon_{1}\left|a_{2}\right|+\varepsilon_{2}\left|a_{1}\right|+\varepsilon_{1}\varepsilon_{2})$.
+\item [{Negation}] based on multiplication: $-(a,\varepsilon):=(a,\varepsilon)\times\left(-1,0\right)=(-a,\varepsilon).$
+\item [{Inversion}] defined only if zero isn't $(a,\varepsilon)$ specialization
+($\Longleftrightarrow\left|a\right|-\varepsilon>0$):
+\end{lyxlist}
+\[
+\frac{1}{(a,\varepsilon)}:=\left(\frac{1}{a},\frac{\varepsilon}{\left|a\right|\left(\left|a\right|-\varepsilon\right)}\right).
+\]
+
+
+
+
+
+\section{Non-invertible approximate elements}
+
+ The comparison of same algorithm runs on the approximate input and
+it's specializations reveals significant difference in two cases:
+\begin{itemize}
+\item approximated algorithm attempts to perform reduction by polynomial
+with non-invertible leading coefficient;
+\item leading coefficient for approximate case is zero for the specialization.
+It is non-invertible because has a zero specialization due to approximation
+rule.
+\end{itemize}
+In both cases the difference is inspired by non-invertible approximate
+elements. They can be classified to several kinds:
+\begin{itemize}
+\item element is \emph{symbolic zero} if the corresponding $\mathbb{C}$-coefficient
+is zero in the algorithm application to any of input specializations;
+\item element is \emph{computation-introduced zero} if the corresponding
+$\mathbb{C}$-coefficient is non-zero in the algorithm application
+to any of input specializations;
+\item in the other case the element is called \emph{input-inspired zero.}
+\end{itemize}
+
+\subsection{Modular method}
+
+The first two kinds of non-invertible elements correspond to a situation
+in which there is a chance to fix non-invertible approximate element
+by changing it to zero (for symbolic zero) or to some invertible element
+(for\emph{ }computation-introduced zero) and still keep the approximation
+rule satisfied. The trivial approach to determine possibility of such
+replacement is keeping a representation of each coefficient as symbolic
+expression of input data coefficients and testing if it is identically
+equal to zero. The problem of this trivial approach is its slowness.
+In \cite{ModularTraverso} an optimization is proposed: replace symbolic
+expressions with its values in finite field $\mathbb{F}$. Zeros in
+finite field correspond to identically zero expressions with high
+probability. Unfortunately the incorrect result probability estimation
+is not given.
+
+The proposed modular method is more complex. It allows fixing of some
+computation-introduced zeros and gives reasonable estimation for incorrect
+result probability, but lacks the time complexity comparison with
+other variants.
+
+The symbolic expressions associated with polynomials are used for
+calculating how this polynomial is expressed from input data. Their
+computed values in $\mathbb{F}$ are not trusted, but are treated
+as a suggestion for expressing approximate polynomial with specific
+$\HM$ from specific input polynomials. This suggestion is written
+as linear system and another finite field $\mathbb{F}'$ is selected.
+System solution is performed simultaneously in approximate numbers
+and in $\mathbb{F}'$ using the last for detection of zero identical
+expressions. The possibility of spurious zeros can be estimated from
+system size, known at the moment of $\mathbb{F}'$ selection, so its
+prime module can be selected big enough to make error possibility
+smaller than fixed ``admissible'' $\alpha$. Another advantage is
+in fixing some computation-introduced zeros because fully canceled
+input polynomials are not included in the system.
+
+
+\subsection{Introducing real-weighted order for TSV method}
+
+Modular methods may fail to find some symbolic zeros and can't do
+anything with input-inspired zeros. TSV method \cite{GroebnerInExtFields}
+solves this problem. Every time the algorithm tries to invert non-invertible
+coefficient of monomial $M_{k}$ it adds polynomial $M_{k}-y_{k}$
+to input data where $y_{k}$ is a new lesser-than-others monomial.
+Such polynomial reduces the $M_{k}$ in other polynomials, so the
+their leading monomial changes.
+
+Due to additions the result is a Gröbner basis $G^{E}$ of extended
+ideal in an extended polynomial ring $\mathcal{P}^{E}$. Fortunately
+the ``action matrix method'' for system solving can be reformulated
+to use a normal form operator instead of Gröbner basis. Such operator
+can be constructed in $P$ from reduction in $\mathcal{P}^{E}$ by
+$G^{E}$.
+
+Other consequence is specific for signature-based algorithms. They
+process polynomials strictly by increasing signature but added polynomial
+$M_{k}-y_{k}$ should have a signature smaller than current to be
+used as reducer. The most widely used signature orders -- POT and
+Schreyer -- are quite limited for our case: they don't allow addition
+polynomial to have a signature greater than all already processed
+polynomials except the current one. So \cite{GroebnerInExtFields}
+restarts algorithm after every addition. To allow insertion of signature
+just before current we propose a generalized order with parameter
+vectors: monomials $w=(w_{1},\dots,w_{m})$ and real numbers $j=(j_{1},\dots,j_{m})$.
+Recall that \emph{signature} $\Sss ti$ is a pair of monomial and
+integer.
+\begin{itemize}
+\item \emph{Real-weighted order}:$\Sss{t_{1}}{i_{1}}\prec_{w}\Sss{t_{2}}{i_{2}}\Longleftrightarrow\left[\begin{aligned} & t_{1}w_{i_{1}}\prec t_{2}w_{i_{2}}\\
+ & t_{1}w_{i_{1}}=t_{2}w_{i_{2}},j_{i{}_{1}}<j_{i_{2}}
+\end{aligned}
+\right..$
+\end{itemize}
+The real-weighted order gives TSV method the ability to add a polynomial
+$M_{k}-y_{k}$ to input data with a signature just before the signature
+of currently processed polynomial and allows to proceed without algorithm
+restart, because it exactly corresponds to the signature that should
+be processed now.
+
+\bibliographystyle{plain}
+\bibliography{approx_references}
+
+\end{document}
