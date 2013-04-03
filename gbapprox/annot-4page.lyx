@@ -122,18 +122,19 @@ Signature-based Gröbner basis computations for approximate input
 \end_layout
 
 \begin_layout Abstract
-This work develops the methods for application signature-based algorithms
- for computing Gröbner basis to the inexact input data in 
+This work develops methods for applying signature-based Gröbner basis computatio
+n algorithms to polynomial systems with inexact input data in 
 \begin_inset Formula $\mathbb{C}$
 \end_inset
 
- derived from the task of solving approximate polynomial systems.
- The first method is based on the idea of modular computations which is
- known to give incorrect result with some probability and extends it in
- a way that this probability can be strictly estimated.
- The second method is based on the previously known TSV (Term Substitution
- with Variables) strategy and develops the signature ordering that allows
- TSV to be applied to signature-based algorithms without restarts.
+.
+ First method is based on the idea of modular computations which is known
+ to return incorrect result for small enough modules.
+ This is solved by giving strictly estimation of such possibility.
+ Second method is based on the previously known TSV (Term Substitution with
+ Variables) strategy.
+ It proposes the signature ordering that allows TSV to be applied to signature-b
+ased algorithms without restarts.
 \end_layout
 
 \begin_layout Standard
@@ -380,10 +381,17 @@ key "NumericalComputationGB,NumericalComputationOfGBVarSubsttution,GroebnerInExt
 
 \end_inset
 
-;
+.
 \end_layout
 
 \end_deeper
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 Approaches 
 \begin_inset CommandInset ref
@@ -477,8 +485,8 @@ Before formulating these methods we need to prepare the formal statement
  We assume that approximate input data consists of a multivariate polynomial
  equations system with complex coefficients and for each coefficient we
  know the maximum inaccuracy of it's value.
- Approximate numbers are defined in a such way that such input data can
- be easily represented by them.
+ Approximate numbers are defined in a way that such input data can be easily
+ represented by them.
  The 
 \emph on
 approximate number
@@ -521,8 +529,8 @@ specializations
 \end_layout
 
 \begin_layout Standard
-For every approximate number in input we can take some it's specialization
- and get the polynomial system in 
+For every approximate number in input we can take some specialization and
+ get the polynomial system in 
 \begin_inset Formula $\mathbb{C}$
 \end_inset
 
@@ -650,7 +658,7 @@ There is a need to say that we are speaking only about first difference
 
 \end_inset
 
- The comparison of same algorithm runs on the approximate input and on it's
+ The comparison of same algorithm runs on the approximate input and it's
  specializations reveals significant difference in two cases:
 \end_layout
 
@@ -702,7 +710,7 @@ in the other case the element is called
 input-inspired zero.
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Modular method
 \end_layout
 
@@ -726,180 +734,71 @@ key "ModularTraverso"
 \end_inset
 
  an optimization is proposed: replace symbolic expressions with its values
- in finite field.
- Zeroes in finite field correspond to identically zero expressions with
- high probability.
+ in finite field 
+\begin_inset Formula $\mathbb{F}$
+\end_inset
+
+.
+ Zeros in finite field correspond to identically zero expressions with high
+ probability.
  Unfortunately the incorrect result probability estimation is not given.
- The modular method proposed below is more complex, allows fixing of some
- computation-introduced zeros and gives reasonable estimation for incorrect
- result probability, but lacks the time complexity comparison with other
- variants.
- Its flow is following:
 \end_layout
 
-\begin_layout Enumerate
-\begin_inset CommandInset label
-LatexCommand label
-name "enu:first field selection"
-
-\end_inset
-
-At first we take some arbitrary finite field 
-\begin_inset Formula $\mathbb{F}$
-\end_inset
-
- and replace coefficients with ts random elements.
- This step is identical to method from 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "ModularTraverso"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Enumerate
-A special lower-than-all monomials is added at the end of every polynomial.
- It participate in all finite field computations and is used to determine
- how a computed polynomial can be written as a polynomial combination of
- input data.
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset CommandInset label
-LatexCommand label
-name "enu:in-finite-field-1"
-
-\end_inset
-
-The algorithm is run for finite field case and generates Gröbner basis.
- For every its polynomial 
-\begin_inset Formula $f$
-\end_inset
-
- the following steps a re performed:
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-Another finite field 
-\begin_inset Formula $\mathbb{F}'$
-\end_inset
-
- is selected; now not arbitrarily.
- but by explicit rule based on maximal allowed error probability and structure
- of 
-\begin_inset Formula $f$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Enumerate
-The algorithm try to construct similar to 
-\begin_inset Formula $f$
-\end_inset
-
- polynomial in another fields:
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-it suggests that constructed polynomial is expressed as polynomial combination
- of input data like 
-\begin_inset Formula $f$
-\end_inset
-
- and takes information about it from the lower-than-all monomials in 
-\begin_inset Formula $f$
-\end_inset
-
-;
-\end_layout
-
-\begin_layout Enumerate
-it suggests that the leading monomial of constructed polynomial is 
-\begin_inset Formula $\HM\left(f\right)$
-\end_inset
-
-;
-\end_layout
-
-\begin_layout Enumerate
-it creates a linear system based on those suggestions, with every element
- of the system matrix being a pair of approximate number and number from
- 
-\begin_inset Formula $\mathbb{F}'$
-\end_inset
-
-;
-\end_layout
-
-\begin_layout Enumerate
-the system is solved, using zeros from 
-\begin_inset Formula $\mathbb{F}'$
-\end_inset
-
- to determine and fix some symbolic zeros in approximate numbers;
-\end_layout
-
-\begin_layout Enumerate
-if the solution is impossible due to non-invertible approximate number the
- task is abandoned, because such situation can't be handled;
-\end_layout
-
-\begin_layout Enumerate
-if the system has no solutions the suggestions are incorrect, so the algorithm
- restarts with selecting new field in step 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "enu:first field selection"
-
-\end_inset
-
-;
-\end_layout
-
-\begin_layout Enumerate
-if the solution is found it is used to write out another polynomial of approxima
-te Gröbner basis.
-\end_layout
-
-\end_deeper
-\end_deeper
 \begin_layout Standard
-The ability to estimate incorrect result possibility is achieved by not
- trusting the result got with 
+The proposed modular method is more complex.
+ It allows fixing of some computation-introduced zeros and gives reasonable
+ estimation for incorrect result probability, but lacks the time complexity
+ comparison with other variants.
+\end_layout
+
+\begin_layout Standard
+The symbolic expressions associated with polynomials are used for calculating
+ how this polynomial is expressed from input data.
+ Their computed values in 
 \begin_inset Formula $\mathbb{F}$
 \end_inset
 
- and knowledge of system size during selection of the finite field 
+ are not trusted, but are treated as a suggestion for expressing approximate
+ polynomial with specific 
+\begin_inset Formula $\HM$
+\end_inset
+
+ from specific input polynomials.
+ This suggestion is written as linear system and another finite field 
 \begin_inset Formula $\mathbb{F}'$
 \end_inset
 
-.
- The ability to fix some computation-introduced zeros follows from computations
+ is selected.
+ System solution is performed simultaneously in approximate numbers and
  in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "enu:in-finite-field-1"
-
+\begin_inset Formula $\mathbb{F}'$
 \end_inset
 
- where some input polynomials presenting in intermediate values can totally
- cancel leading to absence of corresponding lower-than-all monomials in
+ using the last for detection of zero identical expressions.
+ The possibility of spurious zeros can be estimated from system size, known
+ at the moment of 
+\begin_inset Formula $\mathbb{F}'$
+\end_inset
+
+ selection, so its prime module can be selected big enough to make error
+ possibility smaller than fixed 
+\begin_inset Quotes eld
+\end_inset
+
+admissible
+\begin_inset Quotes erd
+\end_inset
+
  
-\begin_inset Formula $f$
+\begin_inset Formula $\alpha$
 \end_inset
 
 .
- In the approximate-only computations such cancellations introduces loose
- of accuracy expressed in variation radius grow and sometimes gives introduced-z
-ero.
+ Another advantage is in fixing some computation-introduced zeros because
+ fully canceled input polynomials are not included in the system.
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Introducing real-weighted order for TSV method
 \end_layout
 
@@ -937,45 +836,16 @@ key "GroebnerInExtFields"
 \end_layout
 
 \begin_layout Standard
-As the side effect of such additions the algorithm find a Gröbner basis
- of some extended ideal in an extended polynomial ring 
+Due to additions the result is a Gröbner basis 
+\begin_inset Formula $G^{E}$
+\end_inset
+
+ of extended ideal in an extended polynomial ring 
 \begin_inset Formula $\mathcal{P}^{E}$
 \end_inset
 
- instead of Gröbner basis of ideal 
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-
-\begin_inset Formula $\left(f_{1},\dots,f_{m}\right)$
-\end_inset
-
-
-\family default
-\series default
-\shape default
-\size default
-\emph default
-\bar default
-\strikeout default
-\uuline default
-\uwave default
-\noun default
-\color inherit
- in polynomial ring 
-\begin_inset Formula $\mathcal{P}$
-\end_inset
-
 .
- This isn't a problem for polynomial system solving because the 
+ Fortunately the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -983,15 +853,7 @@ action matrix method
 \begin_inset Quotes erd
 \end_inset
 
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "UsingAlgebraicGeometry"
-
-\end_inset
-
- can be reformulated to use some normal form operator giving coordinates
- in some basis of 
+ for system solving can be reformulated to use a normal form operator 
 \family roman
 \series medium
 \shape up
@@ -1003,11 +865,7 @@ key "UsingAlgebraicGeometry"
 \uwave off
 \noun off
 \color none
-
-\begin_inset Formula $\mathcal{P}/\left(f_{1},\dots,f_{m}\right)$
-\end_inset
-
- instead of Gröbner basis.
+instead of Gröbner basis.
 
 \family default
 \series default
@@ -1020,114 +878,43 @@ key "UsingAlgebraicGeometry"
 \uwave default
 \noun default
 \color inherit
- Such operator can be constructed from reduction by the extended basis in
- 
+ Such operator can be constructed in 
+\begin_inset Formula $P$
+\end_inset
+
+ from reduction in 
 \begin_inset Formula $\mathcal{P}^{E}$
 \end_inset
 
- .
+ by 
+\begin_inset Formula $G^{E}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Other consequence is specific for signature-based algorithms.
+ They process polynomials strictly by increasing signature but added polynomial
  
-\end_layout
-
-\begin_layout Standard
-Another consequence of polynomial addition is more problematic: the signature-ba
-sed algorithms must process polynomials strictly in the signature order
- and the addition polynomial should have a signature smaller than processed
- polynomial to be allowed for use as its reducer.
- This leads to the problem that the signature-based algorithm must be restarted
- from scratch every time a new polynomial gets added to the input data.
- The roots of this undesired behavior are in the limitations of orders tradition
-ally used in signature algorithms for ordering signatures.
- We recall that a signature is a pair of monomial and a natural number written
- as 
-\begin_inset Formula $\sigma=\Sss ti$
+\begin_inset Formula $M_{k}-y_{k}$
 \end_inset
 
-.
- Different signature orders suitable for Gröbner basis computation are studied
- in Term Orders paragraph of 
+ should have a signature smaller than current to be used as reducer.
+ The most widely used orders on signatures -- POT and Schreyer -- are quite
+ limited for our case: they don't allow to make addition polynomial having
+ a signature greater than all already processed polynomials except the current
+ one.
+ So 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "GVW"
+key "GroebnerInExtFields"
 
 \end_inset
 
-.
- The most widely used orders are: POT (position over term) and 
-\series bold
-g
-\series default
-2, also called the Schreyer order in
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Eder2012inhomogeneous"
-
-\end_inset
-
-.
- Their definitions are based on monomial order 
-\begin_inset Formula $\prec$
-\end_inset
-
- and input polynomials sequence 
-\begin_inset Formula $f_{1},\dots,f_{m}$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Itemize
-POT order: 
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-
-\begin_inset Formula $\Sss{t_{1}}{i_{1}}\prec_{P}\Sss{t_{2}}{i_{2}}\Longleftrightarrow\left[\begin{aligned} & i_{1}<i_{2}\\
- & i_{1}=i_{2},t{}_{1}\prec t_{2}
-\end{aligned}
-\right..$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Schreyer order: 
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-
-\begin_inset Formula $\Sss{t_{1}}{i_{1}}\prec_{S}\Sss{t_{2}}{i_{2}}\Longleftrightarrow\left[\begin{aligned} & t_{1}\HM\left(f_{i_{1}}\right)\prec t_{2}\HM\left(f_{i_{2}}\right)\\
- & t_{1}\HM\left(f_{i_{1}}\right)=t_{2}\HM\left(f_{i_{2}}\right),i{}_{1}<i_{2}
-\end{aligned}
-\right..$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Both orders are quite limited for our case: they doesn't give enough freedom
- to make addition polynomial having a signature greater than all already
- processed except the currently processed one.
- To achieve this another very flexible order is introduced.
- it has two parameters vectors: monomials
+ solves this problem by restarting algorithm after every addition.
+ To allow insertion of signature just before current we propose a generalized
+ order with parameter vectors: monomials 
 \begin_inset Formula $w=(w_{1},\dots,w_{m})$
 \end_inset
 
@@ -1136,6 +923,15 @@ Both orders are quite limited for our case: they doesn't give enough freedom
 \end_inset
 
 .
+ Recall that 
+\emph on
+signature
+\emph default
+ 
+\begin_inset Formula $\Sss ti$
+\end_inset
+
+ is a pair of monomial and integer.
 \end_layout
 
 \begin_layout Itemize
@@ -1154,87 +950,19 @@ Real-weighted order
 \end_layout
 
 \begin_layout Standard
-The Schreyer order is an exactly special case of this order with parameters
- 
-\begin_inset Formula $w_{i}=\HM\left(f_{i}\right)$
-\end_inset
-
- and 
-\begin_inset Formula $j_{i}=i$
-\end_inset
-
-, The POT order can be roughly approximated by taking 
-\begin_inset Formula $w_{i}=x^{A\cdot i}$
-\end_inset
-
- and arbitrary 
-\begin_inset Formula $j_{i}$
-\end_inset
-
-, where 
-\begin_inset Formula $A$
-\end_inset
-
- is a number much greater than degree of polynomials appeared in the algorithm
- and 
-\begin_inset Formula $x$
-\end_inset
-
- is some variable.
-\end_layout
-
-\begin_layout Standard
 The real-weighted order gives TSV method the ability to add a polynomial
  
-\begin_inset Formula $f_{m+k}=M_{k}-y_{k}$
+\begin_inset Formula $M_{k}-y_{k}$
 \end_inset
 
  to input data with a signature that is just before the signature 
 \begin_inset Formula $\Sss ti$
 \end_inset
 
- of currently processed polynomial with non-invertible coefficient of 
-\begin_inset Formula $M_{k}$
-\end_inset
-
-.
- The signature of added polynomial 
-\begin_inset Formula $f_{m+k}$
-\end_inset
-
-is 
-\begin_inset Formula $\Sss 1{m+k}$
-\end_inset
-
-by signature definition, so its position can be tuned by selecting parameters
- 
-\begin_inset Formula $w_{m+k},\, j_{m+k}$
-\end_inset
-
- during parameters vector expansion.
- To place it just before 
-\begin_inset Formula $\Sss ti$
-\end_inset
-
- we need to select 
-\begin_inset Formula $w_{m+k}=w_{i}t$
-\end_inset
-
- and 
-\begin_inset Formula $j_{m+k}=\frac{j_{i}+\max\left\{ j\in\left\{ j_{1},\dots,j_{m+k-1}\right\} |j<j_{i}\right\} }{2}$
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Standard
-Such placement allows to proceed without algorithm restarting after polynomial
- addition in TSV, because the signature of added polynomial exactly correspond
- to the signature that should be processed now.
- This optimization allow most of signature-based algorithms be used with
- approximate input data with TSV method without restart because most of
- orders can be expressed as special cases of real-weighted order.
+ of currently processed polynomial.
+ Such signature allows to proceed without algorithm restart, because the
+ signature of added polynomial exactly correspond to the signature that
+ should be processed now.
 \end_layout
 
 \begin_layout Standard
