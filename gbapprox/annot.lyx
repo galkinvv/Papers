@@ -5,59 +5,8 @@
 \textclass birkmult
 \begin_preamble
 \sloppy
-
-\usepackage{suffix}
-
-% If this is in *.tex file, uncomment the following line.
-\makeatletter
-
-% Save the original \part declaration
-\let\old@part\part
-
-% To that definition, add a new special starred version.
-\WithSuffix\def\part*{
-  % Handle the optional parameter.
-  \ifx\next[%
-    \let\next\thesis@part@star%
-  \else
-    \def\next{\thesis@part@star[]}%
-  \fi
-  \next}
-
-% The actual macro definition.
-\def\thesis@part@star[#1]#2{
-  \vspace{-9mm}
-  % Insert the actual (unnumbered) \part header.
-  \old@part*{{\Large #2}}
-  % Last, add the part to the table of contents
-  \addcontentsline{toc}{part}{#2}
-  \vspace{-4.5mm}
-}
-
-\let\old@section\section
-
-% To that definition, add a new special starred version.
-\WithSuffix\def\section*{
-  % Handle the optional parameter.
-  \ifx\next[%
-    \let\next\thesis@section@star%
-  \else
-    \def\next{\thesis@section@star[]}%
-  \fi
-  \next}
-
-% The actual macro definition.
-\def\thesis@section@star[#1]#2{
-  % Insert the actual (unnumbered) \part header.
-  \old@section*{{\large #2}}
-  % Last, add the part to the table of contents
-  \addcontentsline{toc}{section}{#2}
-}
-
-% If this is in *.tex file, uncomment the following line.
-\makeatother
+%\usepackage{geometry}
 \end_preamble
-\options a4paper, reqno
 \use_default_options true
 \begin_modules
 theorems-ams
@@ -69,7 +18,7 @@ figs-within-sections
 
 \end_local_layout
 \language english
-\language_package \usepackage[english]{polyglossia}
+\language_package default
 \inputencoding utf8
 \fontencoding global
 \font_roman CMU Serif
@@ -117,7 +66,7 @@ figs-within-sections
 \color #008000
 \end_index
 \secnumdepth 3
-\tocdepth 5
+\tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
 \quotes_language english
@@ -285,7 +234,7 @@ This work develops the methods for application signature-based algorithms
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\monone}{\mathbf{1}}
+\renewcommand{\monone}{\mathbf{1}}
 \end_inset
 
 
@@ -293,7 +242,7 @@ This work develops the methods for application signature-based algorithms
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\monzero}{\mathbf{0}}
+\renewcommand{\monzero}{\mathbf{0}}
 \end_inset
 
 
