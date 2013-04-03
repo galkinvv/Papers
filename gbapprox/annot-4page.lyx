@@ -234,7 +234,7 @@ This work develops the methods for application signature-based algorithms
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\monone}{\mathbf{1}}
+\newcommand{\monone}{\mathbf{1}}
 \end_inset
 
 
@@ -242,7 +242,7 @@ This work develops the methods for application signature-based algorithms
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\monzero}{\mathbf{0}}
+\newcommand{\monzero}{\mathbf{0}}
 \end_inset
 
 
@@ -285,42 +285,13 @@ Algorithms for computing Gröbner basis
 
 \begin_layout Standard
 One of the modern practical applications of commutative algebra is its usage
- in computer solving of polynomial systems arising from various areas 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "FastStablePolySolving"
-
-\end_inset
-
-.
- Earlier they were dealt with general methods for approximate solving arbitrary
- systems of equations, but the Gröbner bases give the algorithms specialized
- in solving of polynomial systems 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "UsingAlgebraicGeometry,sturmfels2002solvingPolySystems"
-
-\end_inset
-
-.
- The classic algorithm for computing Gröbner bases is the Buchberger algorithm.
- It's quite simple, but not very efficient.
- So some other more efficient algorithms were introduced: matrix-based algorithm
-s 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "F4"
-
-\end_inset
-
-, involutive methods 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "zharkov1993involution,gerdt1998involutive,ComprehensiveInvolutive"
-
-\end_inset
-
- and signature-based algorithms 
+ in computer solving of approximate polynomial systems arising from various
+ areas.
+ The Gröbner basis is one of the main instruments that can be used to solve
+ them.
+ The classic algorithm for computing Gröbner bases is the Buchberger algorithm,
+ but there are more efficient algorithms including signature-based algorithms
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "FaugereF5,F5C,EderF5A,G2V,GVW,PracticalGB,HuangConception"
@@ -328,19 +299,15 @@ key "FaugereF5,F5C,EderF5A,G2V,GVW,PracticalGB,HuangConception"
 \end_inset
 
 .
- Those algorithms are faster and more sophisticated than Buchberger's.
 \end_layout
 
 \begin_layout Standard
-But the speed is not the only problem in practical applications of Gröbner
- bases to polynomial system solving.
- Another problem arises from the approximate origin of input data.
- Most of the Gröbner bases computation methods are formulated for coefficients
- in arbitrary field, but not for approximate numbers.
- The root of problem is in zero equality testings: they are needed by algorithms
- for key branchings, are obviously defined for fields but not always defined
- for approximate numbers.
- There are different approaches for overcoming this problem:
+Most of them are formulated for coefficients in a field, but not for approximate
+ numbers.
+ The root of problem with applying to approximate numbers is in zero equality
+ testings: they are needed by algorithms for key branchings but not always
+ defined for approximate numbers.
+ There are different approaches for this problem:
 \end_layout
 
 \begin_layout Enumerate
@@ -350,8 +317,7 @@ name "enu:in-Q"
 
 \end_inset
 
-round approximate numbers to rational and perform the Gröbner basis computation
- in field 
+round inexact numbers to rational and perform the computation in field 
 \begin_inset Formula $\mathbb{Q}$
 \end_inset
 
@@ -365,16 +331,7 @@ name "enu:as-symbols"
 
 \end_inset
 
-treat approximate numbers as symbols and find Gröbner basis with coefficients
- in symbolic quotient field using comprehensive basis followed by symbol
- substitution in the result 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "ComprehensiveGB,ComprehenciveGroebnerFastViaGroebner,ComprehensiveNewAlgorithm,ComprehensiveMinimal"
-
-\end_inset
-
-;
+treat approximate numbers as symbols and use symbolic quotient field;
 \end_layout
 
 \begin_layout Enumerate
@@ -384,25 +341,11 @@ name "enu:other- basis"
 
 \end_inset
 
-abandon the computation of the Gröbner basis and find some variant of basis
- suitable for system solving 
-\lang russian
-
-\begin_inset CommandInset citation
-LatexCommand cite
-key "NumericalPolynomialAlgebra,ComputingBorderBases"
-
-\end_inset
-
-
-\lang english
-;
+abandon the Gröbner basis and use other variant of basis for system solving;
 \end_layout
 
 \begin_layout Enumerate
-perform the computation in a pseudo-field of approximate numbers using some
- methods to avoid the problematic zero testing.
- Such methods includes:
+use a pseudo-field of approximate numbers but avoid problematic zero testing:
 \end_layout
 
 \begin_deeper
@@ -413,7 +356,7 @@ name "enu:other-fields"
 
 \end_inset
 
-use some heuristics to get zero testing result 
+get zero testing result with some heuristics 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ModularTraverso"
@@ -430,8 +373,7 @@ name "enu:adjusting-the-monomial"
 
 \end_inset
 
-every time the algorithm meets the coefficient problematic for zero testing
- add special polynomial reducing this coefficient to the ideal 
+add special polynomials to reduce problematic coefficient 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "NumericalComputationGB,NumericalComputationOfGBVarSubsttution,GroebnerInExtFields,ArtificialDiscontinuities"
@@ -443,10 +385,7 @@ key "NumericalComputationGB,NumericalComputationOfGBVarSubsttution,GroebnerInExt
 
 \end_deeper
 \begin_layout Standard
-Most of these approaches considerably change the situation for signature-based
- algorithms applied to approximate data compared to their application to
- finite fields.
- With approaches 
+Approaches 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:in-Q"
@@ -460,29 +399,10 @@ reference "enu:as-symbols"
 
 \end_inset
 
- we can't more express the speed of algorithm in the number of arithmetic
- operations with coefficients, because those operations themselves are not
- constant time operations.
- This leads to the significant slowdown because of the absolute value of
- numerators growth for the approach 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "enu:in-Q"
-
-\end_inset
-
- and symbolic expressions growth for the approach 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "enu:as-symbols"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-The possibility to combine approach 
+ make the approximate variant much slower than the same algorithm applied
+ to finite fields because non-constant complexity of arithmetic operations
+ with coefficients.
+ The possibility to combine approach 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:other- basis"
@@ -491,7 +411,10 @@ reference "enu:other- basis"
 
  with a signature-based algorithms is an open question because they are
  initially designed for Gröbner basis.
- The approach 
+\end_layout
+
+\begin_layout Standard
+The approach 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:other-fields"
@@ -505,38 +428,43 @@ key "ModularTraverso"
 
 \end_inset
 
- is perfect in terms of computational speed: the computation time differs
- from the finite field case only by fixed task-independent multiplier.
- Unfortunately the used heuristics sometimes can lead to wrong answer and
- there is no any probability estimations of such case, so while the approach
- may be used in practice, it lacks the strict proof.
-\end_layout
-
-\begin_layout Standard
-In 
+ is perfect in terms of computational speed.
+ But the heuristics can lead to wrong answer and there is no any probability
+ estimations of such case, so while the approach may be used in practice,
+ it lacks the strict proof.
+ In 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "GroebnerInExtFields"
 
 \end_inset
 
-the TSV method based on approach 
+ the TSV method based on approach 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:adjusting-the-monomial"
 
 \end_inset
 
- was successfully combined with signature-based algorithm F5, but the combined
- variant has a serious drawback: after every polynomial addition the algorithm
- is restarted from the beginning because signature based algorithms require
- particular order in input polynomial processing.
- 
-\end_layout
+ was successfully combined with signature-based algorithm F5.
+ But it has a serious slowdown compared to original F5: after every polynomial
+ addition the F5 is restarted from the beginning because signature based
+ algorithms require particular order in input polynomial processing.
+ This work introduces methods based on approaches 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:other-fields"
 
-\begin_layout Standard
-This work introduces methods based on last two approaches that try to solve
- above mentioned problems.
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:adjusting-the-monomial"
+
+\end_inset
+
+ that try to solve above mentioned problems.
 \end_layout
 
 \begin_layout Section
@@ -549,13 +477,13 @@ Before formulating these methods we need to prepare the formal statement
  We assume that approximate input data consists of a multivariate polynomial
  equations system with complex coefficients and for each coefficient we
  know the maximum inaccuracy of it's value.
- Approximate numbers are defined in a such way that this input data can
+ Approximate numbers are defined in a such way that such input data can
  be easily represented by them.
  The 
 \emph on
 approximate number
 \emph default
- is defined as a pair 
+ is a pair 
 \begin_inset Formula $\left(a,\varepsilon\right)$
 \end_inset
 
@@ -593,10 +521,7 @@ specializations
 \end_layout
 
 \begin_layout Standard
-Every coefficient of approximate input data is written as approximate number.
- This includes exactly known coefficients -- they are represented by approximate
- numbers with zero variation radius.
- For every approximate number in input we can take some it's specialization
+For every approximate number in input we can take some it's specialization
  and get the polynomial system in 
 \begin_inset Formula $\mathbb{C}$
 \end_inset
@@ -619,8 +544,17 @@ Specializations of solution
 \end_inset
 
 .
- Now we formulate the main relation that will be requirement for the approximate
- solution: 
+ The design of approximate computations is based on the following 
+\emph on
+approximation idea
+\emph default
+: the approximate result of some computation should have specializations
+ equal to any of exact results corresponding to computation in 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+ performed with some input data specialization.
+ Applying this to the whole task we get: 
 \begin_inset Formula $\forall$
 \end_inset
 
@@ -634,83 +568,13 @@ Specializations of solution
 \end_inset
 
  for the exact input data specialization.
- The reverse is not required: some specialization of solution can be exact
- solutions of neither input data specialization.
-\end_layout
-
-\begin_layout Standard
-Such solution definition successfully collaborates with the task where some
- situation is known to be described by polynomials, but their coefficients
- are found empirically.
- So it is known that real situation is exactly described by one of input
- data specializations.
- The given approximate solution definition extends the correspondence to
- the solution: the real situation is known to be exactly described by one
- of solution specializations.
- The drawback of such definition is in the possibility to get formally correct
- but impractical solution, because even for system with zero variation radius
- we can take as a solution approximate values with extremely huge variation
- radii.
- This problem is not concerned further and the results are assumed precise
- enough to be practically useful.
- The main directions are computation speeds and proof of solution correctness
- in terms of given approximate solution definition.
-\end_layout
-
-\begin_layout Standard
-The extension of the Gröbner basis concept to the approximate numbers also
- derives from the definition of approximate solution.
- The set of approximate polynomials 
-\begin_inset Formula $G$
-\end_inset
-
- is called 
-\emph on
-approximate
-\emph default
- 
-\emph on
-Gröbner basis
-\emph default
- of ideal generated by approximate polynomials 
-\begin_inset Formula $F$
-\end_inset
-
- iff exact Gröbner basis of every 
-\begin_inset Formula $F$
-\end_inset
-
- specialization is some 
-\begin_inset Formula $G$
-\end_inset
-
- specialization.
- This definition inspires the flow of algorithms for computing approximate
- Gröbner basis which in turn inspires the definitions for primitive field
- operations for approximate numbers.
- The inspired idea is simple: the approximate result of some computation
- should have specializations equal to any of exact results corresponding
- to computation in 
-\begin_inset Formula $\mathbb{C}$
-\end_inset
-
- performed with some input data specialization.
- This idea will be referred later as 
-\emph on
-approximation idea
-\emph default
-.
-
-\emph on
- 
-\emph default
-Eventually arithmetic operations are defined as follows:
+ Applying it to arithmetic operations we get their definitions:
 \end_layout
 
 \begin_layout Labeling
 \labelwidthstring Multiplication
 Addition 
-\begin_inset Formula $(a_{1},\varepsilon_{1})+(a_{2},\varepsilon_{2})=(a_{1}+a_{2},\varepsilon_{1}+\varepsilon_{2})$
+\begin_inset Formula $(a_{1},\varepsilon_{1})+(a_{2},\varepsilon_{2}):=(a_{1}+a_{2},\varepsilon_{1}+\varepsilon_{2})$
 \end_inset
 
 .
@@ -719,11 +583,7 @@ Addition
 \begin_layout Labeling
 \labelwidthstring Multiplication
 Multiplication 
-\begin_inset Formula $(a_{1},\varepsilon_{1})\times(a_{2},\varepsilon_{2})=(a_{1}a_{2},\varepsilon_{1}\left|a_{2}\right|+\varepsilon_{2}\left|a_{1}\right|+\varepsilon_{1}\varepsilon_{2})$
-\end_inset
-
-, for example 
-\begin_inset Formula $(a_{1},\varepsilon_{1})\times(a_{2},0)=(a_{1}a_{2},\varepsilon_{1}\left|a_{2}\right|)$
+\begin_inset Formula $(a_{1},\varepsilon_{1})\times(a_{2},\varepsilon_{2}):=(a_{1}a_{2},\varepsilon_{1}\left|a_{2}\right|+\varepsilon_{2}\left|a_{1}\right|+\varepsilon_{1}\varepsilon_{2})$
 \end_inset
 
 .
@@ -731,12 +591,8 @@ Multiplication
 
 \begin_layout Labeling
 \labelwidthstring Multiplication
-Negation defined by multiplying with 
-\begin_inset Formula $\left(-1,0\right)$
-\end_inset
-
-: 
-\begin_inset Formula $-(a,\varepsilon)=(a,\varepsilon)\times\left(-1,0\right)=(-a,\varepsilon).$
+Negation based on multiplication: 
+\begin_inset Formula $-(a,\varepsilon):=(a,\varepsilon)\times\left(-1,0\right)=(-a,\varepsilon).$
 \end_inset
 
 
@@ -744,33 +600,26 @@ Negation defined by multiplying with
 
 \begin_layout Labeling
 \labelwidthstring Multiplication
-Inversion defined only for approximate numbers not having zero specialization,
- or equivalently for numbers with 
-\begin_inset Formula $\left|a\right|-\varepsilon>0$
+Inversion defined only if zero isn't 
+\begin_inset Formula $(a,\varepsilon)$
 \end_inset
 
-:
+ specialization (
+\begin_inset Formula $\Longleftrightarrow\left|a\right|-\varepsilon>0$
+\end_inset
+
+):
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\frac{1}{(a,\varepsilon)}=\left(\frac{1}{a},\frac{\varepsilon}{\left|a\right|\left(\left|a\right|-\varepsilon\right)}\right).
+\frac{1}{(a,\varepsilon)}:=\left(\frac{1}{a},\frac{\varepsilon}{\left|a\right|\left(\left|a\right|-\varepsilon\right)}\right).
 \]
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-The limitations of input data for inversion operations is the expression
- of zero testing problem mentioned above: we can't approximately invert
- a number if we are unsure about it's zero equality.
- So, the inversion limitations is the reason for impossibility of direct
- application of signature-based approximate Gröbner computation algorithm
- to approximate numbers: at some step the algorithm may fail to invert the
- leading coefficient.
 \end_layout
 
 \begin_layout Standard
@@ -792,70 +641,6 @@ Non-invertible approximate elements
 \end_layout
 
 \begin_layout Standard
-To analyze deeper the problem of non-invertible approximate elements in
- the process of Gröbner basis computation we require some important properties
- about used algorithm:
-\end_layout
-
-\begin_layout Enumerate
-it is formulated with respect to arbitrary field;
-\end_layout
-
-\begin_layout Enumerate
-it's flow depends on concrete elements values only via zero-testings for
- a coefficient in a sum of polynomials needed to determine some monomial
- presence in the sum;
-\end_layout
-
-\begin_layout Enumerate
-the field operations are not used directly, instead algorithms are formulated
- in terms of the reduction operation: a polynomial 
-\begin_inset Formula $g$
-\end_inset
-
- with invertible leading coefficient is used to reduce monomial 
-\begin_inset Formula $M$
-\end_inset
-
- in polynomial 
-\begin_inset Formula $f$
-\end_inset
-
-.
- The reduction is possible only if 
-\begin_inset Formula $\HM\left(g\right)|M$
-\end_inset
-
-, the reduction result 
-\begin_inset Formula $f'$
-\end_inset
-
- is equal to 
-\begin_inset Formula $f+c\frac{M}{\HM\left(g\right)}$
-\end_inset
-
- for some field coefficient 
-\begin_inset Formula $c$
-\end_inset
-
- and doesn't contain monomial 
-\begin_inset Formula $M$
-\end_inset
-
- with non-zero coefficient.
-\end_layout
-
-\begin_layout Standard
-No limitations are stated for operations that are not field-related, like
- multiplying polynomial by a monomial or taking leading monomial.
- In practice this requirement is satisfied for nearly all signature-based
- algorithms -- some of them are initially formulated in a conforming form,
- others can be trivially reformulated.
- The theory below is quite algorithm independent, but it is assumed that
- some algorithm satisfying the above requirements is selected.
-\end_layout
-
-\begin_layout Standard
 \begin_inset Note Note
 status open
 
@@ -865,14 +650,13 @@ There is a need to say that we are speaking only about first difference
 
 \end_inset
 
- This requirement allows to compare the runs of same algorithm on approximate
- input and on it's specializations.
- The significant difference may arise in two places:
+ The comparison of same algorithm runs on the approximate input and on it's
+ specializations reveals the difference in two cases:
 \end_layout
 
 \begin_layout Itemize
-the approximated algorithm during attempt to perform reduction with the
- polynomial with non-invertible leading coefficient;
+approximated algorithm attempts to perform reduction by polynomial with
+ non-invertible leading coefficient;
 \end_layout
 
 \begin_layout Itemize
@@ -883,38 +667,40 @@ zero-testing of some monomial coefficient gives zero for the specialization
 \end_layout
 
 \begin_layout Standard
-In both cases the difference is a consequence of the non-invertible elements
- appearance.
- Modular method is designed to fix some of them by replacing with exact
- zero or invertible elements.
- At first there is a need for classification of non-invertible approximate
- elements appeared Gduring application of the algorithm to concrete approximate
- input:
+In both cases the difference is inspired by non-invertible approximate elements.
+ They can be classified to several kinds:
 \end_layout
 
 \begin_layout Itemize
-such element is called 
+element is 
 \emph on
 symbolic zero
 \emph default
- if the corresponding coefficient is zero in the algorithm application to
- any of input data specializations;
+ if the corresponding 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+-coefficient is zero in the algorithm application to any of input specialization
+s;
 \end_layout
 
 \begin_layout Itemize
-such element is called 
+element is 
 \emph on
 computation-introduced zero
 \emph default
- if the corresponding coefficient is non-zero in the algorithm application
- to any of input data specializations;
+ if the corresponding 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+-coefficient is non-zero in the algorithm application to any of input specializa
+tions;
 \end_layout
 
 \begin_layout Itemize
-in the other case when some specializations give non-zero coefficient and
- others give exactly zero such element is called 
+in the other case when the element is called 
 \emph on
-input-inspired zero .
+input-inspired zero.
 \end_layout
 
 \begin_layout Section
