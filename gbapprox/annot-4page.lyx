@@ -546,7 +546,7 @@ Specializations of solution
 .
  The design of approximate computations is based on the following 
 \emph on
-approximation idea
+approximation rule
 \emph default
 : the approximate result of some computation should have specializations
  equal to any of exact results corresponding to computation in 
@@ -568,7 +568,7 @@ approximation idea
 \end_inset
 
  for the exact input data specialization.
- Applying it to arithmetic operations we get their definitions:
+ Applying the rule to arithmetic operations we get their definitions:
 \end_layout
 
 \begin_layout Labeling
@@ -628,7 +628,7 @@ status open
 
 \begin_layout Plain Layout
 Approximate representations with rationals - allowed lose of accuracy that
- doesn't heart approximation idea
+ doesn't heart approximation rule
 \end_layout
 
 \end_inset
@@ -651,7 +651,7 @@ There is a need to say that we are speaking only about first difference
 \end_inset
 
  The comparison of same algorithm runs on the approximate input and on it's
- specializations reveals the difference in two cases:
+ specializations reveals significant difference in two cases:
 \end_layout
 
 \begin_layout Itemize
@@ -660,10 +660,9 @@ approximated algorithm attempts to perform reduction by polynomial with
 \end_layout
 
 \begin_layout Itemize
-zero-testing of some monomial coefficient gives zero for the specialization
- but non-zero for approximate case.
- Though it is non-zero, it has a zero specialization due to approximation
- idea, so the approximate element is non-invertible.
+leading coefficient for approximate case is zero for the specialization.
+ It is non-invertible because has a zero specialization due to approximation
+ rule.
 \end_layout
 
 \begin_layout Standard
@@ -698,7 +697,7 @@ tions;
 \end_layout
 
 \begin_layout Itemize
-in the other case when the element is called 
+in the other case the element is called 
 \emph on
 input-inspired zero.
 \end_layout
@@ -708,56 +707,31 @@ Modular method
 \end_layout
 
 \begin_layout Standard
-The first two cases of non-invertible elements correspond to a situation
+The first two kinds of non-invertible elements correspond to a situation
  in which there is a chance to fix non-invertible approximate element by
- changing it to exactly zero (for symbolic zero) or to invertible element
- (for
+ changing it to zero (for symbolic zero) or to some invertible element (for
 \emph on
  
 \emph default
-computation-introduced zero) and still keep the approximation idea satisfied.
+computation-introduced zero) and still keep the approximation rule satisfied.
  The trivial approach to determine possibility of such replacement is keeping
- a symbolic parametric representation of each coefficient with parameters
- corresponding to approximate numbers in input.
- Such representations allows to find some exact cancellations which in some
- cases can lead to empty zero polynomial (symbolic zero case) or polynomial
- expression that allows to construct more exact approximate number than
- direct algorithm application (computation-introduced zero case).
- In the latter case more exact number may be invertible.
-\end_layout
-
-\begin_layout Standard
-The problem of this trivial approach is speed and memory requirements for
- symbolic computation -- both are not 
-\begin_inset Formula $O(1)$
-\end_inset
-
- compared to simple approximate algorithm.
- In
+ a representation of each coefficient as symbolic expression of input data
+ coefficients and testing if it is identically equal to zero.
+ The problem of this trivial approach is its slowness.
+ In 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ModularTraverso"
 
 \end_inset
 
-an optimization is proposed: symbolic polynomials with parameters are replaced
- by polynomials in finite field with random values substituted in place
- of parameters.
- Zero coefficient appeared in such polynomials correspond to zero coefficient
- in symbolic polynomial with high probability -- the situation when the
- monomial is absent due to full cancellation.
- This technique allows to find some symbolic zeros in approximate data in
- the following way: the algorithm is simultaneously applied to approximate
- data and finite field data, and if non-invertible approximate element correspon
-d to zero finite field element it is replaced by exact zero too.
- Unfortunately this optimization lacks the incorrect result probability
- estimation, and such estimation is hard to construct because the complexity
- of replaced symbolic polynomials is unknown.
-\end_layout
-
-\begin_layout Standard
-The modular method described below is more complex, allows fixing of some
- computation-introduced zeros and giving reasonable estimation for incorrect
+ an optimization is proposed: replace symbolic expressions with its values
+ in finite field.
+ Zeroes in finite field correspond to identically zero expressions with
+ high probability.
+ Unfortunately the incorrect result probability estimation is not given.
+ The modular method proposed below is more complex, allows fixing of some
+ computation-introduced zeros and gives reasonable estimation for incorrect
  result probability, but lacks the time complexity comparison with other
  variants.
  Its flow is following:
@@ -932,10 +906,7 @@ Introducing real-weighted order for TSV method
 \begin_layout Standard
 Unfortunately modular methods can't do anything with input-inspired zeros,
  because any approximate number in the corresponding place that satisfy
- approximation idea will be non-invertible but not exactly zero.
- If the algorithm requires inversion of such number modular methods abandon
- the task.
- So another method is required to overcome this problem.
+ approximation rule will be non-invertible but not exactly zero.
  The TSV method developed in 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -943,44 +914,35 @@ key "GroebnerInExtFields"
 
 \end_inset
 
-solves this problem by adding to input data a new lesser-than-others monomial
- 
-\begin_inset Formula $y_{k}$
-\end_inset
-
- and a polynomial of the form 
-\begin_inset Formula $M_{k}-y_{k}$
-\end_inset
-
- every time the algorithm tries to invert non-invertible approximate number
+ solves this problem.
+ Every time the algorithm tries to invert non-invertible approximate number
  being a coefficient of monomial 
 \begin_inset Formula $M_{k}$
 \end_inset
 
-.
- The presence of such polynomial in the input data leads to reducing the
- monomial 
-\begin_inset Formula $M_{k}$
+ it adds to input data a polynomial of the form 
+\begin_inset Formula $M_{k}-y_{k}$
 \end_inset
 
- in other polynomials, so the algorithm doesn't try to invert coefficient
- of 
-\begin_inset Formula $M_{k}$
-\end_inset
-
- because it becomes zero.
- The coefficient of 
+ where 
 \begin_inset Formula $y_{k}$
 \end_inset
 
- becomes non-invertible but it is lesser-than-others monomial and the algorithm
- doesn't try to invert its coefficient.
+ is a new lesser-than-others monomial that extends polynomial ring.
+ Such polynomial reduces the term with 
+\begin_inset Formula $M_{k}$
+\end_inset
+
+ in other polynomials, so the their leading monomial changes.
 \end_layout
 
 \begin_layout Standard
-Addition of the extra polynomial to input data has two important consequences.
- First is the extension of the solved problem -- the algorithm doesn't find
- the requested Gröbner basis of ideal 
+As the side effect of such additions the algorithm find a Gröbner basis
+ of some extended ideal in an extended polynomial ring 
+\begin_inset Formula $\mathcal{P}^{E}$
+\end_inset
+
+ instead of Gröbner basis of ideal 
 \family roman
 \series medium
 \shape up
@@ -1012,22 +974,24 @@ Addition of the extra polynomial to input data has two important consequences.
 \begin_inset Formula $\mathcal{P}$
 \end_inset
 
- but a Gröbner basis of some extended ideal in an extended polynomial ring
- 
-\begin_inset Formula $\mathcal{P}^{E}$
+.
+ This isn't a problem for polynomial system solving because the 
+\begin_inset Quotes eld
 \end_inset
 
-.
- To allow application of such object to polynomial system solving the action
- matrix method for system solving 
+action matrix method
+\begin_inset Quotes erd
+\end_inset
+
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "UsingAlgebraicGeometry"
 
 \end_inset
 
- is reformulated in more general form: the usage of Gröbner basis is replaced
- by usage of normal form operator giving coordinates in some basis of 
+ can be reformulated to use some normal form operator giving coordinates
+ in some basis of 
 \family roman
 \series medium
 \shape up
@@ -1043,7 +1007,7 @@ key "UsingAlgebraicGeometry"
 \begin_inset Formula $\mathcal{P}/\left(f_{1},\dots,f_{m}\right)$
 \end_inset
 
-.
+ instead of Gröbner basis.
 
 \family default
 \series default
@@ -1056,51 +1020,13 @@ key "UsingAlgebraicGeometry"
 \uwave default
 \noun default
 \color inherit
- To find such operator from extended Gröbner basis we compose the normal
- form 
-\begin_inset Quotes eld
-\end_inset
-
-reduction by basis operator
-\begin_inset Quotes erd
-\end_inset
-
+ Such operator can be constructed from reduction by the extended basis in
  
-\begin_inset Formula $N:\mathcal{P}^{E}\rightarrow\mathcal{P}^{E}$
-\end_inset
-
- defined by extended basis with a ring narrow operator 
-\begin_inset Formula $e^{-}:\mathcal{P}^{E}\rightarrow\mathcal{P}$
-\end_inset
-
- which replaces all added variables 
-\begin_inset Formula $y_{k}$
-\end_inset
-
- by corresponding monomials 
-\begin_inset Formula $M_{k}$
-\end_inset
-
-.
- The composition 
-\begin_inset Formula $e^{-}\circ N$
-\end_inset
-
- acts from 
 \begin_inset Formula $\mathcal{P}^{E}$
 \end_inset
 
- to 
-\begin_inset Formula $\mathcal{P}$
-\end_inset
-
- and can be limited to desired 
-\begin_inset Formula $\mathcal{P}\rightarrow\mathcal{P}$
-\end_inset
-
- operator.
- This way the extended basis can be used for system solving without introducing
- the idea of extended ring in the solving method itself.
+ .
+ 
 \end_layout
 
 \begin_layout Standard

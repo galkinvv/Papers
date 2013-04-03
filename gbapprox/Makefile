@@ -4,6 +4,6 @@
 
 %.xetex.pdf: %.xetex.tex
 	mkdir -p "/tmp/$^"
-	cp $^ "/tmp/$^"
+	cp $^ *.cls "/tmp/$^"
 	(cd "/tmp/$^" && xelatex $^ ) && bibtex /tmp/$^/*.aux && (cd /tmp/$^ && xelatex $^ && xelatex $^)
 	mv /tmp/$^/$@ .
