@@ -295,7 +295,7 @@ One of the modern practical applications of commutative algebra is its usage
  
 \begin_inset CommandInset citation
 LatexCommand cite
-key "FaugereF5,F5C,EderF5A,G2V,GVW,PracticalGB,HuangConception"
+key "FaugereF5,GVW,GroebnerInExtFields"
 
 \end_inset
 
@@ -377,7 +377,7 @@ name "enu:adjusting-the-monomial"
 add special polynomials to reduce problematic coefficient 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "NumericalComputationGB,NumericalComputationOfGBVarSubsttution,GroebnerInExtFields,ArtificialDiscontinuities"
+key "GroebnerInExtFields"
 
 \end_inset
 
@@ -803,10 +803,9 @@ Introducing real-weighted order for TSV method
 \end_layout
 
 \begin_layout Standard
-Unfortunately modular methods can't do anything with input-inspired zeros,
- because any approximate number in the corresponding place that satisfy
- approximation rule will be non-invertible but not exactly zero.
- The TSV method developed in 
+Modular methods may fail to find some symbolic zeros and can't do anything
+ with input-inspired zeros.
+ TSV method 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "GroebnerInExtFields"
@@ -814,21 +813,21 @@ key "GroebnerInExtFields"
 \end_inset
 
  solves this problem.
- Every time the algorithm tries to invert non-invertible approximate number
- being a coefficient of monomial 
+ Every time the algorithm tries to invert non-invertible coefficient of
+ monomial 
 \begin_inset Formula $M_{k}$
 \end_inset
 
- it adds to input data a polynomial of the form 
+ it adds polynomial 
 \begin_inset Formula $M_{k}-y_{k}$
 \end_inset
 
- where 
+ to input data where 
 \begin_inset Formula $y_{k}$
 \end_inset
 
- is a new lesser-than-others monomial that extends polynomial ring.
- Such polynomial reduces the term with 
+ is a new lesser-than-others monomial.
+ Such polynomial reduces the 
 \begin_inset Formula $M_{k}$
 \end_inset
 
@@ -901,10 +900,9 @@ Other consequence is specific for signature-based algorithms.
 \end_inset
 
  should have a signature smaller than current to be used as reducer.
- The most widely used orders on signatures -- POT and Schreyer -- are quite
- limited for our case: they don't allow to make addition polynomial having
- a signature greater than all already processed polynomials except the current
- one.
+ The most widely used signature orders -- POT and Schreyer -- are quite
+ limited for our case: they don't allow addition polynomial to have a signature
+ greater than all already processed polynomials except the current one.
  So 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -912,7 +910,7 @@ key "GroebnerInExtFields"
 
 \end_inset
 
- solves this problem by restarting algorithm after every addition.
+ restarts algorithm after every addition.
  To allow insertion of signature just before current we propose a generalized
  order with parameter vectors: monomials 
 \begin_inset Formula $w=(w_{1},\dots,w_{m})$
@@ -955,21 +953,16 @@ The real-weighted order gives TSV method the ability to add a polynomial
 \begin_inset Formula $M_{k}-y_{k}$
 \end_inset
 
- to input data with a signature that is just before the signature 
-\begin_inset Formula $\Sss ti$
-\end_inset
-
- of currently processed polynomial.
- Such signature allows to proceed without algorithm restart, because the
- signature of added polynomial exactly correspond to the signature that
- should be processed now.
+ to input data with a signature just before the signature of currently processed
+ polynomial and allows to proceed without algorithm restart, because it
+ exactly corresponds to the signature that should be processed now.
 \end_layout
 
 \begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
 bibfiles "../f5_references"
-options "alpha"
+options "plain"
 
 \end_inset
 
