@@ -2,7 +2,7 @@
 \lyxformat 413
 \begin_document
 \begin_header
-\textclass extarticle
+\textclass birkmult
 \begin_preamble
 \sloppy
 
@@ -136,6 +136,56 @@ figs-within-sections
 \end_header
 
 \begin_body
+
+\begin_layout Address
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+author{Vasily Galkin}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+address{Chair of Higher Algebra, Faculty of Mechanics and Mathematics, Moscow
+ State University, Moscow, Russia}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+email{galkin-vv@ya.ru}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Signature-based Gröbner basis computations for approximate input
+\end_layout
+
+\begin_layout Abstract
+This work develops the methods for application signature-based algorithms
+ for computing Gröbner basis to the inexact input data in 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+ derived from the task of solving approximate polynomial systems.
+ The first method is based on the idea of modular computations which is
+ known to give incorrect result with some probability and extends it in
+ a way that this probability can be strictly estimated.
+ The second method is based on the previously known TSV (Term Substitution
+ with Variables) strategy and develops the signature ordering that allows
+ TSV to be applied to signature-based algorithms without restarts.
+\end_layout
 
 \begin_layout Standard
 \begin_inset FormulaMacro
@@ -278,22 +328,6 @@ guillemotright
 \end_inset
 
 
-\end_layout
-
-\begin_layout Title
-Approximate polynomial systems: using signature-based Gröbner basis algorithms
-\end_layout
-
-\begin_layout Author
-Vasily Galkin
-\end_layout
-
-\begin_layout Address
-MSU, Faculty of Mechanics and Mathematics
-\end_layout
-
-\begin_layout Right Address
-galkin-vv@ya.ru
 \end_layout
 
 \begin_layout Section
