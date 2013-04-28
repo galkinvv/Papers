@@ -1,0 +1,998 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass beamer
+\begin_preamble
+\setbeamertemplate{navigation symbols}{}%remove navigation symbols
+%\input{gost/babelbst.tex}
+
+\AtBeginSection{\frame{\tableofcontents[currentsection]}}
+
+\usepackage{bookmark}
+\usepackage{etoolbox}
+\makeatletter
+\apptocmd{\beamer@@frametitle}{
+  % keep this line to add the frame title to the TOC at the "subsection level"
+  \addtocontents{toc}{\protect\beamer@subsectionintoc{\the\c@section}{0}{#1}{\the\c@page}{\the\c@part}%
+        {\the\beamer@tocsectionnumber}}%
+  % keep this line to add a bookmark that shows up in the PDF TOC at the subsection level
+  \bookmark[page=\the\c@page,level=3]{#1}
+  }%
+  {\message{** patching of \string\beamer@@frametitle succeeded **}}%
+  {\message{** patching of \string\beamer@@frametitle failed **}}%
+\makeatother
+
+\author{Галкин Василий \\\texttt{galkin-vv@yandex.ru}}
+\title{Сигнатурные алгоритмы вычисления базисов Грёбнера для решения 
+ полиномиальных систем}
+\end_preamble
+\options hyperref={unicode=false},russian
+\use_default_options false
+\maintain_unincluded_children false
+\language russian
+\language_package auto
+\inputencoding utf8
+\fontencoding global
+\font_roman CMU Serif
+\font_sans CMU Sans Serif
+\font_typewriter CMU Typewriter Text
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics xetex
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\pdf_quoted_options "unicode=false"
+\papersize default
+\use_geometry true
+\use_amsmath 2
+\use_esint 0
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation landscape
+\suppress_date true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 1
+\tocdepth 1
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language french
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout BeginFrame
+Идея модулярного метода
+\end_layout
+
+\begin_layout BeginFrame
+Оценка модуля
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\GVWl}{<_{\text{H}}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\GVWg}{>_{\text{\textnormal{H}}}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
+\end_inset
+
+	
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\Sig}{\mathcal{S}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\HM}{\mathrm{HM}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\HC}{\mathrm{HC}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\LCM}{\mathrm{LCM}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\totaldeg}{\mathrm{deg}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\poly}{\mathrm{poly}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\sigidx}{\mathrm{index}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Institute
+Московский государственный университет
+\begin_inset Newline newline
+\end_inset
+
+имени М.В.
+\begin_inset space ~
+\end_inset
+
+Ломоносова
+\begin_inset Newline newline
+\end_inset
+
+Механико-математический факультет
+\end_layout
+
+\begin_layout BeginFrame
+Цели работы
+\end_layout
+
+\begin_layout Standard
+Основная цель -- создание теоретического фундамента для применения сигнатурных
+ алгоритмов вычисления базиса Грёбнера к решению приближённых систем полиномиаль
+ных уравнений.
+\end_layout
+
+\begin_layout Itemize
+Анализ сигнатурных алгоритмов
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Определение свойств многочленов, выбираемых F5
+\end_layout
+
+\begin_layout Itemize
+Доказательство остановки F5
+\end_layout
+
+\begin_layout Itemize
+Формулировка простого аналога
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Применение к приближённым вычислениям
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Строгая формулировка задачи приближённого решения системы
+\end_layout
+
+\begin_layout Itemize
+Классификация необратимых приближённых элементов
+\end_layout
+
+\begin_layout Itemize
+Вероятностный модулярный метод для определения класса необратимого элемента
+\end_layout
+
+\begin_layout Itemize
+Метод замены мономов переменными (TSV) для перемещения необратимых старших
+ элементов
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+Сигнатурные алгоритмы
+\end_layout
+
+\begin_layout Standard
+Сходства с алгоритмом Бухбергера
+\end_layout
+
+\begin_layout Itemize
+Содержат очередь редуцируемых многочленов
+\end_layout
+
+\begin_layout Itemize
+Каждый её элемент или отбрасывается правилами, или редуцируется
+\end_layout
+
+\begin_layout Standard
+Вычисляют сигнатуру и используют её
+\end_layout
+
+\begin_layout Itemize
+Разрешены только редукции, сохраняющие сигнатуры, с использованием удовлетворяющ
+их критериям редукторов
+\end_layout
+
+\begin_layout Itemize
+Правила отбрасывания элементов очереди анализируют сигнатуры
+\end_layout
+
+\begin_layout Standard
+Сигнатурные алгоритмы -- одни из наиболее эффективных для вычисления базиса
+ Грёбнера.
+\end_layout
+
+\begin_layout BeginFrame
+Алгоритмы вычисления базиса Грёбнера с приближёнными входными данными над
+ 
+\begin_inset Formula $\mathbb{R}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Вопрос о приближённом базисе Грёбнера в 
+\begin_inset Formula $\mathbb{R}$
+\end_inset
+
+ возникает из задачи решения полиномиальных систем, которые могут быть заданы
+ приближённо
+\end_layout
+
+\begin_layout Itemize
+Символические вычисления (исчерпывающий базис) -- рост символических коэффициент
+ов
+\end_layout
+
+\begin_layout Itemize
+Вычисления над 
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+ -- рост длины численных коэффициентов
+\end_layout
+
+\begin_layout Itemize
+Вычисления с оценкой точности -- проблемы нулей
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Определение численными методами
+\end_layout
+
+\begin_layout Itemize
+Определение модулярными методами
+\end_layout
+
+\begin_layout Itemize
+Изменение порядка на мономах
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+Приближённые числа
+\end_layout
+
+\begin_layout Definitions
+
+\emph on
+Приближённым (комплексным) числом
+\emph default
+ называется пара 
+\begin_inset Formula $(a,\varepsilon),\, a\in\mathbb{C},\,\varepsilon\in\mathbb{R}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Специализацией приближённого числа
+\emph default
+ 
+\begin_inset Formula $a$
+\end_inset
+
+ называется 
+\begin_inset Formula $a_{0}\in\mathbb{C},\,\left|a_{0}-a\right|<\varepsilon$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Формализация задачи поиска базиса Грёбнера: ищем множество, содержащее решения
+ при любых специализациях входных данных.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Отсюда должны вытекать требования к определению операций
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+Операции с приближёнными числами
+\end_layout
+
+\begin_layout Description
+Сложение 
+\begin_inset Formula $(a_{1},\varepsilon_{1})+(a_{2},\varepsilon_{2})=(a_{1}+a_{2},\varepsilon_{1}+\varepsilon_{2})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Умножение 
+\begin_inset Formula $(a_{1},\varepsilon_{1})\times(a_{2},\varepsilon_{2})=(a_{1}a_{2},\varepsilon_{1}\left|a_{2}\right|+\varepsilon_{2}\left|a_{1}\right|+\varepsilon_{1}\varepsilon_{2})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Вычитание на основе сложения и умножения на -1:
+\begin_inset Formula 
+\[
+(a_{1},\varepsilon_{1})-(a_{2},\varepsilon_{2})=(a_{1}-a_{2},\varepsilon_{1}+\varepsilon_{2})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Обращение определяется только для приближённых чисел, для которых 0 не является
+ специализацией, что эквивалентно 
+\begin_inset Formula $\left|a\right|-\varepsilon>0$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{1}{(a,\varepsilon)}=\left(\frac{1}{a},\frac{\varepsilon}{\left|a\right|\left(\left|a\right|-\varepsilon\right)}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+Классификация необратимых приближённых элементов
+\end_layout
+
+\begin_layout Definitions
+
+\end_layout
+
+\begin_layout Definitions
+
+\emph on
+символический ноль
+\emph default
+ -- при любой специализации входных данных соответствующие вычисления дают
+ точный ноль.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+ноль, индуцированный входными данными -- 
+\emph default
+некоторые, но не все, специализации дают точный ноль
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+ноль, внесённый вычислениями 
+\emph default
+-- не существует специализации, дающей точный ноль
+\end_layout
+
+\begin_layout BeginFrame
+Модулярный метод 
+\end_layout
+
+\begin_layout Itemize
+Вычислениями по произвольному модулю определяется предположительная комбинация
+ входных элементов для элемента базиса
+\end_layout
+
+\begin_layout Itemize
+Поиск аналога в приближённом случае сводится к решению линейной системы
+\end_layout
+
+\begin_layout Itemize
+Тест на символический ноль при решении системы в приближённых числах
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Точное -- символические вычисления над 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+ с заменой неточных входных значений на переменные
+\end_layout
+
+\begin_layout Itemize
+Вероятностное -- модулярные вычисления в конечном поле с заменой неточных
+ входных значений на произвольные элементы конечного поля
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+Расхождение между символическими и модулярными вычислениями
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+-многочлен тождественно обнуляется по выбранному модулю
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Оценка на максимальный коэффициент для определения максимального числа простых
+ чисел, на которые могут делиться все коэффициенты
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Модулярная специализация 
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+-многочлена имеет корень
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Оценка на максимальную степень, ограничивающая число корней
+\end_layout
+
+\end_deeper
+\begin_layout BeginFrame
+Итоговая оценка на модуль
+\end_layout
+
+\begin_layout Standard
+Оценка предлагает диапазон простых чисел, в котором доля чисел, могущих
+ привести к расхождению не более 
+\begin_inset Formula $2\alpha$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Начало диапазона 
+\begin_inset Formula $P_{0}>\sqrt{\frac{R2^{R}V}{\alpha}}.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Количество простых чисел в диапазоне 
+\begin_inset Formula $N_{p}>\frac{R2^{R}\log_{P_{0}}2Z_{0}}{\alpha}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $R$
+\end_inset
+
+ -- число строк в системе
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $V$
+\end_inset
+
+ -- количество приближённых коэффициентов во входных данных
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ -- максимальный числитель точного 
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+-коэффициента во входных данных
+\end_layout
+
+\begin_layout BeginFrame
+Метод TSV
+\end_layout
+
+\begin_layout Standard
+TSV (J.-C.
+ Faugère, Y.
+ Liang, 2011): Комбинирование алгоритмов нахождения базисов Грёбнера и приближён
+ных вычислений.
+ При получении старшего необратимого элемента в качестве коэффициента при
+ 
+\begin_inset Formula $x_{1}^{i_{1}}\cdots x_{m}^{i_{m}}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Itemize
+Добавляется новая переменная 
+\begin_inset Formula $y'$
+\end_inset
+
+, младше всех остальных
+\end_layout
+
+\begin_layout Itemize
+Для того, чтоб страший член редуцировался, идеал расширяется 
+\begin_inset Formula $I^{e}=(I,\, x_{1}^{i_{1}}\cdots x_{m}^{i_{m}}-y')$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+В случае сигнатурных алгоритмов выполняется перезапуск с самого начала,
+ поскольку сигнатура добавленного многочлена меньше текущей, а алгоритмы
+ требуют обработки в порядке возрастания сигнатур для своей корректной работы
+\begin_inset Note Note
+status open
+
+\begin_layout BeginFrame
+Порядки на сигнатурах
+\end_layout
+
+\begin_layout Plain Layout
+Порядок Term-Over-Pos на сигнатурах:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\[
+\left(t_{1},i_{1}\right)\prec\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & t_{1}<t_{2}\\
+ & t_{1}=t_{2},i{}_{1}<i_{2}
+\end{aligned}
+\right..
+\]
+
+\end_inset
+
+Порядок Pos-Over-Term на сигнатурах:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\[
+\left(t_{1},i_{1}\right)\prec\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & i{}_{1}<i_{2}\\
+ & i{}_{1}=i_{2},t_{1}<t_{2}
+\end{aligned}
+\right..
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Порядок Schreyer
+\begin_inset Formula $\prec$
+\end_inset
+
+ на сигнатурах:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\[
+\left(t_{1},i_{1}\right)\prec\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & t_{1}\HM(f_{i_{1}})<t_{2}\HM(f_{i_{2}})\\
+ & t_{1}\HM(f_{i_{1}})=t_{2}\HM(f_{i_{2}}),i{}_{1}<i_{2}
+\end{aligned}
+\right..
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+Применение TSV без перезапуска алгоритмов
+\end_layout
+
+\begin_layout Standard
+Взвешенный порядок 
+\begin_inset Formula $\prec_{w}$
+\end_inset
+
+ на сигнатурах с параметром -- вектором мономов 
+\begin_inset Formula $w=(w_{1},\dots,w_{m})$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left(t_{1},i_{1}\right)\prec_{w}\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & t_{1}w_{i_{1}}<t_{2}w_{i_{2}}\\
+ & t_{1}w_{i_{1}}=t_{2}w_{i_{2}},i{}_{1}<i_{2}
+\end{aligned}
+\right..
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Добавляется новая переменная 
+\begin_inset Formula $y'$
+\end_inset
+
+, младше всех остальных
+\end_layout
+
+\begin_layout Itemize
+Во входные данные вводится дополнительный многочлен 
+\begin_inset Formula $x_{1}^{i_{1}}\cdots x_{m}^{i_{m}}-y'$
+\end_inset
+
+ для того, чтоб страший член редуцировался
+\end_layout
+
+\begin_layout Itemize
+Параметр весов сигнатур расширяется мономов 
+\begin_inset Formula $w'$
+\end_inset
+
+, выбранным так, чтоб добавленный многочлен имел сигнатуру 
+\begin_inset Quotes fld
+\end_inset
+
+точно перед текущей
+\begin_inset Quotes frd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Алгоритм продолжается без перезапуска
+\end_layout
+
+\begin_layout BeginFrame
+Использование результата TSV для решения системы
+\end_layout
+
+\begin_layout Itemize
+Строится алгоритм 
+\family typewriter
+SingleStepSignatureGroebner
+\family default
+ для 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Модулярные вычисления для классификации нулей
+\end_layout
+
+\begin_layout Itemize
+Если необратимость устранить не удалось, применяется метод TSV
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+На основе найденного базиса в расширенном TSV идеале многочленов 
+\begin_inset Formula $I^{e}$
+\end_inset
+
+ строится оператор нормальной формы 
+\begin_inset Formula $\phi:I\rightarrow I$
+\end_inset
+
+ как композиция
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Вложения 
+\begin_inset Formula $Id^{e}:I\rightarrow I^{e}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Оператора нормальной формы в 
+\begin_inset Formula $I^{e}$
+\end_inset
+
+ - редукции по базису Грёбнера 
+\begin_inset Formula $\phi^{e}:I^{e}\rightarrow I^{e}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+Отображения 
+\begin_inset Formula $I^{e}\rightarrow I$
+\end_inset
+
+, индуцируемого заменами 
+\begin_inset Formula $y'\mapsto x_{1}^{i_{1}}\cdots x_{m}^{i_{m}}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Для решения полиномиальной системы применяется 
+\family typewriter
+метод матриц действия
+\family default
+, использующий лишь оператор нормальной формы 
+\begin_inset Formula $\phi$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout BeginFrame
+Основные результаты
+\end_layout
+
+\begin_layout Itemize
+Доказана остановка алгоритма F5 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Termination_of_Original_F5_Rus,Termination_of_Original_F5_arXiv"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Предложен алгоритм 
+\family typewriter
+SingleStepSignatureGroebner
+\family default
+, совмещающий эффективность сигнатурных алгоритмов с простыми доказательством
+ и реализацией.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SSG_Rus,SSG-arXiv"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Построена методика применения сигнатурного алгоритма 
+\family typewriter
+SingleStepSignatureGroebner 
+\family default
+для приближённых вычислений над 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+Публикации
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "/home/sealion/lapa/p/my_publications"
+options "alpha"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+Пример символического нуля
+\end_layout
+
+\begin_layout Example
+
+\family roman
+\begin_inset Formula 
+\[
+\begin{array}{ccc}
+\poly(f_{1})= & y^{2}z+a, & \Sig(f_{1})=\left(1,1\right)\\
+\poly(f_{2})= & y^{2}z^{2}+xz+1, & \Sig(f_{2})=\left(1,2\right)\\
+\poly(f_{3})= & y^{3}z+xy+1, & \Sig(f_{3})=\left(1,3\right)\\
+\poly(f_{4})= & \poly(f_{1})=y^{2}z+a, & \Sig(f_{4})=\left(1,1\right)\\
+\poly(f_{5})= & \poly(f_{2})-z\poly(f_{4})=xz-az+1, & \Sig(f_{5})=\left(1,2\right)\\
+\poly(f_{6})= & \poly(f_{3})-y\poly(f_{4})=xy-ay+1, & \Sig(f_{6})=\left(1,3\right)\\
+\poly(f_{7})= & z\poly(f_{6})-y\poly(f_{5})=\left(a-a\right)yz+z-y, & \Sig(f_{7})=\left(z,3\right)
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+Пример индуцированного или внесённого нуля
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+\begin{array}{ccc}
+\poly(f_{1})= & y^{2}z+z^{2}+az, & \Sig(f_{1})=\left(1,1\right)\\
+\poly(f_{2})= & xyz, & \Sig(f_{2})=\left(1,2\right)\\
+\poly(f_{3})= & xy^{2}+bx+1, & \Sig(f_{3})=\left(1,3\right)\\
+\poly(f_{4})= & \poly(f_{1})=y^{2}z+z^{2}+az, & \Sig(f_{4})=\left(1,1\right)\\
+\poly(f_{5})= & \poly(f_{2})=xyz, & \Sig(f_{5})=\left(1,2\right)\\
+\poly(f_{6})= & \poly(f_{3})=xy^{2}+bx+1, & \Sig(f_{6})=\left(1,3\right)\\
+\poly(f_{7})= & -\left(y\poly(f_{5})-x\poly(f_{4})\right)=xz^{2}+axz, & \Sig(f_{7})=\left(y,2\right)
+\end{array}
+\]
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+\poly(f_{8})=(z\poly(f_{6})-x\poly(f_{4}))+\poly(f_{7})=
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+=\left(\left(xy^{2}z+bxz+z\right)-\left(xy^{2}z+xz^{2}+axz\right)\right)+xz^{2}+axz=((b-a)+a)xz+z,
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\Sig(f_{8})=\left(z,3\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\end_body
+\end_document
