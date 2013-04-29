@@ -6,23 +6,22 @@
 \begin_preamble
 \setbeamertemplate{navigation symbols}{}%remove navigation symbols
 %\input{gost/babelbst.tex}
-
+\usetheme{Frankfurt}
 \setbeamertemplate{headline}
 {
   \leavevmode%
   \hbox{%
-  \begin{beamercolorbox}[wd=.75\paperwidth,ht=10ex,dp=1ex,left,leftskip=1em]{subsection in head/foot}%
-    \Large\insertsubsectionhead
-  \end{beamercolorbox}}%
-  \begin{beamercolorbox}[wd=.25\paperwidth,ht=10ex,dp=1ex,right,rightskip=1em]{section in head/foot}%
+  \begin{beamercolorbox}[wd=.1875\paperwidth,ht=10ex,dp=1ex,right,rightskip=1em]{section in head/foot}%
     \large\insertsectionhead
   \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.8125\paperwidth,ht=10ex,dp=1ex,left,leftskip=1em]{subsection in head/foot}%
+    \Large\insertsubsectionhead
+  \end{beamercolorbox}}%
   \vskip0pt%
 }
 
-\author{Галкин Василий \\\texttt{galkin-vv@yandex.ru}}
-\title{Сигнатурные алгоритмы вычисления базисов Грёбнера для решения 
- полиномиальных систем}
+\author{Vasily Galkin \\\texttt{galkin-vv@yandex.ru}}
+\title{Signature-based Gröbner basis computations for approximate input}
 \end_preamble
 \options hyperref={unicode=false},english
 \use_default_options false
@@ -198,19 +197,11 @@ status open
 \end_layout
 
 \begin_layout Institute
-Московский государственный университет
+Moscow State University
 \begin_inset Newline newline
 \end_inset
 
-имени М.В.
-\begin_inset space ~
-\end_inset
-
-Ломоносова
-\begin_inset Newline newline
-\end_inset
-
-Механико-математический факультет
+Faculty of Mechanics and Mathematics
 \end_layout
 
 \begin_layout Section*
@@ -309,7 +300,7 @@ Approximate number
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Definitions
 
 \emph on
 Специализацией приближённого числа
@@ -350,11 +341,11 @@ status open
 \end_layout
 
 \begin_layout Section
-Problems
+Problems of application
 \end_layout
 
 \begin_layout Subsection
-The root of problems: zero testings
+The root of problems: equality to zero
 \end_layout
 
 \begin_layout BeginFrame
@@ -362,23 +353,71 @@ The root of problems: zero testings
 \end_layout
 
 \begin_layout Standard
-zero testing problem
+Algorithm branching points: is 
+\begin_inset Formula $a=0$
+\end_inset
+
+ in 
+\begin_inset Formula $f=ax^{2}+by^{2}$
+\end_inset
+
+ ?
 \end_layout
 
-\begin_layout EndFrame
+\begin_layout Description
+formal determine 
+\begin_inset Formula $\HM(f)$
+\end_inset
 
+: is it 
+\begin_inset Formula $x^{2}$
+\end_inset
+
+ or 
+\begin_inset Formula $y$
+\end_inset
+
+ ?
 \end_layout
 
-\begin_layout Subsection
-Signature-specific limitations
-\end_layout
+\begin_layout Description
+practical can we reduce polynomial 
+\begin_inset Formula $x^{3}+xy$
+\end_inset
 
-\begin_layout BeginFrame
+ by 
+\begin_inset Formula $f$
+\end_inset
 
+ ?
 \end_layout
 
 \begin_layout Standard
-can't take arbitrary polynomial
+Branching points in signature-based algorithms are unavoidable:
+\end_layout
+
+\begin_layout Itemize
+coefficients of non-reducible highest monomials
+\end_layout
+
+\begin_layout Itemize
+polynomial choice is required for correctness
+\end_layout
+
+\begin_layout Standard
+Approximated numbers having zero specialization
+\end_layout
+
+\begin_layout Itemize
+may be input data coefficients
+\end_layout
+
+\begin_layout Itemize
+may appear as a result of inexact computations
+\end_layout
+
+\begin_layout Itemize
+don't allow comparison with zero with boolean result
 \end_layout
 
 \begin_layout EndFrame
@@ -386,7 +425,7 @@ can't take arbitrary polynomial
 \end_layout
 
 \begin_layout Section
-Known solutions
+Known methods
 \end_layout
 
 \begin_layout Subsection
@@ -447,7 +486,7 @@ Known solutions
 \end_layout
 
 \begin_layout Section
-New solutions
+New methods
 \end_layout
 
 \begin_layout Subsection
@@ -585,12 +624,16 @@ New solutions
 \end_layout
 
 \end_deeper
-\begin_layout BeginFrame
+\begin_layout EndFrame
 
 \end_layout
 
 \begin_layout Subsection
 Пример символического нуля
+\end_layout
+
+\begin_layout BeginFrame
+
 \end_layout
 
 \begin_layout Example
@@ -614,12 +657,16 @@ New solutions
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout EndFrame
 
 \end_layout
 
 \begin_layout Subsection
 Пример индуцированного или внесённого нуля
+\end_layout
+
+\begin_layout BeginFrame
+
 \end_layout
 
 \begin_layout Example
@@ -665,12 +712,16 @@ New solutions
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout EndFrame
 
 \end_layout
 
 \begin_layout Subsection
 Модулярный метод 
+\end_layout
+
+\begin_layout BeginFrame
+
 \end_layout
 
 \begin_layout Itemize
@@ -705,12 +756,16 @@ New solutions
 \end_layout
 
 \end_deeper
-\begin_layout BeginFrame
+\begin_layout EndFrame
 
 \end_layout
 
 \begin_layout Subsection
 Расхождение между символическими и модулярными вычислениями
+\end_layout
+
+\begin_layout BeginFrame
+
 \end_layout
 
 \begin_layout Itemize
@@ -741,12 +796,16 @@ New solutions
 \end_layout
 
 \end_deeper
-\begin_layout BeginFrame
+\begin_layout EndFrame
 
 \end_layout
 
 \begin_layout Subsection
 Итоговая оценка на модуль
+\end_layout
+
+\begin_layout BeginFrame
+
 \end_layout
 
 \begin_layout Standard
@@ -799,12 +858,16 @@ New solutions
 -коэффициента во входных данных
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout EndFrame
 
 \end_layout
 
 \begin_layout Subsection
 Метод TSV
+\end_layout
+
+\begin_layout BeginFrame
+
 \end_layout
 
 \begin_layout Standard
@@ -906,12 +969,16 @@ status open
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout EndFrame
 
 \end_layout
 
 \begin_layout Subsection
 Применение TSV без перезапуска алгоритмов
+\end_layout
+
+\begin_layout BeginFrame
+
 \end_layout
 
 \begin_layout Standard
@@ -976,12 +1043,16 @@ status open
 Алгоритм продолжается без перезапуска
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout EndFrame
 
 \end_layout
 
 \begin_layout Subsection
 Использование результата TSV для решения системы
+\end_layout
+
+\begin_layout BeginFrame
+
 \end_layout
 
 \begin_layout Itemize
@@ -1064,61 +1135,11 @@ SingleStepSignatureGroebner
 .
 \end_layout
 
-\begin_layout BeginFrame
-
-\end_layout
-
-\begin_layout Subsection
-Main results
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Note Note
-status open
-
-\begin_layout Itemize
-Доказана остановка алгоритма F5 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Termination_of_Original_F5_Rus,Termination_of_Original_F5_arXiv"
-
-\end_inset
-
+\begin_layout EndFrame
 
 \end_layout
 
 \begin_layout Itemize
-Предложен алгоритм 
-\family typewriter
-SingleStepSignatureGroebner
-\family default
-, совмещающий эффективность сигнатурных алгоритмов с простыми доказательством
- и реализацией.
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "SSG_Rus,SSG-arXiv"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Построена методика применения сигнатурного алгоритма 
-\family typewriter
-SingleStepSignatureGroebner 
-\family default
-для приближённых вычислений над 
-\begin_inset Formula $\mathbb{C}$
-\end_inset
-
-
 \begin_inset Note Note
 status open
 
@@ -1137,12 +1158,12 @@ options "alpha"
 
 \end_layout
 
-\end_inset
-
+\begin_layout EndFrame
 
 \end_layout
 
-\begin_layout EndFrame
+\end_inset
+
 
 \end_layout
 
