@@ -55,12 +55,8 @@ The result correctness is shown for any input that terminates the algorithm,
 but the termination itself was proved only for the case of input being regular polynomial sequence.
 
 The proof of algorithm termination for any homogeneous input without reference to regularity is presented.
-The scheme contains two steps: first it is shown that if the algorithm does not
-terminate it eventually generates two polynomials where first is a
-reductor for the second. But first step does not show that this reduction
-is permitted by criteria introduced in F5. The second step shows that
-if such pair exists then there exists another pair for which the reduction
-is permitted by all criteria. Existence of such pair leads to contradiction.
+It is shown that if the algorithm doesn't terminate it generates polynomials $p_1, p_2$, where $p_2$ signature-safe reduces $p_1$,
+and for such pair algorithm already generated $p_3$ that signature-safe reduces $p_1$ and passes algorithm criteria, which is a contradiction.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
