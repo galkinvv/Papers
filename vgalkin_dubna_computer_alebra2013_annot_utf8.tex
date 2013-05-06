@@ -1,0 +1,92 @@
+\documentclass[A4, 12pt, twoside]{article}
+\usepackage{amsmath,amsfonts,amsthm,amssymb,amscd}
+ \usepackage{amssymb}
+ \usepackage[cp1251]{inputenc}
+ \usepackage[T2A]{fontenc}
+ \usepackage[all]{xy}
+ \usepackage{latexsym}
+ \usepackage{srcltx}
+ \usepackage{amsmath}
+ \usepackage{amsfonts}
+ \usepackage{amscd}
+ \usepackage{amssymb}
+ \usepackage{amsthm}
+ \usepackage{euscript}
+ \usepackage{url}
+ \usepackage{amssymb, amsthm}
+ \usepackage{mathrsfs}
+ \usepackage{srcltx}
+ \usepackage{hyperref}\usepackage{setspace}
+ \usepackage[russian,english]{babel}
+% \usepackage[pdftex]{graphicx}%
+ \usepackage{mathrsfs}
+% \usepackage{graphicx}
+
+
+ \newcommand{\refen}{\vspace{10mm} \noindent{\Large{\bf References}}}
+
+
+ \sloppy
+ \paperwidth=210mm
+ \paperheight=297mm
+ \textheight=250mm
+ \textwidth=165mm
+ \oddsidemargin=-0.4mm
+ \evensidemargin=-5.4mm
+ \topmargin=-5.4mm
+ \footskip=12.5mm
+ \headsep=0mm
+ \headheight=0mm
+
+
+ \begin{document}
+
+
+\begin{center} \textbf{
+  Termination of original F5 \\[.3cm]
+	V.V.~Galkin}  (MSU, Moscow) \\
+	\emph{E-mail address}: \texttt{galkin-vv@yandex.ru}\\[.3cm]
+\end{center}
+\normalsize
+
+The original F5 algorithm introduced by Faug\`ere is formulated for
+any homogeneous polynomial set input. The correctness of output is
+shown for any input that terminates the algorithm, but the termination
+itself is proved only for the case of input being regular polynomial
+sequence. This article shows that algorithm correctly terminates for
+any homogeneous input without any reference to regularity. The scheme
+contains two steps: first it is shown that if the algorithm does not
+terminate it eventually generates two polynomials where first is a
+reductor for the second. But first step does not show that this reduction
+is permitted by criteria introduced in F5. The second step shows that
+if such pair exists then there exists another pair for which the reduction
+is permitted by all criteria. Existence of such pair leads to contradiction.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%   Далее разместите аннотацию на русском языке   %%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center} \textbf{
+	Остановка алгоритма F5 \\[.3cm]
+	В.В.~Галкин}  (МГУ, Москва) \\
+	\emph{E-mail address}: \texttt{galkin-vv@yandex.ru}\\[.3cm]
+\end{center}
+\normalsize
+Алгоритм F5, предложенный Фожером, принимает в качестве входных данных
+произвольное множество однородных многочленов и корректность результата
+доказана для всех случаев, когда алгоритм останавливается. Однако
+остановка алгоритма за конечное число шагов доказана лишь для случая,
+когда на вход алгоритма подаётся регулярная последовательность многочленов.
+В этой работе показано, что алгоритм останавливается на любых входных
+данных без какого-либо использования регулярности. Схема доказательства
+состоит из двух частей: в первой части показано, что если алгоритм
+не останавливается, то рано или поздно он получит пару многочленов,
+в которой первый может редуцировать второй. При этом, однако, не утверждается,
+что такая редукция будет разрешена критериями, предложенными в F5.
+Вторая часть показывает, что при существовании такой пары также будет
+существовать пара в которой редукция разрешена всеми критериями. Существование
+такой пары приводит к противоречию.
+
+\end{document}
