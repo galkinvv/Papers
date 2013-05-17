@@ -1,0 +1,1119 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass beamer
+\begin_preamble
+\setbeamertemplate{navigation symbols}{}%remove navigation symbols
+%\input{gost/babelbst.tex}
+\usetheme{Frankfurt}
+\setbeamertemplate{headline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.1875\paperwidth,ht=10ex,dp=1ex,right,rightskip=1em]{section in head/foot}%
+    \large\insertsectionhead
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.8125\paperwidth,ht=10ex,dp=1ex,left,leftskip=1em]{subsection in head/foot}%
+    \Large\insertsubsectionhead
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+\author{Vasily Galkin \\\texttt{galkin-vv@yandex.ru}}
+\title{Termination of original F5}
+\end_preamble
+\options hyperref={unicode=false},english
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package auto
+\inputencoding utf8
+\fontencoding global
+\font_roman CMU Serif
+\font_sans CMU Sans Serif
+\font_typewriter CMU Typewriter Text
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics xetex
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\pdf_quoted_options "unicode=false"
+\papersize default
+\use_geometry true
+\use_amsmath 2
+\use_esint 0
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation landscape
+\suppress_date true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 0
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\GVWl}{<_{\text{H}}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\GVWg}{>_{\text{\textnormal{H}}}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
+\end_inset
+
+	
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\Sig}{\mathcal{S}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\HM}{\mathrm{HM}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\HC}{\mathrm{HC}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\LCM}{\mathrm{LCM}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\totaldeg}{\mathrm{deg}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\poly}{\mathrm{poly}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\sigidx}{\mathrm{index}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Institute
+Moscow State University
+\begin_inset Newline newline
+\end_inset
+
+Faculty of Mechanics and Mathematics
+\begin_inset Newline newline
+\end_inset
+
+Department of Higher Algebra
+\end_layout
+
+\begin_layout Section*
+Main goals
+\end_layout
+
+\begin_layout BeginFrame
+
+\end_layout
+
+\begin_layout Standard
+Proof for termination of F5 Gröbner basis computation algorithm on any input
+ data.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout Section
+Definitions
+\end_layout
+
+\begin_layout Subsection*
+Algorithm F5
+\end_layout
+
+\begin_layout BeginFrame
+
+\end_layout
+
+\begin_layout Standard
+Algorithm scheme, root of termination problem [existing approaches and problems
+ with their equality]
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout Section
+Termination proof
+\end_layout
+
+\begin_layout Subsection*
+S-pair chains
+\end_layout
+
+\begin_layout BeginFrame
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout Subsection*
+Gröbner basis algorithms dealing with approximate data in 
+\begin_inset Formula $\mathbb{R}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout BeginFrame
+
+\end_layout
+
+\begin_layout Itemize
+Comprehensive Gröbner basis computation
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+treat coefficients as symbols and use symbolic computation
+\end_layout
+
+\begin_layout Itemize
+slow arithmetic with huge symbolic expressions
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Exact Gröbner basis computation in 
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+selects some 
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+-specialization of approximate number
+\end_layout
+
+\begin_layout Itemize
+slow arithmetic with huge denominators
+\end_layout
+
+\begin_layout Itemize
+solves task only for single specialization
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Approximate Gröbner basis computation using numeric or modular methods for
+ zero-comparison
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+result correctness is not guaranteed even for single specialization
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Approximate Gröbner basis computation changing monomial order to skip 
+\begin_inset Formula $\HC$
+\end_inset
+
+ zero-comparison (TSV, etc.)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+requires restart from scratch of signature-based algorithms
+\end_layout
+
+\end_deeper
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout Section
+Inexact zero
+\end_layout
+
+\begin_layout Subsection
+Approximate arithmetic instead of floats
+\end_layout
+
+\begin_layout BeginFrame
+
+\end_layout
+
+\begin_layout Description
+Addition 
+\begin_inset Formula $(c_{1},\varepsilon_{1})+(c_{2},\varepsilon_{2})=(c_{1}+c_{2},\varepsilon_{1}+\varepsilon_{2})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Multiplication 
+\begin_inset Formula $(c_{1},\varepsilon_{1})\times(c_{2},\varepsilon_{2})=(c_{1}c_{2},\varepsilon_{1}\left|c_{2}\right|+\varepsilon_{2}\left|c_{1}\right|+\varepsilon_{1}\varepsilon_{2})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Subtraction based on addition and multiplication by -1:
+\begin_inset Formula 
+\[
+(c_{1},\varepsilon_{1})-(c_{2},\varepsilon_{2})=(c_{1}-c_{2},\varepsilon_{1}+\varepsilon_{2})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Inversion defined only for numbers not having zero specialization, or equivalent
+ly satisfying 
+\begin_inset Formula $\left|c\right|-\varepsilon>0$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{1}{(c,\varepsilon)}=\left(\frac{1}{c},\frac{\varepsilon}{\left|c\right|\left(\left|c\right|-\varepsilon\right)}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Track all possible specializations
+\end_layout
+
+\begin_layout Itemize
+Slower than floating point arithmetic only by a constant factor
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout Subsection
+Non-invertible approximate elements classification
+\end_layout
+
+\begin_layout BeginFrame
+
+\end_layout
+
+\begin_layout Definitions
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\emph on
+symbolic zero
+\emph default
+ -- corresponding computations in 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+ for any input data specialization give exact zero.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+input-inspired zero
+\emph default
+ -- 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+-computations for some but not all input data specializations give exact
+ zero
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+computation-introduced zero 
+\emph default
+-- 
+\begin_inset Formula $\mathbb{C}$
+\end_inset
+
+-computations for input data specializations never give exact zero
+\end_layout
+
+\end_deeper
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout Subsection
+Examples
+\end_layout
+
+\begin_layout BeginPlainFrame
+
+\end_layout
+
+\begin_layout Example
+
+\family roman
+\begin_inset Formula 
+\[
+\begin{array}{cc}
+f_{1}= & y^{2}z+a\\
+f_{2}= & y^{2}z^{2}+xz+1\\
+f_{3}= & y^{3}z+xy+1\\
+f_{4}= & f_{2}-zf_{1}=xz-az+1\\
+f_{5}= & f_{3}-yf_{1}=xy-ay+1\\
+f_{6}= & zf_{5}-yf_{4}=\left(a-a\right)yz+z-y
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $HC\left(f_{6}\right)$
+\end_inset
+
+ is symbolic zero.
+\end_layout
+
+\begin_layout Example
+\begin_inset Formula 
+\[
+\begin{array}{cc}
+f_{1}= & y^{2}z+z^{2}+az\\
+f_{2}= & xyz\\
+f_{3}= & xy^{2}+bx+1\\
+f_{4}= & -\left(yf_{2}-xf_{1}\right)=xz^{2}+axz\\
+f_{5}= & (zf_{3}-xf_{1})+f_{4}=((b-a)+a)xz+z
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $HC\left(f_{5}\right)$
+\end_inset
+
+ may be input-inspired or computation-introduced zero.
+ Concrete zero type depends on 
+\begin_inset Formula $a$
+\end_inset
+
+ and 
+\begin_inset Formula $b$
+\end_inset
+
+ values.
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout Section
+New ideas
+\end_layout
+
+\begin_layout Subsection
+Strict modular method for approximate Gröbner basis
+\end_layout
+
+\begin_layout BeginFrame
+
+\end_layout
+
+\begin_layout Standard
+Main idea: compute in finite field and treat all zeros as symbolic.
+\end_layout
+
+\begin_layout Itemize
+Initially selected prime module
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+known methods: prime is assumed to be 
+\begin_inset Quotes eld
+\end_inset
+
+big enough
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+strict method: initially selected prime used only to compute a hypothesis
+ of the linear system form; rechecked later
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Result approximate coefficients come from linear system solution
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+avoid computation-introduced zeros arose from 
+\begin_inset Formula $a-a$
+\end_inset
+
+ expressions
+\end_layout
+
+\begin_layout Itemize
+detect all symbolic zeros using modular computation (like known method)
+\end_layout
+
+\begin_layout Itemize
+allow to estimate correctness probability based on system properties and
+ prime number
+\end_layout
+
+\begin_layout Itemize
+separately select prime module for every system to ensure required correctness
+ probability
+\end_layout
+
+\end_deeper
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout Subsection
+\begin_inset Note Note
+status open
+
+\begin_layout Subsection
+Расхождение между символическими и модулярными вычислениями
+\end_layout
+
+\begin_layout BeginFrame
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+-многочлен тождественно обнуляется по выбранному модулю
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Оценка на максимальный коэффициент для определения максимального числа простых
+ чисел, на которые могут делиться все коэффициенты
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Модулярная специализация 
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+-многочлена имеет корень
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Оценка на максимальную степень, ограничивающая число корней
+\end_layout
+
+\end_deeper
+\begin_layout EndFrame
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Strict modular method for approximate linear system
+\end_layout
+
+\begin_layout BeginFrame
+
+\end_layout
+
+\begin_layout Standard
+Zero-testings are needed during Gaussian elimination.
+ Modular computations allows to detect all symbolic zeros but may detect
+ superfluous ones leading to error.
+ To solve a system with error probability 
+\begin_inset Formula $\leqslant2\alpha$
+\end_inset
+
+ we should randomly take a prime number from a set of at least 
+\begin_inset Formula $N_{p}$
+\end_inset
+
+ prime numbers greater than 
+\begin_inset Formula $P_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $P_{0}=\sqrt{\frac{R2^{R}V}{\alpha}},\, N_{p}=\frac{R2^{R}\log_{P_{0}}2Z_{0}}{\alpha}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $R$
+\end_inset
+
+ number of rows in a system
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $V$
+\end_inset
+
+ number of approximate coefficients in a system
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ maximal denominator of exact 
+\begin_inset Formula $\mathbb{Q}$
+\end_inset
+
+ coefficient
+\end_layout
+
+\begin_layout Fact
+Required number of bits is linear in the number of system rows.
+\end_layout
+
+\begin_layout Fact
+Method fails on input-inspired zeros.
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Subsection
+Метод TSV
+\end_layout
+
+\begin_layout BeginFrame
+
+\end_layout
+
+\begin_layout Plain Layout
+TSV (J.-C.
+ Faugère, Y.
+ Liang, 2011): Комбинирование алгоритмов нахождения базисов Грёбнера и приближён
+ных вычислений.
+ При получении старшего необратимого элемента в качестве коэффициента при
+ 
+\begin_inset Formula $x_{1}^{i_{1}}\cdots x_{m}^{i_{m}}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Itemize
+Добавляется новая переменная 
+\begin_inset Formula $y'$
+\end_inset
+
+, младше всех остальных
+\end_layout
+
+\begin_layout Itemize
+Для того, чтоб страший член редуцировался, идеал расширяется 
+\begin_inset Formula $I^{e}=(I,\, x_{1}^{i_{1}}\cdots x_{m}^{i_{m}}-y')$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+В случае сигнатурных алгоритмов выполняется перезапуск с самого начала,
+ поскольку сигнатура добавленного многочлена меньше текущей, а алгоритмы
+ требуют обработки в порядке возрастания сигнатур для своей корректной работы
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout BeginFrame
+Порядки на сигнатурах
+\end_layout
+
+\begin_layout Plain Layout
+Порядок Term-Over-Pos на сигнатурах:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\[
+\left(t_{1},i_{1}\right)\prec\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & t_{1}<t_{2}\\
+ & t_{1}=t_{2},i{}_{1}<i_{2}
+\end{aligned}
+\right..
+\]
+
+\end_inset
+
+Порядок Pos-Over-Term на сигнатурах:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\[
+\left(t_{1},i_{1}\right)\prec\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & i{}_{1}<i_{2}\\
+ & i{}_{1}=i_{2},t_{1}<t_{2}
+\end{aligned}
+\right..
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Порядок Schreyer
+\begin_inset Formula $\prec$
+\end_inset
+
+ на сигнатурах:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\[
+\left(t_{1},i_{1}\right)\prec\left(t_{2},i_{2}\right)\Longleftrightarrow\left[\begin{aligned} & t_{1}\HM(f_{i_{1}})<t_{2}\HM(f_{i_{2}})\\
+ & t_{1}\HM(f_{i_{1}})=t_{2}\HM(f_{i_{2}}),i{}_{1}<i_{2}
+\end{aligned}
+\right..
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+No-restart TSV method for signature-based algorithms
+\end_layout
+
+\begin_layout BeginFrame
+
+\end_layout
+
+\begin_layout Standard
+TSV main idea: add monomial 
+\begin_inset Formula $y$
+\end_inset
+
+ and input polynomial 
+\begin_inset Formula $x_{1}^{i_{1}}\cdots x_{m}^{i_{m}}-y$
+\end_inset
+
+ to avoid zero testing of 
+\begin_inset Formula $x_{1}^{i_{1}}\cdots x_{m}^{i_{m}}$
+\end_inset
+
+ coefficient.
+\end_layout
+
+\begin_layout Standard
+Result is GB of extended ideal 
+\begin_inset Formula $I^{e}=(I,\, x_{1}^{i_{1}}\cdots x_{m}^{i_{m}}-y',\,\dots)$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+new polynomial
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+original TSV method: added with small signature and restart algorithm from
+ scratch
+\end_layout
+
+\begin_layout Itemize
+no-restart TSV method: added with 
+\begin_inset Quotes eld
+\end_inset
+
+just-before-current
+\begin_inset Quotes erd
+\end_inset
+
+ signature and continue processing
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+real-weighted order
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+real and monomial parameter for every input polynomial
+\end_layout
+
+\begin_layout Itemize
+added polynomial signatures can be configured by parameters 
+\end_layout
+
+\begin_layout Itemize
+allows addition of polynomial with signature just before given
+\end_layout
+
+\begin_layout Itemize
+applies only for signature order independent algorithms
+\end_layout
+
+\end_deeper
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout Subsection
+\begin_inset Quotes eld
+\end_inset
+
+Strict modular
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+no-restart TSV
+\begin_inset Quotes erd
+\end_inset
+
+ methods: system solving
+\end_layout
+
+\begin_layout BeginFrame
+
+\end_layout
+
+\begin_layout Enumerate
+Compute a Gröbner basis of extended ideal 
+\begin_inset Formula $I^{e}$
+\end_inset
+
+ with a signature-based algorithm using real-weighted order
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Compute approximate result by strict modular method
+\end_layout
+
+\begin_layout Enumerate
+If it fails on non-invertible element, proceed by no-restart TSV
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Using 
+\begin_inset Formula $\mbox{GB}\left(I^{e}\right)$
+\end_inset
+
+ and without using 
+\begin_inset Formula $\mbox{GB}\left(I\right)$
+\end_inset
+
+ determine one of:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $P/I$
+\end_inset
+
+ is vector space; find it's basis 
+\begin_inset Formula $B$
+\end_inset
+
+, normal form operator 
+\begin_inset Formula $\phi$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $I$
+\end_inset
+
+ is not zero-dimensional; then the algorithm is inapplicable
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Solve the system by 
+\begin_inset Quotes eld
+\end_inset
+
+action matrix method
+\begin_inset Quotes erd
+\end_inset
+
+ reformulated in terms of 
+\begin_inset Formula $B$
+\end_inset
+
+ and 
+\begin_inset Formula $\phi$
+\end_inset
+
+ instead of 
+\begin_inset Formula $\mbox{GB}\left(I\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Problems of known methods are avoided
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+arithmetic operations has predictable complexion
+\end_layout
+
+\begin_layout Itemize
+no restarts from scratch
+\end_layout
+
+\begin_layout Itemize
+all input data specializations are considered
+\end_layout
+
+\begin_layout Itemize
+the probability of error strictly estimated
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Open questions in complexity estimation are introduced
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+huge prime modules may appear
+\end_layout
+
+\begin_layout Itemize
+influence of real-weighted order on speed is unknown
+\end_layout
+
+\end_deeper
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout BeginFrame
+Публикации
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "/home/sealion/lapa/p/my_publications"
+options "alpha"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
