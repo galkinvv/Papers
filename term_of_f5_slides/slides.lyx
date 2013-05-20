@@ -164,6 +164,14 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
+\newcommand{\GCD}{\mathrm{GCD}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
 \newcommand{\totaldeg}{\mathrm{deg}}
 \end_inset
 
@@ -929,18 +937,229 @@ S-pair chains
 
 \end_layout
 
+\begin_layout Definitions
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Polynomial 
+\begin_inset Formula $h_{2}$
+\end_inset
+
+ computed as reduced S-pair
+\begin_inset Formula $\left(h_{1,}p\right)$
+\end_inset
+
+ satisfying 
+\begin_inset Formula $\mbox{\Sig}\left(\HM\left(p\right)h_{1}\right)\succ\mbox{\Sig}\left(\HM\left(h_{1}\right)p\right)$
+\end_inset
+
+ is called 
+\emph on
+S-descendant
+\emph default
+ of 
+\begin_inset Formula $h_{1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\family roman
+\emph on
+S-descendant property
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+:
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ 
+\begin_inset Formula $h_{2}\succ_{SL}h_{1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Sequence 
+\begin_inset Formula $\left\{ h_{i}\right\} $
+\end_inset
+
+ is 
+\emph on
+S-pair chain,
+\emph default
+ if 
+\begin_inset Formula $\forall i\, h_{i+1}$
+\end_inset
+
+ is S-descendant of 
+\begin_inset Formula $h_{i}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Definitions
+
+\end_layout
+
+\begin_layout Fact
+If F5 doesn't stop it gives infinite S-pair chain
+\end_layout
+
+\begin_layout Proof
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+All 
+\begin_inset Formula $h\in R$
+\end_inset
+
+ corresponds to S-pair chain 
+\begin_inset Formula $\{f,\dots,h\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\forall h$
+\end_inset
+
+ has only finite number of direct S-pair descendants
+\end_layout
+
+\begin_layout Itemize
+A chain is constructed from elements having infinite number of recursive
+ S-pair descendants
+\end_layout
+
+\end_deeper
 \begin_layout EndFrame
 
 \end_layout
 
 \begin_layout Subsection
-Representations
+Representations of 
+\begin_inset Formula $p$
+\end_inset
+
+ with 
+\begin_inset Formula $\Sig(p)\prec\Sig(h)$
+\end_inset
+
+
 \end_layout
 
 \begin_layout BeginFrame
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Formula $\forall p$
+\end_inset
+
+ has representation 
+\begin_inset Formula $p=\sum_{k}c_{k}m_{k}g_{k},\, c_{k}\ne0,g_{k}\in G$
+\end_inset
+
+, satisfying:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\HM\left(p\right)\geqslant\mbox{\HM}\left(m_{k}g_{k}\right)$
+\end_inset
+
+ -- all algorithms, including Buchberger
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\Sig\left(p\right)\geqslant\Sig\left(m_{k}g_{k}\right)$
+\end_inset
+
+ (sig-safe) -- all signature-based algorithms
+\end_layout
+
+\begin_layout Itemize
+For F5 we also need to analyze 'F5' and 'Rewritten' criteria
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+start with a sig-safe representation
+\end_layout
+
+\begin_layout Itemize
+iteratively replace terms that doesn't pass criteria or 
+\begin_inset Formula $LM$
+\end_inset
+
+ relation with sig-safe expressions
+\end_layout
+
+\begin_layout Itemize
+proof that this process terminates
+\end_layout
+
+\end_deeper
+\begin_layout Proof
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Introduce well order 
+\begin_inset Formula $\lessdot_{1}$
+\end_inset
+
+ on representation elements (like 
+\begin_inset Formula $\prec$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+Lexicographically extend it to representations well order 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Show that replacements 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-decrease representation
+\end_layout
+
+\end_deeper
 \begin_layout EndFrame
 
 \end_layout
