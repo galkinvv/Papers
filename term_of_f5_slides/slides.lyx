@@ -5,6 +5,7 @@
 \textclass beamer
 \begin_preamble
 \setbeamertemplate{navigation symbols}{}%remove navigation symbols
+
 %\input{gost/babelbst.tex}
 \usetheme{Frankfurt}
 \setbeamertemplate{headline}
@@ -19,6 +20,12 @@
   \end{beamercolorbox}}%
   \vskip0pt%
 }
+
+\setbeamertemplate{enumerate item}{\insertenumlabel.}
+\setbeamertemplate{enumerate subitem}{\insertenumlabel.\insertsubenumlabel}
+\setbeamertemplate{enumerate subsubitem}{\insertenumlabel.\insertsubenumlabel.\insertsubsubenumlabel}
+
+
 
 \author{Vasily Galkin \\\texttt{galkin-vv@yandex.ru}}
 \title{Termination of original F5}
@@ -200,7 +207,7 @@ Main goal
 \end_layout
 
 \begin_layout Standard
-Prove that F5 algorithm terminates on any input data represented by set
+Prove that F5 algorithm terminates on any input data represented by a set
  of homogeneous polynomials.
 \end_layout
 
@@ -294,8 +301,9 @@ Minimal signature
 \end_layout
 
 \begin_layout Definitions
-
+We say
 \emph on
+ 
 \begin_inset Formula $mh$
 \end_inset
 
@@ -303,7 +311,7 @@ Minimal signature
 \emph default
  
 \emph on
-signature-safe reduce 
+sig-safe reduce 
 \begin_inset Formula $g$
 \end_inset
 
@@ -367,7 +375,7 @@ sig-lead ratio
 \end_layout
 
 \begin_layout Subsection
-Algorithm F5
+Algorithm F5: original version
 \end_layout
 
 \begin_layout BeginFrame
@@ -375,21 +383,542 @@ Algorithm F5
 \end_layout
 
 \begin_layout Standard
-Algorithm scheme, root of termination problem [possible infinite cycle existing
- approaches and problems with their equality].
- Role of F5, actuality of proof of its termination.
+Scheme: computing basis of 
+\begin_inset Formula $\left(G\cup\left\{ f_{i}\right\} \right)$
+\end_inset
+
+ from basis 
+\begin_inset Formula $G$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+\begin_inset Formula $P=$
+\end_inset
+
+
+\shape default
+ 
+\family typewriter
+{
+\family default
+S-pair
+\begin_inset Formula $(p,f_{i})|p\in G$
+\end_inset
+
+, and S-pair parts pass 'F5' criterion}
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+while 
+\series default
+
+\begin_inset Formula $P\ne\varnothing$
+\end_inset
+
+ 
+\series bold
+do:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $F=$
+\end_inset
+
+ S-polys(take 
+\begin_inset Formula $P$
+\end_inset
+
+ all max-degree S-pairs passing 'Rewritten')
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+while 
+\series default
+
+\begin_inset Formula $\exists h\in F,\,\Sig\left(h\right)$
+\end_inset
+
+ is minimal for non-zero 
+\begin_inset Formula $F$
+\end_inset
+
+ polynomials 
+\series bold
+do:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+if 
+\series default
+
+\begin_inset Formula $\exists p\in G$
+\end_inset
+
+ -- sig-safe 
+\begin_inset Formula $h$
+\end_inset
+
+ reductor, satisfying 'F5' and 'Rewritten'
+\series bold
+:
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $F=\left(F\setminus\{h\}\right)\cup$
+\end_inset
+
+Reduce(h,p)
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+else: 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $F=F\setminus\{h\}$
+\end_inset
+
+; 
+\begin_inset Formula $R=R\cup\{h\}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+for 
+\series default
+\shape italic
+
+\begin_inset Formula $r\in R$
+\end_inset
+
+
+\series bold
+\shape default
+:
+\series default
+\shape italic
+
+\begin_inset Formula $P=P\cup$
+\end_inset
+
+
+\family typewriter
+\shape default
+{
+\family default
+S-pair
+\begin_inset Formula $(p,r)|p\in G$
+\end_inset
+
+,'F5' passed};
+\shape italic
+ 
+\begin_inset Formula $G=G\cup\left\{ r\right\} $
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Termination of original F5
 \end_layout
 
 \begin_layout Itemize
-Are one of the most effective algorithms for Gröbner basis computation
+is topical: no algorithm was proved to be always faster than F5 
 \end_layout
 
+\begin_layout Itemize
+is not like Buchberger: 
+\begin_inset Formula $G$
+\end_inset
+
+ may be extended by polynomial 
+\begin_inset Formula $h$
+\end_inset
+
+ whose reductor 
+\begin_inset Formula $p\in G$
+\end_inset
+
+ is not sig-safe or is not satisfying criteria
+\end_layout
+
+\begin_layout Itemize
+proofed in original work only if 
+\begin_inset Formula $f_{1},\dots,f_{n}$
+\end_inset
+
+ is regular sequence
+\end_layout
+
+\begin_layout Itemize
+proof by reformulation as generic algorithm (TRB-F5; F5GEN)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+equivalence proof has gaps
+\end_layout
+
+\end_deeper
 \begin_layout EndFrame
 
 \end_layout
 
 \begin_layout Section
 Termination proof
+\end_layout
+
+\begin_layout Subsection
+F5 terminates: scheme of proof
+\end_layout
+
+\begin_layout BeginFrame
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newcounter{fscheme}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{description}[4*]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+stepcounter{fscheme}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item[
+\backslash
+arabic{fscheme}*]
+\end_layout
+
+\end_inset
+
+If the algorithm doesn't stop it fills G with polynomials containing infinite
+ sequence with 
+\begin_inset Formula $\prec_{SL}$
+\end_inset
+
+-increasing sig-lead ratio
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+stepcounter{fscheme}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item[
+\backslash
+arabic{fscheme}] 
+\end_layout
+
+\end_inset
+
+This sequence contains 
+\begin_inset Formula $p_{1},p_{2}$
+\end_inset
+
+ with 
+\begin_inset Formula $\HM(p_{2})|\HM(p_{1})$
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+stepcounter{fscheme}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item[
+\backslash
+arabic{fscheme}] 
+\end_layout
+
+\end_inset
+
+Polynomial 
+\begin_inset Formula $p_{2}$
+\end_inset
+
+ is sig-safe reductor for 
+\begin_inset Formula $p_{1}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+stepcounter{fscheme}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item[
+\backslash
+arabic{fscheme}*] 
+\end_layout
+
+\end_inset
+
+Any polynomial 
+\begin_inset Formula $p$
+\end_inset
+
+ with signature smaller than signature of 
+\begin_inset Formula $h$
+\end_inset
+
+ on step 2.2 has representation of the form 
+\begin_inset Formula $p=\sum_{k}c_{k}m_{k}g_{k},\, c_{k}\ne0,g_{k}\in G$
+\end_inset
+
+ where 
+\begin_inset Formula $\Sig(m_{k}g_{k})\preccurlyeq\Sig(p),\mbox{\HM}\left(m_{k}g_{k}\right)\leqslant\mbox{\HM}\left(p\right)$
+\end_inset
+
+ and all 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $m_{k}g_{k}$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ satisfy F5 and Rewritten criteria
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+stepcounter{fscheme}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item[
+\backslash
+arabic{fscheme}] 
+\end_layout
+
+\end_inset
+
+Applying this to 
+\begin_inset Formula $p_{2}$
+\end_inset
+
+ on step with 
+\begin_inset Formula $h=p_{1}$
+\end_inset
+
+ and selecting element with 
+\begin_inset Formula $\HM\left(m_{k}g_{k}\right)=\HM\left(p_{2}\right)$
+\end_inset
+
+ as 
+\begin_inset Formula $mp_{3}$
+\end_inset
+
+ gives polynomial 
+\begin_inset Formula $p_{3}$
+\end_inset
+
+ in 
+\begin_inset Formula $G$
+\end_inset
+
+.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+stepcounter{fscheme}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item[
+\backslash
+arabic{fscheme}] 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $p_{3}$
+\end_inset
+
+ is sig-safe reductor of 
+\begin_inset Formula $p_{1}$
+\end_inset
+
+ and satisfies criteria 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+stepcounter{fscheme}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+item[
+\backslash
+arabic{fscheme}] 
+\end_layout
+
+\end_inset
+
+This leads to contradiction because 
+\begin_inset Formula $p_{1}$
+\end_inset
+
+ was added to 
+\begin_inset Formula $G$
+\end_inset
+
+ without reduction by 
+\begin_inset Formula $p_{3}$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{description}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Verse
+*studied below in more detail
+\end_layout
+
+\begin_layout EndFrame
+
 \end_layout
 
 \begin_layout Subsection
@@ -410,60 +939,6 @@ Representations
 
 \begin_layout BeginFrame
 
-\end_layout
-
-\begin_layout EndFrame
-
-\end_layout
-
-\begin_layout Subsection
-F5 terminates
-\end_layout
-
-\begin_layout BeginFrame
-
-\end_layout
-
-\begin_layout Standard
-\noindent
-Если алгоритм не останавливается - он получит бесконечную цепь с возрастающим
- 
-\begin_inset Formula $\frac{\Sig}{\HM}$
-\end_inset
-
- 
-\end_layout
-
-\begin_layout Standard
-В бесконечной цепи найдутся 
-\begin_inset Formula $\HM(h_{i})|\HM(h_{j})$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $h_{i}$
-\end_inset
-
- -- сигнатурный редуктор для 
-\begin_inset Formula $h_{j}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Если есть сигнатурный редуктор, то есть и сигнатурный редуктор, удовлетворяющий
- критериям
-\end_layout
-
-\begin_layout Standard
-Это противоречит тому, что 
-\begin_inset Formula $h_{j}$
-\end_inset
-
- не было редуцировано
 \end_layout
 
 \begin_layout EndFrame
