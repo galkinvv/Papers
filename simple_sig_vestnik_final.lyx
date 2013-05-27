@@ -1018,7 +1018,11 @@ status open
 
 label=
 \backslash
-alph{enumii})
+alph{enumii}),ref=
+\backslash
+arabic{enumi}
+\backslash
+alph{enumii}
 \end_layout
 
 \end_inset
@@ -1248,12 +1252,6 @@ return
 
 \begin_layout Standard
 \noindent
-\begin_inset CommandInset label
-LatexCommand label
-name "par:ReduceCheckingSignatures:"
-
-\end_inset
-
 
 \series medium
 \emph on
@@ -1357,6 +1355,13 @@ return
 ;
 \end_layout
 
+\begin_layout Standard
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
 \begin_layout Lemma
 Все пары из 
 \begin_inset Formula $\mathbb{T}_{0}\times P$
@@ -1377,7 +1382,7 @@ return
 \begin_inset Formula $t\in\mathbb{T}$
 \end_inset
 
- или редукцией с сохранением сигнатуры, поэтому они корректны и лежат в
+, или редукцией с сохранением сигнатуры, поэтому они корректны и лежат в
  
 \begin_inset Formula $H$
 \end_inset
@@ -1403,7 +1408,7 @@ return
 \begin_inset Formula $\sigma$
 \end_inset
 
- никогда не обращается в 0 и нулевые сигнатуры в 
+ никогда не обращается в нуль и нулевые сигнатуры в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -1422,8 +1427,13 @@ return
  нет.
 \end_layout
 
-\begin_layout Section
-Остановка алгоритма
+\begin_layout Standard
+
+\series bold
+Остановка алгоритма.
+ 
+\series default
+Докажем, что приведённый алгоритм останавливается.
 \end_layout
 
 \begin_layout Lemma
@@ -1445,20 +1455,17 @@ name "lem:exist-reductor"
 \end_layout
 
 \begin_layout Standard
-Отмеченные многочлены добавляются в 
+В 
 \begin_inset Formula $B$
 \end_inset
 
- таким образом, чтобы иметь хотя бы один подходящий редуктор.
- 
+ добавляются лишь отмеченные многочлены, имеющие хотя бы один подходящий
+ редуктор.
+ Такими редукторами являются 
 \begin_inset Formula $(\sigma,p)\in R$
 \end_inset
 
- является таким редуктором при добавлении в первом цикле 
-\series bold
-for
-\series default
-, 
+ при добавлении многочлена в первом цикле for, и отмеченный многочлен 
 \begin_inset Formula $r\in R$
 \end_inset
 
@@ -1476,7 +1483,8 @@ name "lem:r-gvw-small"
 \begin_inset Formula $p'$
 \end_inset
 
-, то есть на шаге 
+, т.е.
+ на шаге 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:-before-reduce"
@@ -1541,7 +1549,8 @@ name "lem:r-gvw-big"
 \begin_inset Formula $p$
 \end_inset
 
-, на шаге 
+, т.е.
+ на шаге 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:-after-reduce"
@@ -1560,14 +1569,13 @@ reference "enu:-after-reduce"
 \end_layout
 
 \begin_layout Standard
-Вытекает из того, что цикл в 
-\begin_inset CommandInset ref
-LatexCommand nameref
-reference "par:ReduceCheckingSignatures:"
-
-\end_inset
-
- останавливается по достижении 
+Доказательство вытекает из того, что цикл 
+\series medium
+\emph on
+Редукции с Проверкой Сигнатур
+\series default
+\emph default
+ останавливается при получении многочлена 
 \begin_inset Formula $p$
 \end_inset
 
@@ -1593,7 +1601,8 @@ name "lem:adds-really-new"
 \begin_inset Formula $p$
 \end_inset
 
-, на шаге 
+, т.е.
+ на шаге 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:-after-reduce"
@@ -1639,8 +1648,8 @@ reference "lem:greater-or-smaller"
 
 \end_inset
 
- для 
-\begin_inset Formula $\forall r\in R$
+ для всех 
+\begin_inset Formula $r\in R$
 \end_inset
 
  имеем 
@@ -1666,7 +1675,7 @@ reference "lem:r-gvw-big"
 
 \end_inset
 
-.
+ соответственно.
 \end_layout
 
 \begin_layout Theorem
@@ -1687,12 +1696,11 @@ do
 \series default
  выполняются лишь конечное число раз.
  В 
-\begin_inset CommandInset ref
-LatexCommand nameref
-reference "par:ReduceCheckingSignatures:"
-
-\end_inset
-
+\series medium
+\emph on
+Редукции с Проверкой Сигнатур
+\series default
+\emph default
  при ненулевых 
 \begin_inset Formula $p$
 \end_inset
