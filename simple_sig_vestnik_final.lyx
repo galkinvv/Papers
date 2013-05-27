@@ -933,12 +933,6 @@ reference "eq:left-or-right-monom"
 
 \begin_layout Standard
 \noindent
-\begin_inset CommandInset label
-LatexCommand label
-name "par:SimpleSignatureGroebner"
-
-\end_inset
-
 
 \series medium
 \emph on
@@ -1243,7 +1237,7 @@ return
 \begin_inset Formula $\{\poly(r)\,|\, r\in R\}$
 \end_inset
 
-;
+.
 \begin_inset VSpace medskip
 \end_inset
 
@@ -1352,7 +1346,7 @@ return
 \begin_inset Formula $p$
 \end_inset
 
-;
+.
 \end_layout
 
 \begin_layout Standard
@@ -1679,22 +1673,12 @@ reference "lem:r-gvw-big"
 \end_layout
 
 \begin_layout Theorem
-Алгоритм 
-\begin_inset CommandInset ref
-LatexCommand nameref
-reference "par:SimpleSignatureGroebner"
-
-\end_inset
-
- останавливается
+Простой Сигнатурный Метод Грёбнера останавливается
 \end_layout
 
 \begin_layout Standard
-Для доказательства остановки нужно показать, что все циклы 
-\series bold
-do
-\series default
- выполняются лишь конечное число раз.
+Для доказательства остановки нужно показать, что все циклы do выполняются
+ лишь конечное число раз.
  В 
 \series medium
 \emph on
@@ -1744,7 +1728,7 @@ do
 \end_inset
 
 .
- 
+ Множество 
 \begin_inset Formula $R_{0*}$
 \end_inset
 
@@ -1819,8 +1803,13 @@ reference "lem:adds-really-new"
  что расширение может происходить лишь конечное число раз.
 \end_layout
 
-\begin_layout Section
-Корректность результата
+\begin_layout Standard
+
+\series bold
+Корректность результата.
+
+\series default
+ Введем следующее определение.
 \end_layout
 
 \begin_layout Definition
@@ -1844,8 +1833,8 @@ S-представлением
 \begin_inset Formula $K_{j}\in k,t_{j}\in\mathbb{T},i_{j}\in\mathbb{N}$
 \end_inset
 
-, такое что 
-\begin_inset Formula $\forall j\,\HM(h)\succcurlyeq_{0}\HM(t_{j}r_{i_{j}}),\SIG(h)\succcurlyeq_{0}\SIG(t_{j}r_{i_{j}})$
+, такое что для всех 
+\begin_inset Formula $j\,\HM(h)\succcurlyeq_{0}\HM(t_{j}r_{i_{j}}),\SIG(h)\succcurlyeq_{0}\SIG(t_{j}r_{i_{j}})$
 \end_inset
 
 .
@@ -1879,11 +1868,11 @@ name "lem:one-j-exact"
 \end_layout
 
 \begin_layout Standard
-В качестве такого 
+В качестве требуемого 
 \begin_inset Formula $j$
 \end_inset
 
- можно взять то, на котором достигается 
+ можно взять такое, на котором достигается 
 \begin_inset Formula $\succ$
 \end_inset
 
@@ -1979,11 +1968,11 @@ name "lem:s-basis-and-no-reductions"
 \begin_inset Formula $\HM(h_{1})=\HM(h_{2})$
 \end_inset
 
- и у 
+ и 
 \begin_inset Formula $h_{1}$
 \end_inset
 
- есть S-представление над 
+ обладает S-представлением над 
 \begin_inset Formula $R\cup\left\{ h_{2}\right\} $
 \end_inset
 
@@ -1996,18 +1985,27 @@ name "lem:s-basis-and-no-reductions"
 \end_inset
 
  имеем 
-\begin_inset Formula $\exists q_{i}\in P\,\HM(q_{i})=\sigma,q_{i}f\equiv\poly(h_{i})\pmod{I_{0}},i=1,2.$
+\begin_inset Formula 
+\[
+\exists q_{i}\in P\,\HM(q_{i})=\sigma,q_{i}f\equiv\poly(h_{i})\pmod{I_{0}},i=1,2.
+\]
+
 \end_inset
 
- Значит некоторой линейной комбинации 
+Значит.
+ некоторой линейной комбинации 
 \begin_inset Formula $\poly(h_{i})$
 \end_inset
 
- сопоставляется 
-\begin_inset Formula $\prec_{0}\sigma$
+ сопоставляется сигнатура, меньшая 
+\begin_inset Formula $\sigma$
 \end_inset
 
- сигнатура: 
+ по 
+\begin_inset Formula $\prec_{0}$
+\end_inset
+
+: 
 \begin_inset Formula 
 \[
 \exists K\in k,v\in P\,\HM(v)=\sigma'\prec_{0}\sigma,vf\equiv\poly(h_{1})-K\poly(h_{2})\pmod{I_{0}},
@@ -2015,7 +2013,8 @@ name "lem:s-basis-and-no-reductions"
 
 \end_inset
 
-то есть 
+т.е.
+ 
 \begin_inset Formula $\left(\sigma',p'\right)=\left(\sigma',\poly(h_{1})-K\poly(h_{2})\right)\in H$
 \end_inset
 
@@ -2033,11 +2032,14 @@ name "lem:s-basis-and-no-reductions"
 \end_inset
 
  вытекает 
-\begin_inset Formula $\exists r_{j}\in R,t\in\mathbb{T}\,\SIG(tr_{j})\preccurlyeq_{0}\sigma',\HM(tr_{j})=\HM(p')$
+\begin_inset Formula 
+\[
+\exists r_{j}\in R,t\in\mathbb{T}\,\SIG(tr_{j})\preccurlyeq_{0}\sigma',\HM(tr_{j})=\HM(p').
+\]
+
 \end_inset
 
-.
- Отсюда 
+Отсюда 
 \begin_inset Formula $\HM(h_{i})\neq\HM(p'),i=1,2$
 \end_inset
 
@@ -2093,7 +2095,11 @@ reference "enu:-remove-from-B"
 \end_inset
 
  выполнен инвариант: для 
-\begin_inset Formula $\forall\sigma\in\mathbb{T},\sigma\prec$
+\begin_inset Formula $\forall\sigma\in\mathbb{T},$
+\end_inset
+
+ меньших по 
+\begin_inset Formula $\prec$
 \end_inset
 
  сигнатур элементов 
@@ -2101,7 +2107,11 @@ reference "enu:-remove-from-B"
 \end_inset
 
 , найдутся 
-\begin_inset Formula $r_{\sigma}\in R,t_{\sigma}\in\mathbb{T}:\SIG(t_{\sigma}r_{\sigma})=\sigma$
+\begin_inset Formula $r_{\sigma}\in R,t_{\sigma}\in\mathbb{T}$
+\end_inset
+
+, такие что 
+\begin_inset Formula $\SIG(t_{\sigma}r_{\sigma})=\sigma$
 \end_inset
 
  и 
@@ -2129,7 +2139,7 @@ reference "enu:-remove-from-B"
 \end_inset
 
 .
- Обозначим за 
+ Обозначим через 
 \begin_inset Formula $r_{\sigma}$
 \end_inset
 
@@ -2142,7 +2152,7 @@ reference "enu:-remove-from-B"
 \end_inset
 
 .
- Предположим, что 
+ Предположим, что многочлен 
 \begin_inset Formula $t_{\sigma}r_{\sigma}$
 \end_inset
 
@@ -2156,8 +2166,8 @@ reference "enu:-remove-from-B"
 \begin_inset Formula $r_{1}\GVWg r_{\sigma}$
 \end_inset
 
-, а также что они не нулевые.
- Значит на той же итерации, когда в 
+, и что они не нулевые.
+ Значит, на той же итерации, когда в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -2183,15 +2193,24 @@ reference "enu:-remove-from-B"
 
 .
  Отсюда 
-\begin_inset Formula $\SIG(t'r_{\sigma})|\SIG(t_{\sigma}r_{\sigma})=\sigma\Rightarrow\SIG(t'r_{\sigma})\preccurlyeq\sigma\prec$
+\begin_inset Formula $\SIG(t'r_{\sigma})|\SIG(t_{\sigma}r_{\sigma})=\sigma$
 \end_inset
 
- сигнатур элементов 
+.
+ а значит 
+\begin_inset Formula $\SIG(t'r_{\sigma})\preccurlyeq\sigma$
+\end_inset
+
+, и 
+\begin_inset Formula $\sigma\prec$
+\end_inset
+
+-меньше сигнатур элементов 
 \begin_inset Formula $B$
 \end_inset
 
 .
- В силу этого неравенства на сигнатуры получается, что 
+ В силу этого неравенства получается, что многочлен 
 \begin_inset Formula $t'r_{\sigma}$
 \end_inset
 
@@ -2199,14 +2218,15 @@ reference "enu:-remove-from-B"
 \begin_inset Formula $B$
 \end_inset
 
-, а значит был выкинут на шаге 
+, а значит он был выкинут на шаге 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:-remove-from-B"
 
 \end_inset
 
- одной из итераций, то есть 
+ одной из итераций, т.е.
+ 
 \begin_inset Formula $\exists r_{2}\in R\, r_{2}\GVWl t'r_{\sigma},\SIG(r_{2})|\SIG(t'r_{\sigma})$
 \end_inset
 
@@ -2240,15 +2260,23 @@ reference "enu:-remove-from-B"
 
 \end_inset
 
- выполнен инвариант: 
-\begin_inset Formula $\forall h\in H,\SIG(h)\prec$
+ выполнен инвариант: все отмеченные многочлены 
+\begin_inset Formula $h\in H$
 \end_inset
 
- сигнатур элементов 
+ с сигнатурой 
+\begin_inset Formula $\SIG(h)$
+\end_inset
+
+, меньшей по 
+\begin_inset Formula $\prec$
+\end_inset
+
+ элементов 
 \begin_inset Formula $B$
 \end_inset
 
-, имеет S-представление над 
+, имеют S-представление над 
 \begin_inset Formula $R$
 \end_inset
 
@@ -2256,15 +2284,15 @@ reference "enu:-remove-from-B"
 \end_layout
 
 \begin_layout Standard
-Предположим нарушение инварианта на какой-то итерации и рассмотрим 
+Предположим, что нарушен инвариант на какой-то итерации, и рассмотрим 
 \begin_inset Formula $\prec_{0}$
 \end_inset
 
--минимальную 
+-минимальную сигнатуру 
 \begin_inset Formula $\sigma$
 \end_inset
 
-, для которой непусто 
+, для которой непусто множество 
 \begin_inset Formula $V_{\sigma}\eqdef\{h\in H\,|\, h\mbox{ нарушает инвариант},\SIG(h)=\sigma\}$
 \end_inset
 
@@ -2282,11 +2310,15 @@ reference "enu:-remove-from-B"
 
 \emph default
 -базис.
- 
-\begin_inset Formula $\forall g\in I_{0}\,\left(0,g\right)$
+ Для любого 
+\begin_inset Formula $g\in I_{0}$
 \end_inset
 
- имеют S-представления над 
+ отмеченный многочлен 
+\begin_inset Formula $\left(0,g\right)$
+\end_inset
+
+ имеет S-представление над 
 \begin_inset Formula $\{(0,g_{1}),...,(0,g_{m})\}\subset R$
 \end_inset
 
@@ -2356,7 +2388,7 @@ reference "lem:s-basis-and-no-reductions"
 \end_inset
 
 .
- Получим что 
+ Получим, что 
 \begin_inset Formula $v_{\sigma}$
 \end_inset
 
@@ -2369,11 +2401,11 @@ reference "lem:s-basis-and-no-reductions"
 \begin_inset Formula $w_{\sigma}$
 \end_inset
 
- в нем можно заменить на 
+ в S-представлении можно заменить на 
 \begin_inset Formula $t_{\sigma}r_{\sigma}$
 \end_inset
 
-, получив представление 
+ и получить представление 
 \begin_inset Formula $v_{\sigma}$
 \end_inset
 
@@ -2381,7 +2413,7 @@ reference "lem:s-basis-and-no-reductions"
 \begin_inset Formula $R$
 \end_inset
 
-, что приводит к противоречию.
+, что приведет к противоречию.
 \end_layout
 
 \begin_layout Lemma
@@ -2401,11 +2433,11 @@ reference "lem:s-basis-and-no-reductions"
 \end_layout
 
 \begin_layout Standard
-Для 
-\begin_inset Formula $\forall p\in I$
+Для любого 
+\begin_inset Formula $p\in I$
 \end_inset
 
- можно взять некоторый 
+ можно взять некоторый отмеченный многочлен 
 \begin_inset Formula $h=\left(\sigma,p\right)\in H$
 \end_inset
 
@@ -2420,13 +2452,7 @@ reference "lem:one-j-exact"
 \end_layout
 
 \begin_layout Theorem
-\begin_inset CommandInset ref
-LatexCommand nameref
-reference "par:SimpleSignatureGroebner"
-
-\end_inset
-
- возвращает базис Грёбнера
+Простой Сигнатурный Метод Грёбнера возвращает базис Грёбнера
 \end_layout
 
 \begin_layout Standard
@@ -2434,7 +2460,7 @@ reference "par:SimpleSignatureGroebner"
 \begin_inset Formula $B=\varnothing$
 \end_inset
 
-, значит по теореме 
+, значит, по теореме 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:has-s-repr"
