@@ -15,10 +15,12 @@
 \let\href\undefined
 \newcommand{\href}[2]{\url{#1}}
 
+\newcounter{countergvlemmas}
+\newcounter{countergvdefinitions}
 \newcounter{countergvtheorems}
 
 \renewenvironment{lem}
-{\refstepcounter{countergvtheorems}\begin{theorem}{Лемма  \arabic{countergvtheorems}.}}
+{\refstepcounter{countergvlemmas}\begin{theorem}{Лемма  \arabic{countergvlemmas}.}}
 {\end{theorem}\par{\bf Доказательство.}}
 
 \renewenvironment{thm}
@@ -26,7 +28,7 @@
 {\end{theorem}\par{\bf Доказательство.}}
 
 \renewenvironment{defn}
-{\par \refstepcounter{countergvtheorems} {\bf Определение \arabic{countergvtheorems}.}}
+{\par \refstepcounter{countergvdefinitions} {\bf Определение \arabic{countergvdefinitions}.}}
 {\par}
 }%\vestnikonly
 \novestnikonly{
@@ -49,6 +51,7 @@
 \use_default_options true
 \begin_modules
 theorems-bytype
+enumitem
 \end_modules
 \maintain_unincluded_children false
 \language russian
@@ -611,7 +614,7 @@ key "FaugereF5"
 \begin_inset Formula $h_{1}\in H$
 \end_inset
 
-, равный: 
+: 
 \begin_inset Formula 
 \[
 h_{1}=\left(\SIG(h'_{1}),\poly(h'_{1})+Kt\poly(h_{2})\right),
@@ -623,15 +626,16 @@ h_{1}=\left(\SIG(h'_{1}),\poly(h'_{1})+Kt\poly(h_{2})\right),
 \begin_inset Formula $K\in k$
 \end_inset
 
- взят так, чтобы при сложении сократились старшие мономы и выполнилось 
+ взят так, чтобы при сложении сократились старшие мономы и выполнилось условие
+ 
 \begin_inset Formula $\HM(h{}_{1})\prec_{0}\HM(h'{}_{1})$
 \end_inset
 
 .
- По сути такая редукция представляет из себя обычную редукцию многочлена
- с сокращением старшего монома, дополненную требованием того, что сигнатура
- редуктора меньше сигнатуры редуцируемого.
- Корректность проверяется как и выше.
+ По сути, такая редукция представляет собой обычную редукцию многочлена
+ с сокращением старшего монома, дополненную требованием того, чтобы сигнатура
+ редуктора была меньше сигнатуры редуцируемого.
+ Корректность проверяется, как и выше.
 \end_layout
 
 \begin_layout Standard
@@ -680,7 +684,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \end_layout
 
 \begin_layout Standard
-Выводится из того, что умножение на 
+Доказательство выводится из того, что умножение на 
 \begin_inset Formula $t$
 \end_inset
 
@@ -688,7 +692,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \begin_inset Formula $t$
 \end_inset
 
- обоих частей в определении 
+ обеих частей в определении 
 \begin_inset Formula $\GVWg$
 \end_inset
 
@@ -709,7 +713,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \begin_inset Formula $h_{1}$
 \end_inset
 
- с сохранением сигнатуры возможна если и только если 
+ с сохранением сигнатуры возможна, если и только если 
 \begin_inset Formula $h_{1}\GVWg h_{2}$
 \end_inset
 
@@ -717,7 +721,8 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \end_layout
 
 \begin_layout Standard
-Следует из того что оба утверждения равносильны 
+Доказательство следует из того, что оба утверждения равносильны неравенству
+ 
 \begin_inset Formula $\SIG(h_{2})\succ_{0}\SIG(h_{1})\frac{\HM(h_{2})}{\HM(h_{1})}$
 \end_inset
 
@@ -742,15 +747,15 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \end_layout
 
 \begin_layout Standard
-Следует из 
+Доказательство следует из соотношения 
 \begin_inset Formula $\SIG(h_{1})=\SIG(h_{1}')$
 \end_inset
 
- и уменьшения 
+ и того факта, что 
 \begin_inset Formula $\HM$
 \end_inset
 
- при редукции: 
+ уменьшатся при редукции: 
 \begin_inset Formula $\HM(h_{1})\prec_{0}\HM(h_{1}').$
 \end_inset
 
@@ -765,12 +770,16 @@ name "lem:greater-or-smaller"
 \end_inset
 
 Пусть 
+\begin_inset Formula $h_{1}\text{,}h_{2}$
+\end_inset
+
+ --- отмеченные многочлены и 
 \begin_inset Formula $h_{1}\GVWl h_{2}$
 \end_inset
 
- отмеченные многочлены.
- Тогда 
-\begin_inset Formula $\forall h_{3}\in H\setminus\left\{ \left(0,0\right)\right\} $
+.
+ Тогда для любого 
+\begin_inset Formula $h_{3}\in H\setminus\left\{ \left(0,0\right)\right\} $
 \end_inset
 
  выполняется хотя бы одно из двух неравенств: 
@@ -788,12 +797,12 @@ name "lem:greater-or-smaller"
 Из условия леммы известно, что
 \begin_inset Formula 
 \begin{equation}
-\HM(h_{1})\SIG(h_{2})\prec_{0}\HM(h_{2})\SIG(h_{1})\label{eq:gvw-order-3}
+\HM(h_{1})\SIG(h_{2})\prec_{0}\HM(h_{2})\SIG(h_{1}),\label{eq:gvw-order-3}
 \end{equation}
 
 \end_inset
 
-откуда 
+откуда получаем 
 \begin_inset Formula $\HM(h_{2})\neq0,\SIG(h_{1})\neq0$
 \end_inset
 
@@ -834,34 +843,35 @@ reference "eq:gvw-order-3"
 
 \end_inset
 
-Поэтому 
+Поэтому выражение 
 \begin_inset Formula $\HM(h_{3})^{2}\SIG(h_{2})\SIG(h_{1})\in\mathbb{T}_{0}$
 \end_inset
 
- будет или 
-\begin_inset Formula $\succ_{0}$
-\end_inset
-
- левой или 
+ является частью нравенства: с точки зения порядка 
 \begin_inset Formula $\prec_{0}$
 \end_inset
 
- правой части неравенства 
+ оно будет больше левой или меньше правой части 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "eq:left-or-right-monom"
 
 \end_inset
 
-, и после сокращения даст эквивалентное утверждению леммы неравенство.
+.
+ Сокращая это неравенство, получим утверждение леммы.
 \end_layout
 
-\begin_layout Section
-Алгоритм
+\begin_layout Standard
+
+\series bold
+Алгоритм.
+ 
+\series default
+Приведем псевдокод алгоритма.
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
+\begin_layout Standard
 Вход: многочлены 
 \begin_inset Formula $\{g_{1},\dots,g_{m}\}$
 \end_inset
@@ -873,8 +883,7 @@ reference "eq:left-or-right-monom"
 .
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
+\begin_layout Standard
 Переменные: 
 \begin_inset Formula $R$
 \end_inset
@@ -907,26 +916,36 @@ reference "eq:left-or-right-monom"
 \begin_inset Formula $B$
 \end_inset
 
-
+.
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
+\begin_layout Standard
 Результат: базис Грёбнера идеала 
 \begin_inset Formula $I=\left(g_{1},\dots,g_{m},f\right)$
+\end_inset
+
+.
+\begin_inset VSpace medskip
 \end_inset
 
 
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Standard
+\noindent
 \begin_inset CommandInset label
 LatexCommand label
 name "par:SimpleSignatureGroebner"
 
 \end_inset
 
-SimpleSignatureGroebner
+
+\series medium
+\emph on
+Простой Сигнатурный Метод Грёбнера
+\series default
+\emph default
+
 \begin_inset Formula $\left(\left\{ g_{1},\dots,g_{m}\right\} ,f\right)$
 \end_inset
 
@@ -934,34 +953,84 @@ SimpleSignatureGroebner
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $R\leftarrow\{\left(\HM(g_{1}),0\right),\left(\HM(g_{2}),0\right),\dots,\left(\HM(g_{m}),0\right),(0,g_{1}),(0,g_{2}),\dots,(0,g_{m})\}$
+
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+label=
+\backslash
+arabic{enumi})
+\end_layout
+
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\lang russian
+
+\begin_inset Formula $R\leftarrow\{\left(\HM(g_{1}),0\right),\left(\HM(g_{2}),0\right),\dots,\left(\HM(g_{m}),0\right),(0,g_{1}),(0,g_{2}),\dots,(0,g_{m})\}$
+\end_inset
+
+;
 \end_layout
 
 \begin_layout Enumerate
 \begin_inset Formula $B\leftarrow\{\}$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Enumerate
 \begin_inset Formula $(\sigma,p')\leftarrow(1,f)$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Enumerate
-
-\series bold
-do forever:
+do forever
 \end_layout
 
 \begin_deeper
 \begin_layout Enumerate
+
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+label=
+\backslash
+alph{enumii})
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\lang russian
+
 \begin_inset CommandInset label
 LatexCommand label
 name "enu:-before-reduce"
@@ -972,11 +1041,15 @@ name "enu:-before-reduce"
 \begin_inset Formula $p\leftarrow$
 \end_inset
 
-ReduceCheckingSignatures(
+
+\emph on
+Редукция с Проверкой Сигнатур
+\emph default
+(
 \begin_inset Formula $\sigma,p',R$
 \end_inset
 
-)
+);
 \end_layout
 
 \begin_layout Enumerate
@@ -990,67 +1063,126 @@ name "enu:-after-reduce"
 \begin_inset Formula $R\leftarrow R\cup\left\{ \left(\sigma,p\right)\right\} $
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Enumerate
-
-\series bold
 if
-\series default
+\series bold
  
+\series default
+
 \begin_inset Formula $p\not=0$
 \end_inset
 
 
-\series bold
-:
 \end_layout
 
 \begin_deeper
 \begin_layout Enumerate
 
-\series bold
-for 
-\series default
+\begin_inset Argument
+status open
 
+\begin_layout Plain Layout
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+label=
+\backslash
+roman{enumiii})
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\lang russian
+for 
 \begin_inset Formula $\{r\in R\,|\, r\GVWl\left(\sigma,p\right),\HM(r)\neq0\}$
 \end_inset
 
 
-\series bold
-:
 \end_layout
 
 \begin_deeper
 \begin_layout Enumerate
-\begin_inset Formula $B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(r)}r\}$
+
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+label=
+\end_layout
+
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\lang russian
+
+\begin_inset Formula $B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(r)}r\}$
+\end_inset
+
+;
 \end_layout
 
 \end_deeper
 \begin_layout Enumerate
-
-\series bold
 for 
-\series default
-
 \begin_inset Formula $\{r\in R\,|\, r\GVWg\left(\sigma,p\right)\}$
 \end_inset
 
 
-\series bold
-:
 \end_layout
 
 \begin_deeper
 \begin_layout Enumerate
-\begin_inset Formula $B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(p)}\left(\sigma,p\right)\}$
+
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+label=
+\end_layout
+
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\lang russian
+
+\begin_inset Formula $B\leftarrow B\cup\{\frac{\LCM(\HM(r),\HM(p))}{\HM(p)}\left(\sigma,p\right)\}$
+\end_inset
+
+;
 \end_layout
 
 \end_deeper
@@ -1066,13 +1198,13 @@ name "enu:-remove-from-B"
 \begin_inset Formula $B\leftarrow B\setminus\{b\in B\,|\,\exists r\in R\, r\GVWl b\wedge\SIG(r)|\SIG(b)\}$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Enumerate
-
-\series bold
 if 
+\series bold
+
 \begin_inset Formula $B\neq\varnothing$
 \end_inset
 
@@ -1090,36 +1222,45 @@ if
 \begin_inset Formula $\prec$
 \end_inset
 
--минимальной сигнатурой
+-минимальной сигнатурой;
 \end_layout
 
 \begin_layout Enumerate
-
-\series bold
-else: break
+else: break;
 \end_layout
 
 \end_deeper
 \begin_layout Enumerate
-
-\series bold
 return
-\series default
+\series bold
  
+\series default
+
 \begin_inset Formula $\{\poly(r)\,|\, r\in R\}$
+\end_inset
+
+;
+\begin_inset VSpace medskip
 \end_inset
 
 
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Standard
+\noindent
 \begin_inset CommandInset label
 LatexCommand label
 name "par:ReduceCheckingSignatures:"
 
 \end_inset
 
-ReduceCheckingSignatures
+
+\series medium
+\emph on
+Редукция с Проверкой Сигнатур
+\series default
+\emph default
+
 \begin_inset Formula $\left(\sigma,p,R\right)$
 \end_inset
 
@@ -1128,16 +1269,67 @@ ReduceCheckingSignatures
 
 \begin_layout Enumerate
 
-\series bold
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+label=
+\backslash
+arabic{enumi})
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\lang russian
 do while 
+\series bold
+
 \begin_inset Formula $\exists r\in R\, r\GVWg(\sigma,p)\wedge\HM(r)|\HM(p)$
 \end_inset
 
-:
+
 \end_layout
 
 \begin_deeper
 \begin_layout Enumerate
+
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+label=
+\backslash
+alph{enumii})
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\lang russian
+
 \begin_inset Formula $p\leftarrow$
 \end_inset
 
@@ -1153,20 +1345,16 @@ do while
 \begin_inset Formula $r$
 \end_inset
 
- среди указанных в условии цикла
+ среди указанных в условии цикла;
 \end_layout
 
 \end_deeper
 \begin_layout Enumerate
-
-\series bold
-return
-\series default
- 
+return 
 \begin_inset Formula $p$
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Lemma
