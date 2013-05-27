@@ -4,8 +4,8 @@
 \begin_header
 \textclass article
 \begin_preamble
-\newcommand{\vestnikonly}[1]{}
-\newcommand{\novestnikonly}[1]{#1}
+\newcommand{\novestnikonly}[1]{}
+\newcommand{\vestnikonly}[1]{#1}
 \vestnikonly{
 \usepackage{allerree}
 
@@ -45,9 +45,10 @@
 \DeclareMathOperator{\poly}{poly}
 \DeclareMathOperator{\SIG}{\mathcal{S}}
 \end_preamble
+\options russian,11pt,twoside
 \use_default_options true
 \begin_modules
-theorems-std
+theorems-bytype
 \end_modules
 \maintain_unincluded_children false
 \language russian
@@ -117,7 +118,7 @@ theorems-std
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\GVWl}{<_{\text{H}}}
+\newcommand{\GVWl}{<_{\text{H}}}
 \end_inset
 
 
@@ -125,7 +126,7 @@ theorems-std
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\GVWg}{>_{\text{\textnormal{H}}}}
+\newcommand{\GVWg}{>_{\text{\textnormal{H}}}}
 \end_inset
 
 
@@ -133,7 +134,7 @@ theorems-std
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
+\newcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
 \end_inset
 
 
@@ -141,7 +142,7 @@ theorems-std
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
+\newcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
 \end_inset
 
 
@@ -282,17 +283,17 @@ iabstract
 \begin_layout Plain Layout
 
 {Данная работа описывает алгоритм вычисления базисов Грёбнера, основанный
- на использовании отмеченных многочленов и идеях из алгоритма F5.
- Отличительными особенностями алгоритма по сравнению с аналогами являются
- простота самого алгоритма и доказательства его корректности, достигнутые
- без потери эффективности.
- Это позволяет создать простую реализацию, не уступающую более сложным аналогам
- по производительности}
+ на использовании отмеченных многочленов из алгоритма F5.
+ Отличительной особенностью алгоритма по сравнению с аналогами является
+ простота как самого алгоритма, так и доказательства его корректности, достигнут
+ая без потери эффективности.
+ Это позволило создать простую реализацию, не уступающую более сложным аналогам
+ по производительности.}
 \end_layout
 
 \begin_layout Plain Layout
 
-{базис Грёбнера, алгоритм F5, отмеченные многочлены}
+{базис Грёбнера, алгоритм F5, отмеченные многочлены.}
 \end_layout
 
 \begin_layout Plain Layout
@@ -303,7 +304,7 @@ iabstract
  both of the algorithm and of the its correctness proof achieved without
  loss of the efficiency.
  This leads to simple implementation which performance is in par with more
- complex analogues} {Groebner basis, F5 algorithm, labeled polynomials}
+ complex analogues.} {Groebner basis, F5 algorithm, labeled polynomials.}
 \end_layout
 
 \end_inset
@@ -312,7 +313,12 @@ iabstract
 \end_layout
 
 \begin_layout Standard
-Рассмотрим кольцо многочленов 
+
+\series bold
+Введение.
+
+\series default
+ Рассмотрим кольцо многочленов 
 \begin_inset Formula $P=k[x_{1},\dots,x_{n}]$
 \end_inset
 
@@ -336,9 +342,9 @@ iabstract
 \end_inset
 
 .
- Один из способов её решения инкрементальный: последовательно вычисляются
+ Один из способов ее решения инкрементальный: последовательно вычисляются
  базисы идеалов 
-\begin_inset Formula $\left(f_{1},\dots,f_{i}\right),i=2\dots l$
+\begin_inset Formula $\left(f_{1},\dots,f_{i}\right),i=2,\dots,l$
 \end_inset
 
  на основе уже вычисленного для идеала 
@@ -355,7 +361,7 @@ iabstract
 
 .
  Представляемый алгоритм позволяет выполнить шаг такого вычисления.
- Таким образом, входные данные для алгоритма -- это некоторый многочлен
+ Таким образом, входные данные для алгоритма --- это некоторый многочлен
  
 \begin_inset Formula $f$
 \end_inset
@@ -369,8 +375,8 @@ iabstract
 \end_inset
 
 .
- В качестве результата своей работы алгоритм должен построить множество
- многочленов 
+ В результате своей работы алгоритм должен построить множество многочленов
+ 
 \begin_inset Formula $R$
 \end_inset
 
@@ -391,7 +397,7 @@ iabstract
 \begin_inset Formula $f\neq0,\forall i\, g_{i}\notin k.$
 \end_inset
 
- Заметим, что в отличии от алгоритма F5, описанного в 
+ Заметим, что, в отличие от алгоритма F5, описанного в 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "FaugereF5"
@@ -401,16 +407,12 @@ key "FaugereF5"
 , однородность многочленов не требуется.
 \end_layout
 
-\begin_layout Section
-Определения
-\end_layout
-
 \begin_layout Standard
-Введём обозначения: 
+Введем обозначения: 
 \begin_inset Formula $\mathbb{T}_{0}=\mathbb{T}\cup\left\{ 0\right\} $
 \end_inset
 
- -- расширенный нулём моноид мономов.
+ --- расширенный нулем моноид мономов.
  Порядок 
 \begin_inset Formula $\prec$
 \end_inset
@@ -419,11 +421,11 @@ key "FaugereF5"
 \begin_inset Formula $\mathbb{T}_{0}$
 \end_inset
 
- как 
+ в виде 
 \begin_inset Formula $\prec_{0}$
 \end_inset
 
- определением 
+ следующим определением: 
 \begin_inset Formula $\forall t\in\mathbb{T}\, t\succ_{0}0$
 \end_inset
 
@@ -433,7 +435,7 @@ key "FaugereF5"
 \end_inset
 
 : 
-\begin_inset Formula $t_{1}|t_{2}\eqdef\exists t_{3}\, t_{1}t_{3}=t_{2}$
+\begin_inset Formula $t_{1}|t_{2}\equivdef\exists t_{3}:\, t_{1}t_{3}=t_{2}$
 \end_inset
 
 .
@@ -441,7 +443,7 @@ key "FaugereF5"
 \begin_inset Formula $p\in P,p\neq0$
 \end_inset
 
- старшие по 
+, старшие по 
 \begin_inset Formula $\prec$
 \end_inset
 
@@ -453,8 +455,8 @@ key "FaugereF5"
 \begin_inset Formula $\HC(p)\in k$
 \end_inset
 
-.
- Для нуля -- 
+ соответственно.
+ Для нуля 
 \begin_inset Formula $\HM(0)\eqdef0\in\mathbb{T}_{0}$
 \end_inset
 
@@ -480,7 +482,7 @@ key "FaugereF5"
 \begin_inset Formula $f$
 \end_inset
 
-:
+.
 \end_layout
 
 \begin_layout Definition
@@ -493,7 +495,7 @@ key "FaugereF5"
 \end_inset
 
 , удовлетворяющая условию корректности: 
-\begin_inset Formula $\exists u\in P\,\HM(u)=\sigma,uf\equiv p\pmod{I_{0}}.$
+\begin_inset Formula $\exists q\in P\,\HM(q)=\sigma,qf\equiv p\pmod{I_{0}}.$
 \end_inset
 
  На отмеченные многочлены распространяются определения старшего монома 
@@ -505,7 +507,7 @@ key "FaugereF5"
 \end_inset
 
 .
- Также определяются 
+ Также определяется 
 \emph on
 сигнатура
 \emph default
@@ -513,12 +515,12 @@ key "FaugereF5"
 \begin_inset Formula $\SIG(h)\eqdef\sigma$
 \end_inset
 
- и вводится обозначение многочлена -- второго элемента пары: 
+ и вводится обозначение многочлена --- второго элемента пары: 
 \begin_inset Formula $\poly(h)\eqdef p$
 \end_inset
 
 .
- Множество отмеченных многочленов обозначается за 
+ Множество отмеченных многочленов обозначается через 
 \begin_inset Formula $H\subset\mathbb{T}_{0}\times P$
 \end_inset
 
@@ -536,7 +538,7 @@ key "FaugereF5"
 \end_inset
 
 .
- Другим примером отмеченного многочлена является 
+ Другим примером отмеченного многочлена служит 
 \begin_inset Formula $\left(\HM(g),0\right)$
 \end_inset
 
@@ -546,7 +548,7 @@ key "FaugereF5"
 
 .
  Он корректен, поскольку в качестве 
-\begin_inset Formula $u$
+\begin_inset Formula $q$
 \end_inset
 
  можно взять 
@@ -570,7 +572,7 @@ key "FaugereF5"
 
 \begin_layout Standard
 Корректность определения проверяется явным нахождением 
-\begin_inset Formula $u$
+\begin_inset Formula $q$
 \end_inset
 
  для 
@@ -633,7 +635,7 @@ h_{1}=\left(\SIG(h'_{1}),\poly(h'_{1})+Kt\poly(h_{2})\right),
 \end_layout
 
 \begin_layout Standard
-Введём частичный порядок 
+Введем частичный порядок 
 \begin_inset Formula $\GVWl$
 \end_inset
 
@@ -727,7 +729,7 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \begin_inset Formula $h_{1}\in H$
 \end_inset
 
- -- результат редукции 
+ --- результат редукции 
 \begin_inset Formula $h_{1}'$
 \end_inset
 
@@ -808,7 +810,7 @@ name "lem:greater-or-smaller"
 \begin_inset Formula $\SIG(h_{3})=0$
 \end_inset
 
- -- то 
+, имеем 
 \begin_inset Formula $h_{1}\GVWl h_{3}$
 \end_inset
 
@@ -881,7 +883,7 @@ reference "eq:left-or-right-monom"
 \begin_inset Formula $B$
 \end_inset
 
- -- подмножества 
+ --- подмножества 
 \begin_inset Formula $H$
 \end_inset
 
@@ -889,15 +891,15 @@ reference "eq:left-or-right-monom"
 \begin_inset Formula $(\sigma,p')\in H$
 \end_inset
 
- -- отмеченный многочлен текущего шага до редукции; 
+ --- отмеченный многочлен текущего шага до редукции; 
 \begin_inset Formula $(\sigma,p)$
 \end_inset
 
- -- он же после редукции; 
+ --- он же после редукции; 
 \begin_inset Formula $r,b$
 \end_inset
 
- -- элементы 
+ --- элементы 
 \begin_inset Formula $R$
 \end_inset
 
@@ -1172,7 +1174,7 @@ return
 \begin_inset Formula $\mathbb{T}_{0}\times P$
 \end_inset
 
- в алгоритме -- элементы 
+ в алгоритме --- элементы 
 \begin_inset Formula $H\setminus\left\{ \left(0,0\right)\right\} $
 \end_inset
 
@@ -1272,7 +1274,7 @@ for
 \begin_inset Formula $r\in R$
 \end_inset
 
- -- во втором.
+ --- во втором.
 \end_layout
 
 \begin_layout Lemma
@@ -1664,7 +1666,7 @@ name "lem:one-j-exact"
 \begin_inset Formula $\poly(h)=\sum_{j}K_{j}t_{j}\poly(r_{i_{j}})$
 \end_inset
 
- -- S-представление для 
+ --- S-представление для 
 \begin_inset Formula $h$
 \end_inset
 
@@ -1708,7 +1710,7 @@ key "TheF5Revised"
 \end_layout
 
 \begin_layout Definition
-Назовём 
+Назовем 
 \begin_inset Formula $R\subset H$
 \end_inset
 
@@ -1760,7 +1762,7 @@ name "lem:s-basis-and-no-reductions"
 \begin_inset Formula $\sigma\succ_{0}0,R=\left\{ r_{i}\right\} $
 \end_inset
 
- -- S
+ --- S
 \emph on
 
 \begin_inset Formula $_{\sigma}$
@@ -1798,7 +1800,7 @@ name "lem:s-basis-and-no-reductions"
 \end_inset
 
  имеем 
-\begin_inset Formula $\exists u_{i}\in P\,\HM(u_{i})=\sigma,u_{i}f\equiv\poly(h_{i})\pmod{I_{0}},i=1,2.$
+\begin_inset Formula $\exists q_{i}\in P\,\HM(q_{i})=\sigma,q_{i}f\equiv\poly(h_{i})\pmod{I_{0}},i=1,2.$
 \end_inset
 
  Значит некоторой линейной комбинации 
@@ -1860,7 +1862,7 @@ name "lem:s-basis-and-no-reductions"
 \begin_inset Formula $k$
 \end_inset
 
--коэффициентом, что даёт 
+-коэффициентом, что дает 
 \begin_inset Formula $\HM(h_{1})=\HM(h_{2})$
 \end_inset
 
@@ -1979,7 +1981,7 @@ reference "enu:-remove-from-B"
 \begin_inset Formula $t'=\frac{\LCM(\HM(r_{1}),\HM(r_{\sigma}))}{\HM(r_{\sigma})}$
 \end_inset
 
-, причём 
+, причем 
 \begin_inset Formula $t'|t_{\sigma}$
 \end_inset
 
@@ -2013,7 +2015,7 @@ reference "enu:-remove-from-B"
 \end_inset
 
 .
- Это невозможно, поскольку влечёт 
+ Это невозможно, поскольку влечет 
 \begin_inset Formula $r_{2}\GVWl r_{\sigma},r_{2}\in R_{\sigma}$
 \end_inset
 
@@ -2075,7 +2077,7 @@ reference "enu:-remove-from-B"
 \begin_inset Formula $R$
 \end_inset
 
- -- S
+ --- S
 \emph on
 
 \begin_inset Formula $_{\sigma}$
@@ -2101,7 +2103,7 @@ reference "enu:-remove-from-B"
 \begin_inset Formula $v_{\sigma}$
 \end_inset
 
- -- один из элементов 
+ --- один из элементов 
 \begin_inset Formula $V_{\sigma}$
 \end_inset
 
@@ -2131,7 +2133,7 @@ reference "enu:-remove-from-B"
 \end_inset
 
 .
- Возьмём 
+ Возьмем 
 \begin_inset Formula $w_{\sigma}\eqdef t_{\sigma}r_{\sigma}$
 \end_inset
 
@@ -2171,7 +2173,7 @@ reference "lem:s-basis-and-no-reductions"
 \begin_inset Formula $w_{\sigma}$
 \end_inset
 
- в нём можно заменить на 
+ в нем можно заменить на 
 \begin_inset Formula $t_{\sigma}r_{\sigma}$
 \end_inset
 
@@ -2191,7 +2193,7 @@ reference "lem:s-basis-and-no-reductions"
 \begin_inset Formula $R$
 \end_inset
 
- -- S-базис, то 
+ --- S-базис, то 
 \begin_inset Formula $\{\poly(r)\,|\, r\in R\}$
 \end_inset
 
@@ -2247,7 +2249,7 @@ reference "thm:has-s-repr"
 \begin_inset Formula $R$
 \end_inset
 
- -- S-базис.
+ --- S-базис.
 \end_layout
 
 \begin_layout Section
@@ -2265,8 +2267,8 @@ key "FaugereF5"
 \end_inset
 
 .
- Одно из основных направлений его модификации -- упрощение теоретических
- обоснований и расширение области применимости -- представлено в 
+ Одно из основных направлений его модификации --- упрощение теоретических
+ обоснований и расширение области применимости --- представлено в 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "GermanF5Proof,ZobninGeneralization,F5InBBStyle"
@@ -2274,8 +2276,8 @@ key "GermanF5Proof,ZobninGeneralization,F5InBBStyle"
 \end_inset
 
 .
- Другое -- повышение эффективности путём ввода дополнительных критериев
- отбрасывания некоторых вычислений -- описывается в 
+ Другое --- повышение эффективности путем ввода дополнительных критериев
+ отбрасывания некоторых вычислений --- описывается в 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "F5C,G2V,SignatureBasedGBs"
@@ -2299,9 +2301,9 @@ key "HuangConception,PracticalGB"
 \end_inset
 
  позволяет добиться большей эффективности благодаря тому, что все отбрасывания
- применяются до проведения таких вычислительно трудоёмких операций, как
- редукция многочлена или подсчёт старшего монома S-пары, -- в результате
- не оказывается, что результаты каких-то вычислений были отброшены.
+ применяются до проведения таких вычислительно трудоемких операций, как
+ редукция многочлена или подсчет старшего монома S-пары.
+ В итоге не оказывается, что результаты каких-то вычислений были отброшены.
 \end_layout
 
 \begin_layout Standard
@@ -2339,7 +2341,7 @@ reference "par:ReduceCheckingSignatures:"
 \end_inset
 
  является открытым.
- Представленный в этой работе способ выбора основан на всё том же упорядочении
+ Представленный в этой работе способ выбора основан на все том же упорядочении
  
 \begin_inset Formula $R$
 \end_inset
@@ -2360,7 +2362,7 @@ key "ZobninGeneralization"
 \begin_layout Standard
 Упрощение формулировки алгоритма повлекло значительное уменьшение времени
  на его реализацию и отладку на компьютере по сравнению с аналогами, как
- за счёт меньшего количества множеств, так и за счёт общего для критериев
+ за счет меньшего количества множеств, так и за счет общего для критериев
  отбрасывания и процедуры редукции порядка.
  Простота реализации и нетребовательность к структурам данных позволяет
  за небольшое время внедрять эффективную версию алгоритма в любую систему
