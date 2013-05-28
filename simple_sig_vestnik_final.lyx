@@ -400,10 +400,19 @@ iabstract
 \begin_inset Formula $f\neq0,\forall i\, g_{i}\notin k.$
 \end_inset
 
- Заметим, что, в отличие от алгоритма F5, описанного в 
+ Заметим, что, в отличие от алгоритма F5, описанного в [1]
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset CommandInset citation
 LatexCommand cite
 key "FaugereF5"
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -1746,10 +1755,19 @@ reference "lem:r-gvw-big"
 \end_inset
 
  применим подход, основанный на понятии идеалов моноидов, предложенном в
- 
+ [2]
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset CommandInset citation
 LatexCommand cite
 key "KreuzerRobbianoBook1"
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -1884,10 +1902,19 @@ name "lem:one-j-exact"
 \end_layout
 
 \begin_layout Standard
-Следующее определение расширяет понятие S-базиса из работы 
+Следующее определение расширяет понятие S-базиса из работы [3]
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset CommandInset citation
 LatexCommand cite
 key "TheF5Revised"
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -2474,35 +2501,64 @@ reference "thm:has-s-repr"
  --- S-базис.
 \end_layout
 
-\begin_layout Section
-Сравнение с аналогами
-\end_layout
-
 \begin_layout Standard
-Представленный алгоритм принадлежит к семейству алгоритмов вычисления базисов
- Грёбнера, использующих сигнатуры, которые вычисляют S-базис и в той или
- иной степени являются модификациями алгоритма F5 из 
+
+\series bold
+Сравнение с аналогами.
+
+\series default
+ Представленный алгоритм принадлежит к семейству алгоритмов вычисления базисов
+ Грёбнера, основанных на использовании сигнатур, вычисляющих S-базис и в
+ той или иной степени являющихся модификациями алгоритма F5 из [1]
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset CommandInset citation
 LatexCommand cite
 key "FaugereF5"
 
 \end_inset
 
+
+\end_layout
+
+\end_inset
+
 .
  Одно из основных направлений его модификации --- упрощение теоретических
- обоснований и расширение области применимости --- представлено в 
+ обоснований и расширение области применимости --- представлено в [4-6]
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset CommandInset citation
 LatexCommand cite
 key "GermanF5Proof,ZobninGeneralization,F5InBBStyle"
 
 \end_inset
 
+
+\end_layout
+
+\end_inset
+
 .
  Другое --- повышение эффективности путем ввода дополнительных критериев
- отбрасывания некоторых вычислений --- описывается в 
+ отбрасывания некоторых вычислений --- описывается в [7-9]
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset CommandInset citation
 LatexCommand cite
 key "F5C,G2V,SignatureBasedGBs"
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -2522,9 +2578,9 @@ key "HuangConception,PracticalGB"
 
 \end_inset
 
- позволяет добиться большей эффективности благодаря тому, что все отбрасывания
- применяются до проведения таких вычислительно трудоемких операций, как
- редукция многочлена или подсчет старшего монома S-пары.
+ дает возможность добиться большей эффективности благодаря тому, что все
+ отбрасывания применяются до проведения таких вычислительно трудоемких операций,
+ как редукция многочлена, подсчет старшего монома S-пары.
  В итоге не оказывается, что результаты каких-то вычислений были отброшены.
 \end_layout
 
@@ -2532,14 +2588,12 @@ key "HuangConception,PracticalGB"
 Во всех упомянутых алгоритмах, включая немодифицированный F5, формулируется
  два типа критериев отброса: критерии, связанные с сизигиями, и критерии
  перезаписи, корректность каждого из которых доказывается независимо.
- Также, даже в алгоритмах, не вычисляющих S-полиномы явно, теоретическое
- обоснование корректности алгоритма на них опирается.
 \end_layout
 
 \begin_layout Standard
-Данная работа описывает алгоритм вычисляющий минимальный S-базис и осуществляющи
-й отброс вычислений не менее эффективно, чем в TRB-MJ, но использующий лишь
- единственный критерий отброса на шаге 
+Данная работа описывает алгоритм, вычисляющий минимальный S-базис и осуществляющ
+ий отброс вычислений не менее эффективно, чем в TRB-MJ, но использующий
+ лишь единственный критерий отброса на шаге 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "enu:-remove-from-B"
@@ -2556,25 +2610,33 @@ reference "enu:-remove-from-B"
 
 .
  Вопрос наиболее эффективного способа выбора редуктора в 
-\begin_inset CommandInset ref
-LatexCommand nameref
-reference "par:ReduceCheckingSignatures:"
-
-\end_inset
-
+\series medium
+\emph on
+Редукции с Проверкой Сигнатур
+\series default
+\emph default
  является открытым.
- Представленный в этой работе способ выбора основан на все том же упорядочении
+ Представленный в этой работе способ выбора основан все на том же упорядочении
  
 \begin_inset Formula $R$
 \end_inset
 
- и совпадает для случая однородных многочленов со способом выбора, применявшемся
+ и совпадает для случая однородных многочленов со способом выбора, применявшимся
  в алгоритме F5.
  Теоретическое обоснование сформулировано без S-полиномов и позволяет применять
- к нему простую алгебраическую интерпретацию из 
+ к нему простую алгебраическую интерпретацию из [5]
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ZobninGeneralization"
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -2583,59 +2645,80 @@ key "ZobninGeneralization"
 
 \begin_layout Standard
 Упрощение формулировки алгоритма повлекло значительное уменьшение времени
- на его реализацию и отладку на компьютере по сравнению с аналогами, как
- за счет меньшего количества множеств, так и за счет общего для критериев
- отбрасывания и процедуры редукции порядка.
- Простота реализации и нетребовательность к структурам данных позволяет
+ его реализации и отладки на компьютере по сравнению с аналогами, как за
+ счет меньшего количества множеств, так и за счет общего порядка для критериев
+ отбрасывания и процедуры редукции.
+ Простота реализации и нетребовательность к структурам данных позволяют
  за небольшое время внедрять эффективную версию алгоритма в любую систему
  компьютерной алгебры.
  Реализация, упоминаемая ниже, была создана автором за 8 часов, что на порядок
- меньше, чем время, затраченное автором на экспериментальные реализации
- других алгоритмов в подобных условиях.
+ меньше времени, затраченного автором на экспериментальные реализации других
+ алгоритмов в подобных условиях.
  Доказательство, основанное на инвариантах в терминах S-представлений, позволило
- сделать работу алгоритма более прозрачной с алгебраической точки зрения
- и потенциально расширяемым на объекты, обобщающие кольцо многочленов над
- полем.
+ сделать работу алгоритма более прозрачной с алгебраической точки зрения,
+ а сам алгоритм --- потенциально расширяемым на объекты, обобщающие кольцо
+ многочленов над полем.
 \end_layout
 
 \begin_layout Standard
 Алгоритм был реализован на С++ с использованием функций ядра программного
- комплекса Singular 3-1-4 и открытых наработок Кристиана Эдера (одного из
- авторов 
+ комплекса Singular 3-1-4 и открытых наработок К.
+ Эдера (одного из авторов [8]
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset CommandInset citation
 LatexCommand cite
 key "SignatureBasedGBs"
 
 \end_inset
 
-) по реализации F5-подобных алгоритмов на этом ядре.
- Исходный код реализации содержится в функции ssg файла, доступного по адресу
- 
-\begin_inset CommandInset href
-LatexCommand href
-target "https://github.com/galkinvv/Singular-f5-like/blob/ssg/kernel/kstd2.cc"
+
+\end_layout
 
 \end_inset
 
+) по реализации подобных F5 алгоритмов на этом ядре.
+ Исходный код реализации содержится в функции ssg файла, доступного по адресу
+ 
+\family typewriter
 
+\begin_inset Formula $\mbox{https://github.com/galkinvv/Singular-f5-like/blob/ssg/kernel/kstd2.cc}$
+\end_inset
+
+
+\family default
+.
 \end_layout
 
 \begin_layout Standard
-Сравнение реализации SimpleSignatureGroebner с другими алгоритмами вычисления
- базисов Грёбнера, реализованных Кристианом Эдером подтвердили следующие
- соображения:
+Сравнение реализации 
+\series medium
+\emph on
+Простого Сигнатурного Метода Грёбнера
+\series default
+\emph default
+ с другими алгоритмами вычисления базисов Грёбнера, реализованными К.
+ Эдером подтвердило следующие соображения:
 \end_layout
 
-\begin_layout Itemize
-алгоритм SimpleSignatureGroebner корректно вычисляет базис Грёбнера;
+\begin_layout Standard
+
+\series medium
+\emph on
+Простой Сигнатурный Метод Грёбнера
+\series default
+\emph default
+ корректно вычисляет базис Грёбнера;
 \end_layout
 
-\begin_layout Itemize
-результат содержит не большее число многочленов, чем результат других инкремента
-льных алгоритмов, возвращающих S-базис;
+\begin_layout Standard
+результат содержит не большее число многочленов, чем другие инкрементальные
+ алгоритмы, возвращающие S-базис;
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Standard
 время работы алгоритма оказывается не больше, чем у других инкрементальных
  алгоритмов, основанных на сигнатурах.
 \end_layout
@@ -2643,13 +2726,6 @@ target "https://github.com/galkinvv/Singular-f5-like/blob/ssg/kernel/kstd2.cc"
 \begin_layout Standard
 \begin_inset ERT
 status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-vestnikonly{
-\end_layout
 
 \begin_layout Plain Layout
 
@@ -2682,10 +2758,12 @@ wref{1}{Faug
 \backslash
 `{e}re J.-C.} A new efficient algorithm for computing Gr
 \backslash
-"{o}bner bases without reduction to zero (F5) // Proceedings of the 2002
- International Symposium on Symbolic and Algebraic Computation.
+"{o}bner bases without reduction to zero (F5) // Proc.
+ 2002 Int.
+ Symp.
+ on Symbolic and Algebraic Computation.
+ NY.
  ACM.
- New York.
  2002.
  75--83.
 \end_layout
@@ -2699,7 +2777,8 @@ wref{1}{Faug
 
 \backslash
 wref{2}{Kreuzer M., Robbiano L.} Computational commutative algebra.
- 1 // Springer-Verlag.
+ 1.
+ Springer-Verlag.
  Berlin.
  2000.
 \end_layout
@@ -2712,8 +2791,9 @@ wref{2}{Kreuzer M., Robbiano L.} Computational commutative algebra.
 
 
 \backslash
-wref{3}{Arri A., Perry J.} The F5 criterion revised // Journal of Symbolic
- Computation.
+wref{3}{Arri A., Perry J.} The F5 criterion revised // J.
+ Symbol.
+ Computat.
  2011.
  {
 \backslash
@@ -2731,8 +2811,8 @@ No~9.
 
 
 \backslash
-wref{4}{Герман О.} Доказательство критерия Фожера для алгоритма F5 // Математичес
-кие заметки.
+wref{4}{Герман О.} Доказательство критерия Фожера для алгоритма F5 // Матем.
+ заметки.
  2010.
  {
 \backslash
@@ -2767,8 +2847,9 @@ No~2.
 
 
 \backslash
-wref{6}{Sun, Y., Wang, D.} The F5 algorithm in Buchberger’s style // Journal
- of Systems Science and Complexity.
+wref{6}{Sun Y., Wang D.} The F5 algorithm in Buchberger’s style // J.
+ Systems Sci.
+ and Complexity.
  2011.
  {
 \backslash
@@ -2790,10 +2871,12 @@ No~6.
 wref{7}{Gao S., Guan Y., Volny F.} A new incremental algorithm for computing
  Gr
 \backslash
-"{o}bner bases // Proceedings of the 2010 International Symposium on Symbolic
- and Algebraic Computation.
+"{o}bner bases // Proc.
+  2010 Int.
+ Symp.
+ on Symbolic and Algebraic Computation.
+ NY.
  ACM.
- New York.
  2010.
  13--19.
 \end_layout
@@ -2808,10 +2891,11 @@ wref{7}{Gao S., Guan Y., Volny F.} A new incremental algorithm for computing
 \backslash
 wref{8}{Eder C., Perry J.} Signature-based algorithms to compute Gr
 \backslash
-"{o}bner bases // Proceedings of the 36th International Symposium on Symbolic
- and Algebraic Computation.
+"{o}bner bases // Proc 36th Int.
+ Symp.
+ on Symbolic and Algebraic Computation.
+ NY.
  ACM.
- New York.
  2011.
  99--106.
 \end_layout
@@ -2828,7 +2912,9 @@ wref{9}{Eder C., Perry J.} F5C: A variant of Faug
 \backslash
 `{e}re's F5 algorithm with reduced Gr
 \backslash
-"{o}bner bases // Journal of Symbolic Computation.
+"{o}bner bases // J.
+ Symbol.
+ Comput.
  2010.
  {
 \backslash
@@ -2848,9 +2934,9 @@ No~12.
 \backslash
 wref{10}{Huang L.} A new conception for computing Gr
 \backslash
-"{o}bner basis and its applications // депонировано: 
+"{o}bner basis and its applications //  
 \backslash
-href{http://arxiv.org/abs/1012.5425v2}{}.
+texttt{http://arxiv.org/abs/1012.5425v2}.
 \end_layout
 
 \begin_layout Plain Layout
@@ -2863,48 +2949,14 @@ href{http://arxiv.org/abs/1012.5425v2}{}.
 \backslash
 wref{11}{Roune B., Stillman M.} Practical Gr
 \backslash
-"{o}bner basis computation // Proceedings of the 2012 International Symposium
+"{o}bner basis computation // Proc.
+ 2012 Int.
+ Symp.
  on Symbolic and Algebraic Computation.
+ NY.
  ACM.
- New York.
  2012.
 \end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-lend
-\end_layout
-
-\begin_layout Plain Layout
-
-}%
-\backslash
-vestnikonly
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-novestnikonly{
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset bibtex
-LatexCommand bibtex
-bibfiles "f5_references"
-options "plain"
 
 \end_inset
 
@@ -2917,9 +2969,9 @@ status open
 
 \begin_layout Plain Layout
 
-}%
+
 \backslash
-novestnikonly
+lend
 \end_layout
 
 \end_inset
