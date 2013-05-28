@@ -4,16 +4,8 @@
 \begin_header
 \textclass article
 \begin_preamble
-\newcommand{\novestnikonly}[1]{}
-\newcommand{\vestnikonly}[1]{#1}
-\vestnikonly{
 \usepackage{allerree}
-
 \def\wdeb{0}
-\usepackage{nameref}
-\usepackage{url}
-\let\href\undefined
-\newcommand{\href}[2]{\url{#1}}
 
 \newcounter{countergvlemmas}
 \newcounter{countergvdefinitions}
@@ -30,15 +22,6 @@
 \renewenvironment{defn}
 {\par \refstepcounter{countergvdefinitions} {\bf Определение \arabic{countergvdefinitions}.}}
 {\par}
-}%\vestnikonly
-\novestnikonly{
-\newcommand{\iabstract}[4]{
-\begin{abstract}
-#3
-\footnote{\emph{Keywords:} #4}
-\end{abstract}
-}
-}%\novestnikonly
 
 
 \DeclareMathOperator{\HC}{HC}
@@ -159,87 +142,6 @@ status open
 
 
 \backslash
-novestnikonly{
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Title
-Simple signature-based Groebner basis algorithm
-\end_layout
-
-\begin_layout Author
-Galkin Vasily
-\begin_inset Newline newline
-\end_inset
-
-Moscow State University
-\begin_inset Newline newline
-\end_inset
-
-email:
-\begin_inset CommandInset href
-LatexCommand href
-target " galkin-vv@yandex.ru"
-type "mailto:"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-providecommand{
-\backslash
-definitionname}{Definition}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-providecommand{
-\backslash
-lemmaname}{Lemma}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-providecommand{
-\backslash
-theoremname}{Theorem} 
-\end_layout
-
-\begin_layout Plain Layout
-
-}%
-\backslash
-novestnikonly
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-vestnikonly{
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
 cleanbegin 
 \end_layout
 
@@ -267,13 +169,6 @@ it Галкин Василий Витальевич} --- асп.
  каф.
  алгебры мех.-мат.
  ф-та МГУ, e-mail: galkin-vv@yandex.ru.}}
-\end_layout
-
-\begin_layout Plain Layout
-
-}%
-\backslash
-vestnikonly
 \end_layout
 
 \begin_layout Plain Layout
@@ -856,7 +751,7 @@ reference "eq:gvw-order-3"
 \begin_inset Formula $\HM(h_{3})^{2}\SIG(h_{2})\SIG(h_{1})\in\mathbb{T}_{0}$
 \end_inset
 
- является частью нравенства: с точки зения порядка 
+ является частью неравенства: с точки зрения порядка 
 \begin_inset Formula $\prec_{0}$
 \end_inset
 
@@ -1436,7 +1331,7 @@ return
 Остановка алгоритма.
  
 \series default
-Докажем, что приведённый алгоритм останавливается.
+Докажем, что приведенный алгоритм останавливается.
 \end_layout
 
 \begin_layout Lemma
@@ -2571,10 +2466,19 @@ key "F5C,G2V,SignatureBasedGBs"
 
 \emph default
  Обобщение с одновременным применением всех критериев в алгоритмах TRB-MJ
- и SB 
+ и SB [10,11]
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset CommandInset citation
 LatexCommand cite
 key "HuangConception,PracticalGB"
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -2704,13 +2608,7 @@ key "SignatureBasedGBs"
 \end_layout
 
 \begin_layout Standard
-
-\series medium
-\emph on
-Простой Сигнатурный Метод Грёбнера
-\series default
-\emph default
- корректно вычисляет базис Грёбнера;
+предложенный алгоритм корректно вычисляет базис Грёбнера;
 \end_layout
 
 \begin_layout Standard
@@ -2954,13 +2852,29 @@ wref{11}{Roune B., Stillman M.} Practical Gr
  Symp.
  on Symbolic and Algebraic Computation.
  NY.
- ACM.
+ CM.
  2012.
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 75text%
+\end_inset
+
+Поступила в редакцию
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 75text%
+\end_inset
+
+18.05.2012
 \end_layout
 
 \begin_layout Standard
