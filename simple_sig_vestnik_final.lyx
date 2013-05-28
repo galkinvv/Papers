@@ -182,9 +182,8 @@ iabstract
 
 {Данная работа описывает алгоритм вычисления базисов Грёбнера, основанный
  на использовании отмеченных многочленов из алгоритма F5.
- Отличительной особенностью алгоритма по сравнению с аналогами является
- простота как самого алгоритма, так и доказательства его корректности, достигнут
-ая без потери эффективности.
+ Отличительной особенностью алгоритма является простота как самого алгоритма,
+ так и доказательства его корректности, достигнутая без потери эффективности.
  Это позволило создать простую реализацию, не уступающую более сложным аналогам
  по производительности.}
 \end_layout
@@ -245,7 +244,7 @@ iabstract
 \begin_inset Formula $\left(f_{1},\dots,f_{i}\right),i=2,\dots,l$
 \end_inset
 
- на основе уже вычисленного для идеала 
+, на основе уже вычисленного для идеала 
 \begin_inset Formula $\left(f_{1},\dots,f_{i-1}\right)$
 \end_inset
 
@@ -627,10 +626,14 @@ h_{1}=(\sigma_{1},p_{1})\GVWl h_{2}=(\sigma_{2},p_{2})\equivdef\HM(p_{1})\sigma_
 \begin_layout Standard
 Доказательство следует из того, что оба утверждения равносильны неравенству
  
-\begin_inset Formula $\SIG(h_{2})\succ_{0}\SIG(h_{1})\frac{\HM(h_{2})}{\HM(h_{1})}$
+\begin_inset Formula 
+\[
+\SIG(h_{2})\succ_{0}\SIG(h_{1})\frac{\HM(h_{2})}{\HM(h_{1})}\text{.}
+\]
+
 \end_inset
 
-.
+
 \end_layout
 
 \begin_layout Lemma
@@ -829,6 +832,9 @@ reference "eq:left-or-right-monom"
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Standard
 \begin_inset VSpace medskip
 \end_inset
 
@@ -836,7 +842,6 @@ reference "eq:left-or-right-monom"
 \end_layout
 
 \begin_layout Standard
-\noindent
 
 \series medium
 \emph on
@@ -847,7 +852,7 @@ reference "eq:left-or-right-monom"
 \begin_inset Formula $\left(\left\{ g_{1},\dots,g_{m}\right\} ,f\right)$
 \end_inset
 
-
+:
 \end_layout
 
 \begin_layout Enumerate
@@ -1142,6 +1147,9 @@ return
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Standard
 \begin_inset VSpace medskip
 \end_inset
 
@@ -1149,7 +1157,6 @@ return
 \end_layout
 
 \begin_layout Standard
-\noindent
 
 \series medium
 \emph on
@@ -1160,7 +1167,7 @@ return
 \begin_inset Formula $\left(\sigma,p,R\right)$
 \end_inset
 
-
+:
 \end_layout
 
 \begin_layout Enumerate
@@ -1813,7 +1820,7 @@ key "TheF5Revised"
 
 \end_inset
 
-:
+.
 \end_layout
 
 \begin_layout Definition
@@ -1914,8 +1921,7 @@ name "lem:s-basis-and-no-reductions"
 
 \end_inset
 
-Значит.
- некоторой линейной комбинации 
+Значит, некоторой линейной комбинации 
 \begin_inset Formula $\poly(h_{i})$
 \end_inset
 
@@ -2423,7 +2429,6 @@ key "FaugereF5"
 .
  Одно из основных направлений его модификации --- упрощение теоретических
  обоснований и расширение области применимости --- представлено в [4-6]
- 
 \begin_inset Note Note
 status open
 
@@ -2549,7 +2554,7 @@ key "ZobninGeneralization"
 
 \begin_layout Standard
 Упрощение формулировки алгоритма повлекло значительное уменьшение времени
- его реализации и отладки на компьютере по сравнению с аналогами, как за
+ его реализации и отладки на компьютере по сравнению с аналогами как за
  счет меньшего количества множеств, так и за счет общего порядка для критериев
  отбрасывания и процедуры редукции.
  Простота реализации и нетребовательность к структурам данных позволяют
@@ -2604,7 +2609,7 @@ key "SignatureBasedGBs"
 \series default
 \emph default
  с другими алгоритмами вычисления базисов Грёбнера, реализованными К.
- Эдером подтвердило следующие соображения:
+ Эдером, подтвердило следующие соображения:
 \end_layout
 
 \begin_layout Standard
