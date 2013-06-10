@@ -4,63 +4,16 @@
 \begin_header
 \textclass article
 \begin_preamble
-#endif
-\usepackage{babel}
+\input{gost/babelbst.tex}
 \newcommand{\Sig}{\mathcal{S}}
 \newcommand{\HM}{\mathrm{HM}}
 \newcommand{\totaldeg}{\mathrm{deg}}
 \newcommand{\poly}{\mathrm{poly}}
 \newcommand{\sigidx}{\mathrm{index}}
 
-#ifdef VESTNIK
+
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{allerree}
-
-\def\wdeb{0}
-
-\newcounter{countergvtheorems}
-
-\newenvironment{proofwithpar}
-{\par{\bf Доказательство.}}
-{ $\square$\par}
-
-\newenvironment{fact}
-{\refstepcounter{countergvtheorems}\begin{theorem}{Факт \arabic{countergvtheorems}.}}
-{\end{theorem}}
-
-\newenvironment{claim}
-{\refstepcounter{countergvtheorems}\begin{theorem}{Утверждение \arabic{countergvtheorems}.}}
-{\end{theorem}}
-
-\newenvironment{lem}
-{\refstepcounter{countergvtheorems}\begin{theorem}{Лемма  \arabic{countergvtheorems}.}}
-{\end{theorem}}
-
-\newenvironment{thm}
-{\refstepcounter{countergvtheorems}\begin{theorem}{Теорема \arabic{countergvtheorems}.}}
-{\end{theorem}}
-
-\newenvironment{cor}
-{\refstepcounter{countergvtheorems}\begin{theorem}{Следствие \arabic{countergvtheorems}.}}
-{\end{theorem}}
-
-
-\newenvironment{defn}
-{\par \refstepcounter{countergvtheorems} {\bf Определение \arabic{countergvtheorems}.}}
-{\par}
-
-\newenvironment{example}
-{\par \refstepcounter{countergvtheorems} {\bf Пример \arabic{countergvtheorems}.}}
-{\par}
-
-#else
-\newcommand{\iabstract}[4]{
-\begin{abstract}
-#3
-\footnote{\emph{Keywords:} #4}
-\end{abstract}
-}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -73,8 +26,8 @@ figs-within-sections
 
 \end_local_layout
 \language russian
-\language_package #ifndef VESTNIK
-\inputencoding cp1251
+\language_package auto
+\inputencoding utf8-plain
 \fontencoding global
 \font_roman default
 \font_sans default
@@ -89,7 +42,7 @@ figs-within-sections
 \graphics default
 \default_output_format default
 \output_sync 0
-\bibtex_command bibtex8
+\bibtex_command default
 \index_command default
 \paperfontsize default
 \spacing single
@@ -137,64 +90,12 @@ figs-within-sections
 \begin_body
 
 \begin_layout Standard
-\begin_inset ERT
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-
-#endif 
-\end_layout
-
-\begin_layout Plain Layout
-
-#ifdef VESTNIK
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{document}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-cleanbegin 
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-def
-\backslash
-udk{512}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-ltitle{ОСТАНОВКА АЛГОРИТМА F5} {В.
-\backslash
-,В.~Галкин
-\backslash
-footnote[1]{{
-\backslash
-it Галкин Василий Витальевич} --- асп.
- каф.
- алгебры мех.-мат.
- ф-та МГУ, e-mail: galkin-vv@yandex.ru.}}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-iabstract
-\end_layout
+\begin_inset ERT
+status open
 
 \begin_layout Plain Layout
 
@@ -225,12 +126,8 @@ iabstract
  termination proof}
 \end_layout
 
-\begin_layout Plain Layout
+\end_inset
 
-#else
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -271,20 +168,6 @@ galkin-vv@ya.ru
  Вторая часть показывает, что при существовании такой пары также будет существов
 ать пара в которой редукция разрешена всеми критериями.
  Существование такой пары приводит к противоречию.
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-#endif
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -2534,76 +2417,10 @@ reference "thm:f_g_3_props"
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-#ifdef VESTNIK
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-newpage
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-spisoklit
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-small
-\end_layout
-
-\begin_layout Plain Layout
-
-#endif
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
-bibfiles "f5_references_1251"
-options "vestnik"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-#ifdef VESTNIK
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-lend
-\end_layout
-
-\begin_layout Plain Layout
-
-#endif
-\end_layout
+bibfiles "f5_references"
+options "gost/ugost2008s"
 
 \end_inset
 
