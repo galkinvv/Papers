@@ -803,11 +803,41 @@ key "FastStablePolySolving"
 \end_layout
 
 \begin_layout Itemize
-на научно-исследовательском семинаре кафедры высшей алгебры МГУ
+на научно-исследовательском семинаре кафедры высшей алгебры механико-математичес
+кого факультета МГУ;
 \end_layout
 
 \begin_layout Itemize
-на семинаре «Компьютерная алгебра» ВЦ РАН
+на семинаре «Компьютерная алгебра» ВЦ РАН;
+\end_layout
+
+\begin_layout Itemize
+на международной конференции 
+\begin_inset Quotes fld
+\end_inset
+
+Polynomial Computer Algebra
+\begin_inset Quotes frd
+\end_inset
+
+, Санкт-Петербург 6-10 мая 2013г;
+\end_layout
+
+\begin_layout Itemize
+на семинаре 
+\begin_inset Quotes fld
+\end_inset
+
+Современные проблемы криптографии
+\begin_inset Quotes frd
+\end_inset
+
+ кафедры МаТИС механико-математического факультета МГУ;
+\end_layout
+
+\begin_layout Itemize
+на 16-м международном рабочем совещании по компьютерной алгебре, Дубна 21-22
+ мая 2013г.
 \end_layout
 
 \begin_layout Section*
@@ -816,10 +846,10 @@ key "FastStablePolySolving"
 
 \begin_layout Standard
 Результаты автора по теме диссертации находятся в процессе публикации в
- работах 
+ работе 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Termination_of_Original_F5_Rus,SSG_Rus"
+key "SSG_Rus"
 
 \end_inset
 
@@ -829,6 +859,31 @@ key "Termination_of_Original_F5_Rus,SSG_Rus"
 
 Вестник МГУ
 \begin_inset Quotes frd
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+ и 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Termination_of_Original_F5_Rus"
+
+\end_inset
+
+ в журнале 
+\begin_inset Quotes fld
+\end_inset
+
+Программирование
+\begin_inset Quotes frd
+\end_inset
+
+
+\end_layout
+
 \end_inset
 
 .
