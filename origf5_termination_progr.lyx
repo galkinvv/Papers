@@ -91,6 +91,118 @@ theorems-ams
 \begin_body
 
 \begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\GVWg}{>_{\text{\textnormal{H}}}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\GVWl}{<_{\text{H}}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
+\end_inset
+
+	
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\Sig}{\mathcal{S}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\HM}{\mathrm{HM}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\HC}{\mathrm{HC}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\LCM}{\mathrm{LCM}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\totaldeg}{\mathrm{deg}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\poly}{\mathrm{poly}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\sigidx}{\mathrm{index}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\Sss}[2]{\left\langle #1\centerdot#2\right\rangle }
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\monone}{\mathbf{1}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\monzero}{\mathbf{0}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -212,6 +324,10 @@ status open
 galkin-vv@ya.ru
 \end_layout
 
+\begin_layout Section
+Введение
+\end_layout
+
 \begin_layout Standard
 Алгоритм Фожера F5 является эффективным алгоритмом вычисления базисов Грёбнера,
  но обладает рядом проблем, связанных с его обоснованием.
@@ -326,25 +442,11 @@ key "F5C"
  в виде суммы домноженных многочленов, вычисленных ранее, может быть модифициров
 ано последовательностью замен S-пар, и за конечное число таких шагов приведено
  к состоянию, когда выполняются определённые 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<
-\end_layout
-
+\begin_inset Quotes fld
 \end_inset
 
 хорошие
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
->>
-\end_layout
-
+\begin_inset Quotes frd
 \end_inset
 
  свойства.
@@ -360,23 +462,28 @@ key "FaugereF5"
 \end_inset
 
 , построенное от противного.
- Предполагается что найдена минимальная по количеству элементов последовательнос
-ть многочленов 
+ Предполагается, что найдена минимальная по количеству элементов последовательно
+сть многочленов 
 \begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} $
 \end_inset
 
- в кольце 
+ в кольце многочленов от нескольких переменных 
 \begin_inset Formula $\mathcal{K}[x_{1},\ldots,x_{n}]$
 \end_inset
 
+ с мономиальным порядком 
+\begin_inset Formula $\prec$
+\end_inset
+
 , на которой алгоритм не останавливается -- зацикливается при обработке
- последнего рассматриваемого элемента 
+ последнего рассматриваемого им элемента -- 
 \begin_inset Formula $f_{1}$
 \end_inset
 
 .
- Большинство используемой терминологии, включая названия процедур, взято
- оттуда, поэтому читатель предполагается достаточно глубоко знакомым с 
+ Большинство используемых символов и терминологии, включая названия процедур,
+ взято из первоисточника, поэтому читатель предполагается достаточно глубоко
+ знакомым с 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "FaugereF5"
@@ -384,78 +491,267 @@ key "FaugereF5"
 \end_inset
 
 .
- Для удобства перечислим основные заимствованные оттуда обозначения: 
+\end_layout
+
+\begin_layout Standard
+Множество мономов, образуемых переменными 
+\begin_inset Formula $x_{1},\ldots,x_{n}$
+\end_inset
+
+ будет обозначаться символом 
 \begin_inset Formula $T$
 \end_inset
 
- -- множество мономов, 
-\begin_inset Formula $\Sig$
+ (как и в 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5"
+
 \end_inset
 
- -- сигнатура отмеченного многочлена, 
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-\lang english
-
-\begin_inset Formula $\HM$
-\end_inset
-
-
-\family default
-\series default
-\shape default
-\size default
-\emph default
-\bar default
-\strikeout default
-\uuline default
-\uwave default
-\noun default
-\color inherit
-\lang russian
- -- старший моном многочлена, 
-\begin_inset Formula $R$
-\end_inset
-
- -- массив многочленов 
-\begin_inset Formula $r_{i}$
-\end_inset
-
-, а 
-\begin_inset Formula $G$
-\end_inset
-
- -- множество индексов многочленов в этом массиве, образующих промежуточный
- базис.
- Термин ``signature-safe'' переводится как 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-<<
+).
 \end_layout
 
+\begin_layout Definition
+
+\emph on
+Сигнатурой
+\emph default
+ называется пара 
+\begin_inset Formula $\Sss ti$
+\end_inset
+
+, состоящая из индекса 
+\begin_inset Formula $i\in\mathbb{N}$
+\end_inset
+
+ и монома 
+\begin_inset Formula $t\in T$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Множество сигнатур мы будем обозначать символом 
+\begin_inset Formula $\mathbf{T}$
+\end_inset
+
+ (как и в 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5"
+
+\end_inset
+
+).
+ Индекс сигнатуры 
+\begin_inset Formula $s$
+\end_inset
+
+ будем записывать как 
+\begin_inset Formula $\sigidx\left(s\right).$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Definition
+
+\emph on
+Отмеченным многочленом
+\emph default
+ называется пара 
+\begin_inset Formula $\left(s,f\right)$
+\end_inset
+
+, состоящая из сигнатуры 
+\begin_inset Formula $s\in\mathbf{T}$
+\end_inset
+
+ и многочлена 
+\begin_inset Formula $f\in\mathcal{K}[x_{1},\ldots,x_{n}]$
+\end_inset
+
+.
+ Результатом умножения отмеченного многочлена 
+\begin_inset Formula $h=\left(s,f\right)=$
+\end_inset
+
+
+\begin_inset Formula $\left(\Sss ti,f\right)$
+\end_inset
+
+ на моном 
+\begin_inset Formula $m\in T$
+\end_inset
+
+ является снова отмеченный многочлен: 
+\begin_inset Formula 
+\[
+m\cdot\left(\Sss ti,f\right)\eqdef\left(\Sss{mt}i,mf\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Перечислим основные обозначения, применимые к отмеченному многочлену 
+\begin_inset Formula $h$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\Sig\left(h\right)$
+\end_inset
+
+ -- сигнатура отмеченного многочлена 
+\begin_inset Formula $h$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\poly\left(h\right)$
+\end_inset
+
+ -- обычный многочлен 
+\begin_inset Formula $f$
+\end_inset
+
+ -- первая часть 
+\begin_inset Formula $h$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\HM\left(h\right),\,\HC\left(h\right)$
+\end_inset
+
+ -- старшие моном и коэффициент 
+\begin_inset Formula $\poly\left(h\right)$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\sigidx\left(h\right)$
+\end_inset
+
+ -- индекс сигнатуры 
+\begin_inset Formula $\Sig(h)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Определение отмеченного многочлена, данное в таком виде, связывает сигнатуру
+ с многочленом чисто формально.
+ Сигнатура приобретает осмысленность только в том случае, если мы накладываем
+ на отмеченный многочлен требование, связывающее его части.
+ Для этого необходимо определение 
+\emph on
+порядка на сигнатурах
+\emph default
+, обозначаемого символом 
+\begin_inset Formula $\prec_{P}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Sss{t_{1}}{i_{1}}\prec_{P}\Sss{t_{2}}{i_{2}}\Longleftrightarrow\left[\begin{aligned}i_{1}>i_{2}\\
+i{}_{1}=i_{2},t_{1}\prec t_{2}
+\end{aligned}
+\right..
+\]
+
+\end_inset
+
+Теперь мы можем вложить смысл в понятие сигнатуры, зафиксировав входные
+ многочлены 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+Отмеченный многочлен 
+\begin_inset Formula $\left(\Sss ti,f\right)$
+\end_inset
+
+ называется 
+\emph on
+допустимым
+\emph default
+, если 
+\begin_inset Formula $f$
+\end_inset
+
+ представляется как 
+\begin_inset Formula $f=ctf_{i}+\dots$
+\end_inset
+
+, остальные слагаемые имеют вид 
+\begin_inset Formula $c't'f_{i'}$
+\end_inset
+
+, причём 
+\begin_inset Formula $\Sss{t'}{i'}\prec\Sss ti$
+\end_inset
+
+ и для любого представления 
+\begin_inset Formula $f$
+\end_inset
+
+ как суммы слагаемых такого вида, одному из них будет соответствовать сигнатура,
+ не меньшая 
+\begin_inset Formula $\Sss ti$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+В дальнейшем, все рассматриваемые отмеченные многочлены будут допустимы,
+ поскольку Предложение 2 работы 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FaugereF5"
+
+\end_inset
+
+ доказывает, что все отмеченные многочлены, порождаемые алгоритмом F5 допустимы.
+\end_layout
+
+\begin_layout Standard
+Термин ``signature-safe'' переведён как 
+\begin_inset Quotes fld
 \end_inset
 
 сигнатурный
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
->>
-\end_layout
-
+\begin_inset Quotes frd
 \end_inset
 
 :
@@ -463,11 +759,11 @@ status open
 
 \begin_layout Definition
 Редукция отмеченного многочлена 
-\begin_inset Formula $r_{k}$
+\begin_inset Formula $f$
 \end_inset
 
  по отмеченному многочлену 
-\begin_inset Formula $r_{m}$
+\begin_inset Formula $g$
 \end_inset
 
  называется
@@ -475,11 +771,11 @@ status open
  сигнатурной редукцией,
 \emph default
  если 
-\begin_inset Formula $\Sig(r_{k})\succ t\cdot\Sig(r_{m})$
+\begin_inset Formula $\Sig(f)\succ_{P}t\cdot\Sig(g)$
 \end_inset
 
 , где 
-\begin_inset Formula $t=\frac{\HM(r_{k})}{\HM(r_{m})}$
+\begin_inset Formula $t=\frac{\HM(f)}{\HM(g)}$
 \end_inset
 
  -- моном, на который умножается редуктор.
@@ -491,7 +787,2250 @@ status open
  
 \end_layout
 
+\begin_layout Section
+Псевдокод F5
+\end_layout
+
+\begin_layout Standard
+Для удобства дальнейших рассуждений об остановке алгоритма, приведём здесь
+ полный псевдокод F5, основанный на исходной формулировке.
+ Отличия приводимого псевдокода от первоисточника выражаются лишь в небольших
+ упрощениях символики и записи псевдокода, но не никак не изменяют сам алгоритм.
+\end_layout
+
 \begin_layout Subsection
+Глобальные переменные
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $m$
+\end_inset
+
+ Число входных многочленов.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $R$
+\end_inset
+
+ Пополняемый массив отмеченных многочленов, нумеруемый натуральными числами,
+ начинающимися с единицы.
+ Числа, нумерующие элементы в нём, мы будем называть позициями, оставляя
+ слово индекс для понятия 
+\begin_inset Quotes fld
+\end_inset
+
+индекс сигнатуры
+\begin_inset Quotes frd
+\end_inset
+
+.
+ Большая часть процедур оперирует не с отмеченными многочленами, а с их
+ позициями в этом массиве.
+ При редукции, многочлен, однажды добавленный в 
+\begin_inset Formula $R$
+\end_inset
+
+, может меняться, но сигнатура всех элементов 
+\begin_inset Formula $R$
+\end_inset
+
+ остаётся неизменной после первого добавления.
+ Вначале 
+\begin_inset Formula $R$
+\end_inset
+
+ заполняется входными многочленами, которые навсегда становятся его первыми
+ 
+\begin_inset Formula $m$
+\end_inset
+
+ элементами, и в процессе работы пополняется с конца.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $\#R$
+\end_inset
+
+ Обозначает число отмеченных многочленов в 
+\begin_inset Formula $R$
+\end_inset
+
+, меняется при пополнении 
+\begin_inset Formula $R$
+\end_inset
+
+.
+ Используется для получения позиции только что добавленного в 
+\begin_inset Formula $R$
+\end_inset
+
+ элемента.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Rule Массив правил перезаписи, содержащий 
+\begin_inset Formula $m$
+\end_inset
+
+ элементов.
+ Каждый элемент соответствует ровно одному индексу сигнатуры и в свою очередь
+ является пополняемым массивом чисел, являющихся позициями отмеченных многочлено
+в в 
+\begin_inset Formula $R$
+\end_inset
+
+.
+ Таким образом, получается, что Rule содержит только 
+\begin_inset Quotes fld
+\end_inset
+
+ссылки
+\begin_inset Quotes frd
+\end_inset
+
+ на многочлены, но не их самих.
+ Изначально Rule состоит из 
+\begin_inset Formula $m$
+\end_inset
+
+ пустых массивов, которые в процессе работы пополняется со стороны начала.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+
+\family typewriter
+\series medium
+\begin_inset CommandInset label
+LatexCommand label
+name "par:AddRule"
+
+\end_inset
+
+AddRule
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Переменные:
+
+\family sans
+Вход:
+\series bold
+ 
+\begin_inset Formula $k$
+\end_inset
+
+
+\series default
+ -- позиция элемента в 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+Добавить 
+\begin_inset Formula $k$
+\end_inset
+
+ в начало массива Rule[
+\shape italic
+
+\begin_inset Formula $\sigidx\left(R[k]\right)$
+\end_inset
+
+
+\shape default
+] 
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+
+\family typewriter
+\series medium
+\begin_inset CommandInset label
+LatexCommand label
+name "par:Rewritten?"
+
+\end_inset
+
+Rewritten?
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Переменные:
+
+\family sans
+Вход:
+\series bold
+ 
+\series default
+
+\begin_inset Formula $u$
+\end_inset
+
+ -- моном, 
+\series bold
+
+\begin_inset Formula $k$
+\end_inset
+
+
+\series default
+ -- позиция элемента в 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Переменные:
+
+\family sans
+Результат:
+\series bold
+ 
+\series default
+булево значение, равное True, если произведение 
+\begin_inset Formula $u\cdot R[k]$
+\end_inset
+
+ отбрасывается критерием перезаписи.
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $L\leftarrow$
+\end_inset
+
+
+\shape default
+ Rule[
+\begin_inset Formula $\sigidx\left(R[k]\right)$
+\end_inset
+
+]
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\begin_inset Formula $r\leftarrow$
+\end_inset
+
+ число элементов 
+\begin_inset Formula $L$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+for 
+\begin_inset Formula $i=1,\dots,r$
+\end_inset
+
+ do:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+if 
+\series default
+\shape italic
+
+\begin_inset Formula $u\Sig(R[k])$
+\end_inset
+
+ 
+\shape default
+делится на 
+\begin_inset Formula $\Sig(R[L[i]])$
+\end_inset
+
+
+\series bold
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+
+\begin_inset Formula $k\ne L[i]$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return false
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+
+\family typewriter
+\series medium
+\begin_inset CommandInset label
+LatexCommand label
+name "par:IncrementalF5"
+
+\end_inset
+
+IncrementalF5
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Переменные:
+
+\family sans
+Вход:
+\series bold
+ 
+\series default
+
+\begin_inset Formula $F=[f_{1},\dots,f_{m}]$
+\end_inset
+
+ -- упорядоченный массив однородных многочленов.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Переменные:
+
+\family sans
+Переменные: 
+\begin_inset Formula $i$
+\end_inset
+
+ -- номер этапа алгоритма, убывающий в процессе работы; 
+\begin_inset Formula $G_{i}$
+\end_inset
+
+ -- множество позиций отмеченных многочленов в 
+\begin_inset Formula $R$
+\end_inset
+
+, образующих базис Грёбнера идеала 
+\begin_inset Formula $(f_{m-i+1},\dots,f_{m})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Переменные:
+
+\family sans
+Результат:
+\series bold
+ 
+\series default
+множество, образующее базис Грёбнера идеала 
+\begin_inset Formula $(f_{1},\dots,f_{m})$
+\end_inset
+
+ с точки зрения порядка 
+\begin_inset Formula $\prec$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $R\leftarrow[(\Sss{\monone}1,f_{1}),(\Sss{\monone}2,f_{2}),\dots,(\Sss{\monone}m,f_{m})]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\begin_inset Formula $G_{m}\leftarrow\left\{ m\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+for 
+\begin_inset Formula $i=m-1,\dots,1$
+\end_inset
+
+ do:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\begin_inset Formula $G_{i}\leftarrow$
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
+\end_inset
+
+
+\begin_inset Formula $((\Sss{\monone}i,f_{i}),G_{i-1})$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+
+\begin_inset Formula $\left\{ \poly(R[r])|r\in G_{1}\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+
+\family typewriter
+\series medium
+\begin_inset CommandInset label
+LatexCommand label
+name "par:AlgorithmF5"
+
+\end_inset
+
+AlgorithmF5
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Переменные:
+
+\family sans
+Вход:
+\series bold
+ 
+\series default
+
+\begin_inset Formula $(\Sss{\monone}i,f_{i})$
+\end_inset
+
+ -- отмеченный многочлен, 
+\begin_inset Formula $G_{i-1}$
+\end_inset
+
+ -- множество позиций отмеченных многочленов в 
+\begin_inset Formula $R$
+\end_inset
+
+, образующих базис Грёбнера некоторого идеала.
+ Многочлены, стоящие на этих позициях имеют индексы сигнатур, меньшие 
+\begin_inset Formula $i$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Переменные:
+
+\family sans
+Переменные: 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ -- функция нормальной формы на 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+, 
+\begin_inset Formula $d$
+\end_inset
+
+ -- число, соответствующее минимальной степени оставшихся S-пар, 
+\begin_inset Formula $P$
+\end_inset
+
+ -- упорядоченный список S-пар отмеченных многочленов, 
+\begin_inset Formula $P_{d}$
+\end_inset
+
+ -- подмножество S-пар фиксированной степени, 
+\begin_inset Formula $F_{d},R_{d}$
+\end_inset
+
+ -- некоторые множества позиций в 
+\begin_inset Formula $R$
+\end_inset
+
+, соответствующие многочленам фиксированной степени, 
+\begin_inset Formula $r,p$
+\end_inset
+
+ -- позиции элементов в 
+\begin_inset Formula $R$
+\end_inset
+
+, используемые при итерировании.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Переменные:
+
+\family sans
+Результат:
+\series bold
+ 
+\series default
+
+\begin_inset Formula $G_{i}$
+\end_inset
+
+ -- множество позиций отмеченных многочленов в 
+\begin_inset Formula $R$
+\end_inset
+
+, образующих базис Грёбнера идеала 
+\begin_inset Formula $\left(\left\{ \poly(R[r])|r\in G_{i-1}\right\} \cup f_{i}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $G_{i}=G_{i-1}\cup\left\{ i\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $\varphi\leftarrow$
+\end_inset
+
+
+\shape default
+ оператор нормальной формы, производящий полную редукцию по множеству многочлено
+в 
+\begin_inset Formula $\left\{ \poly(R[r])|r\in G_{i-1}\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $P\leftarrow$
+\end_inset
+
+
+\shape default
+ отсортированный по возрастанию сокращаемого монома список 
+\family typewriter
+{
+\family default
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:CritPair"
+
+\end_inset
+
+
+\family sans
+
+\begin_inset Formula $(i,r,i,\varphi)|r\in G_{i-1}$
+\end_inset
+
+}
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+while 
+\series default
+
+\begin_inset Formula $P\ne\varnothing$
+\end_inset
+
+ 
+\series bold
+do:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $d\leftarrow\totaldeg\left(\HM\left(P[1]\right)\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\begin_inset Formula $P_{d}\leftarrow\{p\in P|\totaldeg($
+\end_inset
+
+сокращаемого монома
+\begin_inset Formula $)=d\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $P\leftarrow P\setminus P_{d}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $F_{d}\leftarrow$
+\end_inset
+
+
+\family typewriter
+\shape default
+ 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Spol"
+
+\end_inset
+
+
+\family sans
+
+\begin_inset Formula $(P_{d})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $R_{d}\leftarrow$
+\end_inset
+
+
+\shape default
+ 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Reduction"
+
+\end_inset
+
+
+\begin_inset Formula $(F_{d},G_{i},\varphi)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+for 
+\series default
+\shape italic
+
+\begin_inset Formula $r\in R_{d}$
+\end_inset
+
+
+\series bold
+\shape default
+ do:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $P\leftarrow P\cup_{p\in G_{i}}$
+\end_inset
+
+
+\shape default
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:CritPair"
+
+\end_inset
+
+
+\begin_inset Formula $(r,p,i,\varphi)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $G_{i}\leftarrow G_{i}\cup\left\{ r\right\} $
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+Отсортировать 
+\begin_inset Formula $P$
+\end_inset
+
+ по возрастанию сокращаемого монома 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\begin_inset Formula $G_{i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+
+\family typewriter
+\series medium
+\begin_inset CommandInset label
+LatexCommand label
+name "par:CritPair"
+
+\end_inset
+
+CritPair
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Переменные:
+
+\family sans
+Вход:
+\series bold
+ 
+\series default
+
+\begin_inset Formula $r_{1},r_{2}$
+\end_inset
+
+ -- позиции отмеченных многочленов в 
+\begin_inset Formula $R$
+\end_inset
+
+, 
+\begin_inset Formula $k$
+\end_inset
+
+ -- число, обозначающее индекс сигнатур, для которого проверяется нормальная
+ форма, 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ -- функция нормальной формы на 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Переменные:
+
+\family sans
+Переменные: 
+\begin_inset Formula $t,t_{1},t_{2},u_{1},u_{2}$
+\end_inset
+
+ -- мономы.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Переменные:
+
+\family sans
+Результат:
+\series bold
+ 
+\series default
+множество S-пар отмеченных многочленов, содержащее не более одного элемента.
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\begin_inset Formula $t\leftarrow\LCM\left(\HM(R[r_{1}]),\HM(R[r_{2}])\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+for 
+\series default
+\shape italic
+
+\begin_inset Formula $i=1,2$
+\end_inset
+
+
+\series bold
+\shape default
+ do:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $u_{i}\leftarrow\frac{1}{\HC(R[r_{i}])}\frac{t}{\HM(R[r_{i}])}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $t_{i}\leftarrow$
+\end_inset
+
+ моном сигнатуры 
+\begin_inset Formula $R[r_{i}]$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+if 
+\series default
+
+\begin_inset Formula $u_{1}\Sig(R[r_{1}])\prec_{P}u_{2}\Sig(R[r_{2}])$
+\end_inset
+
+
+\series bold
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\family typewriter
+\series default
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:CritPair"
+
+\end_inset
+
+
+\family sans
+
+\begin_inset Formula $(r_{2},r_{1},k,\varphi)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+if 
+\series default
+
+\begin_inset Formula $\varphi(u_{1}t_{1})\ne u_{1}t_{1}$
+\end_inset
+
+
+\series bold
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+
+\begin_inset Formula $\varnothing$
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+if 
+\series default
+\shape italic
+
+\begin_inset Formula $\sigidx(R[r_{2}])=k$
+\end_inset
+
+ 
+\series bold
+\shape default
+and
+\series default
+ 
+\begin_inset Formula $\varphi(u_{2}t_{2})\ne u_{2}t_{2}$
+\end_inset
+
+
+\series bold
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+
+\begin_inset Formula $\varnothing$
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+
+\begin_inset Formula $\left\{ \left(u_{1}\cdot R[r_{1}],u_{2}\cdot R[r_{2}]\right)\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+
+\family typewriter
+\begin_inset CommandInset label
+LatexCommand label
+name "par:Spol"
+
+\end_inset
+
+
+\series medium
+Spol
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Переменные:
+
+\family sans
+Вход:
+\series bold
+ 
+\series default
+
+\begin_inset Formula $P=\left\{ p_{1},\dots,p_{h}\right\} $
+\end_inset
+
+ -- множество S-пар фиксированной степени.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Переменные:
+
+\family sans
+Переменные: 
+\begin_inset Formula $(u\cdot R[r_{i}],v\cdot R[r_{j}])$
+\end_inset
+
+ -- S-пара отмеченных многочленов.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Переменные:
+
+\family sans
+Результат:
+\series bold
+ 
+\series default
+
+\begin_inset Formula $F$
+\end_inset
+
+ -- множество позиций 
+\begin_inset Formula $R$
+\end_inset
+
+, соответствующих отмеченным многочленам, полученным из входных S-пар как
+ S-многочлены.
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $F\leftarrow\varnothing$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+for 
+\begin_inset Formula $l=1,\dots,h$
+\end_inset
+
+ do:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $(u\cdot R[r_{i}],v\cdot R[r_{j}])\leftarrow P[l]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+if 
+\series default
+(
+\series bold
+not
+\series default
+ 
+\family typewriter
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Rewritten?"
+
+\end_inset
+
+
+\family sans
+
+\begin_inset Formula $(u,r_{i})$
+\end_inset
+
+) 
+\series bold
+and
+\series default
+ (
+\series bold
+not
+\series default
+ 
+\family typewriter
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Rewritten?"
+
+\end_inset
+
+
+\family sans
+
+\begin_inset Formula $(v,r_{j})$
+\end_inset
+
+)
+\series bold
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Добавить 
+\family sans
+
+\begin_inset Formula $(u\Sig(R[r_{i}]),u\poly(R[r_{i}])-v\poly(R[r_{j}]))$
+\end_inset
+
+
+\family default
+ в конец 
+\begin_inset Formula $R$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AddRule"
+
+\end_inset
+
+
+\family sans
+
+\begin_inset Formula $\left(\#R\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\begin_inset Formula $F\leftarrow F\cup\left\{ \#R\right\} $
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+\shape italic
+
+\begin_inset Formula $F$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+
+\family typewriter
+\series medium
+\begin_inset CommandInset label
+LatexCommand label
+name "par:Reduction"
+
+\end_inset
+
+Reduction
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Переменные:
+
+\family sans
+Вход:
+\series bold
+ 
+\series default
+ToDo, 
+\begin_inset Formula $G$
+\end_inset
+
+ -- множества позиций 
+\begin_inset Formula $R$
+\end_inset
+
+, соответствующих отмеченным многочленам, 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ -- функция нормальной формы на 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Переменные:
+
+\family sans
+Переменные: 
+\begin_inset Formula $h$
+\end_inset
+
+ -- позиция отмеченного многочлена в 
+\begin_inset Formula $R$
+\end_inset
+
+, Done
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+1
+\end_layout
+
+\end_inset
+
+, ToDo
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+1
+\end_layout
+
+\end_inset
+
+ -- множества позиций в 
+\begin_inset Formula $R$
+\end_inset
+
+, 
+\begin_inset Formula $G_{\text{red}}$
+\end_inset
+
+ -- множество позиций 
+\begin_inset Formula $R$
+\end_inset
+
+, соответствующих потенциальным редукторам.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Переменные:
+
+\family sans
+Результат:
+\series bold
+ 
+\series default
+Done -- множество позиций в 
+\begin_inset Formula $R$
+\end_inset
+
+, соответствующих отмеченным многочленам из ToDo, редуцированным по многочленам
+ из 
+\begin_inset Formula $G$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+while 
+\series default
+ToDo 
+\begin_inset Formula $\ne\varnothing$
+\end_inset
+
+ 
+\series bold
+do:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $h\leftarrow$
+\end_inset
+
+
+\family sans
+ позиция из ToDo
+\family default
+,
+\family sans
+ соответствующая многочлену с минимальной по 
+\begin_inset Formula $\prec_{P}$
+\end_inset
+
+ среди ToDo сигнатурой
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+ToDo
+\shape italic
+ 
+\family default
+\shape default
+
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+
+\family sans
+ ToDo
+\begin_inset Formula $\setminus\left\{ h\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $R[h]\leftarrow\left(\Sig(R[h]),\varphi(\poly(R[h]))\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\begin_inset Formula $G_{\text{red}}\leftarrow G\cup$
+\end_inset
+
+Done
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $($
+\end_inset
+
+
+\shape default
+Done
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+1
+\end_layout
+
+\end_inset
+
+, ToDo
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+1
+\end_layout
+
+\end_inset
+
+) 
+\family default
+
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+
+\family sans
+ 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:TopReduction"
+
+\end_inset
+
+
+\shape italic
+
+\begin_inset Formula $\left(h,G_{\text{red}},\varphi\right)$
+\end_inset
+
+
+\shape default
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+Done
+\family default
+ 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+
+\family sans
+ Done
+\shape italic
+ 
+\shape default
+
+\begin_inset Formula $\cup$
+\end_inset
+
+ Done
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+ToDo
+\family default
+ 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+
+\family sans
+ ToDo 
+\begin_inset Formula $\cup$
+\end_inset
+
+ ToDo
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\family sans
+1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+Done
+\shape italic
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+
+\family typewriter
+\series medium
+\begin_inset CommandInset label
+LatexCommand label
+name "par:IsReducible"
+
+\end_inset
+
+IsReducible
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Переменные:
+
+\family sans
+Вход:
+\series bold
+ 
+\series default
+
+\begin_inset Formula $r_{0}$
+\end_inset
+
+ -- позиция отмеченного многочлена в 
+\begin_inset Formula $R$
+\end_inset
+
+, для которого выполняется поиск возможных сигнатурных редукций, 
+\begin_inset Formula $G_{\text{red}}$
+\end_inset
+
+ -- множество позиций 
+\begin_inset Formula $R$
+\end_inset
+
+, соответствующих потенциальным редукторам, 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ -- функция нормальной формы на 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Переменные:
+
+\family sans
+Переменные: 
+\begin_inset Formula $u$
+\end_inset
+
+ -- моном, 
+\begin_inset Formula $r_{j}$
+\end_inset
+
+ -- позиция в 
+\begin_inset Formula $R$
+\end_inset
+
+ для итерирования по 
+\begin_inset Formula $G_{\text{red}}$
+\end_inset
+
+, 
+\begin_inset Formula $t_{j}$
+\end_inset
+
+ -- моном сигнатуры.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Переменные:
+
+\family sans
+Результат:
+\series bold
+ 
+\series default
+множество позиций в 
+\begin_inset Formula $R$
+\end_inset
+
+, соответствующих возможным редукторам, содержащее не более одного элемента.
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+for
+\series default
+ 
+\begin_inset Formula $r_{j}\in G_{\text{red}}$
+\end_inset
+
+
+\series bold
+ do:
+\series default
+ 
+\series bold
+if 
+\series default
+одновременно выполнены 4 нижеследующих условия
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:IsRed-a"
+
+\end_inset
+
+
+\begin_inset Formula $u=\frac{HT(R[r_{0}])}{HT(R[r_{\text{j}}])}$
+\end_inset
+
+ -- корректный моном из 
+\begin_inset Formula $\mathbb{T}$
+\end_inset
+
+, т.е.
+ числитель делится на знаменатель
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:IsRed-b"
+
+\end_inset
+
+
+\begin_inset Formula $\varphi(ut_{j})=ut_{j}$
+\end_inset
+
+, где 
+\begin_inset Formula $t_{j}$
+\end_inset
+
+ -- моном сигнатуры 
+\begin_inset Formula $\Sig(R[r_{j}])$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:IsRed-c"
+
+\end_inset
+
+not
+\series default
+ 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Rewritten?"
+
+\end_inset
+
+
+\begin_inset Formula $(u,r_{j})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:IsRed-d"
+
+\end_inset
+
+
+\begin_inset Formula $u\Sig(R[r_{j}])\ne\Sig(R[r_{0}])$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+then: return 
+\series default
+
+\begin_inset Formula $\left\{ r_{j}\right\} $
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+
+\begin_inset Formula $\varnothing$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+
+\family typewriter
+\series medium
+\begin_inset CommandInset label
+LatexCommand label
+name "par:TopReduction"
+
+\end_inset
+
+TopReduction
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Переменные:
+
+\family sans
+Вход:
+\series bold
+ 
+\series default
+
+\begin_inset Formula $r_{0}$
+\end_inset
+
+ -- позиция отмеченного многочлена в 
+\begin_inset Formula $R$
+\end_inset
+
+, для которого выполняется редукция, 
+\begin_inset Formula $G_{\text{red}}$
+\end_inset
+
+ -- множество позиций 
+\begin_inset Formula $R$
+\end_inset
+
+, соответствующих многочленам, используемых в качестве редукторов, 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ -- функция нормальной формы на 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Переменные:
+
+\family sans
+Переменные: 
+\begin_inset Formula $r'$
+\end_inset
+
+ -- множество позиций элементов 
+\begin_inset Formula $R$
+\end_inset
+
+, являющихся потенциальными редукторами, 
+\begin_inset Formula $r_{1}$
+\end_inset
+
+ -- конкретный его элемент, 
+\begin_inset Formula $u$
+\end_inset
+
+ -- моном.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring Переменные:
+
+\family sans
+Результат:
+\series bold
+ 
+\series default
+Редуцированный многочлен перезаписывает 
+\begin_inset Formula $R[r_{0}]$
+\end_inset
+
+.
+ Возвращаемое значение -- пара множеств (ToDo, Done) содержащих позиции
+ в 
+\begin_inset Formula $R$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+if 
+\series default
+
+\begin_inset Formula $\poly(R[r_{0}])=0$
+\end_inset
+
+
+\series bold
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+Warning 
+\series default
+
+\begin_inset Quotes eld
+\end_inset
+
+На вход алгоритма подана нерегулярная последовательность” 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+(Done
+\family default
+ 
+\begin_inset Formula $\leftarrow\varnothing$
+\end_inset
+
+
+\family sans
+, ToDo
+\shape italic
+ 
+\family default
+\shape default
+
+\begin_inset Formula $\leftarrow\varnothing$
+\end_inset
+
+
+\family sans
+) 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\begin_inset Formula $R[r_{0}]\leftarrow\left(\Sig(R[r_{0}]),\frac{\poly(R[r_{0}])}{\HC(R[r_{0}])}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+\begin_inset Formula $r'\leftarrow$
+\end_inset
+
+
+\family sans
+ 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IsReducible"
+
+\end_inset
+
+(
+\begin_inset Formula $h,G_{\text{red}},\varphi$
+\end_inset
+
+) 
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+if 
+\series default
+\shape italic
+
+\begin_inset Formula $r'=\varnothing$
+\end_inset
+
+
+\series bold
+\shape default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+(Done
+\family default
+ 
+\begin_inset Formula $\leftarrow\left\{ r_{0}\right\} $
+\end_inset
+
+
+\family sans
+, ToDo
+\shape italic
+ 
+\family default
+\shape default
+
+\begin_inset Formula $\leftarrow\varnothing$
+\end_inset
+
+
+\family sans
+) 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+else:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\shape italic
+\begin_inset Formula $r_{1}\leftarrow$
+\end_inset
+
+
+\shape default
+ любой элемент 
+\begin_inset Formula $r'$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\begin_inset Formula $u\leftarrow\frac{HM(R[r_{0}])}{HM(R[r_{1}])}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+if 
+\series default
+
+\begin_inset Formula $u\Sig(R[r_{1}])\prec_{P}\Sig(R[r_{0}])$
+\end_inset
+
+
+\series bold
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\family sans
+\begin_inset Formula $R[r_{0}]\leftarrow\left(\Sig(R[r_{0}]),\poly(R[r_{0}])-u\poly(R[r_{1}])\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+(Done 
+\family default
+
+\begin_inset Formula $\leftarrow\varnothing$
+\end_inset
+
+
+\family sans
+, ToDo
+\shape italic
+ 
+\family default
+\shape default
+
+\begin_inset Formula $\leftarrow\left\{ r_{0}\right\} $
+\end_inset
+
+)
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\family sans
+\series bold
+else:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Добавить 
+\family sans
+
+\begin_inset Formula $(u\Sig(R[r_{1}]),\poly(R[r_{0}])-u\poly(R[r_{1}])$
+\end_inset
+
+
+\family default
+ в конец 
+\begin_inset Formula $R$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AddRule"
+
+\end_inset
+
+
+\family sans
+
+\begin_inset Formula $\left(\#R\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\family sans
+\series bold
+return 
+\series default
+(Done 
+\family default
+
+\begin_inset Formula $\leftarrow\varnothing$
+\end_inset
+
+
+\family sans
+, ToDo
+\shape italic
+ 
+\family default
+\shape default
+
+\begin_inset Formula $\leftarrow\left\{ r_{0},\#R\right\} $
+\end_inset
+
+)
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Section
 Цепи S-пар
 \end_layout
 
@@ -501,11 +3040,11 @@ status open
 \end_inset
 
  бесконечную последовательность многочленов 
-\begin_inset Formula $\left\{ r_{1},r_{2},\ldots,r_{m},\ldots,r_{l},\ldots\right\} $
+\begin_inset Formula $\left\{ R[1],R[2],\ldots,R[m],\ldots\right\} $
 \end_inset
 
 , в которой 
-\begin_inset Formula $r_{1},\ldots,r_{m}$
+\begin_inset Formula $R[1],R[2],\ldots,R[m]$
 \end_inset
 
  соответствуют 
@@ -522,19 +3061,19 @@ TopReduction
 \family default
 , как S-многочлены двух уже добавленных.
  В этой главе мы будем искать бесконечную подпоследовательность 
-\begin_inset Formula $\left\{ r_{k_{1}},r_{k_{2}},\ldots,r_{k_{n}},\ldots\right\} $
+\begin_inset Formula $\left\{ R[k_{1}],R[k_{2}],\ldots,R[k_{j}],\ldots\right\} $
 \end_inset
 
  этой последовательности, обладающую тем свойством, что 
-\begin_inset Formula $r_{k_{n}}$
+\begin_inset Formula $R[k_{j}]$
 \end_inset
 
  является S-многочленом 
-\begin_inset Formula $r_{k_{n-1}}$
+\begin_inset Formula $R[k_{j-1}]$
 \end_inset
 
  и некоторой другой части с меньшей сигнатурой: 
-\begin_inset Formula $\Sig(r_{k_{n}})=u_{k_{n}}\Sig(r_{k_{n-1}})\Longleftrightarrow\Sig(r_{k_{n-1}})|\Sig(r_{k_{n}}).$
+\begin_inset Formula $\Sig(R[k_{j}])=u_{k_{j}}\Sig(R[k_{j-1}])\Longleftrightarrow\Sig(R[k_{j-1}])|\Sig(R[k_{j}]).$
 \end_inset
 
 
@@ -551,13 +3090,13 @@ TopReduction
 
 \begin_layout Standard
 Каждый порождаемый многочлен 
-\begin_inset Formula $r_{l}$
+\begin_inset Formula $R[l]$
 \end_inset
 
  имеет конечную цепь S-пар, оканчивающуюся этим многочленом.
  Эта цепь может быть последовательно построена, начиная с последнего элемента
  
-\begin_inset Formula $r_{l}$
+\begin_inset Formula $R[l]$
 \end_inset
 
 , если на каждом шаге переходить от текущего многочлена к большей по сигнатуре
@@ -571,23 +3110,23 @@ TopReduction
 
 \begin_layout Proof
 Рассмотрим произвольный отмеченный многочлен 
-\begin_inset Formula $r_{L}$
+\begin_inset Formula $R[l]$
 \end_inset
 
  с сигнатурой 
-\begin_inset Formula $\Sig(r_{L})=s$
+\begin_inset Formula $\Sig(R[l])=s$
 \end_inset
 
  и упорядоченное по порядку добавления подмножество 
-\begin_inset Formula $\{r_{l_{1}},\ldots,r_{l_{i}},\ldots\}$
+\begin_inset Formula $\{R[l_{1}],\ldots,R[l_{i}],\ldots\}$
 \end_inset
 
  отмеченных многочленов с сигнатурами удовлетворяющими условию 
-\begin_inset Formula $\Sig(r_{l_{i}})=v_{i}\Sig(r_{L})$
+\begin_inset Formula $\Sig(R[l_{i}])=v_{i}\Sig(R[l])$
 \end_inset
 
 .
- Идеал 
+ Мономиальный идеал 
 \begin_inset Formula $\left(v_{1},\ldots,v_{i},\ldots\right)$
 \end_inset
 
@@ -624,15 +3163,15 @@ TopReduction
 \end_inset
 
  последовательность 
-\begin_inset Formula $\{r_{L},r_{l_{i}}\}$
+\begin_inset Formula $\{R[l],R[l_{i}]\}$
 \end_inset
 
  не может являться цепью S-пар, поскольку 
-\begin_inset Formula $\Sig(r_{L})\cdot v_{i}$
+\begin_inset Formula $\Sig(R[l])\cdot v_{i}$
 \end_inset
 
  перезаписывается 
-\begin_inset Formula $\Sig(r_{l_{j}})\cdot\frac{v_{i}}{v_{j}}$
+\begin_inset Formula $\Sig(R[l_{j}])\cdot\frac{v_{i}}{v_{j}}$
 \end_inset
 
  и существует не более чем 
@@ -640,7 +3179,7 @@ TopReduction
 \end_inset
 
  цепей S-пар длины 2, начинающихся с многочлена 
-\begin_inset Formula $r_{L}$
+\begin_inset Formula $R[l]$
 \end_inset
 
 .
@@ -648,7 +3187,7 @@ TopReduction
 
 \begin_layout Definition
 Конечное множество концов цепей S-пар длины 2, начинающихся с 
-\begin_inset Formula $r_{L}$
+\begin_inset Formula $R[l]$
 \end_inset
 
  будет называться 
@@ -656,7 +3195,7 @@ TopReduction
 множеством S-порождённых
 \emph default
  
-\begin_inset Formula $r_{L}$
+\begin_inset Formula $R[l]$
 \end_inset
 
 .
@@ -673,16 +3212,16 @@ TopReduction
 
 \begin_layout Proof
 Если алгоритм не останавливается, то многочлен входного множества 
-\begin_inset Formula $r_{1}=(1\mathbf{F}_{1},f_{1})$
+\begin_inset Formula $R[1]=(\Sss 1{\monone},f_{1})$
 \end_inset
 
  является началом бесконечного числа различных конечных цепей S-пар -- каждому
  многочлену 
-\begin_inset Formula $r_{l}$
+\begin_inset Formula $R[l]$
 \end_inset
 
  соответствует цепь 
-\begin_inset Formula $\{r_{1},\ldots,r_{l}\}$
+\begin_inset Formula $\{R[1],\ldots,R[l]\}$
 \end_inset
 
 .
@@ -789,7 +3328,10 @@ name "thm:f_g_3_props"
 , удовлетворяющее следующему:
 \begin_inset Formula 
 \begin{equation}
-\HM(h_{n+1})<\HM\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)=\HM(g_{n}),\,\Sig(h_{n+1})=\Sig\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right)\succ\Sig(g_{n}).\label{eq:spair-chain}
+\begin{array}{ccccc}
+\HM(h_{n+1}) & < & \HM\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right) & = & \HM(g_{n}),\\
+\Sig(h_{n+1}) & = & \Sig\left(\frac{\Sig(h_{n+1})}{\Sig(h_{n})}h_{n}\right) & \succ & \Sig(g_{n}).
+\end{array}\label{eq:spair-chain}
 \end{equation}
 
 \end_inset
@@ -897,7 +3439,7 @@ key "TheF5Revised"
  приводящей к противоречию предположение об отсутствии остановки.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 S-пары с сигнатурами, меньшими 
 \begin_inset Formula $\Sig(g)$
 \end_inset
@@ -1167,7 +3709,7 @@ S-парами с известным
 
 \begin_layout Definition
 Умноженный на моном отмеченный многочлен  
-\begin_inset Formula $sr_{i},\, r_{i}\in G_{g}$
+\begin_inset Formula $sR[i],\, i\in G_{g}$
 \end_inset
 
  называется 
@@ -1175,19 +3717,19 @@ S-парами с известным
 удовлетворяющим критерию F5
 \emph default
 , если 
-\begin_inset Formula $\varphi_{index(r_{i})+1}(s\Sig(r_{i}))\ne s\Sig(r_{i})$
+\begin_inset Formula $\varphi_{index(R[i])+1}(s\Sig(R[i]))\ne s\Sig(R[i])$
 \end_inset
 
 , где 
-\begin_inset Formula $\varphi_{index(r_{i})+1}$
+\begin_inset Formula $\varphi_{index(R[i])+1}$
 \end_inset
 
  -- нормальная форма относительно 
-\begin_inset Formula $G_{index(r_{i})+1}$
+\begin_inset Formula $G_{index(R[i])+1}$
 \end_inset
 
  -- базиса Грёбнера идеала 
-\begin_inset Formula $\left(f_{index\left(r_{i}\right)+1},\dots,f_{m}\right)$
+\begin_inset Formula $\left(f_{index\left(R[i]\right)+1},\dots,f_{m}\right)$
 \end_inset
 
 , полученного на предыдущем шаге.
@@ -1195,7 +3737,7 @@ S-парами с известным
 
 \begin_layout Standard
 Это определение эквивалентно тому, что 
-\begin_inset Formula $sr_{i}$
+\begin_inset Formula $sR[i]$
 \end_inset
 
  является ненормализованным отмеченным многочленом с точки зрения понятия
@@ -1211,7 +3753,7 @@ key "FaugereF5"
 
 \begin_layout Definition
 Умноженный на моном отмеченный многочлен 
-\begin_inset Formula $sr_{i},\, r_{i}\in G_{g}$
+\begin_inset Formula $sR[i],\, i\in G_{g}$
 \end_inset
 
  называется 
@@ -1223,7 +3765,7 @@ key "FaugereF5"
 \end_inset
 
 , такое что 
-\begin_inset Formula $\Sig(r_{j})|s\Sig(r_{i})$
+\begin_inset Formula $\Sig(R[j])|s\Sig(R[i])$
 \end_inset
 
 .
@@ -1243,17 +3785,17 @@ key "FaugereF5"
 \noun off
 \color none
 
-\begin_inset Formula $sr_{i}$
+\begin_inset Formula $sR[i]$
 \end_inset
 
  удовлетворяет критерию, то и дополнительно домноженный многочлен 
-\begin_inset Formula $s_{1}sr_{i}$
+\begin_inset Formula $s_{1}sR[i]$
 \end_inset
 
  также ему удовлетворяет.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Представления
 \end_layout
 
@@ -1270,8 +3812,8 @@ key "F5C"
 \begin_inset Formula $p$
 \end_inset
 
- может быть записан как элемент идеала 
-\begin_inset Formula $\left(G_{g}\right)$
+ может быть записан как элемент идеала, порождённого многочленами 
+\begin_inset Formula $R[i],\, i\in G_{g}$
 \end_inset
 
 .
@@ -2030,7 +4572,7 @@ name "cor:all-needed-for-terminaton"
  и свойства 1-2 гарантируют прохождение критериев.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Обнаружение противоречия
 \end_layout
 
@@ -2383,7 +4925,7 @@ reference "thm:always-exist-ok-reductor"
 .
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Выводы
 \end_layout
 
