@@ -5,18 +5,12 @@
 \textclass article
 \begin_preamble
 \input{gost/babelbst.tex}
-\newcommand{\Sig}{\mathcal{S}}
-\newcommand{\HM}{\mathrm{HM}}
-\newcommand{\totaldeg}{\mathrm{deg}}
-\newcommand{\poly}{\mathrm{poly}}
-\newcommand{\sigidx}{\mathrm{index}}
-
-
-\usepackage{amsmath}
-\usepackage{amssymb}
 
 \usepackage{fancyhdr}
 \usepackage{newprog1e}
+
+\renewcommand{\flqq}{\guillemotleft}
+\renewcommand{\frqq}{\guillemotright}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -246,7 +240,7 @@ rusabstr{
 Алгоритм F5, предложенный в 2002г.
  Фожером, принимает в качестве входных данных произвольное множество однородных
  многочленов.
- В представляющей алгоритм статье Фожера было дано обоснование его корректности
+ В статье Фожера, описывающей алгоритм, было дано обоснование его корректности
  при условии остановки.
  Однако сама остановка за конечное число шагов была показана лишь в том
  случае, если на вход подаётся регулярная последовательность многочленов.
@@ -255,10 +249,10 @@ rusabstr{
  Схема доказательства состоит из двух частей: в первой выводится, что если
  алгоритм не останавливается, то рано или поздно он получит пару многочленов,
  в которой первый может редуцировать второй.
- При этом, однако, не утверждается, что такая редукция будет разрешена критериям
-и, используемыми F5.
- Вторая часть показывает, что при существовании такой пары также будет существов
-ать пара, в которой редукция разрешена всеми критериями.
+ При этом не утверждается, что такая редукция будет разрешена критериями,
+ используемыми F5.
+ Вторая часть показывает, что при существовании такой пары также найдётся
+ пара, в которой редукция разрешена всеми критериями.
  Существование последней приводит к противоречию.
 \begin_inset ERT
 status open
@@ -367,7 +361,7 @@ key "F5-revisited"
 \end_inset
 
 , показана только для случая регулярной последовательности на входе.
- Один из подходов к решению проблемы -- добавление в алгоритм дополнительных
+ Один из подходов к решению проблемы --- добавление в алгоритм дополнительных
  проверок и критериев, гарантирующих остановку.
  Это даёт строгое доказательство остановки для модифицированной версии F5,
  содержащей дополнительные проверки, работа которой может отличаться от
@@ -407,15 +401,15 @@ key "HuangConception"
 
  даёт доказательство остановки алгоритма TRB-F5, который имеет два отличия
  от F5.
- Первое -- другая схема построения правил, приводящая к тому, что в TRB-F5
+ Первое --- другая схема построения правил, приводящая к тому, что в TRB-F5
  правила в массивах Rule оказываются отсортированными по возрастанию сигнатуры.
- Второе -- отсутствие применения перед редукцией оператора 
+ Второе --- отсутствие применения перед редукцией оператора 
 \begin_inset Formula $\varphi$
 \end_inset
 
- -- нормальной формы по базису предыдущего шага, из-за которого TRB-F5 при
- выборе редуктора проверяет критерии для элементов, которые в F5 используются
- внутри 
+, редуцирующего многочлен по базису Грёбнера предыдущего шага, из-за чего
+ TRB-F5 при выборе редуктора проверяет критерии для элементов, которые в
+ F5 используются внутри 
 \begin_inset Formula $\varphi$
 \end_inset
 
@@ -454,8 +448,8 @@ key "F5C"
 \end_layout
 
 \begin_layout Standard
-Работа оформлена как доказательство остановки алгоритма, описанного в статье
- 
+Работа оформлена как доказательство остановки алгоритма, описанного в первоисточ
+нике 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "FaugereF5"
@@ -463,43 +457,44 @@ key "FaugereF5"
 \end_inset
 
 , построенное от противного.
- Предполагается, что найдена минимальная по количеству элементов последовательно
-сть многочленов 
-\begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} $
+ Рассматривается кольцо многочленов от нескольких переменных 
+\begin_inset Formula $\mathcal{P}=\mathcal{K}[x_{1},\ldots,x_{n}]$
 \end_inset
 
- в кольце многочленов от нескольких переменных 
-\begin_inset Formula $\mathcal{K}[x_{1},\ldots,x_{n}]$
-\end_inset
-
- на которой применение алгоритма F5 для вычисления базиса Грёбнера относительно
- мономиального порядка 
-\begin_inset Formula $\prec$
-\end_inset
-
- зацикливается при обработке последнего рассматриваемого им элемента --
- 
-\begin_inset Formula $f_{1}$
+ и многочлены 
+\begin_inset Formula $f_{1},\ldots,f_{m}\in\mathcal{P}$
 \end_inset
 
 .
-\end_layout
+ Предполагается, что применение F5 для вычисления базиса Грёбнера идеала
+ 
+\begin_inset Formula $\left(f_{1},\ldots,f_{m}\right)$
+\end_inset
 
-\begin_layout Standard
-Большинство используемых символов и терминологии, включая названия процедур,
- взято из первоисточника 
+ относительно мономиального порядка 
+\begin_inset Formula $<$
+\end_inset
+
+ зацикливается при обработке последнего рассматриваемого им элемента, которым
+ будет многочлен 
+\begin_inset Formula $f_{1}$
+\end_inset
+
+, так как F5 рассматривает многочлены поочерёдно, начиная с последнего.
+ Многие используемые обозначения, включая названия процедур, взяты из статьи
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "FaugereF5"
 
 \end_inset
 
-, поэтому читатель предполагается достаточно глубоко знакомым с ним.
+, поэтому читатель предполагается достаточно глубоко знакомым с ней.
  Множество мономов, образуемых переменными 
 \begin_inset Formula $x_{1},\ldots,x_{n}$
 \end_inset
 
- будет обозначаться символом 
+, будет обозначаться символом 
 \begin_inset Formula $T$
 \end_inset
 
@@ -511,6 +506,11 @@ key "FaugereF5"
 \end_inset
 
 ).
+ Единичный моном выделяется жирным: 
+\begin_inset Formula $\monone\in T$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Definition
@@ -522,15 +522,15 @@ key "FaugereF5"
 \begin_inset Formula $\Sss ti$
 \end_inset
 
-, состоящая из натурального числа 
-\begin_inset Formula $i\in\mathbb{N}$
-\end_inset
-
-, называемого её индексом, и монома 
+, состоящая из монома 
 \begin_inset Formula $t\in T$
 \end_inset
 
-.
+, и натурального числа 
+\begin_inset Formula $i\in\mathbb{N}$
+\end_inset
+
+, называемого её индексом.
 \end_layout
 
 \begin_layout Standard
@@ -571,7 +571,7 @@ key "FaugereF5"
 \end_inset
 
  и многочлена 
-\begin_inset Formula $f\in\mathcal{K}[x_{1},\ldots,x_{n}]$
+\begin_inset Formula $f\in\mathcal{P}$
 \end_inset
 
 .
@@ -610,7 +610,7 @@ m\cdot\left(\Sss ti,f\right)\eqdef\left(\Sss{mt}i,mf\right).
 \begin_inset Formula $\Sig\left(h\right)$
 \end_inset
 
- -- сигнатура отмеченного многочлена 
+ --- сигнатура отмеченного многочлена 
 \begin_inset Formula $h$
 \end_inset
 
@@ -621,23 +621,23 @@ m\cdot\left(\Sss ti,f\right)\eqdef\left(\Sss{mt}i,mf\right).
 \begin_inset Formula $\poly\left(h\right)$
 \end_inset
 
- -- обычный многочлен 
+ --- многочлен 
+\begin_inset Formula $f\in\mathcal{P}$
+\end_inset
+
+ --- вторая часть 
+\begin_inset Formula $h$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\HM\left(h\right),\HC\left(h\right)$
+\end_inset
+
+ --- старшие моном и коэффициент 
 \begin_inset Formula $f$
-\end_inset
-
- -- первая часть 
-\begin_inset Formula $h$
-\end_inset
-
-;
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $\HM\left(h\right),\,\HC\left(h\right)$
-\end_inset
-
- -- старшие моном и коэффициент 
-\begin_inset Formula $\poly\left(h\right)$
 \end_inset
 
 ;
@@ -647,7 +647,7 @@ m\cdot\left(\Sss ti,f\right)\eqdef\left(\Sss{mt}i,mf\right).
 \begin_inset Formula $\sigidx\left(h\right)$
 \end_inset
 
- -- индекс сигнатуры 
+ --- индекс сигнатуры 
 \begin_inset Formula $\Sig(h)$
 \end_inset
 
@@ -656,7 +656,11 @@ m\cdot\left(\Sss ti,f\right)\eqdef\left(\Sss{mt}i,mf\right).
 
 \begin_layout Standard
 Определение отмеченного многочлена, данное в таком виде, формально связывает
- сигнатуру с многочленом.
+ сигнатуру с элементом 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+.
  Связь приобретает осмысленность только в том случае, если мы накладываем
  на отмеченный многочлен дополнительное требование.
  Для этого необходимо определение 
@@ -664,7 +668,7 @@ m\cdot\left(\Sss ti,f\right)\eqdef\left(\Sss{mt}i,mf\right).
 порядка на сигнатурах
 \emph default
 , обозначаемого символом 
-\begin_inset Formula $\prec_{P}$
+\begin_inset Formula $\prec$
 \end_inset
 
 :
@@ -673,8 +677,8 @@ m\cdot\left(\Sss ti,f\right)\eqdef\left(\Sss{mt}i,mf\right).
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\Sss{t_{1}}{i_{1}}\prec_{P}\Sss{t_{2}}{i_{2}}\Longleftrightarrow\left[\begin{aligned}i_{1}>i_{2}\\
-i{}_{1}=i_{2},t_{1}\prec t_{2}
+\Sss{t_{1}}{i_{1}}\prec\Sss{t_{2}}{i_{2}}\Longleftrightarrow\left[\begin{aligned}i_{1}>i_{2}\\
+i{}_{1}=i_{2} & \text{,}\, t_{1}<t_{2}
 \end{aligned}
 \right..
 \]
@@ -691,7 +695,7 @@ i{}_{1}=i_{2},t_{1}\prec t_{2}
 \end_inset
 
 
-\begin_inset Formula $\left\{ f_{1},\ldots,f_{m}\right\} $
+\begin_inset Formula $f_{1},\ldots,f_{m}$
 \end_inset
 
 .
@@ -714,21 +718,21 @@ i{}_{1}=i_{2},t_{1}\prec t_{2}
 \begin_inset Formula $f=ctf_{i}+\dots$
 \end_inset
 
-, остальные слагаемые имеют вид 
+, где остальные слагаемые имеют вид 
 \begin_inset Formula $c't'f_{i'}$
 \end_inset
 
 , причём 
-\begin_inset Formula $\Sss{t'}{i'}\prec\Sss ti$
+\begin_inset Formula $\Sss{t'}{i'}\prec_{\text{}}\Sss ti$
 \end_inset
 
  и для любого представления 
 \begin_inset Formula $f$
 \end_inset
 
- как суммы слагаемых такого вида, одному из них будет соответствовать сигнатура,
- не меньшая 
-\begin_inset Formula $\Sss ti$
+ как суммы таких слагаемых, одному из них будет соответствовать сигнатура
+ 
+\begin_inset Formula $\Sss{t_{1}}{i_{1}}\succcurlyeq\Sss ti$
 \end_inset
 
 .
@@ -743,11 +747,8 @@ key "FaugereF5"
 
 \end_inset
 
- доказывает, что все отмеченные многочлены, порождаемые алгоритмом F5 допустимы.
-\end_layout
-
-\begin_layout Standard
-Термин ``signature-safe'' переведён как 
+ доказывает, что все отмеченные многочлены, порождаемые алгоритмом F5, допустимы.
+ Термин ``signature-safe'' переведён как 
 \begin_inset Quotes fld
 \end_inset
 
@@ -755,7 +756,7 @@ key "FaugereF5"
 \begin_inset Quotes frd
 \end_inset
 
-:
+.
 \end_layout
 
 \begin_layout Definition
@@ -772,14 +773,14 @@ key "FaugereF5"
  сигнатурной редукцией,
 \emph default
  если 
-\begin_inset Formula $\Sig(f)\succ_{P}t\cdot\Sig(g)$
+\begin_inset Formula $\Sig(f)\succ t\cdot\Sig(g)$
 \end_inset
 
 , где 
 \begin_inset Formula $t=\frac{\HM(f)}{\HM(g)}$
 \end_inset
 
- -- моном, на который умножается редуктор.
+ --- моном, на который умножается редуктор.
  Редуктор, соответствующий такой редукции, называется 
 \emph on
 сигнатурным редуктором
@@ -830,16 +831,27 @@ key "FaugereF5"
 .
  Большая часть процедур оперирует не с отмеченными многочленами, а с их
  позициями в этом массиве.
- При редукции, многочлен, однажды добавленный в 
+ Многочлен 
+\begin_inset Formula $h$
+\end_inset
+
+, однажды добавленный в 
 \begin_inset Formula $R$
 \end_inset
 
-, может меняться, но сигнатура всех элементов 
+, может менять 
+\begin_inset Formula $\poly\left(h\right)$
+\end_inset
+
+ при редукции, но сигнатура всех элементов 
 \begin_inset Formula $R$
 \end_inset
 
- остаётся неизменной после первого добавления.
- Вначале 
+ остаётся неизменной.
+\begin_inset Newline newline
+\end_inset
+
+Вначале 
 \begin_inset Formula $R$
 \end_inset
 
@@ -894,12 +906,12 @@ Rule Массив правил перезаписи, содержащий
 \begin_inset Quotes frd
 \end_inset
 
- на многочлены, но не их самих.
+ на многочлены.
  Изначально Rule состоит из 
 \begin_inset Formula $m$
 \end_inset
 
- пустых массивов, которые в процессе работы пополняется со стороны начала.
+ пустых массивов, которые в процессе работы пополняются со стороны начала.
 \end_layout
 
 \begin_layout Standard
@@ -939,7 +951,7 @@ AddRule
 
 
 \series default
- -- позиция элемента в 
+ --- позиция элемента в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -1001,7 +1013,7 @@ Rewritten?
 \begin_inset Formula $u$
 \end_inset
 
- -- моном, 
+ --- моном; 
 \series bold
 
 \begin_inset Formula $k$
@@ -1009,7 +1021,7 @@ Rewritten?
 
 
 \series default
- -- позиция элемента в 
+ --- позиция элемента в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -1154,7 +1166,7 @@ IncrementalF5
 \begin_inset Formula $F=[f_{1},\dots,f_{m}]$
 \end_inset
 
- -- упорядоченный массив однородных многочленов.
+ --- упорядоченный массив однородных многочленов.
 \end_layout
 
 \begin_layout Labeling
@@ -1165,11 +1177,11 @@ IncrementalF5
 \begin_inset Formula $i$
 \end_inset
 
- -- номер этапа алгоритма, убывающий в процессе работы; 
+ --- номер этапа алгоритма, убывающий в процессе работы; 
 \begin_inset Formula $G_{i}$
 \end_inset
 
- -- множество позиций отмеченных многочленов в 
+ --- множество позиций отмеченных многочленов в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -1301,11 +1313,11 @@ AlgorithmF5
 \begin_inset Formula $(\Sss{\monone}i,f_{i})$
 \end_inset
 
- -- отмеченный многочлен, 
+ --- отмеченный многочлен; 
 \begin_inset Formula $G_{i-1}$
 \end_inset
 
- -- множество позиций отмеченных многочленов в 
+ --- множество позиций отмеченных многочленов в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -1325,35 +1337,35 @@ AlgorithmF5
 \begin_inset Formula $\varphi$
 \end_inset
 
- -- функция нормальной формы на 
+ --- оператор редукции на 
 \begin_inset Formula $\mathcal{P}$
 \end_inset
 
-, 
+; 
 \begin_inset Formula $d$
 \end_inset
 
- -- число, соответствующее минимальной степени оставшихся S-пар, 
+ --- число, соответствующее минимальной степени оставшихся S-пар; 
 \begin_inset Formula $P$
 \end_inset
 
- -- упорядоченный список S-пар отмеченных многочленов, 
+ --- упорядоченный список S-пар отмеченных многочленов; 
 \begin_inset Formula $P_{d}$
 \end_inset
 
- -- подмножество S-пар фиксированной степени, 
+ --- подмножество S-пар фиксированной степени; 
 \begin_inset Formula $F_{d},R_{d}$
 \end_inset
 
- -- некоторые множества позиций в 
+ --- некоторые множества позиций в 
 \begin_inset Formula $R$
 \end_inset
 
-, соответствующие многочленам фиксированной степени, 
+, соответствующие многочленам фиксированной степени; 
 \begin_inset Formula $r,p$
 \end_inset
 
- -- позиции элементов в 
+ --- позиции элементов в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -1372,7 +1384,7 @@ AlgorithmF5
 \begin_inset Formula $G_{i}$
 \end_inset
 
- -- множество позиций отмеченных многочленов в 
+ --- множество позиций отмеченных многочленов в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -1402,8 +1414,7 @@ AlgorithmF5
 
 
 \shape default
- оператор нормальной формы, производящий полную редукцию по множеству многочлено
-в 
+ оператор, производящий полную редукцию по множеству многочленов 
 \begin_inset Formula $\left\{ \poly(R[r])|r\in G_{i-1}\right\} $
 \end_inset
 
@@ -1459,7 +1470,15 @@ do:
 
 \family sans
 \shape italic
-\begin_inset Formula $d\leftarrow\totaldeg\left(\HM\left(P[1]\right)\right)$
+\begin_inset Formula $d\leftarrow\totaldeg($
+\end_inset
+
+
+\shape default
+сокращаемый моном
+\shape italic
+ 
+\begin_inset Formula $P[1])$
 \end_inset
 
 
@@ -1471,8 +1490,8 @@ do:
 \begin_inset Formula $P_{d}\leftarrow\{p\in P|\totaldeg($
 \end_inset
 
-сокращаемого монома
-\begin_inset Formula $)=d\}$
+сокращаемый моном 
+\begin_inset Formula $p)=d\}$
 \end_inset
 
 
@@ -1648,20 +1667,20 @@ CritPair
 \begin_inset Formula $r_{1},r_{2}$
 \end_inset
 
- -- позиции отмеченных многочленов в 
+ --- позиции отмеченных многочленов в 
 \begin_inset Formula $R$
 \end_inset
 
-, 
+; 
 \begin_inset Formula $k$
 \end_inset
 
- -- число, обозначающее индекс сигнатур, для которого проверяется нормальная
- форма, 
+ --- число, обозначающее индекс сигнатур, для которого проверяется редуцированно
+сть; 
 \begin_inset Formula $\varphi$
 \end_inset
 
- -- функция нормальной формы на 
+ --- оператор редукции на 
 \begin_inset Formula $\mathcal{P}$
 \end_inset
 
@@ -1676,7 +1695,7 @@ CritPair
 \begin_inset Formula $t,t_{1},t_{2},u_{1},u_{2}$
 \end_inset
 
- -- мономы.
+ --- мономы.
 \end_layout
 
 \begin_layout Labeling
@@ -1746,7 +1765,7 @@ for
 if 
 \series default
 
-\begin_inset Formula $u_{1}\Sig(R[r_{1}])\prec_{P}u_{2}\Sig(R[r_{2}])$
+\begin_inset Formula $u_{1}\Sig(R[r_{1}])\prec_{}u_{2}\Sig(R[r_{2}])$
 \end_inset
 
 
@@ -1900,7 +1919,7 @@ Spol
 \begin_inset Formula $P=\left\{ p_{1},\dots,p_{h}\right\} $
 \end_inset
 
- -- множество S-пар фиксированной степени.
+ --- множество S-пар фиксированной степени.
 \end_layout
 
 \begin_layout Labeling
@@ -1911,7 +1930,7 @@ Spol
 \begin_inset Formula $(u\cdot R[r_{i}],v\cdot R[r_{j}])$
 \end_inset
 
- -- S-пара отмеченных многочленов.
+ --- S-пара отмеченных многочленов.
 \end_layout
 
 \begin_layout Labeling
@@ -1926,12 +1945,12 @@ Spol
 \begin_inset Formula $F$
 \end_inset
 
- -- множество позиций 
+ --- множество позиций 
 \begin_inset Formula $R$
 \end_inset
 
-, соответствующих отмеченным многочленам, полученным из входных S-пар как
- S-многочлены.
+, соответствующих отмеченным многочленам, полученным как S-многочлены из
+ входных S-пар.
 \end_layout
 
 \begin_layout Enumerate
@@ -2113,15 +2132,15 @@ ToDo,
 \begin_inset Formula $G$
 \end_inset
 
- -- множества позиций 
+ --- множества позиций 
 \begin_inset Formula $R$
 \end_inset
 
-, соответствующих отмеченным многочленам, 
+; 
 \begin_inset Formula $\varphi$
 \end_inset
 
- -- функция нормальной формы на 
+ --- оператор редукции на 
 \begin_inset Formula $\mathcal{P}$
 \end_inset
 
@@ -2136,11 +2155,11 @@ ToDo,
 \begin_inset Formula $h$
 \end_inset
 
- -- позиция отмеченного многочлена в 
+ --- позиция в 
 \begin_inset Formula $R$
 \end_inset
 
-, Done
+; Done
 \begin_inset script subscript
 
 \begin_layout Plain Layout
@@ -2162,15 +2181,15 @@ ToDo,
 
 \end_inset
 
- -- множества позиций в 
+ --- множества позиций в 
 \begin_inset Formula $R$
 \end_inset
 
-, 
+; 
 \begin_inset Formula $G_{\text{red}}$
 \end_inset
 
- -- множество позиций 
+ --- множество позиций в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -2185,12 +2204,12 @@ ToDo,
 \series bold
  
 \series default
-Done -- множество позиций в 
+Done --- множество позиций в 
 \begin_inset Formula $R$
 \end_inset
 
-, соответствующих отмеченным многочленам из ToDo, редуцированным по многочленам
- из 
+, соответствующих многочленам из ToDo, редуцированным по многочленам из
+ 
 \begin_inset Formula $G$
 \end_inset
 
@@ -2224,7 +2243,7 @@ do:
 ,
 \family sans
  соответствующая многочлену с минимальной по 
-\begin_inset Formula $\prec_{P}$
+\begin_inset Formula $\prec$
 \end_inset
 
  среди ToDo сигнатурой
@@ -2435,23 +2454,23 @@ IsReducible
 \begin_inset Formula $r_{0}$
 \end_inset
 
- -- позиция отмеченного многочлена в 
+ --- позиция отмеченного многочлена в 
 \begin_inset Formula $R$
 \end_inset
 
-, для которого выполняется поиск возможных сигнатурных редукций, 
+, для которого выполняется поиск возможных сигнатурных редукций; 
 \begin_inset Formula $G_{\text{red}}$
 \end_inset
 
- -- множество позиций 
+ --- множество позиций 
 \begin_inset Formula $R$
 \end_inset
 
-, соответствующих потенциальным редукторам, 
+, соответствующих потенциальным редукторам; 
 \begin_inset Formula $\varphi$
 \end_inset
 
- -- функция нормальной формы на 
+ --- оператор редукции на 
 \begin_inset Formula $\mathcal{P}$
 \end_inset
 
@@ -2466,11 +2485,11 @@ IsReducible
 \begin_inset Formula $u$
 \end_inset
 
- -- моном, 
+ --- моном; 
 \begin_inset Formula $r_{j}$
 \end_inset
 
- -- позиция в 
+ --- позиция в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -2478,11 +2497,11 @@ IsReducible
 \begin_inset Formula $G_{\text{red}}$
 \end_inset
 
-, 
+; 
 \begin_inset Formula $t_{j}$
 \end_inset
 
- -- моном сигнатуры.
+ --- моном сигнатуры.
 \end_layout
 
 \begin_layout Labeling
@@ -2535,8 +2554,8 @@ name "enu:IsRed-a"
 \begin_inset Formula $u=\frac{HT(R[r_{0}])}{HT(R[r_{\text{j}}])}$
 \end_inset
 
- -- корректный моном из 
-\begin_inset Formula $\mathbb{T}$
+ --- корректный моном из 
+\begin_inset Formula $T$
 \end_inset
 
 , т.е.
@@ -2560,7 +2579,7 @@ name "enu:IsRed-b"
 \begin_inset Formula $t_{j}$
 \end_inset
 
- -- моном сигнатуры 
+ --- моном сигнатуры 
 \begin_inset Formula $\Sig(R[r_{j}])$
 \end_inset
 
@@ -2675,23 +2694,23 @@ TopReduction
 \begin_inset Formula $r_{0}$
 \end_inset
 
- -- позиция отмеченного многочлена в 
+ --- позиция отмеченного многочлена в 
 \begin_inset Formula $R$
 \end_inset
 
-, для которого выполняется редукция, 
+, для которого выполняется редукция; 
 \begin_inset Formula $G_{\text{red}}$
 \end_inset
 
- -- множество позиций 
+ --- множество позиций 
 \begin_inset Formula $R$
 \end_inset
 
-, соответствующих многочленам, используемых в качестве редукторов, 
+, соответствующих многочленам, используемых в качестве редукторов; 
 \begin_inset Formula $\varphi$
 \end_inset
 
- -- функция нормальной формы на 
+ --- оператор редукции на 
 \begin_inset Formula $\mathcal{P}$
 \end_inset
 
@@ -2706,19 +2725,19 @@ TopReduction
 \begin_inset Formula $r'$
 \end_inset
 
- -- множество позиций элементов 
+ --- множество позиций элементов 
 \begin_inset Formula $R$
 \end_inset
 
-, являющихся потенциальными редукторами, 
+, являющихся потенциальными редукторами; 
 \begin_inset Formula $r_{1}$
 \end_inset
 
- -- конкретный его элемент, 
+ --- конкретный его элемент; 
 \begin_inset Formula $u$
 \end_inset
 
- -- моном.
+ --- моном.
 \end_layout
 
 \begin_layout Labeling
@@ -2734,7 +2753,7 @@ TopReduction
 \end_inset
 
 .
- Возвращаемое значение -- пара множеств (ToDo, Done) содержащих позиции
+ Возвращаемое значение --- пара множеств (ToDo, Done) содержащих позиции
  в 
 \begin_inset Formula $R$
 \end_inset
@@ -2916,7 +2935,7 @@ else:
 if 
 \series default
 
-\begin_inset Formula $u\Sig(R[r_{1}])\prec_{P}\Sig(R[r_{0}])$
+\begin_inset Formula $u\Sig(R[r_{1}])\prec\Sig(R[r_{0}])$
 \end_inset
 
 
@@ -2928,7 +2947,15 @@ if
 \begin_layout Enumerate
 
 \family sans
-\begin_inset Formula $R[r_{0}]\leftarrow\left(\Sig(R[r_{0}]),\poly(R[r_{0}])-u\poly(R[r_{1}])\right)$
+\begin_inset Formula $R[r_{0}]\leftarrow$
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\left(\Sig(R[r_{0}]),\poly(R[r_{0}])-u\poly(R[r_{1}])\right)$
 \end_inset
 
 
@@ -3073,7 +3100,7 @@ Spol
 TopReduction
 \family default
 , как S-многочлены двух уже добавленных.
- В этой главе мы будем искать бесконечную подпоследовательность 
+ Мы будем искать бесконечную подпоследовательность 
 \begin_inset Formula $\left\{ R[k_{1}],R[k_{2}],\ldots,R[k_{j}],\ldots\right\} $
 \end_inset
 
@@ -3085,11 +3112,8 @@ TopReduction
 \begin_inset Formula $R[k_{j-1}]$
 \end_inset
 
- и некоторой другой части с меньшей сигнатурой: 
-\begin_inset Formula $\Sig(R[k_{j}])=u_{k_{j}}\Sig(R[k_{j-1}])\Longleftrightarrow\Sig(R[k_{j-1}])|\Sig(R[k_{j}]).$
-\end_inset
-
-
+ и некоторого другого с меньшей сигнатурой.
+ 
 \end_layout
 
 \begin_layout Definition
@@ -3099,6 +3123,18 @@ TopReduction
 цепью S-пар
 \emph default
 .
+\end_layout
+
+\begin_layout Standard
+Для соседних элементов цепи S-пар выполняется соотношение 
+\begin_inset Formula 
+\[
+\Sig(R[k_{j}])=u_{k_{j}}\Sig(R[k_{j-1}])\Longleftrightarrow\Sig(R[k_{j-1}])|\Sig(R[k_{j}]).
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3130,7 +3166,7 @@ TopReduction
 \begin_inset Formula $\Sig(R[l])=s$
 \end_inset
 
- и упорядоченное по порядку добавления подмножество 
+ и, упорядоченное по порядку добавления, подмножество 
 \begin_inset Formula $\{R[l_{1}],\ldots,R[l_{i}],\ldots\}$
 \end_inset
 
@@ -3156,7 +3192,7 @@ TopReduction
 \begin_inset Formula $\forall i>i_{0}\,\exists j\leqslant i_{0}$
 \end_inset
 
- такое что 
+, такое что 
 \begin_inset Formula $v_{j}|v_{i}$
 \end_inset
 
@@ -3187,7 +3223,41 @@ TopReduction
 \begin_inset Formula $\Sig(R[l_{j}])\cdot\frac{v_{i}}{v_{j}}$
 \end_inset
 
- и существует не более чем 
+ и не прошёл бы проверки 
+\family sans
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Rewritten?"
+
+\end_inset
+
+
+\family default
+ в 
+\family sans
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:IsReducible"
+
+\end_inset
+
+
+\family default
+ или 
+\family typewriter
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:Spol"
+
+\end_inset
+
+
+\family default
+.
+ Таким образом, существует не более чем 
 \begin_inset Formula $i_{0}$
 \end_inset
 
@@ -3203,7 +3273,7 @@ TopReduction
 \begin_inset Formula $R[l]$
 \end_inset
 
- будет называться 
+, будет называться 
 \emph on
 множеством S-порождённых
 \emph default
@@ -3228,8 +3298,8 @@ TopReduction
 \begin_inset Formula $R[1]=(\Sss 1{\monone},f_{1})$
 \end_inset
 
- является началом бесконечного числа различных конечных цепей S-пар -- каждому
- многочлену 
+ является началом бесконечного числа различных конечных цепей S-пар ---
+ каждому многочлену 
 \begin_inset Formula $R[l]$
 \end_inset
 
@@ -3239,11 +3309,11 @@ TopReduction
 
 .
  Среди конечного числа его S-порождённых также найдётся элемент, являющийся
- началом бесконечного числа S-пар.
+ началом бесконечного числа конечных цепей S-пар.
  В его S-порождённых можно выбрать элемент с тем же свойством.
  Продолжая выбирать элементы таким образом, мы получим искомую бесконечную
  последовательность, состоящую из элементов, являющихся началами бесконечного
- числа S-пар.
+ числа цепей S-пар.
 \end_layout
 
 \begin_layout Standard
@@ -3262,12 +3332,26 @@ name "thm:f_g_3_props"
 
 \end_inset
 
-Если алгоритм не останавливается на некоторых входных данных, то после некоторог
-о конечного шага множество 
-\begin_inset Formula $G$
+Если процедура 
+\family sans
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "par:AlgorithmF5"
+
 \end_inset
 
- содержит пару отмеченных многочленов 
+
+\family default
+ не останавливается при обработке 
+\begin_inset Formula $f_{1}$
+\end_inset
+
+, то после некоторого конечного шага множество 
+\begin_inset Formula $G_{1}$
+\end_inset
+
+ содержит пару позиций отмеченных многочленов 
 \begin_inset Formula $f',f$
 \end_inset
 
@@ -3300,7 +3384,7 @@ name "thm:f_g_3_props"
 \end_inset
 
 , а все многочлены, используемые как старшая часть S-пары, находятся в 
-\begin_inset Formula $G$
+\begin_inset Formula $G_{i}$
 \end_inset
 
  или в 
@@ -3320,7 +3404,11 @@ name "thm:f_g_3_props"
 \begin_inset Formula $\poly(h_{n})$
 \end_inset
 
- после того как был использован для создания какой-либо S-пары.
+ после того как был использован для создания 
+\begin_inset Formula $h_{n+1}$
+\end_inset
+
+.
  И можно утверждать, что выполняется равенство 
 \begin_inset Formula $\poly(h_{n+1})=c\frac{\Sig(h_{n+1})}{\Sig(h_{n})}\poly(h_{n})+g_{n}$
 \end_inset
@@ -3329,7 +3417,7 @@ name "thm:f_g_3_props"
 \begin_inset Formula $g_{n}$
 \end_inset
 
- -- многочлен, соответствующей младшей части S-пары, использованный при
+ --- многочлен, соответствующей младшей части S-пары, использованный при
  генерации 
 \begin_inset Formula $h_{n+1}$
 \end_inset
@@ -3338,7 +3426,9 @@ name "thm:f_g_3_props"
 \begin_inset Formula $h_{n}$
 \end_inset
 
-, удовлетворяющее следующему:
+.
+ Поскольку при формировании S-многочлена из S-пары коэффициент при старшем
+ мономе сокращается мы получаем
 \begin_inset Formula 
 \begin{equation}
 \begin{array}{ccccc}
@@ -3364,48 +3454,15 @@ reference "eq:spair-chain"
 \begin_inset Formula $\frac{\HM(h_{i})}{\Sig(h_{i})}$
 \end_inset
 
- строго убывают в смысле порядка на частных.
-\end_layout
-
-\begin_layout Proof
-В цепи S-пар 
-\begin_inset Formula $\{h_{i}\}$
-\end_inset
-
- для различных 
-\begin_inset Formula $h_{i}$
-\end_inset
-
- и 
-\begin_inset Formula $h_{j}$
-\end_inset
-
- делимость 
-\begin_inset Formula $\HM(h_{i})|\HM(h_{j})$
-\end_inset
-
- возможна только в случае 
-\begin_inset Formula $i<j$
-\end_inset
-
- и 
-\begin_inset Formula $\totaldeg(h_{i})<\totaldeg(h_{j})$
+ строго убывают в смысле порядка 
+\begin_inset Formula $<_{q}$
 \end_inset
 
 .
- Для нахождения таких многочленов используем идею из Предложения 14 работы
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "TheF5Revised"
+\end_layout
 
-\end_inset
-
-: для бесконечной цепи S-пар 
-\begin_inset Formula $\{h_{i}\}$
-\end_inset
-
-, рассмотрим бесконечную последовательность в 
+\begin_layout Proof
+Рассмотрим бесконечную последовательность в 
 \begin_inset Formula $T$
 \end_inset
 
@@ -3414,7 +3471,8 @@ key "TheF5Revised"
 \end_inset
 
 .
- В ней по лемме Диксона существует два элемента, удовлетворяющие 
+ В ней по лемме Диксона существует два различных элемента, удовлетворяющие
+ 
 \begin_inset Formula $\HM(h_{i})|\HM(h_{j})$
 \end_inset
 
@@ -3423,7 +3481,12 @@ key "TheF5Revised"
 \begin_inset Formula $i<j$
 \end_inset
 
-, а при помощи свойств цепи S-пар мы получаем, что 
+, поскольку делимость различных мономов возможна лишь в случае 
+\begin_inset Formula $\totaldeg(h_{i})<\totaldeg(h_{j})$
+\end_inset
+
+, а в цепи S-пар полная степень однородных многочленов не убывает.
+ Отсюда при помощи свойств цепи S-пар мы получаем, что 
 \begin_inset Formula $\frac{\HM(h_{i})}{\Sig(h_{i})}>_{q}\frac{\HM(h_{i+1})}{\Sig(h_{i+1})}>_{q}\cdots>_{q}\frac{\HM(h_{j})}{\Sig(h_{j})}$
 \end_inset
 
@@ -3439,29 +3502,25 @@ key "TheF5Revised"
 \end_layout
 
 \begin_layout Standard
-Из неравенства на частных следует, что 
-\begin_inset Formula $f$
-\end_inset
-
- -- сигнатурный редуктор 
+Из неравенств в заключении теоремы следует, что 
 \begin_inset Formula $f'$
 \end_inset
 
+ --- сигнатурный редуктор 
+\begin_inset Formula $f$
+\end_inset
+
 .
- Последующие главы посвящены доказательству невозможности такой ситуации,
- приводящей к противоречию предположение об отсутствии остановки.
+ Далее мы докажем невозможность такой ситуации, что приведёт к противоречию
+ предположение об отсутствии остановки.
 \end_layout
 
 \begin_layout Section
-S-пары с сигнатурами, меньшими 
-\begin_inset Formula $\Sig(g)$
-\end_inset
-
-
+S-пары с малыми сигнатурами
 \end_layout
 
 \begin_layout Standard
-В этой и последующих частях 
+В этой и последующих секциях 
 \begin_inset Formula $g$
 \end_inset
 
@@ -3497,11 +3556,20 @@ S-пары с сигнатурами, меньшими
 
  и оно окажется записанным в виде упорядоченной последовательности целых
  чисел 
-\begin_inset Formula $G_{g}=\{b_{1},\ldots,b_{N}\}$
+\begin_inset Formula $\{b_{1},\ldots,b_{N}\}$
 \end_inset
 
  с 
 \begin_inset Formula $b_{j}<b_{j+1}$
+\end_inset
+
+, которая будет обозначаться 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+, поскольку соответствует промежуточному состоянию результата перед добавлением
+ туда многочлена 
+\begin_inset Formula $g$
 \end_inset
 
 .
@@ -3539,7 +3607,10 @@ Spol
 TopReduction
 \family default
 .
- Далее для простоты мы будем говорить о отмеченных многочленах 
+\end_layout
+
+\begin_layout Standard
+Далее для простоты мы будем говорить об отмеченных многочленах 
 \begin_inset Formula $b_{j}$
 \end_inset
 
@@ -3551,8 +3622,8 @@ TopReduction
 \begin_inset Formula $G_{g}$
 \end_inset
 
- является не упорядоченным списком позиций, а упорядоченным списком отмеченных
- многочленов, расположенных на этих позициях.
+ является не упорядоченным списком позиций, а упорядоченным списком самих
+ отмеченных многочленов, расположенных на этих позициях.
  В этой терминологии можно сказать, что все входные многочлены 
 \family roman
 \series medium
@@ -3721,8 +3792,8 @@ S-парами с известным
 \end_layout
 
 \begin_layout Definition
-Умноженный на моном отмеченный многочлен  
-\begin_inset Formula $sR[i],\, i\in G_{g}$
+Умноженный на моном отмеченный многочлен 
+\begin_inset Formula $sR[i],\, R[i]\in G_{g}$
 \end_inset
 
  называется 
@@ -3737,11 +3808,11 @@ S-парами с известным
 \begin_inset Formula $\varphi_{index(R[i])+1}$
 \end_inset
 
- -- нормальная форма относительно 
+ --- нормальная форма относительно 
 \begin_inset Formula $G_{index(R[i])+1}$
 \end_inset
 
- -- базиса Грёбнера идеала 
+ --- базиса Грёбнера идеала 
 \begin_inset Formula $\left(f_{index\left(R[i]\right)+1},\dots,f_{m}\right)$
 \end_inset
 
@@ -3766,7 +3837,7 @@ key "FaugereF5"
 
 \begin_layout Definition
 Умноженный на моном отмеченный многочлен 
-\begin_inset Formula $sR[i],\, i\in G_{g}$
+\begin_inset Formula $sR[i],\, R[i]\in G_{g}$
 \end_inset
 
  называется 
@@ -3813,15 +3884,7 @@ key "FaugereF5"
 \end_layout
 
 \begin_layout Standard
-Идея представлений, определённых ниже, приходит из 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "F5C"
-
-\end_inset
-
-, где подобный метод используется в доказательстве Теоремы 21.
- Представления используются для описания способов, которыми многочлен 
+Представления используются для описания способов, которыми многочлен 
 \begin_inset Formula $p$
 \end_inset
 
@@ -3873,8 +3936,8 @@ key "F5C"
 элементами
 \emph default
  представления.
- Они же, рассмотренные как умножение многочленов, дают отмеченные многочлены
- 
+ Они же, рассмотренные как умножение отмеченных многочленов на моном, дают
+ отмеченные многочлены 
 \begin_inset Formula $m_{k}b_{i_{k}}$
 \end_inset
 
@@ -3951,7 +4014,7 @@ key "F5C"
 \emph on
 упорядоченную форму
 \emph default
- представления -- 
+ представления --- 
 \begin_inset Formula $\gtrdot_{1}$
 \end_inset
 
@@ -4063,7 +4126,7 @@ key "Baader.Nipkow98Term"
 
  утверждает вполне упорядоченность конечных наборов, упорядоченных лексикографич
 еским расширением порядка на их составляющих.
- Это применимо к представлениям -- наборам своих элементов.
+ Это применимо к представлениям --- наборам своих элементов.
 \end_layout
 
 \begin_layout Subsection
@@ -4071,7 +4134,7 @@ key "Baader.Nipkow98Term"
 \end_layout
 
 \begin_layout Standard
-В этой части строится конечная последовательность 
+Теперь мы построим конечную последовательность 
 \begin_inset Formula $\lessdot$
 \end_inset
 
@@ -4151,7 +4214,11 @@ key "Baader.Nipkow98Term"
 \end_inset
 
 -меньшее представление.
- Схема построения такова: выбирается элемент 
+ Схема построения такова: по не удовлетворяющему свойствам элементу 
+\begin_inset Formula $m_{K}\cdot b_{i_{K}}$
+\end_inset
+
+ выбирается элемент 
 \begin_inset Formula $m_{Q}\cdot b_{i_{Q}}$
 \end_inset
 
@@ -4181,7 +4248,7 @@ key "Baader.Nipkow98Term"
 \end_inset
 
 .
- К нему применяется следующая лемма:
+ После этого применяется следующая лемма.
 \end_layout
 
 \begin_layout Lemma
@@ -4252,7 +4319,8 @@ key "Baader.Nipkow98Term"
 \begin_layout Standard
 Осталось показать, что представление элемента по вышеуказанной схеме может
  быть построено.
- Выражения, позволяющие построить такое представления описаны в работе 
+ Выражения, позволяющие построить такое представления, описаны в работе
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "F5C"
@@ -4575,14 +4643,14 @@ name "cor:all-needed-for-terminaton"
 \end_inset
 
 , а значит 
-\begin_inset Formula $m_{K}b_{i_{K}}$
+\begin_inset Formula $b_{i_{K}}\in G_{g}$
 \end_inset
 
- -- сигнатурный редуктор для 
+ --- сигнатурный редуктор для 
 \begin_inset Formula $f$
 \end_inset
 
- и свойства 1-2 гарантируют прохождение критериев.
+ и свойства 1-2 гарантируют то что он не удовлетворяет критериям отбрасывания.
 \end_layout
 
 \begin_layout Section
@@ -4677,7 +4745,11 @@ name "thm:always-exist-ok-reductor"
 \begin_inset Formula $f'_{1},f$
 \end_inset
 
-, для которых выполняется: 
+, для которых выполняется:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
 \begin_inset Formula $f'_{1}$
 \end_inset
 
@@ -4713,15 +4785,21 @@ name "thm:always-exist-ok-reductor"
 \begin_inset Formula $f$
 \end_inset
 
-; 
+;
+\end_layout
+
+\begin_layout Itemize
 \begin_inset Formula $f'_{1}$
 \end_inset
 
- -- сигнатурный редуктор для 
+ --- сигнатурный редуктор для 
 \begin_inset Formula $f$
 \end_inset
 
-; 
+;
+\end_layout
+
+\begin_layout Itemize
 \begin_inset Formula $t_{1}f'_{1}$
 \end_inset
 
@@ -4732,6 +4810,7 @@ name "thm:always-exist-ok-reductor"
 .
 \end_layout
 
+\end_deeper
 \begin_layout Proof
 
 \family roman
@@ -4749,7 +4828,7 @@ name "thm:always-exist-ok-reductor"
 \begin_inset Formula $f',f$
 \end_inset
 
- -- многочлены из теоремы
+ --- многочлены из теоремы
 \family default
 \series default
 \shape default
@@ -4823,11 +4902,11 @@ reference "thm:f_g_3_props"
 \begin_inset Formula $tf'$
 \end_inset
 
- -- сигнатурный редуктор для 
+ --- сигнатурный редуктор для 
 \begin_inset Formula $f$
 \end_inset
 
- -- мы имеем 
+ --- мы имеем 
 \begin_inset Formula $\Sig(f')t\prec\Sig(f)$
 \end_inset
 
@@ -4974,8 +5053,11 @@ key "Modifying-for-termination,Ars05applicationsdes,Gash:2008:ECG"
  в изменённых версиях инициируется раньше, чем в исходной, за счёт чего
  изменённые версии проводят меньше редукций.
  Поэтому становится возможным, что на некоторых входных данных быстрее оказывает
-ся исходный алгоритм, а на других -- модифицированный.
- Экспериментально измеренные времена работы в Таблице 1 работы 
+ся исходный алгоритм, а на других --- модифицированный.
+\end_layout
+
+\begin_layout Standard
+Экспериментально измеренные времена работы в Таблице 1 работы 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Modifying-for-termination"
@@ -4991,9 +5073,15 @@ key "Modifying-for-termination"
 
 \begin_layout Standard
 В доказательстве используются три свойства исходного алгоритма F5, которые
- отсутствуют или опциональны в других F5-подобных алгоритмах: однородность
- входных многочленов, наличие критерия перезаписи и совпадения порядка на
- мономах 
+ отсутствуют или опциональны в других F5-подобных алгоритмах 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "G2V,GVW,F5C,EderF5A,PracticalGB"
+
+\end_inset
+
+: однородность входных многочленов, наличие критерия перезаписи и связи
+ порядка на мономах 
 \begin_inset Formula $<$
 \end_inset
 
@@ -5003,11 +5091,15 @@ key "Modifying-for-termination"
 
 .
  Возможность расширения доказательства на F5-подобные алгоритмы, не обладающие
- этими свойствами, остаётся открытым.
- Автор предполагает, что доказательство может быть модифицировано таким
- образом, что зависимость от первых двух свойств исчезнет, однако от третьего
- избавиться не получится, поскольку оно является ключевым моментом при получении
- противоречия на основе результата теоремы 
+ этими свойствами, остаётся открытым вопросом.
+\end_layout
+
+\begin_layout Standard
+Автор предполагает, что доказательство может быть модифицировано таким образом,
+ что зависимость от однородности и наличия критерия перезаписи исчезнет,
+ однако от связи порядков избавиться не получится, поскольку она является
+ ключевым моментом при получении противоречия на основе результата теоремы
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:f_g_3_props"
@@ -5022,9 +5114,9 @@ reference "thm:f_g_3_props"
 \end_layout
 
 \begin_layout Standard
-Автор благодарит Christian Eder, Jean-Charles Faugère, Amir Hashemi, John
- Perry, Till Stagers и Алексея Зобнина за их работы и комментарии, воодушевившие
- автора на исследования в этой области.
+Автор благодарит Алексея Зобнина, Christian Eder, Jean-Charles Faugère,
+ Amir Hashemi, John Perry, Till Stagers за их работы и комментарии, воодушевивши
+е автора на исследования в этой области.
  Спасибо!
 \end_layout
 
