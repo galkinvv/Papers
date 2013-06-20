@@ -333,7 +333,7 @@ galkin-vv@ya.ru
 \end_layout
 
 \begin_layout Section
-Введение
+ВВЕДЕНИЕ
 \end_layout
 
 \begin_layout Standard
@@ -802,7 +802,7 @@ key "FaugereF5"
 \end_layout
 
 \begin_layout Section
-Псевдокод F5
+ПСЕВДОКОД F5
 \end_layout
 
 \begin_layout Standard
@@ -1174,6 +1174,10 @@ name "par:IncrementalF5"
 IncrementalF5
 \end_layout
 
+\begin_layout Standard
+Данная процедура является основной точкой входа в алгоритм.
+\end_layout
+
 \begin_layout Labeling
 \labelwidthstring Переменные:
 
@@ -1341,8 +1345,8 @@ AlgorithmF5
 \begin_inset Formula $R$
 \end_inset
 
-, образующих базис Грёбнера некоторого идеала.
- Многочлены, стоящие на этих позициях имеют индексы сигнатур, меньшие 
+, образующих ранее вычисленный базис Грёбнера некоторого идеала.
+ Многочлены, стоящие на этих позициях имеют индексы сигнатур, большие 
 \begin_inset Formula $i$
 \end_inset
 
@@ -1410,6 +1414,10 @@ AlgorithmF5
 
 , образующих базис Грёбнера идеала 
 \begin_inset Formula $\left(\left\{ \poly(R[r])|r\in G_{i-1}\right\} \cup f_{i}\right)$
+\end_inset
+
+ --- то есть идеала порождённого многочленами 
+\begin_inset Formula $f_{i},\dots,f_{m}$
 \end_inset
 
 .
@@ -1695,8 +1703,8 @@ CritPair
 \begin_inset Formula $k$
 \end_inset
 
- --- число, обозначающее индекс сигнатур, для которого проверяется редуцированно
-сть; 
+ --- число --- индекс сигнатур, для которого проверяется редуцированность;
+ 
 \begin_inset Formula $\varphi$
 \end_inset
 
@@ -1726,7 +1734,7 @@ CritPair
 \series bold
  
 \series default
-множество S-пар отмеченных многочленов, содержащее не более одного элемента.
+множество S-пар отмеченных многочленов, с не более чем одним элементом.
 \end_layout
 
 \begin_layout Enumerate
@@ -1969,8 +1977,8 @@ Spol
 \begin_inset Formula $R$
 \end_inset
 
-, соответствующих отмеченным многочленам, полученным как S-многочлены из
- входных S-пар.
+, соответствующих отмеченным многочленам -- найденным S-многочленам входных
+ S-пар.
 \end_layout
 
 \begin_layout Enumerate
@@ -2057,20 +2065,18 @@ reference "par:Rewritten?"
 
 \begin_deeper
 \begin_layout Enumerate
-Добавить 
+Добавить в конец 
+\begin_inset Formula $R$
+\end_inset
+
+ многочлен
 \family sans
 
-\begin_inset Formula 
-\[
-(u\Sig(R[r_{i}]),u\poly(R[r_{i}])-v\poly(R[r_{j}]))
-\]
-
+\begin_inset Newline newline
 \end_inset
 
 
-\family default
- в конец 
-\begin_inset Formula $R$
+\begin_inset Formula $(u\Sig(R[r_{i}]),u\poly(R[r_{i}])-v\poly(R[r_{j}]))$
 \end_inset
 
 
@@ -2213,11 +2219,11 @@ ToDo,
 \begin_inset Formula $G_{\text{red}}$
 \end_inset
 
- --- множество позиций в 
+ --- множество позиций потенциальных редукторов в 
 \begin_inset Formula $R$
 \end_inset
 
-, соответствующих потенциальным редукторам.
+.
 \end_layout
 
 \begin_layout Labeling
@@ -2536,11 +2542,11 @@ IsReducible
 \series bold
  
 \series default
-множество позиций в 
+пустое или одноэлементное множество позиций потенциальных редукторов в 
 \begin_inset Formula $R$
 \end_inset
 
-, соответствующих возможным редукторам, содержащее не более одного элемента.
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -3099,7 +3105,7 @@ height "1pt"
 \end_layout
 
 \begin_layout Section
-Цепи S-пар
+ЦЕПИ S-ПАР
 \end_layout
 
 \begin_layout Standard
@@ -3297,7 +3303,8 @@ reference "par:Spol"
 \end_layout
 
 \begin_layout Definition
-Конечное множество концов цепей S-пар длины 2, начинающихся с 
+Конечное множестон построит во концов цепей S-пар длины 2, начинающихся
+ с 
 \begin_inset Formula $R[l]$
 \end_inset
 
@@ -3544,7 +3551,7 @@ reference "eq:spair-chain"
 \end_layout
 
 \begin_layout Section
-S-пары с малыми сигнатурами
+S-ПАРЫ С МАЛЫМИ СИГНАТУРАМИ
 \end_layout
 
 \begin_layout Standard
@@ -3956,7 +3963,7 @@ key "FaugereF5"
 \end_layout
 
 \begin_layout Section
-Представления
+ПРЕДСТАВЛЕНИЯ
 \end_layout
 
 \begin_layout Standard
@@ -5166,7 +5173,7 @@ name "cor:all-needed-for-terminaton"
 \end_layout
 
 \begin_layout Section
-Обнаружение противоречия
+ОБНАРУЖЕНИЕ ПРОТИВОРЕЧИЯ
 \end_layout
 
 \begin_layout Standard
@@ -5177,11 +5184,12 @@ reference "thm:f_g_3_props"
 
 \end_inset
 
- при отсутствии остановки утверждает существование многочленов 
+ утверждает, что если алгоритм не останавливается на каких-то входных данных,
+ среди построенных им отмеченных многочленов найдутся 
 \begin_inset Formula $f',f\in G$
 \end_inset
 
-, таких что 
+, такие что 
 \begin_inset Formula $\HM(f')|\HM(f)$
 \end_inset
 
@@ -5546,7 +5554,7 @@ reference "thm:always-exist-ok-reductor"
 \end_layout
 
 \begin_layout Section
-Выводы
+ВЫВОДЫ
 \end_layout
 
 \begin_layout Standard

@@ -209,16 +209,32 @@ origf5_termination_progr_final.tex: origf5_termination_progr_pre.tex origf5_term
 	pdflatex origf5_termination_progr_cp1251.tex
 	mv -f origf5_termination_progr_cp1251.aux origf5_termination_progr.aux
 	bibtex origf5_termination_progr.aux
-	iconv -t cp1251 < origf5_termination_progr.bbl > origf5_termination_progr_cp1251.bbl
-	cat origf5_termination_progr_cp1251.tex | sed -n -e '/begin{document}/,$$p' | sed -n -e '0,/bibliographystyle/p'|head --lines=-1| sed \
-		-e 's/flqq/guillemotleft/'\
-		-e 's/frqq/guillemotright/'\
+	iconv -t cp1251 < origf5_termination_progr.bbl | sed \
+		-e 's/\\bbljan/January/'\
+		-e 's/\\bblfeb/February/'\
+		-e 's/\\bblapr/April/'\
+		-e 's/\\bbljun/June/'\
+		-e 's/\\bbljul/July/'\
+		-e 's/\\bbldec/December/'\
+		|grep -v "selectlanguage" |grep -v "expandafter"> origf5_termination_progr_cp1251.bbl
+	cat origf5_termination_progr_cp1251.tex | sed -n -e '/begin{document}/,$$p' | sed -n -e '0,/bibliographystyle/p'|head --lines=-1| LC_ALL=C sed \
+		-e 's/flqq/guillemotleft/g'\
+		-e 's/frqq/guillemotright/g'\
 		-e 's/\\subsection/\\he/'\
 		-e 's/\\section/\\He/'\
 		-e 's/\\nameref.par./\\texttt\{/g'\
-		-e 's/frqq/guillemotright/'\
+		-e 's/\\item \[\([^]]*\)\]/\\item [\\unskip\1\\hfil]/'\
 		> origf5_termination_progr_document.tex
-	(cat origf5_termination_progr_pre.tex gost/babelbst.tex origf5_termination_progr_document.tex origf5_termination_progr_cp1251.bbl; echo '\end{document}')>origf5_termination_progr_final.tex
+	(cat origf5_termination_progr_pre.tex origf5_termination_progr_document.tex origf5_termination_progr_cp1251.bbl; echo '\end{document}') | sed \
+		-e 's/{thm}/{thmGOT}/'\
+		-e 's/{lem}/{lemGOT}/'\
+		-e 's/{cor}/{corGOT}/'\
+		-e 's/{defn}/{defnGOT}/'\
+		-e 's/{proof}/{proofGOT}/'\
+		-e 's/\\HM/\\HMGOT/g'\
+		-e 's/\\HC/\\HCGOT/g'\
+		-e 's/{lyxlist}/{llistGOT}/'\
+		>origf5_termination_progr_final.tex
 origf5_termination_progr_final.pdf: origf5_termination_progr_final.tex Makefile
 	rm -rf origf5_termination_progr_final
 	mkdir origf5_termination_progr_final

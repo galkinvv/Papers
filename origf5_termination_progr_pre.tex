@@ -10,21 +10,22 @@
 
 \newtheorem{thm}{Теорема}
 \newtheorem{lem}{Лемма}
-\newtheorem{cor}{Вывод}
-\newtheorem{votdefouter}{Определение}
+\newtheorem{cor}{Следствие}
+\newtheorem{defouterGOT}{Определение}
 
 \newenvironment{defn}
-{\begin{votdefouter}\normalfont}
-{\end{votdefouter}}
+{\begin{defouterGOT}\normalfont}
+{\end{defouterGOT}}
 
 \newenvironment{proof}
 {\noindent {\bf Доказательство.}}
-{\hspace*{1pt}$\hfill\Box$}
+{\hspace*{1pt}$\hfill\Box$\par\vskip 5pt}
 
 \newenvironment{lyxlist}[1]
 {\begin{list}{}
 {\settowidth{\labelwidth}{#1}
  \setlength{\leftmargin}{\labelwidth}
  \addtolength{\leftmargin}{\labelsep}
- \renewcommand{\makelabel}[1]{##1\hfil}}}
+}}
 {\end{list}}
+
