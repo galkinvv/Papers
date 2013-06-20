@@ -1040,7 +1040,15 @@ Rewritten?
 \begin_inset Formula $u\cdot R[k]$
 \end_inset
 
- отбрасывается критерием перезаписи.
+ отбрасывается 
+\begin_inset Quotes fld
+\end_inset
+
+критерием перезаписи
+\begin_inset Quotes frd
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -3704,8 +3712,8 @@ name "thm:Exist-gg-repr"
 \end_layout
 
 \begin_layout Enumerate
-S-пара имеет часть, которая была отброшена критерием проверки нормальной
- формы 
+S-пара имеет часть, которая была отброшена критерием проверки редуцированности
+ 
 \begin_inset Formula $\varphi$
 \end_inset
 
@@ -3720,8 +3728,16 @@ IsReducible
 ).
  Такие S-пары будут называться 
 \emph on
-S-парами с частью, удовлетворяющей критерию F5
+S-парами с частью, удовлетворяющей 
+\begin_inset Quotes fld
+\end_inset
+
+критерию F5
 \emph default
+
+\begin_inset Quotes frd
+\end_inset
+
 .
  
 \end_layout
@@ -3742,8 +3758,16 @@ IsReducible
 ).
  Такие S-пары будут называться 
 \emph on
-S-парами с частью, удовлетворяющей критерию Перезаписи
+S-парами с частью, удовлетворяющей 
+\begin_inset Quotes fld
+\end_inset
+
+критерию перезаписи
 \emph default
+
+\begin_inset Quotes frd
+\end_inset
+
 .
 \end_layout
 
@@ -3777,11 +3801,27 @@ S-парами с известным
 \begin_layout Standard
 Понятия 
 \emph on
-удовлетворять критерию F5 
+удовлетворять 
+\begin_inset Quotes fld
+\end_inset
+
+критерию F5
+\begin_inset Quotes frd
+\end_inset
+
+ 
 \emph default
 и 
 \emph on
-удовлетворять критерию Перезаписи
+удовлетворять 
+\begin_inset Quotes fld
+\end_inset
+
+критерию перезаписи
+\begin_inset Quotes frd
+\end_inset
+
+
 \emph default
  могут быть расширены на произвольные умноженные на моном отмеченные многочлены
  
@@ -3798,8 +3838,16 @@ S-парами с известным
 
  называется 
 \emph on
-удовлетворяющим критерию F5
+удовлетворяющим 
+\begin_inset Quotes fld
+\end_inset
+
+критерию F5
 \emph default
+
+\begin_inset Quotes frd
+\end_inset
+
 , если 
 \begin_inset Formula $\varphi_{index(R[i])+1}(s\Sig(R[i]))\ne s\Sig(R[i])$
 \end_inset
@@ -3842,8 +3890,16 @@ key "FaugereF5"
 
  называется 
 \emph on
-удовлетворяющим критерию Перезаписи
+удовлетворяющим 
+\begin_inset Quotes fld
+\end_inset
+
+критерию перезаписи
 \emph default
+
+\begin_inset Quotes frd
+\end_inset
+
 , если 
 \begin_inset Formula $\exists j>i$
 \end_inset
@@ -3980,7 +4036,7 @@ key "FaugereF5"
 
 -представлениях мы начнём с 
 \emph on
-порядка 
+частичного порядка 
 \emph default
 
 \begin_inset Formula $\gtrdot_{1}$
@@ -3990,45 +4046,265 @@ key "FaugereF5"
 \emph on
  на элементах представления
 \emph default
-: будем говорить, что 
-\begin_inset Formula $c_{i}t_{i}\cdot b_{i}\gtrdot_{1}c_{j}t_{j}\cdot b_{j}$
+.
+ 
+\end_layout
+
+\begin_layout Definition
+\begin_inset Formula 
+\[
+c_{i}t_{i}\cdot b_{i}\gtrdot_{1}c_{j}t_{j}\cdot b_{j}\Longleftrightarrow\left[\begin{aligned}\Sig(t_{i}b_{i})\succ\Sig(t_{j}b_{j})\\
+\Sig(t_{i}b_{i})=\Sig(t_{j}b_{j}) & \text{,}\, i<j
+\end{aligned}
+\right..
+\]
+
 \end_inset
 
- если 
-\begin_inset Formula $t_{i}\Sig(b_{i})\succ t_{j}\Sig(b_{j})$
+Он сравнивает вначале сигнатуры элементов, а потом их позиции в списке 
+\begin_inset Formula $G_{g}$
 \end_inset
 
- или 
-\begin_inset Formula $t_{i}\Sig(b_{i})=t_{j}\Sig(b_{j})$
+, что позволяет связать это сравнение по 
+\begin_inset Formula $\gtrdot_{1}$
 \end_inset
 
- и 
-\begin_inset Formula $i<j$
+ с 
+\begin_inset Quotes fld
+\end_inset
+
+критерием перезаписи
+\begin_inset Quotes frd
+\end_inset
+
+, который тоже сравнивает домноженные отмеченные многочлены одной сигнатуры
+ путём сравнения номеров их позиций в массиве 
+\begin_inset Formula $R$
 \end_inset
 
 .
 \end_layout
 
 \begin_layout Standard
-Используем 
+Определённый так порядок основан лишь на сравнение сигнатур и позиций отмеченных
+ многочленов в упорядоченном списке 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+, но не зависит от коэффициента из поля.
+ Единственный случай, в котором два элемента не могут быть упорядочены --
+ одновременное равенство сигнатур 
+\begin_inset Formula $\Sig(t_{i}b_{i})=\Sig(t_{j}b_{j})$
+\end_inset
+
+ и позиций в списке 
+\begin_inset Formula $i=j$
+\end_inset
+
+.
+ Равенство позиций означает равенство многочленов 
+\begin_inset Formula $b_{i}=b_{j}$
+\end_inset
+
+, что вместе с равенством сигнатур даёт 
+\begin_inset Formula $t_{i}=t_{j}$
+\end_inset
+
+.
+ Поэтому любые два элемента, принадлежащие одному корректному 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представлению являются сравнимыми с точки зрения порядка 
+\begin_inset Formula $\lessdot_{1}$
+\end_inset
+
+, поскольку они имеют различные 
+\begin_inset Formula $\left(t_{k},b_{k}\right)$
+\end_inset
+
+ по определению.
+\end_layout
+
+\begin_layout Standard
+Ниже приведены некоторые примеры сравнений элементов по 
+\begin_inset Formula $\lessdot_{1}$
+\end_inset
+
+ для списка 
+\begin_inset Formula $G_{g}=\left\{ b_{1},\, b_{2},\, b_{3}\right\} $
+\end_inset
+
+ из 3-х элементов с порядком на мономах 
+\begin_inset Formula $x>y$
+\end_inset
+
+ и сигнатурами 
+\begin_inset Formula $\Sig(b_{1})=\Sss{\monone}1,\Sig(b_{2})=\Sss{\monone}2,\Sig(b_{3})=\Sss x2$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $y\cdot b_{2}\gtrdot_{1}100y\cdot b_{1}$
+\end_inset
+
+,
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ поскольку у левой части  
+\begin_inset Formula $\succ$
+\end_inset
+
+-большая сигнатура;
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $x\cdot b_{2}\gtrdot_{1}y\cdot b_{2}$
+\end_inset
+
+,
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ поскольку у левой части  
+\begin_inset Formula $\succ$
+\end_inset
+
+-большая сигнатура;
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $-x\cdot b_{2}$
+\end_inset
+
+ 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+и
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ 
+\begin_inset Formula $2x\cdot b_{2}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ не сравнимы, поскольку сигнатуры и позиции в списке равны;
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $y^{2}\cdot b_{2}\lessdot_{1}y\cdot b_{3}$
+\end_inset
+
+,
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ поскольку у левой части  
+\begin_inset Formula $\succ$
+\end_inset
+
+-меньшая сигнатура;
+\end_layout
+
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $x^{2}\cdot b_{2}\gtrdot_{1}x\cdot b_{3}$
+\end_inset
+
+, поскольку сигнатуры равны, а позиция в списке отмеченного многочлена левой
+ части равна 1, что меньше чем позиция многочлена правой части, равная 3.
+\end_layout
+
+\begin_layout Standard
+Для расширения этого порядка на 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представления целиком будем рассматривать 
 \emph on
 упорядоченную форму
 \emph default
- представления --- 
+ представления, состоящую из всех его элементов, записанных в 
 \begin_inset Formula $\gtrdot_{1}$
 \end_inset
 
--убывающий список его элементов.
+-убывающий список.
+ Эта форма может быть использована для проверки на равенство, поскольку
+ представления равны тогда и только тогда, когда равны их упорядоченные
+ формы.
 \end_layout
 
 \begin_layout Definition
-Введём 
+При помощи упорядоченных форм введём 
 \emph on
-порядок 
-\begin_inset Formula $\gtrdot$
-\end_inset
-
- на 
+порядок на 
 \begin_inset Formula $G_{g}$
 \end_inset
 
@@ -4039,24 +4315,208 @@ key "FaugereF5"
 \end_inset
 
  является 
-\emph on
-
-\begin_inset Formula $\gtrdot$
+\begin_inset Formula $\lessdot$
 \end_inset
 
-
-\emph default
--большим, чем 
+-меньшим, чем 
 \begin_inset Formula $\sum_{k}m_{k}\cdot b_{i_{k}}$
 \end_inset
 
-, если их упорядоченные формы удовлетворяют лексикографически расширенному
- отношению 
-\begin_inset Formula $\gtrdot_{1}$
+, если упорядоченные формы для первого и второго представления удовлетворяют
+ лексикографически расширенному на формы отношению 
+\begin_inset Formula $\lessdot_{1}$
 \end_inset
 
 .
- 
+ Для особого случая, когда упорядоченные формы отличаются лишь длиной, более
+ короткая форма будет называться 
+\begin_inset Formula $\lessdot$
+\end_inset
+
+-меньшей.
+ Если наибольшие различные элементы в упорядоченных формах двух представлений
+ отличаются лишь коэффициентов поля, то представления являются не сравнимыми.
+\end_layout
+
+\begin_layout Standard
+Далее даны некоторые примеры этого порядка для того же, трёх-элементного
+ списка 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+.
+ Все 
+\begin_inset Formula $G_{g}$
+\end_inset
+
+-представления записаны в упорядоченных формах:
+\end_layout
+
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $x^{2}\cdot b_{2}+xy\cdot b_{2}+y^{2}b_{2}\gtrdot x^{2}\cdot b_{2}+100y^{2}\cdot b_{2}$
+\end_inset
+
+ поскольку 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $xy\cdot b_{2}\gtrdot_{1}y^{2}\cdot b_{2}$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $x^{2}\cdot b_{2}+100y^{2}\cdot b_{2}\gtrdot x^{2}\cdot b_{2}$
+\end_inset
+
+ поскольку правая часть является началом левой;
+\end_layout
+
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $x^{2}\cdot b_{2}\gtrdot xy\cdot b_{2}+y^{2}\cdot b_{2}+x^{2}\cdot b_{1}$
+\end_inset
+
+ поскольку 
+\begin_inset Formula $x^{2}\cdot b_{2}\gtrdot_{1}xy\cdot b_{2}$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $xy\cdot b_{2}+y^{2}\cdot b_{2}+x^{2}\cdot b_{1}\gtrdot y\cdot b_{3}+y^{2}\cdot b_{2}+x^{2}\cdot b_{1}$
+\end_inset
+
+ поскольку 
+\begin_inset Formula $xy\cdot b_{2}\gtrdot_{1}y\cdot b_{3}$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $y\cdot b_{3}+y^{2}\cdot b_{2}+x^{2}\cdot b_{1}$
+\end_inset
+
+ и 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $2y\cdot b_{3}+y^{2}\cdot b_{1}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ не сравнимы, поскольку наибольшие различные элементы -- это 
+\begin_inset Formula $y\cdot b_{3}$
+\end_inset
+
+ и 
+\begin_inset Formula $2y\cdot b_{3}$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+.
 \end_layout
 
 \begin_layout Standard
@@ -4170,14 +4630,30 @@ key "Baader.Nipkow98Term"
 \begin_inset Formula $m_{k}b_{i_{k}}$
 \end_inset
 
- не удовлетворяет критерию F5.
+ не удовлетворяет 
+\begin_inset Quotes fld
+\end_inset
+
+критерию F5
+\begin_inset Quotes frd
+\end_inset
+
+,
 \end_layout
 
 \begin_layout Enumerate
 \begin_inset Formula $m_{k}b_{i_{k}}$
 \end_inset
 
- не удовлетворяет критерию Перезаписи.
+ не удовлетворяет 
+\begin_inset Quotes fld
+\end_inset
+
+критерию перезаписи
+\begin_inset Quotes frd
+\end_inset
+
+,
 \end_layout
 
 \begin_layout Enumerate
@@ -4196,7 +4672,7 @@ key "Baader.Nipkow98Term"
 \begin_inset Formula $\HM(m_{k}b_{i_{k}})\leqslant\HM(mh)$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
@@ -4598,7 +5074,23 @@ name "cor:all-needed-for-terminaton"
 \begin_inset Formula $f$
 \end_inset
 
-, который не отбрасывается критериями F5 и перезаписи.
+, который не отбрасывается 
+\begin_inset Quotes fld
+\end_inset
+
+критериями F5
+\begin_inset Quotes frd
+\end_inset
+
+ и 
+\begin_inset Quotes fld
+\end_inset
+
+перезаписи
+\begin_inset Quotes frd
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Proof
@@ -4803,7 +5295,23 @@ name "thm:always-exist-ok-reductor"
 \begin_inset Formula $t_{1}f'_{1}$
 \end_inset
 
- не удовлетворяет критериям F5 и Перезаписи, где 
+ не удовлетворяет 
+\begin_inset Quotes fld
+\end_inset
+
+критериям F5
+\begin_inset Quotes frd
+\end_inset
+
+ и 
+\begin_inset Quotes fld
+\end_inset
+
+перезаписи
+\begin_inset Quotes frd
+\end_inset
+
+, где 
 \begin_inset Formula $t_{1}=\frac{\HM(f)}{\HM(f'_{1})}$
 \end_inset
 
@@ -5080,8 +5588,15 @@ key "G2V,GVW,F5C,EderF5A,PracticalGB"
 
 \end_inset
 
-: однородность входных многочленов, наличие критерия перезаписи и связи
- порядка на мономах 
+: однородность входных многочленов, наличие 
+\begin_inset Quotes fld
+\end_inset
+
+критерия перезаписи
+\begin_inset Quotes frd
+\end_inset
+
+ и связи порядка на мономах 
 \begin_inset Formula $<$
 \end_inset
 
