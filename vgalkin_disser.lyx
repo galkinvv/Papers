@@ -9426,7 +9426,7 @@ p=\sum_{k}m_{k}\cdot b_{i_{k}},\, m_{k}\in\mathcal{K}\times\mathbb{T},\, b_{i_{k
 \end_layout
 
 \begin_layout Standard
-Теорема 1 из 
+Предложение 2 из 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "FaugereF5"
