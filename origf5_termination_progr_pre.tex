@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage[cp1251]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amssymb,amsmath}
+\usepackage{fancyheadings}
+\usepackage{newprog1e}
+
+
+\usepackage{subscript}
+
+\newtheorem{thm}{Теорема}
+\newtheorem{lem}{Лемма}
+\newtheorem{cor}{Вывод}
+\newtheorem{votdefouter}{Определение}
+
+\newenvironment{defn}
+{\begin{votdefouter}\normalfont}
+{\end{votdefouter}}
+
+\newenvironment{proof}
+{\noindent {\bf Доказательство.}}
+{\hspace*{1pt}$\hfill\Box$}
+
+\newenvironment{lyxlist}[1]
+{\begin{list}{}
+{\settowidth{\labelwidth}{#1}
+ \setlength{\leftmargin}{\labelwidth}
+ \addtolength{\leftmargin}{\labelsep}
+ \renewcommand{\makelabel}[1]{##1\hfil}}}
+{\end{list}}

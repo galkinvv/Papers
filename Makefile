@@ -201,3 +201,28 @@ view-origf5_termination_vestnik: origf5_termination_vestnik.pdf
 	xdg-open $^
 clean: clean-logs
 	rm -f *.tex *.bbl *.pdf f5_references_1251.bib
+origf5_termination_progr: origf5_termination_progr.tex origf5_termination_progr.pdf
+origf5_termination_progr_final.tex: origf5_termination_progr_pre.tex origf5_termination_progr.lyx Makefile
+	sed 's/inputencoding utf8/inputencoding cp1251/' < origf5_termination_progr.lyx > origf5_termination_progr_cp1251.lyx
+	lyx -e pdflatex origf5_termination_progr_cp1251.lyx
+	rm origf5_termination_progr_cp1251.bbl
+	pdflatex origf5_termination_progr_cp1251.tex
+	mv -f origf5_termination_progr_cp1251.aux origf5_termination_progr.aux
+	bibtex origf5_termination_progr.aux
+	iconv -t cp1251 < origf5_termination_progr.bbl > origf5_termination_progr_cp1251.bbl
+	cat origf5_termination_progr_cp1251.tex | sed -n -e '/begin{document}/,$$p' | sed -n -e '0,/bibliographystyle/p'|head --lines=-1| sed \
+		-e 's/flqq/guillemotleft/'\
+		-e 's/frqq/guillemotright/'\
+		-e 's/\\subsection/\\he/'\
+		-e 's/\\section/\\He/'\
+		-e 's/\\nameref.par./\\texttt\{/g'\
+		-e 's/frqq/guillemotright/'\
+		> origf5_termination_progr_document.tex
+	(cat origf5_termination_progr_pre.tex gost/babelbst.tex origf5_termination_progr_document.tex origf5_termination_progr_cp1251.bbl; echo '\end{document}')>origf5_termination_progr_final.tex
+origf5_termination_progr_final.pdf: origf5_termination_progr_final.tex Makefile
+	rm -rf origf5_termination_progr_final
+	mkdir origf5_termination_progr_final
+	cp origf5_termination_progr_final.tex fancyhdr.sty  newprog1e.sty origf5_termination_progr_final/
+	cd origf5_termination_progr_final; pdflatex origf5_termination_progr_final.tex
+	cd origf5_termination_progr_final; pdflatex origf5_termination_progr_final.tex
+	cp -f origf5_termination_progr_final/origf5_termination_progr_final.pdf .

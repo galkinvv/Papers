@@ -8,9 +8,10 @@
 
 \usepackage{fancyhdr}
 \usepackage{newprog1e}
+\usepackage[russian]{babel}
 
 \renewcommand{\flqq}{\guillemotleft}
-\renewcommand{\frqq}{\guillemotright}
+\renewcommand{\frqq}{\guillemotright} 
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -21,7 +22,7 @@ theorems-ams
 
 \end_local_layout
 \language russian
-\language_package auto
+\language_package none
 \inputencoding utf8
 \fontencoding global
 \font_roman default
@@ -41,14 +42,14 @@ theorems-ams
 \index_command default
 \paperfontsize default
 \spacing single
-\use_hyperref true
+\use_hyperref false
 \pdf_bookmarks true
 \pdf_bookmarksnumbered false
 \pdf_bookmarksopen true
 \pdf_bookmarksopenlevel 2
 \pdf_breaklinks false
 \pdf_pdfborder false
-\pdf_colorlinks true
+\pdf_colorlinks false
 \pdf_backref false
 \pdf_pdfusetitle true
 \papersize default
@@ -237,23 +238,19 @@ rusabstr{
 
 \end_inset
 
-Алгоритм F5, предложенный в 2002г.
- Фожером, принимает в качестве входных данных произвольное множество однородных
+Алгоритм F5, вычисляющий базис Грёбнера порождённого однородными многочленами
+ идеала, был предложен в 2002г.
+ Фожером одновременно с обоснованием его корректности при условии остановки.
+ Но сама остановка была показана только для регулярной последовательности
  многочленов.
- В статье Фожера, описывающей алгоритм, было дано обоснование его корректности
- при условии остановки.
- Однако сама остановка за конечное число шагов была показана лишь в том
- случае, если на вход подаётся регулярная последовательность многочленов.
  В этой работе будет доказано, что алгоритм останавливается на любых входных
  данных.
- Схема доказательства состоит из двух частей: в первой выводится, что если
- алгоритм не останавливается, то рано или поздно он получит пару многочленов,
- в которой первый может редуцировать второй.
- При этом не утверждается, что такая редукция будет разрешена критериями,
- используемыми F5.
- Вторая часть показывает, что при существовании такой пары также найдётся
- пара, в которой редукция разрешена всеми критериями.
- Существование последней приводит к противоречию.
+ Вначале выводится, что если алгоритм не остановится, то он получит пару
+ многочленов, в которой первый может редуцировать второй.
+ При этом не утверждается, что такая редукция будет разрешена всеми критериями
+ из F5.
+ Далее показывается, что при существовании такой пары найдётся и пара, в
+ которой редукция разрешена критериями, что невозможно.
 \begin_inset ERT
 status open
 
@@ -313,13 +310,25 @@ status open
 
 \begin_layout Author
 Василий Галкин
-\end_layout
+\begin_inset Newline newline
+\end_inset
 
-\begin_layout Address
-МГУ
-\end_layout
+Механико-математический факультет
+\begin_inset Newline newline
+\end_inset
 
-\begin_layout Address
+МГУ им.
+ М.В.
+ Ломоносова
+\begin_inset Newline newline
+\end_inset
+
+Москва, 119991, Воробьевы горы
+\begin_inset Newline newline
+\end_inset
+
+
+\family typewriter
 galkin-vv@ya.ru
 \end_layout
 
@@ -414,7 +423,10 @@ key "HuangConception"
 \end_inset
 
  неявно.
- Предположительно, эти алгоритмы могут быть изменены таким образом, чтобы
+\end_layout
+
+\begin_layout Standard
+Предположительно, эти алгоритмы могут быть изменены таким образом, чтобы
  в точности повторять поведение алгоритма F5, а доказательство остановки
  может быть перенесено на изменённые версии.
  Однако такой подход будет иметь недостаток: он усложнит понимание того,
@@ -951,11 +963,11 @@ AddRule
 
 
 \series default
- --- позиция элемента в 
+ --- позиция в 
 \begin_inset Formula $R$
 \end_inset
 
-.
+ отмеченного многочлена, добавляемого в качестве правила.
 \end_layout
 
 \begin_layout Enumerate
@@ -1013,7 +1025,7 @@ Rewritten?
 \begin_inset Formula $u$
 \end_inset
 
- --- моном; 
+ --- моном, на который происходит домножение; 
 \series bold
 
 \begin_inset Formula $k$
@@ -1021,7 +1033,7 @@ Rewritten?
 
 
 \series default
- --- позиция элемента в 
+ --- позиция отмеченного многочлена в 
 \begin_inset Formula $R$
 \end_inset
 
@@ -1208,7 +1220,7 @@ IncrementalF5
 \series bold
  
 \series default
-множество, образующее базис Грёбнера идеала 
+множество многочленов, образующее базис Грёбнера идеала 
 \begin_inset Formula $(f_{1},\dots,f_{m})$
 \end_inset
 
@@ -2048,7 +2060,11 @@ reference "par:Rewritten?"
 Добавить 
 \family sans
 
-\begin_inset Formula $(u\Sig(R[r_{i}]),u\poly(R[r_{i}])-v\poly(R[r_{j}]))$
+\begin_inset Formula 
+\[
+(u\Sig(R[r_{i}]),u\poly(R[r_{i}])-v\poly(R[r_{j}]))
+\]
+
 \end_inset
 
 
@@ -2250,11 +2266,11 @@ do:
 \family default
 ,
 \family sans
- соответствующая многочлену с минимальной по 
+ соответствующая многочлену с 
 \begin_inset Formula $\prec$
 \end_inset
 
- среди ToDo сигнатурой
+-минимальной в ToDo сигнатурой
 \end_layout
 
 \begin_layout Enumerate
@@ -2466,15 +2482,15 @@ IsReducible
 \begin_inset Formula $R$
 \end_inset
 
-, для которого выполняется поиск возможных сигнатурных редукций; 
+, для которого выполняется поиск сигнатурных редукций; 
 \begin_inset Formula $G_{\text{red}}$
 \end_inset
 
- --- множество позиций 
+ --- множество позиций потенциальных редукторов 
 \begin_inset Formula $R$
 \end_inset
 
-, соответствующих потенциальным редукторам; 
+; 
 \begin_inset Formula $\varphi$
 \end_inset
 
@@ -2706,7 +2722,7 @@ TopReduction
 \begin_inset Formula $R$
 \end_inset
 
-, для которого выполняется редукция; 
+, для которого выполняется сигнатурная редукция старшего монома; 
 \begin_inset Formula $G_{\text{red}}$
 \end_inset
 
@@ -2722,7 +2738,7 @@ TopReduction
 \begin_inset Formula $\mathcal{P}$
 \end_inset
 
-.
+, выполняющий редукцию по базису Грёбнера некоторого идеала.
 \end_layout
 
 \begin_layout Labeling
@@ -3008,7 +3024,11 @@ else:
 Добавить 
 \family sans
 
-\begin_inset Formula $(u\Sig(R[r_{1}]),\poly(R[r_{0}])-u\poly(R[r_{1}])$
+\begin_inset Formula 
+\[
+(u\Sig(R[r_{1}]),\poly(R[r_{0}])-u\poly(R[r_{1}])
+\]
+
 \end_inset
 
 
