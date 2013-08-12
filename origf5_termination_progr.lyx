@@ -697,28 +697,20 @@ i{}_{1}=i_{2} & \text{,}\, t_{1}<t_{2}
 
 \end_inset
 
-Теперь мы можем вложить смысл в понятие сигнатуры, зафиксировав входные
- многочлены 
-\begin_inset Formula $ $
-\end_inset
-
-
-\begin_inset Formula $ $
-\end_inset
-
-
-\begin_inset Formula $f_{1},\ldots,f_{m}$
-\end_inset
-
-.
+Чтоб вложить смысл в формальное понятие сигнатуры, зафиксируем порождающие
+ идеал многочлены.
 \end_layout
 
 \begin_layout Definition
-Отмеченный многочлен 
+При фиксированных многочленах 
+\begin_inset Formula $f_{1},\ldots,f_{m}$
+\end_inset
+
+ будем называть отмеченный многочлен 
 \begin_inset Formula $\left(\Sss ti,f\right)$
 \end_inset
 
- называется 
+ 
 \emph on
 допустимым
 \emph default
@@ -726,25 +718,20 @@ i{}_{1}=i_{2} & \text{,}\, t_{1}<t_{2}
 \begin_inset Formula $f$
 \end_inset
 
- представляется как 
-\begin_inset Formula $f=ctf_{i}+\dots$
+ представляется в виде суммы 
+\begin_inset Formula $f=g_{i}f_{i}+g_{i+1}f_{i+1}+\dots+g_{m}f_{m}$
 \end_inset
 
-, где остальные слагаемые имеют вид 
-\begin_inset Formula $c't'f_{i'}$
+, в которой 
+\begin_inset Formula $g_{k}\in\mathcal{P}$
 \end_inset
 
-, причём 
+ и 
+\begin_inset Formula $\HM\left(g_{i}\right)=t$
+\end_inset
+
+, а также не существует представлений такого вида для  
 \begin_inset Formula $\Sss{t'}{i'}\prec_{\text{}}\Sss ti$
-\end_inset
-
- и для любого представления 
-\begin_inset Formula $f$
-\end_inset
-
- как суммы таких слагаемых, одному из них будет соответствовать сигнатура
- 
-\begin_inset Formula $\Sss{t_{1}}{i_{1}}\succcurlyeq\Sss ti$
 \end_inset
 
 .
@@ -3303,8 +3290,7 @@ reference "par:Spol"
 \end_layout
 
 \begin_layout Definition
-Конечное множестон построит во концов цепей S-пар длины 2, начинающихся
- с 
+Конечное множество концов цепей S-пар длины 2, начинающихся с 
 \begin_inset Formula $R[l]$
 \end_inset
 
