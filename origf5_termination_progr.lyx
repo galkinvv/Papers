@@ -730,7 +730,7 @@ i{}_{1}=i_{2} & \text{,}\, t_{1}<t_{2}
 \begin_inset Formula $\HM\left(g_{i}\right)=t$
 \end_inset
 
-, а также не существует представлений такого вида для  
+, а также не существует представлений такого вида для 
 \begin_inset Formula $\Sss{t'}{i'}\prec_{\text{}}\Sss ti$
 \end_inset
 
@@ -1215,7 +1215,7 @@ IncrementalF5
 \begin_inset Formula $(f_{1},\dots,f_{m})$
 \end_inset
 
- с точки зрения порядка 
+ относително порядка 
 \begin_inset Formula $\prec$
 \end_inset
 
@@ -4128,7 +4128,7 @@ c_{i}t_{i}\cdot b_{i}\gtrdot_{1}c_{j}t_{j}\cdot b_{j}\Longleftrightarrow\left[\b
 \begin_inset Formula $G_{g}$
 \end_inset
 
--представлению являются сравнимыми с точки зрения порядка 
+-представлению являются сравнимыми относително порядка 
 \begin_inset Formula $\lessdot_{1}$
 \end_inset
 
