@@ -1348,11 +1348,7 @@ AlgorithmF5
 \begin_inset Formula $\varphi$
 \end_inset
 
- --- оператор редукции на 
-\begin_inset Formula $\mathcal{P}$
-\end_inset
-
-; 
+ --- оператор редукции; 
 \begin_inset Formula $d$
 \end_inset
 
@@ -1695,11 +1691,7 @@ CritPair
 \begin_inset Formula $\varphi$
 \end_inset
 
- --- оператор редукции на 
-\begin_inset Formula $\mathcal{P}$
-\end_inset
-
-.
+ --- оператор редукции.
 \end_layout
 
 \begin_layout Labeling
@@ -2157,11 +2149,7 @@ ToDo,
 \begin_inset Formula $\varphi$
 \end_inset
 
- --- оператор редукции на 
-\begin_inset Formula $\mathcal{P}$
-\end_inset
-
-.
+ --- оператор редукции.
 \end_layout
 
 \begin_layout Labeling
@@ -2487,11 +2475,7 @@ IsReducible
 \begin_inset Formula $\varphi$
 \end_inset
 
- --- оператор редукции на 
-\begin_inset Formula $\mathcal{P}$
-\end_inset
-
-.
+ --- оператор редукции.
 \end_layout
 
 \begin_layout Labeling
@@ -2727,11 +2711,8 @@ TopReduction
 \begin_inset Formula $\varphi$
 \end_inset
 
- --- оператор редукции на 
-\begin_inset Formula $\mathcal{P}$
-\end_inset
-
-, выполняющий редукцию по базису Грёбнера некоторого идеала.
+ --- оператор редукции, выполняющий редукцию по базису Грёбнера некоторого
+ идеала.
 \end_layout
 
 \begin_layout Labeling
@@ -4153,14 +4134,14 @@ c_{i}t_{i}\cdot b_{i}\gtrdot_{1}c_{j}t_{j}\cdot b_{j}\Longleftrightarrow\left[\b
 \end_inset
 
  и сигнатурами 
-\begin_inset Formula $\Sig(b_{1})=\Sss{\monone}1,\Sig(b_{2})=\Sss{\monone}2,\Sig(b_{3})=\Sss x2$
+\begin_inset Formula $\Sig(b_{1})=\Sss{\monone}1,\Sig(b_{2})=\Sss x1,\Sig(b_{3})=\Sss{\monone}2$
 \end_inset
 
 .
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $y\cdot b_{2}\gtrdot_{1}100y\cdot b_{1}$
+\begin_inset Formula $y\cdot b_{1}\gtrdot_{1}100y\cdot b_{3}$
 \end_inset
 
 ,
@@ -4183,7 +4164,7 @@ c_{i}t_{i}\cdot b_{i}\gtrdot_{1}c_{j}t_{j}\cdot b_{j}\Longleftrightarrow\left[\b
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $x\cdot b_{2}\gtrdot_{1}y\cdot b_{2}$
+\begin_inset Formula $x\cdot b_{1}\gtrdot_{1}y\cdot b_{1}$
 \end_inset
 
 ,
@@ -4206,7 +4187,7 @@ c_{i}t_{i}\cdot b_{i}\gtrdot_{1}c_{j}t_{j}\cdot b_{j}\Longleftrightarrow\left[\b
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $-x\cdot b_{2}$
+\begin_inset Formula $-x\cdot b_{1}$
 \end_inset
 
  
@@ -4234,7 +4215,7 @@ c_{i}t_{i}\cdot b_{i}\gtrdot_{1}c_{j}t_{j}\cdot b_{j}\Longleftrightarrow\left[\b
 \noun default
 \color inherit
  
-\begin_inset Formula $2x\cdot b_{2}$
+\begin_inset Formula $2x\cdot b_{1}$
 \end_inset
 
 
@@ -4253,7 +4234,7 @@ c_{i}t_{i}\cdot b_{i}\gtrdot_{1}c_{j}t_{j}\cdot b_{j}\Longleftrightarrow\left[\b
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $y^{2}\cdot b_{2}\lessdot_{1}y\cdot b_{3}$
+\begin_inset Formula $y^{2}\cdot b_{1}\lessdot_{1}y\cdot b_{2}$
 \end_inset
 
 ,
@@ -4288,7 +4269,7 @@ c_{i}t_{i}\cdot b_{i}\gtrdot_{1}c_{j}t_{j}\cdot b_{j}\Longleftrightarrow\left[\b
 \uwave off
 \noun off
 \color none
-\begin_inset Formula $x^{2}\cdot b_{2}\gtrdot_{1}x\cdot b_{3}$
+\begin_inset Formula $x^{2}\cdot b_{1}\gtrdot_{1}x\cdot b_{2}$
 \end_inset
 
 , поскольку сигнатуры равны, а позиция в списке отмеченного многочлена левой
@@ -4378,7 +4359,7 @@ c_{i}t_{i}\cdot b_{i}\gtrdot_{1}c_{j}t_{j}\cdot b_{j}\Longleftrightarrow\left[\b
 \uwave off
 \noun off
 \color none
-\begin_inset Formula $x^{2}\cdot b_{2}+xy\cdot b_{2}+y^{2}b_{2}\gtrdot x^{2}\cdot b_{2}+100y^{2}\cdot b_{2}$
+\begin_inset Formula $x^{2}\cdot b_{1}+xy\cdot b_{1}+y^{2}b_{1}\gtrdot x^{2}\cdot b_{1}+100y^{2}\cdot b_{1}$
 \end_inset
 
  поскольку 
@@ -4394,7 +4375,7 @@ c_{i}t_{i}\cdot b_{i}\gtrdot_{1}c_{j}t_{j}\cdot b_{j}\Longleftrightarrow\left[\b
 \noun default
 \color inherit
 
-\begin_inset Formula $xy\cdot b_{2}\gtrdot_{1}y^{2}\cdot b_{2}$
+\begin_inset Formula $xy\cdot b_{1}\gtrdot_{1}y^{2}\cdot b_{1}$
 \end_inset
 
 ;
@@ -4413,7 +4394,7 @@ c_{i}t_{i}\cdot b_{i}\gtrdot_{1}c_{j}t_{j}\cdot b_{j}\Longleftrightarrow\left[\b
 \uwave off
 \noun off
 \color none
-\begin_inset Formula $x^{2}\cdot b_{2}+100y^{2}\cdot b_{2}\gtrdot x^{2}\cdot b_{2}$
+\begin_inset Formula $x^{2}\cdot b_{1}+100y^{2}\cdot b_{1}\gtrdot x^{2}\cdot b_{1}$
 \end_inset
 
  поскольку правая часть является началом левой;
@@ -4432,11 +4413,11 @@ c_{i}t_{i}\cdot b_{i}\gtrdot_{1}c_{j}t_{j}\cdot b_{j}\Longleftrightarrow\left[\b
 \uwave off
 \noun off
 \color none
-\begin_inset Formula $x^{2}\cdot b_{2}\gtrdot xy\cdot b_{2}+y^{2}\cdot b_{2}+x^{2}\cdot b_{1}$
+\begin_inset Formula $x^{2}\cdot b_{1}\gtrdot xy\cdot b_{1}+y^{2}\cdot b_{1}+x^{2}\cdot b_{3}$
 \end_inset
 
  поскольку 
-\begin_inset Formula $x^{2}\cdot b_{2}\gtrdot_{1}xy\cdot b_{2}$
+\begin_inset Formula $x^{2}\cdot b_{1}\gtrdot_{1}xy\cdot b_{1}$
 \end_inset
 
 ;
@@ -4455,11 +4436,11 @@ c_{i}t_{i}\cdot b_{i}\gtrdot_{1}c_{j}t_{j}\cdot b_{j}\Longleftrightarrow\left[\b
 \uwave off
 \noun off
 \color none
-\begin_inset Formula $xy\cdot b_{2}+y^{2}\cdot b_{2}+x^{2}\cdot b_{1}\gtrdot y\cdot b_{3}+y^{2}\cdot b_{2}+x^{2}\cdot b_{1}$
+\begin_inset Formula $xy\cdot b_{1}+y^{2}\cdot b_{1}+x^{2}\cdot b_{3}\gtrdot y\cdot b_{2}+y^{2}\cdot b_{1}+x^{2}\cdot b_{3}$
 \end_inset
 
  поскольку 
-\begin_inset Formula $xy\cdot b_{2}\gtrdot_{1}y\cdot b_{3}$
+\begin_inset Formula $xy\cdot b_{1}\gtrdot_{1}y\cdot b_{2}$
 \end_inset
 
 ;
@@ -4478,7 +4459,7 @@ c_{i}t_{i}\cdot b_{i}\gtrdot_{1}c_{j}t_{j}\cdot b_{j}\Longleftrightarrow\left[\b
 \uwave off
 \noun off
 \color none
-\begin_inset Formula $y\cdot b_{3}+y^{2}\cdot b_{2}+x^{2}\cdot b_{1}$
+\begin_inset Formula $y\cdot b_{2}+y^{2}\cdot b_{1}+x^{2}\cdot b_{3}$
 \end_inset
 
  и 
@@ -4494,7 +4475,7 @@ c_{i}t_{i}\cdot b_{i}\gtrdot_{1}c_{j}t_{j}\cdot b_{j}\Longleftrightarrow\left[\b
 \noun default
 \color inherit
 
-\begin_inset Formula $2y\cdot b_{3}+y^{2}\cdot b_{1}$
+\begin_inset Formula $2y\cdot b_{2}+y^{2}\cdot b_{3}$
 \end_inset
 
 
@@ -4510,11 +4491,11 @@ c_{i}t_{i}\cdot b_{i}\gtrdot_{1}c_{j}t_{j}\cdot b_{j}\Longleftrightarrow\left[\b
 \noun off
 \color none
  не сравнимы, поскольку наибольшие различные элементы -- это 
-\begin_inset Formula $y\cdot b_{3}$
+\begin_inset Formula $y\cdot b_{2}$
 \end_inset
 
  и 
-\begin_inset Formula $2y\cdot b_{3}$
+\begin_inset Formula $2y\cdot b_{2}$
 \end_inset
 
 
