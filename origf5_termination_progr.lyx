@@ -3085,6 +3085,11 @@ height "1pt"
 \end_layout
 
 \begin_layout Standard
+В качестве примера приведём последовательность многочленов, специально подобранн
+ую для демонстрации работы различных ветвей алгоритма.
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand input
 filename "f5_example_run.tex"
@@ -3092,6 +3097,19 @@ filename "f5_example_run.tex"
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Следует отметить, что в рассмотренном специально подобранном примере 
+\family typewriter
+TopReduction
+\family default
+ не произвела ни одной реальной сигнатурной редукции, но на типичных входных
+ данных их бывает много.
 \end_layout
 
 \begin_layout Section
