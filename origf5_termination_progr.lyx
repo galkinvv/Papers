@@ -183,6 +183,14 @@ theorems-ams
 
 \begin_layout Standard
 \begin_inset FormulaMacro
+\newcommand{\lpoly}[3]{\left(\Sss{#1}{#2},#3\right)}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
 \newcommand{\monone}{\mathbf{1}}
 \end_inset
 
@@ -3066,6 +3074,20 @@ LatexCommand rule
 offset "0.5ex"
 width "100col%"
 height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Пример работы алгоритма
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "f5_example_run.tex"
 
 \end_inset
 
