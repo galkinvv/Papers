@@ -202,12 +202,16 @@ view-origf5_termination_vestnik: origf5_termination_vestnik.pdf
 clean: clean-logs
 	rm -f *.tex *.bbl *.pdf f5_references_1251.bib
 origf5_termination_progr: origf5_termination_progr.tex origf5_termination_progr.pdf
-origf5_termination_progr_final.tex: origf5_termination_progr_pre.tex origf5_termination_progr.lyx Makefile
+origf5_termination_progr_final.tex: f5_example_run.tex origf5_termination_progr_pre.tex origf5_termination_progr.lyx Makefile
+	iconv -t cp1251 < f5_example_run.tex > f5_example_run_1251.tex
 	sed 's/inputencoding utf8/inputencoding cp1251/' < origf5_termination_progr.lyx > origf5_termination_progr_cp1251.lyx
 	lyx -e pdflatex origf5_termination_progr_cp1251.lyx
-	rm origf5_termination_progr_cp1251.bbl
-	pdflatex origf5_termination_progr_cp1251.tex
-	mv -f origf5_termination_progr_cp1251.aux origf5_termination_progr.aux
+	cat origf5_termination_progr_cp1251.tex | sed -n \
+		-e '/input{f5_example_run.tex}/ r f5_example_run_1251.tex' -e '/input{f5_example_run.tex}/!p' \
+		> origf5_termination_progr_cp1251_inc.tex
+	rm -f origf5_termination_progr_cp1251_inc.bbl
+	pdflatex origf5_termination_progr_cp1251_inc.tex
+	mv -f origf5_termination_progr_cp1251_inc.aux origf5_termination_progr.aux
 	bibtex origf5_termination_progr.aux
 	iconv -t cp1251 < origf5_termination_progr.bbl | sed \
 		-e 's/\\bbljan/January/'\
@@ -217,7 +221,7 @@ origf5_termination_progr_final.tex: origf5_termination_progr_pre.tex origf5_term
 		-e 's/\\bbljul/July/'\
 		-e 's/\\bbldec/December/'\
 		|grep -v "selectlanguage" |grep -v "expandafter"> origf5_termination_progr_cp1251.bbl
-	cat origf5_termination_progr_cp1251.tex | sed -n -e '/begin{document}/,$$p' | sed -n -e '0,/bibliographystyle/p'|head --lines=-1| LC_ALL=C sed \
+	cat origf5_termination_progr_cp1251_inc.tex | sed -n -e '/begin{document}/,$$p' | sed -n -e '0,/bibliographystyle/p'|head --lines=-1| LC_ALL=C sed \
 		-e 's/flqq/guillemotleft/g'\
 		-e 's/frqq/guillemotright/g'\
 		-e 's/\\subsection/\\he/'\
