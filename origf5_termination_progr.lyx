@@ -1275,7 +1275,7 @@ reference "par:AlgorithmF5"
 \end_inset
 
 
-\begin_inset Formula $((\Sss{\monone}i,f_{i}),G_{i-1})$
+\begin_inset Formula $((\Sss{\monone}i,f_{i}),G_{i+1})$
 \end_inset
 
 
@@ -1333,7 +1333,7 @@ AlgorithmF5
 \end_inset
 
  --- отмеченный многочлен; 
-\begin_inset Formula $G_{i-1}$
+\begin_inset Formula $G_{i+1}$
 \end_inset
 
  --- множество позиций отмеченных многочленов в 
@@ -1404,7 +1404,7 @@ AlgorithmF5
 \end_inset
 
 , образующих базис Грёбнера идеала 
-\begin_inset Formula $\left(\left\{ \poly(R[r])|r\in G_{i-1}\right\} \cup f_{i}\right)$
+\begin_inset Formula $\left(\left\{ \poly(R[r])|r\in G_{i+1}\right\} \cup f_{i}\right)$
 \end_inset
 
  --- то есть идеала порождённого многочленами 
@@ -1418,7 +1418,7 @@ AlgorithmF5
 
 \family sans
 \shape italic
-\begin_inset Formula $G_{i}=G_{i-1}\cup\left\{ i\right\} $
+\begin_inset Formula $G_{i}=G_{i+1}\cup\left\{ i\right\} $
 \end_inset
 
 
@@ -1434,7 +1434,7 @@ AlgorithmF5
 
 \shape default
  оператор, производящий полную редукцию по множеству многочленов 
-\begin_inset Formula $\left\{ \poly(R[r])|r\in G_{i-1}\right\} $
+\begin_inset Formula $\left\{ \poly(R[r])|r\in G_{i+1}\right\} $
 \end_inset
 
 
@@ -1463,7 +1463,7 @@ reference "par:CritPair"
 
 \family sans
 
-\begin_inset Formula $(i,r,i,\varphi)|r\in G_{i-1}$
+\begin_inset Formula $(i,r,i,\varphi)|r\in G_{i+1}$
 \end_inset
 
 }
