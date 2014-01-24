@@ -147,7 +147,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\GVWg}{>_{\text{\textnormal{H}}}}
+\newcommand{\GVWg}{>_{\text{\textnormal{H}}}}
 \end_inset
 
 
@@ -155,7 +155,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\GVWl}{<_{\text{H}}}
+\newcommand{\GVWl}{<_{\text{H}}}
 \end_inset
 
 
@@ -163,7 +163,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
+\newcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
 \end_inset
 
 
@@ -171,7 +171,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
+\newcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
 \end_inset
 
 	
@@ -179,7 +179,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\Sig}{\mathcal{S}}
+\newcommand{\Sig}{\mathcal{S}}
 \end_inset
 
 
@@ -187,7 +187,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\HM}{\mathrm{HM}}
+\newcommand{\HM}{\mathrm{HM}}
 \end_inset
 
 
@@ -195,7 +195,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\HC}{\mathrm{HC}}
+\newcommand{\HC}{\mathrm{HC}}
 \end_inset
 
 
@@ -203,7 +203,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\LCM}{\mathrm{LCM}}
+\newcommand{\LCM}{\mathrm{LCM}}
 \end_inset
 
 
@@ -211,7 +211,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\totaldeg}{\mathrm{deg}}
+\newcommand{\totaldeg}{\mathrm{deg}}
 \end_inset
 
 
@@ -219,7 +219,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\poly}{\mathrm{poly}}
+\newcommand{\poly}{\mathrm{poly}}
 \end_inset
 
 
@@ -298,9 +298,7 @@ relax% TEX-заголовки только для включения инфор�
 
 
 \backslash
-def
-\backslash
-numberofdisserpages{122}
+input{autoref_params.tex}
 \end_layout
 
 \end_inset
