@@ -351,7 +351,7 @@ thispagestyle{empty}
 \align center
 
 \size larger
-Московский государственный университет 
+ФГБОУ ВПО Московский государственный университет 
 \begin_inset Newline newline
 \end_inset
 
@@ -367,7 +367,20 @@ thispagestyle{empty}
 \begin_inset VSpace medskip
 \end_inset
 
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\align center
+
+\size larger
 Механико-математический факультет
+\end_layout
+
+\end_inset
+
+
 \size default
 
 \begin_inset VSpace vfill
@@ -382,7 +395,18 @@ thispagestyle{empty}
 \begin_inset Newline newline
 \end_inset
 
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\align right
 УДК 512
+\end_layout
+
+\end_inset
+
+
 \begin_inset Note Note
 status open
 
@@ -517,7 +541,7 @@ status open
 \begin_inset Newline newline
 \end_inset
 
- 2012 
+ 2014 
 \end_layout
 
 \begin_layout Standard
