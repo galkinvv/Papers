@@ -77,7 +77,7 @@ figs-within-sections
 
 \end_local_layout
 \language russian
-\language_package \usepackage[russian]{polyglossia}
+\language_package \usepackage{polyglossia}\setdefaultlanguage{russian}
 \inputencoding utf8
 \fontencoding global
 \font_roman CMU Serif
@@ -147,7 +147,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\GVWg}{>_{\text{\textnormal{H}}}}
+\renewcommand{\GVWg}{>_{\text{\textnormal{H}}}}
 \end_inset
 
 
@@ -155,7 +155,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\GVWl}{<_{\text{H}}}
+\renewcommand{\GVWl}{<_{\text{H}}}
 \end_inset
 
 
@@ -163,7 +163,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
+\renewcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
 \end_inset
 
 
@@ -171,7 +171,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
+\renewcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
 \end_inset
 
 	
@@ -179,7 +179,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\Sig}{\mathcal{S}}
+\renewcommand{\Sig}{\mathcal{S}}
 \end_inset
 
 
@@ -187,7 +187,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\HM}{\mathrm{HM}}
+\renewcommand{\HM}{\mathrm{HM}}
 \end_inset
 
 
@@ -195,7 +195,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\HC}{\mathrm{HC}}
+\renewcommand{\HC}{\mathrm{HC}}
 \end_inset
 
 
@@ -203,7 +203,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\LCM}{\mathrm{LCM}}
+\renewcommand{\LCM}{\mathrm{LCM}}
 \end_inset
 
 
@@ -211,7 +211,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\totaldeg}{\mathrm{deg}}
+\renewcommand{\totaldeg}{\mathrm{deg}}
 \end_inset
 
 
@@ -219,7 +219,7 @@ figs-within-sections
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\poly}{\mathrm{poly}}
+\renewcommand{\poly}{\mathrm{poly}}
 \end_inset
 
 
