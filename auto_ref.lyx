@@ -361,7 +361,7 @@ setcounter{page}{-1}
 \align center
 
 \size larger
-Московский государственный университет 
+ФГБОУ ВПО Московский государственный университет 
 \begin_inset Newline newline
 \end_inset
 
@@ -381,7 +381,7 @@ setcounter{page}{-1}
 \begin_inset VSpace medskip
 \end_inset
 
-Механико-математический факультет
+
 \size default
 
 \begin_inset VSpace vfill
@@ -394,32 +394,6 @@ setcounter{page}{-1}
 \align right
 На правах рукописи
 \begin_inset Newline newline
-\end_inset
-
-УДК 512
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-\align right
-.628.2+519.688
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%+512.714
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -511,7 +485,7 @@ status open
 \begin_inset VSpace vfill
 \end_inset
 
-Москва --- 2013 
+Москва --- 2014 
 \end_layout
 
 \begin_layout Standard
@@ -947,18 +921,18 @@ status open
 \begin_inset VSpace vfill
 \end_inset
 
-Защита диссертации состоится __ _____________ 2013г.
+Защита диссертации состоится __ _____________ 201_г.
  в __ ч.
  __ м.
- на заседании диссертационного совета Д.501.001.84 при Московском государственном
- университете им.
+ на заседании диссертационного совета Д.501.001.84 созданного на базе ФГБОУ
+ ВПО Московского государственного университета им.
  М.В.
- Ломоносова по адресу: 119992, ГСП-2, Москва, Ленинские горы, МГУ, ме\SpecialChar \-
+ Ломоносова по адресу: 119992, ГСП-2, Москва, Ленинские горы, ФГБОУ ВПО
+ МГУ, ме\SpecialChar \-
 ха\SpecialChar \-
 ни\SpecialChar \-
 ко-ма\SpecialChar \-
 те\SpecialChar \-
-
 ма\SpecialChar \-
 ти\SpecialChar \-
 чес\SpecialChar \-
@@ -976,11 +950,11 @@ status open
 чес\SpecialChar \-
 ко\SpecialChar \-
 го
- факультета МГУ (Главное здание, 14 этаж)
+ факультета ФГБОУ ВПО МГУ (Главное здание, 14 этаж)
 \end_layout
 
 \begin_layout Standard
-Автореферат разослан __ _____________ 2013г.
+Автореферат разослан __ _____________ 201_г.
 \end_layout
 
 \begin_layout Standard
@@ -1001,7 +975,7 @@ status open
 \begin_inset Newline newline
 \end_inset
 
-Д.501.001.84 при МГУ
+Д.501.001.84 созданного на базе ФГБОУ ВПО МГУ
 \begin_inset Newline newline
 \end_inset
 

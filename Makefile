@@ -4,7 +4,7 @@ auto_ref_plainrefs.tex: Makefile auto_ref.lyx
 	rm -f $@
 	lyx -e xetex auto_ref.lyx
 	mv auto_ref.tex auto_ref_plainrefs.tex
-intro.tex: Makefile intro.lyx
+intro.tex: Makefile intro.lyx my_publications.bib
 	rm -f $@
 	lyx -e pdflatex intro.lyx
 define PYMAKEAUTOREFCITES
