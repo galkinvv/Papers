@@ -1,5 +1,8 @@
-vgalkin_disser.pdf: vgalkin_disser.lyx intro.lyx my_publications.bib f5_references.bib
-	lyx -e pdf4 $<
+autoref_params.tex vgalkin_disser.pdf: vgalkin_disser.lyx intro.lyx my_publications.bib f5_references.bib
+	rm -rf lyx-settings
+	mkdir -p lyx-settings/tmp
+	echo '\\converter "xetex" "pdf4" "'`pwd`'/xelatex_saveresult autoref_params.tex" "latex=xelatex"' > lyx-settings/preferences
+	RESULT_TO_SAVE_DIR=`pwd` lyx -userdir lyx-settings -e pdf4 $<
 auto_ref_plainrefs.tex: Makefile auto_ref.lyx
 	rm -f $@
 	lyx -e xetex auto_ref.lyx
@@ -57,9 +60,6 @@ for in_line in sys.stdin:
 		sys.stdout.write(in_line)
 endef
 export PYMAKEAUTOREFBIB
-autoref_params.tex:
-	rm -f $@
-	echo '\\def\\numberofdisserpages{124}' >> $@ 
 autoref_bibcommands_generator.tex: Makefile autoref_bibcommands_generator.aux f5_references.bib gost/ugost2008s.bst
 	rm -f autoref_bibcommands_generator.bbl
 	bibtex autoref_bibcommands_generator.aux
@@ -204,7 +204,7 @@ view-origf5_termination_vestnik: origf5_termination_vestnik.pdf
 	make clean-logs
 	xdg-open $^
 clean: clean-logs
-	rm -f *.tex *.bbl *.pdf f5_references_1251.bib
+	rm -f *.tex *.bbl *.pdf f5_references_1251.bib lyx-settings
 origf5_termination_progr: origf5_termination_progr.tex origf5_termination_progr.pdf
 origf5_termination_progr_final.tex: f5_example_run.tex origf5_termination_progr_pre.tex origf5_termination_progr.lyx Makefile
 	iconv -t cp1251 < f5_example_run.tex > f5_example_run_1251.tex

@@ -15,6 +15,11 @@
 \sloppy
 
 \usepackage{suffix}
+\usepackage{newfile}
+\usepackage{refcount}
+\setrefcountdefault{-1}
+\newoutputstream{autorefparams}
+\openoutputfile{autoref_params.tex}{autorefparams}
 
 % If this is in *.tex file, uncomment the following line.
 \makeatletter
@@ -297,11 +302,28 @@ relax% TEX-заголовки только для включения инфор�
 
 
 \backslash
-def
+def 
 \backslash
 numberofdisserpages{
 \backslash
 pageref{LastPage}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addtostream{autorefparams}{
+\backslash
+noexpand
+\backslash
+def
+\backslash
+noexpand
+\backslash
+numberofdisserpages{
+\backslash
+getpagerefnumber{LastPage}}}
 \end_layout
 
 \end_inset
