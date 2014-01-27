@@ -1,7 +1,8 @@
 #!/bin/sh
+exec 1>&2
 RESULT_TO_SAVE="$1"
 rm -vf "$RESULT_TO_SAVE"
 xelatex "$2"
 EXIT_CODE="$?"
-mv -f "$RESULT_TO_SAVE" "$RESULT_TO_SAVE_DIR/"
+mv -vf "$RESULT_TO_SAVE" "$RESULT_TO_SAVE_DIR/"
 exit $EXIT_CODE

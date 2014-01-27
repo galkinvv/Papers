@@ -81,7 +81,7 @@ theorems-sec
 
 \end_local_layout
 \language russian
-\language_package \usepackage[russian]{polyglossia}
+\language_package \usepackage{polyglossia}\setdefaultlanguage{russian}
 \inputencoding utf8
 \fontencoding global
 \font_roman CMU Serif
@@ -151,7 +151,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\GVWg}{>_{\text{\textnormal{H}}}}
+\renewcommand{\GVWg}{>_{\text{\textnormal{H}}}}
 \end_inset
 
 
@@ -159,7 +159,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\GVWl}{<_{\text{H}}}
+\renewcommand{\GVWl}{<_{\text{H}}}
 \end_inset
 
 
@@ -167,7 +167,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
+\renewcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
 \end_inset
 
 
@@ -175,7 +175,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
+\renewcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
 \end_inset
 
 	
@@ -183,7 +183,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\Sig}{\mathcal{S}}
+\renewcommand{\Sig}{\mathcal{S}}
 \end_inset
 
 
@@ -191,7 +191,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\HM}{\mathrm{HM}}
+\renewcommand{\HM}{\mathrm{HM}}
 \end_inset
 
 
@@ -199,7 +199,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\HC}{\mathrm{HC}}
+\renewcommand{\HC}{\mathrm{HC}}
 \end_inset
 
 
@@ -207,7 +207,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\LCM}{\mathrm{LCM}}
+\renewcommand{\LCM}{\mathrm{LCM}}
 \end_inset
 
 
@@ -215,7 +215,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\totaldeg}{\mathrm{deg}}
+\renewcommand{\totaldeg}{\mathrm{deg}}
 \end_inset
 
 
@@ -223,7 +223,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\poly}{\mathrm{poly}}
+\renewcommand{\poly}{\mathrm{poly}}
 \end_inset
 
 
@@ -231,7 +231,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\sigidx}{\mathrm{index}}
+\renewcommand{\sigidx}{\mathrm{index}}
 \end_inset
 
 
@@ -239,7 +239,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\Sss}[2]{\left\langle #1\centerdot#2\right\rangle }
+\renewcommand{\Sss}[2]{\left\langle #1\centerdot#2\right\rangle }
 \end_inset
 
 
@@ -247,7 +247,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\monone}{\mathbf{1}}
+\renewcommand{\monone}{\mathbf{1}}
 \end_inset
 
 
@@ -255,7 +255,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\monzero}{\mathbf{0}}
+\renewcommand{\monzero}{\mathbf{0}}
 \end_inset
 
 
