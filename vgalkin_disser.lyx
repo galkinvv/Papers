@@ -19,7 +19,7 @@
 \usepackage{refcount}
 \setrefcountdefault{-1}
 \newoutputstream{autorefparams}
-\openoutputfile{autoref_params.tex}{autorefparams}
+\openoutputfile{autoref_params_generated.tex}{autorefparams}
 
 % If this is in *.tex file, uncomment the following line.
 \makeatletter
@@ -151,7 +151,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\GVWg}{>_{\text{\textnormal{H}}}}
+\newcommand{\GVWg}{>_{\text{\textnormal{H}}}}
 \end_inset
 
 
@@ -159,7 +159,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\GVWl}{<_{\text{H}}}
+\newcommand{\GVWl}{<_{\text{H}}}
 \end_inset
 
 
@@ -167,7 +167,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
+\newcommand{\eqdef}{\overset{\mathrm{_{def}}}{=}}
 \end_inset
 
 
@@ -175,7 +175,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
+\newcommand{\equivdef}{\overset{\mathrm{_{def}}}{\Leftrightarrow}}
 \end_inset
 
 	
@@ -183,7 +183,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\Sig}{\mathcal{S}}
+\newcommand{\Sig}{\mathcal{S}}
 \end_inset
 
 
@@ -191,7 +191,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\HM}{\mathrm{HM}}
+\newcommand{\HM}{\mathrm{HM}}
 \end_inset
 
 
@@ -199,7 +199,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\HC}{\mathrm{HC}}
+\newcommand{\HC}{\mathrm{HC}}
 \end_inset
 
 
@@ -207,7 +207,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\LCM}{\mathrm{LCM}}
+\newcommand{\LCM}{\mathrm{LCM}}
 \end_inset
 
 
@@ -215,7 +215,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\totaldeg}{\mathrm{deg}}
+\newcommand{\totaldeg}{\mathrm{deg}}
 \end_inset
 
 
@@ -223,7 +223,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\poly}{\mathrm{poly}}
+\newcommand{\poly}{\mathrm{poly}}
 \end_inset
 
 
@@ -231,7 +231,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\sigidx}{\mathrm{index}}
+\newcommand{\sigidx}{\mathrm{index}}
 \end_inset
 
 
@@ -239,7 +239,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\Sss}[2]{\left\langle #1\centerdot#2\right\rangle }
+\newcommand{\Sss}[2]{\left\langle #1\centerdot#2\right\rangle }
 \end_inset
 
 
@@ -247,7 +247,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\monone}{\mathbf{1}}
+\newcommand{\monone}{\mathbf{1}}
 \end_inset
 
 
@@ -255,7 +255,7 @@ theorems-sec
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\monzero}{\mathbf{0}}
+\newcommand{\monzero}{\mathbf{0}}
 \end_inset
 
 
@@ -302,7 +302,7 @@ relax% TEX-заголовки только для включения инфор�
 
 
 \backslash
-def 
+def
 \backslash
 numberofdisserpages{
 \backslash
@@ -1259,6 +1259,12 @@ key "F5C"
 \end_layout
 
 \begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "defRepr"
+
+\end_inset
+
 Для фиксированного множества 
 \begin_inset Formula $G\subset\mathcal{P}$
 \end_inset
@@ -1374,6 +1380,12 @@ p=\sum_{k}m_{k}\cdot g_{i_{k}},\; g_{i_{k}}\in G,
 \end_layout
 
 \begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "defDegRepr"
+
+\end_inset
+
 Представление 
 \begin_inset Formula $p=\sum_{k}m_{k}\cdot g_{i_{k}}$
 \end_inset
@@ -2718,6 +2730,12 @@ key "F5C,GVW,G2V,F5InBBStyle,HuangConception"
 \end_layout
 
 \begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "defOnePassElemSig"
+
+\end_inset
+
 Для одноэтапного алгоритма 
 \emph on
 сигнатурой элемента представления
@@ -2800,6 +2818,12 @@ t'|t''\equivdef\exists t_{1}\in\mathbb{T},\; t''=t_{1}t'.
 \end_layout
 
 \begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "defIncElemSig"
+
+\end_inset
+
 Для
 \emph on
  
@@ -2869,6 +2893,12 @@ t'|t''\equivdef\exists t_{1}\in\mathbb{T},\; t''=t_{1}t'.
 \begin_layout Definition
 
 \emph on
+\begin_inset CommandInset label
+LatexCommand label
+name "defReprSig"
+
+\end_inset
+
 Представлением 
 \begin_inset Formula $p$
 \end_inset
@@ -7203,6 +7233,12 @@ reference "par:TopReduction"
 \end_layout
 
 \begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "defSPair"
+
+\end_inset
+
 Зафиксируем некоторые входные данные для алгоритма F5 и рассмотрим порождаемый
  им конечный или бесконечный массив отмеченных многочленов 
 \begin_inset Formula $R$
@@ -12047,6 +12083,12 @@ Done раньше
 \end_layout
 
 \begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:F5Terminates"
+
+\end_inset
+
 Алгоритм F5, описанный в 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -19243,6 +19285,12 @@ reference "par:SingleStepSignatureGroebner"
 \end_layout
 
 \begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "defSymbZero"
+
+\end_inset
+
 Необратимый приближённый элемент, возникший в процессе приближённых вычислений
  алгоритмом 
 \begin_inset CommandInset ref
@@ -19326,6 +19374,12 @@ reference "par:SingleStepSignatureGroebner"
 \end_layout
 
 \begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "defInducedZero"
+
+\end_inset
+
 Приближённый ноль называется 
 \emph on
 приближённым нулём, индуцированным входными данными
@@ -19351,6 +19405,12 @@ reference "par:SingleStepSignatureGroebner"
 \end_layout
 
 \begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "defIntroducedZero"
+
+\end_inset
+
 Приближённый ноль называется 
 \emph on
 внесённым вычислением
@@ -21306,6 +21366,12 @@ reference "par:action-matrix-method"
 \end_layout
 
 \begin_layout Definition
+\begin_inset CommandInset label
+LatexCommand label
+name "defOpNarrow"
+
+\end_inset
+
 Назовём 
 \emph on
 оператором сужения
@@ -21371,6 +21437,12 @@ reference "par:action-matrix-method"
 \end_layout
 
 \begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:EBasisUseful"
+
+\end_inset
+
 Множество 
 \begin_inset Formula $e^{-}\left(M^{E}\right)\subset\mathbb{T}$
 \end_inset
@@ -22523,6 +22595,270 @@ options "gost/ugost2008s_myparts"
 \begin_inset CommandInset label
 LatexCommand label
 name "LastPage"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addtostream{autorefparams}{
+\backslash
+noexpand
+\backslash
+def
+\backslash
+noexpand
+\backslash
+numdefRepr{
+\backslash
+getrefnumber{defRepr}}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addtostream{autorefparams}{
+\backslash
+noexpand
+\backslash
+def
+\backslash
+noexpand
+\backslash
+numdefDegRepr{
+\backslash
+getrefnumber{defDegRepr}}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addtostream{autorefparams}{
+\backslash
+noexpand
+\backslash
+def
+\backslash
+noexpand
+\backslash
+numdefGbByRepr{
+\backslash
+getrefnumber{gb-def-2}}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addtostream{autorefparams}{
+\backslash
+noexpand
+\backslash
+def
+\backslash
+noexpand
+\backslash
+numdefOnePassElemSig{
+\backslash
+getrefnumber{defOnePassElemSig}}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addtostream{autorefparams}{
+\backslash
+noexpand
+\backslash
+def
+\backslash
+noexpand
+\backslash
+numdefIncElemSig{
+\backslash
+getrefnumber{defIncElemSig}}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addtostream{autorefparams}{
+\backslash
+noexpand
+\backslash
+def
+\backslash
+noexpand
+\backslash
+numdefReprSig{
+\backslash
+getrefnumber{defReprSig}}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addtostream{autorefparams}{
+\backslash
+noexpand
+\backslash
+def
+\backslash
+noexpand
+\backslash
+numthmFGprops{
+\backslash
+getrefnumber{thm:f_g_3_props}}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addtostream{autorefparams}{
+\backslash
+noexpand
+\backslash
+def
+\backslash
+noexpand
+\backslash
+numdefSPair{
+\backslash
+getrefnumber{defSPair}}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addtostream{autorefparams}{
+\backslash
+noexpand
+\backslash
+def
+\backslash
+noexpand
+\backslash
+numcorHasReductor{
+\backslash
+getrefnumber{cor:all-needed-for-terminaton}}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addtostream{autorefparams}{
+\backslash
+noexpand
+\backslash
+def
+\backslash
+noexpand
+\backslash
+numthmFFiveTerminates{
+\backslash
+getrefnumber{thm:F5Terminates}}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addtostream{autorefparams}{
+\backslash
+noexpand
+\backslash
+def
+\backslash
+noexpand
+\backslash
+numdefSymbZero{
+\backslash
+getrefnumber{defSymbZero}}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addtostream{autorefparams}{
+\backslash
+noexpand
+\backslash
+def
+\backslash
+noexpand
+\backslash
+numdefInducedZero{
+\backslash
+getrefnumber{defInducedZero}}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addtostream{autorefparams}{
+\backslash
+noexpand
+\backslash
+def
+\backslash
+noexpand
+\backslash
+numdefIntroducedZero{
+\backslash
+getrefnumber{defIntroducedZero}}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addtostream{autorefparams}{
+\backslash
+noexpand
+\backslash
+def
+\backslash
+noexpand
+\backslash
+numdefOpNarrow{
+\backslash
+getrefnumber{defOpNarrow}}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addtostream{autorefparams}{
+\backslash
+noexpand
+\backslash
+def
+\backslash
+noexpand
+\backslash
+numthmEBasisUseful{
+\backslash
+getrefnumber{thm:EBasisUseful}}}
+\end_layout
 
 \end_inset
 

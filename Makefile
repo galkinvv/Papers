@@ -1,8 +1,8 @@
 autoref_params.tex vgalkin_disser.pdf: vgalkin_disser.lyx intro.lyx my_publications.bib f5_references.bib
-	rm -rf lyx-settings
 	mkdir -p lyx-settings/tmp
-	echo '\\converter "xetex" "pdf4" "'`pwd`'/xelatex_saveresult autoref_params.tex" "latex=xelatex"' > lyx-settings/preferences
+	echo '\\converter "xetex" "pdf4" "'`pwd`'/xelatex_saveresult autoref_params_generated.tex" "latex=xelatex"' > lyx-settings/preferences
 	RESULT_TO_SAVE_DIR=`pwd` lyx -userdir lyx-settings -e pdf4 $<
+	mv autoref_params_generated.tex autoref_params.tex
 auto_ref_plainrefs.tex: Makefile auto_ref.lyx
 	rm -f $@
 	lyx -e xetex auto_ref.lyx
