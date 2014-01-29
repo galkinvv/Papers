@@ -64,13 +64,20 @@
 
 % If this is in *.tex file, uncomment the following line.
 \makeatother
+
+\usepackage{thmtools}
+
+\declaretheoremstyle[
+notefont=\bfseries, notebraces={}{},
+bodyfont=\normalfont\itshape,
+headformat=\NAME \NOTE
+]{nopar}
+\declaretheorem[style=nopar]{thm*}
 \end_preamble
 \options a4paper, reqno, 14pt
 \use_default_options true
 \begin_modules
-theorems-ams
-eqs-within-sections
-figs-within-sections
+theorems-starred
 \end_modules
 \maintain_unincluded_children false
 \begin_local_layout
@@ -1509,6 +1516,26 @@ status open
 \end_inset
 
 , который не отбрасывается критериями алгоритма.
+\end_layout
+
+\begin_layout Standard
+Полученное противоречие доказывает основной результат главы.
+\end_layout
+
+\begin_layout Theorem
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+[
+\backslash
+numthmFFiveTerminates]
+\end_layout
+
+\end_inset
+
+Алгоритм F5 останавливается на любых однородных входных данных.
 \end_layout
 
 \begin_layout Standard
