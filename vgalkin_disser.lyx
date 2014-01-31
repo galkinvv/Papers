@@ -22787,6 +22787,23 @@ def
 \backslash
 noexpand
 \backslash
+numcorPolyProp{
+\backslash
+getrefnumber{needed-poly-prop}}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addtostream{autorefparams}{
+\backslash
+noexpand
+\backslash
+def
+\backslash
+noexpand
+\backslash
 numdefSymbZero{
 \backslash
 getrefnumber{defSymbZero}}}

@@ -65,14 +65,31 @@
 % If this is in *.tex file, uncomment the following line.
 \makeatother
 
-\usepackage{thmtools}
+\renewenvironment{thm*}[1]{
+\begin{trivlist}
+\item[\hskip \labelsep \bfseries {{\itshape \protect\theoremname} {#1}}]
+\itshape
+}
+{\end{trivlist}}
 
-\declaretheoremstyle[
-notefont=\bfseries, notebraces={}{},
-bodyfont=\normalfont\itshape,
-headformat=\NAME \NOTE
-]{nopar}
-\declaretheorem[style=nopar]{thm*}
+\renewenvironment{cor*}[1]{
+\begin{trivlist}
+\item[\hskip \labelsep \bfseries {{\itshape \protect\corollaryname} {#1}}]
+\itshape
+}
+{\end{trivlist}}
+
+\renewenvironment{defn*}[1]{
+\begin{trivlist}
+\item[\hskip \labelsep \bfseries {{\protect\definitionname} {#1}}]
+}
+{\end{trivlist}}
+
+\renewenvironment{claim*}[1]{
+\begin{trivlist}
+\item[\hskip \labelsep {{\itshape \protect\claimname} {#1}}]
+}
+{\end{trivlist}}
 \end_preamble
 \options a4paper, reqno, 14pt
 \use_default_options true
@@ -1110,6 +1127,18 @@ status open
 \end_layout
 
 \begin_layout Definition
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+numdefRepr}
+\end_layout
+
+\end_inset
+
 Для фиксированного множества 
 \begin_inset Formula $G\subset\mathcal{P}$
 \end_inset
@@ -1159,6 +1188,18 @@ p=\sum_{k}m_{k}\cdot g_{i_{k}},\; g_{i_{k}}\in G,
 
 \begin_deeper
 \begin_layout Definition
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+numdefDegRepr}
+\end_layout
+
+\end_inset
+
 Представление 
 \begin_inset Formula $p=\sum_{k}m_{k}\cdot g_{i_{k}}$
 \end_inset
@@ -1180,6 +1221,18 @@ p=\sum_{k}m_{k}\cdot g_{i_{k}},\; g_{i_{k}}\in G,
 
 \begin_deeper
 \begin_layout Definition
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+numdefGbByRepr}
+\end_layout
+
+\end_inset
+
 Множество 
 \begin_inset Formula $G\subset I$
 \end_inset
@@ -1299,6 +1352,18 @@ S-парой
 \end_layout
 
 \begin_layout Definition
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+numdefOnePassElemSig}
+\end_layout
+
+\end_inset
+
 Для одноэтапного алгоритма 
 \emph on
 сигнатурой элемента представления
@@ -1320,6 +1385,18 @@ S-парой
 
 \begin_deeper
 \begin_layout Definition
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+numdefIncElemSig}
+\end_layout
+
+\end_inset
+
 Для
 \emph on
  
@@ -1366,6 +1443,18 @@ S-парой
 \end_layout
 
 \begin_layout Definition
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+numdefReprSig}
+\end_layout
+
+\end_inset
+
 
 \emph on
 Сигнатурой представления
@@ -1421,6 +1510,18 @@ status open
 \end_layout
 
 \begin_layout Theorem
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+numthmFGprops}
+\end_layout
+
+\end_inset
+
 Если алгоритм F5 не останавливается на некоторых входных данных, то найдётся
  шаг, после которого множество 
 \begin_inset Formula $R$
@@ -1463,6 +1564,18 @@ status open
 \end_layout
 
 \begin_layout Definition
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+numdefSPair}
+\end_layout
+
+\end_inset
+
 Конечную или бесконечную последовательность отмеченных многочленов из 
 \begin_inset Formula $R$
 \end_inset
@@ -1498,7 +1611,19 @@ status open
  найдётся не отбрасываемый редуктор.
 \end_layout
 
-\begin_layout Theorem
+\begin_layout Corollary
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+numcorHasReductor}
+\end_layout
+
+\end_inset
+
 Если существует редуктор 
 \begin_inset Formula $f'$
 \end_inset
@@ -1528,9 +1653,9 @@ status open
 
 \begin_layout Plain Layout
 
-[
+{
 \backslash
-numthmFFiveTerminates]
+numthmFFiveTerminates}
 \end_layout
 
 \end_inset
@@ -1741,6 +1866,18 @@ status open
 \end_layout
 
 \begin_layout Claim
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+numcorPolyProp}
+\end_layout
+
+\end_inset
+
 Пусть 
 \begin_inset Formula $p$
 \end_inset
@@ -1808,6 +1945,18 @@ ApproxReduce
 \end_layout
 
 \begin_layout Definition
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+numdefSymbZero}
+\end_layout
+
+\end_inset
+
 Необратимый приближённый элемент, возникший в процессе приближённых вычислений,
  называется 
 \emph on
@@ -1827,6 +1976,18 @@ ApproxReduce
 
 \begin_deeper
 \begin_layout Definition
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+numdefInducedZero}
+\end_layout
+
+\end_inset
+
 Приближённый ноль называется 
 \emph on
 приближённым нулём, индуцированным входными данными
@@ -1840,6 +2001,18 @@ ApproxReduce
 
 \begin_deeper
 \begin_layout Definition
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+numdefIntroducedZero}
+\end_layout
+
+\end_inset
+
 Приближённый ноль называется 
 \emph on
 внесённым вычислением
@@ -1953,6 +2126,18 @@ key "GroebnerInExtFields"
 \end_layout
 
 \begin_layout Definition
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+numdefOpNarrow}
+\end_layout
+
+\end_inset
+
 Назовём 
 \emph on
 оператором сужения
@@ -1983,6 +2168,18 @@ key "GroebnerInExtFields"
 \end_layout
 
 \begin_layout Theorem
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{
+\backslash
+numthmEBasisUseful}
+\end_layout
+
+\end_inset
+
 Суженное множество мономов 
 \begin_inset Formula $e^{-}\left(M^{E}\right)\subset\mathbb{T}$
 \end_inset
