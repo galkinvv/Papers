@@ -5,13 +5,18 @@
 \textclass extarticle
 \begin_preamble
 \input{gost/babelbst.tex}
-\oddsidemargin=0.46cm
-\hoffset=0cm
-\textwidth=16.75cm
-\topmargin=-0.54cm
-\textheight=25.2cm
-\headheight=0cm
-\headsep=0cm
+\oddsidemargin=-13pt
+\topmargin=-66pt %%
+\headheight=12pt %%
+\headsep=38pt
+\textheight=732pt
+\textwidth=484pt
+\marginparsep=14pt
+\marginparwidth=43pt
+\footskip=14pt
+\marginparpush=7pt %%
+\hoffset=0pt %%
+\voffset=0pt %%
 \sloppy
 
 \usepackage{suffix}
@@ -383,11 +388,23 @@ setcounter{page}{-1}
 \align center
 
 \size larger
-ФГБОУ ВПО Московский государственный университет 
-\begin_inset Newline newline
+\begin_inset VSpace medskip
 \end_inset
 
- имени М.
+
+\size large
+ФГБОУ ВПО 
+\begin_inset Quotes fld
+\end_inset
+
+Московский государственный университет 
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size large
+имени М.
 \begin_inset space ~
 \end_inset
 
@@ -396,11 +413,7 @@ setcounter{page}{-1}
 \end_inset
 
 Ломоносова
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset VSpace medskip
+\begin_inset Quotes frd
 \end_inset
 
 
@@ -410,11 +423,19 @@ setcounter{page}{-1}
 \end_inset
 
 
+\begin_inset VSpace vfill
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 \align right
+
+\size large
 На правах рукописи
+\size default
+
 \begin_inset Newline newline
 \end_inset
 
@@ -431,12 +452,8 @@ setcounter{page}{-1}
 \end_inset
 
 
-\begin_inset VSpace vfill
-\end_inset
-
-
-\size larger
-ГАЛКИН Василий Витальевич
+\size large
+Галкин Василий Витальевич
 \end_layout
 
 \begin_layout Standard
@@ -447,12 +464,15 @@ setcounter{page}{-1}
 \end_inset
 
 
-\size huge
-Сигнатурные алгоритмы
-\begin_inset Newline newline
-\end_inset
+\size large
+СИГНАТУРНЫЕ АЛГОРИТМЫ
+\end_layout
 
-вычисления базисов Грёбнера
+\begin_layout Standard
+\align center
+
+\size large
+ВЫЧИСЛЕНИЯ БАЗИСОВ ГРЁБНЕРА
 \end_layout
 
 \begin_layout Standard
@@ -460,15 +480,11 @@ setcounter{page}{-1}
 \begin_inset VSpace vfill
 \end_inset
 
-Специальность 01.01.06
+01.01.06
 \begin_inset space ~
 \end_inset
 
---- математическая логика,
-\begin_inset Newline newline
-\end_inset
-
-алгебра и теория чисел
+--- математическая логика, алгебра и теория чисел
 \end_layout
 
 \begin_layout Standard
@@ -503,11 +519,25 @@ setcounter{page}{-1}
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing other 1.1000000000000001
 \align center
 \begin_inset VSpace vfill
 \end_inset
 
-Москва --- 2014 
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.1000000000000001
+\align center
+
+\size larger
+\begin_inset VSpace vfill
+\end_inset
+
+
+\size default
+ Москва --- 2014 
 \end_layout
 
 \begin_layout Standard
@@ -519,7 +549,7 @@ setcounter{page}{-1}
 
 \begin_layout Standard
 \noindent
-Работа выполнена на кафедре высшей алгебры ме\SpecialChar \-
+Работа выполнена на кафедре высшей алгебры Ме\SpecialChar \-
 ха\SpecialChar \-
 ни\SpecialChar \-
 ко-ма\SpecialChar \-
@@ -529,11 +559,23 @@ setcounter{page}{-1}
 чес\SpecialChar \-
 ко\SpecialChar \-
 го факультета
- ФГБОУ ВПО Московского государственного университета имени М.В.
+ ФГБОУ ВПО 
+\begin_inset Quotes fld
+\end_inset
+
+Московский государственный университет имени М.
 \begin_inset space ~
 \end_inset
 
-Ломоносова.
+В.
+\begin_inset space ~
+\end_inset
+
+Ломоносова
+\begin_inset Quotes frd
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -542,7 +584,7 @@ setcounter{page}{-1}
 
 
 \begin_inset Tabular
-<lyxtabular version="3" rows="16" columns="2">
+<lyxtabular version="3" rows="20" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top" width="0">
 <column alignment="left" valignment="top" width="0pt">
@@ -652,7 +694,7 @@ status open
 \begin_inset Text
 
 \begin_layout Plain Layout
-профессор (ФГБОУ ВПО 
+профессор (ФГБОУ ВПО
 \end_layout
 
 \end_inset
@@ -700,7 +742,47 @@ status open
 \begin_inset Quotes frd
 \end_inset
 
-,
+, 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+кафедра математического анализа,
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+заведующий лабораторией 
 \end_layout
 
 \end_inset
@@ -723,7 +805,7 @@ status open
 \begin_inset Text
 
 \begin_layout Plain Layout
- заведующий лабораторией)
+алгебраических вычислений)
 \end_layout
 
 \end_inset
@@ -784,16 +866,6 @@ status open
 
 \begin_layout Plain Layout
 старший научный сотрудник (ФГБУН
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-уточнить аббревиатуру
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -847,9 +919,6 @@ status collapsed
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset VSpace 0.7cm
-\end_inset
-
 
 \end_layout
 
@@ -866,17 +935,50 @@ status collapsed
 \begin_inset Quotes frd
 \end_inset
 
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-, должность?
+,
 \end_layout
 
 \end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
 
-)
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+лаборатория теории представлений
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset VSpace 0.7cm
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+и вычислительной математики)
 \end_layout
 
 \end_inset
@@ -946,33 +1048,53 @@ status open
 Защита диссертации состоится __ _____________ 201_г.
  в __ ч.
  __ м.
- на заседании диссертационного совета Д.501.001.84 созданного на базе ФГБОУ
- ВПО Московского государственного университета им.
- М.В.
- Ломоносова по адресу: 119992, ГСП-2, Москва, Ленинские горы, ФГБОУ ВПО
- МГУ, ме\SpecialChar \-
-ха\SpecialChar \-
-ни\SpecialChar \-
-ко-ма\SpecialChar \-
-те\SpecialChar \-
-ма\SpecialChar \-
-ти\SpecialChar \-
-чес\SpecialChar \-
-кий факультет, аудитория 14-08.
+ на заседании диссертационного совета Д.501.001.84, созданного на базе ФГБОУ
+ ВПО 
+\begin_inset Quotes fld
+\end_inset
+
+Московский государственный университет имени М.
+\begin_inset space ~
+\end_inset
+
+В.
+\begin_inset space ~
+\end_inset
+
+Ломоносова
+\begin_inset Quotes frd
+\end_inset
+
+ по адресу: Российская Федерация, 119991, Москва, ГСП–1, Ленинские горы,
+ д.
+ 1, МГУ имени М.
+\begin_inset space ~
+\end_inset
+
+В.
+\begin_inset space ~
+\end_inset
+
+Ломоносова, Механико-математический факультет, аудитория 14–08.
 \end_layout
 
 \begin_layout Standard
-С диссертацией можно ознакомиться в библиотеке ме\SpecialChar \-
-ха\SpecialChar \-
-ни\SpecialChar \-
-ко-ма\SpecialChar \-
-те\SpecialChar \-
-ма\SpecialChar \-
-ти\SpecialChar \-
-чес\SpecialChar \-
-ко\SpecialChar \-
-го
- факультета ФГБОУ ВПО МГУ (Главное здание, 14 этаж)
+С диссертацией можно ознакомиться в Фундаментальной библиотеке ФГБОУ ВПО
+ «Московский государственный университет имени М.
+\begin_inset space ~
+\end_inset
+
+В.
+\begin_inset space ~
+\end_inset
+
+Ломоносова» (Москва, Ломоносовский проспект, д.
+ 27, сектор А, 
+\begin_inset Formula $8^{й}$
+\end_inset
+
+ этаж).
+ 
 \end_layout
 
 \begin_layout Standard
@@ -989,15 +1111,11 @@ status open
 
 \begin_layout Standard
 \noindent
-Ученый секретарь
+Ученый секретарь диссертационного совета
 \begin_inset Newline newline
 \end_inset
 
-диссертационного совета
-\begin_inset Newline newline
-\end_inset
-
-Д.501.001.84 созданного на базе ФГБОУ ВПО МГУ
+Д.501.001.84, созданного на базе ФГБОУ ВПО МГУ,
 \begin_inset Newline newline
 \end_inset
 
@@ -1006,9 +1124,6 @@ status open
 \end_inset
 
 профессор
-\end_layout
-
-\begin_layout Standard
 \begin_inset space \hfill{}
 \end_inset
 
@@ -2240,21 +2355,6 @@ SingleStepSignatureGroebner
  Автор также признателен доктору физико-математических наук, профессору
  кафедры высшей алгебры Евгению Соломоновичу Голоду за погружение автора
  в более глубокое понимание алгебры в период обучения в аспирантуре.
-\end_layout
-
-\begin_layout Standard
-Автор выражает благодарность доктору физико-математических наук, профессору
- кафедры высшей геометрии и топологии, Ивану Алексеевичу Дынникову за сохранение
- и поддержание интереса автора к разнообразию математики в процессе всё
- большего её изучения.
- Автор благодарен авторам системы компьютерной алгебры Singular и лично
- Кристиану Эдеру за создание программного комплекса, позволившего автору
- быстро разрабатывать и тестировать алгоритмы.
- Автор выражает огромную благодарность Джону Перри из University of Southern
- Mississippi, в работах и переписке с которым автор сделал наиболее важный
- шаг для данной диссертации -- осознал принципы сигнатурных алгоритмов.
- Автор также благодарит свою жену за помощь в финальной подготовке текста
- работы.
 \end_layout
 
 \begin_layout Part*
