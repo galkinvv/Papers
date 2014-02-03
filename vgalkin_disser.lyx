@@ -17,6 +17,7 @@
 \usepackage{suffix}
 \usepackage{newfile}
 \usepackage{refcount}
+\usepackage{totcount}
 \setrefcountdefault{-1}
 \newoutputstream{autorefparams}
 \openoutputfile{autoref_params_generated.tex}{autorefparams}
@@ -345,17 +346,33 @@ status open
 
 \begin_layout Plain Layout
 
+
+\backslash
+newtotcounter{citationscounter}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{citationscounter}{-1}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+def
+\backslash
+numofcitations{
+\backslash
+total{citationscounter}}
+\end_layout
+
+\begin_layout Plain Layout
+
 {
 \end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
 
 \begin_layout Plain Layout
 
@@ -584,7 +601,7 @@ LatexCommand tableofcontents
 
 \begin_layout Standard
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -22609,6 +22626,29 @@ status open
 
 
 \backslash
+makeatletter
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{citationscounter}{
+\backslash
+bt@totalctr}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+makeatother
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
 addtostream{autorefparams}{
 \backslash
 noexpand
@@ -22875,6 +22915,23 @@ noexpand
 numthmEBasisUseful{
 \backslash
 getrefnumber{thm:EBasisUseful}}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addtostream{autorefparams}{
+\backslash
+noexpand
+\backslash
+def
+\backslash
+noexpand
+\backslash
+numofcitations{
+\backslash
+numofcitations}}
 \end_layout
 
 \end_inset

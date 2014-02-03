@@ -963,7 +963,11 @@ numofcitations
 
 \end_inset
 
- наименований.
+
+\begin_inset space ~
+\end_inset
+
+наименований.
  Общий объем диссертации составляет 
 \begin_inset ERT
 status open
