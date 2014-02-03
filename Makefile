@@ -120,7 +120,7 @@ simple_sig.pdf: simple_sig.tex  f5_references.bib
 	pdflatex $^
 	pdflatex $^
 clean-logs:
-	rm -f *.aux *.log *.out *.blg *~
+	git ls-files --others --exclude-standard | grep '\(.aux\|.log\|.out\|.blg\|.bbl\|~\)$$' | xargs rm -vf
 view-vestnik: simple_sig_rus.vestnik.pdf
 	make clean-logs
 	xdg-open $^
@@ -204,7 +204,8 @@ view-origf5_termination_vestnik: origf5_termination_vestnik.pdf
 	make clean-logs
 	xdg-open $^
 clean: clean-logs
-	rm -f *.tex *.bbl *.pdf f5_references_1251.bib lyx-settings
+	bash -c 'comm -12 <(git ls-files --others --exclude-standard|sort) <(make --print-data-base --dry-run|sed "1,/\# Files/d" |grep "^[^\#]\\+: \\w"| cut -d: -f 1|sort)' | xargs rm -vf
+	rm -rf lyx-settings
 origf5_termination_progr: origf5_termination_progr.tex origf5_termination_progr.pdf
 origf5_termination_progr_final.tex: f5_example_run.tex origf5_termination_progr_pre.tex origf5_termination_progr.lyx Makefile
 	iconv -t cp1251 < f5_example_run.tex > f5_example_run_1251.tex
