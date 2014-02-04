@@ -2359,9 +2359,9 @@ SingleStepSignatureGroebner
 \begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
-btprint "btPrintAll"
+btprint "btPrintCited"
 bibfiles "my_publications"
-options "gost/ugost2008s_myparts"
+options "gost/ugost2008_myparts"
 
 \end_inset
 
